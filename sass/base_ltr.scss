@@ -1,0 +1,22 @@
+@import "ltr";
+@import "bootstrap_ltr";
+@import "font-awesome/font-awesome";
+@import "font-awesome/simple-line-icons";
+@import "global/_bootstrap-override";
+@import "global/_variables";
+@import "global/_colors";
+@import "global/_components";
+@import 'global/_plugins';
+@import 'layouts/layout/layout';
+@import 'pages/login-5';
+@import 'pages/register';
+
+body {
+  background: white;
+}
+#clickyab_app {
+  //height: 100%;
+}
+.content-mt {
+  padding-top: 40px;
+}

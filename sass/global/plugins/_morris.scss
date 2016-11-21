@@ -1,0 +1,32 @@
+/***
+Morris Charts
+***/
+
+.portlet-body-morris-fit {
+    margin-#{$dir-mode-align-inverse}: -20px;
+    margin-#{$dir-mode-align}: -20px;
+    margin-bottom: -15px;
+
+    > svg {
+		@include border-radius(0 0 $general-border-radius $general-border-radius); 
+	}
+}
+
+.morris-hover.morris-default-style {
+
+
+	.morris-hover-row-label {
+		text-align: $dir-mode-align;
+		font-weight: 400;
+		font-size: 15px;
+		color: #7D8C9D;
+		font-family: $font-family-primary;     
+	}
+
+	.morris-hover-point {
+		text-align: $dir-mode-align;
+		font-size: 14px;
+		font-weight: 400;		
+		font-family: $font-family-primary;  
+	}
+}

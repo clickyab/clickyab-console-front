@@ -1,0 +1,29 @@
+@mixin single-side-border-radius($side, $radius) {
+	border-bottom-#{$side}-radius: $radius;
+  border-top-#{$side}-radius: $radius;
+}
+
+
+/**
+ * helpers use in float,text-align, padding, margin, etc.
+ */
+$direction: ltr;
+$dir-mode-align: left;
+$dir-mode-align-inverse: right;
+$dir-mode-font-size-base: 14px;
+
+
+@import url(https://fonts.googleapis.com/css?family=Lato:400,700);
+$dir-mode-font-family-sans-serif:  'Lato', sans-serif;
+$dir-mode-font-family-serif:       'Lato', sans-serif;
+
+$font-family-primary:  	  		 	Lato, sans-serif !default;
+$font-family-nav:	  		 		Lato, sans-serif !default;
+$font-family-default:  	  		 	"Helvetica Neue", Helvetica, Arial, sans-serif !default;
+
+$font-family-sans-serif:  "Helvetica Neue", Helvetica, Arial, sans-serif !default;
+$font-family-serif:       Georgia, "Times New Roman", Times, serif !default;
+//** Default monospace fonts for `<code>`, `<kbd>`, and `<pre>`.
+$font-family-monospace:   Menlo, Monaco, Consolas, "Courier New", monospace !default;
+$font-family-base:        $font-family-sans-serif !default;
+

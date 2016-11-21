@@ -1,0 +1,21 @@
+// bootstrap multiselect
+
+.mt-multiselect{
+	text-align: $dir-mode-align;
+	position: relative;
+	
+	.caret{
+		position: absolute;
+	    top: 50%;
+	    margin-top: -2px;
+	    #{$dir-mode-align-inverse}: 15px;
+
+	}
+
+	&.mt-noicon{
+		.caret {
+			display:none;
+		}
+	}
+
+}

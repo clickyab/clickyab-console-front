@@ -1,0 +1,21 @@
+/***
+jQuery Slimscroll
+***/
+
+.scroller {
+  padding: 0px ;
+  margin: 0px ;
+  padding-#{$dir-mode-align-inverse}: 12px ;
+  overflow-x: hidden;
+  overflow-y: scroll;
+}
+
+.scroller-footer {
+  margin-top: 10px;
+
+  @include clearfix();
+}
+
+.portlet-body .slimScrollBar {
+  margin-#{$dir-mode-align-inverse}: 0px ;
+}

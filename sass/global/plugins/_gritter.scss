@@ -1,0 +1,18 @@
+/***
+Gritter notification modify
+***/
+
+#gritter-notice-wrapper {
+  #{$dir-mode-align-inverse}:1px !important;
+}
+
+.gritter-close {
+  #{$dir-mode-align}:auto !important;
+  #{$dir-mode-align-inverse}: 3px !important;
+}
+
+.gritter-title {
+  font-family:  'Open Sans' ;
+  font-size: 18px ;
+  font-weight: 300 ;
+}

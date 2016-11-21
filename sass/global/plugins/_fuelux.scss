@@ -1,0 +1,26 @@
+/***
+FuelUX Spinners
+***/
+
+.spinner-buttons.btn-group-vertical .btn {
+  text-align: center;
+  margin: 0;
+  height: 17px;
+  width: 22px;
+  padding-#{$dir-mode-align}: 6px;
+  padding-#{$dir-mode-align-inverse}: 6px;
+  padding-top: 0px;
+
+  .page-style-rounded & {
+  	 &.spinner-up {
+		border-radius: 0;
+	  	border-top-right-radius: $general-border-radius !important;
+	  }    
+
+	  &.spinner-down {     
+	  	border-radius: 0;
+	  	border-bottom-#{$dir-mode-align-inverse}-radius: $general-border-radius;
+	  }
+	} 
+} 
+

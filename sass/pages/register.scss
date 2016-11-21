@@ -1,0 +1,12 @@
+.radioFromK {
+  border-bottom: 1px solid;
+  label {
+    &:first-child {
+      margin: 8px 0 0 0;
+    }
+  }
+  .md-radio-inline {
+    float: $dir-mode-align-inverse;
+    margin-bottom: 4px;
+  }
+}
