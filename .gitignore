@@ -4,4 +4,9 @@ node_modules
 assets
 themeAssets/assets
 themeAssets/sass
+<<<<<<< HEAD
 npm-debug.log
+=======
+npm-debug.log
+**/*.DS_Store
+>>>>>>> 19202724158f4987b33488d22926f9b6a5c88d33
