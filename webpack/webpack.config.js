@@ -49,7 +49,7 @@ module.exports = {
 			'jquery',
 			'bootstrap',
 			'./metronic/vendor/jquery.validate.js',
-			'./metronic/vendor/tooltipValidation.js',
+			// './metronic/vendor/tooltipValidation.js',
 			'./metronic/vendor/amcharts/amcharts/amcharts.js',
 			'./metronic/vendor/amcharts/amcharts/serial.js',
 			'./metronic/vendor/amcharts/amcharts/pie.js',

@@ -1,0 +1,7 @@
+.idea
+node_modules
+*.iml
+assets
+themeAssets/assets
+themeAssets/sass
+npm-debug.log

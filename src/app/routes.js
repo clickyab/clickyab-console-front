@@ -5,6 +5,8 @@ import AdvertiserDashboardPage from './presenters/Advertiser/Dashboard/Index';
 import PublisherDashboardPage from './presenters/Publisher/Dashboard/Index';
 import SelectMode from './presenters/Advertiser/SelectMode';
 import {Index} from './../layouts/Index';
+// import PublisherHome from './../presenters/Publisher/Index';
+// import AdvertiserHome from './../presenters/Advertiser/Index';
 import {Campaigns} from './../layouts/Milad';
 import {CampaignsId} from './../layouts/CampaignsId';
 import React from 'react';
