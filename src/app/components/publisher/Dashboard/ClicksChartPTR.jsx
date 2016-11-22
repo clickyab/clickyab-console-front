@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import AMChartSerial from './../../common/AMChartSerial';
+import React from 'react';
 
 const dataProvider = [
     {
@@ -34,5 +35,5 @@ const dataProvider = [
 
 
 let  ClickChartPTR = () => <AMChartSerial dataProvider={dataProvider} />
-
 export  default  ClickChartPTR;
+
