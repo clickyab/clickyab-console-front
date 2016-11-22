@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
 
 
-export default class MainLinksPublisher extends Component {
+export default class MainLinksPublisherPTR extends Component {
 
     componentDidMount() {
 

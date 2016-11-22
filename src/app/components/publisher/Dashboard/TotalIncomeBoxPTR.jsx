@@ -2,10 +2,10 @@ import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
 
 
-export default class TotalClicksBox extends Component {
+export default class TotalIncomeBoxPTR extends Component {
 
     componentDidMount() {
-        $("#total-clicks-bar").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11], {
+        $("#total-income-bar").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11], {
             type: 'bar',
             width: '70',
             barWidth: 5,
@@ -22,9 +22,9 @@ export default class TotalClicksBox extends Component {
                     <div className="display">
                         <div className="number">
                             <h3 className="font-red-haze">
-                                <span data-counter="counterup" data-value="1349">9000</span>
+                                <span data-counter="counterup" data-value="1349">150,000</span>
                             </h3>
-                            <small>تبلیغات کلیکی</small>
+                            <small>درآمد کل (ریال)</small>
                             <br/>
                             <small>هفته اخیر</small>
                         </div>
@@ -33,7 +33,7 @@ export default class TotalClicksBox extends Component {
                                 <div className="stat-left">
                                     <div className="stat-chart">
 
-                                        <div id="total-clicks-bar"></div>
+                                        <div id="total-income-bar"></div>
 
                                     </div>
 

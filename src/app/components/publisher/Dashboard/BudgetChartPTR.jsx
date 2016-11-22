@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
 
 
-export default class BudgetChart extends Component {
+export default class BudgetChartPTR extends Component {
 
     componentDidMount() {
         var chart = AmCharts.makeChart("budget_chart", {

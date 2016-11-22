@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
 
 
-export default class ClicksChart extends Component {
+export default class ClicksChartPTR extends Component {
 
     componentDidMount() {
         var chart = AmCharts.makeChart("clicks-chart", {

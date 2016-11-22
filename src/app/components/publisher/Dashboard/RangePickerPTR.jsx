@@ -4,7 +4,7 @@ import moment from 'moment-jalali';
 var daterangepicker = require('daterangepicker');
 
 moment.loadPersian();
-export default class RangePicker extends Component {
+export default class RangePickerPTR extends Component {
 
     componentDidMount() {
         var start = moment().subtract(14, 'days');
