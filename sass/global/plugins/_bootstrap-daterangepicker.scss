@@ -366,7 +366,7 @@ Bootstrap Daterangepicker
   font-size: 11px;
   float: none;
   margin: 4px;
-  text-align: left;
+  text-align: $dir-mode-align;
 }
 
 .daterangepicker .ranges ul {

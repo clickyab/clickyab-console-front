@@ -10,7 +10,6 @@ export default class RangePickerPTR extends Component {
         var start = moment().subtract(14, 'days');
         var end = moment();
         function cb(start, end) {
-            console.log(start, end)
             $('#dashboard-report-range span').html(moment(start).format('dddd، jD jMMMM jYYYY') + ' - ' + moment(end).format('dddd، jD jMMMM jYYYY'));
         }
 
@@ -20,17 +19,19 @@ export default class RangePickerPTR extends Component {
             },
             startDate: start,
             endDate: end,
+            autoApply: true,
             ranges: {
-                'Today': [moment(), moment()],
-                'Yesterday': [moment().subtract(1, 'day')  , moment()],
-                'Last 7 Days': [moment().subtract(7, 'day'), moment()],
-                'Last 14 Days': [moment().subtract(14, 'day'), moment()],
-                'Last 30 Days': [moment().subtract(30, 'day'), moment()],
-                'This Month': [moment().startOf('jMonth'), moment().endOf('jMonth')],
-                'Last Month': [moment().subtract(1, 'jMonth').startOf('jMonth'), moment().subtract(1, 'jMonth').endOf('jMonth')]
-            }
+                'امروز': [moment(), moment()],
+                'دیروز': [moment().subtract(1, 'day')  , moment()],
+                'هفته گذشته': [moment().subtract(7, 'day'), moment()],
+                'دو هفته گذشته': [moment().subtract(14, 'day'), moment()],
+                'یک ماه گذشته': [moment().subtract(30, 'day'), moment()],
+                'این ماه': [moment().startOf('jMonth'), moment().endOf('jMonth')],
+                'آخرین ماه': [moment().subtract(1, 'jMonth').startOf('jMonth'), moment().subtract(1, 'jMonth').endOf('jMonth')]
+            },
+            showCustomRangeLabel: false,
+            alwaysShowCalendars: false,
         }, cb);
-
         cb(start, end);
     }
 

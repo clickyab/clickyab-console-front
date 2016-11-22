@@ -28,7 +28,7 @@ history.listen(location => {
 	}, 500);
 });
 
-export default (
+export default () => (
 	<Router history={history}>
 		<Route path='/' component={Index} name="Dashboard" getDisplayName={() => "Dashboard"}
 			   onEnter={(nextState, replace, next) => {
