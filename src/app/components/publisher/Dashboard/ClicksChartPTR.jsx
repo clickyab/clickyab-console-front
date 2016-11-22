@@ -1,6 +1,7 @@
 import AMChartSerial from './../../common/AMChartSerial';
+import React from 'react';
 
-const dataProvider = "dataProvider": [
+const dataProvider = [
     {
         "category": "چهارشنبه 1 شهریور",
         "value": 13
@@ -34,4 +35,6 @@ const dataProvider = "dataProvider": [
 ];
 
 
-export default const ClickChartPTR = <AMChartSerial dataProvider={dataProvider} />
+let ClickChartPTR = <AMChartSerial dataProvider={dataProvider} />;
+
+export default ClickChartPTR;
