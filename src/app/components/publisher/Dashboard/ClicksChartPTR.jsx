@@ -1,4 +1,3 @@
-import React, {Component} from 'react';
 import AMChartSerial from './../../common/AMChartSerial';
 import React from 'react';
 
