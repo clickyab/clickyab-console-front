@@ -1,0 +1,35 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "plugins": [
+    "react"
+  ],
+  "extends": [
+    "eslint:recommended",
+    "plugin:react/all"
+  ],
+  "rules": {
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "react/jsx-indent": 0,
+    "react/jsx-sort-props": 0,
+    "react/sort-prop-types":0,
+    "react/jsx-space-before-closing": 0,
+    "react/jsx-max-props-per-line": 0,
+    "react/require-optimization": 0,
+    "react/prefer-stateless-function": 0,
+    "react/jsx-no-literals": 0,
+    "react/jsx-no-target-blank": 0,
+    "no-console": 0,
+    "react/jsx-indent-props": 0,
+    "react/jsx-no-bind": 0,
+    "react/no-set-state": 0,
+    "react/forbid-component-props": 0,
+    "react/jsx-closing-bracket-location": 0
+  }
+}

@@ -7,7 +7,7 @@ require('amcharts3/amcharts/themes/patterns');
 require('amcharts3/amcharts/themes/chalk');
 
 
-export default class ClicksChartPTR extends Component {
+export default class AMChartSerial extends Component {
 
     componentDidMount() {
         AmCharts.makeChart("clicks-chart", {
@@ -69,30 +69,7 @@ export default class ClicksChartPTR extends Component {
             "export": {
                 "enabled": false
             },
-            "dataProvider": [{
-                "category": "چهارشنبه 1 شهریور",
-                "value": 13
-            }, {
-                "category": "چهارشنبه 2 شهریور",
-                "value": 11
-            }, {
-                "category": "چهارشنبه 3 شهریور",
-                "value": 15
-            }, {
-                "category": "چهارشنبه 4 شهریور",
-                "value": 16
-            },
-                {
-                    "category": "چهارشنبه 4 شهریور",
-                    "value": 16
-                },{
-                    "category": "چهارشنبه 5 شهریور",
-                    "value": 18
-                },
-                {
-                    "category": "چهارشنبه 24 شهریور",
-                    "value": 81
-                }]
+            "dataProvider": this.props.dataProvider
         });
     }
 

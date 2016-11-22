@@ -10,7 +10,7 @@ require('amcharts3/amcharts/themes/chalk');
 export default class BudgetChartPTR extends Component {
 
     componentDidMount() {
-        var chart = AmCharts.makeChart("budget_chart", {
+        AmCharts.makeChart("budget_chart", {
             "type": "serial",
             "addClassNames": true,
             "theme": "light",
