@@ -1,5 +1,10 @@
 import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
+require('amcharts3/amcharts/amcharts');
+require('amcharts3/amcharts/serial');
+require('amcharts3/amcharts/themes/light');
+require('amcharts3/amcharts/themes/patterns');
+require('amcharts3/amcharts/themes/chalk');
 
 
 export default class BudgetChartPTR extends Component {

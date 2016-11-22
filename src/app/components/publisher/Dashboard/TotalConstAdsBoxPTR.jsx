@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
+require('jquery-sparkline/jquery.sparkline');
 
 
 export default class TotalConstAdsBoxPTR extends Component {

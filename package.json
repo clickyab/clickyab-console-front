@@ -28,6 +28,7 @@
     "glob": "7.1.1",
     "history": "^4.4.0",
     "jquery": "3.1.1",
+    "jquery-sparkline": "^2.4.0",
     "lodash": "4.16.4",
     "moment": "^2.16.0",
     "moment-jalali": "^0.3.9",
@@ -47,6 +48,7 @@
     "redux-persist": "4.0.0-alpha6",
     "redux-thunk": "2.1.0",
     "sass-loader": "4.0.1",
+    "sparkline": "^0.1.2",
     "whatwg-fetch": "^1.0.0"
   },
   "devDependencies": {
