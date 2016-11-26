@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {Footer} from './Footer';
 import {Header} from './Header';
 import {Sidebar} from './Sidebar';
-import {Link} from 'react-router';
+// import {Link} from 'react-router';
 
 
 export class Index extends Component {

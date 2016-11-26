@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {translatable} from 'react-multilingual/dist';
+import {$} from 'jquery';
+// import {translatable} from 'react-multilingual/dist';
 import moment from 'moment-jalali';
 var daterangepicker = require('daterangepicker');
 
@@ -37,10 +38,10 @@ export default class RangePickerPTR extends Component {
 
     render() {
         return (
-            <div id="dashboard-report-range" className="pull-right btn btn-sm" data-container="body" data-placement="bottom" data-original-title="Change dashboard date range">
-                <i className="icon-calendar"/>&nbsp;
-                <span className="thin uppercase hidden-xs"/>&nbsp;
-                <i className="fa fa-angle-down"/>
+            <div id='dashboard-report-range' className='pull-right btn btn-sm' data-container='body' data-placement='bottom' data-original-title='Change dashboard date range'>
+                <i className='icon-calendar'/>&nbsp;
+                <span className='thin uppercase hidden-xs'/>&nbsp;
+                <i className='fa fa-angle-down'/>
             </div>
         )
     }

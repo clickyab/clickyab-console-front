@@ -1,4 +1,4 @@
-import {IMPERSONATE_SUCCESSFUL, IMPERSONATE_FAILED} from "../actions/impersonate";
+import {IMPERSONATE_SUCCESSFUL, IMPERSONATE_FAILED} from '../actions/impersonate';
 
 export default function impersonateReducer(state = false, action) {
 	switch (action.type) {

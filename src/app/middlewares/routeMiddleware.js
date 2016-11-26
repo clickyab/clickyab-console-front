@@ -1,4 +1,4 @@
-import {match} from "react-router";
+import {match} from 'react-router';
 export function dispatchableBrowserHistory(browserHistory, store) {
 	browserHistory.listenBefore((nextRoute, next) => {
 		console.log(match(nextRoute));
@@ -14,7 +14,7 @@ export function dispatchableBrowserHistory(browserHistory, store) {
 }
 
 export default store => next => action => {
-	if (action.type === "ROUTE_CHANGED")
+	if (action.type === 'ROUTE_CHANGED')
 		setTimeout(()=> {
 			next(action);
 		}, 3000);
