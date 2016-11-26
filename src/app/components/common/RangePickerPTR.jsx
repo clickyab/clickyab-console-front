@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {$} from 'jquery';
+let $ = require('jquery');
 // import {translatable} from 'react-multilingual/dist';
 import moment from 'moment-jalali';
 var daterangepicker = require('daterangepicker');
