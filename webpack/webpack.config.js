@@ -58,6 +58,8 @@ module.exports = {
 			// './metronic/vendor/amcharts/amcharts/themes/patterns.js',
 			// './metronic/vendor/amcharts/amcharts/themes/chalk.js',
 			// './metronic/vendor/jquery.sparkline.js',
+			// './metronic/vendor/spin.min.js',
+			// './metronic/vendor/ladda.min.js',
 			'./metronic/vendor/additional-methods.js',
 			'./metronic/vendor/bootstrap-switch.js',
 			'./metronic/vendor/app.js',
