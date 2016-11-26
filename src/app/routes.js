@@ -36,13 +36,13 @@ export default () => (
 				{/*store.dispatch({type: 'TITLE', title: 'new title'})*/}
 				next()
 			}}>
-			<IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={ () => 'Dashboard'} />
+			<IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
 			<Route path='/publisher' component={PublisherDashboardPage} name='publisher' />
 			<Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
 			<Route path='/campaigns' component={Campaigns} name='Campaigns'>
 
 				<Route path='/campaigns/:id' component={CampaignsId} name='Campaign'
-					   getDisplayName={() => store.getState().campain.title}/>
+					getDisplayName={() => store.getState().campain.title}/>
 			</Route>
 			<Route path='/mode' component={SelectMode} name='SelectMode'/>
 		</Route>
