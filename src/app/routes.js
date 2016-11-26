@@ -38,6 +38,7 @@ export default () => (
 			   }}>
 			<IndexRoute component={AdvertiserDashboardPage} name="Dashboard" getDisplayName={() => "Dashboard"}/>
 			<Route path="/publisher" component={PublisherDashboardPage} name="publisher"/>
+			<Route path="/advertiser" component={AdvertiserDashboardPage} name="advertiser"/>
 			<Route path='/campaigns' component={Campaigns} name="Campaigns">
 
 				<Route path='/campaigns/:id' component={CampaignsId} name="Campaign"
