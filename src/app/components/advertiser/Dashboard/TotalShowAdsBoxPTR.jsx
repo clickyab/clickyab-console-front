@@ -1,51 +1,46 @@
 import React, {Component} from 'react';
 require('jquery-sparkline/jquery.sparkline');
 
-export default class TotalConstAdsBoxPTR extends Component {
+
+export default class TotalShowAdsBoxPTR extends Component {
 
     componentDidMount() {
-        $("#sparkline_bar").sparkline([13 , 5], {
-            type: 'pie',
+        $("#total-show-ads-bar").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11], {
+            type: 'bar',
             width: '70',
             barWidth: 5,
             height: '55',
-            sliceColors: ['#35aa47','#f36a5a']
+            barColor: '#5c9bd1',
+            negBarColor: '#e02222'
         });
     }
 
     render() {
-        return(
+        return (
             <div className="col-lg-3 col-md-3 col-sm-6 col-xs-12">
                 <div className="dashboard-stat2 ">
                     <div className="display">
                         <div className="number">
-                            <h3 className="font-green-sharp">
-                                <span data-counter="counterup" data-value="7800">50</span>
-
+                            <h3 className="font-red-haze">
+                                <span data-counter="counterup" data-value="1349">2500</span>
                             </h3>
-                            <small>
-                                کمپین ها
-                            </small>
+                            <small>تبلیغات نمایشی</small>
                             <br/>
-                            (<small style={{ color: '#35aa47'}}>فعال</small> / <small style={{ color: '#f36a5a'}}>غیرفعال</small>)
+                            <small>هفته اخیر</small>
                         </div>
                         <div className="pull-left">
                             <div className="number-stats">
                                 <div className="stat-left">
                                     <div className="stat-chart">
 
-                                        <div id="sparkline_bar"></div>
+                                        <div id="total-show-ads-bar"></div>
 
                                     </div>
-                                    <div className="stat-number">
 
-                                    </div>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-
 
                 </div>
             </div>

@@ -3,7 +3,7 @@ import {translatable} from 'react-multilingual/dist';
 require('jquery-sparkline/jquery.sparkline');
 
 
-export default class TotalClicksBoxPTR extends Component {
+export default class TotalValidClicksBoxPTR extends Component {
 
     componentDidMount() {
         $("#total-clicks-bar").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11], {
@@ -25,7 +25,7 @@ export default class TotalClicksBoxPTR extends Component {
                             <h3 className="font-red-haze">
                                 <span data-counter="counterup" data-value="1349">9000</span>
                             </h3>
-                            <small>تبلیغات کلیکی</small>
+                            <small>کلیک های معتبر</small>
                             <br/>
                             <small>هفته اخیر</small>
                         </div>

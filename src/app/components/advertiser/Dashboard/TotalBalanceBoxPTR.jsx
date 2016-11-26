@@ -3,10 +3,10 @@ import {translatable} from 'react-multilingual/dist';
 require('jquery-sparkline/jquery.sparkline');
 
 
-export default class TotalIncomeBoxPTR extends Component {
+export default class TotalBalanceBoxPTR extends Component {
 
     componentDidMount() {
-        $("#total-income-bar").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11], {
+        $("#total-balance-bar").sparkline([9, 11, 12, 13, 12, 13, 10, 14, 13, 11, 11, 12, 11, 11], {
             type: 'bar',
             width: '70',
             barWidth: 5,
@@ -25,7 +25,7 @@ export default class TotalIncomeBoxPTR extends Component {
                             <h3 className="font-red-haze">
                                 <span data-counter="counterup" data-value="1349">150,000</span>
                             </h3>
-                            <small>درآمد کل (ریال)</small>
+                            <small>باقیمانده بودجه (ریال)</small>
                             <br/>
                             <small>هفته اخیر</small>
                         </div>
@@ -34,7 +34,7 @@ export default class TotalIncomeBoxPTR extends Component {
                                 <div className="stat-left">
                                     <div className="stat-chart">
 
-                                        <div id="total-income-bar"></div>
+                                        <div id="total-balance-bar"></div>
 
                                     </div>
 
