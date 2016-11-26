@@ -33,6 +33,6 @@ const dataProvider = [
 ];
 
 
-let  ClickChartPTR = () => <AMChartSerial dataProvider={dataProvider} />
+let  ClickChartPTR = (props) => <AMChartSerial {...props} dataProvider={dataProvider} />
 export  default  ClickChartPTR;
 

@@ -36,6 +36,6 @@ const dataProvider = [{
 ];
 
 
-let  BudgetChartPTR = () => <AMChartBar dataProvider={dataProvider} />
+let  BudgetChartPTR = (props) => <AMChartBar {...props} dataProvider={dataProvider} />;
 
 export  default  BudgetChartPTR;

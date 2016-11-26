@@ -49,17 +49,8 @@ module.exports = {
 			'jquery',
 			'bootstrap',
 			'./metronic/vendor/jquery.validate.js',
-			// './metronic/vendor/tooltipValidation.js',
-			// './metronic/vendor/amcharts/amcharts/amcharts.js',
-			// './metronic/vendor/amcharts/amcharts/serial.js',
-			// './metronic/vendor/amcharts/amcharts/pie.js',
-			// './metronic/vendor/amcharts/amcharts/radar.js',
-			// './metronic/vendor/amcharts/amcharts/themes/light.js',
-			// './metronic/vendor/amcharts/amcharts/themes/patterns.js',
-			// './metronic/vendor/amcharts/amcharts/themes/chalk.js',
-			// './metronic/vendor/jquery.sparkline.js',
-			// './metronic/vendor/spin.min.js',
-			// './metronic/vendor/ladda.min.js',
+			// './metronic/vendor/jquery.lobibox.js',
+			// './metronic/vendor/notifications.js',
 			'./metronic/vendor/additional-methods.js',
 			'./metronic/vendor/bootstrap-switch.js',
 			'./metronic/vendor/app.js',
@@ -101,7 +92,7 @@ module.exports = {
 		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
 		new webpack.NoErrorsPlugin(),
 		new webpack.ProvidePlugin({jQuery: 'jquery'}),
-		new webpack.ProvidePlugin({$: 'jquery'})
+		new webpack.ProvidePlugin({$: 'jquery'}),
 	],
 	target: 'web'
 };
