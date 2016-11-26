@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-let $ = require('jquery');
+import $ from 'jquery';
 require('jquery-sparkline/jquery.sparkline');
 
 export default class TotalCampaignsBoxPTR extends Component {

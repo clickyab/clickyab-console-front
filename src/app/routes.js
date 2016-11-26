@@ -1,5 +1,5 @@
 import Login from './presenters/Login/Login';
-let $ = require('jquery');
+import $ from 'jquery';
 import Register from './presenters/Register/Register';
 import ForgotPassword from './presenters/ForgotPassword/ForgotPassword';
 import AdvertiserDashboardPage from './presenters/Advertiser/Dashboard/Index';
