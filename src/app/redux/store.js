@@ -1,9 +1,8 @@
-import {combineReducers, createStore, applyMiddleware, compose} from "redux";
-import {reducer as formReducer} from "redux-form";
-import {localeReducer, cssLazyLoader} from "react-multilingual";
-import {loginReducer, userReducer, tokenReducer, registerReducer, impersonateReducer} from "./reducers";
-import {routerReducer} from "react-router-redux";
-import {reducer as toastrReducer} from 'react-redux-toastr'
+import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
+import {reducer as formReducer} from 'redux-form';
+import {localeReducer, cssLazyLoader} from 'react-multilingual';
+import {loginReducer, userReducer, tokenReducer, registerReducer, impersonateReducer} from './reducers';
+import {routerReducer} from 'react-router-redux';
 
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
@@ -16,7 +15,6 @@ export const store = createStore(
 		login: loginReducer,
 		user: userReducer,
 		form: formReducer,
-		toastr: toastrReducer,
 		locale: localeReducer('fa', require('../../locales/index').default)
 	}),
 	undefined,

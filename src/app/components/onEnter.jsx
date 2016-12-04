@@ -1,10 +1,10 @@
-let _next = () => {
-};
+// let _next = () => {
+// };
 
 export function setNext(next) {
 	_next = next;
 
-	console.log("hala harchi")
+	console.log('hala harchi')
 }
 
 export function onEnter() {
