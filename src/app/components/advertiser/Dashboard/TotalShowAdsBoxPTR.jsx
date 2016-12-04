@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {$} from 'jquery';
+import $ from 'jquery';
 require('jquery-sparkline/jquery.sparkline');
 
 

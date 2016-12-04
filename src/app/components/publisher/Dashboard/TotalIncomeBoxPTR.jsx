@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {$} from 'jquery';
+import $ from 'jquery';
 // import {translatable} from 'react-multilingual/dist';
 require('jquery-sparkline/jquery.sparkline');
 
