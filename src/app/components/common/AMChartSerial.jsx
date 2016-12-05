@@ -23,7 +23,7 @@ export default class AMChartSerial extends Component {
                 'labelsEnabled':false,
                 'id': 'v1',
                 'axisAlpha': 0,
-                'labelRotation':320
+                'labelRotation':10
             }],
             'balloon': {
                 'borderThickness': 1,

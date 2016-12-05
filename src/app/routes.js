@@ -48,7 +48,7 @@ export default () => (
 		</Route>
 		<Route path='/register' component={Register} title='Register' name='Register' />
 		<Route path='/login' component={Login} name='Login'/>
-		<Route path='/forgot' component={ForgotPassword} name='ForgotPassword'/>
+		<Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword'/>
 		<Route path='/mode' component={SelectMode} name='mode'/>
 	</Router>
 );

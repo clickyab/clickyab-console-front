@@ -13,7 +13,6 @@ export default class TotalCampaignsBoxPTR extends Component {
             sliceColors: ['#35aa47','#f36a5a']
         });
     }
-
     render() {
         return(
             <div className='col-lg-3 col-md-3 col-sm-6 col-xs-12'>

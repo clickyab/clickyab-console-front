@@ -67,7 +67,7 @@ $footer-text-color: #a0a9b4;
 		}
 
 		>.login-content{
-			margin-top:35%;
+			margin-top:10%;
 
 			>h1{
 				font-size: 30px;
@@ -158,7 +158,7 @@ $footer-text-color: #a0a9b4;
 
 				a{ 
 					color:#a9b5be;
-					font-size: 18px;
+					font-size: 13px;
 
 					&:hover{
 						color:#337ab7;
@@ -172,7 +172,7 @@ $footer-text-color: #a0a9b4;
 			}
 
 			.login-copyright{
-				padding-#{$dir-mode-align}: 0;
+				padding-left: 0;
 				margin-top:6px;
 
 				> p{

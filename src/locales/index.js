@@ -4,7 +4,7 @@ export default {
         email: 'ایمیل',
         password: 'کلمه عبور',
         rpassword: 'تکرار کلمه عبور',
-        copyright: ' © کپی‌رایت ۱۳۹۵. کلیه حقوق مادی و معنوی این سایت متعلق به کلیک‌یاب می‌باشد.',
+        copyright: ' © کپی‌رایت ۱۳۹۵. کلیک یاب',
         register: 'ثبت نام کنید',
         advertiser: 'آگهی دهنده',
         publisher: 'نمایش دهنده',

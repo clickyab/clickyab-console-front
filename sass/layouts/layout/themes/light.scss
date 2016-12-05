@@ -218,12 +218,12 @@ $for-min-992px-page-boxed-sidebar-fixed-border-color:                   $sidebar
                         border-top: 20px double transparent;
                         border-bottom: 20px double transparent;
                         border-#{$dir-mode-align-inverse}:0;
-                        border-#{$dir-mode-align}8px solid $brand-main-color;
+                        border-#{$dir-mode-align}:8px solid $brand-main-color;
 
                         .page-sidebar-reversed & { 
                             #{$dir-mode-align-inverse}: auto;
-                            #{$dir-mode-align} -8px;
-                            border-#{$dir-mode-align}0;
+                            #{$dir-mode-align}: -8px;
+                            border-#{$dir-mode-align}:0;
                             border-#{$dir-mode-align-inverse}:8px solid $brand-main-color;
                         }
 
@@ -301,7 +301,7 @@ $for-min-992px-page-boxed-sidebar-fixed-border-color:                   $sidebar
 }
 
 .page-content {
-    border-#{$dir-mode-align} 1px solid $sidebar-menu-devider-border-color;
+    border-#{$dir-mode-align}: 1px solid $sidebar-menu-devider-border-color;
     border-bottom: 1px solid $sidebar-menu-devider-border-color;
 
     .page-sidebar-reversed & {
@@ -312,7 +312,7 @@ $for-min-992px-page-boxed-sidebar-fixed-border-color:                   $sidebar
 @media (max-width: $screen-sm-max) { /* 991px */ 
 
     .page-content {
-        border-#{$dir-mode-align} 0;
+        border-#{$dir-mode-align}: 0;
         border-bottom: 0;
 
         .page-sidebar-reversed & {
