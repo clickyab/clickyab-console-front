@@ -45,20 +45,20 @@ module.exports = {
 		],
 		app: glob.sync("./src/**/*.jsx"),
 		vendor: [
-			'./metronic/vendor/fetch.js',
 			'jquery',
 			'bootstrap',
-			'./metronic/vendor/jquery.validate.js',
-			// './metronic/vendor/jquery.lobibox.js',
-			// './metronic/vendor/notifications.js',
-			'./metronic/vendor/additional-methods.js',
-			'./metronic/vendor/bootstrap-switch.js',
-			'./metronic/vendor/app.js',
-			'./metronic/vendor/dashboard.js',
-			'./metronic/vendor/layout.js',
-			'./metronic/vendor/demo.js',
-			'./metronic/vendor/quick-nav.js',
-			'./metronic/vendor/jquery.backstretch.js'
+
+
+            './public/vendor/fetch.js',
+            './public/vendor/jquery.validate.js',
+			'./public/vendor/additional-methods.js',
+			'./public/vendor/bootstrap-switch.js',
+			'./public/vendor/app.js',
+			'./public/vendor/dashboard.js',
+			'./public/vendor/layout.js',
+			'./public/vendor/demo.js',
+			'./public/vendor/quick-nav.js',
+			'./public/vendor/jquery.backstretch.js'
 		]
 	},
 	devtool: process.env.WEBPACK_DEVTOOL || 'cheap-module-source-map',

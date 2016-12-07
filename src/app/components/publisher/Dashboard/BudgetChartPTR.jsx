@@ -1,5 +1,5 @@
 import React from 'react';
-import AMChartBar from './../../common/AMChartBar';
+import AMChartBar from '../../common/charts/AMChartBar';
 
 const dataProvider = [{
     'date': 'شنبه',

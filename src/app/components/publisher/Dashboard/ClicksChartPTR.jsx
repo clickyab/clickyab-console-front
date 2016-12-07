@@ -1,5 +1,5 @@
 import React from 'react';
-import AMChartSerial from './../../common/AMChartSerial';
+import AMChartSerial from '../../common/charts/AMChartSerial';
 
 const dataProvider = [
     {

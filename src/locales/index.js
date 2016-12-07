@@ -42,7 +42,7 @@ export default {
         password: 'Password',
         rpassword: 'Retype Password',
         copyright: '© 2016 CLICKYAB',
-        register: 'Register',
+        register: 'register',
         advertiser: 'Advertiser',
         publisher: 'Publisher',
         agency: 'Agency',
