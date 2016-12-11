@@ -3,6 +3,8 @@ import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
 import {translatable} from 'react-multilingual/dist';
 import {FooterFullScreen} from '../layouts/FooterFullScreen.jsx';
+import Radio from './../common/form/Radio';
+import Checkbox from './../common/form/Checkbox';
 
 @translatable(({
     email,
@@ -127,41 +129,9 @@ class Form extends Component {
                              "position": "relative", "top": "15px"
                          }}>
                         <label>نوع کاربری خود را مشخص کنید: </label>
-                        <div className="md-checkbox-inline">
-                            <Field name="user-type-person" component={field => {
-                                let {onChange, ...rest} = field.input;
-                                return (
-                                    <div className="md-checkbox">
-                                        <input {...rest} onChange={(event) => {
-                                            console.log(event.target.value);
-                                            $(".restOfTheForm").css('filter', 'none');
-                                        }} type="checkbox" value={false} id="checkbox6"/>
-                                        <label htmlFor="checkbox6">
-                                            <span/>
-                                            <span className="check"/>
-                                            <span className="box"/>
-                                            حقیقی
-                                        </label>
-                                    </div>
-                                )
-                            }}/>
-
-                            <Field name="user-type-company" component={field => {
-                                let {onChange, ...rest} = field.input;
-                                return (
-                                    <div className="md-checkbox">
-                                        <input {...rest} onChange={() => {
-                                            onChange(rest.value)
-                                        }} type="checkbox" id="checkboxa" className="md-check"/>
-                                        <label htmlFor="checkboxa">
-                                            <span/>
-                                            <span className="check"/>
-                                            <span className="box"/>
-                                            حقوقی
-                                        </label>
-                                    </div>
-                                )
-                            }}/>
+                        <div className="md-radio-inline">
+                            <Radio value="person" name="user-type" id="user-type-person" label="حقیقی"/>
+                            <Radio value="company" name="user-type" id="user-type-company" label="حقوقی"/>
                         </div>
                     </div>
                 </div>
