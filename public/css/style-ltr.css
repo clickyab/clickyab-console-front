@@ -1840,11 +1840,11 @@ select[multiple].input-lg,
   color: #27a4b0; }
 
 .has-success .form-control {
-  border-color: #27a4b0;
+  border-color: #27a4b0 !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   .has-success .form-control:focus {
-    border-color: #1d7d86;
+    border-color: #1d7d86 !important;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #60d2dc;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #60d2dc; }
 
@@ -1869,11 +1869,11 @@ select[multiple].input-lg,
   color: #c29d0b; }
 
 .has-warning .form-control {
-  border-color: #c29d0b;
+  border-color: #c29d0b !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   .has-warning .form-control:focus {
-    border-color: #927608;
+    border-color: #927608 !important;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f4d03f;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f4d03f; }
 
@@ -1898,11 +1898,11 @@ select[multiple].input-lg,
   color: #e73d4a; }
 
 .has-error .form-control {
-  border-color: #e73d4a;
+  border-color: #e73d4a !important;
   -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075);
   box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075); }
   .has-error .form-control:focus {
-    border-color: #d71b29;
+    border-color: #d71b29 !important;
     -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f2989f;
     box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 6px #f2989f; }
 
@@ -37872,3 +37872,5 @@ body {
 
 .content-mt {
   padding-top: 40px; }
+
+/*# sourceMappingURL=style-ltr.css.map */

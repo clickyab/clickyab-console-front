@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import RegisterPTR from './RegisterPTR';
+import PasswordRecoveryPTR from './PasswordRecoveryPTR';
 import swagger from './../../swagger/index';
 
-export default class RegisterCTR extends Component {
+export default class PasswordRecoveryCTR extends Component {
 
     SubmitCall = (values, form) => {
         if (form.valid()) {
@@ -22,6 +22,6 @@ export default class RegisterCTR extends Component {
     };
 
     render() {
-        return (<RegisterPTR SubmitCall={this.SubmitCall}/>);
+        return (<PasswordRecoveryPTR SubmitCall={this.SubmitCall}/>);
     }
 }

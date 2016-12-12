@@ -5,11 +5,14 @@ import swagger from './../../swagger/index';
 export default class LoginCTR extends Component {
 
     SubmitCall = (values, form) => {
-        console.log('ads', form);
         if (form.valid()) {
-            console.log("mili");
             (new swagger.UserApi())
-                .userLoginPost({'payloadData': values},
+                .userLoginPost({
+                        'payloadData': {
+                            "email": "string",
+                            "password": "string"
+                        }
+                    },
                     function (response) {
                         console.log(response)
                     });

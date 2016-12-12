@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {reduxForm} from 'redux-form';
+import {Field, reduxForm} from 'redux-form';
 import {translatable} from 'react-multilingual/dist';
 let Ladda = require('ladda/js/ladda');
 import {AlertBox} from '../../functions/notifications';
 
 @translatable(({
     login,
+    login_submit,
     email,
     login_with_google,
     password,
@@ -18,9 +19,11 @@ import {AlertBox} from '../../functions/notifications';
     create_account,
     do_not_have_an_account_yet,
     login_to_your_account,
+    register_now,
     submit
 }) => ({
     login,
+    login_submit,
     email,
     login_with_google,
     password,
@@ -32,6 +35,7 @@ import {AlertBox} from '../../functions/notifications';
     create_account,
     do_not_have_an_account_yet,
     login_to_your_account,
+    register_now,
     submit
 }))
 class LoginForm extends Component {
@@ -43,8 +47,9 @@ class LoginForm extends Component {
     componentDidMount() {
         AlertBox("error", "سلام");
 
-        $("body").css("background", "#a0b4c9");
-        $("body").css("height", "100vh");
+		$('body').backstretch([
+				'./img/backgrounds/tehran.png',
+			]);
 
         this.form = $("form");
         this.form.validate({
@@ -82,65 +87,74 @@ class LoginForm extends Component {
         });
 
     }
-
     render() {
 
         let {
             login, email, password, login_with_google, forgot_password, or_login_with, to_reset_your_password,
-            login_to_your_account, do_not_have_an_account_yet, click, here,
+            login_to_your_account, do_not_have_an_account_yet, click, here, register_now,login_submit,
             create_account, submit
         } = this.props;
         const {handleSubmit, SubmitCall} = this.props;
         return (
 
-            <div className="login">
-                <div className="logo">
-                    <a href="index.html">
-                        <img src="/img/logo_fa.png" alt="" width="150px"/> </a>
-                </div>
-                <div className="content">
-                    <form className="login-form" action="index.html" method="post"
-                          onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
-                        <h3 className="form-title">{login_to_your_account}</h3>
-                        <div className="form-group">
-                            <label className="control-label visible-ie8 visible-ie9">{email}</label>
-                            <div className="input-icon">
-                                <i className="fa fa-envelope-o"/>
-                                <input className="form-control placeholder-no-fix" type="text" autoComplete="off"
-                                       placeholder={email} name="email"/></div>
-                        </div>
-                        <div className="form-group">
-                            <label className="control-label visible-ie8 visible-ie9">{password}</label>
-                            <div className="input-icon">
-                                <i className="fa fa-lock"/>
-                                <input className="form-control placeholder-no-fix" type="password" autoComplete="off"
-                                       placeholder={password} name="password"/></div>
-                        </div>
-                        <div className="form-actions">
-                            <button type="submit" className="btn green pull-left"> {login} </button>
-                        </div>
-                        <div className="login-options">
-                            <h4>{or_login_with}</h4>
+			<div className="top-content auth-pages">
 
-                            <a href="javascript:;" className="btn red btn-block">
-                                <i className="fa fa-google"/>
-                                {login_with_google}
-                            </a>
-                        </div>
-                        <div className="forget-password">
-                            <h4>{forgot_password}</h4>
-                            <p>
-                                <a href="javascript:;"
-                                   id="forget-password"> {here} </a> {click} {to_reset_your_password}. </p>
-                        </div>
-                        <div className="create-account">
-                            <p> {do_not_have_an_account_yet}&nbsp;
-                                <a href="javascript:;" id="register-btn"> {create_account} </a>
-                            </p>
-                        </div>
-                    </form>
-                </div>
-            </div>
+				<div className="inner-bg">
+					<div className="container">
+						<div className="row">
+							<div className="col-sm-8 col-sm-offset-2 text">
+								<h1>
+                                    <a href="http://clickyab.com">
+                                        <img src="img/logo_fa.png" width="150px"/>
+                                    </a>
+                                </h1>
+							</div>
+						</div>
+
+                        <div className="row">
+							<div className="col-sm-6 col-sm-offset-3 form-box">
+								<div className="form-top">
+									<div className="form-top-left">
+										<h3>{login_to_your_account}</h3>
+									</div>
+									<div className="form-top-right">
+										<i className="fa fa-key"/>
+									</div>
+								</div>
+								<div className="form-bottom">
+									<form role="form" action="" method="post" className="login-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
+										<div className="form-group">
+											<label className="sr-only" htmlFor="form-username">{email}</label>
+											<Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email"/>
+										</div>
+										<div className="form-group">
+											<label className="sr-only" htmlFor="form-password">{password}</label>
+											<Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password"/>
+										</div>
+										<button type="submit" className="btn">{login_submit}</button>
+									</form>
+                                    <div className="row">
+                                        <div className="col-sm-6 col-sm-offset-3 social-login">
+                                            <div className="social-login-buttons">
+                                                <a className="btn btn-link-1 btn-link-1-google-plus" href="#">
+                                                    <i className="fa fa-google-plus"/> {login_with_google}
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </div>
+								</div>
+                                <div className="panel-footer">
+                                    <a href="#">{forgot_password}</a><br/>
+                                    {do_not_have_an_account_yet} <a href="#">{register_now}</a>
+                                </div>
+
+							</div>
+						</div>
+
+					</div>
+				</div>
+
+			</div>
         );
     }
 }
