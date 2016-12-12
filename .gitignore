@@ -6,4 +6,6 @@ themeAssets/assets
 themeAssets/sass
 npm-debug.log
 **/*.DS_Store
-tmp
+/tmp
+/tmp/*
+tmp/*

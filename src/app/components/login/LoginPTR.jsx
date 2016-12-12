@@ -1,10 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {Field, reduxForm} from 'redux-form';
-import { Link } from 'react-router'
+import {reduxForm} from 'redux-form';
 import {translatable} from 'react-multilingual/dist';
-import {FooterFullScreen} from '../layouts/FooterFullScreen';
-import {checkStatus , parseJSON} from '../../functions/helpers';
 let Ladda = require('ladda/js/ladda');
 import {AlertBox} from '../../functions/notifications';
 
@@ -502,7 +499,8 @@ LoginForm.propTypes = {
 	createAccount: React.PropTypes.string,
 	forgotPass: React.PropTypes.string,
 	submit: React.PropTypes.string,
-	handleSubmit: React.PropTypes.func
+	handleSubmit: React.PropTypes.func,
+	login: React.PropTypes.func
 };
 
 export default reduxForm({

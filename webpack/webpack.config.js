@@ -94,5 +94,9 @@ module.exports = {
 		new webpack.ProvidePlugin({jQuery: 'jquery'}),
 		new webpack.ProvidePlugin({$: 'jquery'}),
 	],
-	target: 'web'
+	target: 'web',
+    node: {
+        fs: "empty",
+        superagent: "empty"
+    }
 };
