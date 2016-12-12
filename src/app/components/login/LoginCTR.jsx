@@ -3,25 +3,28 @@ import LoginPTR from './LoginPTR';
 import swagger from './../../swagger/index';
 
 export default class LoginCTR extends Component {
-    SubmitCall = (form) => {
+    form;
+
+    componentDidMount() {
+        this.form = $("form");
+    };
+
+    SubmitCall = (from) => {
         return (values) => {
-            console.log("asd");
-            if (form.valid()) {
+            console.log('ads', from);
+            if (this.form.valid()) {
                 console.log("mili");
                 (new swagger.UserApi())
-                    .userLoginPost({
-                        'payloadData': {
-                            "email": "string",
-                            "password": "string"
-                        }
-                    }, function (response) {
-                        console.log(response)
-                    });
+                    .userLoginPost({'payloadData': values},
+                        function (response) {
+                            console.log(response)
+                        });
             } else {
                 console.log("fuck");
             }
-        }
-    }
+        };
+    };
+
     render() {
         return (<LoginPTR SubmitCall={this.SubmitCall}/>);
     }
