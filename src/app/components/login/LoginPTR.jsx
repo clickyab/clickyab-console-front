@@ -83,12 +83,6 @@ class LoginForm extends Component {
 
     }
 
-    getForm() {
-        this.form = $("form");
-        return this.form;
-    }
-
-
     render() {
 
         let {
@@ -106,7 +100,7 @@ class LoginForm extends Component {
                 </div>
                 <div className="content">
                     <form className="login-form" action="index.html" method="post"
-                          onSubmit={handleSubmit(SubmitCall(this.form))}>
+                          onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
                         <h3 className="form-title">{login_to_your_account}</h3>
                         <div className="form-group">
                             <label className="control-label visible-ie8 visible-ie9">{email}</label>
