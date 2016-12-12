@@ -3,6 +3,9 @@
  * helpers use in float,text-align, padding, margin, etc.
  */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,700,400,300);
+body {
+  font-weight: 200; }
+
 @font-face {
   font-family: IRANSans;
   font-style: normal;
@@ -37,6 +40,21 @@
   font-weight: normal;
   src: url("../fonts/iransans/eot/IRANSansWeb.eot");
   src: url("../fonts/iransans/eot/IRANSansWeb.eot?#iefix") format("embedded-opentype"), url("../fonts/iransans/woff2/IRANSansWeb.woff2") format("woff2"), url("../fonts/iransans/woff/IRANSansWeb.woff") format("woff"), url("../fonts/iransans/ttf/IRANSansWeb.ttf") format("truetype"); }
+
+.bold-weight {
+  font-weight: bold; }
+
+.medium-weight {
+  font-weight: 500; }
+
+.light-weight {
+  font-weight: 300; }
+
+.ultra-light-weight {
+  font-weight: 200; }
+
+.default-weight {
+  font-weight: normal; }
 
 /*!
  * Bootstrap v3.3.7 (http://getbootstrap.com)
@@ -393,8 +411,8 @@ hr {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
+  font-weight: 200;
+  line-height: 1.6;
   color: inherit; }
   h1 small,
   h1 .small, h2 small,
@@ -14467,7 +14485,7 @@ Input icons
     color: #ccc;
     display: block;
     position: absolute;
-    margin: 11px 2px 4px 10px;
+    margin: 9px 5px 4px 10px;
     z-index: 3;
     width: 16px;
     font-size: 16px;
@@ -15096,6 +15114,7 @@ Portlets
   margin-top: 0px;
   margin-bottom: 25px;
   padding: 0px;
+  width: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -19947,9 +19966,9 @@ Dashboard Stats 2
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  background: #fff;
   padding: 15px 15px 1px 15px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  min-height: 193px; }
   .dashboard-stat2.bordered {
     border: 1px solid #e7ecf1; }
   .dashboard-stat2 .display {
@@ -20029,7 +20048,7 @@ Social Icons
   .social-icons:after {
     clear: both; }
   .social-icons li {
-    float: left;
+    float: right;
     display: inline;
     list-style: none;
     margin-left: 5px;
@@ -34462,9 +34481,9 @@ Page Header
       display: inline-block;
       float: right; }
     .page-header.navbar .page-logo .logo-default {
-      margin: 12px 0 0;
+      margin: 9px 0 0;
       height: auto;
-      max-width: 100px; }
+      max-width: 130px; }
     .page-header.navbar .page-logo .logo-mini {
       display: none;
       margin-right: 5px; }
@@ -37678,6 +37697,22 @@ body {
 .mb2 {
   margin-bottom: 2em; }
 
+.icon-fw {
+  width: 1.33em;
+  margin-right: 4px;
+  text-align: center; }
+
+.mar-no {
+  margin: 0 !important; }
+
+.panel-colorful * {
+  color: #fff; }
+
+.btn i {
+  position: relative;
+  top: 3px;
+  right: -7px; }
+
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px; } }
@@ -37704,177 +37739,151 @@ Page Loading
     display: none;
     transition: all 2s; }
 
-.center-align-page {
+/* Cubic Bezier Transition */
+/***
+Login page
+***/
+/* logo page */
+.login {
+  background-color: #a0b4c9 !important; }
+
+.login .logo {
+  margin: 60px auto 20px auto;
+  padding: 15px;
   text-align: center; }
 
-.center-align-page.white * {
-  color: #fff; }
+.login .content {
+  background-color: #fff;
+  width: 360px;
+  margin: 0 auto;
+  margin-bottom: 0px;
+  padding: 30px;
+  padding-top: 20px;
+  padding-bottom: 15px;
+  -webkit-border-radius: 7px;
+  -moz-border-radius: 7px;
+  -ms-border-radius: 7px;
+  -o-border-radius: 7px;
+  border-radius: 7px; }
 
-.center-align-page * {
+.login .content h3 {
+  color: #000; }
+
+.login .content h4 {
+  color: #555; }
+
+.login .content p {
+  color: #222; }
+
+.login .content .login-form,
+.login .content .forget-form {
+  padding: 0px;
+  margin: 0px; }
+
+.login .content .input-icon {
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  -ms-border-radius: 4px;
+  -o-border-radius: 4px;
+  border-radius: 4px; }
+
+.login .content .forget-form {
+  display: none; }
+
+.login .content .register-form {
+  display: none; }
+
+.login .content .form-title {
+  font-weight: 300;
+  margin-bottom: 25px; }
+
+.login .content .form-actions {
+  background-color: #fff;
+  clear: both;
+  border: 0px;
+  border-bottom: 1px solid #eee;
+  padding: 0px 30px 25px 30px;
+  margin-left: -30px;
+  margin-right: -30px;
+  overflow: hidden; }
+
+.login .content .forget-form .form-actions {
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 20px; }
+
+.login .content .register-form .form-actions {
+  border: 0;
+  margin-bottom: 0;
+  padding-bottom: 0px; }
+
+.login .content .form-actions .rememberme {
+  margin-top: 8px;
   display: inline-block; }
 
-/* Cubic Bezier Transition */
-.user-login-5 {
-  min-height: 100vh; }
-  .user-login-5 .row {
-    margin: 0; }
-  .user-login-5 .logo {
-    background-image: url(../img/pages/logo_fa.png);
-    background-size: 100%;
-    display: block;
-    width: 160px;
-    height: 40px; }
-  .user-login-5 .footerFullScreen .copyright {
-    color: #a0a9b4; }
-  .user-login-5 .footerFullScreen .center-align-page a {
-    color: #a0a9b4;
-    text-decoration: none; }
-    .user-login-5 .footerFullScreen .center-align-page a:hover {
-      color: #397EB9; }
-  .user-login-5 .bs-reset {
-    margin: 0;
-    padding: 0; }
-  .user-login-5 .text-right {
-    text-align: left; }
-  .user-login-5 .login-bg {
-    background-position: center;
-    background-size: cover;
-    background-repeat: no-repeat;
-    min-height: 100vh; }
-  .user-login-5 .login-logo {
-    position: absolute;
-    top: 2.5em;
-    right: 2.5em; }
-    .user-login-5 .login-logo.login-6 {
-      top: 80px;
-      right: 80px; }
-  .user-login-5 .login-container {
-    position: relative;
-    min-height: 100vh; }
-    .user-login-5 .login-container > .login-content,
-    .user-login-5 .login-container .login-social,
-    .user-login-5 .login-container .login-copyright {
-      padding: 0 80px; }
-    .user-login-5 .login-container > .login-content {
-      margin-top: 10%; }
-      .user-login-5 .login-container > .login-content > h1 {
-        font-size: 30px;
-        font-weight: 300;
-        color: #4e5a64; }
-      .user-login-5 .login-container > .login-content p {
-        color: #a0a9b4;
-        font-size: 15px;
-        line-height: 22px; }
-      .user-login-5 .login-container > .login-content > .login-form {
-        margin-top: 80px;
-        color: #a4aab2;
-        font-size: 13px;
-        margin-bottom: 30px; }
-        .user-login-5 .login-container > .login-content > .login-form .form-control {
-          width: 100%;
-          border: none;
-          border-bottom: 1px solid;
-          border-color: #a0a9b4;
-          color: #868e97;
-          font-size: 14px;
-          border-radius: 0 !important; }
-          .user-login-5 .login-container > .login-content > .login-form .form-control:focus {
-            outline: 0; }
-        .user-login-5 .login-container > .login-content > .login-form .forgot-password,
-        .user-login-5 .login-container > .login-content > .login-form .login-button {
-          display: inline-block; }
-        .user-login-5 .login-container > .login-content > .login-form .rem-password {
-          margin-top: 10px; }
-          .user-login-5 .login-container > .login-content > .login-form .rem-password > p {
-            margin: 0; }
-          .user-login-5 .login-container > .login-content > .login-form .rem-password > .rem-checkbox {
-            border-color: #a4aab2; }
-        .user-login-5 .login-container > .login-content > .login-form .forgot-password {
-          margin-left: 1em; }
-          .user-login-5 .login-container > .login-content > .login-form .forgot-password > a {
-            color: #a4aab2; }
-            .user-login-5 .login-container > .login-content > .login-form .forgot-password > a:hover {
-              color: #337ab7;
-              text-decoration: none; }
-            .user-login-5 .login-container > .login-content > .login-form .forgot-password > a:focus {
-              color: #a4aab2;
-              text-decoration: none; }
-    .user-login-5 .login-container > .login-footer {
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      padding-bottom: 10px; }
-      .user-login-5 .login-container > .login-footer .login-social {
-        padding-left: 0; }
-        .user-login-5 .login-container > .login-footer .login-social li {
-          display: inline-block;
-          list-style: none;
-          margin-left: 1em; }
-        .user-login-5 .login-container > .login-footer .login-social a {
-          color: #a9b5be;
-          font-size: 13px; }
-          .user-login-5 .login-container > .login-footer .login-social a:hover {
-            color: #337ab7;
-            text-decoration: none; }
-          .user-login-5 .login-container > .login-footer .login-social a:focus {
-            color: #a9b5be; }
-      .user-login-5 .login-container > .login-footer .login-copyright {
-        padding-left: 0;
-        margin-top: 6px; }
-        .user-login-5 .login-container > .login-footer .login-copyright > p {
-          margin: 0;
-          font-size: 13px;
-          color: #a9b5be; }
-  .user-login-5 .alert {
-    margin-top: -60px; }
-  .user-login-5 .form-group.has-error {
-    border-bottom: 2px solid #ed6b75 !important; }
-  .user-login-5 .form-group.valid {
-    border-bottom: 1px solid #a0a9b4 !important; }
+.login .content .form-actions .btn {
+  margin-top: 1px; }
 
-@media (max-width: 1365px) {
-  .user-login-5 .login-logo.login-6 {
-    top: 40px;
-    right: 40px; }
-  .user-login-5 .login-container > .login-content,
-  .user-login-5 .login-container .login-social,
-  .user-login-5 .login-container .login-copyright {
-    padding: 0 40px; }
-  .user-login-5 .login-container .login-social {
-    padding-left: 0; }
-  .user-login-5 .login-container .login-copyright {
-    padding-right: 0; } }
+.login .content .forget-password {
+  margin-top: 25px; }
 
-@media (max-width: 1023px) {
-  .user-login-5 {
-    min-height: 50vh; }
-    .user-login-5 .mt-login-5-bsfix {
-      width: 100%; }
-    .user-login-5 .login-bg {
-      min-height: 50vh; }
-    .user-login-5 .login-logo.login-6 {
-      position: relative;
-      margin: 0 0 40px 0; }
-    .user-login-5 .login-container {
-      min-height: 50vh; }
-      .user-login-5 .login-container > .login-content {
-        margin-top: 60px; }
-        .user-login-5 .login-container > .login-content .login-form {
-          margin-top: 40px; }
-      .user-login-5 .login-container .rem-password {
-        margin-bottom: 1em; }
-      .user-login-5 .login-container > .login-footer {
-        position: relative;
-        margin-top: 40px;
-        padding-bottom: 0; }
-        .user-login-5 .login-container > .login-footer .login-social li {
-          margin-left: 0.5em; }
-    .user-login-5 .alert {
-      margin-top: -20px; } }
+.login .content .create-account {
+  border-top: 1px dotted #eee;
+  padding-top: 10px;
+  margin-top: 15px; }
 
-@media (max-width: 640px) {
-  .user-login-5 .login-container > .login-content .text-right {
-    text-align: right; } }
+.login .content .create-account a {
+  display: inline-block;
+  margin-top: 5px; }
+
+/* select2 dropdowns */
+.login .content .select2-container {
+  border-right: 2px solid #44B6AE !important; }
+
+.login .content .select2-container .select2-choice {
+  border-right: none !important; }
+
+.login .content .select2-container i {
+  display: inline-block;
+  position: relative;
+  color: #ccc;
+  z-index: 1;
+  top: 1px;
+  margin: 4px 4px 0px -1px;
+  width: 16px;
+  height: 16px;
+  font-size: 16px;
+  text-align: center; }
+
+.login .content .has-error .select2-container i {
+  color: #b94a48; }
+
+.login .content .select2-container a span {
+  font-size: 13px; }
+
+.login .content .select2-container a span img {
+  margin-right: 4px; }
+
+/* footer copyright */
+.login .copyright {
+  text-align: center;
+  margin: 0 auto;
+  padding: 10px;
+  color: #999;
+  font-size: 13px; }
+
+@media (max-width: 480px) {
+  /***
+  Login page
+  ***/
+  .login .logo {
+    margin-top: 10px; }
+  .login .content {
+    width: 280px; }
+  .login .content h3 {
+    font-size: 22px; }
+  .login .checkbox {
+    font-size: 13px; } }
 
 .center-group {
   text-align: center; }

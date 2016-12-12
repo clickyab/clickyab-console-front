@@ -26,7 +26,22 @@
 .mb2 {
   margin-bottom: 2em;
 }
-
+.icon-fw {
+  width: 1.33em;
+  margin-right: 4px;
+  text-align: center;
+}
+.mar-no {
+  margin: 0!important;
+}
+.panel-colorful * {
+  color: $widget-color-white;
+}
+.btn i {
+  position: relative;
+  top: 3px;
+  #{$dir-mode-align}: -7px;
+}
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px;

@@ -13,7 +13,8 @@ Portlets
 .portlet  {
     margin-top: 0px;
     margin-bottom: 25px;
-    padding: 0px; 
+    padding: 0px;
+    width: 100%;
     
     @include border-radius($general-border-radius);
 

@@ -75,7 +75,6 @@ export default class AMChartSerial extends Component {
 
     render() {
         return (
-            <div className='col-lg-6 col-xs-12 col-sm-12'>
                 <div className='portlet light '>
                     <div className='portlet-title'>
                         <div className='caption'>
@@ -102,7 +101,6 @@ export default class AMChartSerial extends Component {
                         <div id='clicks-chart' className='CSSAnimationChart'/>
                     </div>
                 </div>
-            </div>
         )
     }
 }

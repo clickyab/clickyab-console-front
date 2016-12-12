@@ -9,7 +9,7 @@ Social Icons
     @include clearfix();
 
     li {
-        float:left;
+        float:$dir-mode-align;
         display:inline;
         list-style:none;
         margin-#{$dir-mode-align-inverse}:5px;

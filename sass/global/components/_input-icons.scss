@@ -19,7 +19,12 @@ Input icons
         color: #ccc;
         display: block;
         position: absolute;
-        margin: 11px 2px 4px 10px;
+        @if($direction == 'rtl'){
+            margin: 9px 5px 4px 10px;
+        }
+        @else {
+            margin: 11px 2px 4px 10px;
+        }
         z-index: 3;
         width: 16px;
         font-size: 16px;

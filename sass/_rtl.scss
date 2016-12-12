@@ -11,6 +11,10 @@ $dir-mode-align: right;
 $dir-mode-align-inverse: left;
 $dir-mode-font-size-base: 16px;
 
+body {
+  font-weight: 200;
+}
+
 //** font settings
 
 @font-face {
@@ -62,6 +66,22 @@ $dir-mode-font-size-base: 16px;
   url('../fonts/iransans/woff2/IRANSansWeb.woff2') format('woff2'),  /* FF39+,Chrome36+, Opera24+*/
   url('../fonts/iransans/woff/IRANSansWeb.woff') format('woff'),  /* FF3.6+, IE9, Chrome6+, Saf5.1+*/
   url('../fonts/iransans/ttf/IRANSansWeb.ttf') format('truetype');
+}
+
+.bold-weight {
+  font-weight: bold;
+}
+.medium-weight {
+  font-weight: 500;
+}
+.light-weight {
+  font-weight: 300;
+}
+.ultra-light-weight {
+   font-weight: 200;
+ }
+.default-weight {
+  font-weight: normal;
 }
 
 $font-family-primary:  	  		 	IRANSans, sans-serif !default;

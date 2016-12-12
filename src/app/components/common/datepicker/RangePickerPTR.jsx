@@ -16,7 +16,8 @@ export default class RangePickerPTR extends Component {
 
         $('#dashboard-report-range').daterangepicker({
             locale: {
-                format: 'dddd، D MMMM YYYY'
+                format: 'dddd، D MMMM YYYY',
+                "customRangeLabel": "زمان دلخواه",
             },
             startDate: start,
             endDate: end,

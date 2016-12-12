@@ -359,8 +359,8 @@ hr {
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
   font-family: inherit;
-  font-weight: 500;
-  line-height: 1.1;
+  font-weight: 200;
+  line-height: 1.6;
   color: inherit; }
   h1 small,
   h1 .small, h2 small,
@@ -15062,6 +15062,7 @@ Portlets
   margin-top: 0px;
   margin-bottom: 25px;
   padding: 0px;
+  width: 100%;
   -webkit-border-radius: 4px;
   -moz-border-radius: 4px;
   -ms-border-radius: 4px;
@@ -19913,9 +19914,9 @@ Dashboard Stats 2
   -ms-border-radius: 4px;
   -o-border-radius: 4px;
   border-radius: 4px;
-  background: #fff;
   padding: 15px 15px 1px 15px;
-  margin-bottom: 20px; }
+  margin-bottom: 20px;
+  min-height: 193px; }
   .dashboard-stat2.bordered {
     border: 1px solid #e7ecf1; }
   .dashboard-stat2 .display {
@@ -34428,9 +34429,9 @@ Page Header
       display: inline-block;
       float: left; }
     .page-header.navbar .page-logo .logo-default {
-      margin: 12px 0 0;
+      margin: 9px 0 0;
       height: auto;
-      max-width: 100px; }
+      max-width: 130px; }
     .page-header.navbar .page-logo .logo-mini {
       display: none;
       margin-left: 5px; }
@@ -37643,6 +37644,22 @@ body {
 
 .mb2 {
   margin-bottom: 2em; }
+
+.icon-fw {
+  width: 1.33em;
+  margin-right: 4px;
+  text-align: center; }
+
+.mar-no {
+  margin: 0 !important; }
+
+.panel-colorful * {
+  color: #fff; }
+
+.btn i {
+  position: relative;
+  top: 3px;
+  left: -7px; }
 
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {

@@ -72,7 +72,6 @@ export default class AMChartBar extends Component {
 
     render() {
         return (
-            <div className='col-lg-6 col-xs-12 col-sm-12'>
                 <div className='portlet light '>
                     <div className='portlet-title'>
                         <div className='caption '>
@@ -97,10 +96,9 @@ export default class AMChartBar extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <div id='budget_chart' className='CSSAnimationChart'/>
+                        <div id='budget_chart'  style={{height: "360px"}} className='CSSAnimationChart'/>
                     </div>
                 </div>
-            </div>
         )
     }
 }

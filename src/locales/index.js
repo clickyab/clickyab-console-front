@@ -1,9 +1,18 @@
 export default {
     fa: {
         hello: 'سلام',
+        first_name: 'نام',
+        last_name: 'نام خانوادگی',
         email: 'ایمیل',
+        or_login_with:'ورود با شبکه های اجتماعی',
+        here:'اینجا',
+        to_reset_your_password:'برای بازیابی پسورد',
+        click:'کلیک کنید',
+        login_to_your_account:'ورود به حساب کاربری',
         password: 'کلمه عبور',
         rpassword: 'تکرار کلمه عبور',
+        login_with_google: 'ورود با گوگل',
+        do_not_have_an_account_yet: 'اکانت ندارید؟',
         copyright: ' © کپی‌رایت ۱۳۹۵. کلیک یاب',
         register: 'ثبت نام کنید',
         advertiser: 'آگهی دهنده',
@@ -11,9 +20,9 @@ export default {
         agency: 'آژانس تبلیغاتی',
         login: 'ورود',
         remember: 'مرا به خاطر بسپار',
-        forgotPass: 'کلمه عبور خود را فراموش کرده‌اید؟',
+        forgot_password: 'کلمه عبور خود را فراموش کرده‌اید؟',
         forgotPassTitle: 'بازیابی کلمه عبور', //ForgotPassowrd page
-        createAccount: 'ایجاد حساب کاربری',
+        create_account: 'ایجاد حساب کاربری',
         submit: 'ارسال',
         dashboard: 'داشبورد',
         operations: 'عملیات ها',
@@ -38,7 +47,15 @@ export default {
     },
     en: {
         hello: 'hello',
+        first_name: 'First Name',
+        last_name: 'Last Name',
         email: 'Email',
+        login_with_google: 'Login With Google',
+        do_not_have_an_account_yet: 'اکانت ندارید؟',
+        or_login_with:'Or Login With',
+        to_reset_your_password:'To Reset Your Password',
+        click:'Click',
+        here:'Here',
         password: 'Password',
         rpassword: 'Retype Password',
         copyright: '© 2016 CLICKYAB',
@@ -48,9 +65,9 @@ export default {
         agency: 'Agency',
         login: 'Login',
         remember: 'Remember',
-        forgotPass: 'Forgot password',
+        forgot_password: 'Forgot your password?',
         forgotPassTitle: 'Forgot password',
-        createAccount: 'Create account',
+        create_account: 'Create account',
         submit: 'Submit',
         dashboard: 'Dashboard',
         operations: 'Operations',
@@ -70,7 +87,8 @@ export default {
         sex: 'Sex',
         male: 'Male',
         female: 'Female',
-        legalName: 'Legal name'
+        legalName: 'Legal name',
+        login_to_your_account:'Login To Your Account',
     }
 }
 

@@ -33,9 +33,7 @@ export default class TotalCampaignsBoxPTR extends Component {
                             <div className='number-stats'>
                                 <div className='stat-left'>
                                     <div className='stat-chart'>
-
                                         <div id='campaign-bar' />
-
                                     </div>
                                     <div className='stat-number'/>
                                 </div>

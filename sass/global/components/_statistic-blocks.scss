@@ -153,9 +153,10 @@ Dashboard Stats 2
 
 .dashboard-stat2 {
     @include border-radius($general-border-radius);
-    background: #fff;
+    //background: #fff;
     padding: 15px 15px 1px 15px;
-    margin-bottom: 20px;  
+    margin-bottom: 20px;
+    min-height: 193px;
 
     @if $theme-type == "material-design" {
         box-shadow: $general-shadow;
