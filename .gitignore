@@ -9,3 +9,15 @@ npm-debug.log
 /tmp
 /tmp/*
 tmp/*
+
+/bin
+/bin/*
+bin/*
+
+**/swagger/
+public/img/apps/
+src/app/components/common/widget-box/
+src/app/container/
+src/app/packages/
+src/app/presenters/
+src/img/

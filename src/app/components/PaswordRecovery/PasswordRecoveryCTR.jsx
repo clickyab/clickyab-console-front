@@ -1,16 +1,16 @@
 import React, {Component} from 'react';
 import PasswordRecoveryPTR from './PasswordRecoveryPTR';
-import swagger from './../../swagger/index';
+import swagger from './../../swagger/src/index';
 
 export default class PasswordRecoveryCTR extends Component {
 
     SubmitCall = (values, form) => {
         if (form.valid()) {
+
             (new swagger.UserApi())
-                .userLoginPost({
+                .userForgotCallPost({
                         'payloadData': {
                             "email": "string",
-                            "password": "string"
                         }
                     },
                     function (response) {

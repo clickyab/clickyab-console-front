@@ -1,26 +1,32 @@
 import React, {Component} from 'react';
 import RegisterPTR from './RegisterPTR';
-import swagger from './../../swagger/index';
+import swagger from './../../swagger/src/index';
+import {AlertBox} from '../../functions/notifications';
+import {checkStatus} from "../../functions/helpers";
 
 export default class RegisterCTR extends Component {
 
     SubmitCall = (values, form) => {
         if (form.valid()) {
+            // console.log(form.find("button[type=submit]"));
             (new swagger.UserApi())
-                .userLoginPost({
+                .userRegisterPost({
                         'payloadData': {
-                            "email": "string",
-                            "password": "string"
-                        }
+                            "email": values.email,
+                            "password": values.password
+                        },
                     },
-                    function (response) {
-                        console.log(response)
+
+                    function (error, data, response) {
+                        console.log(response);
+                        if(response.statusCode == 400 ){
+                            AlertBox("error",response.text);
+                        }
                     });
         } else {
             console.log("***");
         }
     };
-
     render() {
         return (<RegisterPTR SubmitCall={this.SubmitCall}/>);
     }

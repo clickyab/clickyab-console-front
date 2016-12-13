@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LoginPTR from './LoginPTR';
-import swagger from './../../swagger/index';
+import swagger from './../../swagger/src/index';
 
 export default class LoginCTR extends Component {
 
