@@ -1,6 +1,7 @@
 import {store} from './redux/store';
 import {Provider} from 'react-redux';
 import React from 'react';
+import { RouteTransition } from 'react-router-transition';
 import {Footer} from './components/layouts/Footer';
 import {Header} from './components/layouts/Header';
 import Sidebar from './components/layouts/Sidebar';
@@ -16,7 +17,15 @@ export default class App extends React.Component {
 						<div className="page-container">
 							<Sidebar/>
 							<div className="page-content-wrapper">
-                                {children}
+								<RouteTransition
+									pathname={this.props.location.pathname}
+									atEnter={{ opacity: 0 }}
+									atLeave={{ opacity: 0 }}
+									atActive={{ opacity: 1 }}
+
+								>
+									{children}
+								</RouteTransition>
 							</div>
 						</div>
 						<Footer/>

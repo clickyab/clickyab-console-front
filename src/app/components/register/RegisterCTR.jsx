@@ -1,25 +1,38 @@
 import React, {Component} from 'react';
+import $ from 'jquery';
 import RegisterPTR from './RegisterPTR';
 import swagger from './../../swagger/src/index';
 import {AlertBox} from '../../functions/notifications';
-import {checkStatus} from "../../functions/helpers";
+import {connect} from 'react-redux';
+import {browserHistory} from 'react-router';
+import {successfulRegister, failedRegister} from '../../redux/actions/register';
+let Ladda = require('ladda/js/ladda');
 
+@connect()
 export default class RegisterCTR extends Component {
 
     SubmitCall = (values, form) => {
+        let {dispatch} = this.props;
         if (form.valid()) {
-            // console.log(form.find("button[type=submit]"));
-            (new swagger.UserApi())
+            let loadingProgress = Ladda.create(document.querySelector('.register-form button'));
+            loadingProgress.start();
+            ( new swagger.UserApi())
                 .userRegisterPost({
                         'payloadData': {
                             "email": values.email,
                             "password": values.password
                         },
                     },
-
                     function (error, data, response) {
-                        console.log(response);
-                        if(response.statusCode == 400 ){
+                        console.log(error, data, response);
+                        if (response.statusCode == '200') {
+                            dispatch(successfulRegister(data.email, data.token, data.user_id));
+                            // browserHistory.push('/publisher');
+                            AlertBox("success",response.text);
+                        }
+                        else if (response.statusCode == '400') {
+                            loadingProgress.stop();
+                            dispatch(failedRegister());
                             AlertBox("error",response.text);
                         }
                     });

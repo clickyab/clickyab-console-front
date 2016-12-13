@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
+import { Link } from 'react-router'
 import {translatable} from 'react-multilingual/dist';
 
 @translatable(({
@@ -44,11 +45,11 @@ class RegisterForm extends Component {
             rules: {
                 password: {
                     required: true,
-                    minlength: 5
+                    minlength: 6
                 },
                 repeat_password: {
                     required: true,
-                    minlength: 5,
+                    minlength: 6,
                     equalTo:"#password"
                 },
                 email: {
@@ -60,10 +61,14 @@ class RegisterForm extends Component {
             messages: {
                 password: {
                     required: 'لطفا کلمه عبور را وارد نمایید',
-                    minlength: 'کلمه عبور حداقل باید ۵ کاراکتر باشد'
+                    minlength: 'کلمه عبور حداقل باید ۶ کاراکتر باشد'
                 },
                 email: 'لطفا یک ایمیل معتبر وارد نمایید',
-                repeat_password: 'لطفا کلمه عبور خود را تکرار کنید'
+                repeat_password: {
+                    required: 'لطفا تکرار کلمه عبور را وارد نمایید',
+                    minlength: 'کلمه عبور حداقل باید ۶ کاراکتر باشد',
+                    equalTo: 'کلمه عبور و تکرار آن باید یکسان باشد'
+                },
             }
         });
     }
@@ -114,7 +119,7 @@ class RegisterForm extends Component {
                                             <label className="sr-only" htmlFor="repeat_password">{repeat_password}</label>
                                             <Field component="input" type="password" name="repeat_password" placeholder={repeat_password} className="form-password form-control" id="repeat_password"/>
                                         </div>
-                                        <button type="submit" className="btn">{register_submit}</button>
+                                        <button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{register_submit}</span></button>
                                     </form>
                                     <div className="row">
                                         <div className="col-sm-6 col-sm-offset-3 social-login">
@@ -127,7 +132,7 @@ class RegisterForm extends Component {
                                     </div>
                                 </div>
                                 <div className="panel-footer">
-                                    {do_you_have_account} <a href="#">{login_now}</a>
+                                    {do_you_have_account} <Link to="/login">{login_now}</Link>
                                 </div>
 
                             </div>

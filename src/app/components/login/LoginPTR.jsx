@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
+import { Link } from 'react-router'
 import {translatable} from 'react-multilingual/dist';
-let Ladda = require('ladda/js/ladda');
-import {AlertBox} from '../../functions/notifications';
 
 @translatable(({
     login,
@@ -45,7 +44,7 @@ class LoginForm extends Component {
     };
 
     componentDidMount() {
-        AlertBox("error", "سلام");
+        // AlertBox("error", "سلام");
 
 		$('body').backstretch([
 				'./img/backgrounds/tehran.png',
@@ -71,21 +70,6 @@ class LoginForm extends Component {
                 email: "لطفا یک ایمیل معتبر وارد نمایید",
             }
         });
-        Ladda.bind('.mt-ladda-btn.mt-progress-demo ', {
-            callback: function (instance) {
-                var progress = 0;
-                var interval = setInterval(function () {
-                    progress = Math.min(progress + Math.random() * 0.1, 1);
-                    instance.setProgress(progress);
-
-                    if (progress === 1) {
-                        instance.stop();
-                        clearInterval(interval);
-                    }
-                }, 400);
-            }
-        });
-
     }
     render() {
 
@@ -131,7 +115,7 @@ class LoginForm extends Component {
 											<label className="sr-only" htmlFor="form-password">{password}</label>
 											<Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password"/>
 										</div>
-										<button type="submit" className="btn">{login_submit}</button>
+										<button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{login_submit}</span></button>
 									</form>
                                     <div className="row">
                                         <div className="col-sm-6 col-sm-offset-3 social-login">
@@ -144,8 +128,8 @@ class LoginForm extends Component {
                                     </div>
 								</div>
                                 <div className="panel-footer">
-                                    <a href="#">{forgot_password}</a><br/>
-                                    {do_not_have_an_account_yet} <a href="#">{register_now}</a>
+                                    <Link to="/password-recovery">{forgot_password}</Link><br/>
+                                    {do_not_have_an_account_yet} <Link to="/register">{register_now}</Link>
                                 </div>
 
 							</div>

@@ -1,6 +1,7 @@
 import Login from './components/login/LoginCTR';
 import $ from 'jquery';
 import Register from './components/register/RegisterCTR';
+import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
 import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR';
 import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
@@ -25,6 +26,11 @@ history.listen(location => {
 
 export default () => (
     <Router history={history}>
+        <Route component={Transition}>
+            <Route path='/register' component={Register} title='Register' name='Register'/>
+            <Route path='/login' component={Login} name='Login'/>
+            <Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword'/>
+        </Route>
         <Route path='/' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
                onEnter={(nextState, replace, next) => {
                    next()
@@ -33,9 +39,6 @@ export default () => (
             <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
         </Route>
-        <Route path='/register' component={Register} title='Register' name='Register'/>
-        <Route path='/login' component={Login} name='Login'/>
-        <Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword'/>
     </Router>
 );
 

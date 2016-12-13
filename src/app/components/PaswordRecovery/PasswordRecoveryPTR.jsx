@@ -1,9 +1,11 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
+import { Link } from 'react-router'
+import { RouteTransition } from 'react-router-transition';
 import {translatable} from 'react-multilingual/dist';
-let Ladda = require('ladda/js/ladda');
-import {AlertBox} from '../../functions/notifications';
+
+
 
 @translatable(({
     do_you_have_account,
@@ -28,8 +30,6 @@ class LoginForm extends Component {
     };
 
     componentDidMount() {
-        AlertBox("error", "سلام");
-
         $('body').backstretch([
             './img/backgrounds/tehran.png',
         ]);
@@ -37,38 +37,15 @@ class LoginForm extends Component {
         this.form = $("form");
         this.form.validate({
             rules: {
-                password: {
-                    required: true,
-                    minlength: 5
-                },
                 email: {
                     required: true,
                     email: true
                 },
             },
             messages: {
-                password: {
-                    required: "لطفا کلمه عبور را وارد نمایید",
-                    minlength: "کلمه عبور حداقل باید ۵ کاراکتر باشد"
-                },
                 email: "لطفا یک ایمیل معتبر وارد نمایید",
             }
         });
-        Ladda.bind('.mt-ladda-btn.mt-progress-demo ', {
-            callback: function (instance) {
-                var progress = 0;
-                var interval = setInterval(function () {
-                    progress = Math.min(progress + Math.random() * 0.1, 1);
-                    instance.setProgress(progress);
-
-                    if (progress === 1) {
-                        instance.stop();
-                        clearInterval(interval);
-                    }
-                }, 400);
-            }
-        });
-
     }
     render() {
 
@@ -77,7 +54,12 @@ class LoginForm extends Component {
         } = this.props;
         const {handleSubmit, SubmitCall} = this.props;
         return (
-
+            <RouteTransition
+                pathname={this.props.path}
+                atEnter={{ opacity: 0 }}
+                atLeave={{ opacity: 0 }}
+                atActive={{ opacity: 1 }}
+            >
             <div className="top-content auth-pages">
 
                 <div className="inner-bg">
@@ -104,17 +86,16 @@ class LoginForm extends Component {
                                     </div>
                                 </div>
                                 <div className="form-bottom">
-                                    <form role="form" action="" method="post" className="login-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
+                                    <form role="form" action="" method="post" className="recovery-password-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
                                         <div className="form-group">
                                             <label className="sr-only" htmlFor="form-username">{email}</label>
                                             <Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email"/>
                                         </div>
-
-                                        <button type="submit" className="btn">{forget_submit}</button>
+                                        <button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{forget_submit}</span></button>
                                     </form>
                                 </div>
                                 <div className="panel-footer">
-                                    {do_you_have_account} <a href="#">{login_now}</a>
+                                    {do_you_have_account} <Link to="/login">{login_now}</Link>
                                 </div>
 
                             </div>
@@ -124,6 +105,8 @@ class LoginForm extends Component {
                 </div>
 
             </div>
+        </RouteTransition>
+
         );
     }
 }
