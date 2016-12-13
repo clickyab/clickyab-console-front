@@ -45,7 +45,7 @@ class LoginForm extends Component {
     };
 
     componentDidMount() {
-        AlertBox("error", "سلام");
+        // AlertBox("error", "سلام");
 
 		$('body').backstretch([
 				'./img/backgrounds/tehran.png',

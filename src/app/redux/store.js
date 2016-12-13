@@ -3,8 +3,10 @@ import {reducer as formReducer} from 'redux-form';
 import {localeReducer, cssLazyLoader} from 'react-multilingual';
 import {loginReducer, userReducer, tokenReducer, registerReducer, impersonateReducer} from './reducers';
 import {routerReducer} from 'react-router-redux';
+import createLogger from 'redux-logger';
 
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const logger = createLogger();
 
 export const store = createStore(
 	combineReducers({
@@ -28,7 +30,8 @@ export const store = createStore(
 				address: 'css/style-rtl.css',
 				direction: 'rtl'
 			}
-		})
+		}),
+		logger
 		)
 	)
 );
