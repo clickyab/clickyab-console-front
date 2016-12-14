@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import PasswordRecoveryPTR from './PasswordRecoveryPTR';
-import swagger from './../../swagger/src/index';
+import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {AlertBox} from "../../functions/notifications";

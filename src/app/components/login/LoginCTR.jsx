@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import LoginPTR from './LoginPTR';
-import swagger from './../../swagger/src/index';
+import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {successfulLogin, failedLogin} from '../../redux/actions/login';

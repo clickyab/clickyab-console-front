@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import RegisterPTR from './RegisterPTR';
-import swagger from './../../swagger/src/index';
+import swagger from './../../swagger/index';
 import {AlertBox} from '../../functions/notifications';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
