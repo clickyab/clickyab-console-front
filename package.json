@@ -52,10 +52,11 @@
     "redux": "3.6.0",
     "redux-form": "6.1.0",
     "redux-logger": "2.7.0",
-    "redux-persist": "4.0.0-alpha6",
+    "redux-persist": "^4.0.0-alpha6",
     "redux-thunk": "2.1.0",
     "sass-loader": "4.0.1",
     "sparkline": "^0.1.2",
+    "store": "^1.3.20",
     "superagent": "^3.2.1",
     "whatwg-fetch": "^1.0.0"
   },

@@ -20,8 +20,9 @@ export default class PasswordRecoveryCTR extends Component {
                     },
                     function (error, data, response) {
                         if (response.statusCode == '200') {
-                            // browserHistory.push('/publisher');
+                            document.querySelector('.recovery-password-form #email').value="";
                             AlertBox("success",response.text);
+                            browserHistory.push('/login')
                         }
                         else if (response.statusCode == '400') {
                             loadingProgress.stop();

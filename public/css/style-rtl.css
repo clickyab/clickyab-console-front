@@ -31331,7 +31331,7 @@ body.lobibox-open {
 
 .lobibox {
   position: fixed;
-  z-index: 4001;
+  z-index: 99999999999;
   -webkit-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5); }
 
@@ -31810,7 +31810,7 @@ fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-default.active {
     Author     : @arboshiki
 */
 .lobibox-notify-wrapper {
-  z-index: 5000;
+  z-index: 99999999;
   position: fixed; }
 
 .lobibox-notify-wrapper.top {

@@ -3,10 +3,8 @@
 
 export function setNext(next) {
 	_next = next;
-
 	console.log('hala harchi')
 }
-
 export function onEnter() {
 	let next;
 
@@ -14,6 +12,4 @@ export function onEnter() {
 		next = c;
 	}
 }
-
-
 

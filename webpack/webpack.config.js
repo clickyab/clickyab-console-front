@@ -48,7 +48,6 @@ module.exports = {
 			'jquery',
 			'bootstrap',
 
-
             './public/vendor/fetch.js',
             './public/vendor/jquery.validate.js',
 			'./public/vendor/additional-methods.js',

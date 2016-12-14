@@ -1,4 +1,4 @@
-export function checkStatus(responsev , ) {
+export function checkStatus() {
     switch(response.statusCode) {
         case 200:
              //ok

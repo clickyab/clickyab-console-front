@@ -7,7 +7,7 @@ export function AlertBox(type , msg){
             rounded: false,
             sound: false,
             icon: false,
-            delay: 4000,
+            delay: 5000,
             position: "top right",
             delayIndicator: true,
             msg: msg
