@@ -49,12 +49,9 @@ class LoginForm extends Component {
     };
 
     componentDidMount() {
-        // AlertBox("error", "سلام");
-
 		$('body').backstretch([
 				'./img/backgrounds/tehran.png',
 			]);
-
         this.form = $("form");
         this.form.validate({
             rules: {
@@ -97,7 +94,6 @@ class LoginForm extends Component {
                                 </h1>
 							</div>
 						</div>
-
                         <div className="row">
 							<div className="col-sm-6 col-sm-offset-3 form-box">
 								<div className="form-top">
