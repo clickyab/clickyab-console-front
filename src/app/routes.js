@@ -1,5 +1,6 @@
 import Login from './components/login/LoginCTR';
 import $ from 'jquery';
+import DataTable from './../../tmp/table/DataTable';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
@@ -39,6 +40,7 @@ export default () => (
             <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
         </Route>
+        <Route path='/data' component={DataTable} name='data-table'/>
     </Router>
 );
 
