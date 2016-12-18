@@ -6,7 +6,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 import App from './app';
 import $ from 'jquery';
 import Login from './components/login/LoginCTR';
-import DataTable from './../../tmp/table/DataTable';
+import DataTable from './../../tmp/table/VisibleDataTable';
+import SearchDataTable from './../../tmp/table/SearchDataTable';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
@@ -44,6 +45,7 @@ export default () => (
             <Route path='/profile' component={UserProfile} name='UserProfile'/>
         </Route>
         <Route path='/data' component={DataTable} name='data-table'/>
+        <Route path='/searchable' component={SearchDataTable} name='data-search'/>
     </Router>
 );
 
