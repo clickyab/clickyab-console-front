@@ -168,3 +168,9 @@ New Profile Page
     overflow: visible;
   }
 }
+
+.form-actions {
+	button {
+		margin-#{$dir-mode-align-inverse}: 10px;
+	}
+}

@@ -2,7 +2,12 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
 import { Link } from 'react-router'
+import GoogleLogin from './../common/google-login/index';
 import {translatable} from 'react-multilingual/dist';
+
+const responseGoogle = (response) => {
+    console.log(response);
+}
 
 @translatable(({
     login,
@@ -80,9 +85,7 @@ class LoginForm extends Component {
         } = this.props;
         const {handleSubmit, SubmitCall} = this.props;
         return (
-
 			<div className="top-content auth-pages">
-
 				<div className="inner-bg">
 					<div className="container">
 						<div className="row">
@@ -120,9 +123,16 @@ class LoginForm extends Component {
                                     <div className="row">
                                         <div className="col-sm-6 col-sm-offset-3 social-login">
                                             <div className="social-login-buttons">
-                                                <a className="btn btn-link-1 btn-link-1-google-plus" href="#">
-                                                    <i className="fa fa-google-plus"/> {login_with_google}
-                                                </a>
+
+                                                <GoogleLogin
+                                                    clientId={'67839817377-ev6oc5tcb56qr3ku3nub8b2neu2c5csg.apps.googleusercontent.com'}
+                                                    onSuccess={responseGoogle}
+                                                    onFailure={responseGoogle}
+                                                    offline={false}
+                                                    className="btn btn-link-1 btn-link-1-google-plus"
+                                                >
+                                                        <i className="fa fa-google-plus"/> {login_with_google}
+                                                </GoogleLogin>
                                             </div>
                                         </div>
                                     </div>
@@ -153,7 +163,6 @@ LoginForm.propTypes = {
     handleSubmit: React.PropTypes.func,
     login: React.PropTypes.func
 };
-
 export default reduxForm({
     form: 'login'
 })(LoginForm);

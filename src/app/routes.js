@@ -1,16 +1,18 @@
-import Login from './components/login/LoginCTR';
-import $ from 'jquery';
-import Register from './components/register/RegisterCTR';
-import Transition from './components/common/Transition';
-import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
-import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR';
-import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
-import App from './app';
 import React from 'react';
 import {store} from './../app/redux/store';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
 const history = syncHistoryWithStore(browserHistory, store);
+import App from './app';
+import $ from 'jquery';
+import Login from './components/login/LoginCTR';
+import Register from './components/register/RegisterCTR';
+import Transition from './components/common/Transition';
+import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
+import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR';
+import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
+import UserProfile from './components/UserProfile/UserProfileCTR';
+
 
 history.listen(location => {
     let interval;
@@ -38,6 +40,7 @@ export default () => (
             <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
             <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
+            <Route path='/profile' component={UserProfile} name='UserProfile'/>
         </Route>
     </Router>
 );

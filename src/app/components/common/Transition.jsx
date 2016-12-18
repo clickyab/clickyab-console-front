@@ -8,10 +8,9 @@ export default class App extends React.Component {
         return (
                                 <RouteTransition
                                     pathname={this.props.location.pathname}
-                                    atEnter={{ opacity: 0 , scale: 0.8 }}
-                                    atLeave={{ opacity: 0  , scale: 0.8 }}
-                                    atActive={{ opacity: 1 , scale: 1 }}
-                                    mapStyles={styles => ({ opacity: styles.opacity,transform: `scale(${styles.scale})` })}
+                                    atEnter={{ opacity: 0 }}
+                                    atLeave={{ opacity: 0 }}
+                                    atActive={{ opacity: 1 }}
                                 >
                                     {children}
                                 </RouteTransition>
