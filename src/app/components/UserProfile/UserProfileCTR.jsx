@@ -13,8 +13,6 @@ let Ladda = require('ladda/js/ladda');
 class UserProfileCTR extends Component {
 
     SubmitPersonal = (values, PersonalForm) => {
-        let {dispatch , getState} = this.props;
-        console.log(state);
         if (PersonalForm.valid()) {
             let loadingProgress = Ladda.create(document.querySelector('.personal-form button[type=submit]'));
             loadingProgress.start();

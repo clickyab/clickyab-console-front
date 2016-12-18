@@ -7,12 +7,8 @@ themeAssets/sass
 npm-debug.log
 **/*.DS_Store
 /tmp
-/tmp/*
-tmp/*
 
 /bin
-/bin/*
-bin/*
 
 **/swagger/
 public/img/apps/
