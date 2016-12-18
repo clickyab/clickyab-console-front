@@ -30,7 +30,7 @@ class LoginCTR extends Component {
                         else if (response.statusCode == '400') {
                             loadingProgress.stop();
                             dispatch(failedLogin());
-                            AlertBox("error",response.text);
+                            AlertBox("error",response.body.error);
                         }
                     });
         } else {
