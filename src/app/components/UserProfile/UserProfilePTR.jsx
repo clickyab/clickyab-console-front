@@ -4,7 +4,7 @@ import {Field, reduxForm} from 'redux-form';
 import { Link } from 'react-router'
 
 class UserProfilePTR extends Component {
-    form;
+    PersonalForm;
     state = {
         validation: true
     };
@@ -33,8 +33,8 @@ class UserProfilePTR extends Component {
         });
 
 
-        this.form = $('.personal-form');
-        this.form.validate({
+        this.PersonalForm = $('.personal-form');
+        this.PersonalForm.validate({
             rules: {
                 first_name: {
                     required: true,
@@ -58,7 +58,7 @@ class UserProfilePTR extends Component {
 
 
     render() {
-        const {handleSubmit, SubmitCall} = this.props;
+        const {handleSubmit, SubmitPersonal} = this.props;
 
         return (
             <div className="page-content">
@@ -146,21 +146,20 @@ class UserProfilePTR extends Component {
                                                             </div>
                                                         </div>
                                                     </div>
-                                                    <form className="horizontal-form personal-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
+                                                    <form className="horizontal-form personal-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitPersonal(values, this.PersonalForm))}>
                                                         <div className="form-body">
                                                             <h3 className="form-section">اطلاعات شخص حقیقی</h3>
                                                             <div className="row">
                                                                 <div className="col-md-6">
                                                                     <div className="form-group">
                                                                         <label className="control-label">نام</label>
-                                                                        <input type="text" id="first_name" name="first_name" className="form-control" placeholder="نام"/>
+                                                                        <Field component="input" type="text" id="first_name" name="first_name" className="form-control" placeholder="نام"/>
                                                                     </div>
                                                                 </div>
-
                                                                 <div className="col-md-6">
                                                                     <div className="form-group ">
                                                                         <label className="control-label">نام خانوادگی</label>
-                                                                        <input type="text" id="last_name" name="last_name" className="form-control" placeholder="نام خانوادگی"/>
+                                                                        <Field component="input" type="text" id="last_name" value={null} name="last_name" className="form-control" placeholder="نام خانوادگی"/>
                                                                     </div>
                                                                 </div>
 
@@ -170,7 +169,7 @@ class UserProfilePTR extends Component {
                                                                 <div className="col-md-6">
                                                                     <div className="form-group ">
                                                                         <label className="control-label">تاریخ تولد</label>
-                                                                        <input type="text" id="birthday" name="birthday" className="form-control" placeholder="تاریخ تولد"/>
+                                                                        <Field type="text" component="input" id="birthday" name="birthday" className="form-control" placeholder="تاریخ تولد"/>
                                                                     </div>
                                                                 </div>
 
@@ -228,7 +227,7 @@ class UserProfilePTR extends Component {
                                                                 <div className="col-md-6">
                                                                     <div className="form-group">
                                                                         <label>تلفن ثابت</label>
-                                                                        <input type="text" className="form-control" name="phone" id="phone" placeholder="تلفن ثابت"/>
+                                                                        <input type="text" className="form-control" name="phone_personal" id="phone_personal" placeholder="تلفن ثابت"/>
                                                                     </div>
                                                                 </div>
 
@@ -238,7 +237,7 @@ class UserProfilePTR extends Component {
                                                                 <div className="col-md-4">
                                                                     <div className="form-group">
                                                                         <label>شهر</label>
-                                                                        <select className="form-control" data-placeholder="انتخاب کشور" tabIndex="1" name="country_id" class="city">
+                                                                        <select className="form-control country_id" data-placeholder="انتخاب کشور" tabIndex="1" name="country_id">
                                                                             <option value="male">ایران</option>
                                                                             <option value="female">استرالیا</option>
                                                                         </select>
@@ -248,7 +247,7 @@ class UserProfilePTR extends Component {
                                                                 <div className="col-md-4">
                                                                     <div className="form-group">
                                                                         <label>شهر</label>
-                                                                        <select className="form-control" data-placeholder="انتخاب شهر" tabIndex="1" name="province_id" class="province_id">
+                                                                        <select className="form-control province_id" data-placeholder="انتخاب شهر" tabIndex="1" name="province_id">
                                                                             <option value="male">تهران</option>
                                                                             <option value="female">تبریز</option>
                                                                         </select>
@@ -257,7 +256,7 @@ class UserProfilePTR extends Component {
                                                                 <div className="col-md-4">
                                                                     <div className="form-group">
                                                                         <label>شهر</label>
-                                                                        <select className="form-control" data-placeholder="انتخاب استان" tabIndex="1" name="city_id" id="city_id">
+                                                                        <select className="form-control city_id" data-placeholder="انتخاب استان" tabIndex="1" name="city_id">
                                                                             <option value="male">تهران</option>
                                                                             <option value="female">تبریز</option>
                                                                         </select>
@@ -271,7 +270,7 @@ class UserProfilePTR extends Component {
                                                             </div>
                                                         </div>
                                                     </form>
-                                                    <form className="horizontal-form corporation-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
+                                                    <form className="horizontal-form corporation-form user-form" method="post">
                                                         <div className="form-body">
                                                             <h3 className="form-section">اطلاعات شخص حقوقی</h3>
                                                             <div className="row">
