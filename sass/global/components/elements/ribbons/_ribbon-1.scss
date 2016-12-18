@@ -17,9 +17,9 @@
 	.ribbon{
 		padding:0.5em 1em;
 		z-index: 5;
-		float:left;
+		float:$dir-mode-align;
 		margin: 10px 0 0 -2px;
-		clear:left;
+		clear: $dir-mode-align-inverse;
 		position: relative;
 
 		// POSITION CONTROL

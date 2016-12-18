@@ -7,6 +7,7 @@ import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
 import {successfulRegister, failedRegister} from '../../redux/actions/register';
 let Ladda = require('ladda/js/ladda');
+let store = require('store');
 
 @connect()
 export default class RegisterCTR extends Component {
@@ -24,10 +25,12 @@ export default class RegisterCTR extends Component {
                         },
                     },
                     function (error, data, response) {
+                        console.log(response);
                         console.log(error, data, response);
                         if (response.statusCode == '200') {
+                            store.set(data.user_id, { email: data.email, token: data.token });
                             dispatch(successfulRegister(data.email, data.token, data.user_id));
-                            // browserHistory.push('/publisher');
+                            browserHistory.push('/publisher');
                             AlertBox("success",response.text);
                         }
                         else if (response.statusCode == '400') {

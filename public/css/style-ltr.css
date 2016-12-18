@@ -26241,7 +26241,7 @@ body.stop-scrolling {
     z-index: 5;
     float: left;
     margin: 10px 0 0 -2px;
-    clear: left;
+    clear: right;
     position: relative;
     background-color: #bac3d0;
     color: #384353; }
@@ -31279,7 +31279,7 @@ body.lobibox-open {
 
 .lobibox {
   position: fixed;
-  z-index: 4001;
+  z-index: 99999999999;
   -webkit-box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5);
   box-shadow: 0 0 20px 5px rgba(0, 0, 0, 0.5); }
 
@@ -31758,7 +31758,7 @@ fieldset[disabled] .lobibox .lobibox-btn.lobibox-btn-default.active {
     Author     : @arboshiki
 */
 .lobibox-notify-wrapper {
-  z-index: 5000;
+  z-index: 99999999;
   position: fixed; }
 
 .lobibox-notify-wrapper.top {
@@ -34429,9 +34429,9 @@ Page Header
       display: inline-block;
       float: left; }
     .page-header.navbar .page-logo .logo-default {
-      margin: 9px 0 0;
+      margin: 11px 0 0;
       height: auto;
-      max-width: 130px; }
+      max-width: 110px; }
     .page-header.navbar .page-logo .logo-mini {
       display: none;
       margin-left: 5px; }
@@ -37620,6 +37620,9 @@ body {
     margin-top: 0; } }
 
 /* here you can put your own css to customize and override the theme */
+body {
+  overflow-x: hidden; }
+
 .top-action-header {
   margin-top: 20px;
   margin-bottom: 20px;
