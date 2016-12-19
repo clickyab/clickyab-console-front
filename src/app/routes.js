@@ -6,7 +6,7 @@ const history = syncHistoryWithStore(browserHistory, store);
 import App from './app';
 import $ from 'jquery';
 import Login from './components/login/LoginCTR';
-import AddCategoryCTR from './components/category/AddCategoryCTR';
+import CategoryListCTR from './components/category/CategoryListCTR';
 import onLogin from './middlewares/onLoginEnterMiddleware';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
@@ -15,6 +15,26 @@ import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR'
 import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
 import UserProfile from './components/UserProfile/UserProfileCTR';
 
+
+export default () => (
+    <Router history={history}>
+        <Route component={Transition}>
+            <Route path='/register' component={Register} title='Register' name='Register'/>
+            <Route path='/login' component={Login} name='Login' onEnter={onLogin}/>
+            <Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword'/>
+        </Route>
+        <Route path='/' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
+               onEnter={(nextState, replace, next) => {
+				   next()
+			   }}>
+            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
+            <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
+            <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
+            <Route path='/profile' component={UserProfile} name='UserProfile'/>
+            <Route path='/category' component={CategoryListCTR} name='category'/>
+        </Route>
+    </Router>
+);
 
 history.listen(location => {
     let interval;
@@ -27,26 +47,6 @@ history.listen(location => {
         }
     }, 500);
 });
-
-export default () => (
-    <Router history={history}>
-        <Route component={Transition}>
-            <Route path='/register' component={Register} title='Register' name='Register'/>
-            <Route path='/login' component={Login} name='Login' onEnter={onLogin}/>
-            <Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword'/>
-        </Route>
-        <Route path='/' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
-               onEnter={(nextState, replace, next) => {
-                   next()
-               }}>
-            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
-            <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
-            <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
-            <Route path='/profile' component={UserProfile} name='UserProfile'/>
-        </Route>
-        <Route path='/category' component={AddCategoryCTR} name='category'/>
-    </Router>
-);
 
 
 

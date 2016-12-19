@@ -12,7 +12,7 @@ class AddCategoryPTR extends Component {
     render() {
         const {handleSubmit, SubmitCall} = this.props;
         return (
-            <div>
+            <div className='page-content'>
                 <div>
                     <a id="kasra" className="btn btn-success" href="#">Modal</a>
                 </div>
