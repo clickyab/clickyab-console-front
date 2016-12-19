@@ -1,45 +1,68 @@
 import React, {Component} from 'react';
-import {persistStore, autoRehydrate} from 'redux-persist'
 import LoginPTR from './LoginPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
 import {successfulLogin, failedLogin} from '../../redux/actions/login';
 import {AlertBox} from "../../functions/notifications";
+import {updateLocalStorage} from "../../redux/actions/index";
+import {updateUserInformation} from "../../redux/actions/user";
+import {push} from "react-router-redux";
 let Ladda = require('ladda/js/ladda');
-let store = require('store');
 
 @connect()
 class LoginCTR extends Component {
-    SubmitCall = (values, form) => {
+    loadingProgress;
+
+    loginSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
-        if (form.valid()) {
-            let loadingProgress = Ladda.create(document.querySelector('.login-form button'));
-            loadingProgress.start();
-            (new swagger.UserApi())
-                .userLoginPost({
-                        'payloadData': {
-                            "email": values.email,
-                            "password": values.password
-                        }
-                    },
-                    function (error, data, response) {
-                        if (response.statusCode == '200') {
-                            dispatch(successfulLogin(data.email, data.token, data.user_id));
-                            store.set(data.user_id, { email: data.email, token: data.token });
-                            browserHistory.push('/publisher');
-                            AlertBox("success",response.text);
-                        }
-                        else if (response.statusCode == '400') {
-                            loadingProgress.stop();
-                            dispatch(failedLogin());
-                            AlertBox("error",response.body.error);
-                        }
-                    });
-        } else {
-            console.log("***");
+
+        dispatch(successfulLogin());
+        dispatch(updateUserInformation(user));
+        dispatch(updateLocalStorage());
+        dispatch(push('/publisher'));
+        console.log('mildao narahat nakn')
+    }
+
+    failed400Dispatcher() {
+        this.props.dispatch(failedLogin());
+    }
+
+    loginCallback(error, user, response) {
+        if (response.statusCode == '200') {
+            this.loginSuccessfullyDispatchers(user);
+
+            AlertBox("success", response.text);
+        } else if (response.statusCode == '400') {
+            this.failed400Dispatcher();
+
+            this.stopLoading();
+            AlertBox("error", response.body.error);
         }
+    }
+
+    login(formValues) {
+        (new swagger.UserApi())
+            .userLoginPost({'payloadData': formValues}, this.loginCallback.bind(this));
+    }
+
+    loading() {
+        this.loadingProgress = Ladda.create(document.querySelector('.login-form button'));
+        this.loadingProgress.start();
+    }
+
+    stopLoading() {
+        if (this.loadingProgress)
+            this.loadingProgress.stop();
+    }
+
+    SubmitCall = (values, form) => {
+        if (!form.valid())
+            return;
+
+        this.loading();
+        this.login(values)
     };
+
     render() {
         return (<LoginPTR SubmitCall={this.SubmitCall}/>);
     }
