@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import { Link } from 'react-router'
-import PersonalUserPTR from './PersonalUserPTR'
-import CorporationUserPTR from './CorporationUserPTR'
+import PersonalUserCTR from './PersonalUserCTR'
+import CorporationUserCTR from './CorporationUserCTR'
 import ProfileSidebarPTR from './ProfileSidebarPTR'
 import SelectUserTypePTR from './SelectUserTypePTR'
 import ChangePasswordPTR from './ChangePasswordPTR'
@@ -44,8 +44,8 @@ class UserProfilePTR extends Component {
                                             <div className="tab-content">
                                                 <div className="tab-pane active" id="tab_1_1">
                                                     <SelectUserTypePTR/>
-                                                    <PersonalUserPTR/>
-                                                    <CorporationUserPTR/>
+                                                    <PersonalUserCTR/>
+                                                    <CorporationUserCTR/>
 
                                                 </div>
                                                 <div className="tab-pane" id="tab_1_2">

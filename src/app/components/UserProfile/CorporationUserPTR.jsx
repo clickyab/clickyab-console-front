@@ -3,28 +3,20 @@ import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
 
 class CorporationUserPTR extends Component {
-
+    CorporationForm;
     componentDidMount() {
 
-        this.PersonalForm = $('.corporation-form');
-        this.PersonalForm.validate({
+        this.CorporationForm = $('.corporation-form');
+        this.CorporationForm.validate({
             rules: {
-                first_name: {
+                title: {
                     required: true,
                 },
-                last_name: {
-                    required: true,
-                },
-
             },
             messages: {
-                first_name: {
-                    required: 'لطفا نام خود را وارد نمایید',
+                title: {
+                    required: 'لطفا نام شرکت را وارد نمایید',
                 },
-                last_name: {
-                    required: 'لطفا نام خانوادگی را وارد نمایید',
-                },
-
             }
         });
     }
@@ -33,7 +25,7 @@ class CorporationUserPTR extends Component {
     render() {
         const {handleSubmit, SubmitCorporation} = this.props;
         return(
-            <form className="horizontal-form corporation-form user-form" method="post">
+            <form className="horizontal-form corporation-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitCorporation(values, this.CorporationForm))}>
                 <div className="form-body">
                     <h3 className="form-section">اطلاعات شخص حقوقی</h3>
                     <div className="row">
