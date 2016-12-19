@@ -1,48 +1,67 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
+import {connect} from 'react-redux';
+import {push} from "react-router-redux";
+import {successfulRegister, failedRegister} from '../../redux/actions/register';
+import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {updateLocalStorage} from "../../redux/actions/index";
+import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from './RegisterPTR';
 import swagger from './../../swagger/index';
-import {AlertBox} from '../../functions/notifications';
-import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
-import {successfulRegister, failedRegister} from '../../redux/actions/register';
 let Ladda = require('ladda/js/ladda');
-let store = require('store');
 
 @connect()
 export default class RegisterCTR extends Component {
+    loadingProgress;
 
-    SubmitCall = (values, form) => {
+    registerSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
-        if (form.valid()) {
-            let loadingProgress = Ladda.create(document.querySelector('.register-form button'));
-            loadingProgress.start();
-            ( new swagger.UserApi())
-                .userRegisterPost({
-                        'payloadData': {
-                            "email": values.email,
-                            "password": values.password
-                        },
-                    },
-                    function (error, data, response) {
-                        console.log(response);
-                        console.log(error, data, response);
-                        if (response.statusCode == '200') {
-                            store.set(data.user_id, { email: data.email, token: data.token });
-                            dispatch(successfulRegister(data.email, data.token, data.user_id));
-                            browserHistory.push('/publisher');
-                            AlertBox("success",response.text);
-                        }
-                        else if (response.statusCode == '400') {
-                            loadingProgress.stop();
-                            dispatch(failedRegister());
-                            AlertBox("error",response.text);
-                        }
-                    });
-        } else {
-            console.log("***");
+
+        dispatch(successfulRegister());
+        dispatch(updateUserInformation(user));
+        dispatch(updateLocalStorage());
+        dispatch(push('/publisher'));
+    }
+
+    failed400Dispatcher() {
+        this.props.dispatch(failedRegister());
+    }
+
+    registerCallback(error, user, response) {
+        if (response.statusCode == '200') {
+            this.registerSuccessfullyDispatchers(user);
+
+            SuccessBoxAlert(response);
+        } else if (response.statusCode == '400') {
+            this.failed400Dispatcher();
+
+            this.stopLoading();
+            FailedBoxAlert(response);
         }
+    }
+
+    register(formValues) {
+        (new swagger.UserApi())
+            .userRegisterPost({'payloadData': formValues}, this.registerCallback.bind(this));
+    }
+
+    loading() {
+        this.loadingProgress = Ladda.create(document.querySelector('.register-form button'));
+        this.loadingProgress.start();
+    }
+
+    stopLoading() {
+        if (this.loadingProgress)
+            this.loadingProgress.stop();
+    }
+
+    SubmitCall = (formValues, form) => {
+        if (!form.valid())
+            return;
+
+        this.loading();
+        this.register(formValues)
     };
+
     render() {
         return (<RegisterPTR SubmitCall={this.SubmitCall}/>);
     }

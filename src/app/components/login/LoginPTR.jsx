@@ -2,12 +2,8 @@ import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
 import { Link } from 'react-router'
-import GoogleLogin from './../common/google-login/index';
 import {translatable} from 'react-multilingual/dist';
 
-const responseGoogle = (response) => {
-    console.log(response);
-}
 
 @translatable(({
     login,
@@ -119,8 +115,9 @@ class LoginForm extends Component {
                                     <div className="row">
                                         <div className="col-sm-6 col-sm-offset-3 social-login">
                                             <div className="social-login-buttons">
-
-
+                                                <a className="btn btn-link-1 btn-link-1-google-plus" href="#">
+                                                    <i className="fa fa-google-plus"/> {login_with_google}
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

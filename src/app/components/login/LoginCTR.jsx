@@ -3,14 +3,14 @@ import LoginPTR from './LoginPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {successfulLogin, failedLogin} from '../../redux/actions/login';
-import {AlertBox} from "../../functions/notifications";
+import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorage} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
-class LoginCTR extends Component {
+export default class LoginCTR extends Component {
     loadingProgress;
 
     loginSuccessfullyDispatchers(user) {
@@ -20,7 +20,6 @@ class LoginCTR extends Component {
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorage());
         dispatch(push('/publisher'));
-        console.log('mildao narahat nakn')
     }
 
     failed400Dispatcher() {
@@ -31,12 +30,12 @@ class LoginCTR extends Component {
         if (response.statusCode == '200') {
             this.loginSuccessfullyDispatchers(user);
 
-            AlertBox("success", response.text);
+            SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
             this.failed400Dispatcher();
 
             this.stopLoading();
-            AlertBox("error", response.body.error);
+            FailedBoxAlert(response);
         }
     }
 
@@ -55,17 +54,15 @@ class LoginCTR extends Component {
             this.loadingProgress.stop();
     }
 
-    SubmitCall = (values, form) => {
+    SubmitCall = (formValues, form) => {
         if (!form.valid())
             return;
 
         this.loading();
-        this.login(values)
+        this.login(formValues)
     };
 
     render() {
         return (<LoginPTR SubmitCall={this.SubmitCall}/>);
     }
 }
-
-export default LoginCTR;

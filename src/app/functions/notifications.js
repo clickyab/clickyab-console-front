@@ -14,3 +14,11 @@ export function AlertBox(type , msg){
         }
     );
 }
+
+export function SuccessBoxAlert(response){
+    AlertBox("success", response.text);
+}
+export function FailedBoxAlert(response){
+    AlertBox("error", response.body.error);
+}
+

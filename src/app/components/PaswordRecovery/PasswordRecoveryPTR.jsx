@@ -93,6 +93,10 @@ class LoginForm extends Component {
                                         </div>
                                         <button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{forget_submit}</span></button>
                                     </form>
+                                    <div className="success-message-recovery text-center" style={{display: 'none'}}>
+                                        <h3>ایمیل بازیابی کلمه عبور با موفقیت ارسال شد</h3>
+                                        <p>لطفا بخش BULK یا SPAM ایمیل خود را نیز چک کنید</p>
+                                    </div>
                                 </div>
                                 <div className="panel-footer">
                                     {do_you_have_account} <Link to="/login">{login_now}</Link>
