@@ -7,11 +7,6 @@ require('amcharts3/amcharts/pie');
 require('amcharts3/amcharts/themes/light');
 require('amcharts3/amcharts/themes/patterns');
 require('amcharts3/amcharts/themes/chalk');
-import TotalCampaignsBoxPTR from './../../../components/advertiser/Dashboard/TotalCampaignsBoxPTR';
-import TotalShowAdsBoxPTR from './../../../components/advertiser/Dashboard/TotalShowAdsBoxPTR';
-import TotalValidClicksBoxPTR from './../../../components/advertiser/Dashboard/TotalValidClicksBoxPTR';
-import TotalBalanceBoxPTR from './../../../components/advertiser/Dashboard/TotalBalanceBoxPTR';
-import ClicksChartPTR from './../../../components/advertiser/Dashboard/ClicksChartPTR';
 import BudgetChartPTR from './../../../components/advertiser/Dashboard/BudgetChartPTR';
 import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR';
 
