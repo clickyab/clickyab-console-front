@@ -7,7 +7,7 @@ import App from './app';
 import $ from 'jquery';
 import Login from './components/login/LoginCTR';
 import AddCategoryCTR from './components/category/AddCategoryCTR';
-// import DataTable from './../../tmp/table/DataTable';
+import onLogin from './middlewares/onLoginEnterMiddleware';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
@@ -32,7 +32,7 @@ export default () => (
     <Router history={history}>
         <Route component={Transition}>
             <Route path='/register' component={Register} title='Register' name='Register'/>
-            <Route path='/login' component={Login} name='Login'/>
+            <Route path='/login' component={Login} name='Login' onEnter={onLogin}/>
             <Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword'/>
         </Route>
         <Route path='/' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}

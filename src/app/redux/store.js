@@ -7,6 +7,7 @@ import createLogger from 'redux-logger';
 import {pullIntoLocalStorage} from "../middlewares/pullIntoLocalStorage";
 import { routerMiddleware, push } from 'react-router-redux'
 import {browserHistory} from 'react-router';
+import localStorage from 'store';
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory)
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -22,7 +23,7 @@ export const store = createStore(
 		form: formReducer,
 		locale: localeReducer('fa', require('../../locales/index').default)
 	}),
-	undefined,
+    localStorage.get('initialState'),
 	enhancer(applyMiddleware(
 		cssLazyLoader(['LOCALE_CHANGED'], {
 			'en': {
@@ -36,7 +37,7 @@ export const store = createStore(
 		}),
         reactRouterReduxMiddleware,
         pullIntoLocalStorage,
-        logger
+        // logger
 		)
 	)
 );
