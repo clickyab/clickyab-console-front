@@ -1,15 +1,18 @@
 import {UPDATE_LOCAL_STORAGE} from "../redux/actions/index";
-let store = require('store');
+let localStorage = require('store');
 
-function blacklist(state, list) {
+function blacklist(state, list = []) {
+    for (let i = 0; i < list.length; i++) {
+        state = Object.assign(state, list[i]);
+    }
 
     return state;
 }
 
 export const pullIntoLocalStorage = store => next => action => {
     if (action.type === UPDATE_LOCAL_STORAGE) {
-        store.set('initialState', blacklist(store.getState(), [
-            'user.password'
+        localStorage.set('initialState', blacklist(store.getState(), [
+            {routing: {}}, {form: {}}
         ]));
     }
     next(action);

@@ -120,15 +120,7 @@ class LoginForm extends Component {
                                         <div className="col-sm-6 col-sm-offset-3 social-login">
                                             <div className="social-login-buttons">
 
-                                                <GoogleLogin
-                                                    clientId={'67839817377-ev6oc5tcb56qr3ku3nub8b2neu2c5csg.apps.googleusercontent.com'}
-                                                    onSuccess={responseGoogle}
-                                                    onFailure={responseGoogle}
-                                                    offline={false}
-                                                    className="btn btn-link-1 btn-link-1-google-plus"
-                                                >
-                                                        <i className="fa fa-google-plus"/> {login_with_google}
-                                                </GoogleLogin>
+
                                             </div>
                                         </div>
                                     </div>

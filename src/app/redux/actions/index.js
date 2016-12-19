@@ -4,6 +4,7 @@ import * as token from './token';
 import * as register from './register';
 
 export const UPDATE_LOCAL_STORAGE = 'UPDATE_LOCAL_STORAGE';
+export const updateLocalStorage = () => ({type: UPDATE_LOCAL_STORAGE});
 export const loginActions = login;
 export const userActions = user;
 export const tokenActions = token;
