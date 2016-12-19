@@ -6,13 +6,8 @@ themeAssets/assets
 themeAssets/sass
 npm-debug.log
 **/*.DS_Store
-/tmp
-/tmp/*
-tmp/*
-
-/bin
-/bin/*
-bin/*
+tmp
+bin
 
 **/swagger/
 public/css/fixed-data-table.css
