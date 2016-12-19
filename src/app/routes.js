@@ -6,7 +6,8 @@ const history = syncHistoryWithStore(browserHistory, store);
 import App from './app';
 import $ from 'jquery';
 import Login from './components/login/LoginCTR';
-import DataTable from './../../tmp/table/DataTable';
+import AddCategoryCTR from './components/category/AddCategoryCTR';
+// import DataTable from './../../tmp/table/DataTable';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
@@ -43,7 +44,7 @@ export default () => (
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
             <Route path='/profile' component={UserProfile} name='UserProfile'/>
         </Route>
-        <Route path='/data' component={DataTable} name='data-table'/>
+        <Route path='/category' component={AddCategoryCTR} name='category'/>
     </Router>
 );
 
