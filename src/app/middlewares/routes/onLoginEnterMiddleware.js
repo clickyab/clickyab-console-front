@@ -1,9 +1,15 @@
 import {sync} from "../../functions/sync";
 import {isLoginMiddleware} from "../isLoginMiddleware";
+import ping from "../../functions/ping";
+
 
 export default (nextState, replace, next) => sync(function*() {
-	yield* isLoginMiddleware(nextState, replace);
+    try {
+        yield* isLoginMiddleware(nextState, replace);
 
-	next()
+        next()
+    } catch (error) {
+        error.recover();
+        console.log(error.message())
+    }
 });
-
