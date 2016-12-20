@@ -36,7 +36,7 @@ export default class ChangePasswordCTR extends Component {
 
     ChangePasswordCall(formValues) {
         (new swagger.UserApi())
-            .userProfilePost(getToken(),{'payloadData': formValues}, this.ChangePasswordCallback.bind(this));
+            .userChangePasswordPost(getToken(),{'payloadData': formValues}, this.ChangePasswordCallback.bind(this));
     }
 
     loading() {
