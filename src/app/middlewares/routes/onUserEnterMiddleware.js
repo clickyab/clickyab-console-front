@@ -19,6 +19,9 @@ function* cc() {
 	yield ping();
 }
 
+function* ff() {
+	yield 'chejoori ha ha ha ha';
+}
 export default (nextState, replace, next) => sync(function*() {
 	let login = yield isLoginMiddleware();
 	console.log('we are here', login);
@@ -30,6 +33,8 @@ export default (nextState, replace, next) => sync(function*() {
 	console.log('b', b);
 	let c= yield cc();
 	console.log('c', c);
+	let f= yield ff();
+	console.log('f', f);
 	// runMiddleware([isLoginMiddleware]);
 	next()
 });
