@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
+import {getGravatarFromEmail} from "../../functions/gravatar";
 
 export default class ProfileSidebarPTR extends Component {
 
+    componentDidMount() {
+        let userAvatar = getGravatarFromEmail("miladheydari.work@gmail.com",200);
+        $(".profile-userpic img").attr("src",userAvatar);
+    }
 
     render() {
         return(
