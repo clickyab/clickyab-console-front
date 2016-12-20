@@ -33,9 +33,9 @@ class PersonalUserPTR extends Component {
 
 
     render() {
-        const {handleSubmit, SubmitPersonal} = this.props;
+        const {handleSubmit, SubmitPersonalUser} = this.props;
         return(
-            <form className="horizontal-form personal-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitPersonal(values, this.PersonalForm))}>
+            <form className="horizontal-form personal-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitPersonalUser(values, this.PersonalForm))}>
                 <div className="form-body">
                     <h3 className="form-section">اطلاعات شخص حقیقی</h3>
                     <div className="row">

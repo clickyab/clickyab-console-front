@@ -1,4 +1,4 @@
-export function GetGravatar(email, size) {
+export function getGravatarFromEmail(email, size) {
 
     // MD5 (Message-Digest Algorithm) by WebToolkit
     //

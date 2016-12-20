@@ -3,9 +3,9 @@ import {Field, reduxForm} from 'redux-form';
 import { Link } from 'react-router'
 import PersonalUserCTR from './PersonalUserCTR'
 import CorporationUserCTR from './CorporationUserCTR'
-import ProfileSidebarPTR from './ProfileSidebarPTR'
+import ProfileSidebarCTR from './ProfileSidebarCTR'
 import SelectUserTypePTR from './SelectUserTypePTR'
-import ChangePasswordPTR from './ChangePasswordPTR'
+import ChangePasswordCTR from './ChangePasswordCTR'
 
 class UserProfilePTR extends Component {
 
@@ -18,7 +18,7 @@ class UserProfilePTR extends Component {
 
                 <div className="row">
                     <div className="col-md-12">
-                        <ProfileSidebarPTR/>
+                        <ProfileSidebarCTR/>
                         <div className="profile-content">
                             <div className="row">
                                 <div className="col-md-12">
@@ -52,7 +52,7 @@ class UserProfilePTR extends Component {
 
                                                 </div>
                                                 <div className="tab-pane" id="tab_1_3">
-                                                    <ChangePasswordPTR/>
+                                                    <ChangePasswordCTR/>
                                                 </div>
                                             </div>
                                         </div>

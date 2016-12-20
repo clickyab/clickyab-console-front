@@ -23,9 +23,9 @@ class CorporationUserPTR extends Component {
 
 
     render() {
-        const {handleSubmit, SubmitCorporation} = this.props;
+        const {handleSubmit, SubmitCorporationUser} = this.props;
         return(
-            <form className="horizontal-form corporation-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitCorporation(values, this.CorporationForm))}>
+            <form className="horizontal-form corporation-form user-form" method="post" onSubmit={handleSubmit((values) => SubmitCorporationUser(values, this.CorporationForm))}>
                 <div className="form-body">
                     <h3 className="form-section">اطلاعات شخص حقوقی</h3>
                     <div className="row">

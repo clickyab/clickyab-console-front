@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
+import {getGravatarFromEmail} from "../../functions/gravatar";
 
-export default class ProfileSidebar extends Component {
+export default class ProfileSidebarPTR extends Component {
 
     componentDidMount() {
+        let userAvatar = getGravatarFromEmail("miladheydari.work@gmail.com",200);
+        $(".profile-userpic img").attr("src",userAvatar);
     }
-
 
     render() {
         return(
@@ -17,7 +18,7 @@ export default class ProfileSidebar extends Component {
                         <div className="profile-usertitle-name"> میلاد حیدری </div>
                     </div>
                     <div className="profile-userbuttons">
-                        <button type="button" className="btn btn-circle red btn-sm">خروج</button>
+                        <button type="button" className="btn btn-circle red btn-sm logout-btn" onClick={this.props.SubmitLogout.bind(this)}>خروج</button>
                     </div>
                     <div className="profile-usermenu">
                         <ul className="nav">
@@ -25,7 +26,7 @@ export default class ProfileSidebar extends Component {
                                 <a href="page_user_profile_1.html">
                                     <i className="icon-home"/> شارژ حساب </a>
                             </li>
-                            <li className="active">
+                            <li className="">
                                 <a href="page_user_profile_1_account.html">
                                     <i className="icon-settings"/> برداشت حساب </a>
                             </li>

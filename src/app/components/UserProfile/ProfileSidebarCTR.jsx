@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CorporationUserPTR from './CorporationUserPTR';
+import ProfileSidebarPTR from './ProfileSidebarPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
@@ -10,7 +10,7 @@ import {getToken} from "../../redux/helpers";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
-export default class CorporationUserCTR extends Component {
+export default class ProfileSidebarCTR extends Component {
     loadingProgress;
 
     editProfileSuccessfullyDispatchers(user) {
@@ -22,7 +22,7 @@ export default class CorporationUserCTR extends Component {
     }
 
 
-    CorporationUserCallback(error, user, response) {
+    LogoutCallback(error, user, response) {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(user);
 
@@ -34,13 +34,13 @@ export default class CorporationUserCTR extends Component {
         }
     }
 
-    CorporationCall(formValues) {
+    LogoutCall() {
         (new swagger.UserApi())
-            .userProfilePost(getToken(),{'payloadData': formValues}, this.CorporationUserCallback.bind(this));
+            .userLogoutGet(getToken(), this.LogoutCallback.bind(this));
     }
 
     loading() {
-        this.loadingProgress = Ladda.create(document.querySelector('.corporation-form button[type=submit]'));
+        this.loadingProgress = Ladda.create(document.querySelector('button.logout-btn'));
         this.loadingProgress.start();
     }
 
@@ -49,15 +49,12 @@ export default class CorporationUserCTR extends Component {
             this.loadingProgress.stop();
     }
 
-    SubmitCorporationUser = (formValues, form) => {
-        if (!form.valid())
-            return;
-
+    SubmitLogout = () => {
         this.loading();
-        this.CorporationCall(formValues)
+        this.LogoutCall()
     };
 
     render() {
-        return (<CorporationUserPTR SubmitCorporationUser={this.SubmitCorporationUser}/>);
+        return (<ProfileSidebarPTR SubmitLogout={this.SubmitLogout}/>);
     }
 }
