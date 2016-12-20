@@ -9,6 +9,7 @@ import Login from './components/login/LoginCTR';
 import CategoryListCTR from './components/category/CategoryListCTR';
 import onLogin from './middlewares/routes/onLoginEnterMiddleware';
 import onUserEnterMiddleware from './middlewares/routes/onUserEnterMiddleware';
+import onProfileEnterMiddleware from './middlewares/routes/onProfileEnterMiddleware';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
@@ -31,7 +32,7 @@ export default () => (
             <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
             <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
-            <Route path='/profile' component={UserProfile} name='UserProfile'/>
+            <Route path='/profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
             <Route path='/category' component={CategoryListCTR} name='category'/>
             <Route path='/user' component={CategoryListCTR} name='user' onEnter={onUserEnterMiddleware}/>
         </Route>
