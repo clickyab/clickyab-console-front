@@ -1,6 +1,7 @@
 export function sync(generator, main, ho) {
 	let iterator;
 	let result;
+    let jafar;
 
 	if (typeof generator == 'function') {
 		iterator = generator();
@@ -14,31 +15,31 @@ export function sync(generator, main, ho) {
 		result = iterator.next();
 
 		if (result.value.next) {
-			result = result.value.next().value;
+			result = result.value.next();
+			result = result.value;
 		}
 
 		if (result.value) {
-			if (result.value.then)
-				result = result.value;
+			if (result.value.then) {
+                result = result.value;
+			}
 		}
-
 		if (result.then) {
 			result.then((response) => {
-				result = iterator.next(response);
-				if (result.done) {
+                result = iterator.next(response);
+                if (result.done) {
 					if (main) {
 						result = main.next(response);
-						if (!result.done) {
-							sync(result.value, main)
+                        if (!result.done) {
+                            sync(result.value, main)
 						}
 					}
-
 				} else {
 					sync(result.value, iterator);
 				}
 			});
 		} else {
-			if (result.value) {
+            if (result.value) {
 				result = main.next(result.value);
 				if (!result.done) {
 					sync(result.value, main, true);
