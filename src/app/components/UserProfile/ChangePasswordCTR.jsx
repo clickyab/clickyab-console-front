@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import CorporationUserPTR from './CorporationUserPTR';
+import ChangePasswordPTR from './ChangePasswordPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
@@ -10,7 +10,7 @@ import {getToken} from "../../redux/helpers";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
-export default class CorporationUserCTR extends Component {
+export default class ChangePasswordCTR extends Component {
     loadingProgress;
 
     editProfileSuccessfullyDispatchers(user) {
@@ -22,7 +22,7 @@ export default class CorporationUserCTR extends Component {
     }
 
 
-    CorporationUserCallback(error, user, response) {
+    ChangePasswordCallback(error, user, response) {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(user);
 
@@ -34,9 +34,9 @@ export default class CorporationUserCTR extends Component {
         }
     }
 
-    CorporationCall(formValues) {
+    ChangePasswordCall(formValues) {
         (new swagger.UserApi())
-            .userProfilePost(getToken(),{'payloadData': formValues}, this.CorporationUserCallback.bind(this));
+            .userProfilePost(getToken(),{'payloadData': formValues}, this.ChangePasswordCallback.bind(this));
     }
 
     loading() {
@@ -49,15 +49,15 @@ export default class CorporationUserCTR extends Component {
             this.loadingProgress.stop();
     }
 
-    SubmitCorporationUser = (formValues, form) => {
+    SubmitChangePasswordUser = (formValues, form) => {
         if (!form.valid())
             return;
 
         this.loading();
-        this.CorporationCall(formValues)
+        this.ChangePasswordCall(formValues)
     };
 
     render() {
-        return (<CorporationUserPTR SubmitCorporationUser={this.SubmitCorporationUser}/>);
+        return (<ChangePasswordPTR SubmitChangePasswordUser={this.SubmitChangePasswordUser}/>);
     }
 }
