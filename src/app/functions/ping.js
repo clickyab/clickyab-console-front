@@ -6,7 +6,9 @@ export default function ping() {
 	return new Promise((resolve, reject) => {
 		new swagger.UserApi().userPingGet(getToken(), (error, user, response) => {
 			asyncUpdateLocalStorage();
-			resolve('hellooooo');
+			resolve({
+				error, user, response
+			});
 		})
 	});
 }

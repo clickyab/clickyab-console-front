@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import {getGravatarFromEmail} from "../../functions/gravatar";
+import {getEmail} from './../../redux/helpers'
 
 export default class ProfileSidebarPTR extends Component {
 
     componentDidMount() {
-        let userAvatar = getGravatarFromEmail("miladheydari.work@gmail.com",200);
-        $(".profile-userpic img").attr("src",userAvatar);
+        let userAvatar = getGravatarFromEmail(getEmail(),200);
+        document.querySelector(".profile-userpic img").setAttribute("src",userAvatar);
     }
-
     render() {
         return(
             <div className="profile-sidebar">
