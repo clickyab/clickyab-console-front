@@ -7,7 +7,8 @@ import App from './app';
 import $ from 'jquery';
 import Login from './components/login/LoginCTR';
 import CategoryListCTR from './components/category/CategoryListCTR';
-import onLogin from './middlewares/onLoginEnterMiddleware';
+import onLogin from './middlewares/routes/onLoginEnterMiddleware';
+import onUserEnterMiddleware from './middlewares/routes/onUserEnterMiddleware';
 import Register from './components/register/RegisterCTR';
 import Transition from './components/common/Transition';
 import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
@@ -32,6 +33,7 @@ export default () => (
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
             <Route path='/profile' component={UserProfile} name='UserProfile'/>
             <Route path='/category' component={CategoryListCTR} name='category'/>
+            <Route path='/user' component={CategoryListCTR} name='user' onEnter={onUserEnterMiddleware}/>
         </Route>
     </Router>
 );
