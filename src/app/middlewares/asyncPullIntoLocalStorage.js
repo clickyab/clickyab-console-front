@@ -9,11 +9,16 @@ function blacklist(state, list = []) {
     return state;
 }
 
-export const pullIntoLocalStorage = store => next => action => {
+export const asyncPullIntoLocalStorage = store => next => action => {
     if (action.type === UPDATE_LOCAL_STORAGE) {
-        localStorage.set('initialState', blacklist(store.getState(), [
-            {routing: {}}, {form: {}}
-        ]));
+        new Promise((resolve, reject) => {
+            localStorage.set('initialState', blacklist(store.getState(), [
+                {routing: {}}, {form: {}}
+            ]));
+
+            resolve();
+        }).then()
     }
+
     next(action);
 };

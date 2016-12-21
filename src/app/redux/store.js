@@ -4,13 +4,13 @@ import {localeReducer, cssLazyLoader} from 'react-multilingual';
 import {loginReducer, userReducer, tokenReducer, registerReducer, impersonateReducer} from './reducers';
 import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
-import {pullIntoLocalStorage} from "../middlewares/pullIntoLocalStorage";
+import {asyncPullIntoLocalStorage} from "../middlewares/asyncPullIntoLocalStorage";
 import { routerMiddleware, push } from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
-import {removeLocalStorage} from "../middlewares/removeLocalStorage";
+import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
 
-const reactRouterReduxMiddleware = routerMiddleware(browserHistory)
+const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger();
 
@@ -37,9 +37,9 @@ export const store = createStore(
 			}
 		}),
         reactRouterReduxMiddleware,
-        pullIntoLocalStorage,
-		removeLocalStorage,
-        // logger
+        asyncPullIntoLocalStorage,
+        asyncRemoveLocalStorage,
+        logger
 		)
 	)
 );

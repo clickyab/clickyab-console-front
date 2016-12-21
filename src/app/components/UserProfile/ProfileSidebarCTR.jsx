@@ -2,11 +2,13 @@ import React, {Component} from 'react';
 import ProfileSidebarPTR from './ProfileSidebarPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-import {updateLocalStorage} from "../../redux/actions/index";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
+import {updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
+import {asyncRemoveLocalStorage} from "../../middlewares/asyncRemoveLocalStorage";
+import {logout} from "../../redux/actions/login";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -16,15 +18,18 @@ export default class ProfileSidebarCTR extends Component {
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 
+        dispatch(logout(user));
         dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorage());
-        // dispatch(push('/publisher'));
+        dispatch(updateLocalStorageAction());
+        dispatch(asyncRemoveLocalStorageAction());
+        dispatch(push('/login'));
     }
 
 
     LogoutCallback(error, user, response) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(user);
+            console.log(error, user, response);
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, user));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {

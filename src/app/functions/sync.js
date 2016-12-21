@@ -14,7 +14,6 @@ export function sync(generator, main) {
     }
 
     if (!iterator) {
-        console.log('finished')
         return;
     }
 
@@ -27,6 +26,9 @@ export function sync(generator, main) {
         });
     } else {
         result = iterator.next();
+
+        if(result.done)
+            return true;
 
         if (result.value.next) {
             result = result.value.next();

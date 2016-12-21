@@ -3,7 +3,7 @@ import UserProfilePTR from './UserProfilePTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-import {updateLocalStorage} from "../../redux/actions/index";
+import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";

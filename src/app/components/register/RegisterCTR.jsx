@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {push} from "react-router-redux";
 import {successfulRegister, failedRegister} from '../../redux/actions/register';
 import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-import {updateLocalStorage} from "../../redux/actions/index";
+import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from './RegisterPTR';
 import swagger from './../../swagger/index';
@@ -18,7 +18,7 @@ export default class RegisterCTR extends Component {
 
         dispatch(successfulRegister());
         dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorage());
+        dispatch(updateLocalStorageAction());
         dispatch(push('/publisher'));
     }
 

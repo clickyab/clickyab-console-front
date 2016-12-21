@@ -4,7 +4,7 @@ import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {successfulLogin, failedLogin} from '../../redux/actions/login';
 import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-import {updateLocalStorage} from "../../redux/actions/index";
+import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 let Ladda = require('ladda/js/ladda');
@@ -18,7 +18,7 @@ export default class LoginCTR extends Component {
 
         dispatch(successfulLogin());
         dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorage());
+        dispatch(updateLocalStorageAction());
         dispatch(push('/publisher'));
     }
 
