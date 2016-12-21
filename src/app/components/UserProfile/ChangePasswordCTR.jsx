@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import ChangePasswordPTR from './ChangePasswordPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
@@ -22,9 +22,9 @@ export default class ChangePasswordCTR extends Component {
     }
 
 
-    ChangePasswordCallback(error, user, response) {
+    ChangePasswordCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(user);
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
@@ -36,7 +36,8 @@ export default class ChangePasswordCTR extends Component {
 
     ChangePasswordCall(formValues) {
         (new swagger.UserApi())
-            .userChangePasswordPost(getToken(),{'payloadData': formValues}, this.ChangePasswordCallback.bind(this));
+            .userChangePasswordPost(getToken(), {'payloadData': formValues})
+            .then(response => this.ChangePasswordCallback(response));
     }
 
     loading() {

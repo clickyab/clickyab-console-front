@@ -42,7 +42,7 @@ export default () => (
 history.listen(location => {
             function getResponsiveBreakpoint(size) {
                 // bootstrap responsive breakpoints
-                var sizes = {
+                let sizes = {
                     'xs' : 480,     // extra small
                     'sm' : 768,     // small
                     'md' : 992,     // medium
@@ -51,9 +51,9 @@ history.listen(location => {
 
                 return sizes[size] ? sizes[size] : 0;
             }
-            var resBreakpointMd = getResponsiveBreakpoint('md');
+            let resBreakpointMd = getResponsiveBreakpoint('md');
             function getViewPort() {
-                var e = window,
+                let e = window,
                     a = 'inner';
                 if (!('innerWidth' in window)) {
                     a = 'client';
@@ -66,7 +66,7 @@ history.listen(location => {
                 };
             }
             function _calculateFixedSidebarViewportHeight() {
-                var sidebarHeight = getViewPort().height - $('.page-header').outerHeight(true);
+                let sidebarHeight = getViewPort().height - $('.page-header').outerHeight(true);
                 if ($('body').hasClass("page-footer-fixed")) {
                     sidebarHeight = sidebarHeight - $('.page-footer').outerHeight();
                 }
@@ -74,14 +74,14 @@ history.listen(location => {
                 return sidebarHeight;
             };
 
-            var content = $('.page-content');
-            var sidebar = $('.page-sidebar');
-            var body = $('body');
-            var height;
+            let content = $('.page-content');
+            let sidebar = $('.page-sidebar');
+            let body = $('body');
+            let height;
 
             if (body.hasClass("page-footer-fixed") === true && body.hasClass("page-sidebar-fixed") === false) {
-                var available_height = getViewPort().height - $('.page-footer').outerHeight() - $('.page-header').outerHeight();
-                var sidebar_height = sidebar.outerHeight();
+                let available_height = getViewPort().height - $('.page-footer').outerHeight() - $('.page-header').outerHeight();
+                let sidebar_height = sidebar.outerHeight();
                 if (sidebar_height > available_height) {
                     available_height = sidebar_height + $('.page-footer').outerHeight();
                 }
@@ -95,8 +95,8 @@ history.listen(location => {
                         height = height - $('.page-footer').outerHeight();
                     }
                 } else {
-                    var headerHeight = $('.page-header').outerHeight();
-                    var footerHeight = $('.page-footer').outerHeight();
+                    let headerHeight = $('.page-header').outerHeight();
+                    let footerHeight = $('.page-footer').outerHeight();
 
                     if (getViewPort().width < resBreakpointMd) {
                         height = getViewPort().height - headerHeight - footerHeight;

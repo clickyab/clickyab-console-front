@@ -1,5 +1,5 @@
 import {sync} from "../../functions/sync";
-import ping from "../../functions/ping";
+import ping from "../../swaggerPromiseBind/ping";
 import { browserHistory } from 'react-router';
 import {AlertBox} from "../../functions/notifications";
 

@@ -3,7 +3,7 @@ import LoginPTR from './LoginPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {successfulLogin, failedLogin} from '../../redux/actions/login';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
@@ -19,16 +19,16 @@ export default class LoginCTR extends Component {
         dispatch(successfulLogin());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
-        dispatch(push('/publisher'));
+        dispatch(push('/profile'));
     }
 
     failed400Dispatcher() {
         this.props.dispatch(failedLogin());
     }
 
-    loginCallback(error, user, response) {
+    loginCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.loginSuccessfullyDispatchers(user);
+            this.loginSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
@@ -41,7 +41,8 @@ export default class LoginCTR extends Component {
 
     login(formValues) {
         (new swagger.UserApi())
-            .userLoginPost({'payloadData': formValues}, this.loginCallback.bind(this));
+            .userLoginPost({'payloadData': formValues})
+            .then(response => this.loginCallback(response));
     }
 
     loading() {

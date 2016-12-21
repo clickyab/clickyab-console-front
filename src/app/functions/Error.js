@@ -1,5 +1,5 @@
 export function throwError(middleWareName, recover, _message = "") {
-    let error = new Error('cant pass '  + middleWareName);
+    let error = new Error('cant pass ' + middleWareName);
     error.recover = function () {
         recover();
     };
