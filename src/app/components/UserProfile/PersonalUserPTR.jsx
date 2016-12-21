@@ -3,6 +3,7 @@ import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
 import {updateUserInformation} from "../../redux/actions/user";
 import {connect} from "react-redux";
+import {store} from "./../../redux/store";
 
 @connect(({user}) => ({user}))
 class PersonalUserPTR extends Component {
@@ -10,7 +11,7 @@ class PersonalUserPTR extends Component {
     PersonalForm;
 
     componentDidMount() {
-        console.log(this.props.initialize({'first_name':'personal'}));
+        console.log(this.props.initialize({'first_name':store.getState().user.first_name}));
         this.PersonalForm = $('.personal-form');
         this.PersonalForm.validate({
             rules: {

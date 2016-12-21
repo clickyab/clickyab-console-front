@@ -36,7 +36,13 @@ export default class PersonalUserCTR extends Component {
 
     PersonalCall(formValues) {
         (new swagger.UserApi())
-            .userProfilePost(getToken(), {'payloadData': formValues})
+            .userProfilePost(getToken(),
+                {'payloadData':
+                    {'personal':{
+                        formValues
+                     }
+                    }
+                })
             .then(response => this.PersonalUserCallback(response));
     }
 
