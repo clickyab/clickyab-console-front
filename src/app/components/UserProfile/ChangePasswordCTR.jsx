@@ -14,7 +14,6 @@ export default class ChangePasswordCTR extends Component {
     ChangePasswordCallback({error, data, response}, reset) {
         if (response.statusCode == '200') {
             this.loadingProgress.stop();
-            // document.querySelectorAll(".change-password-form input").value="";
 			reset();
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
