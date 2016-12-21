@@ -13,7 +13,7 @@ export default class ProfileSidebarPTR extends Component {
             <div className="profile-sidebar">
                 <div className="portlet light profile-sidebar-portlet ">
                     <div className="profile-userpic">
-                        <img src="/img/pages/media/profile/profile_user.jpg" className="img-responsive" alt=""/> </div>
+                        <img src="" className="img-responsive" alt=""/> </div>
                     <div className="profile-usertitle">
                         <div className="profile-usertitle-name"> میلاد حیدری </div>
                     </div>

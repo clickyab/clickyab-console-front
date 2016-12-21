@@ -19,6 +19,6 @@ export function SuccessBoxAlert(response){
     AlertBox("success", response.text);
 }
 export function FailedBoxAlert(response){
-    AlertBox("error", response.body.error);
+    AlertBox("error", response.error);
 }
 

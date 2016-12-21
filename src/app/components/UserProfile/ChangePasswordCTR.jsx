@@ -3,8 +3,6 @@ import ChangePasswordPTR from './ChangePasswordPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
-import {updateLocalStorageAction} from "../../redux/actions/index";
-import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 let Ladda = require('ladda/js/ladda');
@@ -13,22 +11,14 @@ let Ladda = require('ladda/js/ladda');
 export default class ChangePasswordCTR extends Component {
     loadingProgress;
 
-    editProfileSuccessfullyDispatchers(user) {
-        let {dispatch} = this.props;
-
-        dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorageAction());
-        // dispatch(push('/publisher'));
-    }
 
 
     ChangePasswordCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-
+            this.loadingProgress.stop();
+            document.querySelectorAll(".change-password-form input").value="";
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
-
             this.stopLoading();
             FailedBoxAlert(response);
         }
@@ -41,7 +31,7 @@ export default class ChangePasswordCTR extends Component {
     }
 
     loading() {
-        this.loadingProgress = Ladda.create(document.querySelector('.corporation-form button[type=submit]'));
+        this.loadingProgress = Ladda.create(document.querySelector('button.change-password-form'));
         this.loadingProgress.start();
     }
 

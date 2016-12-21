@@ -22592,6 +22592,55 @@ Tasks Widget
       display: inline-block;
       float: right; } }
 
+.session-list .session-item {
+  padding: 10px;
+  margin: 0 0 10px 0;
+  border-bottom: 1px solid #f7f8f9; }
+  .session-list .session-item .session-item-body {
+    padding-left: 20px;
+    position: relative;
+    overflow: hidden; }
+    .session-list .session-item .session-item-body .session-item-info:before, .session-list .session-item .session-item-body .session-item-info:after {
+      content: " ";
+      display: table; }
+    .session-list .session-item .session-item-body .session-item-info:after {
+      clear: both; }
+    .session-list .session-item .session-item-body .session-item-info .session-user-agent {
+      display: inline-block;
+      float: left;
+      margin: 0px 0px 10px 0;
+      color: #060606;
+      font-weight: 600;
+      text-align: left; }
+    .session-list .session-item .session-item-body .session-item-info .session-date {
+      display: inline-block;
+      float: right;
+      margin: 0px;
+      color: #BABABA; }
+    .session-list .session-item .session-item-body .session-ip {
+      color: #999999;
+      text-align: left; }
+    .session-list .session-item .session-item-body .session-details {
+      margin: 10px 0px 0px 0; }
+      .session-list .session-item .session-item-body .session-details .session-item-actions {
+        display: inline-block;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        float: right; }
+        .session-list .session-item .session-item-body .session-details .session-item-actions > li {
+          float: left;
+          padding: 0 5px;
+          margin: 0; }
+          .session-list .session-item .session-item-body .session-details .session-item-actions > li > a {
+            text-transform: uppercase;
+            color: #e7505a; }
+            .session-list .session-item .session-item-body .session-details .session-item-actions > li > a:hover {
+              color: #666666;
+              text-decoration: none; }
+  .session-list .session-item:hover {
+    background: #f9f9f9; }
+
 .mt-widget-1 {
   border: 1px solid #e7ecf1;
   text-align: center;
@@ -37027,6 +37076,9 @@ body {
       background-color: #747F8C; }
     .page-header.navbar .top-menu .navbar-nav > li.dropdown .dropdown-toggle > i {
       color: #dde0e3; } }
+
+.page-content-wrapper, .page-footer {
+  background: #ffffff; }
 
 /* Page Portlet Fullscreen */
 .page-portlet-fullscreen .page-quick-sidebar-wrapper,

@@ -6,6 +6,7 @@ import CorporationUserCTR from './CorporationUserCTR'
 import ProfileSidebarCTR from './ProfileSidebarCTR'
 import SelectUserTypePTR from './SelectUserTypePTR'
 import ChangePasswordCTR from './ChangePasswordCTR'
+import SessionListCTR from './SessionListCTR'
 
 class UserProfilePTR extends Component {
 
@@ -49,7 +50,7 @@ class UserProfilePTR extends Component {
 
                                                 </div>
                                                 <div className="tab-pane" id="tab_1_2">
-
+                                                    <SessionListCTR/>
                                                 </div>
                                                 <div className="tab-pane" id="tab_1_3">
                                                     <ChangePasswordCTR/>

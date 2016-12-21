@@ -64,7 +64,7 @@ class ChangePasswordPTR extends Component {
                     <Field type="password" component="input" name="new_replay_password" id="new_replay_password" className="form-control" />
                 </div>
                 <div className="margin-top-10">
-                    <button type="submit" className="btn green"> تایید </button>
+                    <button type="submit" className="btn green change-password-form"> تایید </button>
                 </div>
             </form>
         )
