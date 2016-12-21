@@ -52,20 +52,19 @@ class ChangePasswordPTR extends Component {
         return(
             <form className="change-password-form" role="form" action="" method="POST" onSubmit={handleSubmit((values) => SubmitChangePasswordUser(values, this.changePasswordForm))}>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="old_password">Current Password</label>
+                    <label className="control-label" htmlFor="old_password">کلمه عبور فعلی</label>
                     <Field type="password" component="input" name="old_password" id="old_password" className="form-control" />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="new_password">New Password</label>
+                    <label className="control-label" htmlFor="new_password">کلمه عبور جدید</label>
                     <Field type="password" component="input" name="new_password" id="new_password" className="form-control" />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="new_replay_password">Re-type New Password</label>
+                    <label className="control-label" htmlFor="new_replay_password">تکرار کلمه عبور</label>
                     <Field type="password" component="input" name="new_replay_password" id="new_replay_password" className="form-control" />
                 </div>
                 <div className="margin-top-10">
-                    <button type="submit" className="btn green"> Change Password </button>
-                    <a href="javascript:;" className="btn default"> Cancel </a>
+                    <button type="submit" className="btn green"> تایید </button>
                 </div>
             </form>
         )
