@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-import {Field, reduxForm} from 'redux-form';
+import Radio from './../common/form/Radio';
 
 export default class SelectUserType extends Component {
 
@@ -35,20 +35,8 @@ export default class SelectUserType extends Component {
                             <br/>
                             <div className="form-group form-md-radios">
                                 <div className="md-radio-list">
-                                    <div className="md-radio">
-                                        <input type="radio" id="radio_personal" name="user-type" value="personal" className="md-radiobtn"/>
-                                        <label htmlFor="radio_personal">
-                                            <span className="inc"/>
-                                            <span className="check"/>
-                                            <span className="box"/> حقیقی </label>
-                                    </div>
-                                    <div className="md-radio">
-                                        <input type="radio" id="radio_corporation" name="user-type" value="corporation" className="md-radiobtn"/>
-                                        <label htmlFor="radio_corporation">
-                                            <span className="inc"/>
-                                            <span className="check"/>
-                                            <span className="box"/> حقوقی </label>
-                                    </div>
+                                    <Radio label={'حقیقی'} name={"user-type"} value={'personal'} id={'radio_personal'}/>
+                                    <Radio label={'حقوقی'} name={"user-type"} value={'corporation'} id={'radio_corporation'}/>
                                 </div>
                             </div>
                         </div>
