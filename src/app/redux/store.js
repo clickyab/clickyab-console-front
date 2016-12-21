@@ -8,6 +8,7 @@ import {pullIntoLocalStorage} from "../middlewares/pullIntoLocalStorage";
 import { routerMiddleware, push } from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
+import {removeLocalStorage} from "../middlewares/removeLocalStorage";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory)
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -37,6 +38,7 @@ export const store = createStore(
 		}),
         reactRouterReduxMiddleware,
         pullIntoLocalStorage,
+		removeLocalStorage,
         // logger
 		)
 	)

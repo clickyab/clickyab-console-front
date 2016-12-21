@@ -8,7 +8,7 @@ import TotalIncomeBoxPTR from './../../../components/publisher/Dashboard/TotalIn
 import MainLinksPublisherPTR from './../../../components/publisher/Dashboard/MainLinksPublisherPTR';
 import ClicksChartPTR from './../../../components/publisher/Dashboard/ClicksChartPTR';
 import BudgetChartPTR from './../../../components/publisher/Dashboard/BudgetChartPTR';
-import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR';
+// import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR';
 
 export default class PublisherDashboardPage extends Component {
 
@@ -34,7 +34,7 @@ export default class PublisherDashboardPage extends Component {
                         </li>
                     </ul>
                     <div className="page-toolbar">
-                        <RangePickerPTR/>
+
                     </div>
                 </div>
                 <div className="row">

@@ -24,12 +24,12 @@ export default class RangePickerPTR extends Component {
             autoApply: true,
             ranges: {
                 'امروز': [moment(), moment()],
-                'دیروز': [moment().subtract(1, 'day')  , moment()],
-                'هفته گذشته': [moment().subtract(7, 'day'), moment()],
-                'دو هفته گذشته': [moment().subtract(14, 'day'), moment()],
-                'یک ماه گذشته': [moment().subtract(30, 'day'), moment()],
+                'دیروز': [moment().subtract('day' , 1)  , moment()],
+                'هفته گذشته': [moment().subtract('day' , 7), moment()],
+                'دو هفته گذشته': [moment().subtract('day',14), moment()],
+                'یک ماه گذشته': [moment().subtract('day' , 30), moment()],
                 'این ماه': [moment().startOf('jMonth'), moment().endOf('jMonth')],
-                'آخرین ماه': [moment().subtract(1, 'jMonth').startOf('jMonth'), moment().subtract(1, 'jMonth').endOf('jMonth')]
+                'آخرین ماه': [moment().subtract('jMonth' , 1).startOf('jMonth'), moment().subtract('jMonth',1).endOf('jMonth')]
             },
             showCustomRangeLabel: false,
             alwaysShowCalendars: false,
