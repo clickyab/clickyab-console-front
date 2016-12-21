@@ -10,9 +10,7 @@ class PersonalUserPTR extends Component {
     PersonalForm;
 
     componentDidMount() {
-        this.props.dispatch(
-            updateUserInformation(Object.assign({}, this.props.user, {email: 'hallooo'}))
-        );
+        console.log(this.props.initialize({'first_name':'personal'}));
         this.PersonalForm = $('.personal-form');
         this.PersonalForm.validate({
             rules: {
