@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import PersonalUserPTR from './PersonalUserPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
@@ -22,9 +22,9 @@ export default class PersonalUserCTR extends Component {
     }
 
 
-    PersonalUserCallback(error, user, response) {
+    PersonalUserCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(user);
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
@@ -36,7 +36,8 @@ export default class PersonalUserCTR extends Component {
 
     PersonalCall(formValues) {
         (new swagger.UserApi())
-            .userProfilePost(getToken(),{'payloadData': formValues}, this.PersonalUserCallback.bind(this));
+            .userProfilePost(getToken(), {'payloadData': formValues})
+            .then(response => this.PersonalUserCallback(response));
     }
 
     loading() {

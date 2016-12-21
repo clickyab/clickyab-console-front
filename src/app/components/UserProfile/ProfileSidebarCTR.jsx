@@ -26,10 +26,9 @@ export default class ProfileSidebarCTR extends Component {
     }
 
 
-    LogoutCallback(error, user, response) {
+    LogoutCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            console.log(error, user, response);
-            this.editProfileSuccessfullyDispatchers(Object.assign({}, user));
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
@@ -41,7 +40,8 @@ export default class ProfileSidebarCTR extends Component {
 
     LogoutCall() {
         (new swagger.UserApi())
-            .userLogoutGet(getToken(), this.LogoutCallback.bind(this));
+            .userLogoutGet(getToken())
+            .then(response => this.LogoutCallback(response));
     }
 
     loading() {

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {push} from "react-router-redux";
 import {successfulRegister, failedRegister} from '../../redux/actions/register';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from './RegisterPTR';
@@ -26,9 +26,9 @@ export default class RegisterCTR extends Component {
         this.props.dispatch(failedRegister());
     }
 
-    registerCallback(error, user, response) {
+    registerCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.registerSuccessfullyDispatchers(user);
+            this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
@@ -41,7 +41,8 @@ export default class RegisterCTR extends Component {
 
     register(formValues) {
         (new swagger.UserApi())
-            .userRegisterPost({'payloadData': formValues}, this.registerCallback.bind(this));
+            .userRegisterPost({'payloadData': formValues})
+            .then(response => this.registerCallback(response));
     }
 
     loading() {

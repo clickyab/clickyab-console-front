@@ -3,18 +3,18 @@ import PasswordRecoveryPTR from './PasswordRecoveryPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {browserHistory} from 'react-router';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 
 export default class PasswordRecoveryCTR extends Component {
     loadingProgress;
 
-    forgotCallback(error, user, response) {
+    forgotCallback({error, data, response}) {
         if (response.statusCode == '200') {
             SuccessBoxAlert(response);
             $(".recovery-password-form , .form-top-left").fadeOut(function () {
                 $(".success-message-recovery").fadeIn();
-                $(".form-top-right i").attr("class","fa fa-check");
+                $(".form-top-right i").attr("class", "fa fa-check");
 
             });
         } else if (response.statusCode == '400') {
@@ -25,8 +25,10 @@ export default class PasswordRecoveryCTR extends Component {
 
     forgot(formValues) {
         (new swagger.UserApi())
-            .userForgotCallPost({'payloadData': formValues}, this.forgotCallback.bind(this));
+            .userForgotCallPost({'payloadData': formValues})
+            .then(response => this.forgotCallback(response));
     }
+
     loading() {
         this.loadingProgress = Ladda.create(document.querySelector('.recovery-password-form button'));
         this.loadingProgress.start();

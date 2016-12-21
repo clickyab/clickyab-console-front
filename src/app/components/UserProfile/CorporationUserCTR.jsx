@@ -22,9 +22,9 @@ export default class CorporationUserCTR extends Component {
     }
 
 
-    CorporationUserCallback(error, user, response) {
+    CorporationUserCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(user);
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
@@ -36,7 +36,8 @@ export default class CorporationUserCTR extends Component {
 
     CorporationCall(formValues) {
         (new swagger.UserApi())
-            .userProfilePost(getToken(),{'payloadData': formValues}, this.CorporationUserCallback.bind(this));
+            .userProfilePost(getToken(),{'payloadData': formValues})
+            .then(response => this.CorporationUserCallback(response));
     }
 
     loading() {
