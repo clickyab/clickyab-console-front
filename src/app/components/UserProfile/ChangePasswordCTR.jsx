@@ -11,12 +11,10 @@ let Ladda = require('ladda/js/ladda');
 export default class ChangePasswordCTR extends Component {
     loadingProgress;
 
-
-
-    ChangePasswordCallback({error, data, response}) {
+    ChangePasswordCallback({error, data, response}, reset) {
         if (response.statusCode == '200') {
             this.loadingProgress.stop();
-            document.querySelectorAll(".change-password-form input").value="";
+			reset();
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
             this.stopLoading();
@@ -24,10 +22,10 @@ export default class ChangePasswordCTR extends Component {
         }
     }
 
-    ChangePasswordCall(formValues) {
+    ChangePasswordCall(formValues, reset) {
         (new swagger.UserApi())
             .userChangePasswordPost(getToken(), {'payloadData': formValues})
-            .then(response => this.ChangePasswordCallback(response));
+            .then(response => this.ChangePasswordCallback(response, reset));
     }
 
     loading() {
@@ -40,12 +38,12 @@ export default class ChangePasswordCTR extends Component {
             this.loadingProgress.stop();
     }
 
-    SubmitChangePasswordUser = (formValues, form) => {
+    SubmitChangePasswordUser = (formValues, form, reset) => {
         if (!form.valid())
             return;
 
         this.loading();
-        this.ChangePasswordCall(formValues)
+        this.ChangePasswordCall(formValues, reset)
     };
 
     render() {

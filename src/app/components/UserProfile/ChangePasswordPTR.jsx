@@ -48,9 +48,10 @@ class ChangePasswordPTR extends Component {
 
 
     render() {
-        const {handleSubmit, SubmitChangePasswordUser} = this.props;
+        const {handleSubmit, SubmitChangePasswordUser, reset} = this.props;
+
         return(
-            <form className="change-password-form" role="form" action="" method="POST" onSubmit={handleSubmit((values) => SubmitChangePasswordUser(values, this.changePasswordForm))}>
+            <form className="change-password-form" role="form" action="" method="POST" onSubmit={handleSubmit((values) => SubmitChangePasswordUser(values, this.changePasswordForm, reset))}>
                 <div className="form-group">
                     <label className="control-label" htmlFor="old_password">کلمه عبور فعلی</label>
                     <Field type="password" component="input" name="old_password" id="old_password" className="form-control" />
