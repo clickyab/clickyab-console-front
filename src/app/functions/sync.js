@@ -18,16 +18,24 @@ export function sync(generator, main) {
     }
 
     if (iterator.then) {
-        iterator.then((response) => {
-            result = main.next(response);
-            if (!result.done) {
-                sync(result.value, main);
+        iterator.then(
+            (response) => {
+                result = main.next(response);
+                if (!result.done) {
+                    sync(result.value, main);
+                }
+            },
+            error => {
+                result = main.next(error);
+                if (!result.done) {
+                    sync(result.value, main);
+                }
             }
-        });
+        );
     } else {
         result = iterator.next();
 
-        if(result.done)
+        if (result.done)
             return true;
 
         if (result.value.next) {
@@ -41,26 +49,48 @@ export function sync(generator, main) {
             }
         }
         if (result.then) {
-            result.then((response) => {
-                result = iterator.next(response);
-                if (result.done) {
-                    if (main) {
-                        result = main.next(response);
-                        if (!result.done) {
-                            sync(result.value, main)
+            result.then(
+                (response) => {
+                    result = iterator.next(response);
+                    if (result.done) {
+                        if (main) {
+                            result = main.next(response);
+                            if (!result.done) {
+                                sync(result.value, main)
+                            }
+                        }
+                    } else {
+                        if (result.value.next) {
+                            sync(result.value, iterator);
+                        } else {
+                            result = iterator.next(result.value);
+                            if (!result.done) {
+                                sync(result.value, main || iterator)
+                            }
                         }
                     }
-                } else {
-                    if (result.value.next) {
-                        sync(result.value, iterator);
+                },
+                error => {
+                    result = iterator.next(error);
+                    if (result.done) {
+                        if (main) {
+                            result = main.next(error);
+                            if (!result.done) {
+                                sync(result.value, main)
+                            }
+                        }
                     } else {
-                        result = iterator.next(result.value);
-                        if (!result.done) {
-                            sync(result.value, main || iterator)
+                        if (result.value.next) {
+                            sync(result.value, iterator);
+                        } else {
+                            result = iterator.next(result.value);
+                            if (!result.done) {
+                                sync(result.value, main || iterator)
+                            }
                         }
                     }
                 }
-            });
+            );
         } else {
             if (result.value) {
                 result = main.next(result.value);

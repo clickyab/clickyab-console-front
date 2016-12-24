@@ -16,6 +16,7 @@ import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
 import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR';
 import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
 import UserProfile from './components/UserProfile/UserProfileCTR';
+import UsersListCTR from "./components/Users/UsersListCTR";
 
 
 export default () => (
@@ -34,7 +35,7 @@ export default () => (
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
             <Route path='/profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
             <Route path='/category' component={CategoryListCTR} name='category'/>
-            <Route path='/user' component={CategoryListCTR} name='user' onEnter={onUserEnterMiddleware}/>
+            <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
         </Route>
     </Router>
 );
