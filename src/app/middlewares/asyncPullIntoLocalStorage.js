@@ -19,6 +19,5 @@ export const asyncPullIntoLocalStorage = store => next => action => {
             resolve();
         }).then()
     }
-
     next(action);
 };

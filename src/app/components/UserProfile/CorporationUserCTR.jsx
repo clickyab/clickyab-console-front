@@ -7,6 +7,7 @@ import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
+import {ifInvalidToken} from "../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -25,15 +26,14 @@ export default class CorporationUserCTR extends Component {
     CorporationUserCallback({error, data, response}) {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-
+            this.loadingProgress.stop();
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
-
             this.stopLoading();
             FailedBoxAlert(response);
         }
+        ifInvalidToken(response);
     }
-
     CorporationCall(formValues) {
         (new swagger.UserApi())
             .userProfilePost(getToken(),{'payloadData': formValues})

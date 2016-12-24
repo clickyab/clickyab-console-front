@@ -115,7 +115,6 @@ history.listen(location => {
 
             $(document).ready(setSize());
             $(window).resize(setSize());
-            $(window).resize(console.log("milad"));
 });
 
 

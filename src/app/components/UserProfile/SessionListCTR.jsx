@@ -18,7 +18,7 @@ export default class SessionListCTR extends Component {
     componentDidMount() {
         function DisplaySessionList(data) {
             var $resultDisplay = $('.session-list');
-            if ($resultDisplay.find('.session-item').length) {
+            if ($resultDisplay.find('.session-item').length > 0 ) {
                 $('.session-item').remove();
             }
             $.each(data, function(key, sessionItem) {
