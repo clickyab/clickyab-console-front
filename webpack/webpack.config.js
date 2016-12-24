@@ -95,7 +95,6 @@ module.exports = {
 	],
 	target: 'web',
     node: {
-        fs: "empty",
-        superagent: "empty"
+        fs: "empty"
     }
 };

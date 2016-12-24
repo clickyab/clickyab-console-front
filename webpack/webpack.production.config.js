@@ -62,6 +62,12 @@ module.exports = {
 			template: './src/index.html',
 			title: 'Webpack App'
 		}),
-		new webpack.optimize.DedupePlugin()
-	]
+		new webpack.optimize.DedupePlugin(),
+		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+		new webpack.ProvidePlugin({jQuery: 'jquery'}),
+		new webpack.ProvidePlugin({$: 'jquery'}),
+	],
+	node: {
+		fs: "empty"
+	}
 };
