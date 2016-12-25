@@ -1,11 +1,16 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
+import {select} from '../../functions/select'
 
 class CorporationUserPTR extends Component {
     CorporationForm;
+    handleInitialize() {
+        const initData = select("user.corporation",{});
+        this.props.initialize(initData);
+    }
     componentDidMount() {
-
+        this.handleInitialize();
         this.CorporationForm = $('.corporation-form');
         this.CorporationForm.validate({
             rules: {
