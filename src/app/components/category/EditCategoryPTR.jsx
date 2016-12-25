@@ -50,5 +50,5 @@ class EditCategoryPTR extends Component {
 }
 
 export default reduxForm({
-    form: 'editcategory'
+    form: 'EditCategoryForm'
 })(EditCategoryPTR);

@@ -57,7 +57,8 @@ module.exports = {
 			'./public/vendor/layout.js',
 			'./public/vendor/demo.js',
 			'./public/vendor/quick-nav.js',
-			'./public/vendor/jquery.backstretch.js'
+			'./public/vendor/jquery.backstretch.js',
+			'./public/vendor/animatedModal.js'
 		]
 	},
 	devtool: process.env.WEBPACK_DEVTOOL || 'cheap-module-source-map',
