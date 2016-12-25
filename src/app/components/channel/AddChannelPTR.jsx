@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
+import {fullWidthModal} from './../../functions/animtedModal';
 import $ from 'jquery';
 
 class AddChannelPTR extends Component {
@@ -8,8 +9,8 @@ class AddChannelPTR extends Component {
         validation: true
     };
     componentDidMount() {
-        $('#kasra').animatedModal();
-
+        // $('#kasra').animatedModal();
+        fullWidthModal('kasra', 'this title');
 
         this.addChannelForm = $("#addChannelForm");
         this.addChannelForm.validate({
@@ -46,28 +47,31 @@ class AddChannelPTR extends Component {
                 <div>
                     <a id="kasra" className="btn btn-success" href="#animatedModal">Add Channel</a>
                 </div>
-
                 <div id="animatedModal">
-                    <div className="close-animatedModal">
-                        CLOSE MODALs
-                    </div>
-
+                    <div className="col-md-4 col-md-offset-4">
+                        <div className="close-animatedModal text-center padding-tb-15">
+                            <img className="closebt" src="img/closebtn.svg" />
+                        </div>
+                        <div className="modal-title text-center">
+                            <h3>Title</h3>
+                        </div>
                         <form role="form" action="" id="addChannelForm" method="post" className="login-form" onSubmit={handleSubmit((values) => SubmitAddChannel(values, this.addChannelForm, reset))}>
                             <div className="form-group">
                                 <label className="sr-only" htmlFor="admin">نام ادمین</label>
-                                <Field component="input" type="text" name="admin" placeholder='admin' className="form-control" id="admin"/>
+                                <Field component="input" type="text" name="admin" placeholder='admin' className="form-control input-lg" id="admin"/>
                             </div>
                             <div className="form-group">
                                 <label className="sr-only" htmlFor="link">لینک کانال</label>
-                                <Field component="input" type="text" name="link" placeholder={'link'} className="form-control" id="link"/>
+                                <Field component="input" type="text" name="link" placeholder={'link'} className="form-control input-lg" id="link"/>
                             </div>
 
                             <div className="form-group">
                                 <label className="sr-only" htmlFor="name">نام کانال</label>
-                                <Field component="input" type="text" name="name" placeholder={'name'} className="form-control" id="name"/>
+                                <Field component="input" type="text" name="name" placeholder={'name'} className="form-control input-lg" id="name"/>
                             </div>
-                            <button type="submit" className="btn btn-primary add-channel-form">ذخیره</button>
+                            <button type="submit" className="btn btn-primary add-channel-form btn-block">ذخیره</button>
                         </form>
+                    </div>
                 </div>
             </div>
         )
