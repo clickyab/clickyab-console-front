@@ -5,41 +5,43 @@ import {loginReducer, userReducer, tokenReducer, registerReducer, impersonateRed
 import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
 import {asyncPullIntoLocalStorage} from "../middlewares/asyncPullIntoLocalStorage";
-import { routerMiddleware, push } from 'react-router-redux'
+import {routerMiddleware, push} from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
 import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
+import {userListReducer} from "./reducers/userList";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 const logger = createLogger();
 
 export const store = createStore(
-	combineReducers({
-		routing: routerReducer,
-		impersonate: impersonateReducer,
-		register: registerReducer,
-		login: loginReducer,
-		user: userReducer,
-		form: formReducer,
-		locale: localeReducer('fa', require('../../locales/index').default)
-	}),
+    combineReducers({
+        routing: routerReducer,
+        impersonate: impersonateReducer,
+        register: registerReducer,
+        login: loginReducer,
+        user: userReducer,
+        userList: userListReducer,
+        form: formReducer,
+        locale: localeReducer('fa', require('../../locales/index').default)
+    }),
     localStorage.get('initialState'),
-	enhancer(applyMiddleware(
-		cssLazyLoader(['LOCALE_CHANGED'], {
-			'en': {
-				address: 'css/style-ltr.css',
-				direction: 'ltr'
-			},
-			'fa': {
-				address: 'css/style-rtl.css',
-				direction: 'rtl'
-			}
-		}),
+    enhancer(applyMiddleware(
+        cssLazyLoader(['LOCALE_CHANGED'], {
+            'en': {
+                address: 'css/style-ltr.css',
+                direction: 'ltr'
+            },
+            'fa': {
+                address: 'css/style-rtl.css',
+                direction: 'rtl'
+            }
+        }),
         reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
         // logger
-		)
-	)
+        )
+    )
 );

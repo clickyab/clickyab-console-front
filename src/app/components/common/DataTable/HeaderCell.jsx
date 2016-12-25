@@ -1,4 +1,4 @@
-import {Component} from "react";
+import React, {Component} from "react";
 import {Table, Column, Cell} from 'fixed-data-table';
 
 export default class HeaderCell extends Component {

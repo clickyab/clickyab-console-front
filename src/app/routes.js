@@ -52,7 +52,7 @@ history.listen(location => {
             $('.page-content').css({
                 "min-height": windowHeight+"px"
             });
-        };
+        }
         setHeight();
         $(window).resize(function() {
             setHeight();

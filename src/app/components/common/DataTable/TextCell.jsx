@@ -1,6 +1,7 @@
 import React, {Component} from "react";
+import {Cell} from 'fixed-data-table';
 
-export default ({rowIndex, children, ...props}) => (
+export const TextCell = ({rowIndex, children, ...props}) => (
 	<Cell {...props}>
 		{children}
 	</Cell>
