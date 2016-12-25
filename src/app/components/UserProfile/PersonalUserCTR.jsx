@@ -24,7 +24,9 @@ export default class PersonalUserCTR extends Component {
 
     PersonalUserCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(Object.assign({}, response));
+            console.log("data",data);
+            console.log("data",response);
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
 
             SuccessBoxAlert(response);
