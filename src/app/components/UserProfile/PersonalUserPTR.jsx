@@ -18,6 +18,7 @@ class PersonalUserPTR extends Component {
 	componentDidMount() {
 		// this.handleInitialize();
 		// console.log(store.getState().user.personal.gender);
+
 		this.PersonalForm = $('.personal-form');
 		this.PersonalForm.validate({
 			rules: {
