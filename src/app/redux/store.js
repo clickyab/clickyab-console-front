@@ -10,6 +10,7 @@ import {browserHistory} from 'react-router';
 import localStorage from 'store';
 import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
 import {userListReducer} from "./reducers/userList";
+import {channelListReducer} from "./reducers/channelList";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -23,6 +24,7 @@ export const store = createStore(
         login: loginReducer,
         user: userReducer,
         userList: userListReducer,
+        channelList: channelListReducer,
         form: formReducer,
         locale: localeReducer('fa', require('../../locales/index').default)
     }),

@@ -39,6 +39,7 @@ export default () => (
             <Route path='/profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
             <Route path='/category' component={CategoryListCTR} name='category'/>
             <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
+            <Route path='/channel/list' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
 
         </Route>
         <Route path='/channel' component={AddChannelCTR} name='channel'/>
