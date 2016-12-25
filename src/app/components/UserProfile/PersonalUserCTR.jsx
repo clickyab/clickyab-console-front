@@ -4,7 +4,7 @@ import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
-import {updateUserInformation} from "../../redux/actions/user";
+import {updatePersonalInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
@@ -17,7 +17,7 @@ export default class PersonalUserCTR extends Component {
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 
-        dispatch(updateUserInformation(user));
+        dispatch(updatePersonalInformation(user));
         dispatch(updateLocalStorageAction());
         // dispatch(push('/publisher'));
     }
