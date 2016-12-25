@@ -1,6 +1,6 @@
 import {store} from './../redux/store';
 
-export function select(key, defaultValue) {
+export function select(key, defaultValue, removeNull = false) {
     let value = store.getState();
     const parts = key.split('.');
 
@@ -11,6 +11,18 @@ export function select(key, defaultValue) {
             return defaultValue || null;
         }
     }
+
+    let _value = {};
+    if (typeof value === "object" && removeNull) {
+        for (let property in value) {
+            if (value[property]) {
+                _value[property] = value[property];
+            }
+        }
+
+        value = _value;
+    }
+
 
     return value;
 }

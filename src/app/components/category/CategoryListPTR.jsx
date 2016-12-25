@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from './../common/DataTable/Index';
+import DataTable from '../common/DataTable/DataTable';
 
 export default class CategoryListPTR extends Component {
 	render() {

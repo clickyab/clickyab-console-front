@@ -8,7 +8,7 @@ import {select} from "../../functions/select";
 
 export default (nextState, replace, next) => sync(function*() {
     try {
-        let {error, data, response} = yield (new swagger.ChannelApi()).channelListGet(select('user.token'), {
+        let {error, data, response} = yield (new swagger.CategoryApi()).channelListGet(select('user.token'), {
             def: true
         });
 

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import DataTable from '../common/DataTable/DataTable';
 
-export default class UsersListPTR extends Component {
+export default class CampaignListPTR extends Component {
 	render() {
 		const {items, definitions} = this.props;
 
@@ -13,6 +13,6 @@ export default class UsersListPTR extends Component {
 	}
 }
 
-UsersListPTR.propTypes = {
+CampaignListPTR.propTypes = {
     items: React.PropTypes.array
 };
