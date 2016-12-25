@@ -19,15 +19,13 @@ export default class PersonalUserCTR extends Component {
 
         dispatch(updatePersonalInformation(user));
         dispatch(updateLocalStorageAction());
-        // dispatch(push('/publisher'));
     }
 
 
     PersonalUserCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, response));
             this.loadingProgress.stop();
-
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
