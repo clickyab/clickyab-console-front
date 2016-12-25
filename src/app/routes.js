@@ -20,6 +20,7 @@ import AddChannelCTR from './components/channel/AddChannelCTR';
 import UsersListCTR from "./components/Users/UsersListCTR";
 import ChannelListCTR from "./components/channel/ChannelListCTR";
 import onChannelEnterMiddleware from "./middlewares/routes/onChannelEnterMiddleware";
+import onCampaignEnterMiddleware from "./middlewares/routes/onCampaignEnterMiddleware";
 
 
 export default () => (
@@ -40,6 +41,7 @@ export default () => (
             <Route path='/category' component={CategoryListCTR} name='category'/>
             <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
             <Route path='/channel/list' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
+            <Route path='/campaign/list' component={ChannelListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
 
         </Route>
         <Route path='/channel' component={AddChannelCTR} name='channel'/>
