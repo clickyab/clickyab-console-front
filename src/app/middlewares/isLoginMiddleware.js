@@ -1,4 +1,4 @@
-import ping from "../swaggerPromiseBind/ping";
+import ping from "../functions/ping";
 import {throwError} from "../functions/Error";
 import {isLogin} from "../redux/helpers";
 import {browserHistory} from "react-router";
