@@ -19,8 +19,8 @@ export default class PersonalUserCTR extends Component {
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 
-        dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorageAction());
+        // dispatch(updateUserInformation(user));
+        // dispatch(updateLocalStorageAction());
     }
 
 
@@ -41,9 +41,7 @@ export default class PersonalUserCTR extends Component {
     PersonalCall(formValues) {
         (new swagger.UserApi())
             .userProfilePost(getToken(),
-                {
-                    'payloadData': {"personal": formValues}
-                })
+                {'payloadData': {"personal": formValues}})
             .then(response => this.PersonalUserCallback(response));
     }
 
