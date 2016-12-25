@@ -3,13 +3,14 @@ import {Field, reduxForm} from 'redux-form';
 import {fullWidthModal} from './../../functions/animtedModal';
 import $ from 'jquery';
 
+
 class AddChannelPTR extends Component {
     addChannelForm;
     state = {
         validation: true
     };
     componentDidMount() {
-        fullWidthModal('kasra', 'افزودن چنل جدید');
+        fullWidthModal('add-channel-binder', 'افزودن چنل جدید');
 
         this.addChannelForm = $("#addChannelForm");
         this.addChannelForm.validate({
@@ -42,13 +43,16 @@ class AddChannelPTR extends Component {
     render() {
         const {handleSubmit, SubmitAddChannel, reset} = this.props;
         return(
-            <div className='page-content'>
-                <div>
-                    <a id="kasra" className="btn btn-success" href="#animatedModal">Add Channel</a>
-                </div>
-                <div id="animatedModal" className="animated animatedModal-off">
 
-                    <div className="close-animatedModal padding-tb-15">
+            <div className='page-content'>
+
+                <div>
+                    <a id="add-channel-binder" className="btn btn-success" href="#add-channel-binder-modal">Add Channel</a>
+                </div>
+
+                <div id="add-channel-binder-modal" className="animated add-channel-binder-modal-off">
+
+                    <div className="close-add-channel-binder-modal padding-tb-15">
                         <img className="closebt" src="img/closebtn.svg" />
                     </div>
                     <div className="col-md-4 col-md-offset-4">

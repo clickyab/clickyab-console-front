@@ -9,10 +9,12 @@ import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {updateUserInformation} from "../../redux/actions/user";
 let Ladda = require('ladda/js/ladda');
+import {select} from '../../functions/select'
 
 @connect()
 export default class PersonalUserCTR extends Component {
     loadingProgress;
+
 
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;

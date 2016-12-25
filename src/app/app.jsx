@@ -5,6 +5,7 @@ import { RouteTransition } from 'react-router-transition';
 import {Footer} from './components/layouts/Footer';
 import {Header} from './components/layouts/Header';
 import Sidebar from './components/layouts/Sidebar';
+import PageLoading from './components/common/loading-page';
 
 export default class App extends React.Component {
 	render() {
@@ -12,6 +13,7 @@ export default class App extends React.Component {
 		return (
 			<Provider store={store}>
 				<div className="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+					<PageLoading/>
 					<div className="page-wrapper">
 						<Header/>
 						<div className="page-container">
@@ -30,6 +32,9 @@ export default class App extends React.Component {
 						</div>
 						<Footer/>
 					</div>
+
+
+
 				</div>
 			</Provider>
 		)

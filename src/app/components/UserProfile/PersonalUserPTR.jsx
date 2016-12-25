@@ -9,17 +9,15 @@ import {select} from '../../functions/select'
 class PersonalUserPTR extends Component {
 
 	PersonalForm;
+
 	handleInitialize() {
 		const initData = select("user.personal",{});
-
 		this.props.initialize(initData);
 	}
+
 	componentDidMount() {
 
 		this.handleInitialize();
-		console.log(select('user.personal.first_name'));
-		console.log(select('user.personal.last_name'));
-		console.log(select('user.personal.gender'));
 		this.PersonalForm = $('.personal-form');
 		this.PersonalForm.validate({
 			rules: {

@@ -8,6 +8,7 @@ import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {updateCorporationInformation} from "../../redux/actions/user";
+
 let Ladda = require('ladda/js/ladda');
 
 @connect()
