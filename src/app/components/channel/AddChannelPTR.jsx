@@ -9,7 +9,7 @@ class AddChannelPTR extends Component {
         validation: true
     };
     componentDidMount() {
-        fullWidthModal('kasra', 'افزودن چنل جدید');
+        fullWidthModal('add-channel-binder', 'افزودن چنل جدید');
 
         this.addChannelForm = $("#addChannelForm");
         this.addChannelForm.validate({
@@ -44,11 +44,11 @@ class AddChannelPTR extends Component {
         return(
             <div className='page-content'>
                 <div>
-                    <a id="kasra" className="btn btn-success" href="#animatedModal">Add Channel</a>
+                    <a id="add-channel-binder" className="btn btn-success" href="#add-channel-binder-modal">Add Channel</a>
                 </div>
-                <div id="animatedModal" className="animated animatedModal-off">
+                <div id="add-channel-binder-modal" className="animated add-channel-binder-modal-off">
 
-                    <div className="close-animatedModal padding-tb-15">
+                    <div className="close-add-channel-binder-modal padding-tb-15">
                         <img className="closebt" src="img/closebtn.svg" />
                     </div>
                     <div className="col-md-4 col-md-offset-4">
