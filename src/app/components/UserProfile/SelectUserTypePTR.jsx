@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import Radio from './../common/form/Radio';
+import {select} from '../../functions/select'
 
 export default class SelectUserType extends Component {
 
@@ -20,6 +21,14 @@ export default class SelectUserType extends Component {
                 $('html, body').animate({scrollTop:$("."+$(this).val()+"-form").position().top}, 'slow');
             }
         }).trigger('change');
+
+        if((select('user.personal.first_name')) != null) {
+                $("#radio_personal").prop("checked",true);
+                $(".personal-form").fadeIn();
+        } else {
+            $("#radio_corporation").prop("checked",true);
+            $(".corporation-form").fadeIn();
+        }
     }
 
 

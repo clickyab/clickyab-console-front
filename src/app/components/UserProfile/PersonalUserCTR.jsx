@@ -4,10 +4,10 @@ import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
-import {updatePersonalInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
+import {updateUserInformation} from "../../redux/actions/user";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -17,7 +17,7 @@ export default class PersonalUserCTR extends Component {
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 
-        dispatch(updatePersonalInformation(user));
+        dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
     }
 
