@@ -61,6 +61,9 @@ body {
  * Copyright 2011-2016 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -7645,6 +7648,9 @@ you can use the generic selector below, but it's slower:
 .center-align-page * {
   display: inline-block; }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -7653,6 +7659,12 @@ you can use the generic selector below, but it's slower:
 
 .center-align-page * {
   display: inline-block; }
+
+.white {
+  color: #fff; }
+
+.white {
+  color: #fff; }
 
 .center-align-page {
   text-align: center; }
@@ -33669,6 +33681,9 @@ Color library demo
       .mt-content-row .mt-content-col-fixed .mt-content-sidebar {
         margin-right: 0; } }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -37704,6 +37719,9 @@ pre[class*="language-"] {
 .socicon-persona:before {
   content: ")"; }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -39667,6 +39685,9 @@ Page Quick Sidebar
     .page-quick-sidebar-open .page-header .top-menu .dropdown-quick-sidebar-toggler > .dropdown-toggle i:before {
       content: ""/*rtl:""*/; }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -41301,6 +41322,9 @@ Page Loading
   .radioFromK .md-radio-inline {
     float: left;
     margin-bottom: 4px; }
+
+.white {
+  color: #fff; }
 
 .center-align-page {
   text-align: center; }

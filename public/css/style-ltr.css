@@ -9,6 +9,9 @@
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:600,700,400,300);
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -7593,6 +7596,9 @@ you can use the generic selector below, but it's slower:
 .center-align-page * {
   display: inline-block; }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -7601,6 +7607,12 @@ you can use the generic selector below, but it's slower:
 
 .center-align-page * {
   display: inline-block; }
+
+.white {
+  color: #fff; }
+
+.white {
+  color: #fff; }
 
 .center-align-page {
   text-align: center; }
@@ -33617,6 +33629,9 @@ Color library demo
       .mt-content-row .mt-content-col-fixed .mt-content-sidebar {
         margin-left: 0; } }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -37652,6 +37667,9 @@ pre[class*="language-"] {
 .socicon-persona:before {
   content: ")"; }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -39615,6 +39633,9 @@ Page Quick Sidebar
     .page-quick-sidebar-open .page-header .top-menu .dropdown-quick-sidebar-toggler > .dropdown-toggle i:before {
       content: ""/*rtl:""*/; }
 
+.white {
+  color: #fff; }
+
 .center-align-page {
   text-align: center; }
 
@@ -40992,6 +41013,9 @@ Page Loading
   .page-on-load > .clearfix {
     display: none;
     transition: all 2s; }
+
+.white {
+  color: #fff; }
 
 .center-align-page {
   text-align: center; }
