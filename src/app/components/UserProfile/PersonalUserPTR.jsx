@@ -3,14 +3,23 @@ import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {store} from "./../../redux/store";
+import selectData from './../../functions/select-data'
 
 @connect(({user}) => ({user}))
 class PersonalUserPTR extends Component {
 
 	PersonalForm;
+	// handleInitialize() {
+	// 	// const initData = {
 
+	// 	// };
+     //    //
+	// 	// this.props.initialize(initData);
+	// }
 	componentDidMount() {
-		console.log(this.props.initialize({'first_name': store.getState().user.first_name}));
+		// this.handleInitialize();
+		// console.log(store.getState().user.personal.gender);
+		console.log(selectData('user.personal.first_name'));
 		this.PersonalForm = $('.personal-form');
 		this.PersonalForm.validate({
 			rules: {
@@ -20,6 +29,9 @@ class PersonalUserPTR extends Component {
 				last_name: {
 					required: true,
 				},
+				gender: {
+					required: true
+				}
 
 			},
 			messages: {
@@ -28,6 +40,9 @@ class PersonalUserPTR extends Component {
 				},
 				last_name: {
 					required: 'لطفا نام خانوادگی را وارد نمایید',
+				},
+				gender: {
+					required: 'لطفا جنسیت خود را وارد نمایید',
 				},
 
 			}
@@ -70,12 +85,15 @@ class PersonalUserPTR extends Component {
 						</div>
 
 						<div className="col-md-6">
-							<label className="control-label">جنسیت</label>
-							<select className="form-control" data-placeholder="جنسیت" tabIndex="1" name="gender"
-									id="gender">
-								<option value="male">مرد</option>
-								<option value="female">زن</option>
-							</select>
+							<div className="form-group">
+									<label className="control-label">جنسیت</label>
+									<Field className="form-control" component="select" data-placeholder="جنسیت" tabIndex="1" name="gender"
+											id="gender">
+										<option value="">جنسیت خود را انتخاب کنید</option>
+										<option value="male">مرد</option>
+										<option value="female">زن</option>
+									</Field>
+							</div>
 						</div>
 
 					</div>

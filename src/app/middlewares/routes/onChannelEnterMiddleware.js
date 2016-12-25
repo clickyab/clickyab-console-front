@@ -5,7 +5,9 @@ import * as swagger from "../../swagger/index";
 
 export default (nextState, replace, next) => sync(function*() {
     try {
-        let {error, data, response} = yield (new swagger.UserApi()).userUsersGet(getToken(), {});
+        let {error, data, response} = yield (new swagger.ChannelApi()).channelListGet(getToken(), {
+            def: true
+        });
 
         next()
     } catch (error) {
