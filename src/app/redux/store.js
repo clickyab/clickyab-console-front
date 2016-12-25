@@ -1,11 +1,11 @@
 import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import {localeReducer, cssLazyLoader} from 'react-multilingual';
-import {loginReducer, userReducer, tokenReducer, registerReducer, impersonateReducer} from './reducers';
+import {loginReducer, userReducer, registerReducer, impersonateReducer} from './reducers';
 import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
 import {asyncPullIntoLocalStorage} from "../middlewares/asyncPullIntoLocalStorage";
-import {routerMiddleware, push} from 'react-router-redux'
+import {routerMiddleware} from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
 import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
@@ -45,7 +45,7 @@ export const store = createStore(
         reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-        // logger
+        logger
         )
     )
 );

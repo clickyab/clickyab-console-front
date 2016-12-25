@@ -11,9 +11,7 @@ export default (nextState, replace, next) => sync(function*() {
         let {error, data, response} = yield (new swagger.ChannelApi()).channelListGet(select('user.token'), {
             def: true
         });
-        window.setTimeout(function () {
-            $(".preloader-page").fadeOut();
-        }, 500);
+
         dispatch(channelListAction(data));
         next()
     } catch (error) {

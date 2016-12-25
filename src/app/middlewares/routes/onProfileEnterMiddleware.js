@@ -6,9 +6,6 @@ import {AlertBox} from "../../functions/notifications";
 export default (nextState, replace, next) => sync(function*() {
 
     let {error, user, response} = yield ping();
-    window.setTimeout(function () {
-        $(".preloader-page").fadeOut();
-    }, 500);
 
     // document.getElementsByClassName("preloader-page")[0].style.display="none";
     if (response.statusCode == 200) {

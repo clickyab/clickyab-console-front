@@ -25,7 +25,6 @@ export default class DataTable extends React.Component {
         let columnDefinition;
         for (let i = 0; i < definitions.length; i++) {
             columnDefinition = definitions[i];
-            console.log(columnDefinition.data);
             if (columnDefinition.visible)
                 _rows.push(<Column
                     header={<HeaderCell searchable={columnDefinition.searchable}>

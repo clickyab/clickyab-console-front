@@ -6,8 +6,13 @@ import {Footer} from './components/layouts/Footer';
 import {Header} from './components/layouts/Header';
 import Sidebar from './components/layouts/Sidebar';
 import PageLoading from './components/common/loading-page';
+import {loading} from "./functions/loading";
 
 export default class App extends React.Component {
+	componentDidMount() {
+		loading(false);
+	}
+
 	render() {
         let children = this.props.children;
 		return (
