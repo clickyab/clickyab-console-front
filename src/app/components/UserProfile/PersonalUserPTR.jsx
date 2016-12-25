@@ -15,6 +15,7 @@ class PersonalUserPTR extends Component {
 		this.props.initialize(initData);
 	}
 	componentDidMount() {
+
 		this.handleInitialize();
 		console.log(select('user.personal.first_name'));
 		console.log(select('user.personal.last_name'));

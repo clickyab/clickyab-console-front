@@ -25893,7 +25893,8 @@ Copyright (c) 2014 Daniel Eden
   -moz-transition: all 0.2s ease 0s;
   -webkit-transition: all 0.2s ease 0s;
   -o-transition: all 0.2s ease 0s;
-  -ms-transition: all 0.2s ease 0s; }
+  -ms-transition: all 0.2s ease 0s;
+  margin-right: 50px; }
   .closebt:hover {
     transform: rotate(90deg);
     -moz-transform: rotate(90deg);
