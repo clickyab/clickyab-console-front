@@ -3,7 +3,7 @@ import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {store} from "./../../redux/store";
-import selectData from './../../functions/select-data'
+import {select} from '../../functions/select'
 
 @connect(({user}) => ({user}))
 class PersonalUserPTR extends Component {
@@ -19,7 +19,7 @@ class PersonalUserPTR extends Component {
 	componentDidMount() {
 		// this.handleInitialize();
 		// console.log(store.getState().user.personal.gender);
-		console.log(selectData('user.personal.first_name'));
+		console.log(select('user.personal.first_name'));
 		this.PersonalForm = $('.personal-form');
 		this.PersonalForm.validate({
 			rules: {
