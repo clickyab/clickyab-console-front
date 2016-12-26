@@ -1,12 +1,7 @@
 import {Table, Column, Cell} from "fixed-data-table";
 import React from "react";
 import HeaderCell from './HeaderCell';
-
-const TextCell = ({rowIndex, column, rows, ...props}) => {
-    return (<Cell {...props}>
-        {rows[rowIndex][column]}
-    </Cell>);
-};
+import {TextCell} from './TextCell';
 
 export default class DataTable extends React.Component {
     constructor(props) {
@@ -20,6 +15,7 @@ export default class DataTable extends React.Component {
 
     setRows() {
         let {rows, definitions} = this.state;
+        const {sort, filter, search} = this.props;
 
         let _rows = [];
         let columnDefinition;
@@ -27,9 +23,17 @@ export default class DataTable extends React.Component {
             columnDefinition = definitions[i];
             if (columnDefinition.visible)
                 _rows.push(<Column
-                    header={<HeaderCell searchable={columnDefinition.searchable}>
-                        {columnDefinition.name}
-                    </HeaderCell>}
+                    header={
+                        <HeaderCell
+                            sort={sort}
+                            filter={filter}
+                            search={search}
+                            filters={columnDefinition.filter_valid_map}
+                            sortable={columnDefinition.sortable}
+                            searchable={columnDefinition.searchable}>
+                            {columnDefinition.name}
+                        </HeaderCell>
+                    }
                     cell={<TextCell column={columnDefinition.data} rows={rows}/>}
                     fixed={true} width={160} key={Math.random()}/>);
         }
