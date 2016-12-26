@@ -21,6 +21,7 @@ import UsersListCTR from "./components/Users/UsersListCTR";
 import ChannelListCTR from "./components/channel/ChannelListCTR";
 import onChannelEnterMiddleware from "./middlewares/routes/onChannelEnterMiddleware";
 import onCampaignEnterMiddleware from "./middlewares/routes/onCampaignEnterMiddleware";
+import onCategoryEnterMiddleware from "./middlewares/routes/onCategoryEnterMiddleware";
 import CampaignListCTR from "./components/campaign/CampiagnListCTR";
 import {setHeight} from "./functions/setHeight";
 
@@ -40,7 +41,7 @@ export default () => (
             <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
             <Route path='/profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
-            <Route path='/category' component={CategoryListCTR} name='category'/>
+            <Route path='/category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware}/>
             <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
             <Route path='/channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
             <Route path='/campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>

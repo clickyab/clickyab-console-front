@@ -4,25 +4,15 @@ import HeaderCell from './HeaderCell';
 import {TextCell} from './TextCell';
 
 export default class DataTable extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            rows: props.items,
-            definitions: props.definitions
-        };
-    }
-
     setRows() {
-        let {rows, definitions} = this.state;
-        const {sort, filter, search} = this.props;
+        const {sort, filter, search, items, definitions} = this.props;
 
-        let _rows = [];
+        let _items = [];
         let columnDefinition;
         for (let i = 0; i < definitions.length; i++) {
             columnDefinition = definitions[i];
             if (columnDefinition.visible)
-                _rows.push(<Column
+                _items.push(<Column
                     header={
                         <HeaderCell
                             sort={sort}
@@ -35,18 +25,21 @@ export default class DataTable extends React.Component {
                             {columnDefinition.name}
                         </HeaderCell>
                     }
-                    cell={<TextCell column={columnDefinition.data} rows={rows}/>}
+                    cell={<TextCell column={columnDefinition.data} items={items}/>}
                     fixed={true} width={160} key={Math.random()}/>);
         }
 
-        return _rows;
+        return _items;
     }
 
     render() {
-        let {rows, definitions} = this.state;
+        let {items, definitions} = this.props;
 
+        console.log("oHHHHHHHHHHHHo");
+        console.log(items, definitions);
+        console.log("oHHHHHHHHHHHHo");
         return (
-            <Table rowHeight={50} rowsCount={rows.length}
+            <Table rowHeight={50} rowsCount={items.length}
                    headerHeight={50} width={100 * definitions.length}
                    height={500} {...this.props}>
                 {this.setRows()}
