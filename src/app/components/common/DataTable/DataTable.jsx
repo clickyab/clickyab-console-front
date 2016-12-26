@@ -1,50 +1,64 @@
 import {Table, Column, Cell} from "fixed-data-table";
 import React from "react";
 import HeaderCell from './HeaderCell';
-
-const TextCell = ({rowIndex, column, rows, ...props}) => {
-    return (<Cell {...props}>
-        {rows[rowIndex][column]}
-    </Cell>);
-};
+import {TextCell} from './TextCell';
 
 export default class DataTable extends React.Component {
-    constructor(props) {
-        super(props);
+    setRows(items, definitions) {
+        const {sort, filter, search, change, edit} = this.props;
 
-        this.state = {
-            rows: props.items,
-            definitions: props.definitions
-        };
-    }
-
-    setRows() {
-        let {rows, definitions} = this.state;
-
-        let _rows = [];
+        let _items = [];
         let columnDefinition;
         for (let i = 0; i < definitions.length; i++) {
             columnDefinition = definitions[i];
             if (columnDefinition.visible)
-                _rows.push(<Column
-                    header={<HeaderCell searchable={columnDefinition.searchable}>
-                        {columnDefinition.name}
-                    </HeaderCell>}
-                    cell={<TextCell column={columnDefinition.data} rows={rows}/>}
+                _items.push(<Column
+                    header={
+                        <HeaderCell
+                            sort={sort}
+                            filter={filter}
+                            search={search}
+                            query_name={columnDefinition.data}
+                            filters={columnDefinition.filter_valid_map}
+                            sortable={columnDefinition.sortable}
+                            searchable={columnDefinition.searchable}>
+                            {columnDefinition.name}
+                        </HeaderCell>
+                    }
+                    cell={<TextCell
+                        actions={columnDefinition.data == "_actions"}
+                        change={change} edit={edit}
+                        column={columnDefinition.data} items={items}
+                    />}
                     fixed={true} width={160} key={Math.random()}/>);
         }
 
-        return _rows;
+        return _items;
+    }
+
+    addActionHeader(definitions) {
+        return [...definitions, {
+            data: '_actions',
+            filter: false,
+            filter_valid_map: null,
+            searchable: false,
+            sortable: false,
+            title: "Action",
+            name: "Action",
+            visible: true
+        }
+        ];
     }
 
     render() {
-        let {rows, definitions} = this.state;
+        let {items, definitions} = this.props;
+        definitions = this.addActionHeader(definitions);
 
         return (
-            <Table rowHeight={50} rowsCount={rows.length}
-                   headerHeight={50} width={100 * definitions.length}
+            <Table rowHeight={50} rowsCount={items.length}
+                   headerHeight={50} width={150 * definitions.length}
                    height={500} {...this.props}>
-                {this.setRows()}
+                {this.setRows(items, definitions)}
             </Table>
         );
     }

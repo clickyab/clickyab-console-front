@@ -21,6 +21,9 @@ import UsersListCTR from "./components/Users/UsersListCTR";
 import ChannelListCTR from "./components/channel/ChannelListCTR";
 import onChannelEnterMiddleware from "./middlewares/routes/onChannelEnterMiddleware";
 import onCampaignEnterMiddleware from "./middlewares/routes/onCampaignEnterMiddleware";
+import onCategoryEnterMiddleware from "./middlewares/routes/onCategoryEnterMiddleware";
+import CampaignListCTR from "./components/campaign/CampiagnListCTR";
+import {setHeight} from "./functions/setHeight";
 
 
 export default () => (
@@ -38,30 +41,15 @@ export default () => (
             <Route path='/publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
             <Route path='/profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
-            <Route path='/category' component={CategoryListCTR} name='category'/>
+            <Route path='/category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware}/>
             <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
-            <Route path='/channel/list' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
-            <Route path='/campaign/list' component={ChannelListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
+            <Route path='/channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
+            <Route path='/campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
 
         </Route>
-        <Route path='/channel' component={AddChannelCTR} name='channel'/>
+        <Route path='/channel/create' component={AddChannelCTR} name='channel'/>
     </Router>
 );
-
-history.listen(location => {
-    $(document).ready(function() {
-        function setHeight() {
-            let windowHeight = $(window).innerHeight();
-            $('.page-content').css({
-                "min-height": windowHeight+"px"
-            });
-        }
-        setHeight();
-        $(window).resize(function() {
-            setHeight();
-        });
-    });
-});
 
 
 
