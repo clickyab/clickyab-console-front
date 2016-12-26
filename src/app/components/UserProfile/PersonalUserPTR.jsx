@@ -5,10 +5,12 @@ import {connect} from "react-redux";
 import {store} from "./../../redux/store";
 import {getEmail} from './../../redux/helpers'
 import {select} from '../../functions/select'
+import SelectLocationCTR from './../../components/location/SelectLocationCTR'
 import moment from 'moment-jalali';
-var daterangepicker = require('daterangepicker');
+var datetimepicker = require('bootstrap-datetime-picker');
 
 moment.loadPersian();
+
 
 
 
@@ -16,13 +18,12 @@ class PersonalUserPTR extends Component {
     PersonalForm;
 
     handleInitialize() {
-        const initData = select("user.personal", {}, true);
+            const initData = select("user.personal", {}, true);
         initData.email = getEmail();
         this.props.initialize(initData);
     }
 
     componentDidMount() {
-        console.log(moment.locale());
         this.handleInitialize();
         this.PersonalForm = $('.personal-form');
         this.PersonalForm.validate({
@@ -52,13 +53,15 @@ class PersonalUserPTR extends Component {
             }
         });
 
-        $('#birthday').daterangepicker({
-            "singleDatePicker": true,
-            "showCustomRangeLabel": false,
-            "startDate": moment("12/20/2016"),
-            "endDate":  moment("12/26/2016")
-        }, function(start, end, label) {
-            console.log("New date range selected: ' + moment(start).format('YYYY-MM-DD') + ' to ' + moment(end).format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
+        $('#birthday').datetimepicker({
+            fontAwesome:true,
+            format: 'yyyy-mm-dd',
+            weekStart:6,
+            pickTime: false,
+            todayBtn: false,
+            minView : 3,
+            language: 'en',
+
         });
     }
 
@@ -168,39 +171,7 @@ class PersonalUserPTR extends Component {
 
                     </div>
 
-                    <div className="row">
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>شهر</label>
-                                <select className="form-control country_id" data-placeholder="انتخاب کشور" tabIndex="1"
-                                        name="country_id">
-                                    <option value="male">ایران</option>
-                                    <option value="female">استرالیا</option>
-                                </select>
-                            </div>
-                        </div>
-
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>شهر</label>
-                                <select className="form-control province_id" data-placeholder="انتخاب شهر" tabIndex="1"
-                                        name="province_id">
-                                    <option value="male">تهران</option>
-                                    <option value="female">تبریز</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div className="col-md-4">
-                            <div className="form-group">
-                                <label>شهر</label>
-                                <select className="form-control city_id" data-placeholder="انتخاب استان" tabIndex="1"
-                                        name="city_id">
-                                    <option value="male">تهران</option>
-                                    <option value="female">تبریز</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
+                    <SelectLocationCTR/>
                     <div className="form-actions right margin-top-20">
                         <button type="submit" className="btn blue">
                             <i className="fa fa-check"/> ذخیره پروفایل
