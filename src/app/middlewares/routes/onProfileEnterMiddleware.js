@@ -3,8 +3,10 @@ import ping from "../../functions/ping";
 import {browserHistory} from 'react-router';
 import {AlertBox} from "../../functions/notifications";
 import removePageLoader from "../../functions/RemovePageLoader";
+import {loading} from "../../functions/loading";
 
 export default (nextState, replace, next) => sync(function*() {
+    loading(true);
     let {error, user, response} = yield ping();
     if (response.statusCode == 200) {
         next();
