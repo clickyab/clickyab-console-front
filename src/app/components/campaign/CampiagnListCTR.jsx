@@ -4,16 +4,16 @@ import CampaignListPTR from './CampaignListPTR';
 
 @connect(({campaignList}) => ({campaignList}))
 export default class CampaignListCTR extends Component {
-    sort(flag) {
-        console.log(flag)
+    sort(flag, query_name) {
+        console.log(flag, query_name)
     }
 
-    filter(event) {
-        console.log(event.target.value)
+    filter(event, query_name) {
+        console.log(event.target.value, query_name)
     }
 
-    search(event) {
-        console.log(event.target.value)
+    search(event, query_name) {
+        console.log(event.target.value, query_name)
     }
 
     render() {

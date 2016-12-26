@@ -28,6 +28,7 @@ export default class DataTable extends React.Component {
                             sort={sort}
                             filter={filter}
                             search={search}
+                            query_name={columnDefinition.data}
                             filters={columnDefinition.filter_valid_map}
                             sortable={columnDefinition.sortable}
                             searchable={columnDefinition.searchable}>
