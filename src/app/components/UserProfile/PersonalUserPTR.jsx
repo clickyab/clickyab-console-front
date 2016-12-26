@@ -3,19 +3,27 @@ import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {connect} from "react-redux";
 import {store} from "./../../redux/store";
+import {getEmail} from './../../redux/helpers'
 import {select} from '../../functions/select'
+import moment from 'moment-jalali';
+var daterangepicker = require('daterangepicker');
+
+moment.loadPersian();
+
+
 
 class PersonalUserPTR extends Component {
     PersonalForm;
 
     handleInitialize() {
         const initData = select("user.personal", {}, true);
+        initData.email = getEmail();
         this.props.initialize(initData);
     }
 
     componentDidMount() {
+        console.log(moment.locale());
         this.handleInitialize();
-
         this.PersonalForm = $('.personal-form');
         this.PersonalForm.validate({
             rules: {
@@ -42,6 +50,15 @@ class PersonalUserPTR extends Component {
                 },
 
             }
+        });
+
+        $('#birthday').daterangepicker({
+            "singleDatePicker": true,
+            "showCustomRangeLabel": false,
+            "startDate": moment("12/20/2016"),
+            "endDate":  moment("12/26/2016")
+        }, function(start, end, label) {
+            console.log("New date range selected: ' + moment(start).format('YYYY-MM-DD') + ' to ' + moment(end).format('YYYY-MM-DD') + ' (predefined range: ' + label + ')");
         });
     }
 

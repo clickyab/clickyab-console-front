@@ -45,7 +45,7 @@ export const store = createStore(
         reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-        logger
+        // logger
         )
     )
 );
