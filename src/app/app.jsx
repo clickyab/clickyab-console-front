@@ -7,10 +7,12 @@ import {Header} from './components/layouts/Header';
 import Sidebar from './components/layouts/Sidebar';
 import PageLoading from './components/common/loading-page';
 import {loading} from "./functions/loading";
+import {setHeight} from "./functions/setHeight";
 
 export default class App extends React.Component {
 	componentDidMount() {
 		loading(false);
+        setHeight();
 	}
 
 	render() {
