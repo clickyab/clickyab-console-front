@@ -17,8 +17,9 @@ export default class SelectLocationCTR extends Component {
             } else if (response.statusCode == 400) {
 
             }
+             ifInvalidToken(response);
             }
-            ifInvalidToken(response);
+
 
         function getProvinceList({error, data, response}) {
             if (response.statusCode == 200) {
@@ -40,18 +41,6 @@ export default class SelectLocationCTR extends Component {
             }
             ifInvalidToken(response)
         }
-        function locationCountryGetCallback({error, data, response}) {
-            if (response.statusCode == '200') {
-                getCountryList(response);
-            } else if (response.statusCode == '400') {
-
-            }
-        }
-        function getLocationCountry() {
-            (new swagger.LocationApi())
-                .locationCountryGet(getToken())
-                .then(response => locationCountryGetCallback(response));
-        }
 
         function requestToGetCountry() {
             (new swagger.LocationApi())
@@ -69,7 +58,6 @@ export default class SelectLocationCTR extends Component {
                 }
         });
         $(document).on('change','.select-province',function() {
-            console.log("milad");
             let provinceID = $(this).val();
             if(provinceID){
                 (new swagger.LocationApi())
@@ -78,7 +66,6 @@ export default class SelectLocationCTR extends Component {
             }
         })
     }
-
 
     render() {
         return (<SelectLocationPTR/>);
