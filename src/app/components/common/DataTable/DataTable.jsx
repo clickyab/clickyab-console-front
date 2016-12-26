@@ -35,9 +35,6 @@ export default class DataTable extends React.Component {
     render() {
         let {items, definitions} = this.props;
 
-        console.log("oHHHHHHHHHHHHo");
-        console.log(items, definitions);
-        console.log("oHHHHHHHHHHHHo");
         return (
             <Table rowHeight={50} rowsCount={items.length}
                    headerHeight={50} width={100 * definitions.length}

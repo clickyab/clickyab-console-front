@@ -7,28 +7,32 @@ import {channelListAction} from "../../redux/actions/index";
 
 @connect(({channelList}) => ({channelList}))
 export default class ChannelListCTR extends Component {
-    sort(flag, query_name) {
-        console.log(flag, query_name)
-    }
-
-    filter(event, query_name) {
-        console.log(event.target.value, query_name)
-    }
-
-    search(event, query_name) {
+    callApi(query_name, value) {
         (new swagger.ChannelApi)
             .channelListGet(select('user.token', 'no token'), {
-                [query_name]: event.target.value,
+                [query_name]: value,
                 def: true
             }).then(
             ({error, data, response}) => {
-                console.log(data);
                 this.props.dispatch(channelListAction(data));
             },
             error => {
                 console.log(error)
             }
         );
+    }
+
+    sort(flag, query_name) {
+        console.log(query_name, flag);
+        this.callApi('sort', query_name + ':' + flag)
+    }
+
+    filter(event, query_name) {
+        this.callApi(query_name, event.target.value);
+    }
+
+    search(event, query_name) {
+        this.callApi(query_name, event.target.value);
     }
 
     render() {

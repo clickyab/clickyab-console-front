@@ -7,7 +7,8 @@ export default class HeaderCell extends Component {
     sort(event, query_name) {
         event.preventDefault();
         event.stopPropagation();
-        this.sortFlag = this.sortFlag == "ASC" ? "DSC" : "ASC";
+        this.sortFlag = this.sortFlag == "ASC" ? "DESC" : "ASC";
+
         this.props.sort(this.sortFlag, query_name);
     }
 

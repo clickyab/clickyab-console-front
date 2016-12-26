@@ -3,29 +3,35 @@ import {connect} from "react-redux";
 import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
+import {userListAction} from "../../redux/actions/index";
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {
-    sort(flag, query_name) {
-        console.log(flag, query_name)
-    }
-
-    filter(event, query_name) {
-        console.log(event.target.value, query_name)
-    }
-
-    search(event, query_name) {
-        (new swagger.UserApi)
+    callApi(query_name, value) {
+        (new swagger.ChannelApi)
             .userUsersGet(select('user.token', 'no token'), {
-                [query_name]: event.target.value
+                [query_name]: value,
+                def: true
             }).then(
             ({error, data, response}) => {
-                console.log(data.data);
+                this.props.dispatch(userListAction(data));
             },
             error => {
                 console.log(error)
             }
         );
+    }
+
+    sort(flag, query_name) {
+        this.callApi(query_name, flag);
+    }
+
+    filter(event, query_name) {
+        this.callApi(query_name, event.target.value);
+    }
+
+    search(event, query_name) {
+        this.callApi(query_name, event.target.value);
     }
 
     render() {
