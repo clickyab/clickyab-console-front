@@ -1,18 +1,13 @@
 import React, {Component} from 'react';
 import SelectLocationPTR from './SelectLocationPTR';
 import swagger from './../../swagger/index';
-import {connect} from 'react-redux';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
-import {AlertBox} from "../../functions/notifications";
 import {ifInvalidToken} from "../../functions/helpers";
 
 export default class SelectLocationCTR extends Component {
 
 
     componentDidMount() {
-
         function getCountryList({error, data, response}) {
             if (response.statusCode == 200) {
                 response.body.forEach( function( item )
@@ -23,8 +18,7 @@ export default class SelectLocationCTR extends Component {
 
             }
             }
-            ifInvalidToken(response)
-
+            ifInvalidToken(response);
 
         function getProvinceList({error, data, response}) {
             if (response.statusCode == 200) {
