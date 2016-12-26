@@ -4,8 +4,8 @@ import HeaderCell from './HeaderCell';
 import {TextCell} from './TextCell';
 
 export default class DataTable extends React.Component {
-    setRows() {
-        const {sort, filter, search, items, definitions} = this.props;
+    setRows(items, definitions) {
+        const {sort, filter, search, change, edit} = this.props;
 
         let _items = [];
         let columnDefinition;
@@ -25,21 +25,40 @@ export default class DataTable extends React.Component {
                             {columnDefinition.name}
                         </HeaderCell>
                     }
-                    cell={<TextCell column={columnDefinition.data} items={items}/>}
+                    cell={<TextCell
+                        actions={columnDefinition.data == "_actions"}
+                        change={change} edit={edit}
+                        column={columnDefinition.data} items={items}
+                    />}
                     fixed={true} width={160} key={Math.random()}/>);
         }
 
         return _items;
     }
 
+    addActionHeader(definitions) {
+        return [...definitions, {
+            data: '_actions',
+            filter: false,
+            filter_valid_map: null,
+            searchable: false,
+            sortable: false,
+            title: "Action",
+            name: "Action",
+            visible: true
+        }
+        ];
+    }
+
     render() {
         let {items, definitions} = this.props;
+        definitions = this.addActionHeader(definitions);
 
         return (
             <Table rowHeight={50} rowsCount={items.length}
-                   headerHeight={50} width={100 * definitions.length}
+                   headerHeight={50} width={150 * definitions.length}
                    height={500} {...this.props}>
-                {this.setRows()}
+                {this.setRows(items, definitions)}
             </Table>
         );
     }

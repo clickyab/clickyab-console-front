@@ -35,6 +35,16 @@ export default class ChannelListCTR extends Component {
         this.callApi(query_name, event.target.value);
     }
 
+    change(event, id) {
+        event.preventDefault();
+        console.log(id)
+    }
+
+    edit(event, id) {
+        event.preventDefault();
+        console.log(id)
+    }
+
     render() {
         const {items, definitions} = this.props.channelList;
 
@@ -42,6 +52,8 @@ export default class ChannelListCTR extends Component {
                                 sort={this.sort.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}
+                                edit={this.edit.bind(this)}
+                                change={this.change.bind(this)}
         />);
     }
 }

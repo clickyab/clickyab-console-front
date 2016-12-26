@@ -8,7 +8,7 @@ import {userListAction} from "../../redux/actions/index";
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {
     callApi(query_name, value) {
-        (new swagger.ChannelApi)
+        (new swagger.UserApi)
             .userUsersGet(select('user.token', 'no token'), {
                 [query_name]: value,
                 def: true
