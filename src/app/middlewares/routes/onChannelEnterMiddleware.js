@@ -1,23 +1,38 @@
 import {sync} from "../../functions/sync";
-import {getToken} from "../../redux/helpers";
 import * as swagger from "../../swagger/index";
 import {channelListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
-import ping from "../../functions/ping";
+import {throwError} from "../../functions/Error";
+import {raceOnTime} from "../../functions/raceOnTime";
 
+
+function* channelListController(done, next) {
+    loading(true);
+    const {error, data, response} = yield (new swagger.ChannelApi())
+        .channelListGet(select('user.token'), {def: true});
+    done();
+    if (!error) {
+        dispatch(channelListAction(data));
+
+        next();
+    } else {
+        console.log(error);
+        throwError("onChannelEnterMiddleWare", function () {
+            console.log("failed")
+        });
+    }
+}
 
 export default (nextState, replace, next) => sync(function*() {
     try {
-        loading(true);
-        let {error, data, response} = yield (new swagger.ChannelApi()).channelListGet(select('user.token'), {
-            def: true
-        });
-
-        dispatch(channelListAction(data));
-        next()
+        raceOnTime(channelListController, next, function () {
+            console.log('hallow');
+        }, 20000);
     } catch (error) {
-        console.log('errors', error);
+        console.log(error);
+        if (error.recover)
+            error.recover();
     }
 });
