@@ -1,3 +1,4 @@
+import $ from 'jquery';
 
 export function fullWidthModal(id, title, options = {}) {
         $('#' + id).animatedModal({

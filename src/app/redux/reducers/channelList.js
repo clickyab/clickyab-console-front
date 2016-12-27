@@ -1,4 +1,4 @@
-import {CHANNEL_LIST} from "../actions/index";
+import {CHANNEL_LIST} from '../actions/index';
 
 export function channelListReducer(state = [], action) {
     switch (action.type) {

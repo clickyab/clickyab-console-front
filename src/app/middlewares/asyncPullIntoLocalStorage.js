@@ -1,4 +1,4 @@
-import {UPDATE_LOCAL_STORAGE} from "../redux/actions/index";
+import {UPDATE_LOCAL_STORAGE} from '../redux/actions/index';
 let localStorage = require('store');
 
 function blacklist(state, list = []) {

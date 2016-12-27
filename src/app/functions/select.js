@@ -13,7 +13,7 @@ export function select(key, defaultValue, removeNull = false) {
     }
 
     let _value = {};
-    if (typeof value === "object" && removeNull) {
+    if (typeof value === 'object' && removeNull) {
         for (let property in value) {
             if (value[property]) {
                 _value[property] = value[property];

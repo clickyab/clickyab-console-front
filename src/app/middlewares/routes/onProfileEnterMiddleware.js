@@ -1,9 +1,8 @@
-import {sync} from "../../functions/sync";
-import ping from "../../functions/ping";
+import {sync} from '../../functions/sync';
+import ping from '../../functions/ping';
 import {browserHistory} from 'react-router';
-import {AlertBox} from "../../functions/notifications";
-import removePageLoader from "../../functions/RemovePageLoader";
-import {loading} from "../../functions/loading";
+import {AlertBox} from '../../functions/notifications';
+import {loading} from '../../functions/loading';
 
 export default (nextState, replace, next) => sync(function*() {
     loading(true);
@@ -13,7 +12,7 @@ export default (nextState, replace, next) => sync(function*() {
         browserHistory.push('/profile');
     } else {
         browserHistory.push('/login');
-        AlertBox("error", "لطفا در ابتدا وارد حساب کاربری شوید")
+        AlertBox('error', 'لطفا در ابتدا وارد حساب کاربری شوید')
     }
 });
 

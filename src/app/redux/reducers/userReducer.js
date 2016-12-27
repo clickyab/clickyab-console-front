@@ -1,4 +1,4 @@
-import {UPDATE_USER, UPDATE_PERSONAL_INFO , UPDATE_CORPORATION_INFO} from "../actions/user";
+import {UPDATE_USER, UPDATE_PERSONAL_INFO , UPDATE_CORPORATION_INFO} from '../actions/user';
 
 
 export default function userReducer(state = {}, action) {

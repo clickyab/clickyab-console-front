@@ -8,7 +8,7 @@ export function AlertBox(type , msg){
             sound: false,
             icon: false,
             delay: 5000,
-            position: "top right",
+            position: 'top right',
             delayIndicator: true,
             msg: msg
         }
@@ -16,9 +16,9 @@ export function AlertBox(type , msg){
 }
 
 export function SuccessBoxAlert(response){
-    AlertBox("success", response.text);
+    AlertBox('success', response.text);
 }
 export function FailedBoxAlert(response){
-    AlertBox("error", response.error);
+    AlertBox('error', response.error);
 }
 

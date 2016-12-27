@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-import { Link } from 'react-router'
+// import { Link } from 'react-router'
 import PersonalUserCTR from './PersonalUserCTR'
 import CorporationUserCTR from './CorporationUserCTR'
 import ProfileSidebarCTR from './ProfileSidebarCTR'
@@ -19,7 +19,7 @@ class UserProfilePTR extends Component {
 
                 <div className="row">
                     <div className="col-md-12">
-                        <ProfileSidebarCTR/>
+                        <ProfileSidebarCTR />
                         <div className="profile-content">
                             <div className="row">
                                 <div className="col-md-12">
@@ -44,16 +44,16 @@ class UserProfilePTR extends Component {
                                         <div className="portlet-body">
                                             <div className="tab-content">
                                                 <div className="tab-pane active" id="tab_1_1">
-                                                    <SelectUserTypePTR/>
-                                                    <PersonalUserCTR/>
-                                                    <CorporationUserCTR/>
+                                                    <SelectUserTypePTR />
+                                                    <PersonalUserCTR />
+                                                    <CorporationUserCTR />
 
                                                 </div>
                                                 <div className="tab-pane" id="tab_1_2">
-                                                    <SessionListCTR/>
+                                                    <SessionListCTR />
                                                 </div>
                                                 <div className="tab-pane" id="tab_1_3">
-                                                    <ChangePasswordCTR/>
+                                                    <ChangePasswordCTR />
                                                 </div>
                                             </div>
                                         </div>

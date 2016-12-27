@@ -5,7 +5,7 @@ export default class UsersListPTR extends Component {
 	render() {
 		return (
 			<div className='page-content'>
-				<DataTable {...this.props}/>
+				<DataTable {...this.props} />
 			</div>
 		)
 	}

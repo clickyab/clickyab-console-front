@@ -4,15 +4,15 @@ import {localeReducer, cssLazyLoader} from 'react-multilingual';
 import {loginReducer, userReducer, registerReducer, impersonateReducer} from './reducers';
 import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
-import {asyncPullIntoLocalStorage} from "../middlewares/asyncPullIntoLocalStorage";
+import {asyncPullIntoLocalStorage} from '../middlewares/asyncPullIntoLocalStorage';
 import {routerMiddleware} from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
-import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
-import {userListReducer} from "./reducers/userList";
-import {channelListReducer} from "./reducers/channelList";
-import {campaignListReducer} from "./reducers/campaignList";
-import {categoryListReducer} from "./reducers/categoryList";
+import {asyncRemoveLocalStorage} from '../middlewares/asyncRemoveLocalStorage';
+import {userListReducer} from './reducers/userList';
+import {channelListReducer} from './reducers/channelList';
+import {campaignListReducer} from './reducers/campaignList';
+import {categoryListReducer} from './reducers/categoryList';
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;

@@ -2,13 +2,14 @@ import React, {Component} from 'react';
 import SessionListPTR from './SessionListPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-import {push} from "react-router-redux";
-import {getToken} from "../../redux/helpers";
+// import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+// import {push} from 'react-router-redux';
+import {getToken} from '../../redux/helpers';
 import moment from 'moment-jalali';
-import {AlertBox} from "../../functions/notifications";
-import {ifInvalidToken} from "../../functions/helpers";
-let Ladda = require('ladda/js/ladda');
+import {AlertBox} from '../../functions/notifications';
+import {ifInvalidToken} from '../../functions/helpers';
+import $ from 'jquery';
+// let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
 
 @connect()
@@ -110,6 +111,6 @@ export default class SessionListCTR extends Component {
 
 
     render() {
-        return (<SessionListPTR/>);
+        return (<SessionListPTR />);
     }
 }

@@ -1,4 +1,4 @@
-import {CATEGORY_LIST} from "../actions/index";
+import {CATEGORY_LIST} from '../actions/index';
 export function categoryListReducer(state = [], action) {
     switch (action.type) {
         case CATEGORY_LIST:
