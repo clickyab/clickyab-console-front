@@ -5,6 +5,7 @@ import {channelListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
+import ping from "../../functions/ping";
 
 
 export default (nextState, replace, next) => sync(function*() {
