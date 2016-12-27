@@ -7,11 +7,8 @@ import {getEmail} from './../../redux/helpers'
 import {select} from '../../functions/select'
 import SelectLocationCTR from './../../components/location/SelectLocationCTR'
 import moment from 'moment-jalali';
-var datetimepicker = require('bootstrap-datetime-picker');
 
 moment.loadPersian();
-
-
 
 
 class PersonalUserPTR extends Component {
@@ -51,17 +48,6 @@ class PersonalUserPTR extends Component {
                 },
 
             }
-        });
-
-        $('#birthday').datetimepicker({
-            fontAwesome:true,
-            format: 'yyyy-mm-dd',
-            weekStart:6,
-            pickTime: false,
-            todayBtn: false,
-            minView : 3,
-            language: 'en',
-
         });
     }
 

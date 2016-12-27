@@ -7,8 +7,27 @@ import ProfileSidebarCTR from './ProfileSidebarCTR'
 import SelectUserTypePTR from './SelectUserTypePTR'
 import ChangePasswordCTR from './ChangePasswordCTR'
 import SessionListCTR from './SessionListCTR'
+import moment from "moment";
 
 class UserProfilePTR extends Component {
+
+
+    componentDidMount() {
+        Calendar.setup({
+                onUpdate: function(value) {
+                    console.log(value.date);
+                    console.log(moment(value.date).format())
+                },
+            inputField: 'birthday',
+            button: 'date_btn',
+            ifFormat: '%A، %d %b %Y',
+            dateType: 'jalali',
+
+        },
+          );
+    }
+
+
 
 
     render() {

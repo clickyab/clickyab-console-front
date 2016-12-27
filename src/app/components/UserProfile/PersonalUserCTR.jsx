@@ -8,6 +8,7 @@ import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {updateUserInformation} from "../../redux/actions/user";
+import moment from "moment";
 let Ladda = require('ladda/js/ladda');
 import {select} from '../../functions/select'
 
@@ -39,6 +40,7 @@ export default class PersonalUserCTR extends Component {
     }
 
     PersonalCall(formValues) {
+
         (new swagger.UserApi())
             .userProfilePost(getToken(),
                 {'payloadData': {"personal": formValues}})
@@ -56,6 +58,8 @@ export default class PersonalUserCTR extends Component {
     }
 
     SubmitPersonalUser = (formValues, form) => {
+        console.log(formValues.birthday);
+        moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D')
         if (!form.valid())
             return;
 

@@ -20,6 +20,7 @@ class AddChannelPTR extends Component {
                 },
                 link: {
                     required: true,
+                    url: true
                 },
                 name: {
                     required: true,
@@ -32,6 +33,7 @@ class AddChannelPTR extends Component {
                 },
                 link: {
                     required: 'لطفا لینک کانال را وارد نمایید',
+                    url: 'لطفا یک آدرس اینترنتی معتبر که با http و یا https شروع می شود، وارد نمایید'
                 },
                 name: {
                     required: 'لطفا نام کانال را وارد نمایید',
@@ -53,7 +55,7 @@ class AddChannelPTR extends Component {
                 <div id="add-channel-binder-modal" className="animated add-channel-binder-modal-off">
 
                     <div className="close-add-channel-binder-modal padding-tb-15">
-                        <img className="closebt" src="img/closebtn.svg" />
+                        <img className="closebt" src="/img/closebtn.svg" />
                     </div>
                     <div className="col-md-4 col-md-offset-4">
                         <div className="modal-title text-center">
