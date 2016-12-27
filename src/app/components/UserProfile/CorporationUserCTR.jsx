@@ -7,7 +7,7 @@ import {updateLocalStorageAction} from "../../redux/actions/index";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
-import {updateCorporationInformation} from "../../redux/actions/user";
+import {updateUserInformation} from "../../redux/actions/user";
 
 let Ladda = require('ladda/js/ladda');
 
@@ -18,7 +18,7 @@ export default class CorporationUserCTR extends Component {
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 
-        dispatch(updateCorporationInformation(user));
+        dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
         // dispatch(push('/publisher'));
     }
@@ -37,7 +37,8 @@ export default class CorporationUserCTR extends Component {
     }
     CorporationCall(formValues) {
         (new swagger.UserApi())
-            .userProfilePost(getToken(),{'payloadData': formValues})
+            .userProfilePost(getToken(),
+                {'payloadData': {"corporation": formValues}})
             .then(response => this.CorporationUserCallback(response));
     }
 

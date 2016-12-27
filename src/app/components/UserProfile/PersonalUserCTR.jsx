@@ -19,9 +19,8 @@ export default class PersonalUserCTR extends Component {
 
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
-
-        // dispatch(updateUserInformation(user));
-        // dispatch(updateLocalStorageAction());
+        dispatch(updateUserInformation(user));
+        dispatch(updateLocalStorageAction());
     }
 
 
@@ -29,7 +28,6 @@ export default class PersonalUserCTR extends Component {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
-
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
 

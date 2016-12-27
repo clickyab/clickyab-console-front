@@ -15,20 +15,16 @@ class UserProfilePTR extends Component {
     componentDidMount() {
         Calendar.setup({
                 onUpdate: function(value) {
-                    console.log(value.date);
-                    console.log(moment(value.date).format())
+                    $("#birthday").val(moment(value.date).utcOffset(0, true).format());
                 },
-            inputField: 'birthday',
-            button: 'date_btn',
-            ifFormat: '%A، %d %b %Y',
-            dateType: 'jalali',
+                inputField: 'birthday_front',
+                button: 'date_btn',
+                ifFormat: '%A، %d %b %Y',
+                dateType: 'jalali',
 
-        },
-          );
+            },
+        );
     }
-
-
-
 
     render() {
         return (
