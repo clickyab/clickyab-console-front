@@ -4,6 +4,45 @@ import HeaderCell from './HeaderCell';
 import {TextCell} from './TextCell';
 
 export default class DataTable extends React.Component {
+    constructor(props) {
+        super(props);
+
+        this.state = {
+            height: 500,
+            width: 200
+        }
+    }
+
+    componentDidMount() {
+        this._update();
+        let win = window;
+        console.log(win);
+        if (win.addEventListener) {
+            win.addEventListener('resize', this._onResize.bind(this), false);
+        } else if (win.attachEvent) {
+            win.attachEvent('onresize', this._onResize.bind(this));
+        } else {
+            win.onresize = this._onResize;
+        }
+    }
+
+    _onResize() {
+        clearTimeout(this._updateTimer);
+        this._updateTimer = setTimeout(this._update.bind(this), 16);
+    }
+
+    _update() {
+        let win = window;
+
+        let widthOffset = win.innerWidth < 680 ? 0 : 240;
+
+        this.setState({
+            renderPage: true,
+            width: win.innerWidth - widthOffset,
+            height: win.innerHeight - 200,
+        });
+    }
+
     setRows(items, definitions) {
         const {sort, filter, search, change, edit} = this.props;
 
@@ -56,8 +95,7 @@ export default class DataTable extends React.Component {
 
         return (
             <Table rowHeight={50} rowsCount={items.length}
-                   headerHeight={50} width={150 * definitions.length}
-                   height={500} {...this.props}>
+                   headerHeight={50} {...this.state} {...this.props}>
                 {this.setRows(items, definitions)}
             </Table>
         );
