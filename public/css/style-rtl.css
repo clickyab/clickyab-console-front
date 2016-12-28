@@ -26244,6 +26244,7 @@ div.calendar {
   border-right-style: solid;
   border-right-width: 1px;
   border-width: 0 1px 0 0;
+  border-color: #e7ecf1;
   box-sizing: border-box;
   display: block;
   overflow: hidden;
@@ -26331,8 +26332,7 @@ body[dir="rtl"] .fixedDataTableColumnResizerLineLayout_main {
  * @providesModule fixedDataTableLayout
  */
 .fixedDataTableLayout_main {
-  border-style: solid;
-  border-width: 1px;
+  border: none;
   box-sizing: border-box;
   overflow: hidden;
   position: relative; }
@@ -26622,6 +26622,9 @@ body[dir="rtl"] .fixedDataTableColumnResizerLineLayout_main {
 .public_Scrollbar_mainActive .public_Scrollbar_face:after,
 .public_Scrollbar_faceActive:after {
   background-color: #7d7d7d; }
+
+.portlet.light .portlet-body {
+  padding-top: 8px; }
 
 .mt-widget-1 {
   border: 1px solid #e7ecf1;

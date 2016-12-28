@@ -29,7 +29,7 @@ export default class ChannelListPTR extends Component {
                             <i className="fa fa-plus"/>  ساخت چنل جدید </a>
                     </div>
                 </div>
-                <div className='portlet light '>
+                <div className='portlet light datatable-parent'>
                     <div className='portlet-title'>
                         <div className='caption'>
                             <span className='caption-subject bold uppercase font-dark'>لیست چنل ها </span>
