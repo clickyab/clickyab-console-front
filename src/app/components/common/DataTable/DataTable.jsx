@@ -71,7 +71,9 @@ export default class DataTable extends React.Component {
                         change={change} edit={edit}
                         column={columnDefinition.data} items={items}
                         width={columnDefinition.width}
+
                     />}
+                    flexGrow={i}
                     maxWidth={10} width={columnDefinition.width} key={Math.random()}/>);
         }
 

@@ -4,6 +4,7 @@ import ChannelListPTR from "./ChannelListPTR";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
 import {channelListAction} from "../../redux/actions/index";
+import moment from "moment-jalali";
 
 @connect(({channelList}) => ({channelList}))
 export default class ChannelListCTR extends Component {
@@ -46,7 +47,10 @@ export default class ChannelListCTR extends Component {
     }
 
     updated_at(updated_at) {
-        return "mamali";
+        return moment(updated_at).format('dddd، jD jMMMM jYYYY');
+    }
+    created_at(created_at) {
+        return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
 
     render() {
@@ -56,7 +60,7 @@ export default class ChannelListCTR extends Component {
                                 sort={this.sort.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}
-                                mutators={{updated_at: this.updated_at}}
+                                mutators={{updated_at: this.updated_at,created_at: this.created_at}}
                                 edit={this.edit.bind(this)}
                                 change={this.change.bind(this)}
         />);
