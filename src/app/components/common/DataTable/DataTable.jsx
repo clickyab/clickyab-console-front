@@ -2,14 +2,13 @@ import {Table, Column, Cell} from "fixed-data-table";
 import React from "react";
 import HeaderCell from './HeaderCell';
 import {TextCell} from './TextCell';
-import * as ReactDOM from "react/lib/ReactDOM";
 
 export default class DataTable extends React.Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            height: 500,
+            height: props.items.length * 50 + 120,
             width: 200
         }
     }
@@ -17,7 +16,7 @@ export default class DataTable extends React.Component {
     componentDidMount() {
         this._update();
         let win = window;
-        console.log(win);
+
         if (win.addEventListener) {
             win.addEventListener('resize', this._onResize.bind(this), false);
         } else if (win.attachEvent) {
@@ -40,8 +39,7 @@ export default class DataTable extends React.Component {
         let heightDatatableHolder = $(".datatable-parent").outerWidth();
         this.setState({
             renderPage: true,
-            width: heightDatatableHolder -58,
-            height: win.innerHeight - 200,
+            width: heightDatatableHolder - 58
         });
     }
 
@@ -62,24 +60,54 @@ export default class DataTable extends React.Component {
                             query_name={columnDefinition.data}
                             filters={columnDefinition.filter_valid_map}
                             sortable={columnDefinition.sortable}
+                            width={columnDefinition.width}
                             searchable={columnDefinition.searchable}>
                             {columnDefinition.name}
                         </HeaderCell>
                     }
                     cell={<TextCell
+                        mutator={this.props.mutators[columnDefinition.data]}
                         actions={columnDefinition.data == "_actions"}
                         change={change} edit={edit}
                         column={columnDefinition.data} items={items}
+                        width={columnDefinition.width}
                     />}
-                    flexGrow={Math.floor(Math.random() * 2) + 1}
-                    fixed={false}  maxWidth={10} width={150} key={Math.random()}/>);
+                    maxWidth={10} width={columnDefinition.width} key={Math.random()}/>);
         }
 
         return _items;
     }
 
+    setWidth(items, definitions) {
+        let length;
+        let key;
+        for (let def of definitions) {
+            def.width = def.data.toString().length * 10 + 10;
+            if (def.filter_valid_map || def.searchable) {
+                if (def.width < 180) {
+                    def.width = 180;
+                }
+            }
+        }
+        for (let i = 0; i < items.length; i++) {
+            for (let def of definitions) {
+                key = def.data;
+                length = items[i][key].toString().length;
+                if (length > def.width) {
+                    def.width = length * 10 + 10;
+                    if (def.filter_valid_map || def.searchable) {
+                        if (def.width < 180) {
+                            def.width = 180;
+                        }
+                    }
+                }
+            }
+        }
+    }
+
     addActionHeader(definitions) {
         return [...definitions, {
+            width: 150,
             data: '_actions',
             filter: false,
             filter_valid_map: null,
@@ -94,8 +122,11 @@ export default class DataTable extends React.Component {
 
     render() {
         let {items, definitions} = this.props;
-        definitions = this.addActionHeader(definitions);
 
+        this.setWidth(items, definitions);
+        definitions = this.addActionHeader(definitions);
+        items = items.reverse();
+        definitions = definitions.reverse();
         return (
             <Table rowHeight={50} rowsCount={items.length}
                    headerHeight={80}  {...this.state} {...this.props}>

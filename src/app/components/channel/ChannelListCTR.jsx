@@ -45,6 +45,10 @@ export default class ChannelListCTR extends Component {
         console.log(id)
     }
 
+    updated_at(updated_at) {
+        return "mamali";
+    }
+
     render() {
         const {items, definitions} = this.props.channelList;
 
@@ -52,6 +56,7 @@ export default class ChannelListCTR extends Component {
                                 sort={this.sort.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}
+                                mutators={{updated_at: this.updated_at}}
                                 edit={this.edit.bind(this)}
                                 change={this.change.bind(this)}
         />);

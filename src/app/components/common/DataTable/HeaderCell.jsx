@@ -24,7 +24,6 @@ export default class HeaderCell extends Component {
     render() {
         let {filters, sortable, children, search, filter, query_name, searchable, ...rest} = this.props;
         const {height, width, columnKey} = rest;
-
         return (
             <Cell {...{height, width, columnKey}}>
                 {sortable ? <a href="#" onClick={(event) => this.sort(event, query_name)}>{children}</a> : children}
