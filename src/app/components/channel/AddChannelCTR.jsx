@@ -3,6 +3,7 @@ import swagger from './../../swagger/index';
 import AddChannelPTR from './AddChannelPTR';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {getToken} from "../../redux/helpers";
+import {ifInvalidToken} from "../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
 
 export default class AddChannelCTR extends Component {
@@ -11,14 +12,16 @@ export default class AddChannelCTR extends Component {
     AddChannelCallBack({error, data, response}, reset) {
         console.log(response);
         if(response.statusCode == '200') {
+            console.log(this);
             this.stopLoading();
             reset();
+            $("button.add-channel-form").parents("#add-channel-binder-modal").find(".closebt").click();
             SuccessBoxAlert(response);
-            console.log(response, data);
         } else if (response.statusCode == '400') {
             this.stopLoading();
             FailedBoxAlert(response);
         }
+        ifInvalidToken(response);
     }
 
     loading() {
@@ -30,7 +33,6 @@ export default class AddChannelCTR extends Component {
         if (this.loadingProgress)
             this.loadingProgress.stop();
     }
-
     AddChannelCall(formValues, reset) {
         formValues.user_id = 0;
         (new swagger.ChannelApi())

@@ -8,6 +8,7 @@ import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {updateUserInformation} from "../../redux/actions/user";
+import moment from "moment";
 let Ladda = require('ladda/js/ladda');
 import {select} from '../../functions/select'
 
@@ -18,9 +19,8 @@ export default class PersonalUserCTR extends Component {
 
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
-
-        // dispatch(updateUserInformation(user));
-        // dispatch(updateLocalStorageAction());
+        dispatch(updateUserInformation(user));
+        dispatch(updateLocalStorageAction());
     }
 
 
@@ -28,7 +28,6 @@ export default class PersonalUserCTR extends Component {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
-
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
 
@@ -39,6 +38,7 @@ export default class PersonalUserCTR extends Component {
     }
 
     PersonalCall(formValues) {
+
         (new swagger.UserApi())
             .userProfilePost(getToken(),
                 {'payloadData': {"personal": formValues}})
@@ -56,6 +56,8 @@ export default class PersonalUserCTR extends Component {
     }
 
     SubmitPersonalUser = (formValues, form) => {
+        console.log(formValues.birthday);
+        moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D')
         if (!form.valid())
             return;
 

@@ -422,6 +422,27 @@ var App = function() {
             });
         }
     };
+    var autoDirectionInput = function() {
+        function checkUnicode(str) {
+            var letters = [];
+            for (var i = 0; i <= str.length; i++) {
+                letters[i] = str.substring((i - 1), i);
+                if (letters[i].charCodeAt() > 255) {
+                    return true;
+                }
+            }
+            return false;
+        }
+        var getInput = $('input[type=text] , input[type=search] , textarea');
+        getInput.keyup(function (e) {
+            if (checkUnicode(getInput.val())) {
+                $(this).css('direction', 'rtl');
+            }
+            else {
+                $(this).css('direction', 'ltr');
+            }
+        });
+    };
 
     // handle group element heights
     var handleHeight = function() {
@@ -474,8 +495,9 @@ var App = function() {
             // handleOnRelength; // set and handle responsive
 
             //UI Component handlers     
-            handleMaterialDesign(); // handle material design       
+            // handleMaterialDesign(); // handle material design
             handleiCheck(); // handles custom icheck radio and checkboxes
+            autoDirectionInput();
             handleBootstrapSwitch(); // handle bootstrap switch plugin
             // handleScrollers(); // handles slim scrolling contents
             handleFancybox(); // handle fancy box
@@ -485,7 +507,7 @@ var App = function() {
             handleTabs(); // handle tabs
             handleTooltips(); // handle bootstrap tooltips
             handlePopovers(); // handles bootstrap popovers
-            handleAccordions(); //handles accordions 
+            // handleAccordions(); //handles accordions
             handleModals(); // handle modals
             handleBootstrapConfirmation(); // handle bootstrap confirmations
             // handleTextareaAutolength; // handle autosize textareas

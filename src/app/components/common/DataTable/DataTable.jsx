@@ -30,7 +30,8 @@ export default class DataTable extends React.Component {
                         change={change} edit={edit}
                         column={columnDefinition.data} items={items}
                     />}
-                    fixed={true} width={160} key={Math.random()}/>);
+                    flexGrow={1}
+                    fixed={false} width={160} key={Math.random()}/>);
         }
 
         return _items;
@@ -56,7 +57,7 @@ export default class DataTable extends React.Component {
 
         return (
             <Table rowHeight={50} rowsCount={items.length}
-                   headerHeight={50} width={150 * definitions.length}
+                   headerHeight={80} width={150 * definitions.length}
                    height={500} {...this.props}>
                 {this.setRows(items, definitions)}
             </Table>

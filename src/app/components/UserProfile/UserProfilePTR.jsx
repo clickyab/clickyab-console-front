@@ -7,9 +7,24 @@ import ProfileSidebarCTR from './ProfileSidebarCTR'
 import SelectUserTypePTR from './SelectUserTypePTR'
 import ChangePasswordCTR from './ChangePasswordCTR'
 import SessionListCTR from './SessionListCTR'
+import moment from "moment";
 
 class UserProfilePTR extends Component {
 
+
+    componentDidMount() {
+        Calendar.setup({
+                onUpdate: function(value) {
+                    $("#birthday").val(moment(value.date).utcOffset(0, true).format());
+                },
+                inputField: 'birthday_front',
+                button: 'date_btn',
+                ifFormat: '%A، %d %b %Y',
+                dateType: 'jalali',
+
+            },
+        );
+    }
 
     render() {
         return (
@@ -22,7 +37,7 @@ class UserProfilePTR extends Component {
                         <ProfileSidebarCTR />
                         <div className="profile-content">
                             <div className="row">
-                                <div className="col-md-12">
+                                <div classNaGroup chat optionsme="col-md-12">
                                     <div className="portlet light ">
                                         <div className="portlet-title tabbable-line">
                                             <div className="caption caption-md">

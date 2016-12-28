@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
-import {select} from '../../functions/select'
+import {select} from '../../functions/select';
+import {getEmail} from './../../redux/helpers';
 
 class CorporationUserPTR extends Component {
     CorporationForm;
     handleInitialize() {
         const initData = select("user.corporation",{});
+        initData.email = getEmail();
         this.props.initialize(initData);
     }
     componentDidMount() {
@@ -17,12 +19,19 @@ class CorporationUserPTR extends Component {
                 title: {
                     required: true,
                 },
+                register_code: {
+                    required: true,
+                },
             },
             messages: {
                 title: {
                     required: 'لطفا نام شرکت را وارد نمایید',
                 },
+                register_code: {
+                    required: 'لطفا شماره پروانه خود را وارد نمایید',
+                },
             }
+
         });
     }
 
@@ -51,8 +60,10 @@ class CorporationUserPTR extends Component {
                         </div>
 
                         <div className="col-md-6">
-                            <label className="control-label">شماره پروانه</label>
-                            <Field type="text" component="input" id="register_code" name="register_code" className="form-control" placeholder="شماره پروانه"/>
+                            <div className="form-group">
+                                <label className="control-label">شماره پروانه</label>
+                                <Field type="text" component="input" id="register_code" name="register_code" className="form-control" placeholder="شماره پروانه"/>
+                            </div>
                         </div>
 
                     </div>
@@ -62,7 +73,7 @@ class CorporationUserPTR extends Component {
                         <div className="col-md-6">
                             <div className="form-group ">
                                 <label className="control-label">ایمیل</label>
-                                <Field type="text" component="input" id="email_corporation" name="email" className="form-control" placeholder="ایمیل"/>
+                                <Field type="text" component="input" disabled id="email_corporation" name="email" className="form-control" placeholder="ایمیل"/>
                             </div>
                         </div>
                         <div className="col-md-6">

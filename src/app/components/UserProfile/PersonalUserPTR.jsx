@@ -7,11 +7,8 @@ import {getEmail} from './../../redux/helpers'
 import {select} from '../../functions/select'
 import SelectLocationCTR from './../../components/location/SelectLocationCTR'
 import moment from 'moment-jalali';
-var datetimepicker = require('bootstrap-datetime-picker');
 
 moment.loadPersian();
-
-
 
 
 class PersonalUserPTR extends Component {
@@ -52,17 +49,6 @@ class PersonalUserPTR extends Component {
 
             }
         });
-
-        $('#birthday').datetimepicker({
-            fontAwesome:true,
-            format: 'yyyy-mm-dd',
-            weekStart:6,
-            pickTime: false,
-            todayBtn: false,
-            minView : 3,
-            language: 'en',
-
-        });
     }
 
 
@@ -95,8 +81,11 @@ class PersonalUserPTR extends Component {
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label className="control-label">تاریخ تولد</label>
-                                <Field type="text" component="input" id="birthday" name="birthday"
+                                <Field type="text" component="input" id="birthday_front" name="birthday_front"
                                        className="form-control" placeholder="تاریخ تولد"/>
+                                <Field type="hidden" component="input" id="birthday" name="birthday"
+                                       className="form-control" placeholder="تاریخ تولد"/>
+
                             </div>
                         </div>
 
@@ -131,7 +120,7 @@ class PersonalUserPTR extends Component {
                         <div className="col-md-6">
                             <div className="form-group ">
                                 <label className="control-label">ایمیل</label>
-                                <Field type="text" component="input" id="email_personal" name="email"
+                                <Field type="text" component="input" id="email" name="email"
                                        className="form-control" placeholder="ایمیل" disabled/>
                             </div>
                         </div>
@@ -147,7 +136,7 @@ class PersonalUserPTR extends Component {
                         <div className="col-md-12">
                             <div className="form-group">
                                 <label>آدرس</label>
-                                <textarea name="address_personal" id="address_personal" className="form-control"
+                                <Field component="textarea" name="address" id="address" className="form-control"
                                           rows="3"/>
                             </div>
                         </div>
@@ -164,8 +153,8 @@ class PersonalUserPTR extends Component {
                         <div className="col-md-6">
                             <div className="form-group">
                                 <label>تلفن ثابت</label>
-                                <Field type="text" className="form-control" component="input" name="phone_personal"
-                                       id="phone_personal" placeholder="تلفن ثابت"/>
+                                <Field type="text" className="form-control" component="input" name="phone"
+                                       id="phone" placeholder="تلفن ثابت"/>
                             </div>
                         </div>
 
