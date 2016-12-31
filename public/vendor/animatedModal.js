@@ -13,6 +13,7 @@
         
         //Defaults
         var settings = $.extend({
+            target: 'modal',
             modalTarget:'animatedModal', 
             position:'fixed', 
             width:'100%', 
@@ -42,13 +43,14 @@
 
         //console.log(closeBt)
 
-        var href = $(modal).attr('href'),
-            id = $('body').find('#'+settings.modalTarget),
-            idConc = '#'+id.attr('id');
+        var href = $(settings.target),
+
+            form = $(settings.target)
+            // idConc = '#'+form.attr('id');
             //console.log(idConc);
             // Default Classes
-            id.addClass('animated');
-            id.addClass(settings.modalTarget+'-off');
+            form.addClass('animated');
+            form.addClass(settings.target+'-off');
 
         //Init styles
         var initStyles = {
@@ -64,25 +66,28 @@
             '-webkit-animation-duration':settings.animationDuration
         };
         //Apply stles
-        id.css(initStyles);
+        form.css(initStyles);
 
-        modal.click(function(event) {       
+        modal.click(function(event) {
+
             event.preventDefault();
             $('body, html').css({'overflow':'hidden'});
-            if (href == idConc) {
-                if (id.hasClass(settings.modalTarget+'-off')) {
-                    id.removeClass(settings.animatedOut);
-                    id.removeClass(settings.modalTarget+'-off');
-                    id.addClass(settings.modalTarget+'-on');
+            // console.log("id",idConc);
+            console.log("href",href);
+
+
+                if (form.hasClass(settings.modalTarget+'-off')) {
+                    form.removeClass(settings.animatedOut);
+                    form.removeClass(settings.modalTarget+'-off');
+                    form.addClass(settings.modalTarget+'-on');
                 } 
 
-                 if (id.hasClass(settings.modalTarget+'-on')) {
+                 if (form.hasClass(settings.modalTarget+'-on')) {
                     settings.beforeOpen();
-                    id.css({'opacity':settings.opacityIn,'z-index':settings.zIndexIn});
-                    id.addClass(settings.animatedIn);  
-                    id.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', afterOpen);
-                };  
-            } 
+                    form.css({'opacity':settings.opacityIn,'z-index':settings.zIndexIn});
+                    form.addClass(settings.animatedIn);
+                    form.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', afterOpen);
+                };
         });
 
 
@@ -92,21 +97,21 @@
             $('body, html').css({'overflow':'auto'});
 
             settings.beforeClose(); //beforeClose
-            if (id.hasClass(settings.modalTarget+'-on')) {
-                id.removeClass(settings.modalTarget+'-on');
-                id.addClass(settings.modalTarget+'-off');
+            if (form.hasClass(settings.modalTarget+'-on')) {
+                form.removeClass(settings.modalTarget+'-on');
+                form.addClass(settings.modalTarget+'-off');
             } 
 
-            if (id.hasClass(settings.modalTarget+'-off')) {
-                id.removeClass(settings.animatedIn);
-                id.addClass(settings.animatedOut);
-                id.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', afterClose);
+            if (form.hasClass(settings.modalTarget+'-off')) {
+                form.removeClass(settings.animatedIn);
+                form.addClass(settings.animatedOut);
+                form.one('webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', afterClose);
             };
 
         });
 
         function afterClose () {       
-            id.css({'z-index':settings.zIndexOut});
+            form.css({'z-index':settings.zIndexOut});
             settings.afterClose(); //afterClose
         }
 

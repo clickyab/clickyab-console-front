@@ -46,7 +46,7 @@ export default class ChannelListCTR extends Component {
         event.preventDefault();
         console.log(id);
         $(event.target).animatedModal({
-            modalTarget:'edit-channel-binder-modal',
+            target:'#edit-channel-binder-modal',
         });
     }
 

@@ -67,7 +67,8 @@ export default class EditChannelCTR extends Component {
         this.loading();
         this.EditChannelCall(formValues);
 
-    }
+    };
+
     render() {
         return(<EditChannelPTR GetChannelInfo={this.GetChannelInfo.bind(this)} SubmitEditChannel={this.SubmitEditChannel} />);
     }

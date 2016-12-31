@@ -4,7 +4,6 @@ import {fullWidthModal} from './../../functions/animtedModal';
 import $ from 'jquery';
 
 
-
 class EditChannelPTR extends Component {
     editChannelForm;
     state = {
@@ -12,19 +11,18 @@ class EditChannelPTR extends Component {
     };
 
 
-
     componentDidMount() {
         let {GetChannelInfo} = this.props;
-        $(".edit-item").attr("href","#edit-channel-binder-modal");
+        $(".edit-item").attr("href", "#edit-channel-binder-modal");
         $(".edit-item").addClass("edit-channel-binder");
-            fullWidthModal('edit-channel-binder', 'ویرایش چنل', {
+        fullWidthModal('edit-channel-binder', 'ویرایش چنل', {
 
-                beforeOpen() {
-                    console.log(this);
-                    GetChannelInfo()
-                },
+            beforeOpen() {
+                console.log(this);
+                GetChannelInfo()
+            },
 
-            });
+        });
 
         this.editChannelForm = $("#editChannelForm");
         this.editChannelForm.validate({
@@ -54,37 +52,43 @@ class EditChannelPTR extends Component {
             }
         });
     }
+
     render() {
         const {handleSubmit, SubmitEditChannel} = this.props;
-        return(
+        return (
 
-                <div id="edit-channel-binder-modal" className="animated edit-channel-binder-modal-off">
+            <div id="edit-channel-binder-modal" className="animated edit-channel-binder-modal-off">
 
-                    <div className="close-edit-channel-binder-modal padding-tb-15">
-                        <img className="closebt" src="../img/closebtn.svg" />
-                    </div>
-                    <div className="col-md-4 col-md-offset-4">
-                        <div className="modal-title text-center">
-                            <h3/>
-                        </div>
-                        <form role="form" action="" id="editChannelForm" method="post" className="add-channel-form white" onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
-                            <div className="form-group">
-                                <label htmlFor="admin">نام ادمین</label>
-                                <Field component="input" type="text" name="admin" placeholder='نام ادمین' className="form-control input-lg" id="admin"/>
-                            </div>
-                            <div className="form-group">
-                                <label  htmlFor="link">لینک کانال</label>
-                                <Field component="input" type="text" name="link" placeholder="لینک چنل" className="form-control input-lg" id="link"/>
-                            </div>
-
-                            <div className="form-group">
-                                <label htmlFor="name">نام کانال</label>
-                                <Field component="input" type="text" name="name" placeholder="نام کانال" className="form-control input-lg" id="name"/>
-                            </div>
-                            <button type="submit" className="btn btn-primary btn-lg edit-channel-form btn-block">ذخیره</button>
-                        </form>
-                    </div>
+                <div className="close-edit-channel-binder-modal padding-tb-15">
+                    <img className="closebt" src="../img/closebtn.svg"/>
                 </div>
+                <div className="col-md-4 col-md-offset-4">
+                    <div className="modal-title text-center">
+                        <h3/>
+                    </div>
+                    <form role="form" action="" id="editChannelForm" method="post" className="add-channel-form white"
+                          onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
+                        <div className="form-group">
+                            <label htmlFor="admin">نام ادمین</label>
+                            <Field component="input" type="text" name="admin" placeholder='نام ادمین'
+                                   className="form-control input-lg" id="admin"/>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="link">لینک کانال</label>
+                            <Field component="input" type="text" name="link" placeholder="لینک چنل"
+                                   className="form-control input-lg" id="link"/>
+                        </div>
+
+                        <div className="form-group">
+                            <label htmlFor="name">نام کانال</label>
+                            <Field component="input" type="text" name="name" placeholder="نام کانال"
+                                   className="form-control input-lg" id="name"/>
+                        </div>
+                        <button type="submit" className="btn btn-primary btn-lg edit-channel-form btn-block">ذخیره
+                        </button>
+                    </form>
+                </div>
+            </div>
         )
     }
 }
