@@ -20,6 +20,8 @@
  * @providesModule fixedDataTableCellGroupLayout
  */
 
+$borderTable: #e7ecf1;
+
 .fixedDataTableCellGroupLayout_cellGroup {
   -webkit-backface-visibility: hidden;
   backface-visibility: hidden;
@@ -91,9 +93,21 @@
 
 .fixedDataTableCellLayout_wrap3 {
   display: table-cell;
-  vertical-align: middle;
+  vertical-align: top;
 }
-
+.value-datatable {
+  margin: 5px 8px;
+}
+.public_fixedDataTableCell_cellContent span {
+  display: block;
+  border-bottom: 1px solid $borderTable;
+  padding: 5px;
+  text-align: center;
+}
+.search-filter-datatable {
+  margin: 5px;
+  padding: 5px 0;
+}
 .fixedDataTableCellLayout_columnResizerContainer {
   position: absolute;
   right: 0px;
@@ -424,7 +438,7 @@ body[dir="rtl"] .fixedDataTableColumnResizerLineLayout_main {
 }
 
 .public_fixedDataTableCell_cellContent {
-  padding: 8px;
+  padding: 8px 0;
 }
 
 .public_fixedDataTableCell_columnResizerKnob {
