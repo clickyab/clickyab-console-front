@@ -120,7 +120,7 @@ export class Header extends Component {
                             </li>
                             <li className="dropdown dropdown-user">
                                 <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
-                                    <img alt="" className="img-circle" src="./img/layouts/layout/img/avatar3_small.jpg" />
+                                    <img alt="" className="img-circle" src="/img/layouts/layout/img/avatar3_small.jpg" />
                                     <span className="username username-hide-on-mobile"> Nick </span>
                                     <i className="fa fa-angle-down"/>
                                 </a>

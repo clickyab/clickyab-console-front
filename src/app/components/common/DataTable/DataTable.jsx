@@ -35,21 +35,23 @@ export default class DataTable extends React.Component {
     _update() {
         let win = window;
 
-        let widthOffset = win.innerWidth < 680 ? 0 : 240;
         let heightDatatableHolder = $(".datatable-parent").outerWidth();
+
         this.setState({
-            renderPage: true,
             width: heightDatatableHolder - 58
         });
     }
 
     setRows(items, definitions) {
-        const {sort, filter, search, change, edit} = this.props;
-
+        let {sort, filter, search, change, edit, mutators} = this.props;
+        if (!mutators) {
+            mutators = {};
+        }
         let _items = [];
         let columnDefinition;
         for (let i = 0; i < definitions.length; i++) {
             columnDefinition = definitions[i];
+
             if (columnDefinition.visible)
                 _items.push(<Column
                     header={
@@ -66,7 +68,7 @@ export default class DataTable extends React.Component {
                         </HeaderCell>
                     }
                     cell={<TextCell
-                        mutator={this.props.mutators[columnDefinition.data]}
+                        mutator={mutators[columnDefinition.data]}
                         actions={columnDefinition.data == "_actions"}
                         change={change} edit={edit}
                         column={columnDefinition.data} items={items}
@@ -74,7 +76,7 @@ export default class DataTable extends React.Component {
                         className="value-datatable"
                     />}
                     flexGrow={i}
-                    maxWidth={10} width={columnDefinition.width} key={Math.random()}/>);
+                    maxWidth={10} width={columnDefinition.width} key={columnDefinition.data}/>);
         }
 
         return _items;
@@ -94,7 +96,11 @@ export default class DataTable extends React.Component {
         for (let i = 0; i < items.length; i++) {
             for (let def of definitions) {
                 key = def.data;
-                length = items[i][key].toString().length;
+                if (items[i][key]) {
+                    length = items[i][key].toString().length;
+                } else {
+                    length = 0;
+                }
                 if (length > def.width) {
                     def.width = length * 10 + 10;
                     if (def.filter_valid_map || def.searchable) {
@@ -127,8 +133,8 @@ export default class DataTable extends React.Component {
 
         this.setWidth(items, definitions);
         definitions = this.addActionHeader(definitions);
-        items = items.reverse();
         definitions = definitions.reverse();
+
         return (
             <Table rowHeight={50} rowsCount={items.length}
                    headerHeight={100}  {...this.state} {...this.props}>
