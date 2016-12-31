@@ -1,12 +1,8 @@
 import React, {Component} from 'react';
 import DataTable from '../common/DataTable/DataTable';
-import EditChannelCTR from './../../components/channel/EditChannelCTR'
-import {fullWidthModal} from "../../functions/animtedModal";
+import EditChannelModalCTR from './EditChannelModalCTR'
 
 export default class ChannelListPTR extends Component {
-
-    componentDidMount() {
-    }
     render() {
         return (
             <div className='page-content'>
@@ -44,7 +40,7 @@ export default class ChannelListPTR extends Component {
                         <DataTable {...this.props}/>
                     </div>
                 </div>
-                <EditChannelCTR/>
+                <EditChannelModalCTR/>
             </div>
         )
     }

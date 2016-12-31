@@ -9,6 +9,8 @@ export const USER_LIST = 'USER_LIST';
 export const CHANNEL_LIST = 'CHANNEL_LIST';
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CATEGORY_LIST = 'CATEGORY_LIST';
+export const CHANNEL_DATA = 'CHANNEL_DATA';
+export const channelDataAction = (data) => ({type: CHANNEL_DATA, data});
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
 export const categoryListAction = (data) => ({type: CATEGORY_LIST, data});
 export const userListAction = (data) => ({type: USER_LIST, data});

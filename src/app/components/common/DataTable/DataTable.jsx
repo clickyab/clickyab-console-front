@@ -24,7 +24,6 @@ export default class DataTable extends React.Component {
         } else {
             win.onresize = this._onResize;
         }
-
     }
 
     _onResize() {
@@ -33,12 +32,10 @@ export default class DataTable extends React.Component {
     }
 
     _update() {
-        let win = window;
-
-        let heightDatatableHolder = $(".datatable-parent").outerWidth();
+        let heightDatatableHolder = $("body").outerWidth();
 
         this.setState({
-            width: heightDatatableHolder - 58
+            width: heightDatatableHolder - 380
         });
     }
 
@@ -76,7 +73,7 @@ export default class DataTable extends React.Component {
                         className="value-datatable"
                     />}
                     flexGrow={i}
-                    maxWidth={10} width={columnDefinition.width} key={columnDefinition.data}/>);
+                    maxWidth={10} width={columnDefinition.width} key={Math.random()}/>);
         }
 
         return _items;

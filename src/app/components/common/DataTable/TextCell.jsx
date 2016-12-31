@@ -11,9 +11,7 @@ export const TextCell = ({rowIndex, actions, mutator, change, edit, column, item
         let buttons = [];
         for (let i = 0; i < actionKeys.length; i++) {
             if (actionKeys[i] == "edit") {
-                buttons.push(<a key="edit"
-                                className="btn btn-sm btn-outline grey-salsabtn btn-sm btn-outline grey-salsa edit-item"
-                                onClick={(event) => edit(event, id)}><i className="fa fa-edit"/> ویرایش</a>);
+                buttons.push(edit(id));
             }
         }
 
