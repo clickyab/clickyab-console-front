@@ -26,11 +26,13 @@ export default class HeaderCell extends Component {
         const {height, width, columnKey} = rest;
         return (
             <Cell {...{height, width, columnKey}}>
-                {sortable ? <a href="#" onClick={(event) => this.sort(event, query_name)}>{children}</a> : children}
-                {searchable ?
-                    <input className="form-control type-search-datatable" onChange={(event) => search(event, query_name)} placeholder={"search by " + children}/> : ''}
-                {filters !== null ? <select className="form-control select-datatable"
-                        onChange={(event) => filter(event, query_name)}>{this.getFilters(filters)}</select> : ''}
+                <span>{sortable ? <a href="#" onClick={(event) => this.sort(event, query_name)}>{children}</a> : children}</span>
+                <div className="search-filter-datatable">
+                    {searchable ?
+                        <input className="form-control type-search-datatable" onChange={(event) => search(event, query_name)} placeholder={"search by " + children}/> : ''}
+                    {filters !== null ? <select className="form-control select-datatable"
+                                                onChange={(event) => filter(event, query_name)}>{this.getFilters(filters)}</select> : ''}
+                </div>
             </Cell>
         );
     }

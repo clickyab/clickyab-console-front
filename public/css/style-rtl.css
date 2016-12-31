@@ -26268,7 +26268,20 @@ div.calendar {
 
 .fixedDataTableCellLayout_wrap3 {
   display: table-cell;
-  vertical-align: middle; }
+  vertical-align: top; }
+
+.value-datatable {
+  margin: 5px 8px; }
+
+.public_fixedDataTableCell_cellContent span {
+  display: block;
+  border-bottom: 1px solid #e7ecf1;
+  padding: 5px;
+  text-align: center; }
+
+.search-filter-datatable {
+  margin: 5px;
+  padding: 5px 0; }
 
 .fixedDataTableCellLayout_columnResizerContainer {
   position: absolute;
@@ -26550,7 +26563,7 @@ body[dir="rtl"] .fixedDataTableColumnResizerLineLayout_main {
   background-color: #f4f4f4; }
 
 .public_fixedDataTableCell_cellContent {
-  padding: 8px; }
+  padding: 8px 0; }
 
 .public_fixedDataTableCell_columnResizerKnob {
   background-color: #0284ff; }
