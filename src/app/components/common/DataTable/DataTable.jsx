@@ -82,9 +82,7 @@ export default class DataTable extends React.Component {
         return _items;
     }
 
-    setWidth(items, definitions) {
-        let length;
-        let key;
+    setWidthBaseOnRowName(definitions) {
         for (let def of definitions) {
             def.width = def.data.toString().length * 10 + 10;
             if (def.filter_valid_map || def.searchable) {
@@ -93,14 +91,23 @@ export default class DataTable extends React.Component {
                 }
             }
         }
+    }
+
+    setWidthBaseOnValues(items, definitions) {
+        let length;
+        let key;
+
         for (let i = 0; i < items.length; i++) {
             for (let def of definitions) {
                 key = def.data;
+
                 if (items[i][key]) {
                     length = items[i][key].toString().length;
                 } else {
                     length = 0;
                 }
+
+
                 if (length > def.width) {
                     def.width = length * 10 + 10;
                     if (def.filter_valid_map || def.searchable) {
@@ -109,8 +116,14 @@ export default class DataTable extends React.Component {
                         }
                     }
                 }
+
             }
         }
+    }
+
+    setWidth(items, definitions) {
+        this.setWidthBaseOnRowName(definitions);
+        this.setWidthBaseOnValues(items, definitions);
     }
 
     addActionHeader(definitions) {
