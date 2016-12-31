@@ -11,7 +11,9 @@ export const TextCell = ({rowIndex, actions, mutator, change, edit, column, item
         let buttons = [];
         for (let i = 0; i < actionKeys.length; i++) {
             if (actionKeys[i] == "edit") {
-                buttons.push(<a key="edit" className="btn btn-sm btn-outline grey-salsabtn btn-sm btn-outline grey-salsa edit-item" data-channel={id}><i className="fa fa-edit"/> ویرایش</a>);
+                buttons.push(<a key="edit"
+                                className="btn btn-sm btn-outline grey-salsabtn btn-sm btn-outline grey-salsa edit-item"
+                                onClick={(event) => edit(event, id)}><i className="fa fa-edit"/> ویرایش</a>);
             }
         }
 
@@ -19,9 +21,9 @@ export const TextCell = ({rowIndex, actions, mutator, change, edit, column, item
     }
 
     let cell = actions ? (<Cell {...props}>
-            {buildActions(row.id, mutator ? mutator(item): item, {change, edit})}
+            {buildActions(row.id, mutator ? mutator(item) : item, {change, edit})}
         </Cell>) : (<Cell {...props}>
-            {mutator ? mutator(item): item}
+            {mutator ? mutator(item) : item}
         </Cell>);
 
     return (cell);

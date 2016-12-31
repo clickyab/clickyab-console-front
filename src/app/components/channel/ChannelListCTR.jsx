@@ -5,6 +5,7 @@ import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
 import {channelListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
+import {fullWidthModal} from "../../functions/animtedModal";
 
 @connect(({channelList}) => ({channelList}))
 export default class ChannelListCTR extends Component {
@@ -43,7 +44,10 @@ export default class ChannelListCTR extends Component {
 
     edit(event, id) {
         event.preventDefault();
-        console.log(id)
+        console.log(id);
+        $(event.target).animatedModal({
+            modalTarget:'edit-channel-binder-modal',
+        });
     }
 
     updated_at(updated_at) {
