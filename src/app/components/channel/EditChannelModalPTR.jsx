@@ -9,10 +9,10 @@ class EditChannelModalPTR extends Component {
         validation: true
     };
 
-    // shouldComponentUpdate(nextProps, nextState) {
-    //     nextProps.initialize(nextProps.channelData);
-    //     return true;
-    // }
+    shouldComponentUpdate(nextProps, nextState) {
+        nextProps.initialize(nextProps.channelData);
+        return true;
+    }
 
     componentDidMount() {
         this.editChannelForm = $("#editChannelForm");
