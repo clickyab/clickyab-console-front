@@ -1,9 +1,9 @@
 
-export function fullWidthModal(id, title, options = {}) {
-        $('#' + id).animatedModal({
-                modalTarget:id+'-modal',
+export function fullWidthModal(className, title, options = {}) {
+        $('#' + className).animatedModal({
+                modalTarget:className+'-modal',
             ...options
         });
-        let modalId =  $('#'+id).attr('href');
+        let modalId =  $('#'+className).attr('href');
         $(modalId).find('.modal-title h3').text(title);
 }

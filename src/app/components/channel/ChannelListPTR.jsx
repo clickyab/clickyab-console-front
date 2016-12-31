@@ -1,7 +1,21 @@
 import React, {Component} from 'react';
 import DataTable from '../common/DataTable/DataTable';
+import ChannelListCTR from './../../components/channel/EditChannelCTR'
+import {fullWidthModal} from "../../functions/animtedModal";
 
 export default class ChannelListPTR extends Component {
+
+    componentDidMount() {
+        let {GetChannelInfo} = this.props;
+        $(".edit-item").attr("href","#edit-channel-binder-modal");
+        $(".edit-item").addClass("edit-channel-binder");
+        fullWidthModal('edit-channel-binder', 'ویرایش چنل', {
+            beforeOpen() {
+                GetChannelInfo()
+            },
+
+        });
+    }
     render() {
         return (
             <div className='page-content'>
@@ -39,7 +53,7 @@ export default class ChannelListPTR extends Component {
                         <DataTable {...this.props}/>
                     </div>
                 </div>
-
+                <ChannelListCTR/>
             </div>
         )
     }

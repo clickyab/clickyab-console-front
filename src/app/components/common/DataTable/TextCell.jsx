@@ -10,10 +10,8 @@ export const TextCell = ({rowIndex, actions, mutator, change, edit, column, item
         const actionKeys = item.split(',');
         let buttons = [];
         for (let i = 0; i < actionKeys.length; i++) {
-            if (actionKeys[i] == "change") {
-                buttons.push(<button key="change" onClick={(event) => actions.change(event, id)}>change</button>);
-            } else if (actionKeys[i] == "edit") {
-                buttons.push(<button key="edit" onClick={(event) => actions.edit(event, id)}>edit</button>);
+            if (actionKeys[i] == "edit") {
+                buttons.push(<a key="edit" className="btn btn-sm btn-outline grey-salsabtn btn-sm btn-outline grey-salsa edit-item" data-channel={id}><i className="fa fa-edit"/> ویرایش</a>);
             }
         }
 

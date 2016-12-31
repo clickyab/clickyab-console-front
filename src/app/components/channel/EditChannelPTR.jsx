@@ -54,13 +54,7 @@ class EditChannelPTR extends Component {
         const {handleSubmit, SubmitEditChannel} = this.props;
         return(
 
-            <div className='page-content'>
-
-                <div>
-                    <a id="edit-channel-binder" className="btn btn-success" href="#edit-channel-binder-modal">Edit Channel</a>
-                </div>
-
-                <div id="edit-channel-binder-modal" className="animated add-channel-binder-modal-off">
+                <div id="edit-channel-binder-modal" className="animated edit-channel-binder-modal-off">
 
                     <div className="close-edit-channel-binder-modal padding-tb-15">
                         <img className="closebt" src="../img/closebtn.svg" />
@@ -87,7 +81,6 @@ class EditChannelPTR extends Component {
                         </form>
                     </div>
                 </div>
-            </div>
         )
     }
 }
