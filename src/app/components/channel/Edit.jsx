@@ -6,37 +6,34 @@ import {sync} from "../../functions/sync";
 import {FailedBoxAlert} from "../../functions/notifications";
 import {getToken} from "../../redux/helpers";
 import {dispatch} from "../../functions/dispatch";
-
+import {ifInvalidToken} from "../../functions/helpers";
+let Ladda = require('ladda/js/ladda');
+let loadingProgress;
 export default class Edit extends Component {
+    editElementBtn;
+
     edit(event) {
+        loadingProgress = Ladda.create(this.editElementBtn);
+        loadingProgress.start();
         event.preventDefault();
-        $('#menuModal').modal();
         const {id} = this.props;
         sync(function*() {
             const {error, data, response} = yield (new swagger.ChannelApi())
                 .channelIdGet(id, select('user.token', 'no token'));
-
             if (response.statusCode == '200') {
+                $('#menuModal').modal();
+                loadingProgress.stop();
                 dispatch(channelDataAction(data));
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)
             }
-
+            ifInvalidToken(response);
         });
     }
 
-    editSubmit() {
-        (new swagger.ChannelApi())
-            .channelIdPut(this.props.id, getToken(), {'payloadData': formValues})
-            .then(response => function (response) {
-                console.log(response);
-            });
-    }
-
-
     render() {
-        return <a key="edit"
-                  className="btn btn-sm btn-outline grey-salsabtn btn-sm btn-outline grey-salsa edit-item"
-                  onClick={(event) => this.edit(event)}><i className="fa fa-edit"/> ویرایش</a>;
+        return <button key="edit" ref={(EditElement) => this.editElementBtn=EditElement}
+                  className="btn green edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
+                  onClick={(event) => this.edit(event)}><i className="fa fa-edit"/> ویرایش</button>;
     }
 }

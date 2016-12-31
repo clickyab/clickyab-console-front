@@ -26273,7 +26273,7 @@ div.calendar {
 .value-datatable {
   margin: 5px 8px; }
 
-.public_fixedDataTableCell_cellContent span {
+.public_fixedDataTableCell_cellContent .head-title-datatable {
   display: block;
   border-bottom: 1px solid #e7ecf1;
   padding: 5px;

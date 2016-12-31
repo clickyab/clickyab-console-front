@@ -26,7 +26,7 @@ export default class HeaderCell extends Component {
         const {height, width, columnKey} = rest;
         return (
             <Cell {...{height, width, columnKey}}>
-                <span>{sortable ? <a href="#" onClick={(event) => this.sort(event, query_name)}>{children}</a> : children}</span>
+                <span className="head-title-datatable">{sortable ? <a href="#" onClick={(event) => this.sort(event, query_name)}>{children}</a> : children}</span>
                 <div className="search-filter-datatable">
                     {searchable ?
                         <input className="form-control type-search-datatable" onChange={(event) => search(event, query_name)} placeholder={"search by " + children}/> : ''}

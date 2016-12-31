@@ -35,7 +35,7 @@ export default class DataTable extends React.Component {
         let heightDatatableHolder = $("body").outerWidth();
 
         this.setState({
-            width: heightDatatableHolder - 380
+            width: heightDatatableHolder - 320
         });
     }
 

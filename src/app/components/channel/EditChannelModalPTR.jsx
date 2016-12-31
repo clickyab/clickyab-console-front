@@ -9,11 +9,10 @@ class EditChannelModalPTR extends Component {
         validation: true
     };
 
-    shouldComponentUpdate(nextProps, nextState) {
-        nextProps.initialize(nextProps.channelData);
-
-        return false;
-    }
+    // shouldComponentUpdate(nextProps, nextState) {
+    //     nextProps.initialize(nextProps.channelData);
+    //     return true;
+    // }
 
     componentDidMount() {
         this.editChannelForm = $("#editChannelForm");
@@ -65,7 +64,7 @@ class EditChannelModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="editChannelForm" method="post"
                                       className="add-channel-form white"
-                                      onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
+                                      onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.SubmitEditChannel))}>
                                     <div className="form-group">
                                         <label htmlFor="admin">نام ادمین</label>
                                         <Field component="input" type="text" name="admin" placeholder='نام ادمین'
