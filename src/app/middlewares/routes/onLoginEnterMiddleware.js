@@ -1,6 +1,6 @@
-import {sync} from "../../functions/sync";
-import {isLoginMiddleware} from "../isLoginMiddleware";
-import {loading} from "../../functions/loading";
+import {sync} from '../../functions/sync';
+import {isLoginMiddleware} from '../isLoginMiddleware';
+import {loading} from '../../functions/loading';
 
 export default (nextState, replace, next) => sync(function*() {
     try {

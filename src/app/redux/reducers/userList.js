@@ -1,4 +1,4 @@
-import {USER_LIST} from "../actions/index";
+import {USER_LIST} from '../actions/index';
 
 export function userListReducer(state = [], action) {
     switch (action.type) {

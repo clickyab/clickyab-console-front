@@ -1,3 +1,4 @@
+
 import {sync} from "../../functions/sync";
 import * as swagger from "../../swagger/index";
 import {channelListAction} from "../../redux/actions/index";
@@ -6,7 +7,6 @@ import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
-
 
 function* channelListController(done, next) {
     loading(true);

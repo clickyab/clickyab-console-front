@@ -1,4 +1,4 @@
-import {REMOVE_LOCAL_STORAGE} from "../redux/actions/index";
+import {REMOVE_LOCAL_STORAGE} from '../redux/actions/index';
 let localStorage = require('store');
 
 export const asyncRemoveLocalStorage = store => next => action => {

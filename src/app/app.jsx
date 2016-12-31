@@ -13,6 +13,9 @@ export default class App extends React.Component {
 	componentDidMount() {
 		loading(false);
         setHeight();
+		$(window).resize(function() {
+			setHeight();
+		})
 	}
 
 	render() {

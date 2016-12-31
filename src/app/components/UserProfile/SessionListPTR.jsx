@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
-import $ from 'jquery';
-import {connect} from "react-redux";
+// import $ from 'jquery';
+import {connect} from 'react-redux';
 
 @connect(({user}) => ({user}))
 export default class SessionListPTR extends Component {

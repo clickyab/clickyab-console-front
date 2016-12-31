@@ -1,9 +1,9 @@
-import {sync} from "../../functions/sync";
-import * as swagger from "../../swagger/index";
-import { categoryListAction} from "../../redux/actions/index";
-import {dispatch} from "../../functions/dispatch";
-import {select} from "../../functions/select";
-import {loading} from "../../functions/loading";
+import {sync} from '../../functions/sync';
+// import * as swagger from '../../swagger/index';
+// import { categoryListAction} from '../../redux/actions/index';
+// import {dispatch} from '../../functions/dispatch';
+// import {select} from '../../functions/select';
+import {loading} from '../../functions/loading';
 
 
 export default (nextState, replace, next) => sync(function*() {

@@ -1,7 +1,7 @@
-import ping from "../functions/ping";
-import {throwError} from "../functions/Error";
-import {isLogin} from "../redux/helpers";
-import {browserHistory} from "react-router";
+import ping from '../functions/ping';
+import {throwError} from '../functions/Error';
+import {isLogin} from '../redux/helpers';
+import {browserHistory} from 'react-router';
 
 
 export function* isLoginMiddleware() {

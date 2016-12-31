@@ -1,9 +1,9 @@
-import React, {Component} from "react";
-import {connect} from "react-redux";
+import React, {Component} from 'react';
+import {connect} from 'react-redux';
 import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
-import {select} from "../../functions/select";
-import {userListAction} from "../../redux/actions/index";
+import {select} from '../../functions/select';
+import {userListAction} from '../../redux/actions/index';
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {

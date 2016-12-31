@@ -4,7 +4,7 @@ import {localeReducer, cssLazyLoader} from 'react-multilingual';
 import {loginReducer, userReducer, registerReducer, impersonateReducer} from './reducers';
 import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
-import {asyncPullIntoLocalStorage} from "../middlewares/asyncPullIntoLocalStorage";
+import {asyncPullIntoLocalStorage} from '../middlewares/asyncPullIntoLocalStorage';
 import {routerMiddleware} from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
