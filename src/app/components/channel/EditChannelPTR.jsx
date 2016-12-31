@@ -15,12 +15,16 @@ class EditChannelPTR extends Component {
 
     componentDidMount() {
         let {GetChannelInfo} = this.props;
-        fullWidthModal('edit-channel-binder', 'ویرایش چنل', {
-            beforeOpen() {
-                GetChannelInfo()
-            },
+        $(".edit-item").attr("href","#edit-channel-binder-modal");
+        $(".edit-item").addClass("edit-channel-binder");
+            fullWidthModal('edit-channel-binder', 'ویرایش چنل', {
 
-        });
+                beforeOpen() {
+                    console.log(this);
+                    GetChannelInfo()
+                },
+
+            });
 
         this.editChannelForm = $("#editChannelForm");
         this.editChannelForm.validate({

@@ -1,6 +1,6 @@
 
 export function fullWidthModal(className, title, options = {}) {
-        $('#' + className).animatedModal({
+        $('.' + className).animatedModal({
                 modalTarget:className+'-modal',
             ...options
         });
