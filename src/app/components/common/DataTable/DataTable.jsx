@@ -133,8 +133,8 @@ export default class DataTable extends React.Component {
 
         this.setWidth(items, definitions);
         definitions = this.addActionHeader(definitions);
-        items = items.reverse();
         definitions = definitions.reverse();
+
         return (
             <Table rowHeight={50} rowsCount={items.length}
                    headerHeight={100}  {...this.state} {...this.props}>
