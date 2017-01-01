@@ -4,7 +4,7 @@ import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
 import {userListAction} from '../../redux/actions/index';
-import Edit from "./../common/Edit";
+import Edit from "../common/DataTable/Edit";
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {

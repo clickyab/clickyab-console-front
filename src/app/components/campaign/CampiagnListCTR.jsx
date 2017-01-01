@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import CampaignListPTR from './CampaignListPTR';
-import Edit from './../common/Edit';
+import Edit from '../common/DataTable/Edit';
 
 @connect(({campaignList}) => ({campaignList}))
 export default class CampaignListCTR extends Component {

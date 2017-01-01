@@ -1,11 +1,11 @@
 import React, {Component} from "react";
-import swagger from '../../swagger/index';
-import {select} from "../../functions/select";
-import {channelDataAction} from "../../redux/actions/index";
-import {sync} from "../../functions/sync";
-import {FailedBoxAlert} from "../../functions/notifications";
-import {dispatch} from "../../functions/dispatch";
-import {ifInvalidToken} from "../../functions/helpers";
+import swagger from '../../../swagger/index';
+import {select} from "../../../functions/select";
+import {channelDataAction} from "../../../redux/actions/index";
+import {sync} from "../../../functions/sync";
+import {FailedBoxAlert} from "../../../functions/notifications";
+import {dispatch} from "../../../functions/dispatch";
+import {ifInvalidToken} from "../../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 

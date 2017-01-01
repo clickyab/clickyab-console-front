@@ -1,7 +1,8 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import ChannelListPTR from "./ChannelListPTR";
-import Edit from "../common/Edit";
+import Edit from "../common/DataTable/Edit";
+import Change from "../common/DataTable/Change";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
 import {channelListAction} from "../../redux/actions/index";
@@ -25,7 +26,6 @@ export default class ChannelListCTR extends Component {
     }
 
     sort(flag, query_name) {
-        console.log(query_name, flag);
         this.callApi('sort', query_name + ':' + flag)
     }
 
@@ -37,13 +37,12 @@ export default class ChannelListCTR extends Component {
         this.callApi(query_name, event.target.value);
     }
 
-    change(event, id) {
-        event.preventDefault();
-        console.log(id)
-    }
-
     edit(id) {
         return <Edit key={Math.random()} id={id}/>
+    }
+
+    change(id) {
+        return <Change key={Math.random()} id={id}/>
     }
 
     updated_at(updated_at) {
