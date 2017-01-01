@@ -21,7 +21,7 @@ export default class Edit extends Component {
             const {error, data, response} = yield (new swagger.ChannelApi())
                 .channelIdGet(id, select('user.token', 'no token'));
             if (response.statusCode == '200') {
-                $('#menuModal').modal();
+                $('#editChannelModal').modal();
                 loadingProgress.stop();
                 dispatch(channelDataAction(data));
             } else if (response.statusCode == '400') {
