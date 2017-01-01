@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import ChannelListPTR from "./ChannelListPTR";
-import Edit from "./Edit";
+import Edit from "../common/Edit";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
 import {channelListAction} from "../../redux/actions/index";

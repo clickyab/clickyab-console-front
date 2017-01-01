@@ -4,6 +4,7 @@ import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
 import {userListAction} from '../../redux/actions/index';
+import Edit from "./../common/Edit";
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {
@@ -34,10 +35,15 @@ export default class UsersListCTR extends Component {
         this.callApi(query_name, event.target.value);
     }
 
+    edit(id) {
+        return <Edit key={Math.random()} id={id}/>
+    }
+
     render() {
         const {items, definitions} = this.props.userList;
 
         return (<UsersListPTR items={items} definitions={definitions}
+                              edit={this.edit.bind(this)}
                               sort={this.sort.bind(this)}
                               filter={this.filter.bind(this)}
                               search={this.search.bind(this)}
