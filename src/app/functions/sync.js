@@ -64,7 +64,6 @@ export function sync(generator, iterator) {
     } else if (type == "promise") {
         resolvePromise(result, chooseGenerator(result, iterator));
     } else if (type == "result") {
-        console.log(result);
         resolveSimpleResult(result, chooseGenerator(result, iterator));
     }
 }
