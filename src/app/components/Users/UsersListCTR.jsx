@@ -5,6 +5,7 @@ import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
 import {userListAction} from '../../redux/actions/index';
 import EditUserButton from "./EditUserButton";
+import moment from "moment-jalali";
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {
@@ -26,6 +27,12 @@ export default class UsersListCTR extends Component {
     sort(flag, query_name) {
         this.callApi(query_name, flag);
     }
+    updated_at(updated_at) {
+        return moment(updated_at).format('dddd، jD jMMMM jYYYY');
+    }
+    created_at(created_at) {
+        return moment(created_at).format('dddd، jD jMMMM jYYYY');
+    }
 
     filter(event, query_name) {
         this.callApi(query_name, event.target.value);
@@ -38,7 +45,6 @@ export default class UsersListCTR extends Component {
     edit(id) {
         return <EditUserButton key={Math.random()} id={id}/>
     }
-
     render() {
         const {items, definitions} = this.props.userList;
 
@@ -46,6 +52,7 @@ export default class UsersListCTR extends Component {
                               edit={this.edit.bind(this)}
                               sort={this.sort.bind(this)}
                               filter={this.filter.bind(this)}
+                              mutators={{updated_at: this.updated_at, created_at: this.created_at}}
                               search={this.search.bind(this)}
         />);
     }
