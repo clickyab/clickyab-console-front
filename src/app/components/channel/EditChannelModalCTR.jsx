@@ -8,25 +8,28 @@ import {getToken} from "../../redux/helpers";
 import {FailedBoxAlert} from "../../functions/notifications";
 import {ifInvalidToken} from "../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
+let loadingProgress;
 
 @connect(({channelData}) => ({channelData}))
 export default class EditChannelModalCTR extends Component {
-    loadingProgress;
+
+
+    EditSubmitCallback({error, data, response}) {
+            if (response.statusCode == 200) {
+                $('#menuModal').modal('hide');
+                loadingProgress.stop();
+            } else if (response.statusCode == '400') {
+                FailedBoxAlert(response)
+            }
+            ifInvalidToken(response);
+    }
 
     editSubmit(formValues) {
-        this.loadingProgress = Ladda.create(document.querySelector('button.edit-channel-form'));
-        this.loadingProgress.start();
+        loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
+        loadingProgress.start();
         (new swagger.ChannelApi())
-            .channelIdPut(this.props.id, getToken(), {'payloadData': formValues})
-            .then(response => function (response) {
-                if (response.statusCode == '200') {
-                    this.loadingProgress.stop();
-                    $("button.add-channel-form").parents(".modal").find(".closebt").click();
-                } else if (response.statusCode == '400') {
-                    FailedBoxAlert(response)
-                }
-                ifInvalidToken(response);
-            });
+            .channelIdPut(this.props.channelData.id, getToken(), {'payloadData': formValues})
+            .then(response => this.EditSubmitCallback(response));
     }
         SubmitEditChannel = (formValues, form) => {
         if (!form.valid())

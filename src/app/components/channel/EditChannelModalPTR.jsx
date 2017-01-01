@@ -25,13 +25,13 @@ class EditChannelModalPTR extends Component {
         this.editChannelForm.validate({
             rules: {
                 admin: {
-                    required: false,
+                    required: true,
                 },
                 link: {
-                    required: false,
+                    required: true,
                 },
                 name: {
-                    required: false,
+                    required: true,
                 },
 
             },
@@ -70,7 +70,7 @@ class EditChannelModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="editChannelForm" method="post"
                                       className="add-channel-form white"
-                                      onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.SubmitEditChannel))}>
+                                      onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
                                     <div className="form-group">
                                         <label htmlFor="admin">نام ادمین</label>
                                         <Field component="input" type="text" name="admin" placeholder='نام ادمین'
