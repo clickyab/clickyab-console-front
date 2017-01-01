@@ -1,28 +1,20 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
-import {shallowEqual} from './../../3rd/shallowEqual';
 
-class EditChannelModalPTR extends Component {
-    editChannelForm;
+class AddChannelModalPTR extends Component {
+    addChannelForm;
     initialsForm = false;
     state = {
         validation: true
     };
 
-
-    shouldComponentUpdate(nextProps, nextState) {
-        if (!this.initialsForm) {
-            nextProps.initialize(nextProps.channelData);
-            this.initialsForm = true;
-        }
-
-        return !shallowEqual(this.props, nextProps);
-    }
-
     componentDidMount() {
-        this.editChannelForm = $("#editChannelForm");
-        this.editChannelForm.validate({
+
+
+
+        this.addChannelForm = $("#addChannelForm");
+        this.addChannelForm.validate({
             rules: {
                 admin: {
                     required: true,
@@ -51,9 +43,9 @@ class EditChannelModalPTR extends Component {
     }
 
     render() {
-        const {handleSubmit, SubmitEditChannel} = this.props;
+        const {handleSubmit, SubmitAddChannel} = this.props;
         return (
-            <div className="edit-channel-modal modal fade fullscreen" id="editChannelModal" tabIndex="-1" role="dialog"
+            <div className="add-channel-modal modal fade fullscreen" id="addChannelModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -68,9 +60,9 @@ class EditChannelModalPTR extends Component {
                                 <div className="modal-title text-center">
                                     <h3/>
                                 </div>
-                                <form role="form" action="" id="editChannelForm" method="post"
+                                <form role="form" action="" id="addChannelForm" method="post"
                                       className="add-channel-form white"
-                                      onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
+                                      onSubmit={handleSubmit((values) => SubmitAddChannel(values, this.addChannelForm))}>
                                     <div className="form-group">
                                         <label htmlFor="admin">نام ادمین</label>
                                         <Field component="input" type="text" name="admin" placeholder='نام ادمین'
@@ -88,7 +80,7 @@ class EditChannelModalPTR extends Component {
                                                className="form-control input-lg" id="name"/>
                                     </div>
                                     <button type="submit"
-                                            className="btn btn-primary btn-lg edit-channel-form btn-block">ذخیره
+                                            className="btn btn-primary btn-lg add-channel-form btn-block">ذخیره
                                     </button>
                                 </form>
                             </div>
@@ -101,5 +93,5 @@ class EditChannelModalPTR extends Component {
 }
 
 export default reduxForm({
-    form: 'EditChannelModalPTR'
-})(EditChannelModalPTR);
+    form: 'AddChannelModalPTR'
+})(AddChannelModalPTR);

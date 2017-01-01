@@ -1,8 +1,15 @@
 import React, {Component} from 'react';
 import DataTable from '../common/DataTable/DataTable';
 import EditChannelModalCTR from './EditChannelModalCTR'
+import AddChannelModalCTR from './AddChannelModalCTR'
 
 export default class ChannelListPTR extends Component {
+    componentDidMount() {
+        $(document).on("click","#showAddChannelModalForm" , function () {
+            $("#addChannelModal").modal();
+        })
+    }
+
     render() {
         return (
             <div className='page-content'>
@@ -26,8 +33,8 @@ export default class ChannelListPTR extends Component {
                         <h1 className='page-title'>  مدیریت چنل ها</h1>
                     </div>
                     <div className='top-action-header'>
-                        <a href="javascript:;" className="btn btn-lg blue pull-left">
-                            <i className="fa fa-plus"/>  ساخت چنل جدید </a>
+                        <button  className="btn btn-lg blue pull-left" id="showAddChannelModalForm">
+                            <i className="fa fa-plus"/>  ساخت چنل جدید </button>
                     </div>
                 </div>
                 <div className='portlet light datatable-parent'>
@@ -41,6 +48,7 @@ export default class ChannelListPTR extends Component {
                     </div>
                 </div>
                 <EditChannelModalCTR/>
+                <AddChannelModalCTR/>
             </div>
         )
     }

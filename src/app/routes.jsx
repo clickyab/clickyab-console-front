@@ -15,7 +15,6 @@ import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
 import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR';
 import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
 import UserProfile from './components/UserProfile/UserProfileCTR';
-import AddChannelCTR from './components/channel/AddChannelCTR';
 import UsersListCTR from './components/Users/UsersListCTR';
 import ChannelListCTR from './components/channel/ChannelListCTR';
 import onChannelEnterMiddleware from './middlewares/routes/onChannelEnterMiddleware';
@@ -45,7 +44,6 @@ export default () => (
             <Route path='/campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware} />
 
         </Route>
-        <Route path='/channel/create' component={AddChannelCTR} name='channel' />
     </Router>
 );
 

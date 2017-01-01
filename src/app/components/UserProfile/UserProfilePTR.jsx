@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
-// import { Link } from 'react-router'
 import PersonalUserCTR from './PersonalUserCTR'
 import CorporationUserCTR from './CorporationUserCTR'
 import ProfileSidebarCTR from './ProfileSidebarCTR'

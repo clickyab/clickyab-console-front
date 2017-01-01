@@ -16,14 +16,13 @@ export default class EditChannelModalCTR extends Component {
 
     EditSubmitCallback({error, data, response}) {
             if (response.statusCode == 200) {
-                $('#menuModal').modal('hide');
+                $('#editChannelModal').modal('hide');
                 loadingProgress.stop();
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)
             }
             ifInvalidToken(response);
     }
-
     editSubmit(formValues) {
         loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
         loadingProgress.start();

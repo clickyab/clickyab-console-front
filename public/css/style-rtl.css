@@ -4347,6 +4347,7 @@ button.close {
   right: 0;
   z-index: 10050;
   -webkit-overflow-scrolling: touch;
+  padding: 0 !important;
   outline: 0; }
   .modal.fade .modal-dialog {
     -webkit-transform: translate(0, -25%);
