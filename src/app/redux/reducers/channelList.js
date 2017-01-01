@@ -4,12 +4,11 @@ function updateARow(state, action) {
     let items = [...state.items];
     for (let i = 0; i < items.length; i++) {
         if (items[i].id == action.data.id) {
-            items[i] = action.data
+            items[i] = Object.assign({}, items[i], action.data);
         }
     }
-    console.log(items);
 
-    return {definitions: state.definitions, items};
+    return {items, definitions: state.definitions};
 }
 
 export function channelListReducer(state = [], action) {
