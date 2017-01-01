@@ -12,6 +12,7 @@ export const CATEGORY_LIST = 'CATEGORY_LIST';
 export const CHANNEL_DATA = 'CHANNEL_DATA';
 export const USER_DATA = 'USER_DATA';
 export const UPDATE_CHANNEL_FROM_LIST = 'UPDATE_CHANNEL_FROM_LIST';
+export const ADD_CHANNEL = 'ADD_CHANNEL';
 export const userDataAction = (data) => ({type: USER_DATA, data});
 export const channelDataAction = (data) => ({type: CHANNEL_DATA, data});
 export const updateAChannelFromListAction = (data) => ({type: UPDATE_CHANNEL_FROM_LIST, data});
