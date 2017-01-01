@@ -3,48 +3,67 @@ import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
 
 class EditCategoryPTR extends Component {
-    form;
+    editCategoryForm;
+    state = {
+        validation: true
+    };
     componentDidMount() {
-        $('#kasra').on('click', function() {
-            $('.modal').modal('show');
-        })
+        $('.modal').modal('show'); //TODO: remove, debug mode
+        this.editCategoryForm = $('#editCategoryForm');
+        this.editCategoryForm.validate({
+            rules: {
+                title: {
+                    required: true
+                },
+                description: {
+                    required: true
+                }
+            },
+            messages: {
+                title: {
+                    required: 'لطفا عنوان را وارد نمایید'
+                },
+                description: {
+                    required: 'لطفا توضیحات را وارد نمایید'
+                }
+            }
+        });
     }
     render() {
-        const {handleSubmit, SubmitCall} = this.props;
+        const {handleSubmit, SubmitEditCategory} = this.props;
         return (
-            <div>
-                <div>
-                    <a id="kasra" className="btn btn-success" href="#">Modal Edit</a>
-                </div>
-
-                <div className="modal fade">
-                    <div className="modal-dialog">
-                        <div className="modal-content">
-                            <div className="modal-header">
-                                <button type="button" className="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                <h4 className="modal-title">Modal title</h4>
+            <div className="edit-category-modal modal fade fullscreen" id="editCategoryModal" tabIndex="-1" role="dialog"
+                 aria-labelledby="myModalLabel" aria-hidden="true">
+                <div className="modal-dialog">
+                    <div className="modal-content">
+                        <div className="modal-header">
+                            <div className="padding-tb-15">
+                                <img className="closebt" src="../img/closebtn.svg" data-dismiss="modal"
+                                     aria-hidden="true"/>
                             </div>
-                            <form role="form" action="" method="post" className="login-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
-                                <div className="modal-body">
+                        </div>
+                        <div className="modal-body text-center">
+                            <div className="col-md-4 col-md-offset-4">
+                                <div className="modal-title text-center">
+                                    <h3/>
+                                </div>
+                                <form role="form" action="" method="post" id="editCategoryForm"
+                                      className="add-category-form white" onSubmit={handleSubmit((values) => SubmitEditCategory(values, this.editCategoryForm))}>
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="title">title</label>
-                                        <Field component="input" type="text" name="title" placeholder='title' className="form-control" id="title"/>
+                                        <Field component="input" type="text" name="title" placeholder='عنوان' className="form-control input-lg" id="title"/>
                                     </div>
                                     <div className="form-group">
                                         <label className="sr-only" htmlFor="form-password">{'description'}</label>
-                                        <Field component="input" type="text" name="description" placeholder={'description'} className="form-control" id="description"/>
+                                        <Field component="input" type="text" name="description" placeholder={'توضیحات'} className="form-control input-lg" id="description"/>
                                     </div>
-                                </div>
-                                <div className="modal-footer">
-                                    <button type="button" className="btn btn-default" data-dismiss="modal">Close</button>
-                                    <button type="submit" className="btn btn-primary">Save changes</button>
-                                </div>
-                            </form>
+                                    <button type="submit" className="edit-category-form btn btn-primary btn-lg btn-block">Save changes</button>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-
         )
     }
 }

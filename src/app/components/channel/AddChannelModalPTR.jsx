@@ -21,6 +21,7 @@ class AddChannelModalPTR extends Component {
                 },
                 link: {
                     required: true,
+                    url: true
                 },
                 name: {
                     required: true,
@@ -33,6 +34,7 @@ class AddChannelModalPTR extends Component {
                 },
                 link: {
                     required: 'لطفا لینک کانال را وارد نمایید',
+                    url: 'لطفا یک آدرس اینترنتی معتبر با http و یا https وارد نمایید'
                 },
                 name: {
                     required: 'لطفا نام کانال را وارد نمایید',
