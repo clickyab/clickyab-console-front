@@ -1,17 +1,23 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
-
+import {shallowEqual} from './../../3rd/shallowEqual';
 
 class EditChannelModalPTR extends Component {
     editChannelForm;
+    initialsForm = false;
     state = {
         validation: true
     };
 
+
     shouldComponentUpdate(nextProps, nextState) {
-        nextProps.initialize(nextProps.channelData);
-        return true;
+        if (!this.initialsForm) {
+            nextProps.initialize(nextProps.channelData);
+            this.initialsForm = true;
+        }
+
+        return !shallowEqual(this.props, nextProps);
     }
 
     componentDidMount() {
