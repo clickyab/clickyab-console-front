@@ -12,8 +12,6 @@ export const TextCell = ({rowIndex, actions, mutator, change, edit, column, item
         for (let i = 0; i < actionKeys.length; i++) {
             if (actionKeys[i] == "edit") {
                 buttons.push(edit(id));
-            } else if (actionKeys[i] == "change") {
-                buttons.push(change(id));
             }
         }
 
