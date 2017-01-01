@@ -36,7 +36,7 @@ class UserProfilePTR extends Component {
                         <ProfileSidebarCTR />
                         <div className="profile-content">
                             <div className="row">
-                                <div classNaGroup chat optionsme="col-md-12">
+                                <div data-classNaGroup data-chat data-optionsme="col-md-12">
                                     <div className="portlet light ">
                                         <div className="portlet-title tabbable-line">
                                             <div className="caption caption-md">

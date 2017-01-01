@@ -23,9 +23,9 @@ export default class AddChannelModalCTR extends Component {
                 $('#addChannelModal').modal('hide');
                 loadingProgress.stop();
 
-                (new swagger.ChannelApi()).channelListGet(select('user.token'), {def: true}).then(({data}) => {
-                    dispatch(channelListAction(data));
-                });
+                const {data} = yield(new swagger.ChannelApi()).channelListGet(select('user.token'), {def: true});
+                dispatch(channelListAction(data));
+
 
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)

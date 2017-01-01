@@ -42,7 +42,6 @@ export default () => (
             <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware} />
             <Route path='/channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware} />
             <Route path='/campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware} />
-
         </Route>
     </Router>
 );

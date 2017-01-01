@@ -1,108 +1,71 @@
-export function sync(generator, main) {
-    let iterator;
-    let result;
-
-    if (typeof generator == 'function') {
-        iterator = generator();
-    } else if (typeof generator == 'object') {
-        iterator = generator;
-    } else {
-        result = main.next(generator);
-        if (!result.done) {
-            sync(result.value, main)
+function resolvePromise(promise, iterator) {
+    promise.then(
+        (response) => {
+            let result = iterator.next(response);
+            if (!result.done) {
+                sync(result.value, iterator);
+            }
+        },
+        error => {
+            let result = iterator.next(error);
+            if (!result.done) {
+                sync(result.value, iterator);
+            }
         }
+    );
+}
+
+function resolveGenerator(generator, iterator) {
+    let result = generator.next();
+
+
+    if (!result.done) {
+        sync(result.value, iterator);
+    }
+}
+
+function resolveSimpleResult(result, iterator) {
+    let _result = iterator.next(result);
+    if (!_result.done) {
+        sync(_result.value, iterator)
+    }
+}
+
+function callGenerator(generator) {
+    if (typeof generator == "function") {
+        return generator();
     }
 
-    if (!iterator) {
-        return;
+    return generator;
+}
+
+function decideOnGeneratorOrPromiseOrSimpleAnswer(result) {
+    if (result.next) {
+        return {type: "generator", result};
+    } else if (result.then) {
+        return {type: "promise", result};
     }
 
-    if (iterator.then) {
-        iterator.then(
-            (response) => {
-                result = main.next(response);
-                if (!result.done) {
-                    sync(result.value, main || iterator);
-                }
-            },
-            error => {
-                result = main.next(error);
-                if (!result.done) {
-                    sync(result.value, main || iterator);
-                }
-            }
-        );
-    } else {
-        result = iterator.next();
-        if (result.done)
-            return true;
+    return {type: "result", result};
+}
 
-        if (result.value && result.value.next) {
-            result = result.value.next();
-            result = result.value;
-        }
+function chooseGenerator(generator, iterator) {
+    if (generator.next) {
+        return generator;
+    }
 
-        if (result.value) {
-            if (result.value.then) {
-                result = result.value;
-            }
-        }
-        if (result.then) {
-            result.then(
-                (response) => {
-                    result = iterator.next(response);
-                    if (result.done) {
-                        if (main) {
-                            result = main.next(response);
-                            if (!result.done) {
-                                sync(result.value, main)
-                            }
-                        }
-                    } else {
-                        if (result.value.next) {
-                            sync(result.value, iterator);
-                        } else {
-                            result = iterator.next(result.value);
-                            if (!result.done) {
-                                sync(result.value, main || iterator)
-                            }
-                        }
-                    }
-                },
-                error => {
-                    result = iterator.next(error);
-                    if (result.done) {
-                        if (main) {
-                            result = main.next(error);
-                            if (!result.done) {
-                                sync(result.value, main)
-                            }
-                        }
-                    } else {
-                        if (result.value.next) {
-                            sync(result.value, iterator);
-                        } else {
-                            result = iterator.next(result.value);
-                            if (!result.done) {
-                                sync(result.value, main || iterator)
-                            }
-                        }
-                    }
-                }
-            );
-        } else {
-            if (result.value && main) {
-                result = main.next(result.value);
-                if (!result.done) {
-                    sync(result.value, main || iterator, true);
-                }
-            } else {
-                result = iterator.next(result);
-                if (!result.done) {
-                    sync(result.value, main || iterator, true);
-                }
-            }
-        }
+    return iterator;
+}
+
+export function sync(generator, iterator) {
+    let {type, result} = decideOnGeneratorOrPromiseOrSimpleAnswer(callGenerator(generator));
+    if (type == "generator") {
+        resolveGenerator(result, chooseGenerator(result, iterator));
+    } else if (type == "promise") {
+        resolvePromise(result, chooseGenerator(result, iterator));
+    } else if (type == "result") {
+        console.log(result);
+        resolveSimpleResult(result, chooseGenerator(result, iterator));
     }
 }
 
