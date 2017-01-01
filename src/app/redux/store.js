@@ -14,6 +14,7 @@ import {channelListReducer} from "./reducers/channelList";
 import {campaignListReducer} from "./reducers/campaignList";
 import {categoryListReducer} from "./reducers/categoryList";
 import {channelDataReducer} from "./reducers/channelDataReducer";
+import {userDataReducer} from "./reducers/userDataReducer";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -29,6 +30,7 @@ export const store = createStore(
         userList: userListReducer,
         channelList: channelListReducer,
         channelData: channelDataReducer,
+        userData: userDataReducer,
         campaignList: campaignListReducer,
         categoryList: categoryListReducer,
         form: formReducer,
