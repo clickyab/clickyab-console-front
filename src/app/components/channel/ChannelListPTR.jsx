@@ -40,7 +40,7 @@ export default class ChannelListPTR extends Component {
                         <DataTable {...this.props}/>
                     </div>
                 </div>
-                <EditChannelModalCTR/>
+                <EditChannelModalCTR form="EditChannelModalPTR"/>
             </div>
         )
     }

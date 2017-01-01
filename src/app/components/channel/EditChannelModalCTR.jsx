@@ -43,6 +43,7 @@ export default class EditChannelModalCTR extends Component {
     };
 
     render() {
-        return (<EditChannelModalPTR channelData={this.props.channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
+        const {form, channelData} = this.props;
+        return (<EditChannelModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
     }
 }
