@@ -4,7 +4,7 @@ import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
 import {userListAction} from '../../redux/actions/index';
-import Edit from "../common/DataTable/Edit";
+import EditUserButton from "./EditUserButton";
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {
@@ -36,7 +36,7 @@ export default class UsersListCTR extends Component {
     }
 
     edit(id) {
-        return <Edit key={Math.random()} id={id}/>
+        return <EditUserButton key={Math.random()} id={id}/>
     }
 
     render() {

@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import ChannelListPTR from "./ChannelListPTR";
-import Edit from "../common/DataTable/Edit";
-import Change from "../common/DataTable/Change";
+import EditChannelButton from "./EditChannelButton";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
 import {channelListAction} from "../../redux/actions/index";
@@ -38,12 +37,9 @@ export default class ChannelListCTR extends Component {
     }
 
     edit(id) {
-        return <Edit key={Math.random()} id={id}/>
+        return <EditChannelButton key={Math.random()} id={id}/>
     }
 
-    change(id) {
-        return <Change key={Math.random()} id={id}/>
-    }
 
     updated_at(updated_at) {
         return moment(updated_at).format('dddd، jD jMMMM jYYYY');
@@ -62,7 +58,6 @@ export default class ChannelListCTR extends Component {
                                 search={this.search.bind(this)}
                                 mutators={{updated_at: this.updated_at, created_at: this.created_at}}
                                 edit={this.edit.bind(this)}
-                                change={this.change.bind(this)}
         />);
     }
 }

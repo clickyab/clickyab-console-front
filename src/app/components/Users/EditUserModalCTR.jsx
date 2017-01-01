@@ -1,10 +1,9 @@
 import React, {Component} from 'react';
-import EditChannelModalPTR from './EditUserModalPTR';
 import {connect} from "react-redux";
+import EditUserModalPTR from "./EditUserModalPTR";
 import swagger from '../../swagger/index';
-import {channelDataAction, updateAChannelFromListAction} from "../../redux/actions/index";
+import {updateAChannelFromListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
-import {getToken} from "../../redux/helpers";
 import {FailedBoxAlert} from "../../functions/notifications";
 import {ifInvalidToken} from "../../functions/helpers";
 import {sync} from "../../functions/sync";
@@ -44,6 +43,6 @@ export default class EditUserModalCTR extends Component {
 
     render() {
         const {form, channelData} = this.props;
-        return (<EditChannelModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
+        return (<EditUserModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
     }
 }

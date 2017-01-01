@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import CampaignListPTR from './CampaignListPTR';
-import Edit from '../common/DataTable/Edit';
+import Edit from '../channel/EditChannelButton';
 
 @connect(({campaignList}) => ({campaignList}))
 export default class CampaignListCTR extends Component {
@@ -18,7 +18,7 @@ export default class CampaignListCTR extends Component {
     }
 
     edit(id) {
-        return <Edit key={Math.random()} id={id}/>
+        return <EditChannelButton key={Math.random()} id={id}/>
     }
 
 

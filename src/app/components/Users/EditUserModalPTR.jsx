@@ -104,5 +104,5 @@ class EditUserModalPTR extends Component {
 }
 
 export default reduxForm({
-    form: 'EditChannelModalPTR'
-})(EditChannelModalPTR);
+    form: 'EditUserModalPTR'
+})(EditUserModalPTR);
