@@ -4,24 +4,20 @@ import ChannelListPTR from "./ChannelListPTR";
 import EditChannelButton from "./EditChannelButton";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
-import {channelListAction} from "../../redux/actions/index";
+import {channelItemsListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
+import {sync} from "../../functions/sync";
 
 @connect(({channelList}) => ({channelList}))
 export default class ChannelListCTR extends Component {
     callApi(query_name, value) {
-        (new swagger.ChannelApi)
-            .channelListGet(select('user.token', 'no token'), {
-                [query_name]: value,
-                def: true
-            }).then(
-            ({error, data, response}) => {
-                this.props.dispatch(channelListAction(data));
-            },
-            error => {
-                console.log(error)
-            }
-        );
+        sync(function*() {
+            let {data} = yield (new swagger.ChannelApi).channelListGet(select('user.token', 'no token'), {
+                [query_name]: value
+            });
+
+            this.props.dispatch(channelItemsListAction(data));
+        })
     }
 
     sort(flag, query_name) {

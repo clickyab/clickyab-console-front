@@ -1,4 +1,4 @@
-import {CHANNEL_LIST, UPDATE_CHANNEL_FROM_LIST, ADD_CHANNEL} from '../actions/index';
+import {CHANNEL_LIST, UPDATE_CHANNEL_FROM_LIST, ADD_CHANNEL, CHANNEL_ITEMS_LIST} from '../actions/index';
 
 function updateARow(state, action) {
     let items = [...state.items];
@@ -17,6 +17,8 @@ export function channelListReducer(state = [], action) {
             return {items: action.data.data, definitions: action.data.definition};
         case UPDATE_CHANNEL_FROM_LIST:
             return updateARow(state, action);
+        case CHANNEL_ITEMS_LIST:
+            return {...state, items: action.items}
     }
 
     return state;
