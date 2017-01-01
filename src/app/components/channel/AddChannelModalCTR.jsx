@@ -1,41 +1,47 @@
 import React, {Component} from 'react';
 import AddChannelModalPTR from './AddChannelModalPTR';
-import {connect} from "react-redux";
 import swagger from '../../swagger/index';
-import {channelDataAction} from "../../redux/actions/index";
-import {dispatch} from "../../functions/dispatch";
-import {getToken} from "../../redux/helpers";
 import {FailedBoxAlert} from "../../functions/notifications";
 import {ifInvalidToken} from "../../functions/helpers";
 import {select} from "../../functions/select";
+import {sync} from "../../functions/sync";
+import {dispatch} from "../../functions/dispatch";
+import {addChannel, channelListAction} from "../../redux/actions/index";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
 export default class AddChannelModalCTR extends Component {
 
-
-    addSubmitCallback({error, data, response}) {
-        if (response.statusCode == 200) {
-            $('#addChannelModal').modal('hide');
-            loadingProgress.stop();
-        } else if (response.statusCode == '400') {
-            FailedBoxAlert(response)
-        }
-        ifInvalidToken(response);
-    }
     addChannelSubmit(formValues) {
-        loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
-        loadingProgress.start();
-        (new swagger.ChannelApi())
-            .channelCreatePost(select("user.token","no token"), {'payloadData': formValues})
-            .then(response => this.addSubmitCallback(response));
+        sync(function*() {
+            loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
+            loadingProgress.start();
+            const {response} = yield (new swagger.ChannelApi())
+                .channelCreatePost(select("user.token", "no token"), {'payloadData': formValues});
+
+            if (response.statusCode == 200) {
+                $('#addChannelModal').modal('hide');
+                loadingProgress.stop();
+
+                (new swagger.ChannelApi()).channelListGet(select('user.token'), {def: true}).then(({data}) => {
+                    dispatch(channelListAction(data));
+                });
+
+            } else if (response.statusCode == '400') {
+                FailedBoxAlert(response)
+            }
+            ifInvalidToken(response);
+        });
     }
+
     SubmitEditChannel = (formValues, form) => {
         if (!form.valid())
             return;
+
         this.addChannelSubmit(formValues)
     };
+
     render() {
-        return (<AddChannelModalPTR  SubmitAddChannel={this.SubmitEditChannel}/>);
+        return (<AddChannelModalPTR SubmitAddChannel={this.SubmitEditChannel}/>);
     }
 }
