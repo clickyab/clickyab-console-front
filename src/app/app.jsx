@@ -5,22 +5,21 @@ import { RouteTransition } from 'react-router-transition';
 import {Footer} from './components/layouts/Footer';
 import {Header} from './components/layouts/Header';
 import Sidebar from './components/layouts/Sidebar';
-import PageLoading from './components/common/loading-page';
 import {loading} from "./functions/loading";
 import {setHeight} from "./functions/setHeight";
 
 export default class App extends React.Component {
-	componentDidMount() {
-		loading(false);
+    componentDidMount() {
+        loading(false);
         setHeight();
-		$(window).resize(function() {
-			setHeight();
-		})
-	}
+        $(window).resize(function() {
+            setHeight();
+        })
+    }
 
-	render() {
+    render() {
         let children = this.props.children;
-		return (
+        return (
 			<Provider store={store}>
 				<div className="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 					<div className="page-wrapper">
@@ -33,9 +32,8 @@ export default class App extends React.Component {
 									atEnter={{ opacity: 0 }}
 									atLeave={{ opacity: 0 }}
 									atActive={{ opacity: 1 }}
-
 								>
-									{children}
+                                    {children}
 								</RouteTransition>
 							</div>
 						</div>
@@ -46,6 +44,6 @@ export default class App extends React.Component {
 
 				</div>
 			</Provider>
-		)
-	}
+        )
+    }
 }

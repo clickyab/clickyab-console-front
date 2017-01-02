@@ -7,6 +7,7 @@ import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
 import ping from "../../functions/ping";
+import {isLoginMiddleware} from "../isLoginMiddleware";
 
 function* channelListController(done, next) {
     loading(true);
@@ -28,6 +29,7 @@ function* channelListController(done, next) {
 
 export default (nextState, replace, next) => sync(function*() {
     try {
+        yield* isLoginMiddleware();
         raceOnTime(channelListController, next, function () {
             console.log('hallow');
         }, 20000);
