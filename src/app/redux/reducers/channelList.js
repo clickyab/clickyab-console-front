@@ -18,7 +18,7 @@ export function channelListReducer(state = [], action) {
         case UPDATE_CHANNEL_FROM_LIST:
             return updateARow(state, action);
         case CHANNEL_ITEMS_LIST:
-            return {...state, items: action.items}
+            return Object.assign({}, state, {items: action.items})
     }
 
     return state;
