@@ -53,11 +53,11 @@ export class AdvertiserSidebar extends Component {
                             </ul>
                         </li>
                         <li className='nav-item'>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
+                            <Link to="/channel" className='nav-link nav-toggle'>
                                 <i className='icon-diamond'/>
                                 <span className='title'>{ websites }</span>
                                 <span className='arrow'/>
-                            </a>
+                            </Link>
                         </li>
                         <li className='nav-item  '>
                             <a href='javascript:;' className='nav-link nav-toggle'>
