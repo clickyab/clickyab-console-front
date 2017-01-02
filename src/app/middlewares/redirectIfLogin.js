@@ -1,7 +1,7 @@
 import ping from '../functions/ping';
 import {throwError} from '../functions/Error';
 import {isLogin} from '../redux/helpers';
-import {navigate} from "../functions/navigate";
+import {browserHistory} from 'react-router';
 
 export function* redirectIfLogin() {
     if (isLogin()) {
@@ -9,7 +9,7 @@ export function* redirectIfLogin() {
 
         if (response.statusCode == 200) {
             throwError('isLoginMiddleware', function () {
-                navigate('/v1/profile');
+                browserHistory.push('/v1/profile');
             }, 'custom message');
         }
     }
