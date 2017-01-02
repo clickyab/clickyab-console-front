@@ -1,73 +1,108 @@
-
 var webpack = require('webpack');
 var path = require('path');
 var loaders = require('./webpack.loaders.js');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+var glob = require('glob');
+
+const HOST = process.env.HOST || "127.0.0.1";
+const PORT = process.env.PORT || "8080";
 
 // local css modules
 loaders.push({
-	test: /[\/\\]src[\/\\].*\.css/,
-	exclude: /(node_modules|bower_components|public)/,
-	loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
+    test: /[\/\\]src[\/\\].*\.css/,
+    exclude: /(node_modules|bower_components|public)/,
+    loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]')
 });
 
 // local scss modules
 loaders.push({
-	test: /[\/\\]src[\/\\].*\.scss/,
-	exclude: /(node_modules|bower_components|public)/,
-	loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass')
+    test: /[\/\\]src[\/\\].*\.scss/,
+    exclude: /(node_modules|bower_components|public)/,
+    loader: ExtractTextPlugin.extract('style', 'css?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]', 'sass')
 });
 // global css files
 loaders.push({
-	test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
-	loader: ExtractTextPlugin.extract('style', 'css')
+    test: /[\/\\](node_modules|global)[\/\\].*\.css$/,
+    loader: ExtractTextPlugin.extract('style', 'css')
 });
 
 module.exports = {
-	entry: [
-		'./src/index.jsx'
-	],
-	output: {
-		path: path.join(__dirname, 'dist'),
-		filename: '[chunkhash].js'
-	},
-	resolve: {
-		extensions: ['', '.js', '.jsx']
-	},
-	module: {
-		loaders
-	},
-	plugins: [
-		new WebpackCleanupPlugin(),
-		new webpack.DefinePlugin({
-			'process.env': {
-				NODE_ENV: '"production"'
-			}
-		}),
-		new webpack.optimize.UglifyJsPlugin({
-			compress: {
-				warnings: false,
-				screw_ie8: true,
-				drop_console: true,
-				drop_debugger: true
-			}
-		}),
-		new webpack.optimize.OccurenceOrderPlugin(),
-		new ExtractTextPlugin('[contenthash].css', {
-			allChunks: true
-		}),
-		new HtmlWebpackPlugin({
-			template: './src/index.html',
-			title: 'Webpack App'
-		}),
-		new webpack.optimize.DedupePlugin(),
-		new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
-		new webpack.ProvidePlugin({jQuery: 'jquery'}),
-		new webpack.ProvidePlugin({$: 'jquery'}),
-	],
-	node: {
-		fs: "empty"
-	}
+    entry: {
+        app: glob.sync("./src/**/*.jsx"),
+        vendor: [
+            'jquery',
+            'bootstrap',
+
+            './public/vendor/fetch.js',
+            './public/vendor/jquery.validate.js',
+            './public/vendor/additional-methods.js',
+            './public/vendor/bootstrap-switch.js',
+            './public/vendor/datepicker/jalali.js',
+            './public/vendor/datepicker/calendar.js',
+            './public/vendor/datepicker/calendar-setup.js',
+            './public/vendor/datepicker/calendar-en.js',
+            './public/vendor/datepicker/calendar-fa.js',
+            './public/vendor/app.js',
+            './public/vendor/dashboard.js',
+            './public/vendor/layout.js',
+            './public/vendor/demo.js',
+            './public/vendor/quick-nav.js',
+            './public/vendor/jquery.backstretch.js',
+            './public/vendor/animatedModal.js'
+        ]
+    },
+    output: {
+        path: path.join(__dirname, '../public'),
+        filename: '[name].js',
+        publicPath: "/"
+    },
+    resolve: {
+        modulesDirectories: ['node_modules'],
+        extensions: ['', '.js', '.jsx']
+    },
+    module: {
+        loaders
+    },
+    devServer: {
+        contentBase: "./public",
+        noInfo: false,
+        hot: false,
+        inline: true,
+        historyApiFallback: {
+            index: 'index.html'
+        },
+        port: PORT,
+        host: HOST
+    },
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+        new webpack.DefinePlugin({
+            'process.env': {
+                NODE_ENV: '"production"'
+            }
+        }),
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                screw_ie8: true,
+                drop_console: true,
+                drop_debugger: true
+            }
+        }),
+        new webpack.optimize.OccurenceOrderPlugin(),
+        new ExtractTextPlugin('[contenthash].css', {
+            allChunks: true
+        }),
+        new HtmlWebpackPlugin({
+            template: './src/index.html'
+        }),
+        new webpack.optimize.DedupePlugin(),
+        new webpack.ProvidePlugin({jQuery: 'jquery'}),
+        new webpack.ProvidePlugin({$: 'jquery'})
+    ],
+    target: 'web',
+    node: {
+        fs: "empty"
+    }
 };

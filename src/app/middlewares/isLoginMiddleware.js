@@ -5,7 +5,7 @@ import {throwError} from "../functions/Error";
 export function* isLoginMiddleware() {
     if (!isLogin()) {
         throwError('isLoginMiddleware', function () {
-            browserHistory.push('login')
+            browserHistory.push('/v1/login')
         });
     }
 }

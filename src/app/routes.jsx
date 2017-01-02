@@ -25,23 +25,23 @@ import CampaignListCTR from './components/campaign/CampiagnListCTR';
 
 export default () => (
     <Router history={history}>
-        <Route component={Transition}>
-            <Route path='/register' component={Register} title='Register' name='Register' />
-            <Route path='/login' component={Login} name='Login' onEnter={onLogin} />
-            <Route path='/password-recovery' component={ForgotPassword} name='ForgotPassword' />
+        <Route path='/v1' component={Transition}>
+            <Route path='register' component={Register} title='Register' name='Register'/>
+            <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
+            <Route path='password-recovery' component={ForgotPassword} name=''/>
         </Route>
-        <Route path='/' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
+        <Route path='/v1' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
                onEnter={(nextState, replace, next) => {
                    next()
                }}>
-            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'} />
-            <Route path='/publisher' component={PublisherDashboardPage} name='publisher' />
-            <Route path='/advertiser' component={AdvertiserDashboardPage} name='advertiser' />
-            <Route path='/profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware} />
-            <Route path='/category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware} />
-            <Route path='/user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware} />
-            <Route path='/channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware} />
-            <Route path='/campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware} />
+            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
+            <Route path='publisher' component={PublisherDashboardPage} name='publisher'/>
+            <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
+            <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
+            <Route path='category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware}/>
+            <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
+            <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
+            <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
         </Route>
     </Router>
 );

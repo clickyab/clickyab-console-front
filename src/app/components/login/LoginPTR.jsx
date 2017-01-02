@@ -85,7 +85,7 @@ class LoginForm extends Component {
 							<div className="col-sm-8 col-sm-offset-2 text">
 								<h1>
                                     <a href="http://clickyab.com">
-                                        <img src="img/logo_fa.png" width="150px"/>
+                                        <img src="/img/logo_fa.png" width="150px"/>
                                     </a>
                                 </h1>
 							</div>

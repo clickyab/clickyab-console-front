@@ -9,7 +9,7 @@ export function* redirectIfLogin() {
 
         if (response.statusCode == 200) {
             throwError('isLoginMiddleware', function () {
-                browserHistory.push('/profile');
+                browserHistory.push('/v1/profile');
             }, 'custom message');
         }
     }
