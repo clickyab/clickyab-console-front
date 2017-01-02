@@ -5,6 +5,7 @@ import {loginReducer, userReducer, registerReducer, impersonateReducer} from './
 import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
 import {asyncPullIntoLocalStorage} from '../middlewares/asyncPullIntoLocalStorage';
+import {routerMiddleware} from 'react-router-redux'
 import {browserHistory} from 'react-router';
 import localStorage from 'store';
 import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
@@ -14,8 +15,6 @@ import {campaignListReducer} from "./reducers/campaignList";
 import {categoryListReducer} from "./reducers/categoryList";
 import {channelDataReducer} from "./reducers/channelDataReducer";
 import {userDataReducer} from "./reducers/userDataReducer";
-import { routerMiddleware } from 'react-router-redux'
-const reduxRouterMiddleware = routerMiddleware(browserHistory);
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -52,7 +51,6 @@ export const store = createStore(
         reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-        reduxRouterMiddleware,
         // logger
         )
     )
