@@ -1,17 +1,11 @@
-import ping from '../functions/ping';
-import {throwError} from '../functions/Error';
 import {isLogin} from '../redux/helpers';
 import {browserHistory} from 'react-router';
-
+import {throwError} from "../functions/Error";
 
 export function* isLoginMiddleware() {
-	if (isLogin()) {
-		let {user, response} = yield ping();
-
-		if (response.statusCode == 200) {
-			throwError('isLoginMiddleware', function () {
-				browserHistory.push('/profile');
-			}, 'custom message');
-		}
-	}
+    if (!isLogin()) {
+        throwError('isLoginMiddleware', function () {
+            browserHistory.push('login')
+        });
+    }
 }

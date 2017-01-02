@@ -1,11 +1,11 @@
 import {sync} from '../../functions/sync';
-import {isLoginMiddleware} from '../isLoginMiddleware';
 import {loading} from '../../functions/loading';
+import {redirectIfLogin} from "../redirectIfLogin";
 
 export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
-        yield* isLoginMiddleware();
+        yield* redirectIfLogin();
 
         next()
     } catch (error) {
