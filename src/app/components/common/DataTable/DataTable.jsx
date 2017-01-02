@@ -32,11 +32,10 @@ export default class DataTable extends React.Component {
     }
 
     _update() {
-        let widthDatatableHolder =  $(".datatable-parent").length > 0 ?
-            $(".datatable-parent").outerWidth() : $("body").outerWidth();
-        let margin = $(".datatable-parent").length > 0 ? 58 : 320;
+        let heightDatatableHolder = $("body").outerWidth();
+
         this.setState({
-            width: widthDatatableHolder - margin
+            width: heightDatatableHolder - 320
         });
     }
 

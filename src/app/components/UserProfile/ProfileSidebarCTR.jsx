@@ -7,11 +7,10 @@ import {updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../../red
 import {updateUserInformation} from "../../redux/actions/user";
 import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
-import {asyncRemoveLocalStorage} from "../../middlewares/asyncRemoveLocalStorage";
 import {logout} from "../../redux/actions/login";
 let Ladda = require('ladda/js/ladda');
 
-@connect()
+@connect(({user}) => ({user}))
 export default class ProfileSidebarCTR extends Component {
     loadingProgress;
 
@@ -37,7 +36,6 @@ export default class ProfileSidebarCTR extends Component {
             FailedBoxAlert(response);
         }
     }
-
     LogoutCall() {
         (new swagger.UserApi())
             .userLogoutGet(getToken())
@@ -53,13 +51,13 @@ export default class ProfileSidebarCTR extends Component {
         if (this.loadingProgress)
             this.loadingProgress.stop();
     }
-
     SubmitLogout = () => {
         this.loading();
         this.LogoutCall()
     };
 
     render() {
-        return (<ProfileSidebarPTR SubmitLogout={this.SubmitLogout}/>);
+        const {UserName} = this.props;
+        return (<ProfileSidebarPTR UserName={UserName} SubmitLogout={this.SubmitLogout}/>);
     }
 }

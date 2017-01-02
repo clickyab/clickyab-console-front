@@ -23,7 +23,7 @@ export const userListAction = (data) => ({type: USER_LIST, data});
 export const channelDataAction = (data) => ({type: CHANNEL_DATA, data});
 export const channelQueryAction = (query) => ({type: CHANNEL_QUERY, query});
 export const channelListAction = (data) => ({type: CHANNEL_LIST, data});
-export const channelItemsListAction = ({data}) => ({type: CHANNEL_ITEMS_LIST, items: data});
+export const channelItemsListAction = (items) => ({type: CHANNEL_ITEMS_LIST, items});
 export const updateLocalStorageAction = () => ({type: UPDATE_LOCAL_STORAGE});
 export const asyncRemoveLocalStorageAction = () => ({type: REMOVE_LOCAL_STORAGE});
 export const loginActions = login;

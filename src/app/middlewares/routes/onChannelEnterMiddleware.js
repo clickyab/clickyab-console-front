@@ -19,8 +19,8 @@ function* channelListController(done, next) {
         dispatch(channelListAction(data));
 
         next();
+        loading(false);
     } else {
-        console.log(error);
         throwError("onChannelEnterMiddleWare", function () {
             console.log("failed")
         });

@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {getGravatarFromEmail} from "../../functions/gravatar";
 import {getEmail , getCorporationTitle , getFullName} from './../../redux/helpers'
 import {select} from "./../../functions/select";
+import {connect} from "react-redux";
 
 export default class ProfileSidebarPTR extends Component {
 

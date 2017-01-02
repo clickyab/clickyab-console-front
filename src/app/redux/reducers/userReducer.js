@@ -10,6 +10,5 @@ export default function userReducer(state = {}, action) {
         case UPDATE_CORPORATION_INFO:
             return Object.assign({}, state, {corporation: action.user});
 	}
-
 	return state;
 }
