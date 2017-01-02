@@ -31,13 +31,14 @@ export default class DataTable extends React.Component {
         this._updateTimer = setTimeout(this._update.bind(this), 16);
     }
 
-    _update() {
-        let heightDatatableHolder = $("body").outerWidth();
-
-        this.setState({
-            width: heightDatatableHolder - 320
+    _update() {	
+        let widthDatatableHolder =  $(".datatable-parent").length > 0 ?		
+            $(".datatable-parent").outerWidth() : $("body").outerWidth();		 
+        let margin = $(".datatable-parent").length > 0 ? 58 : 320;	
+        this.setState({		         
+            width: widthDatatableHolder - margin		
         });
-    }
+      }
 
     setRows(items, definitions) {
         let {sort, filter, search, change, edit, mutators} = this.props;
