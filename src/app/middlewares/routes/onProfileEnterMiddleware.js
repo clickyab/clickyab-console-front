@@ -10,9 +10,9 @@ export default (nextState, replace, next) => sync(function*() {
     let {error, user, response} = yield ping();
     if (response.statusCode == 200) {
         next();
-        browserHistory.push('/profile');
+        browserHistory.push('/v1/profile');
     } else {
-        browserHistory.push('/login');
+        browserHistory.push('/v1/login');
         AlertBox('error', 'لطفا در ابتدا وارد حساب کاربری شوید')
     }
     // try {
@@ -20,9 +20,9 @@ export default (nextState, replace, next) => sync(function*() {
     //     let {error, user, response} = yield ping();
     //     if (response.statusCode == 200) {
     //         next();
-    //         browserHistory.push('/profile');
+    //         browserHistory.push('/v1/profile');
     //     } else {
-    //         browserHistory.push('/login');
+    //         browserHistory.push('/v1/login');
     //         AlertBox("error", "لطفا در ابتدا وارد حساب کاربری شوید")
     //     }
     //     next()

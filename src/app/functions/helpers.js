@@ -34,7 +34,7 @@ export function parseJSON(response) {
 
 export function ifInvalidToken(response) {
    if(response.statusCode == '401') {
-        browserHistory.push('/login')
+        browserHistory.push('/v1/login')
        AlertBox('error','اعتبار شما منقضی شده است لطفا مجددا وارد شوید');
     }
 }
