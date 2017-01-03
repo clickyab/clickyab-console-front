@@ -15,6 +15,7 @@ import {campaignListReducer} from "./reducers/campaignList";
 import {categoryListReducer} from "./reducers/categoryList";
 import {channelDataReducer} from "./reducers/channelDataReducer";
 import {userDataReducer} from "./reducers/userDataReducer";
+import {categoryDataReducer} from "./reducers/CategoryDataReducer";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
@@ -33,6 +34,7 @@ export const store = createStore(
         userData: userDataReducer,
         campaignList: campaignListReducer,
         categoryList: categoryListReducer,
+        categoryData: categoryDataReducer,
         form: formReducer,
         locale: localeReducer('fa', require('../../locales/index').default)
     }),

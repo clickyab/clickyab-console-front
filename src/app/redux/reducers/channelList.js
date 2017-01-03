@@ -1,4 +1,4 @@
-import {CHANNEL_LIST, UPDATE_CHANNEL_FROM_LIST, ADD_CHANNEL, CHANNEL_ITEMS_LIST} from '../actions/index';
+import {CHANNEL_LIST, UPDATE_CHANNEL_FROM_LIST, CHANNEL_ITEMS_LIST} from '../actions/index';
 
 function updateARow(state, action) {
     let items = [...state.items];
