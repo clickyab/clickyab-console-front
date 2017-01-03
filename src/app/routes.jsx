@@ -25,11 +25,6 @@ import CampaignListCTR from './components/campaign/CampiagnListCTR';
 
 export default () => (
     <Router history={history}>
-        <Route path='/v1' component={Transition}>
-            <Route path='register' component={Register} title='Register' name='Register'/>
-            <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
-            <Route path='password-recovery' component={ForgotPassword} name=''/>
-        </Route>
         <Route path='/v1' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
                onEnter={(nextState, replace, next) => {
                    next()
@@ -42,6 +37,12 @@ export default () => (
             <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
             <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
             <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
+        </Route>
+
+        <Route path='/v1' component={Transition}>
+            <Route path='register' component={Register} title='Register' name='Register'/>
+            <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
+            <Route path='password-recovery' component={ForgotPassword} name=''/>
         </Route>
     </Router>
 );
