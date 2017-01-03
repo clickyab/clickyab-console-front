@@ -1,14 +1,28 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, change} from 'redux-form';
 import $ from 'jquery';
+import {shallowEqual} from './../../3rd/shallowEqual';
+import {dispatch} from "../../functions/dispatch";
 
-class EditCategoryPTR extends Component {
+class EditCategoryModalPTR extends Component {
     editCategoryForm;
     state = {
         validation: true
     };
+
+    shouldComponentUpdate(nextProps) {
+        if(!shallowEqual(this.props, nextProps)) {
+            for (let key in nextProps.categoryData) {
+                dispatch(change(nextProps.form, key, nextProps.categoryData[key]))
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     componentDidMount() {
-        $('.modal').modal('show'); //TODO: remove, debug mode
         this.editCategoryForm = $('#editCategoryForm');
         this.editCategoryForm.validate({
             rules: {
@@ -70,4 +84,4 @@ class EditCategoryPTR extends Component {
 
 export default reduxForm({
     form: 'EditCategoryForm'
-})(EditCategoryPTR);
+})(EditCategoryModalPTR);

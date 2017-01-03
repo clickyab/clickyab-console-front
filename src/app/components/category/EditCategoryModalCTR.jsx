@@ -1,30 +1,32 @@
 import React, {Component} from 'react';
-import EditCategoryPTR from './EditCategoryPTR';
+import EditCategoryModalPTR from './EditCategoryModalPTR';
 import swagger from './../../swagger/index';
 import {FailedBoxAlert} from "./../../functions/notifications";
 import {ifInvalidToken} from "./../../functions/helpers";
+import {dispatch} from "./../../functions/dispatch";
 import {sync} from "./../../functions/sync";
 import {select} from "./../../functions/select";
 import {connect} from 'react-redux';
+import {updateACategoryFromListAction} from "./../../redux/actions/index";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
-@connect()
-export default class EditCategoryCTR extends Component {
+@connect(({categoryData}) => ({categoryData}))
+export default class EditCategoryModalCTR extends Component {
 
     EditSubmit(formValues) {
-        const id = '11'; //TODO: replace with props
+        const {id} = this.props.categoryData;
         formValues.scope = 'channel';
         sync(function *() {
             loadingProgress = Ladda.create(document.querySelector('.edit-category-form'));
             loadingProgress.start();
             const {error, data, response} = yield (new swagger.CategoryApi())
-                .categoryEditIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
+                .categoryIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
             if (response.statusCode == '200') {
                 $('#editCategoryModal').modal('hide');
                 loadingProgress.stop();
-                //TODO: dispatch(data)
+                dispatch(updateACategoryFromListAction(data));
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)
             }
@@ -40,7 +42,7 @@ export default class EditCategoryCTR extends Component {
     };
 
     render() {
-        const {form} = this.props; //TODO: category data must be add
-        return (<EditCategoryPTR form={form} SubmitEditCategory={this.SubmitEditCategory}/>);
+        const {form, categoryData} = this.props;
+        return (<EditCategoryModalPTR form={form} categoryData={categoryData} SubmitEditCategory={this.SubmitEditCategory}/>);
     }
 }
