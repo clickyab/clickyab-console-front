@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import AddCategoryModalPTR from "./AddCategoryModalPTR";
 import swagger from './../../swagger/index';
-import {FailedBoxAlert} from "./../../functions/notifications";
+import {FailedBoxAlert, SuccessBoxAlert} from "./../../functions/notifications";
 import {ifInvalidToken} from "./../../functions/helpers";
 import {select} from "./../../functions/select";
 import {sync} from "./../../functions/sync";
@@ -23,10 +23,9 @@ class AddCategoryModalCTR extends Component {
 			if (response.statusCode == 200) {
 				$('#addCategoryModal').modal('hide');
 				loadingProgress.stop();
-
 				const {data} = yield(new swagger.CategoryApi()).categoryListGet(select('user.token'), {def: true});
 				dispatch(categoryListAction(data));
-
+				SuccessBoxAlert(response.text);
 			} else if (response.statusCode == '400') {
 				FailedBoxAlert(response)
 			}

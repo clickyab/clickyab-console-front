@@ -12,20 +12,7 @@ export default class CategoryListPTR extends Component {
 	render() {
 		return (
 			<div className='page-content'>
-				<div className="page-bar">
-					<ul className="page-breadcrumb pull-right">
-						<li>
-							<a href="index.html">داشبورد</a>
-							<i className="fa fa-circle"/>
-						</li>
-						<li>
-							<span>نمایش دهنده</span>
-						</li>
-					</ul>
-					<div className="page-toolbar">
 
-					</div>
-				</div>
 				<div className='row'>
 					<div className='col-lg-8 col-md-8 col-sm-8 col-xs-12'>
 						<h1 className='page-title'>  مدیریت دسته ها</h1>

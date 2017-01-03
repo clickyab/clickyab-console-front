@@ -71,7 +71,7 @@ class EditCategoryModalPTR extends Component {
                                         <label className="sr-only" htmlFor="form-password">{'description'}</label>
                                         <Field component="input" type="text" name="description" placeholder={'توضیحات'} className="form-control input-lg" id="description"/>
                                     </div>
-                                    <button type="submit" className="edit-category-form btn btn-primary btn-lg btn-block">Save changes</button>
+                                    <button type="submit" className="edit-category-form btn btn-primary btn-lg btn-block">ذخیره</button>
                                 </form>
                             </div>
                         </div>

@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import EditCategoryModalPTR from './EditCategoryModalPTR';
 import swagger from './../../swagger/index';
-import {FailedBoxAlert} from "./../../functions/notifications";
+import {FailedBoxAlert, SuccessBoxAlert} from "./../../functions/notifications";
 import {ifInvalidToken} from "./../../functions/helpers";
 import {dispatch} from "./../../functions/dispatch";
 import {sync} from "./../../functions/sync";
@@ -27,6 +27,7 @@ export default class EditCategoryModalCTR extends Component {
                 $('#editCategoryModal').modal('hide');
                 loadingProgress.stop();
                 dispatch(updateACategoryFromListAction(data));
+                SuccessBoxAlert(response.text);
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)
             }
