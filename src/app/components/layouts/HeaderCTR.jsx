@@ -48,7 +48,7 @@ export class Header extends Component {
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-default">
                                     <li>
-                                        <Link to="/profile">
+                                        <Link to="/v1/profile">
                                             <i className="icon-user"/> پروفایل من </Link>
                                     </li>
                                     <li>

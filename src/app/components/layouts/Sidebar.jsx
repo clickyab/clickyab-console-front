@@ -23,92 +23,41 @@ export class Sidebar extends Component {
                         </li>
 
                         <li className='nav-item start active open'>
-                            <Link to='/' className='nav-link nav-toggle'>
-                                <i className='icon-home'/>
-                                <span className='title'>{ dashboard }</span>
+                            <Link to='/v1' className='nav-link nav-toggle'>
+                                <i className='fa fa-home'/>
+                                <span className='title'>داشبورد</span>
                                 <span className='selected'/>
                                 <span className='arrow open'/>
                             </Link>
                         </li>
-                        <li className='heading'>
-                            <h3 className='uppercase'>{ operations }</h3>
-                        </li>
                         <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ campaigns }</span>
+                            <Link to="/v1/campaign" className='nav-link'>
+                                <i className='fa fa-bullseye'/>
+                                <span className='title'>کمپین ها</span>
                                 <span className='arrow'/>
-                            </a>
-                            <ul className='sub-menu'>
-                                <li className='nav-item'>
-                                    <Link to="/campaigns" className='nav-link'>
-                                        <span className='title'>کمپین ها</span>
-                                    </Link>
-                                </li>
-                                <li className='nav-item'>
-                                    <Link to="/campaigns/campaignsId" className='nav-link'>
-                                      <span className='title'>آی دی کمپین</span>
-                                    </Link>
-                                </li>
-                            </ul>
+                            </Link>
                         </li>
                         <li className='nav-item'>
-                            <Link to="/channel" className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ websites }</span>
+                            <Link to="/v1/channel" className='nav-link nav-toggle'>
+                                <i className='fa fa-television'/>
+                                <span className='title'>کانال ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
                         <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ applications }</span>
+                            <Link to="/v1/category" className='nav-link nav-toggle'>
+                                <i className='fa fa-folder-open'/>
+                                <span className='title'>دسته بندی ها</span>
                                 <span className='arrow'/>
-                            </a>
+                            </Link>
                         </li>
                         <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ withdrawal } </span>
+                            <Link to="/v1/user" className='nav-link nav-toggle'>
+                                <i className='fa fa-user'/>
+                                <span className='title'>مدیریت کاربران</span>
                                 <span className='arrow'/>
-                            </a>
+                            </Link>
                         </li>
-                        <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ slots }</span>
-                                <span className='arrow'/>
-                            </a>
-                        </li>
-                        <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ potential }</span>
-                                <span className='arrow'/>
-                            </a>
-                        </li>
-                        <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ users }</span>
-                                <span className='arrow'/>
-                            </a>
-                        </li>
-                        <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ financial }</span>
-                                <span className='arrow'/>
-                            </a>
-                        </li>
-                        <li className='nav-item  '>
-                            <a href='javascript:;' className='nav-link nav-toggle'>
-                                <i className='icon-diamond'/>
-                                <span className='title'>{ access }</span>
-                                <span className='arrow'/>
-                            </a>
-                        </li>
-
                     </ul>
                 </div>
 
