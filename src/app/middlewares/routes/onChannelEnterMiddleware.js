@@ -6,37 +6,36 @@ import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
-import ping from "../../functions/ping";
 import {isLoginMiddleware} from "../isLoginMiddleware";
+import {browserHistory} from "react-router";
+import {handleError} from "../../functions/catchError";
 
 function* channelListController(done, next) {
-    loading(true);
-    const {error, data, response} = yield (new swagger.ChannelApi())
-        .channelListGet(select('user.token'), {def: true});
+	loading(true);
+	yield* isLoginMiddleware();
+	const {error, data, response} = yield (new swagger.ChannelApi())
+		.channelListGet(select('user.token'), {def: true});
 
-    done();
-    if (!error) {
-        dispatch(channelListAction(data));
+	done();
+	if (!error) {
+		dispatch(channelListAction(data));
 
-        next();
-        loading(false);
-    } else {
-        throwError("onChannelEnterMiddleWare", function () {
-            console.log("failed")
-        });
-    }
+		next();
+		loading(false);
+	} else {
+		throwError("onChannelEnterMiddleWare", function () {
+			browserHistory.push('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        raceOnTime(channelListController, next, function () {
-            console.log('hallow');
-        }, 20000);
-    } catch (error) {
-        if (error.recover)
-            error.recover();
-        else
-            console.log(error);
-    }
+	try {
+		yield* isLoginMiddleware();
+		raceOnTime(channelListController, next, function () {
+			browserHistory.push('/v1/login');
+		}, 20000);
+	} catch (error) {
+		handleError(error);
+	}
 });
