@@ -22,8 +22,8 @@ export class Header extends Component {
             <div className="page-header navbar navbar-fixed-top">
                 <div className="page-header-inner ">
                     <div className="page-logo">
-                        <a href="index.html">
-                            <img src="/img/logo_fa.png" alt="logo" className="logo-default"/>
+                        <a href="">
+                            <img src="/img/logo_fa.svg" alt="logo" className="logo-default"/>
                         </a>
                         <div className="menu-toggler sidebar-toggler">
                             <span/>
