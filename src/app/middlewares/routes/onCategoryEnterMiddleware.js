@@ -15,7 +15,8 @@ export default (nextState, replace, next) => sync(function*() {
         });
 
         dispatch(categoryListAction(data));
-        next()
+        next();
+        loading(false);
     } catch (error) {
         console.log('errors', error);
     }
