@@ -68,7 +68,7 @@ class LoginForm extends Component {
                             <div className="col-sm-8 col-sm-offset-2 text">
                                 <h1>
                                     <a href="http://clickyab.com">
-                                        <img src="img/logo_fa.png" width="150px"/>
+                                        <img src="/img/logo_fa_white.svg" width="300px"/>
                                     </a>
                                 </h1>
                             </div>
@@ -91,7 +91,7 @@ class LoginForm extends Component {
                                             <label className="sr-only" htmlFor="form-username">{email}</label>
                                             <Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email"/>
                                         </div>
-                                        <button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{forget_submit}</span></button>
+                                        <button type="submit" className="btn mt-ladda-btn ladda-button btn-primary" data-style="zoom-in"><span className="ladda-label">{forget_submit}</span></button>
                                     </form>
                                     <div className="success-message-recovery text-center" style={{display: 'none'}}>
                                         <h3>ایمیل بازیابی کلمه عبور با موفقیت ارسال شد</h3>
