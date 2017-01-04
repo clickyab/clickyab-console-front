@@ -89,7 +89,7 @@ class RegisterForm extends Component {
                             <div className="col-sm-8 col-sm-offset-2 text">
                                 <h1>
                                     <a href="http://clickyab.com">
-                                        <img src="img/logo_fa.png" width="150px"/>
+                                        <img src="/img/logo_fa_white.svg" width="300px"/>
                                     </a>
                                 </h1>
                             </div>
@@ -119,7 +119,7 @@ class RegisterForm extends Component {
                                             <label className="sr-only" htmlFor="repeat_password">{repeat_password}</label>
                                             <Field component="input" type="password" name="repeat_password" placeholder={repeat_password} className="form-password form-control" id="repeat_password"/>
                                         </div>
-                                        <button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{register_submit}</span></button>
+                                        <button type="submit" className="btn mt-ladda-btn ladda-button btn-primary" data-style="zoom-in"><span className="ladda-label">{register_submit}</span></button>
                                     </form>
                                     <div className="row">
                                         <div className="col-sm-6 col-sm-offset-3 social-login">

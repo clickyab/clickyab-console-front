@@ -85,7 +85,7 @@ class LoginForm extends Component {
 							<div className="col-sm-8 col-sm-offset-2 text">
 								<h1>
                                     <a href="http://clickyab.com">
-                                        <img src="/img/logo_fa.png" width="150px"/>
+                                        <img src="/img/logo_fa_white.svg" width="300px"/>
                                     </a>
                                 </h1>
 							</div>
@@ -110,7 +110,7 @@ class LoginForm extends Component {
 											<label className="sr-only" htmlFor="form-password">{password}</label>
 											<Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password"/>
 										</div>
-										<button type="submit" className="btn mt-ladda-btn ladda-button" data-style="zoom-in"><span className="ladda-label">{login_submit}</span></button>
+										<button type="submit" className="btn mt-ladda-btn ladda-button btn-primary" data-style="zoom-in"><span className="ladda-label">{login_submit}</span></button>
 									</form>
                                     <div className="row">
                                         <div className="col-sm-6 col-sm-offset-3 social-login">
