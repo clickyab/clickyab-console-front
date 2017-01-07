@@ -3,7 +3,6 @@ import ChangePasswordPTR from './ChangePasswordPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
-import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 let Ladda = require('ladda/js/ladda');
 

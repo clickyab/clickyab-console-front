@@ -1,7 +1,7 @@
-import {store} from './store';
+import {select} from "../functions/select";
 
-export const getToken = () => store.getState().user.token;
-export const getEmail = () => store.getState().user.email;
-export const getFullName = () => store.getState().user.personal.first_name + store.getState().user.personal.last_name;
-export const getCorporationTitle = () => store.getState().user.corporation.title;
-export const isLogin = () => store.getState().login;
+export const getToken = () => select('user.token', 'no token');
+export const getEmail = () => select('user.email', '');
+export const getFullName = () => select('user.personal.first_name', '') + select('user.personal.last_name', '');
+export const getCorporationTitle = () => select('user.corporation.title', '');
+export const isLogin = () => select('login', false);
