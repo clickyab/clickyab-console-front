@@ -14,6 +14,10 @@ flow.js
 **/swagger/
 public/css/fixed-data-table.css
 
+public/build*
+public/index.html
+public/vendor.bundle.js
+
 public/img/apps/
 src/app/components/common/widget-box/
 src/app/container/

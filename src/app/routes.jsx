@@ -2,7 +2,6 @@ import React from 'react';
 import {store} from './../app/redux/store';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
-const history = syncHistoryWithStore(browserHistory, store);
 import App from './app';
 import Login from './components/login/LoginCTR';
 import CategoryListCTR from './components/category/CategoryListCTR';
@@ -24,6 +23,7 @@ import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/create/CreateCTR';
 import CampaignInformationPTR from './components/campaign/campaign-information/CampaignInformationPTR';
 
+const history = syncHistoryWithStore(browserHistory, store);
 
 export default () => (
     <Router history={history}>

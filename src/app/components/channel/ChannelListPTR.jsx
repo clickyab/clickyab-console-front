@@ -29,7 +29,7 @@ export default class ChannelListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <DataTable {...this.props}/>
+                        <DataTable {...this.props} list="channel"/>
                     </div>
                 </div>
                 <AddChannelModalCTR/>

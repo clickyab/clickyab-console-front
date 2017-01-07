@@ -1,7 +1,6 @@
 import {store} from './redux/store';
 import {Provider} from 'react-redux';
 import React from 'react';
-import { RouteTransition } from 'react-router-transition';
 import {Footer} from './components/layouts/Footer';
 import {Header} from './components/layouts/HeaderCTR';
 import Sidebar from './components/layouts/Sidebar';

@@ -11,7 +11,7 @@ function blacklist(state, list = []) {
 
 export const asyncPullIntoLocalStorage = store => next => action => {
     if (action.type === UPDATE_LOCAL_STORAGE) {
-        new Promise((resolve, reject) => {
+        new Promise((resolve) => {
             localStorage.set('initialState', blacklist(store.getState(), [
                 {routing: {}}, {form: {}}
             ]));
