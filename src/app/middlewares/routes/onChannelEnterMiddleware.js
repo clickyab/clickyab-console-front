@@ -9,8 +9,6 @@ import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
 import {navigate} from "../../functions/navigate";
-import {browserHistory} from "react-router";
-import {handleError} from "../../functions/catchError";
 
 function* channelListController(done, next) {
     loading(true);
