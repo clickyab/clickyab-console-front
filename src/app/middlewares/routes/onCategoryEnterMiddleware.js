@@ -10,6 +10,7 @@ export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
         let {data} = yield (new swagger.CategoryApi()).categoryListGet(select('user.token'), {
+            ...select('queries.category', {}),
             def: true
         });
 

@@ -6,7 +6,7 @@ export default class CampaignListPTR extends Component {
 
 		return (
 			<div className='page-content datatable-parent'>
-				<DataTable {...this.props}/>
+				<DataTable {...this.props} list="campaign"/>
 			</div>
 		)
 	}
