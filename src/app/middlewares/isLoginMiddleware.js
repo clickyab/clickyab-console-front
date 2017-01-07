@@ -1,11 +1,11 @@
 import {isLogin} from '../redux/helpers';
-import {browserHistory} from 'react-router';
 import {throwError} from "../functions/Error";
+import {navigate} from "../functions/navigate";
 
 export function* isLoginMiddleware() {
     if (!isLogin()) {
         throwError('isLoginMiddleware', function () {
-            browserHistory.push('/v1/login')
+            navigate('/v1/login')
         });
     }
 }

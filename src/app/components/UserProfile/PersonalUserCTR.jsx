@@ -4,13 +4,11 @@ import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
-import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {updateUserInformation} from "../../redux/actions/user";
 import moment from "moment";
 let Ladda = require('ladda/js/ladda');
-import {select} from '../../functions/select'
 
 @connect()
 export default class PersonalUserCTR extends Component {

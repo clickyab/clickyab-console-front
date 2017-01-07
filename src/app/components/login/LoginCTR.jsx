@@ -6,7 +6,7 @@ import {successfulLogin, failedLogin} from '../../redux/actions/login';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
-import {push} from "react-router-redux";
+import {navigate} from "../../functions/navigate";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -19,7 +19,7 @@ export default class LoginCTR extends Component {
         dispatch(successfulLogin());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
-        dispatch(push('/profile'));
+        navigate('/v1/profile');
     }
 
     failed400Dispatcher() {

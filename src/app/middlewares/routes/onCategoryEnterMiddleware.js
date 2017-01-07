@@ -9,7 +9,7 @@ import {loading} from '../../functions/loading';
 export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
-        let {error, data, response} = yield (new swagger.CategoryApi()).categoryListGet(select('user.token'), {
+        let {data} = yield (new swagger.CategoryApi()).categoryListGet(select('user.token'), {
             def: true
         });
 

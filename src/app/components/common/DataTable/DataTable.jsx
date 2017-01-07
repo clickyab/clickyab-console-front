@@ -41,7 +41,7 @@ export default class DataTable extends React.Component {
     }
 
     setRows(items, definitions) {
-        let {sort, filter, search, change, edit, mutators} = this.props;
+        let {sort, filter, search, list, change, edit, mutators} = this.props;
         if (!mutators) {
             mutators = {};
         }
@@ -54,6 +54,7 @@ export default class DataTable extends React.Component {
                 _items.push(<Column
                     header={
                         <HeaderCell
+                            list={list}
                             sort={sort}
                             filter={filter}
                             search={search}

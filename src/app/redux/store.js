@@ -16,26 +16,38 @@ import {categoryListReducer} from "./reducers/categoryList";
 import {channelDataReducer} from "./reducers/channelDataReducer";
 import {userDataReducer} from "./reducers/userDataReducer";
 import {categoryDataReducer} from "./reducers/CategoryDataReducer";
+import queryReducer from "./reducers/queryReducer";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
-const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = compose;
 const logger = createLogger();
 
 export const store = createStore(
     combineReducers({
         routing: routerReducer,
-        impersonate: impersonateReducer,
+
         register: registerReducer,
         login: loginReducer,
+
+        impersonate: impersonateReducer,
         user: userReducer,
         userList: userListReducer,
-        channelList: channelListReducer,
-        channelData: channelDataReducer,
         userData: userDataReducer,
+
+        channelList: channelListReducer,
+
+        channelData: channelDataReducer,
+
         campaignList: campaignListReducer,
+
         categoryList: categoryListReducer,
+
         categoryData: categoryDataReducer,
+
+        queries: queryReducer,
+
         form: formReducer,
+
         locale: localeReducer('fa', require('../../locales/index').default)
     }),
     localStorage.get('initialState'),
@@ -53,7 +65,7 @@ export const store = createStore(
         reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-        // logger
+        logger
         )
     )
 );

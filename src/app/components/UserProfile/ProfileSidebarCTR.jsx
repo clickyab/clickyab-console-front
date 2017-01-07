@@ -5,9 +5,9 @@ import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
-import {push} from "react-router-redux";
 import {getToken} from "../../redux/helpers";
 import {logout} from "../../redux/actions/login";
+import {navigate} from "../../functions/navigate";
 let Ladda = require('ladda/js/ladda');
 
 @connect(({user}) => ({user}))
@@ -21,7 +21,7 @@ export default class ProfileSidebarCTR extends Component {
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
         dispatch(asyncRemoveLocalStorageAction());
-        dispatch(push('/login'));
+        navigate('/v1/login');
     }
 
 
