@@ -22,6 +22,7 @@
   "license": "MIT",
   "homepage": "https://github.com/alicoding/react-webpack-babel#readme",
   "dependencies": {
+    "@flowjs/flow.js": "^2.11.2",
     "amcharts3": "github:amcharts/amcharts3#838909c",
     "autoprefixer": "6.1.2",
     "bootstrap": "3.3.7",

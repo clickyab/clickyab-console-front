@@ -13,7 +13,7 @@ export default {
         repeat_password: 'تکرار کلمه عبور',
         login_with_google: 'ورود با گوگل',
         do_not_have_an_account_yet: 'اکانت ندارید؟',
-        copyright: ' © کپی‌رایت ۱۳۹۵. کلیک یاب',
+        copyright: '© کپی‌رایت ۱۳۹۵. کلیه حقوق مادی و معنوی این سایت متعلق به کلیک‌یاب می‌باشد.',
         register: 'ثبت نام کنید',
         advertiser: 'آگهی دهنده',
         publisher: 'نمایش دهنده',

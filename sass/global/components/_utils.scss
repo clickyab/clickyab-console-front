@@ -318,7 +318,12 @@ Custom vertical inline menu
             color:#b9cbd5;
             font-size:15px;
             padding:12px 10px 10px 8px;
-            margin:0 8px 0 0;
+            @if($direction == 'rtl') {
+                margin:0 0 0 8px;
+            }
+            @else {
+                margin:0 8px 0 0;
+            }
             text-align: center;
             background:#e0eaf0 !important;
         }
@@ -330,6 +335,7 @@ Custom vertical inline menu
           display:block;
           background:#f0f6fa;
           border-#{$dir-mode-align}:solid 2px #c4d5df;
+            padding: 0.5em 0;
         }
 
         &:hover a { 
@@ -359,7 +365,6 @@ Custom vertical inline menu
 
         &.active a,
         &:hover a {
-            font-size: 14px;
         }
 
         &.active:after {
@@ -369,8 +374,9 @@ Custom vertical inline menu
             border-top: 6px solid transparent;
             border-#{$dir-mode-align}: 6px solid #169ef4;
             position: absolute;
-            top: 12px;
+            top: 50%;
             #{$dir-mode-align-inverse}: -5px;
+            transform: translateY(-50%);
         }
     }
 }

@@ -1,0 +1,368 @@
+
+.simform {
+  position: relative;
+  margin: 0 auto;
+  padding: 2em 0;
+  max-width: 860px;
+  width: 100%;
+  text-align: $dir-mode-align;
+  font-size: 2.5em;
+}
+
+.simform .submit {
+}
+
+/* Question list style */
+.simform ol {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  position: relative;
+  -webkit-transition: height 0.4s;
+  transition: height 0.4s;
+}
+
+.simform ol:before {
+  content: '';
+  background-color: rgba(0,0,0,0.1);
+  position: absolute;
+  #{$dir-mode-align-inverse}: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2.35em;
+}
+
+.questions li {
+  z-index: 100;
+  position: relative;
+  visibility: hidden;
+  height: 0;
+  -webkit-transition: visibility 0s 0.4s, height 0s 0.4s;
+  transition: visibility 0s 0.4s, height 0s 0.4s;
+}
+
+.questions li.current,
+.no-js .questions li {
+  visibility: visible;
+  height: auto;
+  -webkit-transition: none;
+  transition: none;
+}
+
+/* Labels */
+.questions li > span {
+  display: block;
+  overflow: hidden;
+}
+
+.questions li > span label {
+  display: block;
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.questions li.current > span label,
+.no-js .questions li > span label {
+  -webkit-transition: none;
+  transition: none;
+  -webkit-transform: translateY(0);
+  transform: translateY(0);
+}
+
+.show-next .questions li.current > span label {
+  -webkit-animation: moveUpFromDown 0.4s both;
+  animation: moveUpFromDown 0.4s both;
+}
+
+@-webkit-keyframes moveUpFromDown {
+  from { -webkit-transform: translateY(100%); }
+  to { -webkit-transform: translateY(0); }
+}
+
+@keyframes moveUpFromDown {
+  from { -webkit-transform: translateY(100%); transform: translateY(100%); }
+  to { -webkit-transform: translateY(0); transform: translateY(0); }
+}
+
+/* Input field */
+.questions input {
+  display: block;
+  margin: 0.3em 0 0 0;
+  padding: 0.5em 1em 0.5em 0.7em;
+  width: calc(100% - 2em);
+  border: none;
+  background: transparent;
+  color: rgba(0,0,0,0.8);
+  font-size: 1em;
+  line-height: 1;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s;
+  transition: opacity 0.3s;
+}
+
+.questions .current input,
+.no-js .questions input {
+  opacity: 1;
+}
+
+.questions input:focus,
+.simform button:focus {
+  outline: none;
+}
+
+/* Next question button */
+.next {
+  position: absolute;
+  #{$dir-mode-align-inverse}: 0;
+  bottom: 77px; /* padding-bottom of form plus progress bar height */
+  display: block;
+  padding: 0;
+  width: 2em;
+  height: 2em;
+  border: none;
+  background: none;
+  color: rgba(0,0,0,0.4);
+  text-align: center;
+  opacity: 0;
+  z-index: 100;
+  cursor: pointer;
+  -webkit-transition: -webkit-transform 0.3s, opacity 0.3s;
+  transition: transform 0.3s, opacity 0.3s;
+  -webkit-transform: translateX(-20%);
+  transform: translateX(-20%);
+  pointer-events: none;
+  -webkit-tap-highlight-color: rgba(0, 0, 0, 0);
+}
+
+.next:hover {
+  color: rgba(0,0,0,0.5);
+}
+
+.next::after {
+  position: absolute;
+  top: 0;
+  #{$dir-mode-align}: 0;
+  width: 100%;
+  height: 100%;
+  text-transform: none;
+  font-weight: normal;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 2;
+  speak: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.next.show {
+  opacity: 1;
+  -webkit-transform: translateX(0);
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+/* Progress bar */
+.simform .progress {
+  width: 0%;
+  height: 0.15em;
+  background: rgba(0,0,0,0.3);
+  -webkit-transition: width 0.4s ease-in-out;
+  transition: width 0.4s ease-in-out;
+}
+.simform .progress::before {
+  position: absolute;
+  top: auto;
+  width: 100%;
+  height: inherit;
+  background: rgba(0,0,0,0.05);
+  content: '';
+}
+/* Number indicator */
+.simform .number {
+  position: absolute;
+  $dir-mode-align-inverse: 0;
+  overflow: hidden;
+  margin: 0.4em 0;
+  width: 3em;
+  font-weight: 700;
+  font-size: 0.4em;
+}
+
+.simform .number:after {
+  position: absolute;
+  left: 50%;
+  content: '/';
+  opacity: 0.4;
+  -webkit-transform: translateX(-50%);
+  transform: translateX(-50%);
+}
+
+.simform .number span {
+  float: $dir-mode-align-inverse;
+  width: 40%;
+  text-align: center;
+}
+
+.simform .number .number-current {
+  float: $dir-mode-align-inverse;
+}
+
+.simform .number-next {
+  position: absolute;
+  $dir-mode-align: 0;
+}
+
+.simform.show-next .number-current {
+  -webkit-transition: -webkit-transform 0.4s;
+  transition: transform 0.4s;
+  -webkit-transform: translateY(-100%);
+  transform: translateY(-100%);
+}
+
+.simform.show-next .number-next {
+  -webkit-animation: moveUpFromDown 0.4s both;
+  animation: moveUpFromDown 0.4s both;
+}
+
+/* Error and final message */
+.simform .error-message,
+.simform .final-message {
+  position: absolute;
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.4s;
+  transition: opacity 0.4s;
+}
+
+.simform .error-message {
+  padding: 0.4em 3.5em 0 0;
+  width: 100%;
+  color: rgba(0,0,0,0.7);
+  font-style: italic;
+  font-size: 0.4em;
+}
+
+.final-message {
+  top: 50%;
+  #{$dir-mode-align}: 0;
+  padding: 0.5em;
+  width: 100%;
+  text-align: center;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
+}
+
+.error-message.show,
+.final-message.show {
+  visibility: visible;
+  opacity: 1;
+}
+
+.final-message.show {
+  -webkit-transition-delay: 0.5s;
+  transition-delay: 0.5s;
+}
+
+/* Final hiding of form / showing message */
+.simform-inner.hide {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: opacity 0.3s, visibility 0s 0.3s;
+  transition: opacity 0.3s, visibility 0s 0.3s;
+}
+
+/* No JS Fallback */
+.no-js .simform {
+  font-size: 1.75em;
+}
+
+.no-js .questions li {
+  padding: 0 0 2em;
+}
+
+.no-js .simform .submit {
+  display: block;
+  float: $dir-mode-align;
+  padding: 10px 20px;
+  border: none;
+  background: rgba(0,0,0,0.3);
+  color: rgba(0,0,0,0.4);
+}
+
+.no-js .simform .controls {
+  display: none;
+}
+
+/* Remove IE clear cross */
+input[type=text]::-ms-clear {
+  display: none;
+}
+
+/* Adjust form for smaller screens */
+@media screen and (max-width: 44.75em) {
+  .simform {
+    font-size: 1.8em;
+  }
+}
+
+@media screen and (max-width: 33.5625em) {
+  .simform {
+    font-size: 1.2em;
+  }
+}
+
+
+/* Uploader: Drag & Drop */
+.flow-error {display:none; font-size:14px; font-style:italic;}
+.flow-dragover {padding:30px; color:#555; background-color:#ddd; border:1px solid #999;}
+
+/* Uploader: Progress bar */
+.flow-progress {margin:30px 0 30px 0; width:100%; display:none;}
+.progress-container {height:7px; background:#9CBD94; position:relative; }
+.progress-text {font-size:11px; line-height:9px; padding-left:10px;}
+.progress-pause {padding:0 0 0 7px;}
+.progress-resume-link {display:none;}
+.is-paused .progress-resume-link {display:inline;}
+.is-paused .progress-pause-link {display:none;}
+.is-complete .progress-pause {display:none;}
+
+/* Uploader: List of items being uploaded */
+.flow-list {overflow:auto; margin-right:-20px; display:none;}
+.uploader-item {width:148px; height:90px; background-color:#666; position:relative; border:2px solid black; float:left; margin:0 6px 6px 0;}
+.uploader-item-thumbnail {width:100%; height:100%; position:absolute; top:0; left:0;}
+.uploader-item img.uploader-item-thumbnail {opacity:0;}
+.uploader-item-creating-thumbnail {padding:0 5px; font-size:9px; color:white;}
+.uploader-item-title {position:absolute; font-size:9px; line-height:11px; padding:3px 50px 3px 5px; bottom:0; left:0; right:0; color:white; background-color:rgba(0,0,0,0.6); min-height:27px;}
+.uploader-item-status {position:absolute; bottom:3px; right:3px;}
+
+/* Uploader: Hover & Active status */
+.uploader-item:hover, .is-active .uploader-item {border-color:#4a873c; cursor:pointer; }
+.uploader-item:hover .uploader-item-title, .is-active .uploader-item .uploader-item-title {background-color:rgba(74,135,60,0.8);}
+
+/* Uploader: Error status */
+.is-error .uploader-item:hover, .is-active.is-error .uploader-item {border-color:#900;}
+.is-error .uploader-item:hover .uploader-item-title, .is-active.is-error .uploader-item .uploader-item-title {background-color:rgba(153,0,0,0.6);}
+.is-error .uploader-item-creating-thumbnail {display:none;}
+
+.flow-drop {
+  padding: 15px;
+  font-size: 13px;
+  text-align: center;
+  color: #666;
+  font-weight: bold;
+  background-color: #eee;
+  border: 2px dashed #aaa;
+  border-radius: 10px;
+  margin-top: 40px;
+  z-index: 9999;
+  display: block;
+  min-height: 200px;
+}
+.upload-file-icon i {
+  font-size: 7em;
+  color: #C1C3C5;
+  margin-top: 0.5em;
+  margin-bottom: 0.5em;
+}
