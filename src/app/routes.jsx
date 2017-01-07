@@ -19,9 +19,12 @@ import ChannelListCTR from './components/channel/ChannelListCTR';
 import onChannelEnterMiddleware from './middlewares/routes/onChannelEnterMiddleware';
 import onCampaignEnterMiddleware from './middlewares/routes/onCampaignEnterMiddleware';
 import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddleware';
+import onSlashEnterMiddleware from './middlewares/routes/onSlashEnterMiddleware';
+import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMiddleware';
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/create/CreateCTR';
 import CampaignInformationPTR from './components/campaign/campaign-information/CampaignInformationPTR';
+
 
 const history = syncHistoryWithStore(browserHistory, store);
 
