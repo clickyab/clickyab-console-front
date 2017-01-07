@@ -2,7 +2,6 @@ import React from 'react';
 import {store} from './../app/redux/store';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
 import {syncHistoryWithStore} from 'react-router-redux';
-const history = syncHistoryWithStore(browserHistory, store);
 import App from './app';
 import Login from './components/login/LoginCTR';
 import CategoryListCTR from './components/category/CategoryListCTR';
@@ -21,7 +20,7 @@ import onChannelEnterMiddleware from './middlewares/routes/onChannelEnterMiddlew
 import onCampaignEnterMiddleware from './middlewares/routes/onCampaignEnterMiddleware';
 import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddleware';
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
-
+const history = syncHistoryWithStore(browserHistory, store);
 
 export default () => (
     <Router history={history}>

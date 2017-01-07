@@ -19,7 +19,7 @@ import {categoryDataReducer} from "./reducers/CategoryDataReducer";
 import queryReducer from "./reducers/queryReducer";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
-const enhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const enhancer = compose;
 const logger = createLogger();
 
 export const store = createStore(
