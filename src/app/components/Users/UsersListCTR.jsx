@@ -3,33 +3,34 @@ import {connect} from 'react-redux';
 import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
-import {userListAction} from '../../redux/actions/index';
+import {userItemsListAction} from '../../redux/actions/index';
 import EditUserButton from "./EditUserButton";
 import moment from "moment-jalali";
+import {sync} from "../../functions/sync";
 
 @connect(({userList}) => ({userList}))
 export default class UsersListCTR extends Component {
     callApi(query_name, value) {
-        (new swagger.UserApi)
-            .userUsersGet(select('user.token', 'no token'), {
-                [query_name]: value,
-                def: true
-            }).then(
-            ({error, data, response}) => {
-                this.props.dispatch(userListAction(data));
-            },
-            error => {
-                console.log(error)
-            }
-        );
+        let {dispatch} = this.props;
+        sync(function* () {
+            let {data} = yield (new swagger.UserApi)
+                .userUsersGet(select('user.token', 'no token'), {
+                    ...select('queries.user', {}),
+                    [query_name]: value
+                });
+
+            dispatch(userItemsListAction(data));
+        });
     }
 
     sort(flag, query_name) {
         this.callApi(query_name, flag);
     }
+
     updated_at(updated_at) {
         return moment(updated_at).format('dddd، jD jMMMM jYYYY');
     }
+
     created_at(created_at) {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
@@ -45,6 +46,7 @@ export default class UsersListCTR extends Component {
     edit(id) {
         return <EditUserButton key={Math.random()} id={id}/>
     }
+
     render() {
         const {items, definitions} = this.props.userList;
 

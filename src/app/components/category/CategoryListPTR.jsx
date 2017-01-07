@@ -29,7 +29,7 @@ export default class CategoryListPTR extends Component {
 						</div>
 					</div>
 					<div className='portlet-body'>
-						<DataTable {...this.props}/>
+						<DataTable {...this.props} list="category"/>
 					</div>
 				</div>
 				<AddCategoryModalCTR />
