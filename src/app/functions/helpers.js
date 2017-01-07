@@ -1,5 +1,6 @@
-import { browserHistory } from 'react-router';
 import {AlertBox} from './notifications';
+import {navigate} from "./navigate";
+
 export function checkStatus() {
     switch(response.statusCode) {
         case 200:
@@ -34,7 +35,7 @@ export function parseJSON(response) {
 
 export function ifInvalidToken(response) {
    if(response.statusCode == '401') {
-        browserHistory.push('/v1/login')
+       navigate('/v1/login')
        AlertBox('error','اعتبار شما منقضی شده است لطفا مجددا وارد شوید');
     }
 }

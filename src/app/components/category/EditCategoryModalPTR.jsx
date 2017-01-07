@@ -1,14 +1,28 @@
 import React, {Component} from 'react';
-import {Field, reduxForm} from 'redux-form';
+import {Field, reduxForm, change} from 'redux-form';
 import $ from 'jquery';
+import {shallowEqual} from './../../3rd/shallowEqual';
+import {dispatch} from "../../functions/dispatch";
 
-class EditCategoryPTR extends Component {
+class EditCategoryModalPTR extends Component {
     editCategoryForm;
     state = {
         validation: true
     };
+
+    shouldComponentUpdate(nextProps) {
+        if(!shallowEqual(this.props, nextProps)) {
+            for (let key in nextProps.categoryData) {
+                dispatch(change(nextProps.form, key, nextProps.categoryData[key]))
+            }
+
+            return true;
+        }
+
+        return false;
+    }
+
     componentDidMount() {
-        $('.modal').modal('show'); //TODO: remove, debug mode
         this.editCategoryForm = $('#editCategoryForm');
         this.editCategoryForm.validate({
             rules: {
@@ -57,7 +71,7 @@ class EditCategoryPTR extends Component {
                                         <label className="sr-only" htmlFor="form-password">{'description'}</label>
                                         <Field component="input" type="text" name="description" placeholder={'توضیحات'} className="form-control input-lg" id="description"/>
                                     </div>
-                                    <button type="submit" className="edit-category-form btn btn-primary btn-lg btn-block">Save changes</button>
+                                    <button type="submit" className="edit-category-form btn btn-primary btn-lg btn-block">ذخیره</button>
                                 </form>
                             </div>
                         </div>
@@ -70,4 +84,4 @@ class EditCategoryPTR extends Component {
 
 export default reduxForm({
     form: 'EditCategoryForm'
-})(EditCategoryPTR);
+})(EditCategoryModalPTR);
