@@ -6,14 +6,12 @@ import {navigate} from "../../functions/navigate";
 
 export default (nextState, replace, next) => sync(function*() {
     loading(true);
-    let {error, user, response} = yield ping();
+    let {error, response} = yield ping();
     if (response.statusCode == 200) {
         next();
-        navigate('/v1/profile');
-   loading(false);
+        loading(false);
     } else {
         navigate('/v1/login');
         AlertBox('error', 'لطفا در ابتدا وارد حساب کاربری شوید')
     }
 });
-

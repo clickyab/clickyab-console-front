@@ -14,6 +14,7 @@ export default class ChannelListCTR extends Component {
         let {dispatch} = this.props;
         sync(function*() {
             let {data} = yield (new swagger.ChannelApi).channelListGet(select('user.token', 'no token'), {
+                ...select('queries.channel', {}),
                 [query_name]: value
             });
 

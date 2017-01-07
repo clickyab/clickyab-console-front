@@ -1,31 +1,37 @@
 import React, {Component} from "react";
 import {Table, Column, Cell} from 'fixed-data-table';
 import {dispatch} from "../../../functions/dispatch";
-import {channelQueryAction} from "../../../redux/actions/index";
+import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
+import {select} from "../../../functions/select";
 
 export default class HeaderCell extends Component {
-    sortFlag = "ASC";
 
-    sort(event, query_name) {
+    sort(event, order, query_name) {
         event.preventDefault();
         event.stopPropagation();
-        this.sortFlag = this.sortFlag == "ASC" ? "DESC" : "ASC";
 
-        this.props.sort(this.sortFlag, query_name);
+        this.props.sort(order, query_name);
+    }
+
+    toggleSort(currentSort) {
+        return currentSort == "ASC" ? "DESC" : "ASC";
     }
 
     sortOnChange(event) {
         let {list, query_name} = this.props;
 
-        dispatch(channelQueryAction(list, {[query_name]: event.target.value}));
+        const order = this.toggleSort(select('queries.' + list + '.sort', 'sort:ASC'));
+        dispatch(channelQueryAction(list, 'sort', query_name + ":" + order));
+        dispatch(updateLocalStorageAction());
 
-        this.sort(event, this.props.query_name);
+        this.sort(event, order, this.props.query_name);
     }
 
     onSearchChange(event) {
         let {list, query_name, search} = this.props;
 
-        dispatch(channelQueryAction(list, {[query_name]: event.target.value}));
+        dispatch(channelQueryAction(list, query_name, event.target.value));
+        dispatch(updateLocalStorageAction());
 
         search(event, query_name)
     }
@@ -42,13 +48,14 @@ export default class HeaderCell extends Component {
     filterOnChange(event) {
         let {query_name, list, filter} = this.props;
 
-        dispatch(channelQueryAction(list, {[query_name]: event.target.value}));
+        dispatch(channelQueryAction(list, query_name, event.target.value));
+        dispatch(updateLocalStorageAction());
 
         filter(event, query_name);
     }
 
     render() {
-        let {filters, sortable, children, search, query_name, searchable, ...rest} = this.props;
+        let {filters, sortable, children, search, query_name, list, searchable, ...rest} = this.props;
         const {height, width, columnKey} = rest;
         return (
             <Cell {...{height, width, columnKey}}>
@@ -58,8 +65,11 @@ export default class HeaderCell extends Component {
                     {searchable ?
                         <input className="form-control type-search-datatable"
                                onChange={this.onSearchChange.bind(this)}
+                               defaultValue={select('queries.' + list + "." + query_name, '')}
                                placeholder={"search by " + children}/> : ''}
-                    {filters !== null ? <select className="form-control select-datatable"
+                    {filters !== null ? <select
+                            defaultValue={select('queries.' + list + "." + query_name, '')}
+                            className="form-control select-datatable"
                                                 onChange={this.filterOnChange.bind(this)}>
                             {this.getFilters(filters)}</select> : ''}
                 </div>
