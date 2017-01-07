@@ -9,6 +9,8 @@ npm-debug.log
 tmp
 bin
 
+flow.js
+
 **/swagger/
 public/css/fixed-data-table.css
 

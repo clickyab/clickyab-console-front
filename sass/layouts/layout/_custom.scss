@@ -45,6 +45,9 @@ body {
   top: 3px;
   #{$dir-mode-align}: -7px;
 }
+.big-padding {
+  padding: 6em 0 !important;
+}
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px;
@@ -64,3 +67,4 @@ body {
     display: block !important;
   }
 }
+
