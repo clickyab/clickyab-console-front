@@ -13,7 +13,7 @@ import {navigate} from "../../functions/navigate";
 function* channelListController(done, next) {
 	loading(true);
 	yield* isLoginMiddleware();
-	const {error, data, response} = yield (new swagger.ChannelApi())
+	const {error, data} = yield (new swagger.ChannelApi())
 		.channelListGet(select('user.token'), {def: true});
 
 	done();
