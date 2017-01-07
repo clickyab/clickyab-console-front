@@ -27,11 +27,10 @@ const history = syncHistoryWithStore(browserHistory, store);
 
 export default () => (
     <Router history={history}>
-        <Route path='/v1' component={App} name='Dashboard' getDisplayName={() => 'Dashboard'}
-               onEnter={(nextState, replace, next) => {
-                   next()
-               }}>
-            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard' getDisplayName={() => 'Dashboard'}/>
+        <Route path='/v1' component={App}>
+            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
+                        onEnter={onDashboardEnterMiddleware}
+                        getDisplayName={() => 'Dashboard'}/>
             <Route path='publisher' component={PublisherDashboardPage} name='publisher'/>
             <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
             <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
@@ -48,6 +47,8 @@ export default () => (
             <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
             <Route path='password-recovery' component={ForgotPassword} name=''/>
         </Route>
+
+        <Route path="/" onEnter={onSlashEnterMiddleware}/>
     </Router>
 );
 

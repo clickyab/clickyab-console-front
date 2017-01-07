@@ -29,7 +29,7 @@ export const updateACategoryFromListAction = (data) => ({type: UPDATE_CATEGORY_F
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
 export const userListAction = (data) => ({type: USER_LIST, data});
 export const channelDataAction = (data) => ({type: CHANNEL_DATA, data});
-export const channelQueryAction = (list, queries) => ({type: CHANNEL_QUERY, list, queries});
+export const channelQueryAction = (list, query_name, queries) => ({type: CHANNEL_QUERY, list, query_name, queries});
 export const channelListAction = (data) => ({type: CHANNEL_LIST, data});
 export const categoryListAction = (data) => ({type: CATEGORY_LIST, data});
 
