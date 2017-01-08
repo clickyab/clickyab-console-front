@@ -63,6 +63,8 @@ module.exports = {
 			'./public/vendor/demo.js',
 			'./public/vendor/quick-nav.js',
 			'./public/vendor/jquery.backstretch.js',
+			'./public/vendor/jquery.textcomplete.js',
+			'./public/vendor/emojarea.js',
 			'./public/vendor/animatedModal.js'
 		]
 	},
