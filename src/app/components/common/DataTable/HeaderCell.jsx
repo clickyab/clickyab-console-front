@@ -14,17 +14,17 @@ export default class HeaderCell extends Component {
     }
 
     toggleSort(currentSort) {
-        return currentSort == "ASC" ? "DESC" : "ASC";
+        return currentSort.indexOf("ASC") >= 0 ? "DESC" : "ASC";
     }
 
     sortOnChange(event) {
         let {list, query_name} = this.props;
 
-        const order = this.toggleSort(select('queries.' + list + '.sort', 'sort:ASC'));
+        let order = this.toggleSort(select('queries.' + list + '.sort', 'ASC'));
         dispatch(channelQueryAction(list, 'sort', query_name + ":" + order));
         dispatch(updateLocalStorageAction());
 
-        this.sort(event, order, this.props.query_name);
+        this.sort(event, order, query_name);
     }
 
     onSearchChange(event) {
@@ -70,7 +70,7 @@ export default class HeaderCell extends Component {
                     {filters !== null ? <select
                             defaultValue={select('queries.' + list + "." + query_name, '')}
                             className="form-control select-datatable"
-                                                onChange={this.filterOnChange.bind(this)}>
+                            onChange={this.filterOnChange.bind(this)}>
                             {this.getFilters(filters)}</select> : ''}
                 </div>
             </Cell>
