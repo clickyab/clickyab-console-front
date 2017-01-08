@@ -161,8 +161,8 @@
 		.mt-step-number{
 			font-size:200px;  
 			position: absolute;
-			bottom:0;
-			#{$dir-mode-align-inverse}:0;
+			bottom:-38px;
+			right:0;
 			line-height: 0.79em;
 			color:darken(#E9EDEF, 5%);
 			z-index: 4;
@@ -171,15 +171,15 @@
 		.mt-step-title{ 
 			font-size: 30px;
 		    font-weight: 100;
-		    text-align: $dir-mode-align-inverse;
-    		padding-#{$dir-mode-align-inverse}: 25%;
+		    text-align: right;
+    		padding-right: 25%;
     		z-index: 5;
     		position: relative;
 		}
 
 		.mt-step-content{ 
-		    text-align: $dir-mode-align-inverse;
-    		padding-#{$dir-mode-align-inverse}: 25%;
+		    text-align: right;
+    		padding-right: 25%;
     		z-index: 5;
     		position: relative;
 		}

@@ -180,36 +180,74 @@ export default class UploadFileCTR extends Component {
     render() {
         const {handleSubmit, submitCampaignName} = this.props;
         return (
-            <div className="upload-file">
-                <div className="note note-success">
-                    <h3>لیست سشن های فعال شما</h3>
-                    <p> لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید
-                    </p>
-                </div>
-                <div className="flow-drop" draggable='true'>
-                    <div className="upload-file-icon"><i className="fa fa-cloud-upload"/> </div>
-                    <h2 className="text-center"> برای آپلود فایل خود را بکشید</h2>
-                    <p className="text-center">یا می توانید با فشردن دمه پایین فایل خود را انتخاب کنید</p>
-                    <a type="button" className="btn dark btn-outline sbold uppercase flow-browse">انتخاب فایل</a>
-                </div>
-                {/*<div className="flow-error">*/}
-                    {/*Your browser, unfortunately, is not supported by Flow.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.*/}
-                {/*</div>*/}
+        <div className="page-content">
 
-                <div className="flow-progress">
-                    <div className="progress progress-striped">
-                        <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{width: "0"}}>
-                            <span className="sr-only progress-text"> 20% Complete </span>
-                            <div className="progress-pause">
-                                <a href="#"  className="progress-resume-link"><img src="resume.png" title="Resume upload" /></a>
-                                <a href="#"  className="progress-pause-link"><img src="pause.png" title="Pause upload" /></a>
-                                <a href="#"  className="progress-cancel-link"><img src="cancel.png" title="Cancel upload" /></a>
+            <div className="portlet light margin-top-20">
+
+                <div className="portlet-title">
+                    <div className="caption">
+                        <i className="fa fa-bullseye"/> آپلود فایل و مدیا برای کمپین <span className="title-campaign">فلانی</span> </div>
+                </div>
+                <div className="portlet-body form">
+                    <div className="mt-element-step margin-top-40">
+                        <div className="row step-background">
+                            <div className="col-md-3 bg-grey-steel mt-step-col">
+                                <div className="mt-step-number">۱</div>
+                                <div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
+                                <div className="mt-step-content font-grey-cascade">یک نام به کمپین خود اختصاص دهید.</div>
+                            </div>
+                            <div className="col-md-3 bg-grey-steel mt-step-col active">
+                                <div className="mt-step-number">۲</div>
+                                <div className="mt-step-title uppercase font-grey-cascade">آپلود فایل و مدیا</div>
+                                <div className="mt-step-content font-grey-cascade">عکس، ویدیو و یا پی دی اف خود را آپلود کنید.</div>
+                            </div>
+                            <div className="col-md-3 bg-grey-steel mt-step-col">
+                                <div className="mt-step-number">۳</div>
+                                <div className="mt-step-title uppercase font-grey-cascade">کپشن تبلیغ</div>
+                                <div className="mt-step-content font-grey-cascade">متن تبلیغ خود را تایپ کنید</div>
+                            </div>
+                            <div className="col-md-3 bg-grey-steel mt-step-col">
+                                <div className="mt-step-number">۴</div>
+                                <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
+                                <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان بازدید مشخص کنید</div>
                             </div>
                         </div>
+                        <br/>
+                    </div>
+                    <div className="upload-file margin-bottom-40">
+                        {/*<div className="note note-success">*/}
+                            {/*<h3>لیست سشن های فعال شما</h3>*/}
+                            {/*<p> لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید*/}
+                            {/*</p>*/}
+                        {/*</div>*/}
+                        <div className="flow-drop" draggable='true'>
+                            <div className="upload-file-icon"><i className="fa fa-cloud-upload"/> </div>
+                            <h2 className="text-center"> برای آپلود فایل خود را بکشید</h2>
+                            <p className="text-center">یا می توانید با فشردن دمه پایین فایل خود را انتخاب کنید</p>
+                            <a type="button" className="btn dark btn-outline sbold uppercase flow-browse">انتخاب فایل</a>
+                        </div>
+                        {/*<div className="flow-error">*/}
+                        {/*Your browser, unfortunately, is not supported by Flow.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.*/}
+                        {/*</div>*/}
+
+                        <div className="flow-progress">
+                            <div className="progress progress-striped">
+                                <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{width: "0"}}>
+                                    <span className="sr-only progress-text"> 20% Complete </span>
+                                    <div className="progress-pause">
+                                        <a href="#"  className="progress-resume-link"><img src="resume.png" title="Resume upload" /></a>
+                                        <a href="#"  className="progress-pause-link"><img src="pause.png" title="Pause upload" /></a>
+                                        <a href="#"  className="progress-cancel-link"><img src="cancel.png" title="Cancel upload" /></a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <ul className="flow-list"/>
                     </div>
                 </div>
-                <ul className="flow-list"/>
             </div>
+        </div>
+
         )
     }
 
