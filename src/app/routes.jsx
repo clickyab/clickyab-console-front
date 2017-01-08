@@ -25,6 +25,7 @@ import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/step1/CreateCTR';
 import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
 import CaptionCTR from './components/campaign/step3/CaptionCTR';
+import PageNotFound from './components/404/PageNotFound';
 
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -54,6 +55,7 @@ export default () => (
         </Route>
 
         <Route path="/" onEnter={onSlashEnterMiddleware}/>
+        <Route path="*" component={PageNotFound} />
     </Router>
 );
 
