@@ -17,6 +17,7 @@ function* categoryListController(done, next) {
             ...select('queries.channel', {}),
             def: true
         });
+
     done();
     if (!error) {
         dispatch(categoryListAction(data));
