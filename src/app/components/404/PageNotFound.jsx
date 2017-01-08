@@ -6,6 +6,10 @@ export default class PageNotFound extends React.Component {
         setTimeout(() => {
             navigate("/v1")
         }, 3000);
+        $('.page-404-full-page').css('height', $(window).height());
+        $(window).resize(function() {
+            $('.page-404-full-page').css('height', $(window).height());
+        })
     }
 
     render() {
