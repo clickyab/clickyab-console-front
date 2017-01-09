@@ -30,8 +30,6 @@ import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
 import CaptionCTR from './components/campaign/step3/CaptionCTR';
 import PageNotFound from './components/404/PageNotFound';
 
-
-
 const history = syncHistoryWithStore(browserHistory, store);
 
 export default () => (
@@ -51,6 +49,7 @@ export default () => (
             <Route path='campaign/create/step/1' component={CampaignCreateCTR} onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/2' component={UploadFileCTR} name='campaignList'/>
             <Route path='campaign/create/step/3' component={CaptionCTR} name='campaignList'/>
+
         </Route>
 
         <Route path='/v1' component={Transition}>

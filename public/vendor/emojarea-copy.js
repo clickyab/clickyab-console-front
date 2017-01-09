@@ -1,8 +1,18 @@
-
-
+/*!
+ * EmojioneArea v2.1.2
+ * https://github.com/mervick/emojionearea
+ * Copyright Andrey Izman and other contributors
+ * Released under the MIT license
+ * Date: 2016-04-03T14:37Z
+ */
 (function (document, window, $) {
 
+    //    todo    vahid       2016/27/4
     var myCodVariabe = {};
+    //String.prototype.replaceAlll = function (search, replacement) {
+    //    var target = this;
+    //    return target.replace(new RegExp(search, 'g'), replacement);
+    //};
     var linking = false;
     String.prototype.replaceAlll = function (search, replacement) {
         var target = this;
@@ -10,14 +20,18 @@
     };
     function checkLength(afterChek, editor) {
         var sumAfterChek = afterChek === false ? 0 : 1;
-        var html = $(editor).parent().siblings(".emojieditor-plugin-result").children(".emojieditor-plugin-content").val();
+        var html = $(editor).parent().siblings(".toolgram-editor-result").children(".toolgram-editor-content").val();
         var chekLenghtHtml = html
-        var showCounter = $(editor).parent().siblings(".top-button-container").find(".emojieditor-plugin-remaining");
+        var showCounter = $(editor).parent().siblings(".top-button-container").find(".toolgram-editor-remaining");
+        //chekLenghtHtml = chekLenghtHtml.replaceAlll(/<img[^>]*alt="([^"]+)"[^>]*>/ig, "@");
+        //chekLenghtHtml = chekLenghtHtml.replaceAlll(/<br[^>]*>/g, "@");
+        //chekLenghtHtml = chekLenghtHtml.replaceAlll(/[\uD800-\uDBFF][\uDC00-\uDFFF]/g, "@");
+        //chekLenghtHtml = chekLenghtHtml.replaceAlll("\n", "@");
         var htmlLength = chekLenghtHtml.length;
-        var parentId = $(editor).parents(".emoji-editor").attr("id");
+        var parentId = $(editor).parents(".toolgram-editor").attr("id");
         var remaining = (window[parentId].length - htmlLength) - sumAfterChek;
         $(showCounter).text(remaining);
-        $(showCounter).siblings('.emojieditor-plugin-hidden-remaining').val(remaining);
+        $(showCounter).siblings('.toolgram-editor-hidden-remaining').val(remaining);
         if (window[parentId].length > 0 && remaining < 0) {
             $(showCounter).parent().addClass("lengthIsnotOk");
             //   hide and show
@@ -91,7 +105,7 @@
         return html;
     }
     window["controlHtml"] = function controlHtml(editor) {
-        var html = $(editor).parent().siblings(".emojieditor-plugin-result").children(".emojieditor-plugin-content").val();
+        var html = $(editor).parent().siblings(".toolgram-editor-result").children(".toolgram-editor-content").val();
         html = controlHtmlReplacer(html);
         $(editor).html(html);
         var chideren = $(editor).children();
@@ -250,38 +264,41 @@
 
     }
     function openAdress(editor) {
-        // var popup = $(editor).parent().siblings(".popUp");
-        // $(popup).css("display", "block");
-        $("#addLinkEditorModal").modal();
+        var popup = $(editor).parent().siblings(".popUp");
+        $(popup).css("display", "block");
         $(editor).parents("form").on('keyup keypress', function (e) {
             var keyCode = e.keyCode || e.which;
             if (keyCode === 13) {
                 e.preventDefault();
-                $(".emojieditor-plugin-changelink").trigger("click");
+                $(".toolgram-editor-changelink").trigger("click");
                 return false;
             }
         });
     }
-    function closeModal(popUp, editor) {
+    function closePopUp(popUp, editor) {
+        var parent = $(popUp).parent();
+        var popup = $(popUp);
+        //var editor = $(popUp).siblings("");
+        $(popup).css("display", "none");
         controlHtml(editor);
+        $(parent).children(".popUp").find(".toolgram-editor-linkAdress").val("");
     }
     function changelink(parent, editor) {
         if (linking) {
-            var popup = $(".emojieditor-plugin-linkAdress").val();
+            var popup = $(parent).children(".popUp").find(".toolgram-editor-linkAdress").val();
             toolgramTextLink = toolgramTextLink.replaceAlll("%E2%81%A3", "");
             toolgramTextLink = toolgramTextLink.replaceAlll("U+2063", "");
             toolgramTextLink = toolgramTextLink.replaceAlll("&zwnj;", "");
             popup = "<a href='" + popup + "'>" + toolgramTextLink + "</a>";
             //var editor = $("#" + myCodVariabe.parentID + " .emojionearea-editor")[0];
             var html = $(editor).html();
-            html = html.replace("{{{###}}}", popup);
+            html = html.replace("{#{}#}", popup);
             $(editor).html(html);
-            $("#addLinkEditorModal").modal("hide");
-            // $(parent).children(".popUp").css("display", "none");
+            $(parent).children(".popUp").css("display", "none");
             $(editor).parents("form").off('keyup keypress');
             htmlresult(editor);
             controlHtml(editor);
-            // $("#toolgram-editor-linkAdress").val("");
+            $(parent).children(".popUp").find("#toolgram-editor-linkAdress").val("");
             if (!checkLength(false, editor).status) {
                 $(editor).html(oldHtmlForLink);
             }
@@ -291,16 +308,14 @@
     }
     var toolgramTextLink = "";
     function linkMaking(editor) {
-        console.log("!");
         if (!linking) {
-            console.log("!!!!");
             linking = true;
             var parent = getSelectionParentElement();
             var rang = getSelectionCharacterOffsetsWithin(parent);
             toolgramTextLink = $(parent).text().substring(rang.start, rang.end);
             var html = $(editor).html();
             oldHtmlForLink = html;
-            replaceSelectedText("{{{###}}}");
+            replaceSelectedText("{#{}#}");
             html = html.replaceAlll(/<\/?span[^>]*>/g, "");
             openAdress(editor);
             // $(parent).text($(parent).text().substring(0, rang.start) + $(parent).text().substring(rang.end));
@@ -378,7 +393,7 @@
 
     }
     function areaToEditor(editor) {
-        var content = $(editor).parent().siblings(".emojieditor-plugin-result").children(".emojieditor-plugin-content");
+        var content = $(editor).parent().siblings(".toolgram-editor-result").children(".toolgram-editor-content");
         //var editor = $("#" + myCodVariabe.parentID + " .emojionearea-editor")[0];
         $(editor).html(unicodeTo($(content).val(),
             '<img alt="{alt}" class="emojione' + (self.sprite ? '-{uni}" src="' + blankImg + '">' : '" src="{img}">'))
@@ -387,7 +402,7 @@
     }
     function htmlresult(editor) {
         var html = $(editor).html();
-        var content = $(editor).parent().siblings(".emojieditor-plugin-result").children(".emojieditor-plugin-content");
+        var content = $(editor).parent().siblings(".toolgram-editor-result").children(".toolgram-editor-content");
         html = html.replace(/<img[^>]*alt="([^"]+)"[^>]*>/ig, '$1');
         //html = html.replaceAlll("<br>", "");
         html = htmlToolgram(html);
@@ -433,16 +448,17 @@
         return result;
     }
     function eventHandler() {            //event handler
-        $(".emojieditor-plugin-btnBold").click(function () {   // bold click
+        $(".toolgram-editor-btnBold").click(function () {   // bold click
             var editor = $(this).parent().siblings(".emojionearea").children(".emojionearea-editor")[0];
             boldMaking(editor);
         });
-        $(".emojieditor-plugin-btnItalic").click(function () {     // italic click
+        $(".toolgram-editor-btnItalic").click(function () {     // italic click
             var editor = $(this).parent().siblings(".emojionearea").children(".emojionearea-editor")[0];
             italicMaking(editor);
         });
-        $(document).on("click",".emojieditor-plugin-btnLink" , function () {
-            var editor = $(".emojionearea-editor")[0];
+        $(".toolgram-editor-btnLink").click(function () {
+            //linkclick
+            var editor = $(this).parent().siblings(".emojionearea").children(".emojionearea-editor")[0];
             linkMaking(editor);
         });
 
@@ -450,7 +466,7 @@
         var ctrlKey = 17, iKey = 73, bKey = 66;
         $("body").on('keydown', '.emojionearea .emojionearea-editor', function (e) {
             var editor = e.target;
-            var parentId = $(".emoji-editor").attr("id");
+            var parentId = $(editor).parents(".toolgram-editor").attr("id");
 
             //checkLength(false, editor);
             if (e.keyCode == ctrlKey) ctrlDown = true;
@@ -480,32 +496,27 @@
 
 
 
-        $(".emojieditor-plugin-changelink").click(function (e) {
-            e.preventDefault();
-            var parent = $(".emoji-editor")[0];
-            var editor = $(".emojionearea-editor")[0];
+        $(".toolgram-editor-changelink").click(function () {   //
+            var parent = $(this).parents(".toolgram-editor")[0];
+            var editor = $(this).parents(".popUp").siblings(".emojionearea").children(".emojionearea-editor")[0];
             changelink(parent, editor);
         });
 
-        $(".emojieditor-plugin-btnUnLink").click(function () {   //
+        $(".toolgram-editor-btnUnLink").click(function () {   //
             var editor = $(this).parent().siblings(".emojionearea").children(".emojionearea-editor")[0];
             unLink(editor);
         });
 
-        $('#addLinkEditorModal').on('hidden.bs.modal', function () {
-            // do something…
-            var html = $(".emojionearea-editor").html();
-            html = html.replace("{{{###}}}", "");
-            $(".emojionearea-editor").html(html);
+        $(".toolgram-editor-close").click(function () {   //
             var popUp = $(this).parents(".popUp")[0];
-            var editor = $(".emojionearea-editor");
-            linking = false;
-            closeModal(popUp, editor);
+            var editor = $(popUp).siblings(".emojionearea").children(".emojionearea-editor");
+            closePopUp(popUp, editor);
         });
 
 
     }
 
+    // end todo vahid     2016/27/4
     'use strict';
 
     var unique = 0;
@@ -875,13 +886,13 @@
         $.getScript(cdn_base + "/emojione.js", function () {
             emojione = window.emojione;
             emojioneSupportMode = detectSupportMode();
-            // cdn_base += "/assets";
-            // var sprite = cdn_base + "/sprites/emojione.sprites.css";
-            // // if (document.createStyleSheet) {
-            // //     document.createStyleSheet(sprite);
-            // } else {
-            //     // $('<link/>', { rel: 'stylesheet', href: sprite }).appendTo('head');
-            // }
+            cdn_base += "/assets";
+            var sprite = cdn_base + "/sprites/emojione.sprites.css";
+            if (document.createStyleSheet) {
+                document.createStyleSheet(sprite);
+            } else {
+                $('<link/>', { rel: 'stylesheet', href: sprite }).appendTo('head');
+            }
             while (readyCallbacks.length) {
                 readyCallbacks.shift().call();
             }
@@ -992,12 +1003,12 @@
         if (options.length != undefined && options.length > 0) {
             //myCodVariabe.length = options.length;
             default_options.length = options.length;
-            $(source[0]).parent().find(".emojieditor-plugin-remaining").text(options.length);
+            $(source[0]).parent().find(".toolgram-editor-remaining").text(options.length);
         } else {
             // $(source[0]).parent().find("#toolgram-editor-remaining").parent().remove();
             default_options.length = 0;
             options.length = 0;
-            $(source[0]).parent().find(".emojieditor-plugin-remaining").parent().remove();
+            $(source[0]).parent().find(".toolgram-editor-remaining").parent().remove();
         }
         if (options.forUpdate != undefined && options.forUpdate) {
             //myCodVariabe.forUpdate = options.forUpdate;
@@ -1009,6 +1020,8 @@
         window[nameOfVariable] = options;
 
         eventHandler();
+
+        // endtodo vahid    2016 / 27 / 4
 
 
         options = getOptions(options);
@@ -1339,7 +1352,7 @@
         var self = this, args = arguments;
         emojioneReady(function () {
             self.editor.html(htmlFromText(str, self));
-            var parentId = $(self.editor[0]).parents(".emoji-editor").attr("id");
+            var parentId = $(self.editor[0]).parents(".toolgram-editor").attr("id");
             if (window[parentId].forUpdate != undefined && window[parentId].forUpdate) { //2016
                 areaToEditor(self.editor[0]);
             }

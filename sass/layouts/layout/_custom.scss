@@ -45,6 +45,11 @@ body {
   top: 3px;
   #{$dir-mode-align}: -7px;
 }
+.btn-icon-only i {
+  position: relative;
+  top: 1px;
+  #{$dir-mode-align}: -5px;
+}
 .big-padding {
   padding: 6em 0 !important;
 }

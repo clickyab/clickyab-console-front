@@ -79,7 +79,7 @@ class CreatePTR extends Component {
                                 </ol>
                                 <button className="btn-campaign-name submit btn dark btn-outline btn-lg margin-top-20" type="submit">مرحله بعد</button>
                                 {/*<div className="controls">*/}
-                                    {/*<button className="next show fa fa-arrow-right" type="submit"/>*/}
+                                {/*<button className="next show fa fa-arrow-right" type="submit"/>*/}
                                 {/*</div>*/}
                             </div>
                             <span className="final-message"/>

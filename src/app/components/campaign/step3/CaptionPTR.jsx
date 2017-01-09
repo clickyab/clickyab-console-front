@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
-// let emojioneArea = require("emojionearea/js/emojionearea");
 
 
 class CaptionPTR extends Component {
@@ -15,19 +14,17 @@ class CaptionPTR extends Component {
 
     componentDidMount() {
         // this.handleInitialize();
-        $(".toolgram-editor-textarea").emojioneArea({
+        $("#emojieditor-plugin-container").emojioneArea({
+            parentID: "emojieditor-plugin-parent",
             autoHideFilters: false,
             dir: "rtl",
             hasBia: true,
             length: 4000,
             forUpdate: true,
-            pickerPosition: "top",
-            filtersPosition: "bottom",
-            tones: false,
-            autocomplete: false,
-            inline: true,
-            hidePickerOnBlur: false
+            standalone: false,
+            autocomplete: false
         });
+
         this.captionCamapignForm = $('.caption-campaign-form');
         this.captionCamapignForm.validate({
             rules: {
@@ -81,34 +78,86 @@ class CaptionPTR extends Component {
                             </div>
                             <br/>
                         </div>
-                        <label htmlFor="Text">متن پست</label>
-                        <div className="toolgram-editor">
-                            <div className="top-button-container row">
-                                <button type="button" className="topButton btn btn-default toolgram-editor-btnBold" data-keys="keys">
-                                    <i className="fa fa-bold"/>
-                                </button>
-                                <button type="button" className="topButton btn btn-default toolgram-editor-btnItalic" data-keys="keys">
-                                    <i className="fa fa-italic"/>
-                                </button>
-                                <button type="button" className="topButton btn btn-default toolgram-editor-btnLink" data-keys="keys">
-                                    <i className="fa fa-chain"/>
-                                </button>
-                                <button type="button" className="topButton btn btn-default toolgram-editor-btnUnLink" data-keys="keys">
-                                    <i className="fa fa-chain-broken"/>
-                                </button>
-                                <span className="pull-left">
-        <span>حروف باقیمانده:</span>
-        <span className="toolgram-editor-remaining"/>
-        <input className="toolgram-editor-hidden-remaining" type="hidden" name="toolgram-editor-hidden-remaining" />
-    </span>
+
+                        <form className="margin-top-40">
+                            <div className="form-group">
+
+
+
+                                <span className="field-validation-valid error small" data-valmsg-for="ChannelId" data-valmsg-replace="true"/>
                             </div>
-                            <div id="toolgram-editor-container" className="toolgram-editor-container"></div>
-                            <div className="toolgram-editor-result">
-                            <textarea className="toolgram-editor-content toolgram-editor-textarea" cols="20" data-val="true" data-val-maxallowedlength="طول متن نباید از ۴۰۰۰ کاراکتر بیشتر باشد." data-val-maxallowedlength-maxallowedlength="4000" data-val-required="متن پست را وارد کنید" id="Text" name="Text" rows="2">
+                            <div className="form-group">
+                                <label htmlFor="Text">متن پست</label>
+                                <div className="emoji-editor" id="emojieditor-plugin-parent">
+                                    {/*<div className="popUp" style={{display: "none"}}>*/}
+                                    {/*<section className="form-inline">*/}
+                                    {/*<i className="emojieditor-plugin-close fa fa-close"/>*/}
+                                    {/*<div className="form-group">*/}
+                                    {/*<label>آدرس</label>*/}
+                                    {/*<input className="form-control latin-input left emojieditor-plugin-linkAdress" name="linkAdress" type="text"/>*/}
+                                    {/*</div>*/}
+                                    {/*<button type="button" className="btn btn-default emojieditor-plugin-changelink">ثبت</button>*/}
+                                    {/*</section>*/}
+                                    {/*</div>*/}
+                                    <div className="top-button-container row">
+                                        <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnBold" data-keys="keys">
+                                            <i className="fa fa-bold"/>
+                                        </button>
+                                        <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnItalic" data-keys="keys">
+                                            <i className="fa fa-italic"/>
+                                        </button>
+                                        <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnLink" data-keys="keys">
+                                            <i className="fa fa-chain"/>
+                                        </button>
+                                        <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnUnLink" data-keys="keys">
+                                            <i className="fa fa-chain-broken"/>
+                                        </button>
+                                        <span className="pull-left">
+        <span>حروف باقیمانده:</span>
+        <span className="emojieditor-plugin-remaining"/>
+        <input className="emojieditor-plugin-hidden-remaining" type="hidden" name="emojieditor-plugin-hidden-remaining" />
+    </span>
+                                    </div>
+                                    <div id="emojieditor-plugin-container" className="emojieditor-plugin-container"></div>
+                                    <div className="emojieditor-plugin-result">
+                            <textarea className="emojieditor-plugin-content emojieditor-plugin-textarea" cols="20" data-val="true" data-val-maxallowedlength="طول متن نباید از ۴۰۰۰ کاراکتر بیشتر باشد." data-val-maxallowedlength-maxallowedlength="4000" data-val-required="متن پست را وارد کنید" id="Text" name="Text" rows="2">
 </textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div className="add-link-editor-modal modal fade fullscreen" id="addLinkEditorModal" tabIndex="-1" role="dialog"
+                     aria-labelledby="myModalLabel" aria-hidden="true">
+                    <div className="modal-dialog">
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <div className="padding-tb-15">
+                                    <img className="closebt" src="/img/closebtn.svg" data-dismiss="modal"
+                                         aria-hidden="true"/>
+                                </div>
+                            </div>
+                            <div className="modal-body text-center">
+                                <div className="col-md-4 col-md-offset-4">
+                                    <div className="modal-title text-center">
+                                        <h3/>
+                                    </div>
+                                    <form role="form" action="" id="addLinkEditorForm" method="post"
+                                          className="add-channel-form white">
+                                        <div className="form-group">
+                                            <label htmlFor="admin">آدرس لینک را وارد نمایید</label>
+                                            <Field component="input" type="text" name="link" placeholder='آدرس با http و یا https'
+                                                   className="form-control input-lg emojieditor-plugin-linkAdress" id="link"/>
+                                        </div>
+                                        <button type="submit"
+                                                className="btn btn-primary btn-lg add-link-button btn-block emojieditor-plugin-changelink">درج لینک
+                                        </button>
+                                    </form>
+                                </div>
                             </div>
                         </div>
-                        <span className="field-validation-valid error small" data-valmsg-for="Text" data-valmsg-replace="true"/>
                     </div>
                 </div>
             </div>
