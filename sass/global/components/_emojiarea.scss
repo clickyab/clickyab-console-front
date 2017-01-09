@@ -365,7 +365,7 @@
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-.toolgram-editor .popUp {
+.emoji-editor .popUp {
   display: none;
   position: fixed;
   width: 100%;
@@ -376,48 +376,9 @@
   background-color: rgba(23, 156, 222,.6);
 }
 
-.toolgram-editor .popUp > section {
-  margin: 0 auto;
-  margin-top: 200px;
-  background-color: #fff;
-  padding: 40px 20px;
-  -webkit-box-shadow: 0 0 4px 5px rgba(0,0,0,0.2);
-  -ms-box-shadow: 0 0 4px 5px rgba(0,0,0,0.2);
-  box-shadow: 0 0 4px 5px rgba(0,0,0,0.2);
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  position: relative;
-  width: 460px;
-}
-
-.toolgram-editor .popUp > section i {
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  color: #666;
-  font-size: 1.6em;
-  cursor: pointer;
-}
-
-.toolgram-editor .popUp > section input[type="text"] {
-  width: 300px;
-}
-
-.toolgram-editor .popUp > section button {
-  width: 60px;
-  line-height: 1.8em !important;
-  background-color: #179cde;
-  color: #ffffff;
-  font-weight: bold;
-  border-color: #179cde;
-  padding: 6px 12px;
-}
-
-/*# sourceMappingURL=emojionearea.css.map */
 
 
-
-.toolgram-editor {
+.emoji-editor {
   border: 1px solid #179cde;
   border-radius: 5px;
 }
@@ -470,13 +431,13 @@
   padding-left: 40px !important;
 }
 
-.toolgram-editor-textarea {
+.emojieditor-plugin-textarea {
   position: absolute !important;
   top: -10000000px !important;
 }
 
 
-.toolgram-editor-container div.emojionearea-editor {
+.emojieditor-plugin-container div.emojionearea-editor {
   min-height: 16em;
   max-height: 16em;
 }
