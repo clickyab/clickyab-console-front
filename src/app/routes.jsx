@@ -38,8 +38,8 @@ export default () => (
             <IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
                         onEnter={onDashboardEnterMiddleware}
                         getDisplayName={() => 'Dashboard'}/>
-            <Route path='publisher' component={PublisherDashboardPage} name='publisher'/>
-            <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser'/>
+            <Route path='publisher' component={PublisherDashboardPage} name='publisher' onEnter={onPublisherEnterMiddleware}/>
+            <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser' onEnter={onAdvertiserEnterMiddleware}/>
             <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
             <Route path='category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware}/>
             <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
