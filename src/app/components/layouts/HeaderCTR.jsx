@@ -23,7 +23,7 @@ export class Header extends Component {
                 <div className="page-header-inner ">
                     <div className="page-logo">
                         <a href="">
-                            <img src="/img/logo_fa.svg" alt="logo" className="logo-default"/>
+                            <img src="/img/logo_fa_white_blue.svg" alt="logo" className="logo-default"/>
                         </a>
                         <div className="menu-toggler sidebar-toggler">
                             <span/>
