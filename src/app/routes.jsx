@@ -22,6 +22,8 @@ import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddl
 import onSlashEnterMiddleware from './middlewares/routes/onSlashEnterMiddleware';
 import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMiddleware';
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
+import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMiddleware";
+import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/step1/CreateCTR';
 import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
