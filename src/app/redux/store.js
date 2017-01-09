@@ -16,6 +16,7 @@ import {categoryListReducer} from "./reducers/categoryList";
 import {channelDataReducer} from "./reducers/channelDataReducer";
 import {userDataReducer} from "./reducers/userDataReducer";
 import {categoryDataReducer} from "./reducers/CategoryDataReducer";
+import {createCampaignReducer} from './reducers/createCampaignDataReducer';
 import queryReducer from "./reducers/queryReducer";
 
 const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
@@ -39,6 +40,8 @@ export const store = createStore(
         channelData: channelDataReducer,
 
         campaignList: campaignListReducer,
+
+        createCampaignData: createCampaignReducer,
 
         categoryList: categoryListReducer,
 
@@ -65,7 +68,7 @@ export const store = createStore(
         reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-        // logger
+        logger
         )
     )
 );

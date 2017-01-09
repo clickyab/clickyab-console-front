@@ -9,8 +9,10 @@ export const CHANGE_QUERY = 'CHANGE_QUERY';
 
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
+export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
 export const campaignItemsListAction = (data) => ({type: CAMPAIGN_ITEMS_LIST, data});
+export const createCampaign = (data) => ({type: CREATE_CAMPAIGN, data});
 
 export const USER_LIST = 'USER_LIST';
 export const USER_DATA = 'USER_DATA';
