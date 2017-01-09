@@ -34,7 +34,16 @@ export class Header extends Component {
                     </a>
                     <div className="top-menu">
                         <ul className="nav navbar-nav pull-right">
-
+                            <li className="dropdown dropdown-user" >
+                                <a href="./advertiser" className="dropdown-toggle" style={{'padding-left': '6px'}}>
+                                    <span className="username username-hide-on-mobile">تبلیغ دهندگان</span>
+                                </a>
+                            </li>
+                            <li className="dropdown dropdown-user">
+                                <a href="./publisher" className="dropdown-toggle" style={{'padding-left': '6px'}}>
+                                    <span className="username username-hide-on-mobile">ناشران</span>
+                                </a>
+                            </li>
                             <li className="dropdown dropdown-user">
                                 <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" className="img-circle profile-userpic" src="" />
