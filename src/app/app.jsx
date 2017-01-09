@@ -11,31 +11,28 @@ export default class App extends React.Component {
     componentDidMount() {
         loading(false);
         setHeight();
-        $(window).resize(function() {
+        $(window).resize(function () {
             setHeight();
         })
     }
 
     render() {
-        let children = this.props.children;
+        let {children, userType} = this.props;
         return (
-			<Provider store={store}>
-				<div className="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
-					<div className="page-wrapper">
-						<Header/>
-						<div className="page-container">
-							<Sidebar/>
-							<div className="page-content-wrapper">
-									{children}
-							</div>
-						</div>
-						<Footer/>
-					</div>
-
-
-
-				</div>
-			</Provider>
+            <Provider store={store}>
+                <div className="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
+                    <div className="page-wrapper">
+                        <Header/>
+                        <div className="page-container">
+                            {userType == "advertiser" ? <Sidebar/> : <Sidebar/>}
+                            <div className="page-content-wrapper">
+                                {children}
+                            </div>
+                        </div>
+                        <Footer/>
+                    </div>
+                </div>
+            </Provider>
         )
     }
 }
