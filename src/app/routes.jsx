@@ -21,11 +21,13 @@ import onCampaignEnterMiddleware from './middlewares/routes/onCampaignEnterMiddl
 import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddleware';
 import onSlashEnterMiddleware from './middlewares/routes/onSlashEnterMiddleware';
 import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMiddleware';
+import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/step1/CreateCTR';
 import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
 import CaptionCTR from './components/campaign/step3/CaptionCTR';
 import PageNotFound from './components/404/PageNotFound';
+
 
 
 const history = syncHistoryWithStore(browserHistory, store);
@@ -43,9 +45,10 @@ export default () => (
             <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
             <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
             <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
-            <Route path='campaign/create/step1' component={CampaignCreateCTR} name='campaignList'/>
-            <Route path='campaign/create/step2' component={UploadFileCTR} name='campaignList'/>
-            <Route path='campaign/create/step3' component={CaptionCTR} name='campaignList'/>
+
+            <Route path='campaign/create/step/1' component={CampaignCreateCTR} onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+            <Route path='campaign/create/step/2' component={UploadFileCTR} name='campaignList'/>
+            <Route path='campaign/create/step/3' component={CaptionCTR} name='campaignList'/>
         </Route>
 
         <Route path='/v1' component={Transition}>
