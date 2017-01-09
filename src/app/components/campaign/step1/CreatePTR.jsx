@@ -17,12 +17,12 @@ class CreatePTR extends Component {
         this.createCampaignForm = $('.campaign-name-form');
         this.createCampaignForm.validate({
             rules: {
-                campaign_name: {
+                name: {
                     required: true,
                 },
             },
             messages: {
-                campaign_name: {
+                name: {
                     required: 'لطفا نام کمپین را وارد نمایید',
                 },
             }
@@ -31,7 +31,7 @@ class CreatePTR extends Component {
 
 
     render() {
-        const {handleSubmit, submitCampaignName} = this.props;
+        const {handleSubmit, SubmitCreateCampaignName} = this.props;
         return (
             <div className="page-content">
 
@@ -68,18 +68,18 @@ class CreatePTR extends Component {
                             <br/>
                         </div>
                         <form id="theForm" className="simform campaign-name-form" autoComplete="off" method="post"
-                              onSubmit={handleSubmit((values) => submitCampaignName(values, this.createCampaignForm))}>
+                              onSubmit={handleSubmit((values) => SubmitCreateCampaignName(values, this.createCampaignForm))}>
                             <div className="simform-inner">
                                 <ol className="questions">
                                     <li className="current form-group">
                                         <span className="title-s-form"><label htmlFor="q1">۱- نام کمپین را وارد نمایید</label></span>
-                                        <Field component="input" id="campaign_name" name="campaign_name" type="text"/>
+                                        <Field component="input" id="campaign_name" name="name" type="text"/>
 
                                     </li>
                                 </ol>
-                                <button className="submit btn dark btn-outline btn-lg margin-top-20" type="submit">مرحله بعد</button>
+                                <button className="btn-campaign-name submit btn dark btn-outline btn-lg margin-top-20" type="submit">مرحله بعد</button>
                                 {/*<div className="controls">*/}
-                                    {/*<button className="next show fa fa-arrow-right" type="submit"/>*/}
+                                {/*<button className="next show fa fa-arrow-right" type="submit"/>*/}
                                 {/*</div>*/}
                             </div>
                             <span className="final-message"/>

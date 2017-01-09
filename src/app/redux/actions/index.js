@@ -9,12 +9,18 @@ export const CHANGE_QUERY = 'CHANGE_QUERY';
 
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
+export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
 export const campaignItemsListAction = (data) => ({type: CAMPAIGN_ITEMS_LIST, data});
+export const createCampaign = (data) => ({type: CREATE_CAMPAIGN, data});
 
 export const USER_LIST = 'USER_LIST';
 export const USER_DATA = 'USER_DATA';
 export const USER_ITEMS_LIST = 'USER_ITEMS_LIST';
+export const SWITCH_TO_ADVERTISER = "SWITCH_TO_ADVERTISER";
+export const SWITCH_TO_PUBLISHER = "SWITCH_TO_PUBLISHER";
+export const switchToAdvertiser = () => ({type: SWITCH_TO_ADVERTISER});
+export const switchToPublisher = () => ({type: SWITCH_TO_PUBLISHER});
 export const userListAction = (data) => ({type: USER_LIST, data});
 export const userDataAction = (data) => ({type: USER_DATA, data});
 export const userItemsListAction = ({data}) => ({type: USER_ITEMS_LIST, items: data});
@@ -42,7 +48,3 @@ export const updateACategoryFromListAction = (data) => ({type: UPDATE_CATEGORY_F
 
 export const updateLocalStorageAction = () => ({type: UPDATE_LOCAL_STORAGE});
 export const asyncRemoveLocalStorageAction = () => ({type: REMOVE_LOCAL_STORAGE});
-export const loginActions = login;
-export const userActions = user;
-export const tokenActions = token;
-export const registerActions = register;

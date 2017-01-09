@@ -35,7 +35,7 @@ export default class CampaignListCTR extends Component {
     }
 
     edit(id) {
-        console.log(id);
+        // console.log(id);
     }
 
     updated_at(updated_at) {

@@ -1,6 +1,6 @@
 
 (function (document, window, $) {
-    
+
     var myCodVariabe = {};
     var linking = false;
     String.prototype.replaceAlll = function (search, replacement) {
@@ -491,20 +491,20 @@
             unLink(editor);
         });
 
-            $('#addLinkEditorModal').on('hidden.bs.modal', function () {
-                // do something…
-                var html = $(".emojionearea-editor").html();
-                html = html.replace("{{{###}}}", "");
-                $(".emojionearea-editor").html(html);
+        $('#addLinkEditorModal').on('hidden.bs.modal', function () {
+            // do something…
+            var html = $(".emojionearea-editor").html();
+            html = html.replace("{{{###}}}", "");
+            $(".emojionearea-editor").html(html);
             var popUp = $(this).parents(".popUp")[0];
             var editor = $(".emojionearea-editor");
-                linking = false;
+            linking = false;
             closeModal(popUp, editor);
         });
 
 
     }
-    
+
     'use strict';
 
     var unique = 0;
@@ -1008,7 +1008,7 @@
         window[nameOfVariable] = options;
 
         eventHandler();
-        
+
 
         options = getOptions(options);
 

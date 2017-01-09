@@ -84,20 +84,20 @@ class CaptionPTR extends Component {
 
 
 
-                            <span className="field-validation-valid error small" data-valmsg-for="ChannelId" data-valmsg-replace="true"/>
-                        </div>
+                                <span className="field-validation-valid error small" data-valmsg-for="ChannelId" data-valmsg-replace="true"/>
+                            </div>
                             <div className="form-group">
                                 <label htmlFor="Text">متن پست</label>
                                 <div className="emoji-editor" id="emojieditor-plugin-parent">
                                     {/*<div className="popUp" style={{display: "none"}}>*/}
-                                        {/*<section className="form-inline">*/}
-                                            {/*<i className="emojieditor-plugin-close fa fa-close"/>*/}
-                                            {/*<div className="form-group">*/}
-                                                {/*<label>آدرس</label>*/}
-                                                {/*<input className="form-control latin-input left emojieditor-plugin-linkAdress" name="linkAdress" type="text"/>*/}
-                                            {/*</div>*/}
-                                            {/*<button type="button" className="btn btn-default emojieditor-plugin-changelink">ثبت</button>*/}
-                                        {/*</section>*/}
+                                    {/*<section className="form-inline">*/}
+                                    {/*<i className="emojieditor-plugin-close fa fa-close"/>*/}
+                                    {/*<div className="form-group">*/}
+                                    {/*<label>آدرس</label>*/}
+                                    {/*<input className="form-control latin-input left emojieditor-plugin-linkAdress" name="linkAdress" type="text"/>*/}
+                                    {/*</div>*/}
+                                    {/*<button type="button" className="btn btn-default emojieditor-plugin-changelink">ثبت</button>*/}
+                                    {/*</section>*/}
                                     {/*</div>*/}
                                     <div className="top-button-container row">
                                         <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnBold" data-keys="keys">
