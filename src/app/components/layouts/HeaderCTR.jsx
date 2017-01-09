@@ -35,12 +35,12 @@ export class Header extends Component {
                     <div className="top-menu">
                         <ul className="nav navbar-nav pull-right">
                             <li className="dropdown dropdown-user" >
-                                <a href="./advertiser" className="dropdown-toggle" style={{'padding-left': '6px'}}>
+                                <a href="./advertiser" className="dropdown-toggle" style={{'paddingLeft': '6px'}}>
                                     <span className="username username-hide-on-mobile">تبلیغ دهندگان</span>
                                 </a>
                             </li>
                             <li className="dropdown dropdown-user">
-                                <a href="./publisher" className="dropdown-toggle" style={{'padding-left': '6px'}}>
+                                <a href="./publisher" className="dropdown-toggle" style={{'paddingLeft': '6px'}}>
                                     <span className="username username-hide-on-mobile">ناشران</span>
                                 </a>
                             </li>
