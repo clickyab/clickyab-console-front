@@ -1,4 +1,5 @@
 
+
 (function (document, window, $) {
 
     var myCodVariabe = {};
@@ -874,13 +875,13 @@
         $.getScript(cdn_base + "/emojione.js", function () {
             emojione = window.emojione;
             emojioneSupportMode = detectSupportMode();
-            cdn_base += "/assets";
-            var sprite = cdn_base + "/sprites/emojione.sprites.css";
-            if (document.createStyleSheet) {
-                document.createStyleSheet(sprite);
-            } else {
-                $('<link/>', { rel: 'stylesheet', href: sprite }).appendTo('head');
-            }
+            // cdn_base += "/assets";
+            // var sprite = cdn_base + "/sprites/emojione.sprites.css";
+            // // if (document.createStyleSheet) {
+            // //     document.createStyleSheet(sprite);
+            // } else {
+            //     // $('<link/>', { rel: 'stylesheet', href: sprite }).appendTo('head');
+            // }
             while (readyCallbacks.length) {
                 readyCallbacks.shift().call();
             }
