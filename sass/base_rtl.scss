@@ -1,5 +1,6 @@
 @import "rtl";
 @import "bootstrap_rtl";
+@import 'layouts/layout/layout';
 @import "font-awesome/font-awesome";
 @import "font-awesome/simple-line-icons";
 @import "global/_bootstrap-override";
@@ -7,7 +8,6 @@
 @import "global/_colors";
 @import "global/_components";
 @import 'global/_plugins';
-@import 'layouts/layout/layout';
 @import 'pages/login-3';
 @import 'global/clickgram-code';
 @import 'pages/register';

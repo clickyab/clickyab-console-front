@@ -365,21 +365,10 @@
 }
 
 /*----------------------------------------------------------------------------------------------------------------------------------------*/
-.emoji-editor .popUp {
-  display: none;
-  position: fixed;
-  width: 100%;
-  min-height: 100%;
-  z-index: 1000;
-  top: 0;
-  right: 0;
-  background-color: rgba(23, 156, 222,.6);
-}
-
 
 
 .emoji-editor {
-  border: 1px solid #179cde;
+  border: 1px solid $brand-main-color;
   border-radius: 5px;
 }
 
