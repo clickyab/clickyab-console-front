@@ -34,16 +34,21 @@ export class Header extends Component {
                     </a>
                     <div className="top-menu">
                         <ul className="nav navbar-nav pull-right">
-                            <li className="dropdown dropdown-user" >
-                                <Link to="/v1/advertiser" className="dropdown-toggle" style={{'paddingLeft': '6px'}}>
-                                    <span className="username username-hide-on-mobile">تبلیغ دهندگان</span>
+
+                            <li className="dropdown dropdown-language">
+                                <Link to="/v1/publisher" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
+                                    <span className="langname">تبلیغ دهندگان</span>
+                                    <i className="fa fa-angle-down" />
                                 </Link>
+                                <ul className="dropdown-menu dropdown-menu-default">
+                                    <li>
+                                        <Link to="/v1/advertiser">
+                                            ناشران
+                                        </Link>
+                                    </li>
+                                </ul>
                             </li>
-                            <li className="dropdown dropdown-user">
-                                <Link to="/v1/publisher" className="dropdown-toggle" style={{'paddingLeft': '6px'}}>
-                                    <span className="username username-hide-on-mobile">ناشران</span>
-                                </Link>
-                            </li>
+
                             <li className="dropdown dropdown-user">
                                 <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" className="img-circle profile-userpic" src="" />
