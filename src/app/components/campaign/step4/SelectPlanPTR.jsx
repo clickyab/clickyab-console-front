@@ -63,8 +63,6 @@ export default class SelectPlanPTR extends Component {
                                             </div>
                                         </div>
                                     </div>
-
-
                                     <div className="col-md-6">
                                         <div className="price-column-container border-active">
                                             <div className="price-table-head bg-purple">
