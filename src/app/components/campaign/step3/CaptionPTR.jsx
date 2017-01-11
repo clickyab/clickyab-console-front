@@ -21,8 +21,9 @@ class CaptionPTR extends Component {
             hasBia: true,
             length: 4000,
             forUpdate: true,
-            standalone: false,
-            autocomplete: false
+            standalone: true,
+            autocomplete: false,
+            template: "<filters/><tabs/><editor/>"
         });
 
         this.captionCamapignForm = $('.caption-campaign-form');
@@ -89,16 +90,6 @@ class CaptionPTR extends Component {
                             <div className="form-group">
                                 <label htmlFor="Text">متن پست</label>
                                 <div className="emoji-editor" id="emojieditor-plugin-parent">
-                                    {/*<div className="popUp" style={{display: "none"}}>*/}
-                                    {/*<section className="form-inline">*/}
-                                    {/*<i className="emojieditor-plugin-close fa fa-close"/>*/}
-                                    {/*<div className="form-group">*/}
-                                    {/*<label>آدرس</label>*/}
-                                    {/*<input className="form-control latin-input left emojieditor-plugin-linkAdress" name="linkAdress" type="text"/>*/}
-                                    {/*</div>*/}
-                                    {/*<button type="button" className="btn btn-default emojieditor-plugin-changelink">ثبت</button>*/}
-                                    {/*</section>*/}
-                                    {/*</div>*/}
                                     <div className="top-button-container row">
                                         <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnBold" data-keys="keys">
                                             <i className="fa fa-bold"/>
@@ -125,6 +116,7 @@ class CaptionPTR extends Component {
                                     </div>
                                 </div>
                             </div>
+                            <button className="submit btn dark btn-outline btn-lg margin-top-20" type="submit">مرحله بعد</button>
                         </form>
                     </div>
                 </div>
