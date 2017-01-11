@@ -43,6 +43,7 @@ export default class SelectPlanPTR extends Component {
                         <div className="margin-top-40">
                             <div className="pricing-content-1">
                                 <div className="row">
+                                    <h2>۴- انتخاب پلن تبلیغاتی و پرداخت</h2>
                                     <div className="col-md-6">
                                         <div className="price-column-container border-active">
                                             <div className="price-table-head bg-blue">

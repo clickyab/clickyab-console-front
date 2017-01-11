@@ -88,7 +88,7 @@ class CaptionPTR extends Component {
                                 <span className="field-validation-valid error small" data-valmsg-for="ChannelId" data-valmsg-replace="true"/>
                             </div>
                             <div className="form-group">
-                                <label htmlFor="Text">متن پست</label>
+                                <h2>۳- متن مورد نظر تبلیغ را وارد نمایید</h2>
                                 <div className="emoji-editor" id="emojieditor-plugin-parent">
                                     <div className="top-button-container row">
                                         <button type="button" className="btn btn-icon-only default emojieditor-plugin-btnBold" data-keys="keys">
