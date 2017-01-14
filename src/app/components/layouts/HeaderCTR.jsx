@@ -7,6 +7,7 @@ import {getCorporationTitle} from "../../redux/helpers";
 import {getFullName} from "../../redux/helpers";
 import {getGravatarFromEmail} from "../../functions/gravatar";
 import {getEmail} from "../../redux/helpers";
+import SwitcherCTR from './SwitcherCTR';
 
 
 @connect()
@@ -18,6 +19,7 @@ export class Header extends Component {
     }
 
     render() {
+        let {userType} = this.props;
         return (
             <div className="page-header navbar navbar-fixed-top">
                 <div className="page-header-inner ">
@@ -35,19 +37,7 @@ export class Header extends Component {
                     <div className="top-menu">
                         <ul className="nav navbar-nav pull-right">
 
-                            <li className="dropdown dropdown-language">
-                                <Link to="/v1/publisher" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
-                                    <span className="langname">تبلیغ دهندگان</span>
-                                    <i className="fa fa-angle-down" />
-                                </Link>
-                                <ul className="dropdown-menu dropdown-menu-default">
-                                    <li>
-                                        <Link to="/v1/advertiser">
-                                            ناشران
-                                        </Link>
-                                    </li>
-                                </ul>
-                            </li>
+                            <SwitcherCTR />
 
                             <li className="dropdown dropdown-user">
                                 <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
