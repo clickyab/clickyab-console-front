@@ -27,6 +27,9 @@ export default class LoginCTR extends Component {
     }
 
     loginCallback({error, data, response}) {
+        response.error = 'اطلاعات کاربری شما صحیح نمی‌باشد.';
+        response.text = 'شما با موفقیت وارد شدید.';
+
         if (response.statusCode == '200') {
             this.loginSuccessfullyDispatchers(Object.assign({}, data));
 

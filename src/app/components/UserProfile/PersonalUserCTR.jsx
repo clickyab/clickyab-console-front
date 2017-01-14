@@ -14,7 +14,6 @@ let Ladda = require('ladda/js/ladda');
 export default class PersonalUserCTR extends Component {
     loadingProgress;
 
-
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
         dispatch(updateUserInformation(user));
@@ -23,6 +22,8 @@ export default class PersonalUserCTR extends Component {
 
 
     PersonalUserCallback({error, data, response}) {
+        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();

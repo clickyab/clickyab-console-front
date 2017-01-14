@@ -4,6 +4,7 @@ import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {getToken} from "../../redux/helpers";
+import {ifInvalidToken} from "../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -11,6 +12,8 @@ export default class ChangePasswordCTR extends Component {
     loadingProgress;
 
     ChangePasswordCallback({error, data, response}, reset) {
+        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             this.loadingProgress.stop();
 			reset();
@@ -19,6 +22,7 @@ export default class ChangePasswordCTR extends Component {
             this.stopLoading();
             FailedBoxAlert(response);
         }
+        ifInvalidToken(response);
     }
 
     ChangePasswordCall(formValues, reset) {

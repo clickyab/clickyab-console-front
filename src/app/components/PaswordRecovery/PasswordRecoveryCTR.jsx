@@ -10,6 +10,8 @@ export default class PasswordRecoveryCTR extends Component {
     loadingProgress;
 
     forgotCallback({error, data, response}) {
+        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             SuccessBoxAlert(response);
             $(".recovery-password-form , .form-top-left").fadeOut(function () {

@@ -24,6 +24,8 @@ export default class CorporationUserCTR extends Component {
 
 
     CorporationUserCallback({error, data, response}) {
+        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
