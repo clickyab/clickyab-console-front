@@ -19,7 +19,6 @@ export class Header extends Component {
     }
 
     render() {
-        let {userType} = this.props;
         return (
             <div className="page-header navbar navbar-fixed-top">
                 <div className="page-header-inner ">
