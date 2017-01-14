@@ -20,12 +20,14 @@ class AddCategoryModalCTR extends Component {
 			const {response} = yield (new swagger.CategoryApi())
 				.categoryPost(select("user.token", "no token"), {'payloadData': formValues});
 
+			response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+			response.text = 'اطلاعات شما با موفقیت ثبت شد.';
 			if (response.statusCode == 200) {
 				$('#addCategoryModal').modal('hide');
 				loadingProgress.stop();
 				const {data} = yield(new swagger.CategoryApi()).categoryListGet(select('user.token'), {def: true});
 				dispatch(categoryListAction(data));
-				SuccessBoxAlert(response.text);
+				SuccessBoxAlert(response);
 			} else if (response.statusCode == '400') {
 				FailedBoxAlert(response)
 			}

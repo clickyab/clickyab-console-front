@@ -20,6 +20,10 @@ export default class EditUserButton extends Component {
         sync(function*() {
             const {error, data, response} = yield (new swagger.ChannelApi())
                 .channelIdGet(id, select('user.token', 'no token'));
+
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+
             if (response.statusCode == '200') {
                 $('#editChannelModal').modal();
                 loadingProgress.stop();

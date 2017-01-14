@@ -27,6 +27,9 @@ export default class RegisterCTR extends Component {
     }
 
     registerCallback({error, data, response}) {
+        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+
         if (response.statusCode == '200') {
             this.registerSuccessfullyDispatchers(Object.assign({}, data));
 

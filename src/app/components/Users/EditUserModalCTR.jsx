@@ -22,6 +22,9 @@ export default class EditUserModalCTR extends Component {
             const {error, data, response} = yield (new swagger.ChannelApi())
                 .channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+
             if (response.statusCode == 200) {
                 $('#editChannelModal').modal('hide');
                 loadingProgress.stop();

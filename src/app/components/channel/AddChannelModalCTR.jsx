@@ -19,6 +19,8 @@ export default class AddChannelModalCTR extends Component {
             const {response} = yield (new swagger.ChannelApi())
                 .channelCreatePost(select("user.token", "no token"), {'payloadData': formValues});
 
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
             if (response.statusCode == 200) {
                 $('#addChannelModal').modal('hide');
                 loadingProgress.stop();

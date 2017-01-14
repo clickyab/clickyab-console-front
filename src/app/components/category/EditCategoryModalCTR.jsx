@@ -23,11 +23,13 @@ export default class EditCategoryModalCTR extends Component {
             const {error, data, response} = yield (new swagger.CategoryApi())
                 .categoryIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
             if (response.statusCode == '200') {
                 $('#editCategoryModal').modal('hide');
                 loadingProgress.stop();
                 dispatch(updateACategoryFromListAction(data));
-                SuccessBoxAlert(response.text);
+                SuccessBoxAlert(response);
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)
             }
