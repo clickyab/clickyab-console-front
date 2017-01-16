@@ -1,16 +1,21 @@
 import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
+import {SuccessBoxAlert} from "../../../functions/notifications";
+import {FailedBoxAlert} from "../../../functions/notifications";
 let Flow = require("@flowjs/flow.js/src/flow");
+import swagger from './../../../swagger/index';
 
 export default class UploadFileCTR extends Component {
 
     componentDidMount() {
         (function () {
             var r = new Flow({
-                target: '/upload',
+                target: 'http://rubik.clickyab.ae/api/file/upload',
                 chunkSize: 1024*1024,
-                testChunks: false
+                testChunks: false,
+                singleFile: true,
+                headers:{token:'1:c57dc54f0e826fc98a9ab7b0e8953ad7d4078a3b'}
             });
             // Flow.js isn't supported, fall back on a different method
             if (!r.support) {
@@ -25,32 +30,61 @@ export default class UploadFileCTR extends Component {
             r.assignBrowse($('.flow-browse-image')[0], false, false, {accept: 'image/*'});
 
             // Handle file add event
+            function sendFileSource({error, data, response}) {
+                response.error = 'اطلاعات کاربری شما صحیح نمی‌باشد.';
+                response.text = 'شما با موفقیت وارد شدید.';
+
+                if (response.statusCode == '200') {
+                    SuccessBoxAlert(response);
+                } else if (response.statusCode == '400') {
+                    this.stopLoading();
+                    FailedBoxAlert(response);
+                }
+            }
+            r.on('fileSuccess', function(file,message){
+                let resolve = JSON.parse(message);
+                (new swagger.AdApi())
+                    .adUploadIdPut(1,"1:c57dc54f0e826fc98a9ab7b0e8953ad7d4078a3b",{'payloadData': resolve.src})
+                    .then(response => sendFileSource(response));
+            });
             r.on('fileAdded', function(file){
+                    // let fileReader = new FileReader();
+                    // fileReader.onload = function (event) {
+                    //     let uri = event.target.result;
+                    //     console.log(event.target.result);
+                    //     $('.preview-banner img').attr("src",uri);
+                    //     $('.preview-banner i').fadeOut();
+                    // };
+                    // fileReader.readAsDataURL(file.file);
+                $(".flow-drop").fadeOut();
                 // Show progress bar
                 $('.flow-progress, .flow-list').show();
                 // Add the file to the list
+                $(".progress-pause").append('<span class="flow-file-size"></span>');
                 $('.flow-list').append(
                     '<li class="flow-file flow-file-'+file.uniqueIdentifier+'">' +
-                    'Uploading <span class="flow-file-name"></span> ' +
-                    '<span class="flow-file-size"></span> ' +
+                    // ' در حال آپلود فایل <span class="flow-file-name"></span>  ' +
+                    // ' در زمان <span class="flow-file-size"></span>' +
                     '<span class="flow-file-progress"></span> ' +
-                    '<a href="" class="flow-file-download" target="_blank">' +
-                    'Download' +
-                    '</a> ' +
-                    '<span class="flow-file-pause">' +
-                    ' <img src="pause.png" title="Pause upload" />' +
+                    // '<a href="" class="flow-file-download" target="_blank">' +
+                    // 'Download' +
+                    // '</a> ' +
+                    '<div class="note note-info"> '+
+                    '<span class="flow-file-pause cursor-pointer">' +
+                    ' <i class="fa fa-pause" aria-hidden="true"></i>' +
                     '</span>' +
-                    '<span class="flow-file-resume">' +
-                    ' <img src="resume.png" title="Resume upload" />' +
+                    '<span class="flow-file-resume cursor-pointer">' +
+                    ' <i class="fa fa-play" aria-hidden="true"></i>' +
                     '</span>' +
-                    '<span class="flow-file-cancel">' +
-                    ' <img src="cancel.png" title="Cancel upload" />' +
-                    '</span>'
+                    '<span class="flow-file-cancel cursor-pointer">' +
+                    ' <i class="fa fa-stop" aria-hidden="true"></i>' +
+                    '</span>'+
+                    '</div>'
                 );
                 var $self = $('.flow-file-'+file.uniqueIdentifier);
-                $self.find('.flow-file-name').text(file.name);
-                $self.find('.flow-file-size').text(readablizeBytes(file.size));
-                $self.find('.flow-file-download').attr('href', '/download/' + file.uniqueIdentifier).hide();
+                // $self.find('.flow-file-name').text(file.name);
+                // $self.find('.flow-file-size').text(readablizeBytes(file.size));
+                // $self.find('.flow-file-download').attr('href', '/download/' + file.uniqueIdentifier).hide();
                 $self.find('.flow-file-pause').on('click', function () {
                     file.pause();
                     $self.find('.flow-file-pause').hide();
@@ -64,6 +98,9 @@ export default class UploadFileCTR extends Component {
                 $self.find('.flow-file-cancel').on('click', function () {
                     file.cancel();
                     $self.remove();
+                    $(".flow-file-size").remove();
+                    $(".progress-bar").css("width", "0");
+                    $(".flow-drop").fadeIn();
                 });
             });
             r.on('filesSubmitted', function(file) {
@@ -75,21 +112,32 @@ export default class UploadFileCTR extends Component {
             });
             r.on('fileSuccess', function(file,message){
                 var $self = $('.flow-file-'+file.uniqueIdentifier);
+                $(".upload-status").text("");
                 // Reflect that the file upload has completed
-                $self.find('.flow-file-progress').text('(completed)');
-                $self.find('.flow-file-pause, .flow-file-resume').remove();
-                $self.find('.flow-file-download').attr('href', '/download/' + file.uniqueIdentifier).show();
+                $self.find('.flow-file-progress').text('(آپلود با موفقیت انجام شد)');
+                $self.find('.flow-file-pause, .flow-file-resume , .flow-file-cancel , .note').remove();
+
+                // $self.find('.flow-file-download').attr('href', '/download/' + file.uniqueIdentifier).show();
             });
             r.on('fileError', function(file, message){
+                $(".flow-drop").fadeIn();
+                $(".upload-status").text("");
                 // Reflect that the file upload has resulted in error
-                $('.flow-file-'+file.uniqueIdentifier+' .flow-file-progress').html('(file could not be uploaded: '+message+')');
+                $('.flow-file-'+file.uniqueIdentifier+' .flow-file-progress').html('اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید ');
+                $(".note-info").fadeOut();
+                $(".progress-bar").css("width", "0");
+                $(".flow-file-size").remove();
+
             });
             r.on('fileProgress', function(file){
+                $(".flow-file-size").text(Math.floor(file.progress()*100) + '% ');
+                $(".upload-status").text("در حال آپلود، لطفا منتظر بمانید...");
+                // $(".remain-time").text(secondsToStr(file.timeRemaining()) + ' زمان باقی مانده');
                 // Handle progress for both the file and the overall upload
-                $('.flow-file-'+file.uniqueIdentifier+' .flow-file-progress')
-                    .html(Math.floor(file.progress()*100) + '% '
-                        + readablizeBytes(file.averageSpeed) + '/s '
-                        + secondsToStr(file.timeRemaining()) + ' remaining') ;
+                // $('.flow-file-'+file.uniqueIdentifier+' .flow-file-progress')
+                //     .html(Math.floor(file.progress()*100) + '% '
+                //         + readablizeBytes(file.averageSpeed) + '/s '
+                //         + secondsToStr(file.timeRemaining()) + ' زمان باقی مانده') ;
                 $('.progress-bar').css({width:Math.floor(r.progress()*100) + '%'});
             });
             r.on('uploadStart', function(){
@@ -98,7 +146,7 @@ export default class UploadFileCTR extends Component {
                 $('.flow-progress .progress-pause-link').show();
             });
             r.on('catchAll', function() {
-                console.log.apply(console, arguments);
+                // console.log.apply(console, arguments);
             });
             window.r = {
                 pause: function () {
@@ -153,26 +201,26 @@ export default class UploadFileCTR extends Component {
         }
         function secondsToStr (temp) {
             function numberEnding (number) {
-                return (number > 1) ? 's' : '';
+                return (number > 1) ? '' : '';
             }
             var years = Math.floor(temp / 31536000);
             if (years) {
-                return years + ' year' + numberEnding(years);
+                return years + ' سال' + numberEnding(years);
             }
             var days = Math.floor((temp %= 31536000) / 86400);
             if (days) {
-                return days + ' day' + numberEnding(days);
+                return days + ' روز' + numberEnding(days);
             }
             var hours = Math.floor((temp %= 86400) / 3600);
             if (hours) {
-                return hours + ' hour' + numberEnding(hours);
+                return hours + ' ساعت' + numberEnding(hours);
             }
             var minutes = Math.floor((temp %= 3600) / 60);
             if (minutes) {
-                return minutes + ' minute' + numberEnding(minutes);
+                return minutes + ' دقیقه' + numberEnding(minutes);
             }
             var seconds = temp % 60;
-            return seconds + ' second' + numberEnding(seconds);
+            return seconds + ' ثانیه' + numberEnding(seconds);
         }
     }
 
@@ -221,26 +269,38 @@ export default class UploadFileCTR extends Component {
                             {/*<p> لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید*/}
                             {/*</p>*/}
                         {/*</div>*/}
-                        <div className="flow-drop" draggable='true'>
+                        <div className="row">
+                        {/*<div className="col-md-3">*/}
+                            {/*<div className="preview-banner">*/}
+                                    {/*<i className="fa fa-picture-o"/>*/}
+                                {/*<img src=""/>*/}
+                                {/*</div>*/}
+                        {/*</div>*/}
+                        <div>
+                            <div className="flow-drop" draggable='true'>
                             <div className="upload-file-icon"><i className="fa fa-cloud-upload"/> </div>
                             <h2 className="text-center"> برای آپلود فایل خود را بکشید</h2>
                             <p className="text-center">یا می توانید با فشردن دمه پایین فایل خود را انتخاب کنید</p>
                             <a type="button" className="btn dark btn-outline sbold uppercase flow-browse">انتخاب فایل</a>
+                                </div>
                         </div>
+                            </div>
                         {/*<div className="flow-error">*/}
                         {/*Your browser, unfortunately, is not supported by Flow.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.*/}
                         {/*</div>*/}
 
                         <div className="flow-progress">
+                            <span className="upload-status"/>
                             <div className="progress progress-striped">
-                                <div className="progress-bar progress-bar-info" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{width: "0"}}>
+                                <div className="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{width: "0"}}>
                                     <span className="sr-only progress-text"> 20% Complete </span>
                                     <div className="progress-pause">
-                                        <a href="#"  className="progress-resume-link"><img src="resume.png" title="Resume upload" /></a>
-                                        <a href="#"  className="progress-pause-link"><img src="pause.png" title="Pause upload" /></a>
-                                        <a href="#"  className="progress-cancel-link"><img src="cancel.png" title="Cancel upload" /></a>
+                                        {/*<a href="#"  className="progress-resume-link"><img src="/img/resume.png" title="Resume upload" /></a>*/}
+                                        {/*<a href="#"  className="progress-pause-link"><img src="/img/pause.png" title="Pause upload" /></a>*/}
+                                        {/*<a href="#"  className="progress-cancel-link"><img src="/img/cancel.png" title="Cancel upload" /></a>*/}
                                     </div>
                                 </div>
+                                <div className="pull-left remain-time"></div>
                             </div>
                         </div>
                         <ul className="flow-list"/>

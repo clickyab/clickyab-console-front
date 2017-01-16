@@ -10,7 +10,12 @@ body {
 .CSSAnimationChart a {
   display: none !important;
 }
-
+.cursor-pointer {
+  cursor: pointer;
+}
+ul , li {
+  list-style: none;
+}
 .from-control.inline {
   display: inline;
 }
