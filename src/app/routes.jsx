@@ -1,7 +1,5 @@
 import React from 'react';
-import {store} from './../app/redux/store';
 import {Router, Route, browserHistory, IndexRoute} from 'react-router';
-import {syncHistoryWithStore} from 'react-router-redux';
 import App from './app';
 import Login from './components/login/LoginCTR';
 import CategoryListCTR from './components/category/CategoryListCTR';
@@ -32,10 +30,9 @@ import CaptionCTR from './components/campaign/step3/CaptionCTR';
 import SelectPlanCTR from './components/campaign/step4/SelectPlanCTR';
 import PageNotFound from './components/404/PageNotFound';
 
-const history = syncHistoryWithStore(browserHistory, store);
 
 export default () => (
-    <Router history={history}>
+    <Router history={browserHistory}>
         <Route path='/v1' component={App}>
             <IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
                         onEnter={onDashboardEnterMiddleware}
