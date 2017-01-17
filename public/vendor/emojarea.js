@@ -291,9 +291,7 @@
     }
     var toolgramTextLink = "";
     function linkMaking(editor) {
-        console.log("!");
         if (!linking) {
-            console.log("!!!!");
             linking = true;
             var parent = getSelectionParentElement();
             var rang = getSelectionCharacterOffsetsWithin(parent);
@@ -892,7 +890,6 @@
     }
 
     emojioneReady(function () {
-        console.log("milad");
         emojione.imagePathPNG = cdn_base + "/png/";
         emojione.imagePathSVG = cdn_base + "/svg/";
         emojione.imagePathSVGSprites = cdn_base + "/sprites/emojione.sprites.svg";
