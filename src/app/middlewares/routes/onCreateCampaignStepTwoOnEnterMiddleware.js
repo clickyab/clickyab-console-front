@@ -10,8 +10,8 @@ export default (nextState, replace, next) => sync(function*() {
         loading(true);
 
         yield* isLoginMiddleware();
-        if (select('createCampaignData.id') != null) {
-            navigate('/v1/campaign/create/step/2');
+        if (select('createCampaignData.src') != null) {
+            navigate('/v1/campaign/create/step/3');
             loading(false);
         } else {
             next();
