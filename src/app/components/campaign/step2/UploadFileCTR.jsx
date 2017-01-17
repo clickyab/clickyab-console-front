@@ -3,6 +3,7 @@ import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {SuccessBoxAlert} from "../../../functions/notifications";
 import {FailedBoxAlert} from "../../../functions/notifications";
+import {select} from "../../../functions/select";
 let Flow = require("@flowjs/flow.js/src/flow");
 import swagger from './../../../swagger/index';
 
@@ -15,7 +16,7 @@ export default class UploadFileCTR extends Component {
                 chunkSize: 1024*1024,
                 testChunks: false,
                 singleFile: true,
-                headers:{token:'1:c57dc54f0e826fc98a9ab7b0e8953ad7d4078a3b'}
+                headers:{token:select("user.token", "no token")}
             });
             // Flow.js isn't supported, fall back on a different method
             if (!r.support) {
@@ -44,7 +45,7 @@ export default class UploadFileCTR extends Component {
             r.on('fileSuccess', function(file,message){
                 let resolve = JSON.parse(message);
                 (new swagger.AdApi())
-                    .adUploadIdPut(1,"1:c57dc54f0e826fc98a9ab7b0e8953ad7d4078a3b",{'payloadData': resolve.src})
+                    .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),{'payloadData': resolve.src})
                     .then(response => sendFileSource(response));
             });
             r.on('fileAdded', function(file){
