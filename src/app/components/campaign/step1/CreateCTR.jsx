@@ -21,7 +21,7 @@ export default class CreateCTR extends Component {
             loadingProgress.start();
 
             const {data, response} = yield (new swagger.AdApi())
-                .adPost(select("user.token", "no token"), {'payloadData': formValues});
+                .campaignPost(select("user.token", "no token"), {'payloadData': formValues});
 
             response.error = 'اطلاعات شما صحیح نمی‌باشد.';
             response.text = 'اطلاعات شما با موفقیت ثبت شد.';

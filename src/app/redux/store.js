@@ -37,15 +37,12 @@ export const store = createStore(
         userType: userTypeReducer,
 
         channelList: channelListReducer,
-
         channelData: channelDataReducer,
 
         campaignList: campaignListReducer,
-
         createCampaignData: createCampaignReducer,
 
         categoryList: categoryListReducer,
-
         categoryData: categoryDataReducer,
 
         queries: queryReducer,
