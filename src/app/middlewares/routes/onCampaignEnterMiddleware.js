@@ -1,5 +1,4 @@
 import {sync} from '../../functions/sync';
-// import {getToken} from '../../redux/helpers';
 import * as swagger from '../../swagger/index';
 import {dispatch} from '../../functions/dispatch';
 import {select} from '../../functions/select';
@@ -15,7 +14,7 @@ function* campaignListController(done, next) {
     loading(true);
     yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.AdApi())
-        .adListGet(select('user.token'), {
+        .campaignListGet(select('user.token'), {
             ...select('queries.campaign', {}),
             def: true
         });
