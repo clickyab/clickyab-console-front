@@ -21,6 +21,7 @@ import onSlashEnterMiddleware from './middlewares/routes/onSlashEnterMiddleware'
 import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMiddleware';
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
 import onCreateCampaignStepTwoOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepTwoOnEnterMiddleware";
+import onCreateCampaignStepThreeOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepThreeOnEnterMiddleware";
 import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMiddleware";
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
@@ -47,7 +48,7 @@ export default () => (
 
             <Route path='campaign/create/step/1' component={CampaignCreateCTR} onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/2' component={UploadFileCTR} onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/step/3' component={CaptionCTR} name='campaignList'/>
+            <Route path='campaign/create/step/3' component={CaptionCTR} onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/4' component={SelectPlanCTR} name='campaignList'/>
 
         </Route>
