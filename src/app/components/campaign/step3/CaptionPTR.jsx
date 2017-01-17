@@ -116,7 +116,7 @@ class CaptionPTR extends Component {
                                     </div>
                                 </div>
                             </div>
-                            <button className="submit btn dark btn-outline btn-lg margin-top-20" type="submit">مرحله بعد</button>
+                            <button className="submit caption-text-form-btn btn btn-info btn-lg margin-top-20" type="submit">مرحله بعد</button>
                         </form>
                     </div>
                 </div>
