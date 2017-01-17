@@ -1,7 +1,6 @@
 import {sync} from '../../functions/sync';
 import * as swagger from '../../swagger/index';
 import {select} from '../../functions/select';
-import {userItemsListAction} from '../../redux/actions/index';
 import {dispatch} from '../../functions/dispatch';
 import {loading} from '../../functions/loading';
 import {throwError} from "../../functions/Error";
@@ -9,6 +8,7 @@ import {navigate} from "../../functions/navigate";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
+import {userListAction} from "../../redux/actions/index";
 
 function* userListController(done, next) {
     loading(true);
@@ -21,7 +21,7 @@ function* userListController(done, next) {
 
     done();
     if (!error) {
-        dispatch(userItemsListAction(data));
+        dispatch(userListAction(data));
 
         next();
         loading(false);

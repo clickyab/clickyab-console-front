@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
-import {userItemsListAction} from '../../redux/actions/index';
+import {userListAction} from '../../redux/actions/index';
 import EditUserButton from "./EditUserButton";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
@@ -19,7 +19,7 @@ export default class UsersListCTR extends Component {
                     [query_name]: value
                 });
 
-            dispatch(userItemsListAction(data));
+            dispatch(userListAction(data));
         });
     }
 
