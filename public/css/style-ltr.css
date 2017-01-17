@@ -8327,6 +8327,12 @@ body {
 .CSSAnimationChart a {
   display: none !important; }
 
+.cursor-pointer {
+  cursor: pointer; }
+
+ul, li {
+  list-style: none; }
+
 .from-control.inline {
   display: inline; }
 
@@ -26189,6 +26195,34 @@ p.mobile-padding {
   line-height: 2.5;
   margin: 0; }
 
+.flow-file-pause {
+  color: #F1C40F; }
+
+.flow-file-resume {
+  color: #36c6d3; }
+
+.flow-file-cancel {
+  color: #ed6b75; }
+
+.preview-banner {
+  background: #eee;
+  min-height: 290px;
+  margin-top: 40px;
+  border-radius: 10px;
+  position: relative; }
+
+.preview-banner img, .preview-banner video {
+  max-width: 100%;
+  height: auto; }
+
+.preview-banner i {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 20rem;
+  color: #bfbfbf; }
+
 .simform {
   position: relative;
   margin: 0 auto;
@@ -26515,7 +26549,6 @@ input[type=text]::-ms-clear {
 
 /* Uploader: List of items being uploaded */
 .flow-list {
-  overflow: auto;
   margin-right: -20px;
   display: none; }
 
@@ -26559,6 +26592,10 @@ input[type=text]::-ms-clear {
   position: absolute;
   bottom: 3px;
   right: 3px; }
+
+.flow-file {
+  text-align: center;
+  font-size: 31px; }
 
 /* Uploader: Hover & Active status */
 .uploader-item:hover, .is-active .uploader-item {
