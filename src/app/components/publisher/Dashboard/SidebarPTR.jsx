@@ -44,21 +44,21 @@ export class Sidebar extends Component {
                         <li className='nav-item  '>
                             <Link to="/v1/campaign" className='nav-link'>
                                 <i className='fa fa-bullseye'/>
-                                <span className='title'>کمپین ها</span>
+                                <span className='title'>کمپین‌ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
                         <li className='nav-item'>
                             <Link to="/v1/channel" className='nav-link nav-toggle'>
                                 <i className='fa fa-television'/>
-                                <span className='title'>کانال ها</span>
+                                <span className='title'>کانال‌ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
                         <li className='nav-item  '>
                             <Link to="/v1/category" className='nav-link nav-toggle'>
                                 <i className='fa fa-folder-open'/>
-                                <span className='title'>دسته بندی ها</span>
+                                <span className='title'>دسته‌بندی‌ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>

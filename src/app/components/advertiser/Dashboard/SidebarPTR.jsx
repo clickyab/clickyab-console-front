@@ -36,7 +36,7 @@ export class Sidebar extends Component {
                         <li className='nav-item start active open'>
                             <Link to='/v1' className='nav-link nav-toggle'>
                                 <i className='fa fa-home'/>
-                                <span className='title'>میلادورد</span>
+                                <span className='title'>داشبورد</span>
                                 <span className='selected'/>
                                 <span className='arrow open'/>
                             </Link>
@@ -44,28 +44,28 @@ export class Sidebar extends Component {
                         <li className='nav-item  '>
                             <Link to="/v1/campaign" className='nav-link'>
                                 <i className='fa fa-bullseye'/>
-                                <span className='title'>میلاد ها</span>
+                                <span className='title'>کمپین‌ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
                         <li className='nav-item'>
                             <Link to="/v1/channel" className='nav-link nav-toggle'>
                                 <i className='fa fa-television'/>
-                                <span className='title'>میلاد ها</span>
+                                <span className='title'>کانال‌ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
                         <li className='nav-item  '>
                             <Link to="/v1/category" className='nav-link nav-toggle'>
                                 <i className='fa fa-folder-open'/>
-                                <span className='title'>میلاد بندی ها</span>
+                                <span className='title'>دسته‌بندی‌ها</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
                         <li className='nav-item  '>
                             <Link to="/v1/user" className='nav-link nav-toggle'>
                                 <i className='fa fa-user'/>
-                                <span className='title'>مدیریت میلاد</span>
+                                <span className='title'>مدیریت کاربران</span>
                                 <span className='arrow'/>
                             </Link>
                         </li>
