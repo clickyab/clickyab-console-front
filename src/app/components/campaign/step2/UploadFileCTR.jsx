@@ -4,6 +4,10 @@ import {Field, reduxForm} from "redux-form";
 import {SuccessBoxAlert} from "../../../functions/notifications";
 import {FailedBoxAlert} from "../../../functions/notifications";
 import {select} from "../../../functions/select";
+import {dispatch} from "../../../functions/dispatch";
+import {updateLocalStorageAction} from "../../../redux/actions/index";
+import {createCampaign} from "../../../redux/actions/index";
+import {navigate} from "../../../functions/navigate";
 let Flow = require("@flowjs/flow.js/src/flow");
 import swagger from './../../../swagger/index';
 
@@ -43,10 +47,13 @@ export default class UploadFileCTR extends Component {
                 }
             }
             r.on('fileSuccess', function(file,message){
-                let resolve = JSON.parse(message);
-                (new swagger.AdApi())
-                    .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),{'payloadData': resolve.src})
-                    .then(response => sendFileSource(response));
+                let {src} = JSON.parse(message);
+                dispatch(createCampaign({...select("createCampaignDara"), src}));
+                dispatch(updateLocalStorageAction());
+                navigate('/v1/campaign/create/step/3');
+                // (new swagger.AdApi())
+                //     .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),{'payloadData': resolve.src})
+                //     .then(response => sendFileSource(response));
             });
             r.on('fileAdded', function(file){
                     // let fileReader = new FileReader();
@@ -228,6 +235,8 @@ export default class UploadFileCTR extends Component {
 
     render() {
         const {handleSubmit, submitCampaignName} = this.props;
+
+        let campaignTitle = select("createCampaignData.name","no title");
         return (
         <div className="page-content">
 
@@ -235,7 +244,7 @@ export default class UploadFileCTR extends Component {
 
                 <div className="portlet-title">
                     <div className="caption">
-                        <i className="fa fa-bullseye"/> آپلود فایل و مدیا برای کمپین <span className="title-campaign">فلانی</span> </div>
+                        <i className="fa fa-bullseye"/> آپلود فایل و مدیا برای کمپین <span className="title-campaign">{campaignTitle}</span> </div>
                 </div>
                 <div className="portlet-body form">
                     <div className="mt-element-step margin-top-40">
