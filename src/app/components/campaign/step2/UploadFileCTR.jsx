@@ -49,7 +49,7 @@ export default class UploadFileCTR extends Component {
             }
             r.on('fileSuccess', function(file,message){
                 let resolve = JSON.parse(message);
-                dispatch(createCampaign(Object.assign(select("createCampaignData"), resolve.src)));
+                dispatch(createCampaign(Object.assign({},select("createCampaignData"), {src:resolve.src})));
                 dispatch(updateLocalStorageAction());
                 AlertBox("success","آپلود فایل با موفقیت انجام شد هم اکنون متن تبلیغ خود را وارد نمایید");
                 navigate('/v1/campaign/create/step/3');
