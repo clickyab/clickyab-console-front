@@ -1,6 +1,5 @@
-import {dispatch} from "./dispatch";
-import {push} from "react-router-redux";
+import {browserHistory} from "react-router";
 
 export function navigate(path) {
-    dispatch(push(path));
+    browserHistory.push(path);
 }

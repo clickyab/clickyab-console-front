@@ -2,11 +2,8 @@ import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
 import {reducer as formReducer} from 'redux-form';
 import {localeReducer, cssLazyLoader} from 'react-multilingual';
 import {loginReducer, userReducer, impersonateReducer} from './reducers';
-import {routerReducer} from 'react-router-redux';
 import createLogger from 'redux-logger';
 import {asyncPullIntoLocalStorage} from '../middlewares/asyncPullIntoLocalStorage';
-import {routerMiddleware} from 'react-router-redux'
-import {browserHistory} from 'react-router';
 import localStorage from 'store';
 import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
 import {userListReducer} from "./reducers/userList";
@@ -20,14 +17,11 @@ import {createCampaignReducer} from './reducers/createCampaignDataReducer';
 import queryReducer from "./reducers/queryReducer";
 import userTypeReducer from "./reducers/userTypeReducer";
 
-const reactRouterReduxMiddleware = routerMiddleware(browserHistory);
 const enhancer = compose;
 const logger = createLogger();
 
 export const store = createStore(
     combineReducers({
-        routing: routerReducer,
-
         login: loginReducer,
 
         impersonate: impersonateReducer,
@@ -63,7 +57,6 @@ export const store = createStore(
                 direction: 'rtl'
             }
         }),
-        reactRouterReduxMiddleware,
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
         // logger
