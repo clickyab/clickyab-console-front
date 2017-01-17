@@ -8,6 +8,7 @@ import {dispatch} from "../../../functions/dispatch";
 import {updateLocalStorageAction} from "../../../redux/actions/index";
 import {createCampaign} from "../../../redux/actions/index";
 import {navigate} from "../../../functions/navigate";
+import {AlertBox} from "../../../functions/notifications";
 let Flow = require("@flowjs/flow.js/src/flow");
 import swagger from './../../../swagger/index';
 
@@ -47,9 +48,10 @@ export default class UploadFileCTR extends Component {
                 }
             }
             r.on('fileSuccess', function(file,message){
-                let {src} = JSON.parse(message);
-                dispatch(createCampaign({...select("createCampaignDara"), src}));
+                let resolve = JSON.parse(message);
+                dispatch(createCampaign({...select("createCampaignData"), src:resolve.src}));
                 dispatch(updateLocalStorageAction());
+                AlertBox("success","آپلود فایل با موفقیت انجام شد هم اکنون متن تبلیغ خود را وارد نمایید");
                 navigate('/v1/campaign/create/step/3');
                 // (new swagger.AdApi())
                 //     .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),{'payloadData': resolve.src})
