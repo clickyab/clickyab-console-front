@@ -15,7 +15,6 @@ export default (nextState, replace, next) => sync(function*() {
             error.recover();
             console.log(error.message())
         } else {
-            console.log('oopsify');
             console.log(error);
         }
     }

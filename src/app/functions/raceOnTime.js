@@ -1,28 +1,31 @@
 import {sync} from "./sync";
 import {handleError} from "./catchError";
-export function raceOnTime(generator, next, recover, timeOut) {
-	let _resolve;
-	let error = new Error('timeout');
 
-	const timer = setTimeout(() => {
-		throw error;
-	}, timeOut);
+export function raceOnTime(generator, timeOut) {
+    return (new Promise((resolve, reject) => {
+        let _resolve;
 
-	const done = () => {
-		_resolve();
-		clearTimeout(timer);
-	};
+        const timer = setTimeout(() => {
+            reject({error: new Error('timeout')});
+        }, timeOut);
 
-	new Promise((resolve, reject) => {
-		_resolve = resolve;
+        const done = () => {
+            _resolve();
+            resolve({success: 'ok'});
+            clearTimeout(timer);
+        };
 
-		sync(function*() {
-			try {
-				yield* generator(done, next);
-			} catch (error) {
-				handleError(error);
-			}
-		});
+        new Promise((resolve) => {
+            _resolve = resolve;
 
-	}).then();
+            sync(function*() {
+                try {
+                    yield* generator(done);
+                } catch (error) {
+                    handleError(error);
+                }
+            });
+
+        }).then();
+    }));
 }
