@@ -35,9 +35,11 @@ function* channelListController(done, next) {
 export default (nextState, replace, next) => sync(function*() {
     try {
         yield* isLoginMiddleware();
-        raceOnTime(channelListController, next, function () {
+        let {error} = yield raceOnTime(channelListController, 20000);
+        if (error)
             navigate('/v1/login');
-        }, 20000);
+
+        next();
     } catch (error) {
         handleError(error);
     }

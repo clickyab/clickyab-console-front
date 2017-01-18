@@ -1,6 +1,6 @@
 import {sync} from '../../functions/sync';
 import * as swagger from '../../swagger/index';
-import { categoryListAction} from '../../redux/actions/index';
+import {categoryListAction} from '../../redux/actions/index';
 import {dispatch} from '../../functions/dispatch';
 import {select} from '../../functions/select';
 import {loading} from '../../functions/loading';
@@ -34,9 +34,11 @@ function* categoryListController(done, next) {
 export default (nextState, replace, next) => sync(function*() {
     try {
         yield* isLoginMiddleware();
-        raceOnTime(categoryListController, next, function () {
+        let {error} = yield raceOnTime(categoryListController, 20000);
+        if (error)
             navigate('/v1/login');
-        }, 20000);
+
+        next();
     } catch (error) {
         handleError(error);
     }
