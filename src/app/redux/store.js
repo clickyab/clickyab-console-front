@@ -16,6 +16,7 @@ import {categoryDataReducer} from "./reducers/CategoryDataReducer";
 import {createCampaignReducer} from './reducers/createCampaignDataReducer';
 import queryReducer from "./reducers/queryReducer";
 import userTypeReducer from "./reducers/userTypeReducer";
+import {telegramListReducer} from "./reducers/telegramListReducer";
 
 const enhancer = compose;
 const logger = createLogger();
@@ -38,6 +39,8 @@ export const store = createStore(
 
         categoryList: categoryListReducer,
         categoryData: categoryDataReducer,
+
+        telegramList: telegramListReducer,
 
         queries: queryReducer,
 

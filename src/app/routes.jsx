@@ -24,12 +24,14 @@ import onCreateCampaignStepTwoOnEnterMiddleware from "./middlewares/routes/onCre
 import onCreateCampaignStepThreeOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepThreeOnEnterMiddleware";
 import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMiddleware";
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
+import onTelegramEnterMiddleware from './middlewares/routes/onTelegramEnterMiddleware';
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/step1/CreateCTR';
 import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
 import CaptionCTR from './components/campaign/step3/CaptionCTR';
 import SelectPlanCTR from './components/campaign/step4/SelectPlanCTR';
 import PageNotFound from './components/404/PageNotFound';
+import TelegramListCTR from './components/telegram/TelegramListCTR';
 
 
 export default () => (
@@ -45,6 +47,7 @@ export default () => (
             <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
             <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
             <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
+            <Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware} />
 
             <Route path='campaign/create/step/1' component={CampaignCreateCTR} onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/2' component={UploadFileCTR} onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignList'/>
