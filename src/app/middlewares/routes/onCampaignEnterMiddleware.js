@@ -10,7 +10,7 @@ import {navigate} from "../../functions/navigate";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
 
-function* campaignListController(done, next) {
+function* campaignListController(done) {
     loading(true);
     yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.AdApi())
@@ -23,7 +23,6 @@ function* campaignListController(done, next) {
     if (!error) {
         dispatch(campaignListAction(data));
 
-        next();
         loading(false);
     } else {
         throwError("onChannelEnterMiddleWare", function () {
