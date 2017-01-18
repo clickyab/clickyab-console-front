@@ -17,6 +17,7 @@ export default class CaptionCTR extends Component {
 
 
     componentDidMount() {
+
         let textarea_text = $(".emojieditor-plugin-content");
         $(document).on("click", ".caption-text-form-btn", function (e) {
             e.preventDefault();

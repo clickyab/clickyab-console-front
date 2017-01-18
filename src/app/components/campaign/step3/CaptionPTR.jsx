@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
+import {select} from "../../../functions/select";
 
 
 class CaptionPTR extends Component {
@@ -44,6 +45,7 @@ class CaptionPTR extends Component {
 
     render() {
         const {handleSubmit, submitCampaignName} = this.props;
+        let campaignTitle = select("createCampaignData.name","no title");
         return (
             <div className="page-content">
 
@@ -51,7 +53,7 @@ class CaptionPTR extends Component {
 
                     <div className="portlet-title">
                         <div className="caption">
-                            <i className="fa fa-bullseye"/> کپشن تبلیغ <span className="campaign-title">فلانی</span> </div>
+                            <i className="fa fa-bullseye"/> کپشن تبلیغ <span className="campaign-title">{campaignTitle}</span> </div>
                     </div>
                     <div className="portlet-body form">
                         <div className="mt-element-step margin-top-20">
