@@ -10,9 +10,8 @@ import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
 import {navigate} from "../../functions/navigate";
 
-function* telegramListController(done, next) {
+function* telegramListController(done) {
     loading(true);
-    yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.TelegramApi())
         .telegramListGet(select('user.token'), {
             ...select('queries.telegram', {}),
@@ -23,7 +22,6 @@ function* telegramListController(done, next) {
     if (!error) {
         dispatch(telegramListAction(data));
 
-        next();
         loading(false);
     } else {
         throwError("onTelegramEnterMiddleWare", function () {
@@ -35,9 +33,12 @@ function* telegramListController(done, next) {
 export default (nextState, replace, next) => sync(function*() {
     try {
         yield* isLoginMiddleware();
-        raceOnTime(telegramListController, next, function () {
-            navigate('/v1/login');
-        }, 20000);
+        let {error, success} = yield raceOnTime(telegramListController, 100);
+        if (error)
+            return navigate('/v1/profile');
+
+        console.log(success);
+        next();
     } catch (error) {
         handleError(error);
     }
