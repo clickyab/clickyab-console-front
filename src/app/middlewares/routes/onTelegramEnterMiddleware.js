@@ -33,11 +33,10 @@ function* telegramListController(done) {
 export default (nextState, replace, next) => sync(function*() {
     try {
         yield* isLoginMiddleware();
-        let {error, success} = yield raceOnTime(telegramListController, 100);
+        let {error} = yield raceOnTime(telegramListController, 20000);
         if (error)
             return navigate('/v1/profile');
 
-        console.log(success);
         next();
     } catch (error) {
         handleError(error);
