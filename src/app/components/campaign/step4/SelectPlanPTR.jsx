@@ -1,9 +1,11 @@
 import React, {Component} from "react";
+import {select} from "../../../functions/select";
 
 export default class SelectPlanPTR extends Component {
 
 
     render() {
+        let campaignTitle = select("createCampaignData.name","no title");
         return (
             <div className="page-content">
 
@@ -11,7 +13,7 @@ export default class SelectPlanPTR extends Component {
 
                     <div className="portlet-title">
                         <div className="caption">
-                            <i className="fa fa-bullseye"/> انتخاب پلن تبلیغاتی   <span className="campaign-title">فلانی</span> </div>
+                            <i className="fa fa-bullseye"/> انتخاب پلن تبلیغاتی   <span className="campaign-title">{campaignTitle}</span> </div>
                     </div>
                     <div className="portlet-body form">
                         <div className="mt-element-step margin-top-20">
