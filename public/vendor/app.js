@@ -262,6 +262,8 @@ var App = function() {
         });
     };
 
+
+
     // Handles Bootstrap Tooltips.
     var handleTooltips = function() {
         // global tooltips

@@ -57,6 +57,7 @@ module.exports = {
 			'./public/vendor/datepicker/calendar-setup.js',
 			'./public/vendor/datepicker/calendar-en.js',
 			'./public/vendor/datepicker/calendar-fa.js',
+			// './public/vendor/persianNumber.js',
 			'./public/vendor/app.js',
 			'./public/vendor/dashboard.js',
 			'./public/vendor/layout.js',

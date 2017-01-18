@@ -44,44 +44,8 @@ export default class SelectPlanPTR extends Component {
                             <div className="pricing-content-1">
                                 <div className="row">
                                     <h2>۴- انتخاب پلن تبلیغاتی و پرداخت</h2>
-                                    <div className="col-md-6">
-                                        <div className="price-column-container border-active">
-                                            <div className="price-table-head bg-blue">
-                                                <h2 className="no-margin">پلن نقره ای</h2>
-                                            </div>
-                                            <div className="arrow-down border-top-blue"></div>
-                                            <div className="price-table-pricing">
-                                                <h3>
-                                                    <sup className="price-sign">تومان</sup>۱۰۰,۰۰۰</h3>
-                                                {/*<p>per month</p>*/}
-                                            </div>
-                                            <div className="price-table-content">
-                                                <p className="mobile-padding">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع </p>
-                                            </div>
-                                            <div className="arrow-down arrow-grey"></div>
-                                            <div className="price-table-footer">
-                                                <button type="button" className="btn grey-salsa btn-outline sbold uppercase price-button">انتخاب و پرداخت</button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="price-column-container border-active">
-                                            <div className="price-table-head bg-purple">
-                                                <h2 className="no-margin">پلن طلایی</h2>
-                                            </div>
-                                            <div className="arrow-down border-top-purple"></div>
-                                            <div className="price-table-pricing">
-                                                <h3>
-                                                    <sup className="price-sign">تومان</sup>۲۰۰,۰۰۰</h3>
-                                            </div>
-                                            <div className="price-table-content">
-                                                <p className=" mobile-padding">لورم ایپسوم متن ساختگی با تولید سادگی نامفهوم از صنعت چاپ و با استفاده از طراحان گرافیک است. چاپگرها و متون بلکه روزنامه و مجله در ستون و سطرآنچنان که لازم است و برای شرایط فعلی تکنولوژی مورد نیاز و کاربردهای متنوع </p>
-                                            </div>
-                                            <div className="arrow-down arrow-grey"></div>
-                                            <div className="price-table-footer">
-                                                <button type="button" className="btn grey-salsa btn-outline price-button sbold uppercase">انتخاب و پرداخت</button>
-                                            </div>
-                                        </div>
+                                    <div className="plan-list">
+
                                     </div>
                                 </div>
                             </div>

@@ -50,6 +50,7 @@
     "react-highcharts": "11.0.0",
     "react-motion": "^0.4.6",
     "react-multilingual": "^1.1.5",
+    "react-persian": "^1.1.1",
     "react-redux": "4.4.5",
     "react-redux-toastr": "^4.0.6",
     "react-router": "2.8.1",
