@@ -10,7 +10,7 @@ import {handleError} from "../../functions/catchError";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {raceOnTime} from "../../functions/raceOnTime";
 
-function* categoryListController(done, next) {
+function* categoryListController(done) {
     loading(true);
     const {error, data} = yield (new swagger.CategoryApi())
         .categoryListGet(select('user.token'), {
@@ -22,7 +22,6 @@ function* categoryListController(done, next) {
     if (!error) {
         dispatch(categoryListAction(data));
 
-        next();
         loading(false);
     } else {
         throwError("onCategoryEnterMiddleWare", function () {

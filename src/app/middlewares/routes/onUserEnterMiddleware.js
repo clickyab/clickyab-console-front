@@ -10,7 +10,7 @@ import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
 import {userListAction} from "../../redux/actions/index";
 
-function* userListController(done, next) {
+function* userListController(done) {
     loading(true);
     let {error, data} = yield (new swagger.UserApi())
         .userUsersGet(select('user.token', 'no token'), {
@@ -23,7 +23,6 @@ function* userListController(done, next) {
     if (!error) {
         dispatch(userListAction(data));
 
-        next();
         loading(false);
     } else {
         throwError("onUserEnterMiddleWare", function () {
