@@ -1,8 +1,16 @@
 import React, {Component} from "react";
 import {Field} from "redux-form";
 import NumericSelect from "./../common/form/NumericSelect";
+import {connect} from 'react-redux';
 
+@connect(({user}) => ({user}))
 export default class SelectLocationPTR extends Component {
+
+	componentDidMount() {
+		let {user, callProvinceName, callCityName} = this.props;
+		callProvinceName(user.personal.province_id);
+		callCityName(user.personal.city_id);
+	}
 
 	render() {
 		return (
