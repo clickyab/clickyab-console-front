@@ -4,16 +4,6 @@ import NumericSelect from "./../common/form/NumericSelect";
 
 export default class SelectLocationPTR extends Component {
 
-	// handleInitialize() {
-	//     const initData = select("user.personal", {}, true);
-	//     initData.email = getEmail();
-	//     this.props.initialize(initData);
-	// }
-	//
-	// componentDidMount() {
-	//     this.handleInitialize();
-	// }
-
 	render() {
 		return (
 			<div className="row">

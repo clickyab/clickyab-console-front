@@ -55,7 +55,6 @@ export default class PersonalUserCTR extends Component {
     }
 
     SubmitPersonalUser = (formValues, form) => {
-        console.log(formValues.birthday);
         moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D')
         if (!form.valid())
             return;
