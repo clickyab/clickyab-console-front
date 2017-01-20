@@ -3,10 +3,33 @@ import SelectLocationPTR from './SelectLocationPTR';
 import swagger from './../../swagger/index';
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
+import {sync} from "../../functions/sync";
+import {select} from "../../functions/select";
 
 export default class SelectLocationCTR extends Component {
+    callProvinceName(id) {
+        sync(function* (){
+            let {data, response, error } = yield (new swagger.LocationApi())
+                .locationProvinceGetIdGet(id, select('user.token', 'no token'))
 
+            if(response.statusCode == '200') {
+                $(".select-province").html('<option value=' + data.id + '>' + data.name + '</option>')
+                    .prop('disabled', true);
+            }
+        })
+    }
 
+    callCityName(id) {
+        sync(function* (){
+            let {data, response, error } = yield (new swagger.LocationApi())
+                .locationCityGetIdGet(id, select('user.token', 'no token'))
+
+            if(response.statusCode == '200') {
+                $(".select-city").html('<option value=' + data.id + '>' + data.name + '</option>')
+                    .prop('disabled', true);
+            }
+        })
+    }
     componentDidMount() {
         function getCountryList({error, data, response}) {
             if (response.statusCode == 200) {
@@ -50,14 +73,16 @@ export default class SelectLocationCTR extends Component {
         requestToGetCountry();
 
         $(document).on('change','.select-country',function() {
-                var countryID = $(this).val();
-                if(countryID){
-                    (new swagger.LocationApi())
-                        .locationProvinceGet(getToken())
-                        .then(response => getProvinceList(response));
-                }
+            $(".select-province").prop('disabled', false);
+            var countryID = $(this).val();
+            if(countryID){
+                (new swagger.LocationApi())
+                    .locationProvinceGet(getToken())
+                    .then(response => getProvinceList(response));
+            }
         });
         $(document).on('change','.select-province',function() {
+            $(".select-city").prop('disabled', false);
             let provinceID = $(this).val();
             if(provinceID){
                 (new swagger.LocationApi())
@@ -68,6 +93,6 @@ export default class SelectLocationCTR extends Component {
     }
 
     render() {
-        return (<SelectLocationPTR/>);
+        return (<SelectLocationPTR callCityName={this.callCityName} callProvinceName={this.callProvinceName} />);
     }
 }
