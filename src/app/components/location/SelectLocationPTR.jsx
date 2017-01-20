@@ -1,8 +1,10 @@
 import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
+import {connect} from 'react-redux';
 import {select} from "../../functions/select";
 
+@connect(({user}) => ({user}))
 export default class SelectLocationPTR extends Component {
 
     // handleInitialize() {
@@ -16,6 +18,9 @@ export default class SelectLocationPTR extends Component {
     // }
 
     render() {
+        let {user} = this.props;
+        console.log(user.personal);
+
         return (
             <div className="row">
                 <div className="col-md-4">

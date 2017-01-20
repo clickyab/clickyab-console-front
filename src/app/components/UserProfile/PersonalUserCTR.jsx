@@ -22,6 +22,7 @@ export default class PersonalUserCTR extends Component {
 
 
     PersonalUserCallback({error, data, response}) {
+        console.log(data, response);
         response.error = 'اطلاعات شما صحیح نمی‌باشد.';
         response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
@@ -37,7 +38,9 @@ export default class PersonalUserCTR extends Component {
     }
 
     PersonalCall(formValues) {
-
+        formValues.country_id = parseInt(formValues.country_id);
+        formValues.province_id = parseInt(formValues.province_id);
+        formValues.city_id = parseInt(formValues.city_id);
         (new swagger.UserApi())
             .userProfilePost(getToken(),
                 {'payloadData': {"personal": formValues}})
