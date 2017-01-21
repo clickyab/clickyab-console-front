@@ -123,8 +123,8 @@ class LoginForm extends Component {
                                     </div>
 								</div>
                                 <div className="panel-footer">
-                                    <Link to="/password-recovery">{forgot_password}</Link><br/>
-                                    {do_not_have_an_account_yet} <Link to="/register">{register_now}</Link>
+                                    <Link to="/v1/password-recovery">{forgot_password}</Link><br/>
+                                    {do_not_have_an_account_yet} <Link to="/v1/register">{register_now}</Link>
                                 </div>
 
 							</div>
