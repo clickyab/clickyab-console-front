@@ -6,7 +6,7 @@ import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
-import {updateUserInformation} from "../../redux/actions/user";
+import {updatePersonalInformation} from "../../redux/actions/user";
 import moment from "moment";
 let Ladda = require('ladda/js/ladda');
 
@@ -16,7 +16,7 @@ export default class PersonalUserCTR extends Component {
 
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
-        dispatch(updateUserInformation(user));
+        dispatch(updatePersonalInformation(user));
         dispatch(updateLocalStorageAction());
     }
 

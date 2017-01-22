@@ -4,9 +4,14 @@ import {dispatch} from "../../../functions/dispatch";
 
 class NumericSelect extends Component {
 	render() {
-		const {value, name, children, className, form} = this.props;
+		const {name, children, onCustomChange, className, form} = this.props;
 		return (
-			<select className={className} name={name} id={name} value={value} onChange={(event) => {
+			<select {...this.props.input} onBlur={() => {}}
+					className={className} name={name} id={name} onChange={(event) => {
+				if(typeof onCustomChange != 'undefined') {
+					onCustomChange(event);
+				}
+
 				dispatch(change(form, name, parseInt(event.target.value)));
 			}}>
 				{children}

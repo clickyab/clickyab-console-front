@@ -1,51 +1,69 @@
 import React, {Component} from "react";
 import {Field} from "redux-form";
 import NumericSelect from "./../common/form/NumericSelect";
-import {connect} from 'react-redux';
+import {getCountry} from "../../redux/helpers";
+import {getProvince} from "../../redux/helpers";
+import {getCity} from "../../redux/helpers";
+import {dispatch} from "../../functions/dispatch";
+import {change} from "redux-form/lib/index";
 
-@connect(({user}) => ({user}))
 export default class SelectLocationPTR extends Component {
 
-	componentDidMount() {
-		let {user, callProvinceName, callCityName} = this.props;
-		callProvinceName(user.personal.province_id);
-		callCityName(user.personal.city_id);
-	}
+    componentDidMount() {
+        dispatch(change("PersonalUserForm", 'country_id', 1));
+    }
 
-	render() {
-		return (
-			<div className="row">
-				<div className="col-md-4">
-					<div className="form-group">
-						<label>انتخاب کشور</label>
-						<NumericSelect className="form-control select-country" data-placeholder="انتخاب کشور"
-									   tabIndex="1" name="country_id" form="PersonalUserForm">
-							<option>انتخاب کشور</option>
-						</NumericSelect>
-					</div>
-				</div>
+    render() {
+        let {onCountryChanged, onProvinceChanged, countries, provinces, cities, form} = this.props;
 
-				<div className="col-md-4">
-					<div className="form-group">
-						<label>استان</label>
-						<NumericSelect className="form-control select-province" data-placeholder="انتخاب استان"
-									   tabIndex="1" name="province_id" form="PersonalUserForm">
-							<option>انتخاب استان</option>
-						</NumericSelect>
-					</div>
-				</div>
-				<div className="col-md-4">
-					<div className="form-group">
-						<label>شهر</label>
-						<NumericSelect className="form-control select-city" data-placeholder="انتخاب شهر"
-									   tabIndex="1" name="city_id" form="PersonalUserForm">
-							<option>انتخاب شهر</option>
-						</NumericSelect>
-					</div>
-				</div>
-			</div>
-		)
-	}
+        return (
+            <div className="row">
+                <div className="col-md-4">
+                    <div className="form-group">
+                        <label>انتخاب کشور</label>
+                        <NumericSelect onCustomChange={onCountryChanged}
+                                       className="form-control select-country"
+                                       data-placeholder="انتخاب کشور"
+                                       name="country_id" form={form}>
+                            <option value={0}> کشور استان</option>
+                            {countries.map(country =>
+                                <option key={country.id} value={country.id}>{country.name}</option>
+                            )}
+
+                        </NumericSelect>
+                    </div>
+                </div>
+
+                <div className="col-md-4">
+                    <div className="form-group">
+                        <label>استان</label>
+                        <NumericSelect selected={2} onCustomChange={onProvinceChanged}
+                                       className="form-control select-province"
+                                       data-placeholder="انتخاب استان"
+                                       name="province_id" form={form}>
+                            <option value={0}>انتخاب استان</option>
+                            {provinces.map(province =>
+                                <option key={province.id} value={province.id}>{province.name}</option>
+                            )}
+                        </NumericSelect>
+                    </div>
+                </div>
+                <div className="col-md-4">
+                    <div className="form-group">
+                        <label>شهر</label>
+                        <NumericSelect selected={getCity()} className="form-control select-city"
+                                       data-placeholder="انتخاب شهر"
+                                       tabIndex="1" name="city_id" form={form}>
+                            <option value={0}>انتخاب شهر</option>
+                            {cities.map(city =>
+                                <option key={city.id} value={city.id}>{city.name}</option>
+                            )}
+                        </NumericSelect>
+                    </div>
+                </div>
+            </div>
+        )
+    }
 
 }
 

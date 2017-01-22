@@ -1,12 +1,12 @@
 import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
-import {connect} from "react-redux";
-import {store} from "./../../redux/store";
+import {dispatch} from "../../functions/dispatch";
 import {getEmail} from './../../redux/helpers'
 import {select} from '../../functions/select'
 import SelectLocationCTR from './../../components/location/SelectLocationCTR'
 import moment from 'moment-jalali';
+import {change} from "redux-form/lib/actions";
 
 moment.loadPersian();
 
@@ -15,9 +15,11 @@ class PersonalUserPTR extends Component {
     PersonalForm;
 
     handleInitialize() {
-            const initData = select("user.personal", {}, true);
+        const initData = select("user.personal", {}, true);
         initData.email = getEmail();
-        this.props.initialize(initData);
+        for(let key in initData) {
+            dispatch(change("PersonalUserForm", key, initData[key]));
+        }
     }
 
     componentDidMount() {
@@ -160,7 +162,7 @@ class PersonalUserPTR extends Component {
 
                     </div>
 
-                    <SelectLocationCTR/>
+                    <SelectLocationCTR form='PersonalUserForm'/>
                     <div className="form-actions right margin-top-20">
                         <button type="submit" className="btn blue">
                             <i className="fa fa-check"/> ذخیره پروفایل
