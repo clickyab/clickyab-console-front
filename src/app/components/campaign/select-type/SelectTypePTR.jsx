@@ -3,10 +3,18 @@ import $ from "jquery";
 import {reduxForm, change} from "redux-form";
 import Radio from './../../common/form/Radio';
 import {dispatch} from "../../../functions/dispatch";
+import {navigate} from "../../../functions/navigate";
 
 
 class SelectTypePTR extends Component {
     selectTypeContentForm;
+
+    constructor(props) {
+        super(props);
+        this.state = {
+            next: '/v1/campaign/create/step/3'
+        }
+    }
 
     handleInitialize() {
         dispatch(change("SelectTypePTRForm", 'select-type-content', 'generate_content'))
@@ -14,17 +22,7 @@ class SelectTypePTR extends Component {
 
     componentDidMount() {
         this.handleInitialize();
-        $('input[name=select-type-content]').change(function (event) {
-            if ($(this).is(':checked') && ($(this).val() == 'generate_content')) {
-                $(".when-select-content").fadeOut("normal", function () {
-                    $(".when-generate-content").fadeIn();
-                });
-            } else if ($(this).is(':checked') && ($(this).val() == 'select_content')) {
-                $(".when-generate-content").fadeOut("normal", function () {
-                    $(".when-select-content").fadeIn();
-                });
-            }
-        });
+
         this.selectTypeContentForm = $('.campaign-name-form');
         this.selectTypeContentForm.validate({
             rules: {
@@ -142,17 +140,37 @@ class SelectTypePTR extends Component {
                                             جدید</b> متن و و مدیای خود را آپلود نمایید
                                             <br />
                                             <br />
+
                                             <div className='form-group form-md-radios'>
                                                 <div className='md-radio-list'>
                                                     <Radio label={'محتوای جدید'} name={'select-type-content'}
+                                                           onClick={(event) => {
+                                                               $(".when-select-content").fadeIn();
+                                                               $(".when-generate-content").hide();
+                                                               this.setState({
+                                                                   next: "/v1/campaign/create/step/3"
+                                                               });
+                                                           }}
                                                            value={'generate_content'} id={'generate_content'}/>
                                                     <Radio label={'پروموت محتوای کانال های دیگر'}
+                                                           onClick={(event) => {
+                                                               $(".when-generate-content").fadeIn();
+                                                               $(".when-select-content").hide();
+                                                               this.setState({
+                                                                   next: "/v1/profile"
+                                                               });
+                                                           }}
                                                            name={'select-type-content'} value={'select_content'}
                                                            id={'select_content'}/>
                                                 </div>
                                             </div>
+                                            <div className="row">
+                                                <div className="col-md-12 margin-top-20">
+                                                    <span onClick={() => navigate(this.state.next)}
+                                                          className="btn btn-info btn-lg" type="submit">مرحله بعد</span>
+                                                </div>
+                                            </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </form>
