@@ -40,6 +40,7 @@ export default class SelectPlanCTR extends Component {
         DisplayPlanList(planData);
 
     }
+
     render() {
         return (<SelectPlanPTR />);
     }
