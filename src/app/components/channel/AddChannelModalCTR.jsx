@@ -13,11 +13,12 @@ let loadingProgress;
 export default class AddChannelModalCTR extends Component {
 
     addChannelSubmit(formValues) {
+        formValues.user_id = select('user.user_id');
         sync(function*() {
             loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
             loadingProgress.start();
             const {response} = yield (new swagger.ChannelApi())
-                .channelCreatePost(select("user.token", "no token"), {'payloadData': formValues});
+                .channelPost(select("user.token", "no token"), {'payloadData': formValues});
 
             response.error = 'اطلاعات شما صحیح نمی‌باشد.';
             response.text = 'اطلاعات شما با موفقیت ثبت شد.';

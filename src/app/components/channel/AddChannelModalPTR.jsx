@@ -16,9 +16,6 @@ class AddChannelModalPTR extends Component {
         this.addChannelForm = $("#addChannelForm");
         this.addChannelForm.validate({
             rules: {
-                admin: {
-                    required: true,
-                },
                 link: {
                     required: true,
                     url: true
@@ -29,9 +26,6 @@ class AddChannelModalPTR extends Component {
 
             },
             messages: {
-                admin: {
-                    required: 'لطفا نام ادمین را وارد نمایید',
-                },
                 link: {
                     required: 'لطفا لینک کانال را وارد نمایید',
                     url: 'لطفا یک آدرس اینترنتی معتبر با http و یا https وارد نمایید'
@@ -66,13 +60,8 @@ class AddChannelModalPTR extends Component {
                                       className="add-channel-form white"
                                       onSubmit={handleSubmit((values) => SubmitAddChannel(values, this.addChannelForm))}>
                                     <div className="form-group">
-                                        <label htmlFor="admin">نام ادمین</label>
-                                        <Field component="input" type="text" name="admin" placeholder='نام ادمین'
-                                               className="form-control input-lg" id="admin"/>
-                                    </div>
-                                    <div className="form-group">
                                         <label htmlFor="link">لینک کانال</label>
-                                        <Field component="input" type="text" name="link" placeholder="لینک چنل"
+                                        <Field component="input" type="text" name="link" placeholder="لینک کانال"
                                                className="form-control input-lg" id="link"/>
                                     </div>
 
