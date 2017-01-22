@@ -9,7 +9,7 @@ import {setHeight} from "./functions/setHeight";
 
 export default class App extends React.Component {
     componentDidMount() {
-        document.addEventListener('panic', function (e) {
+        document.body.addEventListener('panic', function (e) {
             console.log("heeeelllllooow")
         }, false);
 
