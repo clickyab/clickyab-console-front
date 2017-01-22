@@ -13,6 +13,7 @@ import {categoryListReducer} from "./reducers/categoryList";
 import {channelDataReducer} from "./reducers/channelDataReducer";
 import {userDataReducer} from "./reducers/userDataReducer";
 import {categoryDataReducer} from "./reducers/CategoryDataReducer";
+import {planListReducer} from "./reducers/planList";
 import {createCampaignReducer} from './reducers/createCampaignDataReducer';
 import queryReducer from "./reducers/queryReducer";
 import userTypeReducer from "./reducers/userTypeReducer";
@@ -41,6 +42,8 @@ export const store = createStore(
         categoryData: categoryDataReducer,
 
         telegramList: telegramListReducer,
+
+        planList : planListReducer,
 
         queries: queryReducer,
 

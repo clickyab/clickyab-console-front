@@ -2,14 +2,11 @@ import React, {Component} from 'react';
 import SessionListPTR from './SessionListPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-// import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
-// import {push} from 'react-router-redux';
 import {getToken} from '../../redux/helpers';
 import moment from 'moment-jalali';
 import {AlertBox} from '../../functions/notifications';
 import {ifInvalidToken} from '../../functions/helpers';
 import $ from 'jquery';
-// let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
 
 @connect()
@@ -24,11 +21,17 @@ export default class SessionListCTR extends Component {
             }
             $.each(data, function(key, sessionItem) {
                 $.each(sessionItem.sessions, function () {
+                    // let parser = new UAParser();
+                    // let user_agent = this.user_agent;
+                    // parser.setUA(user_agent);
+                    // let result_user_agent = parser.getResult();
+                    // let final_user_agent = result_user_agent.browser + '-' + result.os;
+
                     $resultDisplay.append(
                         '<div class="session-item">' +
                              '<div class="session-item-body"> ' +
                                   '<div class="session-item-info">' +
-                                      '<span class="session-user-agent">'+ this.user_agent +'</span>' +
+                                      '<span class="session-user-agent">'+  +'</span>' +
                                       '<span class="created_at">'+ moment(this.created_at).format('dddd، jD jMMMM jYYYY') +'</span>' +
                                  '</div>' +
                                  '<div class="session-ip">' + this.ip +'</div>' +

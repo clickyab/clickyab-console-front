@@ -22,6 +22,7 @@ import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMid
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
 import onCreateCampaignStepTwoOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepTwoOnEnterMiddleware";
 import onCreateCampaignStepThreeOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepThreeOnEnterMiddleware";
+import onPlanListEnterMiddleware from "./middlewares/routes/onPlanListEnterMiddleware";
 import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMiddleware";
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import onTelegramEnterMiddleware from './middlewares/routes/onTelegramEnterMiddleware';
@@ -56,11 +57,10 @@ export default () => (
             <Route path='campaign/create/step/4' component={SelectPlanCTR} name='campaignList'/>
             <Route path="/v1/selectadtype" component={SelectTypeCTR} />
 
-
         </Route>
 
         <Route path='/v1' component={Transition}>
-            <Route path='register' component={Register} title='Register' name='Register'/>
+            <Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
             <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
             <Route path='password-recovery' component={ForgotPassword} name=''/>
         </Route>

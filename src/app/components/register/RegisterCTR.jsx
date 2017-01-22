@@ -7,6 +7,7 @@ import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from './RegisterPTR';
 import swagger from './../../swagger/index';
 import {navigate} from "../../functions/navigate";
+import {successfulLogin} from "../../redux/actions/login";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -17,6 +18,8 @@ export default class RegisterCTR extends Component {
         let {dispatch} = this.props;
 
         dispatch(successfulRegister());
+		dispatch(successfulLogin());
+		dispatch(successfulRegister());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
         navigate('/v1/publisher');
@@ -29,7 +32,6 @@ export default class RegisterCTR extends Component {
     registerCallback({error, data, response}) {
         response.error = 'اطلاعات شما صحیح نمی‌باشد.';
         response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-
         if (response.statusCode == '200') {
             this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
