@@ -1293,6 +1293,34 @@ pre {
   .col-lg-offset-12 {
     margin-right: 100%; } }
 
+.col-xs-15,
+.col-sm-15,
+.col-md-15,
+.col-lg-15 {
+  position: relative;
+  min-height: 1px;
+  padding-right: 10px;
+  padding-left: 10px; }
+
+.col-xs-15 {
+  width: 20%;
+  float: right; }
+
+@media (min-width: 768px) {
+  .col-sm-15 {
+    width: 20%;
+    float: right; } }
+
+@media (min-width: 992px) {
+  .col-md-15 {
+    width: 20%;
+    float: right; } }
+
+@media (min-width: 1200px) {
+  .col-lg-15 {
+    width: 20%;
+    float: right; } }
+
 table {
   background-color: transparent; }
 
@@ -35286,7 +35314,7 @@ body.stop-scrolling {
     color: #dae1e4;
     z-index: 4; }
   .mt-element-step .step-background .mt-step-title {
-    font-size: 30px;
+    font-size: 20px;
     font-weight: 100;
     text-align: right;
     padding-right: 25%;
