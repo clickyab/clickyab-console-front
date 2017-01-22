@@ -10,7 +10,6 @@ import {getEmail} from "../../redux/helpers";
 import SwitcherCTR from './SwitcherCTR';
 
 
-@connect()
 export class Header extends Component {
 
     componentDidMount() {
@@ -19,6 +18,12 @@ export class Header extends Component {
     }
 
     render() {
+        let initData;
+        if((select('user.personal.first_name')) != null) {
+            initData = getFullName();
+        } else {
+            initData = getCorporationTitle();
+        }
         return (
             <div className="page-header navbar navbar-fixed-top">
                 <div className="page-header-inner ">
@@ -42,10 +47,7 @@ export class Header extends Component {
                                 <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-close-others="true">
                                     <img alt="" className="img-circle profile-userpic" src="" />
                                     <span className="username username-hide-on-mobile">
-                                        {select('user.personal.first_name') != null ?
-                                            getFullName() : getCorporationTitle()
-                                        }
-
+                                        {initData}
                                     </span>
                                     <i className="fa fa-angle-down"/>
                                 </a>
