@@ -9,6 +9,11 @@ import {setHeight} from "./functions/setHeight";
 
 export default class App extends React.Component {
     componentDidMount() {
+        document.addEventListener('panic', function (e) {
+            console.log("heeeelllllooow")
+        }, false);
+
+
         var defaultSettings = 'fa';
             $.fn.persiaNumber = function(settings) {
                 if(typeof(settings) == 'string' && settings.length > 0)
