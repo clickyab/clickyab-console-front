@@ -25,7 +25,7 @@ export default class SelectUserType extends Component {
         if((select('user.personal.first_name')) != null) {
                 $('#radio_personal').prop('checked',true);
                 $('.personal-form').fadeIn();
-        } else {
+        } else if((select('user.corporation.title')) != null) {
             $('#radio_corporation').prop('checked',true);
             $('.corporation-form').fadeIn();
         }

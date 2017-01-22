@@ -58,7 +58,7 @@ export default () => (
         </Route>
 
         <Route path='/v1' component={Transition}>
-            <Route path='register' component={Register} title='Register' name='Register'/>
+            <Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
             <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
             <Route path='password-recovery' component={ForgotPassword} name=''/>
         </Route>
