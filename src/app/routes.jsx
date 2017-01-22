@@ -30,6 +30,7 @@ import CampaignCreateCTR from './components/campaign/step1/CreateCTR';
 import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
 import CaptionCTR from './components/campaign/step3/CaptionCTR';
 import SelectPlanCTR from './components/campaign/step4/SelectPlanCTR';
+import SelectTypeCTR from './components/campaign/select-type/SelectTypeCTR';
 import PageNotFound from './components/404/PageNotFound';
 import TelegramListCTR from './components/telegram/TelegramListCTR';
 
@@ -53,6 +54,8 @@ export default () => (
             <Route path='campaign/create/step/2' component={UploadFileCTR} onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/3' component={CaptionCTR} onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/4' component={SelectPlanCTR} name='campaignList'/>
+            <Route path="/v1/selectadtype" component={SelectTypeCTR} />
+
 
         </Route>
 
@@ -63,6 +66,7 @@ export default () => (
         </Route>
 
         <Route path="/" onEnter={onSlashEnterMiddleware}/>
+
         <Route path="*" component={PageNotFound} />
     </Router>
 );
