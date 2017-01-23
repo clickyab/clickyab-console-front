@@ -9,10 +9,15 @@ import swagger from "../../../swagger/index";
 import {dispatch} from "../../../functions/dispatch";
 import {createCampaign, updateLocalStorageAction} from "../../../redux/actions/index";
 import {navigate} from "../../../functions/navigate";
+import {AlertBox} from "../../../functions/notifications";
+let Ladda = require('ladda/js/ladda');
+
+
 
 class SelectContentByChannelPTR extends Component {
     selectTypeContentForm;
     ids;
+    loadingProgressSend;
 
     onClick(id) {
         return (event) => {
@@ -24,6 +29,8 @@ class SelectContentByChannelPTR extends Component {
 
     send(event) {
         sync(function*() {
+            this.loadingProgressSend = Ladda.create(document.querySelector('button.send-clid'));
+            this.loadingProgressSend.start();
             if (this.ids) {
                 let {data, response} = yield (new swagger.AdApi()).campaignPromoteIdPut(
                     select('createCampaignData.id'), getToken(), {
@@ -33,17 +40,20 @@ class SelectContentByChannelPTR extends Component {
                     }
                 );
 
-                console.log(data);
-
                 response.error = 'اطلاعات شما صحیح نمی‌باشد.';
                 response.text = 'اطلاعات شما با موفقیت ثبت شد.';
                 if (response.statusCode == '200') {
+                    AlertBox("success" , "پست مورد نظر با موفقیت انتخاب شد");
+                    this.loadingProgressSend.stop();
                     dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data})));
                     dispatch(updateLocalStorageAction());
 
                     navigate('/v1/campaign/create/:campaign_id:/step/plan', {
                         campaign_id: select('createCampaignData.id')
                     });
+                } else if(response.statusCode == '400') {
+                    AlertBox("error" , "اختلالی در سرور به وجود آمده است لطفا دوباهر تلاش کنید");
+                    this.loadingProgressSend.stop();
                 }
             }
         }.bind(this))
@@ -78,7 +88,7 @@ class SelectContentByChannelPTR extends Component {
         if (Postlist.Data != null) {
             items.push(<button type="submit" key={'asdasdasd'}
                                onClick={this.send.bind(this)}
-                               className="btn mt-ladda-btn ladda-button btn-success btn-lg margin-top-20 pull-left"
+                               className="btn mt-ladda-btn ladda-button btn-success btn-lg margin-top-20 pull-left send-clid"
                                data-style="zoom-in"><span className="ladda-label">ارسال</span></button>);
         }
         return items;
