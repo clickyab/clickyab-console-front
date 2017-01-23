@@ -31,13 +31,13 @@ export default class CaptionCTR extends Component {
                 response.error = 'اطلاعات شما صحیح نمی‌باشد.';
                 response.text = 'اطلاعات شما با موفقیت ثبت شد.';
                 if (response.statusCode == '200') {
-                    dispatch(createCampaign(Object.assign({},select("createCampaignData"), {description:textarea_text.val()})));
+                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {description: textarea_text.val()})));
                     dispatch(updateLocalStorageAction());
 
                     loadingProgress.stop();
-                    AlertBox("success","کپشن با موفقیت افزوده شد، هم اکنون پلن تبلیغاتی خود را انتخاب کنید");
+                    AlertBox("success", "کپشن با موفقیت افزوده شد، هم اکنون پلن تبلیغاتی خود را انتخاب کنید");
 
-                    navigate('/v1/campaign/create/step/4');
+                    navigate('/v1/campaign/create/:campaign_id:/step/plan', {campaign_id: select('createCampaignData.id')});
                 } else if (response.statusCode == '400') {
                     loadingProgress.stop();
                     FailedBoxAlert(response);
@@ -47,6 +47,7 @@ export default class CaptionCTR extends Component {
             });
         });
     }
+
     render() {
         return (<CaptionPTR />);
     }
