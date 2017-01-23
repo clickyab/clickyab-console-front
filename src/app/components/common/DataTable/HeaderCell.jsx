@@ -21,6 +21,8 @@ export default class HeaderCell extends Component {
         let {list, query_name} = this.props;
 
         let order = this.toggleSort(select('queries.' + list + '.sort', 'ASC'));
+
+        dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, 'sort', query_name + ":" + order));
         dispatch(updateLocalStorageAction());
 
@@ -30,6 +32,7 @@ export default class HeaderCell extends Component {
     onSearchChange(event) {
         let {list, query_name, search} = this.props;
 
+        dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, query_name, event.target.value));
         dispatch(updateLocalStorageAction());
 
@@ -48,6 +51,7 @@ export default class HeaderCell extends Component {
     filterOnChange(event) {
         let {query_name, list, filter} = this.props;
 
+        dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, query_name, event.target.value));
         dispatch(updateLocalStorageAction());
 

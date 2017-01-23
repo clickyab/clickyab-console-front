@@ -406,12 +406,8 @@
         if (!error) {
           data = _this.deserialize(response, returnType);
         }
-        if(response.statusCode == '401') {
-            var event = new CustomEvent("panic");
-            document.dispatchEvent(event);
-        } else {
-            callback({error:error, data:data, response:response});
-        }
+
+        callback({error:error, data:data, response:response});
       }
     });
 

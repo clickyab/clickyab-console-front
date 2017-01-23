@@ -14,7 +14,7 @@ function* categoryListController(done) {
     loading(true);
     const {error, data} = yield (new swagger.CategoryApi())
         .categoryListGet(select('user.token'), {
-            ...select('queries.channel', {}),
+            ...select('queries.category', {}),
             def: true
         });
 
