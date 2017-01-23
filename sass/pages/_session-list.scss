@@ -2,7 +2,6 @@
 .session-list {
   .session-item {
     padding: 10px;
-    margin: 0 0 10px 0;
     border-bottom: 1px solid #f7f8f9;
 
 
@@ -14,14 +13,7 @@
       .session-item-info {
         @include clearfix();
 
-        .session-user-agent {
-          display: inline-block;
-          float: left;
-          margin: 0px 0px 10px 0;
-          color:#060606;
-          font-weight: 600;
-          text-align: left;
-        }
+
 
         .session-date {
           display: inline-block;
@@ -70,4 +62,21 @@
 
     }
   }
+}
+
+
+.left .session-user-agent {
+  display: inline-block;
+  float: left;
+  margin: 0px 0px 10px 0;
+  color:#060606;
+  font-weight: 600;
+  text-align: left;
+}
+.right .session-user-agent {
+  display: inline-block;
+  margin: 0px 0px 10px 0;
+  color:#060606;
+  font-weight: 600;
+  text-align: $dir-mode-align;
 }

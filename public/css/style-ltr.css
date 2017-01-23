@@ -2786,6 +2786,9 @@ tbody.collapse.in {
     z-index: 2;
     margin-left: -1px; }
 
+.input-group .help-block {
+  display: none !important; }
+
 .nav {
   margin-bottom: 0;
   padding-left: 0;
@@ -25947,13 +25950,6 @@ Tasks Widget
       display: table; }
     .session-list .session-item .session-item-body .session-item-info:after {
       clear: both; }
-    .session-list .session-item .session-item-body .session-item-info .session-user-agent {
-      display: inline-block;
-      float: left;
-      margin: 0px 0px 10px 0;
-      color: #060606;
-      font-weight: 600;
-      text-align: left; }
     .session-list .session-item .session-item-body .session-item-info .session-date {
       display: inline-block;
       float: right;
@@ -25982,6 +25978,21 @@ Tasks Widget
               text-decoration: none; }
   .session-list .session-item:hover {
     background: #f9f9f9; }
+
+.left .session-user-agent {
+  display: inline-block;
+  float: left;
+  margin: 0px 0px 10px 0;
+  color: #060606;
+  font-weight: 600;
+  text-align: left; }
+
+.right .session-user-agent {
+  display: inline-block;
+  margin: 0px 0px 10px 0;
+  color: #060606;
+  font-weight: 600;
+  text-align: left; }
 
 .white {
   color: #fff; }

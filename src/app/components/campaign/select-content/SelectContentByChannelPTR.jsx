@@ -6,15 +6,48 @@ import NumericSelect from "./../../common/form/NumericSelect";
 
 class SelectContentByChannelPTR extends Component {
     selectTypeContentForm;
+    ids;
+    onClick(id) {
+        return (event) => {
+            $(event.target).parents(".channel-post").find("button").addClass("btn-outline");
+            $(event.target).removeClass("btn-outline");
+            this.ids = id;
+        };
+    }
 
-    // handleInitialize() {
-    //     const initData = select("user.personal", {}, true);
-    //     initData.email = getEmail();
-    //     this.props.initialize(initData);
-    // }
+    ChannelPostList() {
+        let items = [];
+        let {Postlist} = this.props;
+        for (let key in Postlist.Data) {
+            items.push(
+                <div className="session-list right" key={key}>
+                    <div className="session-item">
+                        <div className="session-item-body">
+                            <div className="session-item-info">
+                                <span className="session-user-agent">{Postlist.Data[key].Text}</span>
+                            </div>
+                            <div className="session-ip"></div>
+                            <div className="session-details">
+                                <div className="session-item-actions">
+                                    <div className="btn-group">
+                                        <button onClick={this.onClick(Postlist.Data[key].CliID)} type="button" className="btn btn-outline green btn-sm" id="delete-session"
+                                                data-key='+ this.key +'>انتخاب به عنوان محتوای آگهی
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>);
+        }
+        if(Postlist.Data != null) {
+            items.push(<button type="submit" key={Postlist} className="btn mt-ladda-btn ladda-button btn-success btn-lg margin-top-20 pull-left" data-style="zoom-in"><span className="ladda-label">ارسال</span></button>);
+        }
+        return items;
+
+    };
 
     componentDidMount() {
-        // this.handleInitialize();
         this.selectTypeContentForm = $('.get-posts-channel-form');
         this.selectTypeContentForm.validate({
             rules: {
@@ -72,13 +105,13 @@ class SelectContentByChannelPTR extends Component {
                         <div className='row'>
                             <h2>۳- انتخاب محتوا</h2>
                             <div className="note note-success"><h3>انتخاب پست به عنوان تبلیغ از کانال های دیگر</h3><p> لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید</p></div>
-                            <form autoComplete="off" method="post" className="get-posts-channel-form" onSubmit={handleSubmit((values) => SubmitGetPostsByChannel(values, this.selectTypeContentForm))}>
+                            <form  method="post" className="get-posts-channel-form" onSubmit={handleSubmit((values) => SubmitGetPostsByChannel(values, this.selectTypeContentForm))}>
                                 <div className="form-body">
                                     <div className='col-md-12 col-xs-12'>
                                         <div className="row margin-bottom-20">
                                             <div className="col-md-4">
                                                 <label>یوزر نیم کانال</label>
-                                                <div className="input-group input-group-lg">
+                                                <div className="input-group input-group-lg form-group">
                                                     <span className="input-group-addon" id="sizing-addon1">@</span>
                                                     <Field type="text" component="input" name="name" id="name" className="form-control" placeholder="Username" aria-describedby="sizing-addon1"/> </div>
                                             </div>
@@ -96,6 +129,11 @@ class SelectContentByChannelPTR extends Component {
                                         <div className="row">
                                             <div className="col-md-8">
                                                 <button type="submit" className="btn blue btn-lg submit-get-posts-channel">نمایش پست های کانال</button>
+                                            </div>
+                                        </div>
+                                        <div className="row margin-top-40">
+                                            <div className="channel-post">
+                                            {this.ChannelPostList()}
                                             </div>
                                         </div>
                                     </div>
