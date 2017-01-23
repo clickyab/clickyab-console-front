@@ -12,12 +12,12 @@ class SelectTypePTR extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            next: '/v1/campaign/create/step/3'
+            next: '/v1/campaign/create/step/upload'
         }
     }
 
     handleInitialize() {
-        dispatch(change("SelectTypePTRForm", 'select-type-content', 'generate_content'))
+        dispatch(change("SelectTypePTRForm", 'step-type-content', 'generate_content'))
     }
 
     componentDidMount() {
@@ -52,6 +52,7 @@ class SelectTypePTR extends Component {
                         </div>
                     </div>
                     <div className="portlet-body form">
+
                         <div className="mt-element-step margin-top-20 when-select-content ">
                             <div className="row step-background">
                                 <div className="col-md-3 bg-grey-steel mt-step-col">
@@ -125,6 +126,7 @@ class SelectTypePTR extends Component {
                             </div>
                             <br/>
                         </div>
+
                         <div className='row'>
                             <form>
                                 <div className='col-md-12 col-xs-12'>
@@ -143,12 +145,12 @@ class SelectTypePTR extends Component {
 
                                             <div className='form-group form-md-radios'>
                                                 <div className='md-radio-list'>
-                                                    <Radio label={'محتوای جدید'} name={'select-type-content'}
+                                                    <Radio label={'محتوای جدید'} name={'step-type-content'}
                                                            onClick={(event) => {
                                                                $(".when-select-content").fadeIn();
                                                                $(".when-generate-content").hide();
                                                                this.setState({
-                                                                   next: "/v1/campaign/create/step/3"
+                                                                   next: "/v1/campaign/create/step/upload"
                                                                });
                                                            }}
                                                            value={'generate_content'} id={'generate_content'}/>
@@ -157,10 +159,10 @@ class SelectTypePTR extends Component {
                                                                $(".when-generate-content").fadeIn();
                                                                $(".when-select-content").hide();
                                                                this.setState({
-                                                                   next: "/v1/profile"
+                                                                   next: "/v1/campaign/create/step/promote"
                                                                });
                                                            }}
-                                                           name={'select-type-content'} value={'select_content'}
+                                                           name={'step-type-content'} value={'select_content'}
                                                            id={'select_content'}/>
                                                 </div>
                                             </div>

@@ -27,11 +27,12 @@ import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMid
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import onTelegramEnterMiddleware from './middlewares/routes/onTelegramEnterMiddleware';
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
-import CampaignCreateCTR from './components/campaign/step1/CreateCTR';
-import UploadFileCTR from './components/campaign/step2/UploadFileCTR';
-import CaptionCTR from './components/campaign/step3/CaptionCTR';
-import SelectPlanCTR from './components/campaign/step4/SelectPlanCTR';
-import SelectTypeCTR from './components/campaign/select-type/SelectTypeCTR';
+import CampaignCreateCTR from './components/campaign/step-name/CreateCTR';
+import UploadFileCTR from './components/campaign/step-upload/UploadFileCTR';
+import CaptionCTR from './components/campaign/step-editor/CaptionCTR';
+import SelectPlanCTR from './components/campaign/step-plan/SelectPlanCTR';
+import SelectTypeCTR from './components/campaign/step-type/SelectTypeCTR';
+import SelectContentByChannelCTR from './components/campaign/step-promote/SelectContentByChannelCTR';
 import PageNotFound from './components/404/PageNotFound';
 import TelegramListCTR from './components/telegram/TelegramListCTR';
 
@@ -42,21 +43,29 @@ export default () => (
             <IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
                         onEnter={onDashboardEnterMiddleware}
                         getDisplayName={() => 'Dashboard'}/>
-            <Route path='publisher' component={PublisherDashboardPage} name='publisher' onEnter={onPublisherEnterMiddleware}/>
-            <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser' onEnter={onAdvertiserEnterMiddleware}/>
+            <Route path='publisher' component={PublisherDashboardPage} name='publisher'
+                   onEnter={onPublisherEnterMiddleware}/>
+            <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser'
+                   onEnter={onAdvertiserEnterMiddleware}/>
             <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
             <Route path='category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware}/>
             <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
             <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
             <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
-            <Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware} />
+            <Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware}/>
 
-            <Route path='campaign/create/step/1' component={CampaignCreateCTR} onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/step/2' component={UploadFileCTR} onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/step/3' component={CaptionCTR} onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/step/4' component={SelectPlanCTR} name='campaignList'/>
-            <Route path="/v1/selectadtype" component={SelectTypeCTR} />
+            <Route path='campaign/create/step/name' component={CampaignCreateCTR}
+                   onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+            <Route path='campaign/create/step/type' component={SelectTypeCTR}
+                   onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignList'/>
 
+            <Route path='campaign/create/step/promote' component={SelectContentByChannelCTR}
+                   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
+            <Route path='campaign/create/step/upload' component={UploadFileCTR}
+                   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
+            <Route path='campaign/create/step/editor' component={CaptionCTR} name='campaignList'/>
+            <Route path='campaign/create/step/plan' component={SelectPlanCTR} name='campaignList'
+                   onEnter={onPlanListEnterMiddleware}/>
         </Route>
 
         <Route path='/v1' component={Transition}>
@@ -67,7 +76,7 @@ export default () => (
 
         <Route path="/" onEnter={onSlashEnterMiddleware}/>
 
-        <Route path="*" component={PageNotFound} />
+        <Route path="*" component={PageNotFound}/>
     </Router>
 );
 

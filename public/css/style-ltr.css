@@ -2686,7 +2686,8 @@ tbody.collapse.in {
 .input-group {
   position: relative;
   display: table;
-  border-collapse: separate; }
+  border-collapse: separate;
+  direction: ltr; }
   .input-group[class*="col-"] {
     float: none;
     padding-left: 0;
@@ -2694,7 +2695,7 @@ tbody.collapse.in {
   .input-group .form-control {
     position: relative;
     z-index: 2;
-    float: left;
+    float: right;
     width: 100%;
     margin-bottom: 0; }
     .input-group .form-control:focus {
@@ -2752,7 +2753,7 @@ tbody.collapse.in {
   border-top-right-radius: 0; }
 
 .input-group-addon:first-child {
-  border-right: 0; }
+  border-left: 0; }
 
 .input-group .form-control:last-child,
 .input-group-addon:last-child,
@@ -2784,6 +2785,9 @@ tbody.collapse.in {
   .input-group-btn:last-child > .btn-group {
     z-index: 2;
     margin-left: -1px; }
+
+.input-group .help-block {
+  display: none !important; }
 
 .nav {
   margin-bottom: 0;
@@ -25946,13 +25950,6 @@ Tasks Widget
       display: table; }
     .session-list .session-item .session-item-body .session-item-info:after {
       clear: both; }
-    .session-list .session-item .session-item-body .session-item-info .session-user-agent {
-      display: inline-block;
-      float: left;
-      margin: 0px 0px 10px 0;
-      color: #060606;
-      font-weight: 600;
-      text-align: left; }
     .session-list .session-item .session-item-body .session-item-info .session-date {
       display: inline-block;
       float: right;
@@ -25981,6 +25978,21 @@ Tasks Widget
               text-decoration: none; }
   .session-list .session-item:hover {
     background: #f9f9f9; }
+
+.left .session-user-agent {
+  display: inline-block;
+  float: left;
+  margin: 0px 0px 10px 0;
+  color: #060606;
+  font-weight: 600;
+  text-align: left; }
+
+.right .session-user-agent {
+  display: inline-block;
+  margin: 0px 0px 10px 0;
+  color: #060606;
+  font-weight: 600;
+  text-align: left; }
 
 .white {
   color: #fff; }

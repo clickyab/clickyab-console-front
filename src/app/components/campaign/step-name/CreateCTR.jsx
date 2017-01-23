@@ -32,7 +32,7 @@ export default class CreateCTR extends Component {
                 loadingProgress.stop();
                 SuccessBoxAlert(response);
 
-                navigate('/v1/campaign/create/step/2');
+                navigate('/v1/campaign/create/step/type');
             } else if (response.statusCode == '400') {
                 loadingProgress.stop();
                 FailedBoxAlert(response);
