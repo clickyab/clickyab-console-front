@@ -156,7 +156,7 @@ export default class DataTable extends React.Component {
     onPerPageChange(per_page) {
         let {onPerPageChange, list} = this.props;
 
-        dispatch(channelQueryAction(list, 'per_page', per_page));
+        dispatch(channelQueryAction(list, 'c', per_page));
         dispatch(updateLocalStorageAction());
 
         onPerPageChange(per_page);
@@ -164,8 +164,11 @@ export default class DataTable extends React.Component {
 
 
     pagination() {
-        const per_page = select('queries.' + this.props.list + '.per_page', 10);
-        const pages_count = Math.floor(this.props.total / per_page) + 1;
+        const per_page = select('queries.' + this.props.list + '.c', 10);
+        let pages_count = Math.floor(this.props.total / per_page);
+        if(pages_count == 0) {
+            pages_count = 1;
+        }
 
         let pages = [];
         for (let i = 0; i < pages_count; i++) {
@@ -189,10 +192,16 @@ export default class DataTable extends React.Component {
                     {this.setRows(items, definitions)}
                 </Table>
                 <div style={{display: 'inline-block'}}>
-                    <select style={{display: 'inline-block', width: 'auto', padding: '0'}} className="form-control" defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {this.onPaginationChange(parseInt(event.target.value));}}>
+                    <select style={{display: 'inline-block', width: 'auto', padding: '0'}} className="form-control"
+                            defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {
+                        this.onPaginationChange(parseInt(event.target.value));
+                    }}>
                         {this.pagination()}
                     </select>
-                    <input style={{display: 'inline-block', width: 'auto', textAlign: 'left'}} className="form-control" type="text" onChange={(event) => {this.onPerPageChange(parseInt(event.target.value))}} defaultValue={select('queries.' + list + '.per_page', 10)}/>
+                    <input style={{display: 'inline-block', width: 'auto', textAlign: 'left'}} className="form-control"
+                           type="text" onChange={(event) => {
+                        this.onPerPageChange(parseInt(event.target.value))
+                    }} defaultValue={select('queries.' + list + '.c', 10)}/>
                 </div>
             </div>
         );

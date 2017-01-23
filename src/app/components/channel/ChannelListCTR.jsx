@@ -47,13 +47,21 @@ export default class ChannelListCTR extends Component {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
 
-    render() {
-        const {items, definitions} = this.props.channelList;
+    onPaginationChange(page) {
+        this.callApi('p', page);
+    }
 
-        return (<ChannelListPTR items={items} definitions={definitions}
+    onPerPageChange(per_page) {
+        this.callApi('c', per_page);
+    }
+
+    render() {
+        return (<ChannelListPTR {...this.props.channelList}
                                 sort={this.sort.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}
+                                onPerPageChange={this.onPerPageChange.bind(this)}
+                                onPaginationChange={this.onPaginationChange.bind(this)}
                                 mutators={{updated_at: this.updated_at, created_at: this.created_at}}
                                 edit={this.edit.bind(this)}
         />);

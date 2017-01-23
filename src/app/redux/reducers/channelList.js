@@ -14,7 +14,7 @@ function updateARow(state, action) {
 export function channelListReducer(state = [], action) {
     switch (action.type) {
         case CHANNEL_LIST:
-            return {items: action.data.data, definitions: action.data.definition};
+            return {items: action.data.data, definitions: action.data.definition, total: action.data.total};
         case UPDATE_CHANNEL_FROM_LIST:
             return updateARow(state, action);
         case CHANNEL_ITEMS_LIST:
