@@ -2,6 +2,10 @@ import {Table, Column, Cell} from "fixed-data-table";
 import React from "react";
 import HeaderCell from './HeaderCell';
 import {TextCell} from './TextCell';
+import {select} from "../../../functions/select";
+import {dispatch} from "../../../functions/dispatch";
+import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
+
 
 export default class DataTable extends React.Component {
     constructor(props) {
@@ -140,18 +144,57 @@ export default class DataTable extends React.Component {
         ];
     }
 
+    onPaginationChange(page) {
+        let {onPaginationChange, list} = this.props;
+
+        dispatch(channelQueryAction(list, 'p', page));
+        dispatch(updateLocalStorageAction());
+
+        onPaginationChange(page);
+    }
+
+    onPerPageChange(per_page) {
+        let {onPerPageChange, list} = this.props;
+
+        dispatch(channelQueryAction(list, 'per_page', per_page));
+        dispatch(updateLocalStorageAction());
+
+        onPerPageChange(per_page);
+    }
+
+
+    pagination() {
+        const per_page = select('queries.' + this.props.list + '.per_page', 10);
+        const pages_count = Math.floor(this.props.total / per_page) + 1;
+
+        let pages = [];
+        for (let i = 0; i < pages_count; i++) {
+            pages.push(<option key={i}>{i + 1}</option>);
+        }
+
+        return pages;
+    }
+
     render() {
-        let {items, definitions} = this.props;
+        let {items, definitions, list} = this.props;
 
         this.setWidth(items, definitions);
         definitions = this.addActionHeader(definitions);
         definitions = definitions.reverse();
 
         return (
-            <Table rowHeight={50} rowsCount={items.length}
-                   headerHeight={100}  {...this.state} {...this.props}>
-                {this.setRows(items, definitions)}
-            </Table>
+            <div>
+                <Table rowHeight={50} rowsCount={items.length}
+                       headerHeight={100}  {...this.state} height={items.length * 50 + 120} {...this.props}>
+                    {this.setRows(items, definitions)}
+                </Table>
+                <div style={{display: 'inline-block'}}>
+                    <select style={{display: 'inline-block', width: 'auto', padding: '0'}} className="form-control" defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {this.onPaginationChange(parseInt(event.target.value));}}>
+                        {this.pagination()}
+                    </select>
+                    <input style={{display: 'inline-block', width: 'auto', textAlign: 'left'}} className="form-control" type="text" onChange={(event) => {this.onPerPageChange(parseInt(event.target.value))}} defaultValue={select('queries.' + list + '.per_page', 10)}/>
+                </div>
+            </div>
         );
     }
 }

@@ -14,11 +14,11 @@ function updateARow(state, action) {
 export function categoryListReducer(state = [], action) {
     switch (action.type) {
         case CATEGORY_LIST:
-            return {items: action.data.data, definitions: action.data.definition};
+            return {items: action.data.data, definitions: action.data.definition, total: action.data.total};
         case UPDATE_CATEGORY_FROM_LIST:
             return updateARow(state, action);
         case CATEGORY_ITEMS_LIST:
-            return Object.assign({}, state, {items: action.items})
+            return Object.assign({}, state, {items: action.data})
     }
 
     return state;
