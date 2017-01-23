@@ -1,43 +1,23 @@
 import {sync} from '../../functions/sync';
-import * as swagger from '../../swagger/index';
-import {dispatch} from '../../functions/dispatch';
-import {select} from '../../functions/select';
 import {loading} from '../../functions/loading';
 import {isLoginMiddleware} from "../isLoginMiddleware";
-import {planListAction} from "../../redux/actions/index";
-import {throwError} from "../../functions/Error";
-import {navigate} from "../../functions/navigate";
-import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
-
-function* planListController(done) {
-    loading(true);
-    yield* isLoginMiddleware();
-    const {error, data} = yield (new swagger.PlanApi())
-        .planGet(select('user.token'));
-
-    done();
-    if (!error) {
-        dispatch(planListAction(data));
-        loading(false);
-    } else {
-        throwError("onChannelEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
-}
+import {select} from './../../functions/select';
+import {navigate} from "../../functions/navigate";
 
 export default (nextState, replace, next) => sync(function*() {
     try {
+        loading(true);
+
         yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(planListController, 20000);
-        if(error)
-            navigate('/v1/login');
+        // if (false) {
+        //     navigate('/v1/campaign/create/step/plan');
+        //     loading(false);
+        // } else {
         next();
+        loading(false);
+        // }
     } catch (error) {
         handleError(error);
     }
 });
-
-
-

@@ -10,8 +10,11 @@ export default (nextState, replace, next) => sync(function*() {
         loading(true);
 
         yield* isLoginMiddleware();
-        if (select('createCampaignData.src') != null) {
-            navigate('/v1/campaign/create/step/editor');
+        if (select('campaignStepData.type') == 'upload') {
+            navigate('/v1/campaign/create/step/upload');
+            loading(false);
+        } else if(select('campaignStepData.type') == 'promote') {
+            navigate('/v1/campaign/create/step/promote');
             loading(false);
         } else {
             next();
