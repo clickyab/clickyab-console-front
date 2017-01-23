@@ -173,12 +173,12 @@ class SelectContentByChannelPTR extends Component {
                                             <div className="col-md-2">
                                                 <label>تعداد پست</label>
                                                 <NumericSelect className="form-control no-margin input-lg" name="count"
-                                                               id="count">
-                                                    <option>5</option>
-                                                    <option>10</option>
-                                                    <option>20</option>
-                                                    <option>30</option>
-                                                    <option>50</option>
+                                                               id="count" form="SelectContentByChannelPTRForm">
+                                                    <option value={5}>5</option>
+                                                    <option value={10}>10</option>
+                                                    <option value={20}>20</option>
+                                                    <option value={30}>30</option>
+                                                    <option value={50}>50</option>
                                                 </NumericSelect>
                                             </div>
                                         </div>
