@@ -50,7 +50,9 @@ export default class UploadFileCTR extends Component {
                 dispatch(createCampaign(Object.assign({},select("createCampaignData"), {src:resolve.src})));
                 dispatch(updateLocalStorageAction());
                 AlertBox("success","آپلود فایل با موفقیت انجام شد هم اکنون متن تبلیغ خود را وارد نمایید");
-                navigate('/v1/campaign/create/step/editor');
+                navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                    campaign_id: select('createCampaignData.id')
+                });
                 // (new swagger.AdApi())
                 //     .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),{'payloadData': resolve.src})
                 //     .then(response => sendFileSource(response));

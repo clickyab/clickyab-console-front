@@ -32,7 +32,9 @@ export default class CreateCTR extends Component {
                 loadingProgress.stop();
                 SuccessBoxAlert(response);
 
-                navigate('/v1/campaign/create/step/type');
+                navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                    campaign_id: select('createCampaignData.id')
+                });
             } else if (response.statusCode == '400') {
                 loadingProgress.stop();
                 FailedBoxAlert(response);
@@ -43,7 +45,7 @@ export default class CreateCTR extends Component {
     }
 
     SubmitCreateCampaignName = (formValues, form) => {
-        if(!form.valid())
+        if (!form.valid())
             return;
 
         this.createCampaignNameSubmit(formValues)
@@ -51,7 +53,7 @@ export default class CreateCTR extends Component {
 
 
     render() {
-        return (<CreatePTR SubmitCreateCampaignName={this.SubmitCreateCampaignName} />);
+        return (<CreatePTR SubmitCreateCampaignName={this.SubmitCreateCampaignName}/>);
     }
 
 }

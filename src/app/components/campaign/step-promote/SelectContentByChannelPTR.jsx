@@ -41,7 +41,9 @@ class SelectContentByChannelPTR extends Component {
                     dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data})));
                     dispatch(updateLocalStorageAction());
 
-                    navigate('/v1/campaign/create/step/plan');
+                    navigate('/v1/campaign/create/:campaign_id:/step/plan', {
+                        campaign_id: select('createCampaignData.id')
+                    });
                 }
             }
         }.bind(this))
