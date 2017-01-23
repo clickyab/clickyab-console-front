@@ -1,4 +1,4 @@
-import {CREATE_CAMPAIGN} from './../actions/index';
+import {CREATE_CAMPAIGN, CAMPAIGN_STEP_TYPE} from './../actions/index';
 
 export function createCampaignReducer(state = {}, action) {
     switch (action.type) {

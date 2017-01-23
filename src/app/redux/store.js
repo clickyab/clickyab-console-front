@@ -18,6 +18,7 @@ import {createCampaignReducer} from './reducers/createCampaignDataReducer';
 import queryReducer from "./reducers/queryReducer";
 import userTypeReducer from "./reducers/userTypeReducer";
 import {telegramListReducer} from "./reducers/telegramListReducer";
+import {campaignStepReducer} from "./reducers/campaignStepReducer";
 
 const enhancer = compose;
 const logger = createLogger();
@@ -37,6 +38,7 @@ export const store = createStore(
 
         campaignList: campaignListReducer,
         createCampaignData: createCampaignReducer,
+        campaignStepData: campaignStepReducer,
 
         categoryList: categoryListReducer,
         categoryData: categoryDataReducer,
@@ -65,7 +67,7 @@ export const store = createStore(
         }),
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-        // logger
+        logger
         )
     )
 );

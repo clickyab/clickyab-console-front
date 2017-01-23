@@ -35,6 +35,8 @@ import SelectTypeCTR from './components/campaign/step-type/SelectTypeCTR';
 import SelectContentByChannelCTR from './components/campaign/step-promote/SelectContentByChannelCTR';
 import PageNotFound from './components/404/PageNotFound';
 import TelegramListCTR from './components/telegram/TelegramListCTR';
+import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddleware";
+import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
 
 
 export default () => (
@@ -62,8 +64,9 @@ export default () => (
             <Route path='campaign/create/step/promote' component={SelectContentByChannelCTR}
                    onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/step/upload' component={UploadFileCTR}
-                   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/step/editor' component={CaptionCTR} name='campaignList'/>
+                   onEnter={onUploadEnterMiddleware} name='upload'/>
+            <Route path='campaign/create/step/editor' component={CaptionCTR} name='campaignList'
+                   onEnter={onEditorEnterMiddleware} />
             <Route path='campaign/create/step/plan' component={SelectPlanCTR} name='campaignList'
                    onEnter={onPlanListEnterMiddleware}/>
         </Route>

@@ -10,13 +10,13 @@ export default (nextState, replace, next) => sync(function*() {
         loading(true);
 
         yield* isLoginMiddleware();
-        if (select('createCampaignData.promotes.cli_message_id') != null) {
-            navigate('/v1/campaign/create/step/plan');
-            loading(false);
-        } else {
+        // if (select('createCampaignData.src') != null) {
+        //     navigate('/v1/campaign/create/step/editor');
+        //     loading(false);
+        // } else {
             next();
             loading(false);
-        }
+        // }
     } catch (error) {
         handleError(error);
     }

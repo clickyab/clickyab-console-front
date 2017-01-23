@@ -4,6 +4,7 @@ import {reduxForm, change} from "redux-form";
 import Radio from './../../common/form/Radio';
 import {dispatch} from "../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
+import {campaignStepType, updateLocalStorageAction} from "../../../redux/actions/index";
 
 
 class SelectTypePTR extends Component {
@@ -12,7 +13,8 @@ class SelectTypePTR extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            next: '/v1/campaign/create/step/upload'
+            next: '/v1/campaign/create/step/upload',
+            type: 'upload'
         }
     }
 
@@ -150,7 +152,8 @@ class SelectTypePTR extends Component {
                                                                $(".when-select-content").fadeIn();
                                                                $(".when-generate-content").hide();
                                                                this.setState({
-                                                                   next: "/v1/campaign/create/step/upload"
+                                                                   next: "/v1/campaign/create/step/upload",
+                                                                   type: 'upload'
                                                                });
                                                            }}
                                                            value={'generate_content'} id={'generate_content'}/>
@@ -159,7 +162,8 @@ class SelectTypePTR extends Component {
                                                                $(".when-generate-content").fadeIn();
                                                                $(".when-select-content").hide();
                                                                this.setState({
-                                                                   next: "/v1/campaign/create/step/promote"
+                                                                   next: "/v1/campaign/create/step/promote",
+                                                                   type: 'promote'
                                                                });
                                                            }}
                                                            name={'step-type-content'} value={'select_content'}
@@ -168,7 +172,13 @@ class SelectTypePTR extends Component {
                                             </div>
                                             <div className="row">
                                                 <div className="col-md-12 margin-top-20">
-                                                    <span onClick={() => navigate(this.state.next)}
+                                                    <span onClick={
+                                                        () => {
+                                                            navigate(this.state.next);
+                                                            dispatch(campaignStepType(this.state.type));
+                                                            dispatch(updateLocalStorageAction());
+                                                        }
+                                                    }
                                                           className="btn btn-info btn-lg" type="submit">مرحله بعد</span>
                                                 </div>
                                             </div>
