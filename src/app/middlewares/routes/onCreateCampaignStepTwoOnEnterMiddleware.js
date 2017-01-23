@@ -11,7 +11,7 @@ export default (nextState, replace, next) => sync(function*() {
 
         yield* isLoginMiddleware();
         if (select('createCampaignData.src') != null) {
-            navigate('/v1/campaign/create/step/3');
+            navigate('/v1/campaign/create/step/editor');
             loading(false);
         } else {
             next();

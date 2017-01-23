@@ -6,6 +6,9 @@ import {sync} from "../../../functions/sync";
 import {getToken} from "../../../redux/helpers";
 import {select} from "../../../functions/select";
 import swagger from "../../../swagger/index";
+import {dispatch} from "../../../functions/dispatch";
+import {createCampaign, updateLocalStorageAction} from "../../../redux/actions/index";
+import {navigate} from "../../../functions/navigate";
 
 class SelectContentByChannelPTR extends Component {
     selectTypeContentForm;
@@ -28,7 +31,18 @@ class SelectContentByChannelPTR extends Component {
                             cli_message_id: this.ids
                         }
                     }
-                )
+                );
+
+                console.log(data);
+
+                response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+                response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+                if (response.statusCode == '200') {
+                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data})));
+                    dispatch(updateLocalStorageAction());
+
+                    navigate('/v1/campaign/create/step/plan');
+                }
             }
         }.bind(this))
     }
@@ -132,6 +146,7 @@ class SelectContentByChannelPTR extends Component {
                             </div>
                             <br/>
                         </div>
+
                         <div className='row'>
                             <h2>۳- انتخاب محتوا</h2>
                             <div className="note note-success"><h3>انتخاب پست به عنوان تبلیغ از کانال های دیگر</h3><p>
@@ -153,7 +168,7 @@ class SelectContentByChannelPTR extends Component {
                                                            className="form-control" placeholder="Username"
                                                            aria-describedby="sizing-addon1"/></div>
                                             </div>
-                                            <div className="col-md-1">
+                                            <div className="col-md-2">
                                                 <label>تعداد پست</label>
                                                 <NumericSelect className="form-control no-margin input-lg" name="count"
                                                                id="count">
