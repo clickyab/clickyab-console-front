@@ -4,6 +4,7 @@ import {reduxForm, change} from "redux-form";
 import Radio from './../../common/form/Radio';
 import {dispatch} from "../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
+import {select} from "../../../functions/select";
 import {campaignStepType, updateLocalStorageAction} from "../../../redux/actions/index";
 
 
