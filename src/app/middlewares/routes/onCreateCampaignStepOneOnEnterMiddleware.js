@@ -8,10 +8,12 @@ import {navigate} from "../../functions/navigate";
 export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
-
         yield* isLoginMiddleware();
+
         if (select('createCampaignData.id') != null) {
-            navigate('/v1/campaign/create/step/type');
+            navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                campaign_id: select('createCampaignData.id')
+            });
             loading(false);
         } else {
             next();

@@ -11,7 +11,9 @@ export default (nextState, replace, next) => sync(function*() {
 
         yield* isLoginMiddleware();
         if (select('campaignStepData.type') == 'upload') {
-            navigate('/v1/campaign/create/step/upload');
+            navigate('/v1/campaign/create/:campaign_id:/step/upload', {
+                campaign_id: select('createCampaignData.id')
+            });
             loading(false);
         } else if(select('campaignStepData.type') == 'promote') {
             navigate('/v1/campaign/create/step/promote');
