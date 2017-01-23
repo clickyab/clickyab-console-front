@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import UsersListPTR from './UsersListPTR';
 import swagger from '../../swagger/index';
 import {select} from '../../functions/select';
-import {userListAction} from '../../redux/actions/index';
+import {userItemsListAction} from '../../redux/actions/index';
 import EditUserButton from "./EditUserButton";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
@@ -12,14 +12,14 @@ import {sync} from "../../functions/sync";
 export default class UsersListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
-        sync(function* () {
+        sync(function*() {
             let {data} = yield (new swagger.UserApi)
                 .userUsersGet(select('user.token', 'no token'), {
                     ...select('queries.user', {}),
                     [query_name]: value
                 });
 
-            dispatch(userListAction(data));
+            dispatch(userItemsListAction(data));
         });
     }
 
@@ -47,13 +47,22 @@ export default class UsersListCTR extends Component {
         return <EditUserButton key={Math.random()} id={id}/>
     }
 
-    render() {
-        const {items, definitions} = this.props.userList;
+    onPaginationChange(page) {
+        this.callApi('p', page);
+    }
 
-        return (<UsersListPTR items={items} definitions={definitions}
+    onPerPageChange(per_page) {
+        this.callApi('c', per_page);
+    }
+
+    render() {
+
+        return (<UsersListPTR {...this.props.userList}
                               edit={this.edit.bind(this)}
                               sort={this.sort.bind(this)}
                               filter={this.filter.bind(this)}
+                              onPaginationChange={this.onPaginationChange.bind(this)}
+                              onPerPageChange={this.onPerPageChange.bind(this)}
                               mutators={{updated_at: this.updated_at, created_at: this.created_at}}
                               search={this.search.bind(this)}
         />);

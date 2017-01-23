@@ -13,7 +13,7 @@ export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
 export const PLAN_LIST = 'PLAN_LIST';
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
 export const planListAction = (data) => ({type: PLAN_LIST, data});
-export const campaignItemsListAction = (data) => ({type: CAMPAIGN_ITEMS_LIST, data});
+export const campaignItemsListAction = ({data}) => ({type: CAMPAIGN_ITEMS_LIST, data});
 export const createCampaign = (data) => ({type: CREATE_CAMPAIGN, data});
 
 export const USER_LIST = 'USER_LIST';
@@ -25,7 +25,7 @@ export const switchToAdvertiser = () => ({type: SWITCH_TO_ADVERTISER});
 export const switchToPublisher = () => ({type: SWITCH_TO_PUBLISHER});
 export const userListAction = (data) => ({type: USER_LIST, data});
 export const userDataAction = (data) => ({type: USER_DATA, data});
-export const userItemsListAction = ({data}) => ({type: USER_ITEMS_LIST, items: data});
+export const userItemsListAction = ({data}) => ({type: USER_ITEMS_LIST, data});
 
 export const UPDATE_CHANNEL_FROM_LIST = 'UPDATE_CHANNEL_FROM_LIST';
 export const ADD_CHANNEL = 'ADD_CHANNEL';
@@ -51,7 +51,7 @@ export const updateACategoryFromListAction = (data) => ({type: UPDATE_CATEGORY_F
 export const TELEGRAM_LIST = 'TELEGRAM_LIST';
 export const TELEGRAM_ITEMS_LIST ='TELEGRAM_ITEMS_LIST';
 export const telegramListAction = (data) => ({type: TELEGRAM_LIST, data});
-export const telegramItemsListAction = (data) => ({type: TELEGRAM_ITEMS_LIST, data});
+export const telegramItemsListAction = ({data}) => ({type: TELEGRAM_ITEMS_LIST, items: data});
 
 export const updateLocalStorageAction = () => ({type: UPDATE_LOCAL_STORAGE});
 export const asyncRemoveLocalStorageAction = () => ({type: REMOVE_LOCAL_STORAGE});

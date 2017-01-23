@@ -34,7 +34,7 @@ export default class TelegramListCTR extends Component {
     }
 
     edit(id) {
-        console.log(id);
+        // console.log(id);
     }
 
 
@@ -45,15 +45,24 @@ export default class TelegramListCTR extends Component {
     created_at(created_at) {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
+
+    onPaginationChange(page) {
+        this.callApi('p', page);
+    }
+
+    onPerPageChange(per_page) {
+        this.callApi('c', per_page);
+    }
+
     render() {
-        const {items, definitions} = this.props.telegramList;
-        return(<TelegramListPTR
-                    items={items} definitions={definitions}
-                    sort={this.sort.bind(this)}
-                    filter={this.filter.bind(this)}
-                    search={this.search.bind(this)}
-                    mutators={{updated_at: this.updated_at, created_at: this.created_at}}
-                    edit={this.edit.bind(this)}
+        return (<TelegramListPTR {...this.props.telegramList}
+                                 sort={this.sort.bind(this)}
+                                 filter={this.filter.bind(this)}
+                                 search={this.search.bind(this)}
+                                 onPaginationChange={this.onPaginationChange.bind(this)}
+                                 onPerPageChange={this.onPerPageChange.bind(this)}
+                                //mutators={{updated_at: this.updated_at, created_at: this.created_at}}
+                                 edit={this.edit.bind(this)}
         />)
     }
 }

@@ -12,7 +12,7 @@ import {campaignItemsListAction} from "../../redux/actions/index";
 export default class CampaignListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
-        sync(function* () {
+        sync(function*() {
             let {data} = yield (new swagger.AdApi()).campaignListGet(select('user.token', 'no token'), {
                 ...select('queries.campaign', {}),
                 [query_name]: value
@@ -46,12 +46,20 @@ export default class CampaignListCTR extends Component {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
 
-    render() {
-        const {items, definitions} = this.props.campaignList;
+    onPaginationChange(page) {
+        this.callApi('p', page);
+    }
 
-        return (<CampaignListPTR items={items} definitions={definitions}
+    onPerPageChange(per_page) {
+        this.callApi('c', per_page);
+    }
+
+    render() {
+        return (<CampaignListPTR {...this.props.campaignList}
                                  edit={this.edit.bind(this)}
                                  sort={this.sort.bind(this)}
+                                 onPaginationChange={this.onPaginationChange.bind(this)}
+                                 onPerPageChange={this.onPerPageChange.bind(this)}
                                  filter={this.filter.bind(this)}
                                  search={this.search.bind(this)}
                                  mutators={{updated_at: this.updated_at, created_at: this.created_at}}
