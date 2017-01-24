@@ -50,16 +50,16 @@
 </required></allParams>
 
       var pathParams = {<#pathParams>
-        '<baseName>': <#required><paramName></required><^required>opts['<paramName>']</required><#hasMore>,</hasMore></pathParams>
+        '<baseName>': <#required><paramName></required><^required>opts['<baseName>']</required><#hasMore>,</hasMore></pathParams>
       };
       var queryParams = {<#queryParams>
-        '<baseName>': <#collectionFormat>this.apiClient.buildCollectionParam(<#required><paramName></required><^required>opts['<paramName>']</required>, '<collectionFormat>')</collectionFormat><^collectionFormat><#required><paramName></required><^required>opts['<paramName>']</required></collectionFormat><#hasMore>,</hasMore></queryParams>
+        '<baseName>': <#collectionFormat>this.apiClient.buildCollectionParam(<#required><paramName></required><^required>opts['<baseName>']</required>, '<collectionFormat>')</collectionFormat><^collectionFormat><#required><paramName></required><^required>opts['<baseName>']</required></collectionFormat><#hasMore>,</hasMore></queryParams>
       };
       var headerParams = {<#headerParams>
-        '<baseName>': <#required><paramName></required><^required>opts['<paramName>']</required><#hasMore>,</hasMore></headerParams>
+        '<baseName>': <#required><paramName></required><^required>opts['<baseName>']</required><#hasMore>,</hasMore></headerParams>
       };
       var formParams = {<#formParams>
-        '<baseName>': <#collectionFormat>this.apiClient.buildCollectionParam(<#required><paramName></required><^required>opts['<paramName>']</required>, '<collectionFormat>')</collectionFormat><^collectionFormat><#required><paramName></required><^required>opts['<paramName>']</required></collectionFormat><#hasMore>,</hasMore></formParams>
+        '<baseName>': <#collectionFormat>this.apiClient.buildCollectionParam(<#required><paramName></required><^required>opts['<baseName>']</required>, '<collectionFormat>')</collectionFormat><^collectionFormat><#required><paramName></required><^required>opts['<baseName>']</required></collectionFormat><#hasMore>,</hasMore></formParams>
       };
 
       var authNames = [<#authMethods>'<name>'<#hasMore>, </hasMore></authMethods>];
