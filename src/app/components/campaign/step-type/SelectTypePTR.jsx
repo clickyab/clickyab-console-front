@@ -61,7 +61,7 @@ class SelectTypePTR extends Component {
                     </div>
                     <div className="portlet-body form">
 
-                        <div className="mt-element-step margin-top-20 when-select-content ">
+                        <div className="mt-element-step margin-top-20  when-generate-content">
                             <div className="row step-background">
                                 <div className="col-md-3 bg-grey-steel mt-step-col">
                                     <div className="mt-step-number">۱</div>
@@ -95,7 +95,7 @@ class SelectTypePTR extends Component {
                             <br/>
                         </div>
 
-                        <div className="mt-element-step margin-top-20 when-generate-content" style={{display: 'none'}}>
+                        <div className="mt-element-step margin-top-20 when-select-content" style={{display: 'none'}}>
                             <div className="row step-background">
                                 <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
                                     <div className="mt-step-number">۱</div>
