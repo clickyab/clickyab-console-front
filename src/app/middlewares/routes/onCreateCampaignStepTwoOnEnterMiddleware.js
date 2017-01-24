@@ -16,7 +16,9 @@ export default (nextState, replace, next) => sync(function*() {
             });
             loading(false);
         } else if(select('campaignStepData.type') == 'promote') {
-            navigate('/v1/campaign/create/step/promote');
+            navigate('/v1/campaign/create/:campaign_id:/step/promote', {
+                campaign_id: select('createCampaignData.id')
+            });
             loading(false);
         } else {
             next();

@@ -64,15 +64,15 @@ export default () => (
             <Route path='campaign/create/step/name' component={CampaignCreateCTR}
                    onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
             <Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}
-                   onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignList'/>
+                   onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignType'/>
 
             <Route path='campaign/create/:campaign_id/step/promote' component={SelectContentByChannelCTR}
-                   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/:campaign_id:/step/upload' component={UploadFileCTR}
+                   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignPromote'/>
+            <Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
                    onEnter={onUploadEnterMiddleware} name='upload'/>
-            <Route path='campaign/create/:campaign_id:/step/editor' component={CaptionCTR} name='campaignList'
-                   onEnter={onEditorEnterMiddleware}/>
-            <Route path='campaign/create/:campaign_id:/step/plan' component={SelectPlanCTR} name='campaignList'
+            <Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
+                   onEnter={onEditorEnterMiddleware} />
+            <Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
                    onEnter={onPlanListEnterMiddleware}/>
         </Route>
 
