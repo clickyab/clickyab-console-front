@@ -20,7 +20,12 @@ class SelectTypePTR extends Component {
     }
 
     handleInitialize() {
-        dispatch(change("SelectTypePTRForm", 'step-type-content', 'generate_content'))
+        if(select('campaignStepData.type') == 'promote') {
+            dispatch(change("SelectTypePTRForm", 'step-type-content', 'select_content'))
+        } else  {
+            dispatch(change("SelectTypePTRForm", 'step-type-content', 'generate_content'))
+        }
+
     }
 
     componentDidMount() {

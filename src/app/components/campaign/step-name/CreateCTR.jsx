@@ -44,11 +44,43 @@ export default class CreateCTR extends Component {
         });
     }
 
+    updateCampaignNameSubmit(formValues, id) {
+        sync(function*() {
+            loadingProgress = Ladda.create(document.querySelector('button.btn-campaign-name'));
+            loadingProgress.start();
+
+            const {data, response} = yield (new swagger.AdApi())
+                .campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
+
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+            if (response.statusCode == '200') {
+                dispatch(createCampaign(data));
+                dispatch(updateLocalStorageAction());
+
+                loadingProgress.stop();
+                SuccessBoxAlert(response);
+
+                navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                    campaign_id: select('createCampaignData.id')
+                });
+            } else if (response.statusCode == '400') {
+                loadingProgress.stop();
+                FailedBoxAlert(response);
+            }
+
+            ifInvalidToken(response);
+        });
+    }
+
     SubmitCreateCampaignName = (formValues, form) => {
         if (!form.valid())
             return;
-
-        this.createCampaignNameSubmit(formValues)
+        if(select('createCampaignData.id') != null) {
+            this.updateCampaignNameSubmit(formValues, select('createCampaignData.id'));
+        } else {
+            this.createCampaignNameSubmit(formValues)
+        }
     };
 
 

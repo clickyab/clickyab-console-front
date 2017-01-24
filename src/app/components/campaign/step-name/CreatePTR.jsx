@@ -1,19 +1,15 @@
 import React, {Component} from "react";
 import $ from "jquery";
-import {Field, reduxForm} from "redux-form";
-
+import {Field, reduxForm, change} from "redux-form";
+import {dispatch} from './../../../functions/dispatch';
+import {select} from "../../../functions/select";
 
 class CreatePTR extends Component {
     createCampaignForm;
 
-    // handleInitialize() {
-    //     const initData = select("user.personal", {}, true);
-    //     initData.email = getEmail();
-    //     this.props.initialize(initData);
-    // }
-
     componentDidMount() {
-        // this.handleInitialize();
+        dispatch(change('CreatePTRForm', 'name', select('createCampaignData.name', '')));
+
         this.createCampaignForm = $('.campaign-name-form');
         this.createCampaignForm.validate({
             rules: {
@@ -73,7 +69,7 @@ class CreatePTR extends Component {
                                 <ol className="questions">
                                     <li className="current form-group">
                                         <span className="title-s-form"><label htmlFor="q1">۱- نام کمپین را وارد نمایید</label></span>
-                                        <Field component="input" id="campaign_name" name="name" type="text"/>
+                                        <Field onFocus={() => {}} component="input" id="campaign_name" name="name" type="text"/>
 
                                     </li>
                                 </ol>
