@@ -407,7 +407,16 @@
           data = _this.deserialize(response, returnType);
         }
 
-        callback({error:error, data:data, response:response});
+        if(response.statusCode == 401) {
+            var event = new CustomEvent("panic", {
+             detail: {
+                statusCode: 401
+              }
+            });
+            document.body.dispatchEvent(event);
+        } else {
+            callback({error:error, data:data, response:response});
+        }
       }
     });
 
