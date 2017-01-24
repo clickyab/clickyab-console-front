@@ -1,4 +1,4 @@
-import {UPDATE_USER, UPDATE_PERSONAL_INFO , UPDATE_CORPORATION_INFO, DETELE_PERSONAL_INFO} from '../actions/user';
+import {UPDATE_USER, UPDATE_PERSONAL_INFO , UPDATE_CORPORATION_INFO, DETELE_PERSONAL_INFO, DETELE_CORPORATION_INFO} from '../actions/user';
 
 
 export default function userReducer(state = {}, action) {
@@ -11,6 +11,10 @@ export default function userReducer(state = {}, action) {
             return Object.assign({}, state, action.corporation);
 		case DETELE_PERSONAL_INFO:
 			delete state.personal;
+			break;
+		case DETELE_CORPORATION_INFO:
+			delete state.corporation;
+			break;
 
 	}
 

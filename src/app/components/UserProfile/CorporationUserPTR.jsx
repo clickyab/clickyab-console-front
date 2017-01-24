@@ -3,6 +3,7 @@ import $ from 'jquery';
 import {Field, reduxForm} from 'redux-form';
 import {select} from '../../functions/select';
 import {getEmail} from './../../redux/helpers';
+import SelectLocationCTR from './../location/SelectLocationCTR';
 
 class CorporationUserPTR extends Component {
     CorporationForm;
@@ -83,26 +84,8 @@ class CorporationUserPTR extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className="row">
-                        <div className="col-md-4">
-                            <select className="form-control" data-placeholder="انتخاب کشور" tabIndex="1" name="country_id">
-                                <option value="male">تهران</option>
-                                <option value="female">تبریز</option>
-                            </select>
-                        </div>
-                        <div className="col-md-4">
-                            <select className="form-control" data-placeholder="انتخاب شهر" tabIndex="1" name="province_id">
-                                <option value="male">تهران</option>
-                                <option value="female">تبریز</option>
-                            </select>
-                        </div>
-                        <div className="col-md-4">
-                            <select className="form-control" data-placeholder="انتخاب استان" tabIndex="1" name="city_id">
-                                <option value="male">تهران</option>
-                                <option value="female">تبریز</option>
-                            </select>
-                        </div>
-                    </div>
+
+                    <SelectLocationCTR form='CorporationUserForm'/>
                     <div className="form-actions margin-top-20">
                         <button type="submit" className="btn blue">
                             <i className="fa fa-check"/> ذخیره پروفایل</button>
