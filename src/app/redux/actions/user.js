@@ -20,6 +20,6 @@ export function updateCorporationInformation(corporation) {
 	return {type: UPDATE_CORPORATION_INFO, corporation};
 }
 
-export function deleteCoporationInformation() {
+export function deleteCorporationInformation() {
 	return {type: DETELE_CORPORATION_INFO};
 }

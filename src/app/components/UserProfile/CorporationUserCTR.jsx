@@ -2,11 +2,12 @@ import React, {Component} from 'react';
 import CorporationUserPTR from './CorporationUserPTR';
 import swagger from './../../swagger/index';
 import {connect} from 'react-redux';
-import {SuccessBoxAlert , FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {updateCorporationInformation, deletePersonalInformation} from "../../redux/actions/user";
+import {select} from "../../functions/select";
 
 let Ladda = require('ladda/js/ladda');
 
@@ -18,9 +19,10 @@ export default class CorporationUserCTR extends Component {
         let {dispatch} = this.props;
 
         dispatch(updateCorporationInformation(user));
-        dispatch(deletePersonalInformation());
+        if (select('user.personal') != null) {
+            dispatch(deletePersonalInformation());
+        }
         dispatch(updateLocalStorageAction());
-        // dispatch(push('/publisher'));
     }
 
 
@@ -37,6 +39,7 @@ export default class CorporationUserCTR extends Component {
         }
         ifInvalidToken(response);
     }
+
     CorporationCall(formValues) {
         (new swagger.UserApi())
             .userProfilePost(getToken(),
