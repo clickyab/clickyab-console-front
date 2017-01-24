@@ -17,14 +17,16 @@ let Ladda = require('ladda/js/ladda');
 class SelectContentByChannelPTR extends Component {
     selectTypeContentForm;
     ids;
+    channelText;
     loadingProgressSend;
 
-    onClick(id) {
+    onClick(id, text) {
         return (event) => {
             $(event.target).parents(".channel-post").find("button.select-content-channel").addClass("btn-outline").text("انتخاب  به عنوان محتوای آگهی");
             $(event.target).removeClass("btn-outline");
             $(event.target).text("انتخاب شده");
             this.ids = id;
+            this.channelText = text;
         };
     }
 
@@ -46,7 +48,7 @@ class SelectContentByChannelPTR extends Component {
                 if (response.statusCode == '200') {
                     AlertBox("success" , "پست مورد نظر با موفقیت انتخاب شد");
                     this.loadingProgressSend.stop();
-                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data})));
+                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data, description: this.channelText})));
                     dispatch(updateLocalStorageAction());
 
                     navigate('/v1/campaign/create/:campaign_id:/step/plan', {
@@ -75,7 +77,7 @@ class SelectContentByChannelPTR extends Component {
                             <div className="session-details">
                                 <div className="session-item-actions">
                                     <div className="btn-group">
-                                        <button onClick={this.onClick(Postlist.Data[key].CliID)} type="button"
+                                        <button onClick={this.onClick(Postlist.Data[key].CliID, Postlist.Data[key].Text)} type="button"
                                                 className="btn btn-outline green btn-sm select-content-channel"
                                                 data-key='+ this.key +'>انتخاب به عنوان محتوای آگهی
                                         </button>
@@ -115,6 +117,12 @@ class SelectContentByChannelPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitGetPostsByChannel} = this.props;
+        let telegramChannelTitle;
+        if (select('createCampaignData.description') !=null) {
+            telegramChannelTitle = select('createCampaignData.description');
+        } else {
+            telegramChannelTitle = 'ندارد';
+        }
         return (
             <div className="page-content">
 
@@ -173,6 +181,7 @@ class SelectContentByChannelPTR extends Component {
                                 <div className="form-body">
                                     <div className='col-md-12 col-xs-12'>
                                         <div className="row margin-bottom-20">
+                                            <p>پست انتخاب شده : <b>{telegramChannelTitle}</b></p>
                                             <div className="col-md-4">
                                                 <label>یوزر نیم کانال</label>
                                                 <div className="input-group input-group-lg form-group">

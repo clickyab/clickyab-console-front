@@ -10,15 +10,15 @@ export default (nextState, replace, next) => sync(function*() {
         loading(true);
 
         yield* isLoginMiddleware();
-        if (select('createCampaignData.promotes.cli_message_id') != null) {
-            navigate('/v1/campaign/create/:campaign_id:/step/plan', {
-                campaign_id: select('createCampaignData.id')
-            });
-            loading(false);
-        } else {
+        // if (select('createCampaignData.promotes.cli_message_id') != null) {
+        //     navigate('/v1/campaign/create/:campaign_id:/step/plan', {
+        //         campaign_id: select('createCampaignData.id')
+        //     });
+        //     loading(false);
+        // } else {
             next();
             loading(false);
-        }
+        // }
     } catch (error) {
         handleError(error);
     }
