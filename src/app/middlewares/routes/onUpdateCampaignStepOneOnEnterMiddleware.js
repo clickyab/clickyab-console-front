@@ -8,10 +8,9 @@ import {navigate} from "../../functions/navigate";
 export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
-
         yield* isLoginMiddleware();
-        next();
         loading(false);
+        next();
     } catch (error) {
         handleError(error);
     }

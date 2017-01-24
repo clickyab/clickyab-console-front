@@ -20,6 +20,7 @@ import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddl
 import onSlashEnterMiddleware from './middlewares/routes/onSlashEnterMiddleware';
 import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMiddleware';
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
+import onUpdateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onUpdateCampaignStepOneOnEnterMiddleware";
 import onCreateCampaignStepTwoOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepTwoOnEnterMiddleware";
 import onCreateCampaignStepThreeOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepThreeOnEnterMiddleware";
 import onPlanListEnterMiddleware from "./middlewares/routes/onPlanListEnterMiddleware";
@@ -63,6 +64,9 @@ export default () => (
 
             <Route path='campaign/create/step/name' component={CampaignCreateCTR}
                    onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+            <Route path='campaign/create/:campaign_name/step/name' component={CampaignCreateCTR}
+                   onEnter={onUpdateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+
             <Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}
                    onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignType'/>
 
