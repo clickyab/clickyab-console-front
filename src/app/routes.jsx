@@ -37,6 +37,11 @@ import PageNotFound from './components/404/PageNotFound';
 import TelegramListCTR from './components/telegram/TelegramListCTR';
 import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddleware";
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
+import {dispatch} from "./functions/dispatch";
+import {logout} from "./redux/actions/login";
+import {updatePersonalInformation} from "./redux/actions/user";
+import {updateLocalStorageAction} from "./redux/actions/index";
+import {navigate} from "./functions/navigate";
 
 
 export default () => (
@@ -66,7 +71,7 @@ export default () => (
             <Route path='campaign/create/:campaign_id:/step/upload' component={UploadFileCTR}
                    onEnter={onUploadEnterMiddleware} name='upload'/>
             <Route path='campaign/create/:campaign_id:/step/editor' component={CaptionCTR} name='campaignList'
-                   onEnter={onEditorEnterMiddleware} />
+                   onEnter={onEditorEnterMiddleware}/>
             <Route path='campaign/create/:campaign_id:/step/plan' component={SelectPlanCTR} name='campaignList'
                    onEnter={onPlanListEnterMiddleware}/>
         </Route>
@@ -83,5 +88,9 @@ export default () => (
     </Router>
 );
 
-
-
+document.body.addEventListener("panic", function (event) {
+    dispatch(logout());
+    dispatch(updatePersonalInformation({}));
+    dispatch(updateLocalStorageAction());
+    navigate("/v1/login");
+});
