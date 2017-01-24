@@ -21,8 +21,9 @@ class SelectContentByChannelPTR extends Component {
 
     onClick(id) {
         return (event) => {
-            $(event.target).parents(".channel-post").find("button").addClass("btn-outline");
+            $(event.target).parents(".channel-post").find("button").addClass("btn-outline").text("انتخاب  به عنوان محتوای آگهی");
             $(event.target).removeClass("btn-outline");
+            $(event.target).text("انتخاب شده");
             this.ids = id;
         };
     }
@@ -75,7 +76,7 @@ class SelectContentByChannelPTR extends Component {
                                 <div className="session-item-actions">
                                     <div className="btn-group">
                                         <button onClick={this.onClick(Postlist.Data[key].CliID)} type="button"
-                                                className="btn btn-outline green btn-sm" id="delete-session"
+                                                className="btn btn-outline green btn-sm"
                                                 data-key='+ this.key +'>انتخاب به عنوان محتوای آگهی
                                         </button>
                                     </div>
