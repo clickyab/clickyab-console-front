@@ -45,6 +45,8 @@ import {logout} from "./redux/actions/login";
 import {updatePersonalInformation} from "./redux/actions/user";
 import {updateLocalStorageAction} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
+import StepPreviewCTR from "./components/campaign/step-preview/StepPreviewCTR";
+import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
 
 
 export default () => (
@@ -81,6 +83,8 @@ export default () => (
                    onEnter={onEditorEnterMiddleware} />
             <Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
                    onEnter={onPlanListEnterMiddleware}/>
+            <Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR} name='campaignPreview'
+                   onEnter={onPreviewCampaignMiddleware} />
         </Route>
 
         <Route path='/v1' component={Transition}>
