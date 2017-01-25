@@ -9,7 +9,7 @@ import {sync} from "./../../../functions/sync";
 import {createCampaign} from "../../../redux/actions/index";
 import {dispatch} from "./../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
-import {updateLocalStorageAction} from "../../../redux/actions/index";
+import {updateLocalStorageAction, deleteCampaignPromote} from "../../../redux/actions/index";
 import {AlertBox} from "../../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 import {select} from '../../../functions/select'
