@@ -1,16 +1,12 @@
 import React, {Component} from 'react'
 import {reduxForm} from "redux-form";
+import {select} from "../../../functions/select";
+import {navigate} from "../../../functions/navigate";
 
 class StepPreviewPTR extends Component {
     render() {
         let {data, created_at} = this.props;
-        let detail;
-        if(data.promotes != null) {
-            detail = data.promotes;
-        } else {
-            detail = data;
-        }
-        console.log(data, detail);
+
         return (
             <div className="page-content">
 
@@ -18,7 +14,8 @@ class StepPreviewPTR extends Component {
 
                     <div className="portlet-title">
                         <div className="caption">
-                            <i className="fa fa-bullseye"/> پیش نمایش : <span className="campaign-title">{data.name}</span> </div>
+                            <i className="fa fa-bullseye"/> پیش نمایش : <span
+                            className="campaign-title">{data.name}</span></div>
                     </div>
                     <div className="portlet-body form">
                         <form className="form-horizontal" role="form">
@@ -54,7 +51,7 @@ class StepPreviewPTR extends Component {
                                         <div className="form-group">
                                             <label className="control-label col-md-3">وضعیت پرداخت :</label>
                                             <div className="col-md-9">
-                                                <p className="form-control-static"> {data.pay_status == 'no'? 'پرداخت نشده' : 'پرداخت شده'} </p>
+                                                <p className="form-control-static"> {data.pay_status == 'no' ? 'پرداخت نشده' : 'پرداخت شده'} </p>
                                             </div>
                                         </div>
                                     </div>
@@ -81,9 +78,9 @@ class StepPreviewPTR extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label className="control-label col-md-3">Address:</label>
+                                            <label className="control-label col-md-3">نوع تبلیغ :</label>
                                             <div className="col-md-9">
-                                                <p className="form-control-static"> #24 Sun Park Avenue, Rolton Str </p>
+                                                <p className="form-control-static">{select('campaignStepData.type') == 'upload' ? 'محتوای جدید' : 'انتخاب شده از کانال'}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -91,35 +88,9 @@ class StepPreviewPTR extends Component {
                                 <div className="row">
                                     <div className="col-md-6">
                                         <div className="form-group">
-                                            <label className="control-label col-md-3">City:</label>
+                                            <label className="control-label col-md-3">متن :</label>
                                             <div className="col-md-9">
-                                                <p className="form-control-static"> New York </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">State:</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> New York </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">Post Code:</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> 457890 </p>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">Country:</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> USA </p>
+                                                <p className="form-control-static">{data.promotes != null ? data.promotesText : data.description}</p>
                                             </div>
                                         </div>
                                     </div>
@@ -130,10 +101,23 @@ class StepPreviewPTR extends Component {
                                     <div className="col-md-6">
                                         <div className="row">
                                             <div className="col-md-offset-3 col-md-9">
-                                                <button type="submit" className="btn green">
-                                                    <i className="fa fa-pencil" /> Edit
+                                                <button onClick={
+                                                    () => {
+                                                        navigate('/v1/campaign/create/:campaign_id:/step/plan', {
+                                                            campaign_id: select('createCampaignData.id')
+                                                        });
+                                                    }
+                                                } className="btn btn-default  button-next btn-arrow-text margin-top-40"
+                                                        type="submit"><i className="fa fa-angle-right"/> مرحله قبل
                                                 </button>
-                                                <button type="button" className="btn default">Cancel</button>
+                                                <button onClick={
+                                                    () => {
+                                                        navigate('/v1/');
+                                                    }
+                                                } className="btn btn-primary  button-next btn-arrow-text margin-top-40"
+                                                        type="submit">تایید <i className="fa fa-angle-left"/>
+                                                </button>
+
                                             </div>
                                         </div>
                                     </div>
