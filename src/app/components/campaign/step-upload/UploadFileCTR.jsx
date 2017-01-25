@@ -58,14 +58,14 @@ export default class UploadFileCTR extends Component {
                 //     .then(response => sendFileSource(response));
             });
             r.on('fileAdded', function(file){
-                    // let fileReader = new FileReader();
-                    // fileReader.onload = function (event) {
-                    //     let uri = event.target.result;
-                    //     console.log(event.target.result);
-                    //     $('.preview-banner img').attr("src",uri);
-                    //     $('.preview-banner i').fadeOut();
-                    // };
-                    // fileReader.readAsDataURL(file.file);
+                // let fileReader = new FileReader();
+                // fileReader.onload = function (event) {
+                //     let uri = event.target.result;
+                //     console.log(event.target.result);
+                //     $('.preview-banner img').attr("src",uri);
+                //     $('.preview-banner i').fadeOut();
+                // };
+                // fileReader.readAsDataURL(file.file);
                 $(".flow-drop").fadeOut();
                 // Show progress bar
                 $('.flow-progress, .flow-list').show();
@@ -240,86 +240,97 @@ export default class UploadFileCTR extends Component {
 
         let campaignTitle = select("createCampaignData.name","no title");
         return (
-        <div className="page-content">
+            <div className="page-content">
 
-            <div className="portlet light margin-top-20">
+                <div className="portlet light margin-top-20">
 
-                <div className="portlet-title">
-                    <div className="caption">
-                        <i className="fa fa-bullseye"/> آپلود فایل و مدیا برای کمپین <span className="title-campaign">{campaignTitle}</span> </div>
-                </div>
-                <div className="portlet-body form">
-                    <div className="mt-element-step margin-top-40">
-                        <div className="row step-background">
-                            <div className="col-md-3 bg-grey-steel mt-step-col">
-                                <div className="mt-step-number">۱</div>
-                                <div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-                                <div className="mt-step-content font-grey-cascade">یک نام به کمپین خود اختصاص دهید.</div>
-                            </div>
-                            <div className="col-md-3 bg-grey-steel mt-step-col active">
-                                <div className="mt-step-number">۲</div>
-                                <div className="mt-step-title uppercase font-grey-cascade">آپلود فایل و مدیا</div>
-                                <div className="mt-step-content font-grey-cascade">عکس، ویدیو و یا پی دی اف خود را آپلود کنید.</div>
-                            </div>
-                            <div className="col-md-3 bg-grey-steel mt-step-col">
-                                <div className="mt-step-number">۳</div>
-                                <div className="mt-step-title uppercase font-grey-cascade">کپشن تبلیغ</div>
-                                <div className="mt-step-content font-grey-cascade">متن تبلیغ خود را تایپ کنید</div>
-                            </div>
-                            <div className="col-md-3 bg-grey-steel mt-step-col">
-                                <div className="mt-step-number">۴</div>
-                                <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-                                <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان بازدید مشخص کنید</div>
-                            </div>
-                        </div>
-                        <br/>
+                    <div className="portlet-title">
+                        <div className="caption">
+                            <i className="fa fa-bullseye"/> آپلود فایل و مدیا برای کمپین <span className="title-campaign">{campaignTitle}</span> </div>
                     </div>
-                    <div className="upload-file margin-bottom-40">
-                        <h2>۲- انتخاب عکس یا ویدیو</h2>
-                        {/*<div className="note note-success">*/}
-                            {/*<h3>لیست سشن های فعال شما</h3>*/}
-                            {/*<p> لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک نمایید*/}
-                            {/*</p>*/}
-                        {/*</div>*/}
-                        <div className="row">
-                        {/*<div className="col-md-3">*/}
-                            {/*<div className="preview-banner">*/}
-                                    {/*<i className="fa fa-picture-o"/>*/}
-                                {/*<img src=""/>*/}
-                                {/*</div>*/}
-                        {/*</div>*/}
-                        <div>
-                            <div className="flow-drop" draggable='true'>
-                            <div className="upload-file-icon"><i className="fa fa-cloud-upload"/> </div>
-                            <h2 className="text-center"> برای آپلود فایل خود را بکشید</h2>
-                            <p className="text-center">یا می توانید با فشردن دمه پایین فایل خود را انتخاب کنید</p>
-                            <a type="button" className="btn dark btn-outline sbold uppercase flow-browse">انتخاب فایل</a>
-                                </div>
-                        </div>
-                            </div>
-                        {/*<div className="flow-error">*/}
-                        {/*Your browser, unfortunately, is not supported by Flow.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.*/}
-                        {/*</div>*/}
-
-                        <div className="flow-progress">
-                            <span className="upload-status"/>
-                            <div className="progress progress-striped">
-                                <div className="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{width: "0"}}>
-                                    <span className="sr-only progress-text"> 20% Complete </span>
-                                    <div className="progress-pause">
-                                        {/*<a href="#"  className="progress-resume-link"><img src="/img/resume.png" title="Resume upload" /></a>*/}
-                                        {/*<a href="#"  className="progress-pause-link"><img src="/img/pause.png" title="Pause upload" /></a>*/}
-                                        {/*<a href="#"  className="progress-cancel-link"><img src="/img/cancel.png" title="Cancel upload" /></a>*/}
+                    <div className="portlet-body form">
+                        <div className="mt-element-step margin-top-20 when-generate-content">
+                            <div className="row step-background">
+                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
+                                    <div className="mt-step-number">۱</div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
+                                    <div className="mt-step-content font-grey-cascade">یک نام به کمپین خود اختصاص
+                                        دهید.
                                     </div>
                                 </div>
-                                <div className="pull-left remain-time"></div>
+                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
+                                    <div className="mt-step-number">۲</div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
+                                    <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان
+                                        بازدید مشخص کنید
+                                    </div>
+                                </div>
+                                <div className=" col-lg-15 col-md-3 bg-grey-steel mt-step-col active">
+                                    <div className="mt-step-number">۳</div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">آپلود فایل و مدیا</div>
+                                    <div className="mt-step-content font-grey-cascade">عکس، ویدیو و یا پی دی اف خود را
+                                        آپلود کنید.
+                                    </div>
+                                </div>
+                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
+                                    <div className="mt-step-number">۴</div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">کپشن تبلیغ</div>
+                                    <div className="mt-step-content font-grey-cascade">متن تبلیغ خود را تایپ کنید</div>
+                                </div>
+                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
+                                    <div className="mt-step-number">۵</div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
+                                    <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان
+                                        بازدید مشخص کنید
+                                    </div>
+                                </div>
+
                             </div>
+                            <br/>
                         </div>
-                        <ul className="flow-list"/>
+                        <div className="upload-file margin-bottom-40">
+                            <h2>۲- انتخاب عکس یا ویدیو</h2>
+                            <button onClick={
+                                () => {
+                                    navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                                        campaign_id: select('createCampaignData.id')
+                                    });
+                                }
+                            } className="btn btn-default  button-next btn-arrow-text" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
+
+                            <div className="row">
+                                <div>
+                                    <div className="flow-drop" draggable='true'>
+                                        <div className="upload-file-icon"><i className="fa fa-cloud-upload"/> </div>
+                                        <h2 className="text-center"> برای آپلود فایل خود را بکشید</h2>
+                                        <p className="text-center">یا می توانید با فشردن دمه پایین فایل خود را انتخاب کنید</p>
+                                        <a type="button" className="btn dark btn-outline sbold uppercase flow-browse">انتخاب فایل</a>
+                                    </div>
+                                </div>
+                            </div>
+                            {/*<div className="flow-error">*/}
+                            {/*Your browser, unfortunately, is not supported by Flow.js. The library requires support for <a href="http://www.w3.org/TR/FileAPI/">the HTML5 File API</a> along with <a href="http://www.w3.org/TR/FileAPI/#normalization-of-params">file slicing</a>.*/}
+                            {/*</div>*/}
+
+                            <div className="flow-progress">
+                                <span className="upload-status"/>
+                                <div className="progress progress-striped">
+                                    <div className="progress-bar progress-bar-info active" role="progressbar" aria-valuenow="20" aria-valuemin="0" aria-valuemax="100" style={{width: "0"}}>
+                                        <span className="sr-only progress-text"> 20% Complete </span>
+                                        <div className="progress-pause">
+                                            {/*<a href="#"  className="progress-resume-link"><img src="/img/resume.png" title="Resume upload" /></a>*/}
+                                            {/*<a href="#"  className="progress-pause-link"><img src="/img/pause.png" title="Pause upload" /></a>*/}
+                                            {/*<a href="#"  className="progress-cancel-link"><img src="/img/cancel.png" title="Cancel upload" /></a>*/}
+                                        </div>
+                                    </div>
+                                    <div className="pull-left remain-time"></div>
+                                </div>
+                            </div>
+                            <ul className="flow-list"/>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
         )
     }
