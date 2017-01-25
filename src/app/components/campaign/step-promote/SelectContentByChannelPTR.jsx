@@ -48,7 +48,7 @@ class SelectContentByChannelPTR extends Component {
                 if (response.statusCode == '200') {
                     AlertBox("success" , "پست مورد نظر با موفقیت انتخاب شد");
                     this.loadingProgressSend.stop();
-                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data, description: this.channelText})));
+                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data, promotesText: this.channelText})));
                     dispatch(updateLocalStorageAction());
 
                     navigate('/v1/campaign/create/:campaign_id:/step/plan', {
@@ -118,8 +118,8 @@ class SelectContentByChannelPTR extends Component {
     render() {
         const {handleSubmit, SubmitGetPostsByChannel} = this.props;
         let telegramChannelTitle;
-        if (select('createCampaignData.description') !=null) {
-            telegramChannelTitle = select('createCampaignData.description');
+        if (select('createCampaignData.promotesText') !=null) {
+            telegramChannelTitle = select('createCampaignData.promotesText');
         } else {
             telegramChannelTitle = 'ندارد';
         }
