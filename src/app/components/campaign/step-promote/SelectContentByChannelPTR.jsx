@@ -13,7 +13,6 @@ import {AlertBox} from "../../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 
 
-
 class SelectContentByChannelPTR extends Component {
     selectTypeContentForm;
     ids;
@@ -49,16 +48,21 @@ class SelectContentByChannelPTR extends Component {
                 response.error = 'اطلاعات شما صحیح نمی‌باشد.';
                 response.text = 'اطلاعات شما با موفقیت ثبت شد.';
                 if (response.statusCode == '200') {
-                    AlertBox("success" , "پست مورد نظر با موفقیت انتخاب شد");
+                    AlertBox("success", "پست مورد نظر با موفقیت انتخاب شد");
                     this.loadingProgressSend.stop();
-                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {promotes: data, promotesText: this.channelText})));
+                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
+                        promotes: data,
+                        promotesText: this.channelText,
+                        src: null,
+                        description: null
+                    })));
                     dispatch(updateLocalStorageAction());
 
                     navigate('/v1/campaign/create/:campaign_id:/step/plan', {
                         campaign_id: select('createCampaignData.id')
                     });
-                } else if(response.statusCode == '400') {
-                    AlertBox("error" , "اختلالی در سرور به وجود آمده است لطفا دوباهر تلاش کنید");
+                } else if (response.statusCode == '400') {
+                    AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباهر تلاش کنید");
                     this.loadingProgressSend.stop();
                 }
             }
@@ -80,9 +84,11 @@ class SelectContentByChannelPTR extends Component {
                             <div className="session-details">
                                 <div className="session-item-actions">
                                     <div className="btn-group">
-                                        <button onClick={this.onClick(Postlist.Data[key].CliID, Postlist.Data[key].Text)} type="button"
-                                                className="btn btn-outline green btn-sm select-content-channel"
-                                                data-key='+ this.key +'>انتخاب به عنوان محتوای آگهی
+                                        <button
+                                            onClick={this.onClick(Postlist.Data[key].CliID, Postlist.Data[key].Text)}
+                                            type="button"
+                                            className="btn btn-outline green btn-sm select-content-channel"
+                                            data-key='+ this.key +'>انتخاب به عنوان محتوای آگهی
                                         </button>
                                     </div>
                                 </div>
@@ -121,7 +127,7 @@ class SelectContentByChannelPTR extends Component {
     render() {
         const {handleSubmit, SubmitGetPostsByChannel} = this.props;
         let telegramChannelTitle;
-        if (select('createCampaignData.promotesText') !=null) {
+        if (select('createCampaignData.promotesText') != null) {
             telegramChannelTitle = select('createCampaignData.promotesText');
         } else {
             telegramChannelTitle = 'ندارد';

@@ -9,7 +9,7 @@ import {sync} from "./../../../functions/sync";
 import {createCampaign} from "../../../redux/actions/index";
 import {dispatch} from "./../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
-import {updateLocalStorageAction} from "../../../redux/actions/index";
+import {updateLocalStorageAction, deleteCampaignPromote} from "../../../redux/actions/index";
 import {AlertBox} from "../../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 import {select} from '../../../functions/select'
@@ -32,6 +32,7 @@ export default class CaptionCTR extends Component {
                 response.text = 'اطلاعات شما با موفقیت ثبت شد.';
                 if (response.statusCode == '200') {
                     dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {description: textarea_text.val()})));
+                    dispatch(deleteCampaignPromote())
                     dispatch(updateLocalStorageAction());
 
                     loadingProgress.stop();
