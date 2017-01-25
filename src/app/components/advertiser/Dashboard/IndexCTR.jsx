@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router';
 import {translatable} from 'react-multilingual/dist';
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
@@ -273,8 +274,9 @@ export default class AdvertiserDashboardPage extends Component {
                         <h1 className='page-title'> کمپین ها</h1>
                     </div>
                     <div className='top-action-header'>
-                        <a href="javascript:;" className="btn btn-lg blue pull-left">
-                            <i className="fa fa-plus"/> ساخت کمپین جدید </a>
+                        <Link to="/v1/campaign/create/step/name" className="btn btn-lg blue pull-left">
+                            <i className="fa fa-plus"/> ساخت کمپین جدید
+                        </Link>
                     </div>
                 </div>
                 <div className="row">
