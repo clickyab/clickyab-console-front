@@ -90,7 +90,7 @@ class SelectTypePTR extends Component {
                     </div>
                     <div className="portlet-body form">
 
-                        <div className="mt-element-step margin-top-20  when-generate-content" style={toggleStyleUpload}>
+                        <div className="mt-element-step margin-top-20  when-select-content" style={toggleStylePromote}>
                             <div className="row step-background">
                                 <div className="col-md-3 bg-grey-steel mt-step-col">
                                     <div className="mt-step-number">۱</div>
@@ -124,7 +124,7 @@ class SelectTypePTR extends Component {
                             <br/>
                         </div>
 
-                        <div className="mt-element-step margin-top-20 when-select-content" style={toggleStylePromote}>
+                        <div className="mt-element-step margin-top-20 when-generate-content" style={toggleStyleUpload}>
                             <div className="row step-background">
                                 <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
                                     <div className="mt-step-number">۱</div>
@@ -184,8 +184,6 @@ class SelectTypePTR extends Component {
                                                 <div className='md-radio-list'>
                                                     <Radio label={'محتوای جدید'} name={'step-type-content'}
                                                            onClick={(event) => {
-                                                               $(".when-select-content").fadeIn();
-                                                               $(".when-generate-content").hide();
                                                                this.setState({
                                                                    next: "/v1/campaign/create/:campaign_id:/step/upload",
                                                                    type: 'upload'
@@ -194,8 +192,6 @@ class SelectTypePTR extends Component {
                                                            value={'generate_content'} id={'generate_content'}/>
                                                     <Radio label={'پروموت محتوای کانال های دیگر'}
                                                            onClick={(event) => {
-                                                               $(".when-generate-content").fadeIn();
-                                                               $(".when-select-content").hide();
                                                                this.setState({
                                                                    next: "/v1/campaign/create/:campaign_id:/step/promote",
                                                                    type: 'promote'
