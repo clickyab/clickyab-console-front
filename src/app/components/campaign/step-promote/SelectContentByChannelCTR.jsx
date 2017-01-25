@@ -29,7 +29,7 @@ export default class SelectContentByChannelCTR extends Component {
         if (response.statusCode == '200') {  // if second request is ok
             loadingProgress.stop();
             this.setState({data});
-        } else if(response.statusCode == "not found"){
+        } else if(response.statusCode == '400'){
             AlertBox("error","کانالی با این یوزر نیم وجود ندارد");
             loadingProgress.stop();
         }

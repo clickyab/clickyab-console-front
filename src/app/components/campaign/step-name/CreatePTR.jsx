@@ -73,10 +73,8 @@ class CreatePTR extends Component {
 
                                     </li>
                                 </ol>
-                                <button className="btn-campaign-name submit btn btn-info btn-lg margin-top-20" type="submit">مرحله بعد</button>
-                                {/*<div className="controls">*/}
-                                {/*<button className="next show fa fa-arrow-right" type="submit"/>*/}
-                                {/*</div>*/}
+                                <button className="btn-campaign-name submit btn btn-info  button-next btn-arrow-text" type="submit">مرحله بعد <i className="fa fa-angle-left"/></button>
+
                             </div>
                             <span className="final-message"/>
                         </form>

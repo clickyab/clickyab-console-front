@@ -57,6 +57,7 @@ class SelectTypePTR extends Component {
 
     render() {
         const {handleSubmit, SubmitCreateCampaignName} = this.props;
+        let campaignTitle = select("createCampaignData.name","no title");
         let toggleStyleUpload;
         let toggleStylePromote;
         console.log(this.state.type);
@@ -85,7 +86,7 @@ class SelectTypePTR extends Component {
 
                     <div className="portlet-title">
                         <div className="caption">
-                            <i className="fa fa-bullseye"/> ثبت کمپین جدید
+                            <i className="fa fa-bullseye"/> انتخاب نوع محتوای کمپین {campaignTitle}
                         </div>
                     </div>
                     <div className="portlet-body form">
@@ -202,8 +203,15 @@ class SelectTypePTR extends Component {
                                                 </div>
                                             </div>
                                             <div className="row">
-                                                <div className="col-md-12 margin-top-20">
-                                                    <span onClick={
+                                                <div className="col-md-12 margin-top-20 space-btn">
+                                                    <button onClick={
+                                                        () => {
+                                                            navigate('/v1/campaign/create/:campaign_id:/step/name', {
+                                                                campaign_id: select('createCampaignData.id')
+                                                            });
+                                                        }
+                                                    } className="btn btn-default  button-next btn-arrow-text" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
+                                                    <button onClick={
                                                         () => {
                                                             navigate(this.state.next, {
                                                                 campaign_id: select('createCampaignData.id')
@@ -212,7 +220,7 @@ class SelectTypePTR extends Component {
                                                             dispatch(updateLocalStorageAction());
                                                         }
                                                     }
-                                                          className="btn btn-info btn-lg" type="submit">مرحله بعد</span>
+                                                          className="btn btn-info  button-next btn-arrow-text" type="submit">مرحله بعد <i className="fa fa-angle-left"/></button>
                                                 </div>
                                             </div>
                                         </div>

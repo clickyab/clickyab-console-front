@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {select} from "../../../functions/select";
+import {navigate} from "../../../functions/navigate";
 
 export default class SelectPlanPTR extends Component {
     render() {
@@ -85,6 +86,13 @@ export default class SelectPlanPTR extends Component {
 
                                     </div>
                                 </div>
+                                <button onClick={
+                                    () => {
+                                        navigate('/v1/campaign/create/:campaign_id:/step/promote', {
+                                            campaign_id: select('createCampaignData.id')
+                                        });
+                                    }
+                                } className="btn btn-default  button-next btn-arrow-text margin-top-40" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
                             </div>
                         </div>
                     </div>
