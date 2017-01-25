@@ -896,7 +896,7 @@
 .fa-angle-double-left:before {
   content: "\f100";
 }
-.fa-angle-double-#{$dir-mode-align-inverse}:before {
+.fa-angle-double-right:before {
   content: "\f101";
 }
 .fa-angle-double-up:before {
@@ -908,7 +908,7 @@
 .fa-angle-left:before {
   content: "\f104";
 }
-.fa-angle-#{$dir-mode-align-inverse}:before {
+.fa-angle-right:before {
   content: "\f105";
 }
 .fa-angle-up:before {

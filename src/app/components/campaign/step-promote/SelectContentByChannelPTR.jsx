@@ -20,11 +20,14 @@ class SelectContentByChannelPTR extends Component {
     channelText;
     loadingProgressSend;
 
+
+
     onClick(id, text) {
         return (event) => {
             $(event.target).parents(".channel-post").find("button.select-content-channel").addClass("btn-outline").text("انتخاب  به عنوان محتوای آگهی");
             $(event.target).removeClass("btn-outline");
             $(event.target).text("انتخاب شده");
+            $(".send-clid").prop("disabled",false);
             this.ids = id;
             this.channelText = text;
         };
@@ -32,9 +35,9 @@ class SelectContentByChannelPTR extends Component {
 
     send(event) {
         sync(function*() {
+            if (this.ids) {
             this.loadingProgressSend = Ladda.create(document.querySelector('button.send-clid'));
             this.loadingProgressSend.start();
-            if (this.ids) {
                 let {data, response} = yield (new swagger.AdApi()).campaignPromoteIdPut(
                     select('createCampaignData.id'), getToken(), {
                         'payloadData': {
@@ -89,10 +92,10 @@ class SelectContentByChannelPTR extends Component {
                 </div>);
         }
         if (Postlist.Data != null) {
-            items.push(<button type="submit" key={'asdasdasd'}
+            items.push(<button type="submit" key={'submit-next'}
                                onClick={this.send.bind(this)}
-                               className="btn mt-ladda-btn ladda-button btn-success btn-lg margin-top-20 pull-left send-clid"
-                               data-style="zoom-in"><span className="ladda-label">ارسال</span></button>);
+                               className="btn btn-info  button-next btn-arrow-text mt-ladda-btn ladda-button margin-top-20 pull-left send-clid"
+                               data-style="zoom-in"><span className="ladda-label">مرحله بعد <i className="fa fa-angle-left"/></span></button>);
         }
         return items;
 
@@ -176,6 +179,13 @@ class SelectContentByChannelPTR extends Component {
                                 لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز
                                 کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک
                                 نمایید</p></div>
+                            <button onClick={
+                                () => {
+                                    navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                                        campaign_id: select('createCampaignData.id')
+                                    });
+                                }
+                            } className="btn btn-default  button-next btn-arrow-text" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
                             <form method="post" className="get-posts-channel-form"
                                   onSubmit={handleSubmit((values) => SubmitGetPostsByChannel(values, this.selectTypeContentForm))}>
                                 <div className="form-body">
@@ -205,7 +215,7 @@ class SelectContentByChannelPTR extends Component {
                                         <div className="row">
                                             <div className="col-md-8">
                                                 <button type="submit"
-                                                        className="btn blue btn-lg submit-get-posts-channel">نمایش پست
+                                                        className="btn blue submit-get-posts-channel">نمایش پست
                                                     های کانال
                                                 </button>
                                             </div>

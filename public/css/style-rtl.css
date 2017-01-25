@@ -2091,7 +2091,7 @@ select[multiple].input-lg,
 .btn {
   display: inline-block;
   margin-bottom: 0;
-  font-weight: normal;
+  font-weight: 200;
   text-align: center;
   vertical-align: middle;
   touch-action: manipulation;
@@ -8442,10 +8442,9 @@ ul, li {
 .mar-no {
   margin: 0 !important; }
 
-.btn i {
+.btn-arrow-text i {
   position: relative;
-  top: 3px;
-  right: -7px; }
+  top: 1px; }
 
 .btn-icon-only i {
   position: relative;
@@ -8454,6 +8453,9 @@ ul, li {
 
 .big-padding {
   padding: 6em 0 !important; }
+
+.space-btn button {
+  margin-left: 5px; }
 
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
@@ -9375,7 +9377,7 @@ Page Loading
 .fa-angle-double-left:before {
   content: "\f100"; }
 
-.fa-angle-double-left:before {
+.fa-angle-double-right:before {
   content: "\f101"; }
 
 .fa-angle-double-up:before {
@@ -9387,7 +9389,7 @@ Page Loading
 .fa-angle-left:before {
   content: "\f104"; }
 
-.fa-angle-left:before {
+.fa-angle-right:before {
   content: "\f105"; }
 
 .fa-angle-up:before {
@@ -25991,7 +25993,6 @@ Tasks Widget
 
 .session-list .session-item {
   padding: 10px;
-  margin: 0 0 10px 0;
   border-bottom: 1px solid #f7f8f9; }
   .session-list .session-item .session-item-body {
     padding-left: 20px;

@@ -45,10 +45,14 @@ ul , li {
 //.panel-colorful * {
 //  color: $widget-color-white;
 //}
-.btn i {
+//.btn i {
+//  position: relative;
+//  top: 3px;
+//  #{$dir-mode-align}: -7px;
+//}
+.btn-arrow-text i {
   position: relative;
-  top: 3px;
-  #{$dir-mode-align}: -7px;
+    top: 1px
 }
 .btn-icon-only i {
   position: relative;
@@ -57,6 +61,9 @@ ul , li {
 }
 .big-padding {
   padding: 6em 0 !important;
+}
+.space-btn button {
+  margin-#{$dir-mode-align-inverse}: 5px;
 }
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {
