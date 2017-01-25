@@ -57,6 +57,27 @@ class SelectTypePTR extends Component {
 
     render() {
         const {handleSubmit, SubmitCreateCampaignName} = this.props;
+        let toggleStyleUpload;
+        let toggleStylePromote;
+        console.log(this.state.type);
+        if (this.state.type == 'upload' || this.state.type == '') {
+            toggleStyleUpload = {
+                display : 'block',
+            };
+        } else {
+            toggleStyleUpload = {
+                display : 'none',
+            };
+        }
+        if (this.state.type == 'promote' || this.state.type == '') {
+            toggleStylePromote = {
+                display : 'block',
+            };
+        } else {
+            toggleStylePromote = {
+                display : 'none',
+            };
+        }
         return (
             <div className="page-content">
 
@@ -69,7 +90,7 @@ class SelectTypePTR extends Component {
                     </div>
                     <div className="portlet-body form">
 
-                        <div className="mt-element-step margin-top-20  when-generate-content">
+                        <div className="mt-element-step margin-top-20  when-generate-content" style={toggleStyleUpload}>
                             <div className="row step-background">
                                 <div className="col-md-3 bg-grey-steel mt-step-col">
                                     <div className="mt-step-number">۱</div>
@@ -103,7 +124,7 @@ class SelectTypePTR extends Component {
                             <br/>
                         </div>
 
-                        <div className="mt-element-step margin-top-20 when-select-content" style={{display: 'none'}}>
+                        <div className="mt-element-step margin-top-20 when-select-content" style={toggleStylePromote}>
                             <div className="row step-background">
                                 <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
                                     <div className="mt-step-number">۱</div>
