@@ -3,13 +3,12 @@ import CaptionPTR from './CaptionPTR';
 import {connect} from 'react-redux';
 let loadingProgress;
 import swagger from '../../../swagger/index';
-import {SuccessBoxAlert, FailedBoxAlert} from "../../../functions/notifications";
 import {ifInvalidToken} from "../../../functions/helpers";
 import {sync} from "./../../../functions/sync";
 import {createCampaign} from "../../../redux/actions/index";
 import {dispatch} from "./../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
-import {updateLocalStorageAction, deleteCampaignPromote} from "../../../redux/actions/index";
+import {updateLocalStorageAction} from "../../../redux/actions/index";
 import {AlertBox} from "../../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 import {select} from '../../../functions/select'
@@ -43,10 +42,8 @@ export default class CaptionCTR extends Component {
                         });
                     } else if (response.statusCode == '400') {
                         loadingProgress.stop();
-                        FailedBoxAlert(response);
+                        AlertBox("error" , "لطفا یک متن وارد نمایید");
                     }
-
-                    ifInvalidToken(response);
                 });
             }
         });
