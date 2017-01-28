@@ -1,7 +1,15 @@
 import React, {Component} from 'react';
 import DataTable from '../common/DataTable/DataTable';
+import EditRoleModalCTR from './EditRoleModalCTR'
+import AddRoleModalCTR from './AddRoleModalCTR'
 
 export default class RolesListPTR extends Component {
+    componentDidMount() {
+        $(document).on("click", "#showAddRoleModalForm", function () {
+            $("#addRoleModal").modal();
+        })
+    }
+
     render() {
         return (
             <div className='page-content'>
@@ -10,7 +18,7 @@ export default class RolesListPTR extends Component {
                         <h1 className='page-title'> مدیریت رول ها</h1>
                     </div>
                     <div className='top-action-header'>
-                        <button className="btn btn-lg blue pull-left" id="showAddChannelModalForm">
+                        <button className="btn btn-lg blue pull-left" id="showAddRoleModalForm">
                             <i className="fa fa-plus"/> ساخت رول جدید
                         </button>
                     </div>
@@ -25,6 +33,8 @@ export default class RolesListPTR extends Component {
                         <DataTable {...this.props} list="role"/>
                     </div>
                 </div>
+                <AddRoleModalCTR/>
+                <EditRoleModalCTR form="EditRoleModalPTR"/>
             </div>
         )
     }

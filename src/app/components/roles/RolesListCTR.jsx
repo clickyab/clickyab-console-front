@@ -6,6 +6,7 @@ import {select} from "../../functions/select";
 import {roleItemsListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
+import EditRoleButton from "./EditRoleButton";
 
 @connect(({roleList}) => ({roleList}))
 export default class RolesListCTR extends Component {
@@ -35,7 +36,7 @@ export default class RolesListCTR extends Component {
     }
 
     edit(id) {
-        return 'ادیت';
+        return <EditRoleButton key={Math.random()} id={id}/>
     }
 
     updated_at(updated_at) {
