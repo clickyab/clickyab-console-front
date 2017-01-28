@@ -289,7 +289,7 @@ export default class UploadFileCTR extends Component {
                             <br/>
                         </div>
                         <div className="upload-file margin-bottom-40">
-                            <h2>۲- انتخاب عکس یا ویدیو</h2>
+                            <h2>۳- انتخاب عکس یا ویدیو</h2>
                             <button onClick={
                                 () => {
                                     navigate('/v1/campaign/create/:campaign_id:/step/type', {
