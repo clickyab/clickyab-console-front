@@ -29,11 +29,7 @@ class LoginForm extends Component {
         validation: true
     };
 
-    componentDidMount() {
-        $('body').backstretch([
-            './img/backgrounds/tehran.png',
-        ]);
-
+    componentDidMount() {;
         this.form = $("form");
         this.form.validate({
             rules: {
@@ -61,7 +57,9 @@ class LoginForm extends Component {
                 atActive={{ opacity: 1 }}
             >
             <div className="top-content auth-pages">
-
+                <video poster="/bg.jpg" id="bgvid" className="full"  autoPlay  muted loop>
+                    <source src="/bg.mp4" type="video/mp4"/>
+                </video>
                 <div className="inner-bg">
                     <div className="container">
                         <div className="row">
@@ -89,7 +87,7 @@ class LoginForm extends Component {
                                     <form role="form" action="" method="post" className="recovery-password-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
                                         <div className="form-group">
                                             <label className="sr-only" htmlFor="form-username">{email}</label>
-                                            <Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email"/>
+                                            <Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email" style={{direction:'ltr', textAlign:'left'}}/>
                                         </div>
                                         <button type="submit" className="btn mt-ladda-btn ladda-button btn-primary" data-style="zoom-in"><span className="ladda-label">{forget_submit}</span></button>
                                     </form>
@@ -99,7 +97,7 @@ class LoginForm extends Component {
                                     </div>
                                 </div>
                                 <div className="panel-footer">
-                                    {do_you_have_account} <Link to="/login">{login_now}</Link>
+                                    {do_you_have_account} <Link to="/v1/login">{login_now}</Link>
                                 </div>
 
                             </div>

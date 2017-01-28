@@ -182,7 +182,7 @@
   .form-top {
     overflow: hidden;
     padding: 0 25px 15px 25px;
-    background: #fff;
+    background: #f8f8f8;
     -moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
     text-align: left;
   }
@@ -208,7 +208,7 @@
 
   .form-bottom {
     padding: 25px 25px 30px 25px;
-    background: #eee;
+    background: #fff;
     text-align: $dir-mode-align;
   }
 
@@ -240,12 +240,13 @@
   .panel-footer {
     line-height: 2.2em;
     padding: 20px 40px 20px 40px;
-    background: #f6f6f6;
+    background: #f8f8f8;
     color: #606060;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     border-top: 1px solid #ddd;
     text-align: $dir-mode-align;
+    font-size:1.4rem;
   }
   .panel a {
     color: #00aeef;

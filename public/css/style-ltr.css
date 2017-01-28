@@ -8362,6 +8362,9 @@ body {
 .cursor-pointer {
   cursor: pointer; }
 
+a {
+  text-decoration: none !important; }
+
 ul, li {
   list-style: none; }
 
@@ -8404,6 +8407,20 @@ ul, li {
 
 .space-btn button {
   margin-right: 5px; }
+
+video.full {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background: url("//demosthenes.info/assets/images/polina.jpg") no-repeat;
+  background-size: cover;
+  transition: 1s opacity; }
 
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
