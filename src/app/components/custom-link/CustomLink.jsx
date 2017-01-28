@@ -141,7 +141,7 @@ var Link = React.createClass({
             var location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
             props.href = router.createHref(location);
 
-            if (router.isActive(location, onlyActiveOnIndex)) {
+            if (router.isActive(location, true)) {
                 LiClassName = 'active';
                 if (activeStyle) props.style = _extends({}, props.style, activeStyle);
             }
