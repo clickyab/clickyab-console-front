@@ -8414,6 +8414,9 @@ body {
 .cursor-pointer {
   cursor: pointer; }
 
+a {
+  text-decoration: none !important; }
+
 ul, li {
   list-style: none; }
 
@@ -8456,6 +8459,20 @@ ul, li {
 
 .space-btn button {
   margin-left: 5px; }
+
+video.full {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  z-index: -100;
+  transform: translateX(-50%) translateY(-50%);
+  background: url("//demosthenes.info/assets/images/polina.jpg") no-repeat;
+  background-size: cover;
+  transition: 1s opacity; }
 
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
@@ -45845,7 +45862,7 @@ pre[class*="language-"] {
   .auth-pages .form-top {
     overflow: hidden;
     padding: 0 25px 15px 25px;
-    background: #fff;
+    background: #f8f8f8;
     -moz-border-radius: 4px 4px 0 0;
     -webkit-border-radius: 4px 4px 0 0;
     border-radius: 4px 4px 0 0;
@@ -45867,7 +45884,7 @@ pre[class*="language-"] {
     text-align: left; }
   .auth-pages .form-bottom {
     padding: 25px 25px 30px 25px;
-    background: #eee;
+    background: #fff;
     text-align: right; }
   .auth-pages .form-bottom form textarea {
     height: 100px; }
@@ -45885,12 +45902,13 @@ pre[class*="language-"] {
   .auth-pages .panel-footer {
     line-height: 2.2em;
     padding: 20px 40px 20px 40px;
-    background: #f6f6f6;
+    background: #f8f8f8;
     color: #606060;
     border-bottom-right-radius: 3px;
     border-bottom-left-radius: 3px;
     border-top: 1px solid #ddd;
-    text-align: right; }
+    text-align: right;
+    font-size: 1.4rem; }
   .auth-pages .panel a {
     color: #00aeef; }
   @media (max-width: 767px) {

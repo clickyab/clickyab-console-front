@@ -36,10 +36,6 @@ class RegisterForm extends Component {
     };
 
     componentDidMount() {
-        $('body').backstretch([
-            './img/backgrounds/tehran.png',
-        ]);
-
         this.form = $('form');
         this.form.validate({
             rules: {
@@ -82,7 +78,9 @@ class RegisterForm extends Component {
         return (
 
             <div className="top-content auth-pages">
-
+                <video poster="/bg.jpg" id="bgvid" className="full"  autoPlay  muted loop>
+                    <source src="/bg.mp4" type="video/mp4"/>
+                </video>
                 <div className="inner-bg">
                     <div className="container">
                         <div className="row">
@@ -109,15 +107,15 @@ class RegisterForm extends Component {
                                     <form role="form" action="" method="post" className="register-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
                                         <div className="form-group">
                                             <label className="sr-only" htmlFor="email">{email}</label>
-                                            <Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email"/>
+                                            <Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email" style={{direction:'ltr', textAlign:'left'}}/>
                                         </div>
                                         <div className="form-group">
                                             <label className="sr-only" htmlFor="password">{password}</label>
-                                            <Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password"/>
+                                            <Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password" style={{direction:'ltr', textAlign:'left'}}/>
                                         </div>
                                         <div className="form-group">
                                             <label className="sr-only" htmlFor="repeat_password">{repeat_password}</label>
-                                            <Field component="input" type="password" name="repeat_password" placeholder={repeat_password} className="form-password form-control" id="repeat_password"/>
+                                            <Field component="input" type="password" name="repeat_password" placeholder={repeat_password} className="form-password form-control" id="repeat_password" style={{direction:'ltr', textAlign:'left'}}/>
                                         </div>
                                         <button type="submit" className="btn mt-ladda-btn ladda-button btn-primary" data-style="zoom-in"><span className="ladda-label">{register_submit}</span></button>
                                     </form>
@@ -132,7 +130,7 @@ class RegisterForm extends Component {
                                     </div>
                                 </div>
                                 <div className="panel-footer">
-                                    {do_you_have_account} <Link to="/login">{login_now}</Link>
+                                    {do_you_have_account} <Link to="/v1/login">{login_now}</Link>
                                 </div>
 
                             </div>

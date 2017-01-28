@@ -45,9 +45,6 @@ class LoginForm extends Component {
     };
 
     componentDidMount() {
-		$('body').backstretch([
-				'./img/backgrounds/tehran.png',
-			]);
         this.form = $("form");
         this.form.validate({
             rules: {
@@ -79,6 +76,9 @@ class LoginForm extends Component {
         const {handleSubmit, SubmitCall} = this.props;
         return (
 			<div className="top-content auth-pages">
+                <video poster="/bg.jpg" id="bgvid" className="full"  autoPlay  muted loop>
+                        <source src="/bg.mp4" type="video/mp4"/>
+                </video>
 				<div className="inner-bg">
 					<div className="container">
 						<div className="row">
@@ -104,11 +104,11 @@ class LoginForm extends Component {
 									<form role="form" action="" method="post" className="login-form" onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
 										<div className="form-group">
 											<label className="sr-only" htmlFor="form-username">{email}</label>
-											<Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email"/>
+											<Field component="input" type="text" name="email" placeholder={email} className="form-username form-control" id="email" style={{direction:'ltr', textAlign:'left'}}/>
 										</div>
 										<div className="form-group">
 											<label className="sr-only" htmlFor="form-password">{password}</label>
-											<Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password"/>
+											<Field component="input" type="password" name="password" placeholder={password} className="form-password form-control" id="password" style={{direction:'ltr', textAlign:'left'}}/>
 										</div>
 										<button type="submit" className="btn mt-ladda-btn ladda-button btn-primary" data-style="zoom-in"><span className="ladda-label">{login_submit}</span></button>
 									</form>
@@ -125,7 +125,7 @@ class LoginForm extends Component {
                                 <div className="panel-footer">
 
                                     <Link to="/v1/password-recovery">{forgot_password}</Link><br/>
-                                    {do_not_have_an_account_yet} <Link to="/register">{register_now}</Link>
+                                    {do_not_have_an_account_yet} <Link to="/v1/register">{register_now}</Link>
                                 </div>
 							</div>
 						</div>
