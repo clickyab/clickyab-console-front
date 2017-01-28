@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {translatable} from 'react-multilingual/dist';
-import {Link} from 'react-router'
-import NavLink from './../../../components/custom-link/CustomLink'
+import SidebarLink from './../../../components/custom-link/CustomLink'
 
 @translatable(
     ({dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access}) =>
@@ -33,41 +32,41 @@ export class Sidebar extends Component {
                                 <span/>
                             </div>
                         </li>
-                        <NavLink to='/v1'>
+                        <SidebarLink to='/v1'>
                             <i className='fa fa-home'/>
                             <span className='title'>داشبورد</span>
                             <span className='selected'/>
                             <span className="selected"/>
                             <span className='arrow open'/>
-                        </NavLink>
+                        </SidebarLink>
 
-                        <NavLink to="/v1/campaign" >
+                        <SidebarLink to="/v1/campaign">
                             <i className='fa fa-bullseye'/>
                             <span className='title'>کمپین‌ها</span>
                             <span className="selected"/>
                             <span className='arrow open'/>
-                        </NavLink>
+                        </SidebarLink>
 
-                        <NavLink to="/v1/channel" >
+                        <SidebarLink to="/v1/channel">
                             <i className='fa fa-television'/>
                             <span className='title'>کانال‌ها</span>
                             <span className="selected"/>
                             <span className='arrow open'/>
-                        </NavLink>
+                        </SidebarLink>
 
-                        <NavLink to="/v1/category" >
+                        <SidebarLink to="/v1/category">
                             <i className='fa fa-folder-open'/>
                             <span className='title'>دسته‌بندی‌ها</span>
                             <span className="selected"/>
                             <span className='arrow open'/>
-                        </NavLink>
+                        </SidebarLink>
 
-                        <NavLink to="/v1/user" >
+                        <SidebarLink to="/v1/user">
                             <i className='fa fa-user'/>
                             <span className='title'>مدیریت کاربران</span>
                             <span className="selected"/>
                             <span className='arrow open'/>
-                        </NavLink>
+                        </SidebarLink>
                     </ul>
                 </div>
 
