@@ -1,6 +1,6 @@
 import {sync} from "../../functions/sync";
 import * as swagger from "../../swagger/index";
-import {roleListAction} from "../../redux/actions/index";
+import {roleListAction, permissionListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
@@ -17,8 +17,7 @@ function* roleListController(done) {
             ...select('queries.role', {}),
             def: true
         });
-
-    console.log(error, data);
+    dispatch(permissionListAction(data));
 
     var {error, data} = yield (new swagger.UserApi())
         .userRolesGet(select('user.token'), {

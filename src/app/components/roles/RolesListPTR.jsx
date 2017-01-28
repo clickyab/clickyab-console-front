@@ -33,7 +33,7 @@ export default class RolesListPTR extends Component {
                         <DataTable {...this.props} list="role"/>
                     </div>
                 </div>
-                <AddRoleModalCTR/>
+                <AddRoleModalCTR permissions={this.props.permissions}/>
                 <EditRoleModalCTR form="EditRoleModalPTR"/>
             </div>
         )

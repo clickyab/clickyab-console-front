@@ -8,7 +8,7 @@ import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
 import EditRoleButton from "./EditRoleButton";
 
-@connect(({roleList}) => ({roleList}))
+@connect(({roleList, permissionList}) => ({roleList, permissionList}))
 export default class RolesListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
@@ -57,6 +57,7 @@ export default class RolesListCTR extends Component {
 
     render() {
         return (<RolesListPTR {...this.props.roleList}
+                                permissions={this.props.permissionList.permissions}
                                 sort={this.sort.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}

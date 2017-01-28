@@ -42,10 +42,9 @@ export default class AddRoleModalCTR extends Component {
         if (!form.valid())
             return;
 
-        this.addRoleSubmit(formValues)
     };
 
     render() {
-        return (<AddRoleModalPTR SubmitAddRole={this.SubmitEditRole}/>);
+        return (<AddRoleModalPTR permissions={this.props.permissions} SubmitAddRole={this.SubmitEditRole}/>);
     }
 }

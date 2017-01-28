@@ -35,6 +35,16 @@ class AddRoleModalPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitAddRole} = this.props;
+        let permissions = [];
+        for (let permission in this.props.permissions) {
+            permissions.push(
+                <div key={Math.random()}>
+                    <span style={{color:"black"}}>{permission}</span>
+                    <input type="checkbox" name="perms[]" value={this.props.permissions[permission]}/>
+                </div>
+            );
+        }
+
         return (
             <div className="add-role-modal modal fade fullscreen" id="addRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -55,16 +65,18 @@ class AddRoleModalPTR extends Component {
                                       className="add-role-form white"
                                       onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm))}>
                                     <div className="form-group">
-                                        <label htmlFor="link">لینک کانال</label>
-                                        <Field component="input" type="text" name="link" placeholder="لینک کانال"
-                                               className="form-control input-lg" id="link"/>
+                                        <label htmlFor="link">نام رول</label>
+                                        <Field component="input" type="text" name="name" placeholder="نام رول"
+                                               className="form-control input-lg" id="name"/>
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="name">نام کانال</label>
-                                        <Field component="input" type="text" name="name" placeholder="نام کانال"
-                                               className="form-control input-lg" id="name"/>
+                                        <label htmlFor="description">توضیحات رول</label>
+                                        <Field component="input" type="textarea" name="description"
+                                               placeholder="توضیحات رول"
+                                               className="form-control input-lg" id="description"/>
                                     </div>
+                                    {permissions}
                                     <button type="submit"
                                             className="btn btn-primary btn-lg add-role-form btn-block">ذخیره
                                     </button>
