@@ -28,18 +28,6 @@ class CaptionPTR extends Component {
         });
 
         this.captionCampaignForm = $('.text-editor-form');
-        this.captionCampaignForm.validate({
-            rules: {
-                Text: {
-                    required: true,
-                },
-            },
-            messages: {
-                Text: {
-                    required: 'لطفا یک متن وارد نمایید',
-                },
-            }
-        });
     }
 
 
