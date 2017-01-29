@@ -16,8 +16,9 @@ export class ConsoleFooterCell extends Component {
 
     getFilters(filters) {
         let _filters = [];
+        let {translator} = this.props;
         for (let keyFilter in filters) {
-            _filters.push(<option key={keyFilter} value={keyFilter}>{filters[keyFilter]}</option>)
+            _filters.push(<option key={keyFilter} value={keyFilter}>{translator(keyFilter)}</option>)
         }
 
         return _filters;
@@ -33,7 +34,7 @@ export class ConsoleFooterCell extends Component {
         filter(event, query_name);
     }
     render() {
-        let {filters, footer, query_name, list, searchable} = this.props;
+        let {filters, footer, query_name, list, searchable, translator} = this.props;
 
         return (
             <td>
@@ -42,7 +43,7 @@ export class ConsoleFooterCell extends Component {
                         <input className="form-control type-search-datatable"
                                onChange={this.onSearchChange.bind(this)}
                                defaultValue={select('queries.' + list + "." + query_name, '')}
-                               placeholder={"search by " + footer.title}/> : ''}
+                               placeholder={translator(footer.title)}/> : ''}
 
                     {filters !== null ? <select
                             defaultValue={select('queries.' + list + "." + query_name, '')}

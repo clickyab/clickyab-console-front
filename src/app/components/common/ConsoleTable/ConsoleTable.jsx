@@ -78,13 +78,12 @@ export class ConsoleTable extends Component {
     }
 
     render() {
-        let {sort, filter, search, list, change, edit, mutators} = this.props;
+        let {sort, filter, search, list, change, edit, mutators, translator} = this.props;
         if (!mutators) {
             mutators = {};
         }
         return (
             <div className="table-holder">
-
                 <div className="table-scrollable">
                     <table className="table table-striped table-bordered table-advance table-hover">
                         <thead>
@@ -101,7 +100,7 @@ export class ConsoleTable extends Component {
                                     width={header.width}
                                     searchable={header.searchable}
                                 >
-                                    {header.name}
+                                    {translator(header.name)}
                                 </ConsoleHeaderCell>
                             )}
                         </tr>
@@ -135,6 +134,7 @@ export class ConsoleTable extends Component {
                                     filters={footer.filter_valid_map}
                                     sortable={footer.sortable}
                                     width={footer.width}
+                                    translator={translator}
                                     searchable={footer.searchable}
                                 />
                             )}

@@ -7,8 +7,29 @@ import {select} from "../../functions/select";
 import {channelItemsListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
+import {translatable} from 'react-multilingual/dist';
 
 @connect(({channelList}) => ({channelList}))
+@translatable(({
+    ID,
+    Email, Type,
+    Status, CreatedAt, UpdatedAt,
+    Action, UserID, Name,
+    Link, AdminStatus, ArchiveStatus,
+    Active, accepted, pending,
+    rejected, yes, no
+
+}) => ({
+    translation: {
+        ID,
+        Email, Type, Status,
+        CreatedAt, UpdatedAt, Action,
+        UserID, Name, Link,
+        AdminStatus, ArchiveStatus, Active,
+        accepted, pending, rejected,
+        yes, no
+    }
+}))
 export default class ChannelListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
@@ -55,9 +76,14 @@ export default class ChannelListCTR extends Component {
         this.callApi('c', per_page);
     }
 
+    translator(title) {
+        return this.props.translation[title];
+    }
+
     render() {
         return (<ChannelListPTR {...this.props.channelList}
                                 sort={this.sort.bind(this)}
+                                translator={this.translator.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}
                                 onPerPageChange={this.onPerPageChange.bind(this)}
