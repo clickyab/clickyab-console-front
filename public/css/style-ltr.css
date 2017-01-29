@@ -8355,6 +8355,9 @@ video.full {
   transform: translate(-50%, -50%);
   color: #2CA5E0; }
 
+.custom-color {
+  background: #eef1f5 !important; }
+
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px; } }
@@ -16951,7 +16954,8 @@ Forms
 ***/
 .form-control {
   outline: none !important;
-  box-shadow: none !important; }
+  box-shadow: none !important;
+  color: #eeee; }
   .form-control.height-auto {
     height: auto; }
 
