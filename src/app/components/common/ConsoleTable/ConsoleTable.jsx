@@ -11,6 +11,10 @@ export class ConsoleTable extends Component {
         super(props);
     }
 
+    loader(status) {
+
+    }
+
     rows() {
         let {items} = this.props;
         let rows = [];
@@ -65,7 +69,7 @@ export class ConsoleTable extends Component {
     pagination() {
         const per_page = select('queries.' + this.props.list + '.c', 10);
         let pages_count = Math.floor(this.props.total / per_page);
-        if(pages_count == 0) {
+        if (pages_count == 0) {
             pages_count = 1;
         }
 
@@ -84,6 +88,7 @@ export class ConsoleTable extends Component {
         }
         return (
             <div className="table-holder">
+                <div><i/></div>
                 <div className="table-scrollable">
                     <table className="table table-striped table-bordered table-advance table-hover">
                         <thead>
@@ -92,6 +97,7 @@ export class ConsoleTable extends Component {
                                 (header, index) => <ConsoleHeaderCell
                                     key={index}
                                     list={list}
+                                    loader={this.loader.bind(this)}
                                     sort={sort}
                                     filter={filter}
                                     query_name={header.data}
@@ -126,6 +132,7 @@ export class ConsoleTable extends Component {
                             {this.footers().map(
                                 (footer, index) => <ConsoleFooterCell
                                     key={index}
+                                    loader={this.loader.bind(this)}
                                     footer={footer}
                                     list={list}
                                     sort={sort}

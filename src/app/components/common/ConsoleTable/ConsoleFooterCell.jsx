@@ -5,13 +5,15 @@ import {select} from "../../../functions/select";
 
 export class ConsoleFooterCell extends Component {
     onSearchChange(event) {
-        let {list, query_name, search} = this.props;
+        let {list, query_name, search, loader} = this.props;
 
         dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, query_name, event.target.value));
         dispatch(updateLocalStorageAction());
 
-        search(event, query_name)
+        loader(true);
+        search(event, query_name);
+        loader(false);
     }
 
     getFilters(filters) {
@@ -25,13 +27,15 @@ export class ConsoleFooterCell extends Component {
     }
 
     filterOnChange(event) {
-        let {query_name, list, filter} = this.props;
+        let {query_name, list, filter, loader} = this.props;
 
         dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, query_name, event.target.value));
         dispatch(updateLocalStorageAction());
 
+        loader(true);
         filter(event, query_name);
+        loader(false);
     }
     render() {
         let {filters, footer, query_name, list, searchable, translator} = this.props;
