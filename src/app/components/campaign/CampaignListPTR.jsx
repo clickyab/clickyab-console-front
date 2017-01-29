@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from '../common/DataTable/DataTable';
+import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 import {navigate} from "../../functions/navigate";
 
 export default class CampaignListPTR extends Component {
@@ -31,7 +31,7 @@ export default class CampaignListPTR extends Component {
 						</div>
 					</div>
 					<div className='portlet-body'>
-						<DataTable {...this.props} list="campaign"/>
+						<ConsoleTable {...this.props} list="campaign"/>
 					</div>
 				</div>
 			</div>

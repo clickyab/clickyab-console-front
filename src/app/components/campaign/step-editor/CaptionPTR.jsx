@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {select} from "../../../functions/select";
+import {navigate} from "../../../functions/navigate";
 
 
 class CaptionPTR extends Component {
@@ -9,6 +10,9 @@ class CaptionPTR extends Component {
 
 
     componentDidMount() {
+        if(select('createCampaignData.description') != null) {
+            $(".emojieditor-plugin-content").val(select('createCampaignData.description'))
+        }
         $("#emojieditor-plugin-container").emojioneArea({
             parentID: "emojieditor-plugin-parent",
             autoHideFilters: false,

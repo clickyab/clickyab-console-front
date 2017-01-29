@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from '../common/DataTable/DataTable';
+import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 import EditCategoryModalCTR from './EditCategoryModalCTR';
 import AddCategoryModalCTR from './AddCategoryModalCTR';
 
@@ -32,7 +32,7 @@ export default class CategoryListPTR extends Component {
 						</div>
 					</div>
 					<div className='portlet-body'>
-						<DataTable {...this.props} list="category"/>
+						<ConsoleTable {...this.props} list="category"/>
 					</div>
 				</div>
 				<AddCategoryModalCTR />

@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from '../common/DataTable/DataTable';
+import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 import EditRoleModalCTR from './EditRoleModalCTR'
 import AddRoleModalCTR from './AddRoleModalCTR'
 
@@ -30,7 +30,7 @@ export default class RolesListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <DataTable {...this.props} list="role"/>
+                        <ConsoleTable {...this.props} list="role"/>
                     </div>
                 </div>
                 <AddRoleModalCTR permissions={this.props.permissions}/>

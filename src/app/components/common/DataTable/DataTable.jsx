@@ -6,7 +6,6 @@ import {select} from "../../../functions/select";
 import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
 
-
 export default class DataTable extends React.Component {
     constructor(props) {
         super(props);

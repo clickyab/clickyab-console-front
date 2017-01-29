@@ -22,7 +22,7 @@ export default class SelectContentByChannelCTR extends Component {
 
         constructor(props) {
             super(props);
-            this.state= {items:[]}
+            this.state= {data:[]}
         }
 
     jobIsCompleted(data , response) {
