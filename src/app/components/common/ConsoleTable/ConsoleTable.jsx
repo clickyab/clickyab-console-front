@@ -30,7 +30,7 @@ export class ConsoleTable extends Component {
             let row = [];
             for (let header of this.headers()) {
                 row.push({
-                    cell: {name: header.data, data: cells[header.data]},
+                    cell: Object.assign({}, cells, {name: header.data, data: cells[header.data]}),
                     header: header
                 });
             }
@@ -47,9 +47,11 @@ export class ConsoleTable extends Component {
     }
 
     headers() {
-        return this.props.definitions.filter(
+        let headers = this.props.definitions.filter(
             header => header.visible ? header : null
         );
+
+        return this.addActionHeader(headers);
     }
 
     onPaginationChange(page) {
@@ -86,14 +88,30 @@ export class ConsoleTable extends Component {
         return pages;
     }
 
+    addActionHeader(headers) {
+        return [...headers, {
+            width: 150,
+            data: '_actions',
+            filter: false,
+            filter_valid_map: null,
+            searchable: false,
+            sortable: false,
+            title: "Action",
+            name: "Action",
+            visible: true
+        }
+        ];
+    }
+
     render() {
-        let {sort, filter, search, list, change, edit, mutators, translator} = this.props;
+        let {sort, filter, list, change, edit, mutators, translator} = this.props;
         if (!mutators) {
             mutators = {};
         }
         return (
             <div className="table-holder">
-                <div className="loader-table" style={{display : 'none'}}><i className="fa fa-spinner fa-spin fa-3x fa-fw"/></div>
+                <div className="loader-table" style={{display: 'none'}}><i
+                    className="fa fa-spinner fa-spin fa-3x fa-fw"/></div>
                 <div className="table-scrollable">
                     <table className="table table-striped table-bordered table-advance table-hover">
                         <thead>

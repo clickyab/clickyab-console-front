@@ -5,7 +5,7 @@ import {shallowEqual} from './../../3rd/shallowEqual';
 import {dispatch} from "../../functions/dispatch";
 
 class EditUserModalPTR extends Component {
-    editChannelForm;
+    editUserForm;
     state = {
         validation: true
     };
@@ -13,8 +13,8 @@ class EditUserModalPTR extends Component {
 
     shouldComponentUpdate(nextProps) {
         if(!shallowEqual(this.props, nextProps)) {
-            for (let key in nextProps.channelData) {
-                dispatch(change(nextProps.form, key, nextProps.channelData[key]))
+            for (let key in nextProps.userData) {
+                dispatch(change(nextProps.form, key, nextProps.userData[key]))
             }
 
             return true;
@@ -24,8 +24,8 @@ class EditUserModalPTR extends Component {
     }
 
     componentDidMount() {
-        this.editChannelForm = $("#editChannelForm");
-        this.editChannelForm.validate({
+        this.editUserForm = $("#editUserForm");
+        this.editUserForm.validate({
             rules: {
                 admin: {
                     required: true,
@@ -54,9 +54,9 @@ class EditUserModalPTR extends Component {
     }
 
     render() {
-        const {handleSubmit, SubmitEditChannel} = this.props;
+        const {handleSubmit, SubmitEditUser} = this.props;
         return (
-            <div className="edit-channel-modal modal fade fullscreen" id="editChannelModal" tabIndex="-1" role="dialog"
+            <div className="edit-channel-modal modal fade fullscreen" id="editUserModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
                 <div className="modal-dialog">
                     <div className="modal-content">
@@ -71,9 +71,9 @@ class EditUserModalPTR extends Component {
                                 <div className="modal-title text-center">
                                     <h3/>
                                 </div>
-                                <form role="form" action="" id="editChannelForm" method="post"
+                                <form role="form" action="" id="editUserForm" method="post"
                                       className="add-channel-form white"
-                                      onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
+                                      onSubmit={handleSubmit((values) => SubmitEditUser(values, this.editUserForm))}>
                                     <div className="form-group">
                                         <label htmlFor="admin">نام ادمین</label>
                                         <Field component="input" type="text" name="admin" placeholder='نام ادمین'

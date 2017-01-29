@@ -12,7 +12,7 @@ import {translatable} from 'react-multilingual/dist';
 @translatable(({
     ID, Title, CreatedAt,
     UpdatedAt, Description, Email,
-    UserID, Name, ArchiveStatus,
+    UserID, Name, ArchiveStatus, _actions,
     AdArchiveStatus, AdActive, AdPayStatus,
     yes, no, accepted, pending, rejected,
     AdActiveStatus, AdAdminStatus, Src
@@ -21,7 +21,7 @@ import {translatable} from 'react-multilingual/dist';
     translation: {
         ID, Title, CreatedAt,
         UpdatedAt, Description, Email,
-        UserID, Name, ArchiveStatus,
+        UserID, Name, ArchiveStatus, Action: _actions,
         AdArchiveStatus, AdActive, AdPayStatus,
         yes, no, accepted, pending, rejected,
         AdActiveStatus, AdAdminStatus, Src
@@ -53,7 +53,7 @@ export default class CampaignListCTR extends Component {
     }
 
     edit(id) {
-        // console.log(id);
+        return 'edit';
     }
 
     updated_at(updated_at) {

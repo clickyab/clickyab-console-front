@@ -82,7 +82,8 @@ export default {
         no: 'خیر',
         Title: 'عنوان',
         Scope: 'سطح دسترسی',
-        Description: 'توضیحات'
+        Description: 'توضیحات',
+        _actions: 'عملیات ها'
     },
     en: {
         hello: 'hello',
@@ -164,7 +165,8 @@ export default {
         Title: 'Title',
         Description: 'Description',
         Scope: 'Scopes',
-        Src: 'File Source'
+        Src: 'File Source',
+        _actions: 'Actions'
     }
 }
 

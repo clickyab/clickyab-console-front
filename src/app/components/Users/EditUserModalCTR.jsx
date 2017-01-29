@@ -19,18 +19,18 @@ export default class EditUserModalCTR extends Component {
         sync(function *() {
             loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
             loadingProgress.start();
-            const {error, data, response} = yield (new swagger.ChannelApi())
+            const {data, response} = yield (new swagger.ChannelApi())
                 .channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
-            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-
             if (response.statusCode == 200) {
-                $('#editChannelModal').modal('hide');
+                $('#editUserModal').modal('hide');
                 loadingProgress.stop();
                 dispatch(updateAChannelFromListAction(data));
             } else if (response.statusCode == '400') {
-                FailedBoxAlert(response)
+                FailedBoxAlert({
+                    error: 'اطلاعات شما صحیح نمی‌باشد.',
+                    text: 'اطلاعات شما با موفقیت ثبت شد.'
+                })
             }
 
             ifInvalidToken(response);
@@ -38,14 +38,14 @@ export default class EditUserModalCTR extends Component {
     }
 
 
-    SubmitEditChannel = (formValues, form) => {
+    SubmitEditUser = (formValues, form) => {
         if (!form.valid())
             return;
         this.editSubmit(formValues)
     };
 
     render() {
-        const {form, channelData} = this.props;
-        return (<EditUserModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
+        const {form, userData} = this.props;
+        return (<EditUserModalPTR form={form} userData={userData} SubmitEditUser={this.SubmitEditUser}/>);
     }
 }
