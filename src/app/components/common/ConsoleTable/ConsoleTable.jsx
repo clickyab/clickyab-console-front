@@ -83,8 +83,8 @@ export class ConsoleTable extends Component {
             mutators = {};
         }
         return (
-            <div>
-                <table>
+            <div className="table-scrollable">
+                <table className="table table-striped table-bordered table-advance table-hover">
                     <thead>
                     <tr>
                         {this.headers().map(
