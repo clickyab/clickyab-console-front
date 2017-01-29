@@ -11,23 +11,21 @@ import {translatable} from 'react-multilingual/dist';
 
 @connect(({channelList}) => ({channelList}))
 @translatable(({
-    ID,
-    Email, Type,
-    Status, CreatedAt, UpdatedAt,
-    Action, UserID, Name,
-    Link, AdminStatus, ArchiveStatus,
-    Active, accepted, pending,
-    rejected, yes, no
+    Email, Type, Status,
+    CreatedAt, UpdatedAt, Action,
+    UserID, Name, Link,
+    AdminStatus, ArchiveStatus, Active,
+    accepted, pending, rejected,
+    yes, no, ID
 
 }) => ({
     translation: {
-        ID,
         Email, Type, Status,
         CreatedAt, UpdatedAt, Action,
         UserID, Name, Link,
         AdminStatus, ArchiveStatus, Active,
         accepted, pending, rejected,
-        yes, no
+        yes, no, ID
     }
 }))
 export default class ChannelListCTR extends Component {
@@ -80,6 +78,26 @@ export default class ChannelListCTR extends Component {
         return this.props.translation[title];
     }
 
+    admin_status(admin_status) {
+        if (admin_status == 'pending') {
+            return <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
+        } else if (admin_status == 'accepted') {
+            return <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
+        } else if (admin_status == 'rejected') {
+            return <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
+        }
+
+        return admin_status;
+    }
+
+    archive_status(archive_status) {
+        return this.translator(archive_status);
+    }
+
+    active(pay_status) {
+        return this.translator(pay_status);
+    }
+
     render() {
         return (<ChannelListPTR {...this.props.channelList}
                                 sort={this.sort.bind(this)}
@@ -88,7 +106,13 @@ export default class ChannelListCTR extends Component {
                                 search={this.search.bind(this)}
                                 onPerPageChange={this.onPerPageChange.bind(this)}
                                 onPaginationChange={this.onPaginationChange.bind(this)}
-                                mutators={{updated_at: this.updated_at, created_at: this.created_at}}
+                                mutators={{
+                                    updated_at: this.updated_at,
+                                    created_at: this.created_at,
+                                    admin_status: this.admin_status.bind(this),
+                                    archive_status: this.archive_status.bind(this),
+                                    active: this.active.bind(this)
+                                }}
                                 edit={this.edit.bind(this)}
         />);
     }

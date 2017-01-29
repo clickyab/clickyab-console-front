@@ -1,10 +1,23 @@
 import React, {Component} from 'react';
 
 export class ConsoleCell extends Component {
+    buildActions(id, item, edit) {
+        const actionKeys = item.split(',');
+        let buttons = [];
+        for (let i = 0; i < actionKeys.length; i++) {
+            if (actionKeys[i] == "edit") {
+                buttons.push(edit(id));
+            }
+        }
+
+        return buttons;
+    }
+
     render() {
-        let {mutator, data} = this.props;
+        let {mutator, data, actions, edit, id} = this.props;
         return (
-            mutator ? <td>{mutator(data)}</td> : <td>{data}</td>
+            actions ? <td>{this.buildActions(id, data, edit)}</td> : mutator ? <td>{mutator(data)}</td> :
+                    <td>{data}</td>
         );
     }
 }
