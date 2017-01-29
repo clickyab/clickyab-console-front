@@ -28,7 +28,7 @@ class UserProfilePTR extends Component {
 
     render() {
         return (
-            <div className="page-content">
+            <div className="page-content custom-color">
                 <h1 className="page-title"> ویرایش پروفایل
                 </h1>
 

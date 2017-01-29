@@ -62,7 +62,7 @@ ul , li {
 //}
 .btn-arrow-text i {
   position: relative;
-    top: 1px
+  top: 1px
 }
 .btn-icon-only i {
   position: relative;
@@ -104,6 +104,10 @@ video.full {
   left: 50%;
   top:50%;
   transform: translate(-50%,-50%);
+  color: $brand-primary;
+}
+.custom-color {
+  background: #eef1f5 !important;
 }
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {

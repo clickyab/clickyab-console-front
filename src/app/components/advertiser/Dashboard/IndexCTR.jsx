@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {translatable} from 'react-multilingual/dist';
+import {loading} from "../../../functions/loading";
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
 require('amcharts3/amcharts/serial');
@@ -21,6 +22,7 @@ import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR
 export default class AdvertiserDashboardPage extends Component {
 
     componentDidMount() {
+        loading(false);
         $(".demo-sparkline-area").sparkline([3, 10, 70, 62, 73, 79, 76, 77, 73, 52, 57, 50, 60, 55, 70, 68], {
             type: 'line',
             width: '100%',
