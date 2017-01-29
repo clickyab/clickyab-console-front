@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from '../common/DataTable/DataTable';
+import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 import EditChannelModalCTR from './EditChannelModalCTR'
 import AddChannelModalCTR from './AddChannelModalCTR'
 
@@ -30,7 +30,7 @@ export default class ChannelListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <DataTable {...this.props} list="channel"/>
+                        <ConsoleTable {...this.props} list="channel"/>
                     </div>
                 </div>
                 <AddChannelModalCTR/>
