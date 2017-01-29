@@ -22,7 +22,7 @@ export class Sidebar extends Component {
     render() {
         let {dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access} = this.props;
         return (
-            <div className='page-sidebar-wrapper'>
+            <div className='page-sidebar-wrapper' style={{flexShrink: 0, width: "235px"}}>
                 <div className='page-sidebar navbar-collapse collapse'>
 
                     <ul className='page-sidebar-menu  page-header-fixed ' data-keep-expanded='false'

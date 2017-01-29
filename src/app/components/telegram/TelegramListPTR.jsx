@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from '../common/DataTable/DataTable';
+import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 
 export default class TelegramListPTR extends Component {
     render() {
@@ -12,7 +12,7 @@ export default class TelegramListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <DataTable {...this.props} list="category"/>
+                        <ConsoleTable {...this.props} list="category"/>
                     </div>
                 </div>
             </div>

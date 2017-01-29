@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import DataTable from '../common/DataTable/DataTable';
+import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 
 export default class UsersListPTR extends Component {
     render() {
@@ -22,7 +22,7 @@ export default class UsersListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <DataTable {...this.props} list="user"/>
+                        <ConsoleTable {...this.props} list="user"/>
                     </div>
                 </div>
             </div>
