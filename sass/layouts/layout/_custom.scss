@@ -89,6 +89,22 @@ video.full {
   background-size: cover;
   transition: 1s opacity;
 }
+.table-holder {
+  position: relative;
+}
+.loader-table {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left:0;
+  background: rgba(255,255,255,0.9);
+}
+.table-holder .loader-table i {
+  position: absolute;
+  left: 50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px;
