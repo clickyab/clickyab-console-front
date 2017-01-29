@@ -9,6 +9,16 @@ import {loading} from "./functions/loading";
 export default class App extends React.Component {
     componentDidMount() {
         loading(false);
+
+        $(window).resize(function (){
+            setToWindowHeight($selector);
+        });
+        function setToWindowHeight(selector) {
+            selector.css({ 'min-height': $(window).innerHeight()});
+        }
+
+        let $selector = $('.page-content');
+        setToWindowHeight($selector);
     }
 
     render() {
@@ -18,9 +28,9 @@ export default class App extends React.Component {
                 <div className="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
                     <div className="page-wrapper">
                         <Header/>
-                        <div className="page-container" style={{display: 'flex'}}>
+                        <div className="page-container">
                             <Sidebar/>
-                            <div className="page-content-wrapper" style={{flexGrow: 1}}>
+                            <div className="page-content-wrapper">
                                 {children}
                             </div>
                         </div>
