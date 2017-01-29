@@ -6699,7 +6699,6 @@ Page content
     float: left;
     width: 100%; }
     .page-content-wrapper .page-content {
-      margin-left: 235px;
       margin-top: 0px;
       min-height: 600px;
       padding: 25px 20px 10px 20px; }
@@ -45928,6 +45927,11 @@ pre[class*="language-"] {
     bottom: 0;
     z-index: -1;
     position: fixed; } }
+
+html, body, div#clickyab_app,
+div.page-content-white, div.page-wrapper,
+div.page-container, div.page-content {
+  height: 100%; }
 
 body {
   background: white; }
