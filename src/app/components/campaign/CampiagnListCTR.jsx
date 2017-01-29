@@ -2,13 +2,31 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import CampaignListPTR from './CampaignListPTR';
 import swagger from '../../swagger/index';
-import Edit from './../channel/EditChannelButton';
 import {select} from "../../functions/select";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
 import {campaignItemsListAction} from "../../redux/actions/index";
+import {translatable} from 'react-multilingual/dist';
 
 @connect(({campaignList}) => ({campaignList}))
+@translatable(({
+    ID, Title, CreatedAt,
+    UpdatedAt, Description, Email,
+    UserID, Name, ArchiveStatus,
+    AdArchiveStatus, AdActive, AdPayStatus,
+    yes, no, accepted, pending, rejected,
+    AdActiveStatus, AdAdminStatus, Src
+
+}) => ({
+    translation: {
+        ID, Title, CreatedAt,
+        UpdatedAt, Description, Email,
+        UserID, Name, ArchiveStatus,
+        AdArchiveStatus, AdActive, AdPayStatus,
+        yes, no, accepted, pending, rejected,
+        AdActiveStatus, AdAdminStatus, Src
+    }
+}))
 export default class CampaignListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
@@ -54,10 +72,15 @@ export default class CampaignListCTR extends Component {
         this.callApi('c', per_page);
     }
 
+    translator(title) {
+        return this.props.translation[title];
+    }
+
     render() {
         return (<CampaignListPTR {...this.props.campaignList}
                                  edit={this.edit.bind(this)}
                                  sort={this.sort.bind(this)}
+                                 translator={this.translator.bind(this)}
                                  onPaginationChange={this.onPaginationChange.bind(this)}
                                  onPerPageChange={this.onPerPageChange.bind(this)}
                                  filter={this.filter.bind(this)}

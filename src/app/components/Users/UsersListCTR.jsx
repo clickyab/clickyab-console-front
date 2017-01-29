@@ -7,8 +7,39 @@ import {userItemsListAction} from '../../redux/actions/index';
 import EditUserButton from "./EditUserButton";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
+import {translatable} from 'react-multilingual/dist';
 
 @connect(({userList}) => ({userList}))
+@translatable(({
+    ID,
+    Email,
+    Type,
+    Status,
+    CreatedAt,
+    UpdatedAt,
+    Action,
+    corporation,
+    personal,
+    blocked,
+    registered,
+    verified
+
+}) => ({
+    translation: {
+        ID,
+        Email,
+        Type,
+        Status,
+        CreatedAt,
+        UpdatedAt,
+        Action,
+        corporation,
+        personal,
+        blocked,
+        registered,
+        verified
+    }
+}))
 export default class UsersListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
@@ -55,11 +86,15 @@ export default class UsersListCTR extends Component {
         this.callApi('c', per_page);
     }
 
-    render() {
+    translator(title) {
+        return this.props.translation[title];
+    }
 
+    render() {
         return (<UsersListPTR {...this.props.userList}
                               edit={this.edit.bind(this)}
                               sort={this.sort.bind(this)}
+                              translator={this.translator.bind(this)}
                               filter={this.filter.bind(this)}
                               onPaginationChange={this.onPaginationChange.bind(this)}
                               onPerPageChange={this.onPerPageChange.bind(this)}
