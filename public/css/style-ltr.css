@@ -8306,6 +8306,9 @@ ul, li {
   position: relative;
   top: 2px; }
 
+.dataTables_length input, .dataTables_length select {
+  margin: 0 5px; }
+
 .btn-arrow-text i {
   position: relative;
   top: 1px; }
