@@ -6751,7 +6751,6 @@ Page content
     float: right;
     width: 100%; }
     .page-content-wrapper .page-content {
-      margin-right: 235px;
       margin-top: 0px;
       min-height: 600px;
       padding: 25px 20px 10px 20px; }
@@ -46183,6 +46182,11 @@ New Profile Page
     bottom: 0;
     z-index: -1;
     position: fixed; } }
+
+html, body, div#clickyab_app,
+div.page-content-white, div.page-wrapper,
+div.page-container, div.page-content {
+  height: 100%; }
 
 .content-mt {
   padding-top: 40px; }
