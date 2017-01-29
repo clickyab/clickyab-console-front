@@ -19,6 +19,9 @@ import SidebarLink from './../../../components/custom-link/CustomLink'
         })
 )
 export class Sidebar extends Component {
+    componentDidMount() {
+        document.title = "داشبورد تبلیغ دهنده";
+    }
     render() {
         let {dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access} = this.props;
         return (
@@ -32,9 +35,9 @@ export class Sidebar extends Component {
                                 <span/>
                             </div>
                         </li>
-                        <SidebarLink to='/v1'>
+                        <SidebarLink to='/v1/advertiser'>
                             <i className='fa fa-home'/>
-                            <span className='title'>داشبورد</span>
+                            <span className='title'>داشبورد تبلیغ کننده</span>
                             <span className='selected'/>
                             <span className="selected"/>
                             <span className='arrow open'/>

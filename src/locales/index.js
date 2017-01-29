@@ -51,6 +51,13 @@ export default {
         login_now:'پس وارد شوید!',
         forget_submit:'ارسال کلمه عبور جدید',
         please_enter_your_mail_to_send_new_password:'لطفا ایمیل خود را برای دریافت کلمه عبور جدید وارد نمایید',
+        ID : "شناسه",
+        Email : "ایمیل",
+        Type : "نوع کاربری",
+        Status : "وضعیت",
+        CreatedAt : "تاریخ ساخت",
+        UpdatedAt : "تاریخ ویرایش",
+        Action : "عملیات",
     },
     en: {
         hello: 'hello',
@@ -103,6 +110,13 @@ export default {
         login_now:'Login Now!',
         forget_submit:'Send New Password!',
         please_enter_your_mail_to_send_new_password:'please enter your mail to send new password',
+        ID : "ID",
+        Email : "Email",
+        Type : "Type",
+        Status : "Status",
+        CreatedAt : "CreatedAt",
+        UpdatedAt : "UpdatedAt",
+        Action : "Action",
     }
 }
 

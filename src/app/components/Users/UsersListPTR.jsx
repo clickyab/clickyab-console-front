@@ -2,26 +2,30 @@ import React, {Component} from 'react';
 import DataTable from '../common/DataTable/DataTable';
 
 export default class UsersListPTR extends Component {
+    componentDidMount() {
+        document.title = "مدیریت کاربران";
+    }
     render() {
         return (
             <div className='page-content'>
-                <div className='row'>
-                    <div className='col-lg-8 col-md-8 col-sm-8 col-xs-12'>
-                        <h1 className='page-title'> مدیریت کاربران</h1>
-                    </div>
-                    <div className='top-action-header'>
-                        <button className="btn btn-lg blue pull-left" id="showAddChannelModalForm">
-                            <i className="fa fa-plus"/> کاربر جدید
-                        </button>
-                    </div>
-                </div>
-                <div className='portlet light datatable-parent'>
+
+                <h1 className="page-title"> مدیریت کاربران
+                </h1>
+
+                <div className='portlet light datatable-parent bordered'>
                     <div className='portlet-title'>
                         <div className='caption'>
-                            <span className='caption-subject bold uppercase font-dark'>لیست چنل ها </span>
+                            <span className='caption-subject bold uppercase font-dark'> لیست کاربران </span>
+                        </div>
+                        <div className="actions">
+                            <div className="btn-group btn-group-devided" data-toggle="buttons">
+                                    <button  className="btn btn-transparent blue btn-outline btn-circle btn-sm" id="showAddChannelModalForm" >افزودن کاربر جدید
+                                    </button>
+                            </div>
                         </div>
                     </div>
                     <div className='portlet-body'>
+
                         <DataTable {...this.props} list="user"/>
                     </div>
                 </div>

@@ -158,7 +158,7 @@ Page content
 .page-content {  
 	margin-top: 0px;   
 	padding: 0px;
-	background-color: #eef1f5;
+	background-color: #fff;
 
 	.page-container-bg-solid & {
 		background: $page-content-solid-bg-color;     
@@ -190,7 +190,6 @@ Page content
 		width: 100%;
 
 		.page-content { 
-			margin-#{$dir-mode-align}: $sidebar-width;
 			margin-top: 0px;
 			min-height: $page-content-min-height; 
 			padding: 25px 20px 10px 20px;

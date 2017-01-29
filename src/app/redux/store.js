@@ -19,6 +19,9 @@ import queryReducer from "./reducers/queryReducer";
 import userTypeReducer from "./reducers/userTypeReducer";
 import {telegramListReducer} from "./reducers/telegramListReducer";
 import {campaignStepReducer} from "./reducers/campaignStepReducer";
+import {roleListReducer} from "./reducers/roleList";
+import {roleDataReducer} from "./reducers/roleDataReducer";
+import {permissionListReducer} from "./reducers/permissionListReducer";
 
 const enhancer = compose;
 const logger = createLogger();
@@ -35,6 +38,10 @@ export const store = createStore(
 
         channelList: channelListReducer,
         channelData: channelDataReducer,
+
+        permissionList: permissionListReducer,
+        roleList: roleListReducer,
+        roleData: roleDataReducer,
 
         campaignList: campaignListReducer,
         createCampaignData: createCampaignReducer,

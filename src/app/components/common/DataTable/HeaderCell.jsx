@@ -62,6 +62,7 @@ export default class HeaderCell extends Component {
         let {filters, sortable, children, search, query_name, list, searchable, ...rest} = this.props;
         const {height, width, columnKey} = rest;
         return (
+
             <Cell {...{height, width, columnKey}}>
                 <span className="head-title-datatable">{sortable ?
                     <a href="#" onClick={this.sortOnChange.bind(this)}>{children}</a> : children}</span>

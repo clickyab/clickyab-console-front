@@ -27,6 +27,7 @@ import onPlanListEnterMiddleware from "./middlewares/routes/onPlanListEnterMiddl
 import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMiddleware";
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import onTelegramEnterMiddleware from './middlewares/routes/onTelegramEnterMiddleware';
+import onRoleEnterMiddleware from './middlewares/routes/onRoleEnterMiddleware';
 import CampaignListCTR from './components/campaign/CampiagnListCTR';
 import CampaignCreateCTR from './components/campaign/step-name/CreateCTR';
 import UploadFileCTR from './components/campaign/step-upload/UploadFileCTR';
@@ -36,6 +37,7 @@ import SelectTypeCTR from './components/campaign/step-type/SelectTypeCTR';
 import SelectContentByChannelCTR from './components/campaign/step-promote/SelectContentByChannelCTR';
 import PageNotFound from './components/404/PageNotFound';
 import TelegramListCTR from './components/telegram/TelegramListCTR';
+import RolesListCTR from './components/roles/RolesListCTR';
 import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddleware";
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
 import {dispatch} from "./functions/dispatch";
@@ -63,6 +65,7 @@ export default () => (
             <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
             <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
             <Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware}/>
+            <Route path="role" component={RolesListCTR} name="roleList" onEnter={onRoleEnterMiddleware}/>
 
             <Route path='campaign/create/step/name' component={CampaignCreateCTR}
                    onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
@@ -77,11 +80,11 @@ export default () => (
             <Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
                    onEnter={onUploadEnterMiddleware} name='upload'/>
             <Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
-                   onEnter={onEditorEnterMiddleware} />
+                   onEnter={onEditorEnterMiddleware}/>
             <Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
                    onEnter={onPlanListEnterMiddleware}/>
             <Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR} name='campaignPreview'
-                   onEnter={onPreviewCampaignMiddleware} />
+                   onEnter={onPreviewCampaignMiddleware}/>
         </Route>
 
         <Route path='/v1' component={Transition}>
