@@ -11,14 +11,14 @@ export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
 export const CAMPAIGN_STEP_TYPE = 'CAMPAIGN_STEP_TYPE';
-export const DELTE_CAMPAIGN_PROMOTE = 'DELTE_CAMPAIGN_PROMOTE';
+export const DELETE_CAMPAIGN_PROMOTE = 'DELTE_CAMPAIGN_PROMOTE';
 export const PLAN_LIST = 'PLAN_LIST';
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
 export const planListAction = (data) => ({type: PLAN_LIST, data});
 export const campaignItemsListAction = ({data}) => ({type: CAMPAIGN_ITEMS_LIST, data});
 export const createCampaign = (data) => ({type: CREATE_CAMPAIGN, data});
 export const campaignStepType = (data) => ({type: CAMPAIGN_STEP_TYPE, data});
-export const deleteCampaignPromote = () => ({type: DELTE_CAMPAIGN_PROMOTE});
+export const deleteCampaignPromote = () => ({type: DELETE_CAMPAIGN_PROMOTE});
 
 export const USER_LIST = 'USER_LIST';
 export const USER_DATA = 'USER_DATA';

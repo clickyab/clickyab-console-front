@@ -1,17 +1,16 @@
 import React, {Component} from 'react';
 import CaptionPTR from './CaptionPTR';
-import {connect} from 'react-redux';
 let loadingProgress;
 import swagger from '../../../swagger/index';
-import {ifInvalidToken} from "../../../functions/helpers";
 import {sync} from "./../../../functions/sync";
 import {createCampaign} from "../../../redux/actions/index";
 import {dispatch} from "./../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
-import {updateLocalStorageAction} from "../../../redux/actions/index";
+import {updateLocalStorageAction, deleteCampaignPromote} from "../../../redux/actions/index";
 import {AlertBox} from "../../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 import {select} from '../../../functions/select'
+import $ from 'jquery';
 export default class CaptionCTR extends Component {
 
 
@@ -20,8 +19,8 @@ export default class CaptionCTR extends Component {
         let textarea_text = $(".emojieditor-plugin-content");
         $(document).on("click", ".caption-text-form-btn", function (e) {
             e.preventDefault();
-            if($(".emojionearea-editor").text != "") {
-                sync(function*() {
+            if ($.trim(textarea_text.val()) != '') {
+                sync(function *() {
                     loadingProgress = Ladda.create(document.querySelector('button.caption-text-form-btn'));
                     loadingProgress.start();
 
@@ -32,6 +31,7 @@ export default class CaptionCTR extends Component {
                     response.text = 'اطلاعات شما با موفقیت ثبت شد.';
                     if (response.statusCode == '200') {
                         dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {description: textarea_text.val()})));
+                        dispatch(deleteCampaignPromote());
                         dispatch(updateLocalStorageAction());
 
                         loadingProgress.stop();
@@ -42,9 +42,11 @@ export default class CaptionCTR extends Component {
                         });
                     } else if (response.statusCode == '400') {
                         loadingProgress.stop();
-                        AlertBox("error" , "لطفا یک متن وارد نمایید");
+                        AlertBox("error", "لطفا یک متن وارد نمایید");
                     }
                 });
+            } else {
+                AlertBox("error", "لطفا یک متن وارد نمایید");
             }
         });
     }

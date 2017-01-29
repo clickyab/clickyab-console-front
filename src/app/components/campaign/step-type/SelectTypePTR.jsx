@@ -60,7 +60,6 @@ class SelectTypePTR extends Component {
         let campaignTitle = select("createCampaignData.name","no title");
         let toggleStyleUpload;
         let toggleStylePromote;
-        console.log(this.state.type);
         if (this.state.type == 'upload' || this.state.type == '') {
             toggleStyleUpload = {
                 display : 'block',

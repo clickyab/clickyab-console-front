@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {select} from "../../../functions/select";
 import {navigate} from "../../../functions/navigate";
-import { PersianNumber } from 'react-persian';
+import {PersianNumber} from 'react-persian';
 export default class SelectPlanPTR extends Component {
 
     PlanList() {
@@ -17,14 +17,17 @@ export default class SelectPlanPTR extends Component {
                         <div className="arrow-down border-top-blue"/>
                         <div className="price-table-pricing">
                             <h3 className="persian-number">
-                                <sup className="price-sign">تومان</sup> <PersianNumber>{PlanList.items[key].price} </PersianNumber> </h3>
+                                <sup className="price-sign">تومان</sup>
+                                <PersianNumber>{PlanList.items[key].price} </PersianNumber></h3>
                         </div>
                         <div className="price-table-content">
                             <p className="mobile-padding"> {PlanList.items[key].description}</p>
                         </div>
                         <div className="arrow-down arrow-grey"></div>
                         <div className="price-table-footer">
-                            <button type="button" className="btn grey-salsa btn-outline sbold uppercase price-button">انتخاب و پرداخت</button>
+                            <button type="button" className="btn grey-salsa btn-outline sbold uppercase price-button">
+                                انتخاب و پرداخت
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -33,11 +36,12 @@ export default class SelectPlanPTR extends Component {
         return items;
 
     };
+
     render() {
-        let campaignTitle = select("createCampaignData.name","no title");
+        let campaignTitle = select("createCampaignData.name", "no title");
         let data;
 
-        if(select('campaignStepData.type') == 'upload') {
+        if (select('campaignStepData.type') == 'upload') {
             data = (
                 <div className="mt-element-step margin-top-20 when-generate-content">
                     <div className="row step-background">
@@ -80,7 +84,7 @@ export default class SelectPlanPTR extends Component {
                 </div>
             )
         } else if (select('campaignStepData.type') == 'promote') {
-            data = (<div className="mt-element-step margin-top-20 when-select-content " >
+            data = (<div className="mt-element-step margin-top-20 when-select-content ">
                 <div className="row step-background">
                     <div className="col-md-3 bg-grey-steel mt-step-col">
                         <div className="mt-step-number">۱</div>
@@ -121,7 +125,8 @@ export default class SelectPlanPTR extends Component {
 
                     <div className="portlet-title">
                         <div className="caption">
-                            <i className="fa fa-bullseye"/> انتخاب پلن تبلیغاتی   <span className="campaign-title">{campaignTitle}</span> </div>
+                            <i className="fa fa-bullseye"/> انتخاب پلن تبلیغاتی <span
+                            className="campaign-title">{campaignTitle}</span></div>
                     </div>
                     <div className="portlet-body form">
                         {data}
@@ -135,11 +140,19 @@ export default class SelectPlanPTR extends Component {
                                 </div>
                                 <button onClick={
                                     () => {
-                                        navigate('/v1/campaign/create/:campaign_id:/step/promote', {
-                                            campaign_id: select('createCampaignData.id')
-                                        });
+                                        if (select('createCampaignData.promotes') == null) {
+                                            navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                                                campaign_id: select('createCampaignData.id')
+                                            });
+                                        } else {
+                                            navigate('/v1/campaign/create/:campaign_id:/step/promote', {
+                                                campaign_id: select('createCampaignData.id')
+                                            });
+                                        }
                                     }
-                                } className="btn btn-default  button-next btn-arrow-text margin-top-40" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
+                                } className="btn btn-default  button-next btn-arrow-text margin-top-40" type="submit"><i
+                                    className="fa fa-angle-right"/> مرحله قبل
+                                </button>
                             </div>
                         </div>
                     </div>
