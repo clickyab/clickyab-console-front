@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import $ from 'jquery';
-// import {translatable} from 'react-multilingual/dist';
 import TotalConstAdsBoxPTR from './../../../components/publisher/Dashboard/TotalConstAdsBoxPTR';
 import TotalAdsBoxPTR from './../../../components/publisher/Dashboard/TotalAdsBoxPTR';
 import TotalClicksBoxPTR from './../../../components/publisher/Dashboard/TotalClicksBoxPTR';
@@ -8,11 +7,12 @@ import TotalIncomeBoxPTR from './../../../components/publisher/Dashboard/TotalIn
 import MainLinksPublisherPTR from './../../../components/publisher/Dashboard/MainLinksPublisherPTR';
 import ClicksChartPTR from './../../../components/publisher/Dashboard/ClicksChartPTR';
 import BudgetChartPTR from './../../../components/publisher/Dashboard/BudgetChartPTR';
-// import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR';
+import {loading} from "../../../functions/loading";
 
 export default class PublisherDashboardPage extends Component {
 
     componentDidMount() {
+        loading(false);
         $(document).ready(function () {
             $('.ranges li:last-child' ).hide();
         });

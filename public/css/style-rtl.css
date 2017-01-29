@@ -6753,7 +6753,7 @@ Page content
     .page-content-wrapper .page-content {
       margin-right: 235px;
       margin-top: 0px;
-      min-height: 600px;
+      min-height: 100%;
       padding: 25px 20px 10px 20px; }
       .page-content-wrapper .page-content.no-min-height {
         min-height: auto; }
@@ -8404,7 +8404,8 @@ video.full {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%); }
+  transform: translate(-50%, -50%);
+  color: #2CA5E0; }
 
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
@@ -46120,11 +46121,6 @@ New Profile Page
     bottom: 0;
     z-index: -1;
     position: fixed; } }
-
-html, body, div#clickyab_app,
-div.page-content-white, div.page-wrapper,
-div.page-container, div.page-content {
-  height: 100%; }
 
 .content-mt {
   padding-top: 40px; }
