@@ -8,17 +8,11 @@ import {navigate} from "../../../functions/navigate";
 class CaptionPTR extends Component {
     captionCampaignForm;
 
-    // handleInitialize() {
-    //     const initData = select("user.personal", {}, true);
-    //     initData.email = getEmail();
-    //     this.props.initialize(initData);
-    // }
 
     componentDidMount() {
         if(select('createCampaignData.description') != null) {
             $(".emojieditor-plugin-content").val(select('createCampaignData.description'))
         }
-        // this.handleInitialize();
         $("#emojieditor-plugin-container").emojioneArea({
             parentID: "emojieditor-plugin-parent",
             autoHideFilters: false,
@@ -119,7 +113,7 @@ class CaptionPTR extends Component {
                                     </div>
                                     <div id="emojieditor-plugin-container" className="emojieditor-plugin-container"></div>
                                     <div className="emojieditor-plugin-result">
-                            <Field className="emojieditor-plugin-content emojieditor-plugin-textarea" cols="20" data-val="true" data-val-maxallowedlength="طول متن نباید از ۴۰۰۰ کاراکتر بیشتر باشد." data-val-maxallowedlength-maxallowedlength="4000" data-val-required="متن پست را وارد کنید" id="Text" name="Text" rows="2" component="textarea" />
+                                        <Field className="emojieditor-plugin-content emojieditor-plugin-textarea" cols="20" data-val="true" data-val-maxallowedlength="طول متن نباید از ۴۰۰۰ کاراکتر بیشتر باشد." data-val-maxallowedlength-maxallowedlength="4000" data-val-required="متن پست را وارد کنید" id="Text" name="Text" rows="2" component="textarea" />
 
                                     </div>
                                 </div>

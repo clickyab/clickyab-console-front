@@ -1,3 +1,5 @@
+import {loading} from "../../functions/loading";
+
 var _extends = Object.assign || function (target) {
         for (var i = 1; i < arguments.length; i++) {
             var source = arguments[i];
@@ -90,6 +92,7 @@ var Link = React.createClass({
         };
     },
     handleClick: function handleClick(event) {
+        loading(true);
         if (this.props.onCustomClick) this.props.onCustomClick(event);
 
         if (event.defaultPrevented) return;

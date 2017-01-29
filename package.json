@@ -10,8 +10,9 @@
     "lint": "eslint --ext jsx --ext js ./src || exit 0",
     "build-css-rtl": "node-sass --source-map true --include-path public sass/base_rtl.scss   public/css/style-rtl.css autoprefixer",
     "build-css-ltr": "node-sass --source-map  true --include-path sass sass/base_ltr.scss   public/css/style-ltr.css autoprefixer",
+    "build-css-rtl-without-prefix": "node-sass --source-map true --include-path public sass/base_rtl.scss   public/css/style-rtl.css",
     "build-css": "npm run build-css-rtl && npm run build-css-ltr",
-    "watch-css": "nodemon -e scss -x \"npm run build-css\"",
+    "watch-css": "nodemon -e scss -x \"npm run build-css-rtl-without-prefix\"",
     "swagger": "./bin/webpack.sh"
   },
   "repository": {

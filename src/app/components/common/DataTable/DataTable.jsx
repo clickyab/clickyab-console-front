@@ -52,7 +52,6 @@ export default class DataTable extends React.Component {
         let columnDefinition;
         for (let i = 0; i < definitions.length; i++) {
             columnDefinition = definitions[i];
-
             if (columnDefinition.visible)
                 _items.push(<Column
                     header={

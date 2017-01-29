@@ -19,6 +19,9 @@ import SidebarLink from './../../../components/custom-link/CustomLink'
         })
 )
 export class Sidebar extends Component {
+    componentDidMount() {
+        document.title = "داشبورد نمایش دهنده";
+    }
     render() {
         let {dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access} = this.props;
         return (

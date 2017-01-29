@@ -12,6 +12,7 @@ class UserProfilePTR extends Component {
 
 
     componentDidMount() {
+        document.title = "ویرایش پروفایل";
         Calendar.setup({
                 onUpdate: function(value) {
                     $("#birthday").val(moment(value.date).utcOffset(0, true).format());
