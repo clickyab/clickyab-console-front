@@ -12,8 +12,30 @@ let loadingProgress;
 
 export default class AddRoleModalCTR extends Component {
 
+    ScopeScan(formValues) {
+        if (formValues.global) {
+            formValues.role = 'global';
+            delete formValues.parent;
+            delete formValues.self;
+        } else if (formValues.parent) {
+            formValues.role = 'parent';
+            delete formValues.self;
+        } else if (formValues.self) {
+            formValues.role = 'self';
+        }
+        return formValues;
+    }
+
     addRoleSubmit(formValues, perms) {
-        console.log(perms); //TODO: add perms to formValue
+        this.ScopeScan(formValues);
+        var permisson = [];
+        for (let i=0; i < perms.length; i++) {
+            permisson.push(perms[i].label);
+        }
+        formValues.perm = {
+            [formValues.role]: permisson
+        };
+
         sync(function*() {
             loadingProgress = Ladda.create(document.querySelector('button.add-role-form'));
             loadingProgress.start();

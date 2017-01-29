@@ -94,6 +94,56 @@ class AddRoleModalPTR extends Component {
                                                className="form-control input-lg" id="description"/>
                                     </div>
 
+                                    <div className="form-group">
+                                        <div className="mt-checkbox-inline">
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="self" value="self"
+                                                       name="self"
+                                                       type="checkbox"/> خودم
+                                                <span/>
+                                            </label>
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="parent" value="parent"
+                                                       onClick={
+                                                           () => {
+                                                               if ($('#parent').prop('checked')) {
+                                                                   $('#self').prop({
+                                                                       checked: true,
+                                                                       disabled: true
+                                                                   });
+                                                               } else {
+                                                                   $('#self').prop({
+                                                                       disabled: false
+                                                                   });
+                                                               }
+                                                           }
+                                                       }
+                                                       name="parent"
+                                                       type="checkbox"/> مشاور
+                                                <span/>
+                                            </label>
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="global" value="global"
+                                                       onClick={
+                                                           () => {
+                                                               if ($('#global').prop('checked')) {
+                                                                   $('#self, #parent').prop({
+                                                                       checked: true,
+                                                                       disabled: true
+                                                                   });
+                                                               } else {
+                                                                   $('#self, #parent').prop({
+                                                                       disabled: false
+                                                                   });
+                                                               }
+                                                           }
+                                                       }
+                                                       name="global"
+                                                       type="checkbox"/> مدیر کل
+                                                <span/>
+                                            </label>
+                                        </div>
+                                    </div>
 
                                     <div className="form-group">
                                         <Select
