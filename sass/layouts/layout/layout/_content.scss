@@ -189,7 +189,8 @@ Page content
 		float: $dir-mode-align;
 		width: 100%;
 
-		.page-content { 
+		.page-content {
+			margin-#{$dir-mode-align}: $sidebar-width;
 			margin-top: 0px;
 			min-height: $page-content-min-height; 
 			padding: 25px 20px 10px 20px;
