@@ -7,8 +7,26 @@ import {select} from "./../../functions/select";
 import {sync} from "./../../functions/sync";
 import moment from "moment-jalali";
 import {categoryItemsListAction} from "../../redux/actions/index";
+import {translatable} from 'react-multilingual/dist';
 
 @connect(({categoryList}) => ({categoryList}))
+@translatable(({
+    ID,
+    Title,
+    CreatedAt,
+    UpdatedAt,
+    Description,
+    Scope
+}) => ({
+    translation: {
+        ID,
+        Title,
+        CreatedAt,
+        UpdatedAt,
+        Description,
+        Scope
+    }
+}))
 export default class CategoryListCTR extends Component {
 	callApi(query_name, value) {
 		let {dispatch} = this.props;
@@ -55,10 +73,15 @@ export default class CategoryListCTR extends Component {
 		this.callApi('c', per_page);
 	}
 
+    translator(title) {
+        return this.props.translation[title];
+    }
+
 	render() {
 		return (<CategoryListPTR {...this.props.categoryList}
 								 sort={this.sort.bind(this)}
 								 filter={this.filter.bind(this)}
+								 translator={this.translator.bind(this)}
 								 search={this.search.bind(this)}
 								 onPaginationChange={this.onPaginationChange.bind(this)}
 								 onPerPageChange={this.onPerPageChange.bind(this)}

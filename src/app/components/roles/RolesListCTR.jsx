@@ -55,10 +55,15 @@ export default class RolesListCTR extends Component {
         this.callApi('c', per_page);
     }
 
+    translator(title) {
+        return title;
+    }
+
     render() {
         return (<RolesListPTR {...this.props.roleList}
                                 permissions={this.props.permissionList.permissions}
                                 sort={this.sort.bind(this)}
+                                translator={this.translator.bind(this)}
                                 filter={this.filter.bind(this)}
                                 search={this.search.bind(this)}
                                 onPerPageChange={this.onPerPageChange.bind(this)}
