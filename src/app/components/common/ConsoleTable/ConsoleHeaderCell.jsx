@@ -16,7 +16,7 @@ export class ConsoleHeaderCell extends Component {
     }
 
     sortOnChange(event) {
-        let {list, query_name} = this.props;
+        let {list, query_name, loader} = this.props;
 
         let order = this.toggleSort(select('queries.' + list + '.sort', 'ASC'));
 
@@ -24,7 +24,9 @@ export class ConsoleHeaderCell extends Component {
         dispatch(channelQueryAction(list, 'sort', query_name + ":" + order));
         dispatch(updateLocalStorageAction());
 
+        loader(true);
         this.sort(event, order, query_name);
+        loader(false);
     }
 
     render() {
