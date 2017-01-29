@@ -27,17 +27,10 @@ import {translatable} from 'react-multilingual/dist';
 }) => ({
     translation: {
         ID,
-        Email,
-        Type,
-        Status,
-        CreatedAt,
-        UpdatedAt,
-        Action,
-        corporation,
-        personal,
-        blocked,
-        registered,
-        verified
+        Email, Type,
+        Status, CreatedAt, UpdatedAt,
+        Action, corporation, personal,
+        blocked, registered, verified
     }
 }))
 export default class UsersListCTR extends Component {
@@ -90,6 +83,24 @@ export default class UsersListCTR extends Component {
         return this.props.translation[title];
     }
 
+    status(status) {
+        if(status == 'registered') {
+            return <span className="label label-sm label-warning"> {this.translator(status)} </span>;
+        } else if(status == 'verified') {
+            return <span className="label label-sm label-success"> {this.translator(status)} </span>;
+        } else if(status == 'blocked') {
+            return <span className="label label-sm label-danger"> {this.translator(status)} </span>;
+        }
+
+        return status;
+    }
+
+    user_type(user_type) {
+        return this.translator(user_type);
+    }
+
+
+
     render() {
         return (<UsersListPTR {...this.props.userList}
                               edit={this.edit.bind(this)}
@@ -98,7 +109,10 @@ export default class UsersListCTR extends Component {
                               filter={this.filter.bind(this)}
                               onPaginationChange={this.onPaginationChange.bind(this)}
                               onPerPageChange={this.onPerPageChange.bind(this)}
-                              mutators={{updated_at: this.updated_at, created_at: this.created_at}}
+                              mutators={{
+                                  updated_at: this.updated_at, created_at: this.created_at,
+                                  user_type: this.user_type.bind(this), status: this.status.bind(this)
+                              }}
                               search={this.search.bind(this)}
         />);
     }

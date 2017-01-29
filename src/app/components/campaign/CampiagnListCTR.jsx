@@ -76,6 +76,30 @@ export default class CampaignListCTR extends Component {
         return this.props.translation[title];
     }
 
+    admin_status(admin_status) {
+        if (admin_status == 'pending') {
+            return <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
+        } else if (admin_status == 'accepted') {
+            return <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
+        } else if (admin_status == 'rejected') {
+            return <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
+        }
+
+        return admin_status;
+    }
+
+    archive_status(archive_status) {
+        return this.translator(archive_status);
+    }
+
+    pay_status(pay_status) {
+        return this.translator(pay_status);
+    }
+
+    active_status(active_status) {
+        return this.translator(active_status);
+    }
+
     render() {
         return (<CampaignListPTR {...this.props.campaignList}
                                  edit={this.edit.bind(this)}
@@ -85,7 +109,14 @@ export default class CampaignListCTR extends Component {
                                  onPerPageChange={this.onPerPageChange.bind(this)}
                                  filter={this.filter.bind(this)}
                                  search={this.search.bind(this)}
-                                 mutators={{updated_at: this.updated_at, created_at: this.created_at}}
+                                 mutators={{
+                                     updated_at: this.updated_at,
+                                     created_at: this.created_at,
+                                     admin_status: this.admin_status.bind(this),
+                                     archive_status: this.archive_status.bind(this),
+                                     pay_status: this.pay_status.bind(this),
+                                     active_status: this.active_status.bind(this)
+                                 }}
         />);
     }
 }
