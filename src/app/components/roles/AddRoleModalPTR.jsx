@@ -1,14 +1,40 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
+import Select from 'react-select';
+import 'react-select/dist/react-select.css';
 
 class AddRoleModalPTR extends Component {
     addRoleForm;
     state = {
-        validation: true
+        validation: true,
+
+        multi: true,
+        multiValue: [],
+        options: [],
+        value: undefined
     };
 
+
+    handleOnChange(value) {
+        const {multi} = this.state;
+        if (multi) {
+            this.setState({multiValue: value});
+        } else {
+            this.setState({value});
+        }
+    }
+
+    initialOptions() {
+        let option = [];
+        for (let permission in this.props.permissions) {
+            option.push({value: this.props.permissions[permission], label: this.props.permissions[permission]});
+        }
+        this.setState({options: option})
+    }
+
     componentDidMount() {
+        this.initialOptions();
         this.addRoleForm = $("#addRoleForm");
         this.addRoleForm.validate({
             rules: {
@@ -35,16 +61,7 @@ class AddRoleModalPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitAddRole} = this.props;
-        let permissions = [];
-        for (let permission in this.props.permissions) {
-            permissions.push(
-                <div key={Math.random()}>
-                    <span style={{color:"black"}}>{permission}</span>
-                    <input type="checkbox" name="perms[]" value={this.props.permissions[permission]}/>
-                </div>
-            );
-        }
-
+        const {multi, multiValue, options, value} = this.state;
         return (
             <div className="add-role-modal modal fade fullscreen" id="addRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -63,7 +80,7 @@ class AddRoleModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="addRoleForm" method="post"
                                       className="add-role-form white"
-                                      onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm))}>
+                                      onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm, this.state.multiValue))}>
                                     <div className="form-group">
                                         <label htmlFor="link">نام رول</label>
                                         <Field component="input" type="text" name="name" placeholder="نام رول"
@@ -72,11 +89,21 @@ class AddRoleModalPTR extends Component {
 
                                     <div className="form-group">
                                         <label htmlFor="description">توضیحات رول</label>
-                                        <Field component="input" type="textarea" name="description"
+                                        <Field component="textarea" name="description"
                                                placeholder="توضیحات رول"
                                                className="form-control input-lg" id="description"/>
                                     </div>
-                                    {permissions}
+
+
+                                    <div className="form-group">
+                                        <Select
+                                            multi={multi}
+                                            options={options}
+                                            onChange={this.handleOnChange.bind(this)}
+                                            value={multi ? multiValue : value}
+                                            placeholder='انتخاب دسترسی...'
+                                        />
+                                    </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg add-role-form btn-block">ذخیره
                                     </button>

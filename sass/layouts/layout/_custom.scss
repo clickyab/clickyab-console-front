@@ -105,4 +105,10 @@ video.full {
     display: block !important;
   }
 }
-
+.form-group {
+  label {
+    width: 100%;
+    color: #7b7b7b;
+    text-align: #{$dir-mode-align};
+  }
+}
