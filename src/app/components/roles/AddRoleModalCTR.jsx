@@ -12,8 +12,8 @@ let loadingProgress;
 
 export default class AddRoleModalCTR extends Component {
 
-    addRoleSubmit(formValues) {
-        formValues.user_id = select('user.user_id');
+    addRoleSubmit(formValues, perms) {
+        console.log(perms); //TODO: add perms to formValue
         sync(function*() {
             loadingProgress = Ladda.create(document.querySelector('button.add-role-form'));
             loadingProgress.start();
@@ -38,13 +38,14 @@ export default class AddRoleModalCTR extends Component {
         });
     }
 
-    SubmitEditRole = (formValues, form) => {
+    SubmitAddRole = (formValues, form, perms) => {
         if (!form.valid())
             return;
 
+        this.addRoleSubmit(formValues, perms);
     };
 
     render() {
-        return (<AddRoleModalPTR permissions={this.props.permissions} SubmitAddRole={this.SubmitEditRole}/>);
+        return (<AddRoleModalPTR permissions={this.props.permissions} SubmitAddRole={this.SubmitAddRole}/>);
     }
 }
