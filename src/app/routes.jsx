@@ -80,11 +80,11 @@ export default () => (
             <Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
                    onEnter={onUploadEnterMiddleware} name='upload'/>
             <Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
-                   onEnter={onEditorEnterMiddleware} />
+                   onEnter={onEditorEnterMiddleware}/>
             <Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
                    onEnter={onPlanListEnterMiddleware}/>
             <Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR} name='campaignPreview'
-                   onEnter={onPreviewCampaignMiddleware} />
+                   onEnter={onPreviewCampaignMiddleware}/>
         </Route>
 
         <Route path='/v1' component={Transition}>

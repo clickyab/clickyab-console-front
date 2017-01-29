@@ -32,9 +32,9 @@ export class Sidebar extends Component {
                                 <span/>
                             </div>
                         </li>
-                        <SidebarLink to='/v1'>
+                        <SidebarLink to='/v1/advertiser'>
                             <i className='fa fa-home'/>
-                            <span className='title'>داشبورد</span>
+                            <span className='title'>داشبورد تبلیغ کننده</span>
                             <span className='selected'/>
                             <span className="selected"/>
                             <span className='arrow open'/>
