@@ -83,74 +83,89 @@ export class ConsoleTable extends Component {
             mutators = {};
         }
         return (
-            <div className="table-scrollable">
-                <table className="table table-striped table-bordered table-advance table-hover">
-                    <thead>
-                    <tr>
-                        {this.headers().map(
-                            (header, index) => <ConsoleHeaderCell
-                                key={index}
-                                list={list}
-                                sort={sort}
-                                filter={filter}
-                                query_name={header.data}
-                                filters={header.filter_valid_map}
-                                sortable={header.sortable}
-                                width={header.width}
-                                searchable={header.searchable}
-                            >
-                                {translator(header.name)}
-                            </ConsoleHeaderCell>
-                        )}
-                    </tr>
-                    </thead>
-
-                    <tbody>
-                    {this.rows().map((row, rowIndex) => {
-                        return (<tr key={rowIndex}>
-                            {row.map(
-                                ({cell, header}, index) => <ConsoleCell key={index}
-                                                                        mutator={mutators[header.data]}
-                                                                        actions={header.data == "_actions"}
-                                                                        change={change} edit={edit}
-                                                                        className="value-datatable"
-                                                                        rowIndex={rowIndex} {...cell}/>
+            <div className="table-holder">
+                <div className="table-scrollable">
+                    <table className="table table-striped table-bordered table-advance table-hover">
+                        <thead>
+                        <tr>
+                            {this.headers().map(
+                                (header, index) => <ConsoleHeaderCell
+                                    key={index}
+                                    list={list}
+                                    sort={sort}
+                                    filter={filter}
+                                    query_name={header.data}
+                                    filters={header.filter_valid_map}
+                                    sortable={header.sortable}
+                                    width={header.width}
+                                    searchable={header.searchable}
+                                >
+                                    {translator(header.name)}
+                                </ConsoleHeaderCell>
                             )}
-                        </tr>)
-                    })}
-                    </tbody>
+                        </tr>
+                        </thead>
 
-                    <tfoot>
-                    <tr>
-                        {this.footers().map(
-                            (footer, index) => <ConsoleFooterCell
-                                key={index}
-                                footer={footer}
-                                list={list}
-                                sort={sort}
-                                filter={filter}
-                                query_name={footer.data}
-                                filters={footer.filter_valid_map}
-                                sortable={footer.sortable}
-                                width={footer.width}
-                                translator={translator}
-                                searchable={footer.searchable}
-                            />
-                        )}
-                    </tr>
-                    </tfoot>
-                </table>
-                <div style={{display: 'inline-block'}}>
-                    <select style={{display: 'inline-block', width: 'auto', padding: '0'}} className="form-control"
-                            defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {
-                        this.onPaginationChange(parseInt(event.target.value));
-                    }}>
-                        {this.pagination()}
-                    </select>
-                    <input style={{display: 'inline-block', width: 'auto', textAlign: 'left'}} className="form-control"
-                           type="text" onChange={(event) => {
-                        this.onPerPageChange(parseInt(event.target.value))
-                    }} defaultValue={select('queries.' + list + '.c', 10)}/>
+                        <tbody>
+                        {this.rows().map((row, rowIndex) => {
+                            return (<tr key={rowIndex}>
+                                {row.map(
+                                    ({cell, header}, index) => <ConsoleCell key={index}
+                                                                            mutator={mutators[header.data]}
+                                                                            actions={header.data == "_actions"}
+                                                                            change={change} edit={edit}
+                                                                            className="value-datatable"
+                                                                            rowIndex={rowIndex} {...cell}/>
+                                )}
+                            </tr>)
+                        })}
+                        </tbody>
+
+                        <tfoot>
+                        <tr>
+                            {this.footers().map(
+                                (footer, index) => <ConsoleFooterCell
+                                    key={index}
+                                    footer={footer}
+                                    list={list}
+                                    sort={sort}
+                                    filter={filter}
+                                    query_name={footer.data}
+                                    filters={footer.filter_valid_map}
+                                    sortable={footer.sortable}
+                                    width={footer.width}
+                                    translator={translator}
+                                    searchable={footer.searchable}
+                                />
+                            )}
+                        </tr>
+                        </tfoot>
+                    </table>
+                </div>
+                <div className="row margin-top-20">
+                    <div className="col-sm-6">
+                        <div className="dataTables_length pagination">
+                            <label>نمایش صفحه
+                                <select className="form-control input-sm input-xsmall input-inline text-center"
+                                        defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {
+                                    this.onPaginationChange(parseInt(event.target.value));
+                                }}>
+                                    {this.pagination()}
+                                </select>
+                            </label>
+                        </div>
+                    </div>
+                    <div className="col-sm-6">
+                        <div className="dataTables_length pull-left">
+                            <label>نمایش
+                                <input className="form-control input-sm input-xsmall input-inline text-center"
+                                       type="text" onChange={(event) => {
+                                    this.onPerPageChange(parseInt(event.target.value))
+                                }} defaultValue={select('queries.' + list + '.c', 10)}/>
+                                در صفحه
+                            </label>
+                        </div>
+                    </div>
                 </div>
             </div>
         );
