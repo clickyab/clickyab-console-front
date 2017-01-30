@@ -31,7 +31,7 @@
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  #{$dir-mode-align}: 0#{'/*rtl:auto*/'};
+  #{$dir-mode-align-inverse}: 0#{'/*rtl:auto*/'};
   z-index: $zindex-dropdown;
   display: none; // none by default, but block on "open" of the menu
   float: $dir-mode-align;

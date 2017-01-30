@@ -109,6 +109,9 @@ video.full {
 .custom-color {
   background: #eef1f5 !important;
 }
+.dropdown-toggle i {
+  margin: 0 6px 0 0;
+}
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px;

@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import CampaignListPTR from './CampaignListPTR';
+import EditCampaignButton from "./EditCampaignButton";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
 import moment from "moment-jalali";
@@ -53,7 +54,7 @@ export default class CampaignListCTR extends Component {
     }
 
     edit(id) {
-        return 'edit';
+        return <EditCampaignButton key={Math.random()} id={id}/>
     }
 
     updated_at(updated_at) {

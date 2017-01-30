@@ -9,7 +9,7 @@ import {ifInvalidToken} from "../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
-export default class EditChannelButton extends Component {
+export default class EditCampaignButton extends Component {
     editElementBtn;
 
     edit(event) {
@@ -39,7 +39,7 @@ export default class EditChannelButton extends Component {
                     <li>
                         <a href="javascript:;" key="edit" ref={(EditElement) => this.editElementBtn=EditElement}
                            className="edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-                           onClick={(event) => this.edit(event)}> ویرایش کانال </a>
+                           onClick={(event) => this.edit(event)}> ویرایش کمپین </a>
                     </li>
                     <li>
                         <a href="javascript:;"> مشاهده ریز آمار </a>

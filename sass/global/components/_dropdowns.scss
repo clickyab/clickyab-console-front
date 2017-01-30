@@ -27,7 +27,7 @@ Dropdown Menu
 }
 
 .dropdown-menu {
-    #{$dir-mode-align}: 0#{'/*rtl:auto*/'};
+    #{$dir-mode-align-inverse}: 0#{'/*rtl:auto*/'};
     min-width: 175px;
     position: absolute;
     z-index: 1000;
@@ -133,8 +133,8 @@ Dropdown Menu
             &:before {
                 position: absolute;
                 top: -8px;
-                #{$dir-mode-align}: 9px;
-                #{$dir-mode-align-inverse}: auto;
+                #{$dir-mode-align-inverse}: 9px;
+                #{$dir-mode-align}: auto;
                 display: inline-block !important;
                 border-#{$dir-mode-align-inverse}: 8px solid transparent;
                 border-bottom: 8px solid #e0e0e0;
@@ -145,8 +145,8 @@ Dropdown Menu
             &:after {
                 position: absolute;
                 top: -7px;
-                #{$dir-mode-align}: 10px;
-                #{$dir-mode-align-inverse}: auto;
+                #{$dir-mode-align-inverse}: 10px;
+                #{$dir-mode-align}: auto;
                 display: inline-block !important;
                 border-#{$dir-mode-align-inverse}: 7px solid transparent;
                 border-bottom: 7px solid #fff;

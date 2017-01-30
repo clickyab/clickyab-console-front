@@ -83,7 +83,8 @@ export default {
         Title: 'عنوان',
         Scope: 'سطح دسترسی',
         Description: 'توضیحات',
-        _actions: 'عملیات ها'
+        _actions: 'عملیات ها',
+        All: "همه"
     },
     en: {
         hello: 'hello',
@@ -166,7 +167,8 @@ export default {
         Description: 'Description',
         Scope: 'Scopes',
         Src: 'File Source',
-        _actions: 'Actions'
+        _actions: 'Actions',
+        All: "All"
     }
 }
 
