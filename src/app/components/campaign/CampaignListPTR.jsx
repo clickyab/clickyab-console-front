@@ -1,11 +1,15 @@
 import React, {Component} from 'react';
 import {ConsoleTable} from '../common/ConsoleTable/ConsoleTable';
 import {navigate} from "../../functions/navigate";
+import {dispatch} from "../../functions/dispatch";
+import {createCampaign} from "../../redux/actions/index";
+import {select} from "../../functions/select";
 
 export default class CampaignListPTR extends Component {
 	componentDidMount() {
         document.title = "مدیریت کمپین ها";
 		$(document).on("click", "#showAddCampaign", function () {
+            dispatch(createCampaign({}));
 			navigate('/v1/campaign/create/step/name');
 		})
 	}

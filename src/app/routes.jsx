@@ -69,7 +69,7 @@ export default () => (
 
             <Route path='campaign/create/step/name' component={CampaignCreateCTR}
                    onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/:campaign_name/step/name' component={CampaignCreateCTR}
+            <Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
                    onEnter={onUpdateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
 
             <Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}

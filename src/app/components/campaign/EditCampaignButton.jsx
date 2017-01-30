@@ -1,13 +1,11 @@
 import React, {Component} from "react";
 import swagger from '../../swagger/index';
 import {select} from "../../functions/select";
-import {channelDataAction} from "../../redux/actions/index";
+import {createCampaign} from "../../redux/actions/index";
 import {sync} from "../../functions/sync";
-import {FailedBoxAlert} from "../../functions/notifications";
+import {AlertBox} from "../../functions/notifications";
 import {dispatch} from "../../functions/dispatch";
-import {ifInvalidToken} from "../../functions/helpers";
-let Ladda = require('ladda/js/ladda');
-let loadingProgress;
+import {navigate} from "../../functions/navigate";
 
 export default class EditCampaignButton extends Component {
     editElementBtn;
@@ -16,17 +14,18 @@ export default class EditCampaignButton extends Component {
         $(event.target).parent().addClass("disabled");
         const {id} = this.props;
         sync(function*() {
-            const {error, data, response} = yield (new swagger.ChannelApi())
-                .channelIdGet(id, select('user.token', 'no token'));
+            const {error, data, response} = yield (new swagger.AdApi())
+                .campaignIdGet(id, select('user.token', 'no token'));
             if (response.statusCode == '200') {
-                $('#editChannelModal').modal();
                 $(event.target).parent().removeClass("disabled");
-                dispatch(channelDataAction(data));
+                dispatch(createCampaign(data));
+                navigate('/v1/campaign/create/:campaign_id:/step/name', {
+                    campaign_id: select('createCampaignData.id')
+                });
             } else if (response.statusCode == '400') {
                 $(event.target).parent().removeClass("disabled");
-                FailedBoxAlert(response)
+                AlertBox("error","اختلالی به وجود امده است لطفا دوباره تلاش کنید")
             }
-            ifInvalidToken(response);
         });
     }
 
