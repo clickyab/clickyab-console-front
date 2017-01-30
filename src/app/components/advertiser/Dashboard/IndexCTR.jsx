@@ -9,6 +9,7 @@ require('amcharts3/amcharts/pie');
 require('amcharts3/amcharts/themes/light');
 require('amcharts3/amcharts/themes/patterns');
 require('amcharts3/amcharts/themes/chalk');
+import {secure} from "react-redux-secure";
 import BudgetChartPTR from './../../../components/advertiser/Dashboard/BudgetChartPTR';
 import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR';
 
@@ -18,9 +19,8 @@ import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR
 })=>({
     DashboardTitle
 }))
-
+@secure(({user}, {comments, editComments}, run) => run(editComments(), comments()))
 export default class AdvertiserDashboardPage extends Component {
-
     componentDidMount() {
         loading(false);
         $(".demo-sparkline-area").sparkline([3, 10, 70, 62, 73, 79, 76, 77, 73, 52, 57, 50, 60, 55, 70, 68], {
