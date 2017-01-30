@@ -16,7 +16,7 @@ import {translatable} from 'react-multilingual/dist';
     UserID, Name, ArchiveStatus, _actions,
     AdArchiveStatus, AdActive, AdPayStatus,
     yes, no, accepted, pending, rejected,
-    AdActiveStatus, AdAdminStatus, Src
+    AdActiveStatus, AdAdminStatus, Src , PlanID
 
 }) => ({
     translation: {
@@ -25,7 +25,7 @@ import {translatable} from 'react-multilingual/dist';
         UserID, Name, ArchiveStatus, Action: _actions,
         AdArchiveStatus, AdActive, AdPayStatus,
         yes, no, accepted, pending, rejected,
-        AdActiveStatus, AdAdminStatus, Src
+        AdActiveStatus, AdAdminStatus, Src , PlanID
     }
 }))
 export default class CampaignListCTR extends Component {
@@ -74,7 +74,8 @@ export default class CampaignListCTR extends Component {
     }
 
     translator(title) {
-        return this.props.translation[title];
+        return  this.props.translation[title];
+        // return  title ;//this.props.translation[title];
     }
 
     admin_status(admin_status) {
