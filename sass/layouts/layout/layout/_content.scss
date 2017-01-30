@@ -159,6 +159,7 @@ Page content
 	margin-top: 0px;   
 	padding: 0px;
 	background-color: #fff;
+	min-height: 100vh !important;
 
 	.page-container-bg-solid & {
 		background: $page-content-solid-bg-color;     

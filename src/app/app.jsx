@@ -9,6 +9,9 @@ import {loading} from "./functions/loading";
 export default class App extends React.Component {
     componentDidMount() {
         loading(false);
+        $(document).on('click', '.dropdown-menu', function (e) {
+            $(this).hasClass('keep_open') && e.stopPropagation(); // This replace if conditional.
+        });
 
         $(window).resize(function (){
             setToWindowHeight($selector);

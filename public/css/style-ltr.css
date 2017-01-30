@@ -1273,8 +1273,8 @@ table {
   background-color: transparent; }
 
 caption {
-  padding-top: 8px;
-  padding-bottom: 8px;
+  padding-top: 15px 8px;
+  padding-bottom: 15px 8px;
   color: #777777;
   text-align: left; }
 
@@ -1291,7 +1291,7 @@ th {
   .table > tbody > tr > td,
   .table > tfoot > tr > th,
   .table > tfoot > tr > td {
-    padding: 8px;
+    padding: 15px 8px;
     line-height: 1.42857;
     vertical-align: top;
     border-top: 1px solid #e7ecf1; }
@@ -2402,7 +2402,7 @@ tbody.collapse.in {
 .dropdown-menu {
   position: absolute;
   top: 100%;
-  left: 0/*rtl:auto*/;
+  right: 0/*rtl:auto*/;
   z-index: 1000;
   display: none;
   float: left;
@@ -6681,7 +6681,8 @@ Page content
 .page-content {
   margin-top: 0px;
   padding: 0px;
-  background-color: #fff; }
+  background-color: #fff;
+  min-height: 100vh !important; }
   .page-container-bg-solid .page-content {
     background: #eef1f5; }
   .page-content-white .page-content .page-bar {
@@ -8357,6 +8358,9 @@ video.full {
 
 .custom-color {
   background: #eef1f5 !important; }
+
+.dropdown-toggle i {
+  margin: 0 6px 0 0; }
 
 @media screen and (max-width: 1290px) and (min-width: 1000px) {
   .dashboard-stat2 .display .number small {
@@ -16253,7 +16257,7 @@ Dropdown Menu
   box-shadow: 5px 5px rgba(102, 102, 102, 0.1); }
 
 .dropdown-menu {
-  left: 0/*rtl:auto*/;
+  right: 0/*rtl:auto*/;
   min-width: 175px;
   position: absolute;
   z-index: 1000;
@@ -16324,8 +16328,8 @@ Dropdown Menu
   .btn-group > .dropdown-menu:before {
     position: absolute;
     top: -8px;
-    left: 9px;
-    right: auto;
+    right: 9px;
+    left: auto;
     display: inline-block !important;
     border-right: 8px solid transparent;
     border-bottom: 8px solid #e0e0e0;
@@ -16336,8 +16340,8 @@ Dropdown Menu
   .btn-group > .dropdown-menu:after {
     position: absolute;
     top: -7px;
-    left: 10px;
-    right: auto;
+    right: 10px;
+    left: auto;
     display: inline-block !important;
     border-right: 7px solid transparent;
     border-bottom: 7px solid #fff;
@@ -23590,13 +23594,6 @@ Scrollable Tables
     .table-scrollable > .table-bordered > tbody > tr > td:last-child,
     .table-scrollable > .table-bordered > tfoot > tr > td:last-child {
       border-right: 0; }
-    .table-scrollable > .table-bordered > thead > tr:last-child > th,
-    .table-scrollable > .table-bordered > tbody > tr:last-child > th,
-    .table-scrollable > .table-bordered > tfoot > tr:last-child > th,
-    .table-scrollable > .table-bordered > thead > tr:last-child > td,
-    .table-scrollable > .table-bordered > tbody > tr:last-child > td,
-    .table-scrollable > .table-bordered > tfoot > tr:last-child > td {
-      border-bottom: 0; }
 
 /***
 Customized Bootstrap Tables

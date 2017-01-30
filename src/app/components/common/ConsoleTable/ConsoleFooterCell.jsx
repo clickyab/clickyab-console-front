@@ -19,6 +19,7 @@ export class ConsoleFooterCell extends Component {
     getFilters(filters) {
         let _filters = [];
         let {translator} = this.props;
+        _filters.push(<option key="all" value="">همه</option>);
         for (let keyFilter in filters) {
             _filters.push(<option key={keyFilter} value={keyFilter}>{translator(keyFilter)}</option>)
         }
