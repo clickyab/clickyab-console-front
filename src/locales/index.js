@@ -84,7 +84,8 @@ export default {
         Scope: 'سطح دسترسی',
         Description: 'توضیحات',
         _actions: 'عملیات ها',
-        All: "همه"
+        All: "همه",
+        PlanID : "آیدی پلن"
     },
     en: {
         hello: 'hello',
@@ -168,7 +169,8 @@ export default {
         Scope: 'Scopes',
         Src: 'File Source',
         _actions: 'Actions',
-        All: "All"
+        All: "All",
+        PlanID : "PlanID"
     }
 }
 
