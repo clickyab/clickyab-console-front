@@ -22,6 +22,7 @@ import {campaignStepReducer} from "./reducers/campaignStepReducer";
 import {roleListReducer} from "./reducers/roleList";
 import {roleDataReducer} from "./reducers/roleDataReducer";
 import {permissionListReducer} from "./reducers/permissionListReducer";
+import {secureReducer} from "react-redux-secure";
 
 const enhancer = compose;
 const logger = createLogger();
@@ -58,7 +59,8 @@ export const store = createStore(
 
         form: formReducer,
 
-        locale: localeReducer('fa', require('../../locales/index').default)
+        locale: localeReducer('fa', require('../../locales/index').default),
+        secure: secureReducer(require("../secure/rules").default)
     }),
     localStorage.get('initialState'),
     enhancer(applyMiddleware(
