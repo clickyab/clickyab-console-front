@@ -9,6 +9,7 @@ import {throwError} from "../../functions/Error";
 import {navigate} from "../../functions/navigate";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
+import {isCampaignMiddleware} from "../isCampaignMiddleware";
 
 function* planListController(done) {
     loading(true);
@@ -30,6 +31,7 @@ function* planListController(done) {
 export default (nextState, replace, next) => sync(function*() {
     try {
         yield* isLoginMiddleware();
+        yield* isCampaignMiddleware(nextState);
         let {error} = yield raceOnTime(planListController, 20000);
         if(error)
             navigate('/v1/login');
