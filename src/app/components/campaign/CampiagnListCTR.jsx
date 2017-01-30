@@ -65,6 +65,13 @@ export default class CampaignListCTR extends Component {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
 
+    description(description) {
+        if(description != null) {
+            return description.replace(/(<\?[a-z]*(\s[^>]*)?\?(>|$)|<!\[[a-z]*\[|\]\]>|<!DOCTYPE[^>]*?(>|$)|<!--[\s\S]*?(-->|$)|<[a-z?!\/]([a-z0-9_:.])*(\s[^>]*)?(>|$))/gi, '');
+        }
+
+    }
+
     onPaginationChange(page) {
         this.callApi('p', page);
     }
@@ -112,6 +119,7 @@ export default class CampaignListCTR extends Component {
                                  filter={this.filter.bind(this)}
                                  search={this.search.bind(this)}
                                  mutators={{
+                                     description: this.description,
                                      updated_at: this.updated_at,
                                      created_at: this.created_at,
                                      admin_status: this.admin_status.bind(this),

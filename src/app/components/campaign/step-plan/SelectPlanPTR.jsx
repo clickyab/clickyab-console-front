@@ -33,6 +33,7 @@ export default class SelectPlanPTR extends Component {
                 </div>
             );
         }
+        console.log(items);
         return items;
 
     };
