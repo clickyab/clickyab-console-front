@@ -1,39 +1,30 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
-import Select from 'react-select';
+import SelectPermissionCTR from './SelectPermissionCTR';
+
 
 class AddRoleModalPTR extends Component {
     addRoleForm;
+    selectPermission = {
+        multi: true,
+        selfValue: [],
+        parentValue: [],
+        globalValue: [],
+        options: [],
+        self: true,
+        parent: true,
+        global: true
+    };
     state = {
         validation: true,
-
-        multi: true,
-        multiValue: [],
-        options: [],
-        value: undefined
     };
 
-
-    handleOnChange(value) {
-        const {multi} = this.state;
-        if (multi) {
-            this.setState({multiValue: value});
-        } else {
-            this.setState({value});
-        }
-    }
-
-    initialOptions() {
-        let option = [];
-        for (let permission in this.props.permissions) {
-            option.push({value: this.props.permissions[permission], label: this.props.permissions[permission]});
-        }
-        this.setState({options: option})
+    setSelectPermission(key, value) {
+        this.selectPermission[key] = value;
     }
 
     componentDidMount() {
-        this.initialOptions();
         this.addRoleForm = $("#addRoleForm");
         this.addRoleForm.validate({
             rules: {
@@ -60,7 +51,7 @@ class AddRoleModalPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitAddRole} = this.props;
-        const {multi, multiValue, options, value} = this.state;
+        
         return (
             <div className="add-role-modal modal fade fullscreen" id="addRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -95,63 +86,10 @@ class AddRoleModalPTR extends Component {
 
                                     <div className="form-group">
                                         <div className="mt-checkbox-inline">
-                                            <label className="mt-checkbox">
-                                                <Field component="input" id="self" value="self"
-                                                       name="self"
-                                                       type="checkbox"/> خودم
-                                                <span/>
-                                            </label>
-                                            <label className="mt-checkbox">
-                                                <Field component="input" id="parent" value="parent"
-                                                       onClick={
-                                                           () => {
-                                                               if ($('#parent').prop('checked')) {
-                                                                   $('#self').prop({
-                                                                       checked: true,
-                                                                       disabled: true
-                                                                   });
-                                                               } else {
-                                                                   $('#self').prop({
-                                                                       disabled: false
-                                                                   });
-                                                               }
-                                                           }
-                                                       }
-                                                       name="parent"
-                                                       type="checkbox"/> مشاور
-                                                <span/>
-                                            </label>
-                                            <label className="mt-checkbox">
-                                                <Field component="input" id="global" value="global"
-                                                       onClick={
-                                                           () => {
-                                                               if ($('#global').prop('checked')) {
-                                                                   $('#self, #parent').prop({
-                                                                       checked: true,
-                                                                       disabled: true
-                                                                   });
-                                                               } else {
-                                                                   $('#self, #parent').prop({
-                                                                       disabled: false
-                                                                   });
-                                                               }
-                                                           }
-                                                       }
-                                                       name="global"
-                                                       type="checkbox"/> مدیر کل
-                                                <span/>
-                                            </label>
+                                            <SelectPermissionCTR selectPermission={this.selectPermission}
+                                                                 setSelectPermission={this.setSelectPermission.bind(this)}
+                                                                 permissions={this.props.permissions}/>
                                         </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <Select
-                                            multi={multi}
-                                            options={options}
-                                            onChange={this.handleOnChange.bind(this)}
-                                            value={multi ? multiValue : value}
-                                            placeholder='انتخاب دسترسی...'
-                                        />
                                     </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg add-role-form btn-block">ذخیره
