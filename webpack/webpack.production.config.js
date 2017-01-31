@@ -88,8 +88,8 @@ module.exports = {
             compress: {
                 warnings: false,
                 screw_ie8: true,
-                drop_console: true,
-                drop_debugger: true
+                drop_console: false,
+                drop_debugger: false
             }
         }),
         new webpack.optimize.OccurenceOrderPlugin(),

@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
 class AddRoleModalPTR extends Component {
     addRoleForm;
