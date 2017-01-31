@@ -407,7 +407,7 @@
           data = _this.deserialize(response, returnType);
         }
 
-        if(response.statusCode == 401) {
+        if(response && response.statusCode == 401) {
             var event = new CustomEvent("panic", {
              detail: {
                 statusCode: 401

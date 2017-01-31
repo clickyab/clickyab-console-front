@@ -4,10 +4,10 @@ import {navigate} from "../../functions/navigate";
 export default class PageNotFound extends React.Component {
     componentDidMount() {
         setTimeout(() => {
-            navigate("/v1")
+            navigate("/v1/advertiser")
         }, 3000);
         $('.page-404-full-page').css('height', $(window).height());
-        $(window).resize(function() {
+        $(window).resize(function () {
             $('.page-404-full-page').css('height', $(window).height());
         })
     }
