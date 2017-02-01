@@ -28,6 +28,12 @@ export default class UploadFileCTR extends Component {
 
     componentDidMount() {
         let that = this;
+        if (select('createCampaignData.src') != null) {
+            $(".flow-drop").addClass("col-md-8");
+            $(".flow-drop").fadeIn();
+            $(".preview-image img").attr("src", select('createCampaignData.src'));
+            $(".preview-image").fadeIn();
+        }
         (function () {
             var r = new Flow({
                 target: 'http://rubik.clickyab.ae/api/file/upload',
@@ -63,9 +69,8 @@ export default class UploadFileCTR extends Component {
                             }
                         );
                     if (response.statusCode == '200') {
-                        dispatch(createCampaign(Object.assign({},select("createCampaignData"), {src:resolve.src})));
+                        dispatch(createCampaign(Object.assign({},select("createCampaignData"), {src:"http://rubik.clickyab.ae/statics/" +data.src})));
                         dispatch(updateLocalStorageAction());
-                        console.log(data);
                         that.setState({
                             FileUploaded: true
                         });
@@ -75,7 +80,7 @@ export default class UploadFileCTR extends Component {
                         $(".flow-drop").fadeIn();
                         fileReader.onload = function (event) {
                             let uri = event.target.result;
-                            // $(".preview-image img").attr("src","http://rubik.clickyab.ae/statics/" +   data.uri);
+                            // $(".preview-image img").attr("src","http://rubik.clickyab.ae/statics/" +   data.src);
                             $(".preview-image img").attr("src",uri);
                             $(".preview-image").fadeIn();
                         };
