@@ -62,7 +62,7 @@ export default class EditRoleButton extends Component {
 
     render() {
         return <button key="edit" ref={(EditElement) => this.editElementBtn=EditElement}
-                  className="btn green edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-                  onClick={(event) => this.edit(event)}><i className="fa fa-edit"/> ویرایش</button>;
+                  className="btn btn-info btn-xs green edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
+                  onClick={(event) => this.edit(event)}> ویرایش</button>;
     }
 }
