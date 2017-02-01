@@ -49,41 +49,6 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                             <span className='arrow open'/>
                         </SidebarLink>
-
-                        <SidebarLink to="/v1/channel">
-                            <i className='fa fa-television'/>
-                            <span className='title'>کانال‌ها</span>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-
-                        <SidebarLink to="/v1/category">
-                            <i className='fa fa-folder-open'/>
-                            <span className='title'>دسته‌بندی‌ها</span>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-
-                        <SidebarLink to="/v1/user">
-                            <i className='fa fa-user'/>
-                            <span className='title'>مدیریت کاربران</span>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-
-                        <SidebarLink to="/v1/role">
-                            <i className='fa fa-user'/>
-                            <span className='title'> رول ها</span>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-
-                        <SidebarLink to="/v1/telegram">
-                            <i className='fa fa-user'/>
-                            <span className='title'>مدیریت کاربران تلگرام</span>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
                     </ul>
                 </div>
 
