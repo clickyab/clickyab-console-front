@@ -14,6 +14,7 @@ import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
 import UserProfile from './components/UserProfile/UserProfileCTR';
 import UsersListCTR from './components/Users/UsersListCTR';
 import ChannelListCTR from './components/channel/ChannelListCTR';
+import ServerDown from './components/ServerDown/ServerDown';
 import onChannelEnterMiddleware from './middlewares/routes/onChannelEnterMiddleware';
 import onCampaignEnterMiddleware from './middlewares/routes/onCampaignEnterMiddleware';
 import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddleware';
@@ -96,6 +97,7 @@ export default () => (
         <Route path="/" onEnter={onSlashEnterMiddleware}/>
 
         <Route path="*" component={PageNotFound}/>
+        <Route path="/server-down" component={ServerDown}/>
     </Router>
 );
 
@@ -104,4 +106,8 @@ document.body.addEventListener("panic", function (event) {
     dispatch(updatePersonalInformation({}));
     dispatch(updateLocalStorageAction());
     navigate("/v1/login");
+});
+
+document.body.addEventListener("server-down", function (event) {
+    navigate("/server-down");
 });
