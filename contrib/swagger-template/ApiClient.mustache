@@ -407,7 +407,14 @@
           data = _this.deserialize(response, returnType);
         }
 
-        if(response && response.statusCode == 401) {
+        if(!response) {
+            var event = new CustomEvent("server-down", {
+                detail: {
+                    message: 'server is down'
+                }
+            });
+            document.body.dispatchEvent(event);
+        } else if(response.statusCode == 401) {
             var event = new CustomEvent("panic", {
              detail: {
                 statusCode: 401

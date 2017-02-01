@@ -1,45 +1,37 @@
 import React, {Component} from 'react';
 import {Field, reduxForm} from 'redux-form';
 import $ from 'jquery';
-import Select from 'react-select';
+import SelectPermissionCTR from './SelectPermissionCTR';
+
 
 class AddRoleModalPTR extends Component {
     addRoleForm;
+    selectPermission = {
+
+    };
     state = {
         validation: true,
 
         multi: true,
-        multiValue: [],
+        selfValue: [],
+        parentValue: [],
+        globalValue: [],
         options: [],
-        value: undefined
+        self: true,
+        parent: true,
+        global: true
     };
 
-
-    handleOnChange(value) {
-        const {multi} = this.state;
-        if (multi) {
-            this.setState({multiValue: value});
-        } else {
-            this.setState({value});
-        }
-    }
-
-    initialOptions() {
-        let option = [];
-        for (let permission in this.props.permissions) {
-            option.push({value: this.props.permissions[permission], label: this.props.permissions[permission]});
-        }
-        this.setState({options: option})
+    setSelectPermission(key, value) {
+        this.setState({[key]: value});
     }
 
     componentDidMount() {
-        this.initialOptions();
         this.addRoleForm = $("#addRoleForm");
         this.addRoleForm.validate({
             rules: {
-                link: {
+                description: {
                     required: true,
-                    url: true
                 },
                 name: {
                     required: true,
@@ -47,12 +39,11 @@ class AddRoleModalPTR extends Component {
 
             },
             messages: {
-                link: {
-                    required: 'لطفا لینک کانال را وارد نمایید',
-                    url: 'لطفا یک آدرس اینترنتی معتبر با http و یا https وارد نمایید'
+                description: {
+                    required: 'لطفا توضیحات رول را وارد نمایید',
                 },
                 name: {
-                    required: 'لطفا نام کانال را وارد نمایید',
+                    required: 'لطفا نام رول را وارد نمایید',
                 },
             }
         });
@@ -60,7 +51,7 @@ class AddRoleModalPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitAddRole} = this.props;
-        const {multi, multiValue, options, value} = this.state;
+        let {selfValue, parentValue, globalValue} = this.state;
         return (
             <div className="add-role-modal modal fade fullscreen" id="addRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -79,7 +70,7 @@ class AddRoleModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="addRoleForm" method="post"
                                       className="add-role-form white"
-                                      onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm, this.state.multiValue))}>
+                                      onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm, selfValue, parentValue, globalValue))}>
                                     <div className="form-group">
                                         <label htmlFor="link">نام رول</label>
                                         <Field component="input" type="text" name="name" placeholder="نام رول"
@@ -95,63 +86,10 @@ class AddRoleModalPTR extends Component {
 
                                     <div className="form-group">
                                         <div className="mt-checkbox-inline">
-                                            <label className="mt-checkbox">
-                                                <Field component="input" id="self" value="self"
-                                                       name="self"
-                                                       type="checkbox"/> خودم
-                                                <span/>
-                                            </label>
-                                            <label className="mt-checkbox">
-                                                <Field component="input" id="parent" value="parent"
-                                                       onClick={
-                                                           () => {
-                                                               if ($('#parent').prop('checked')) {
-                                                                   $('#self').prop({
-                                                                       checked: true,
-                                                                       disabled: true
-                                                                   });
-                                                               } else {
-                                                                   $('#self').prop({
-                                                                       disabled: false
-                                                                   });
-                                                               }
-                                                           }
-                                                       }
-                                                       name="parent"
-                                                       type="checkbox"/> مشاور
-                                                <span/>
-                                            </label>
-                                            <label className="mt-checkbox">
-                                                <Field component="input" id="global" value="global"
-                                                       onClick={
-                                                           () => {
-                                                               if ($('#global').prop('checked')) {
-                                                                   $('#self, #parent').prop({
-                                                                       checked: true,
-                                                                       disabled: true
-                                                                   });
-                                                               } else {
-                                                                   $('#self, #parent').prop({
-                                                                       disabled: false
-                                                                   });
-                                                               }
-                                                           }
-                                                       }
-                                                       name="global"
-                                                       type="checkbox"/> مدیر کل
-                                                <span/>
-                                            </label>
+                                            <SelectPermissionCTR selectPermission={this.state}
+                                                                 setSelectPermission={this.setSelectPermission.bind(this)}
+                                                                 permissions={this.props.permissions}/>
                                         </div>
-                                    </div>
-
-                                    <div className="form-group">
-                                        <Select
-                                            multi={multi}
-                                            options={options}
-                                            onChange={this.handleOnChange.bind(this)}
-                                            value={multi ? multiValue : value}
-                                            placeholder='انتخاب دسترسی...'
-                                        />
                                     </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg add-role-form btn-block">ذخیره

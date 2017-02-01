@@ -3,18 +3,24 @@ import {Field, reduxForm, change} from 'redux-form';
 import $ from 'jquery';
 import {shallowEqual} from './../../3rd/shallowEqual';
 import {dispatch} from "../../functions/dispatch";
+import Select from 'react-select';
 
 class EditRoleModalPTR extends Component {
     editRoleForm;
     state = {
-        validation: true
+        validation: true,
+
+        multi: true,
+        multiValue: [],
+        options: [],
+        value: undefined
     };
 
 
     shouldComponentUpdate(nextProps) {
         if(!shallowEqual(this.props, nextProps)) {
-            for (let key in nextProps.roleData) {
-                dispatch(change(nextProps.form, key, nextProps.roleData[key]))
+            for (let key in nextProps.roleData.role) {
+                dispatch(change(nextProps.form, key, nextProps.roleData.role[key]))
             }
 
             return true;
@@ -24,6 +30,7 @@ class EditRoleModalPTR extends Component {
     }
 
     componentDidMount() {
+
         this.editRoleForm = $("#editRoleForm");
         this.editRoleForm.validate({
             rules: {
@@ -51,6 +58,7 @@ class EditRoleModalPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitEditRole} = this.props;
+        const {multi, multiValue, value, options} = this.state;
         return (
             <div className="edit-role-modal modal fade fullscreen" id="editRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,15 +79,77 @@ class EditRoleModalPTR extends Component {
                                       className="add-role-form white"
                                       onSubmit={handleSubmit((values) => SubmitEditRole(values, this.editRoleForm))}>
                                     <div className="form-group">
-                                        <label htmlFor="link">لینک کانال</label>
-                                        <Field component="input" type="text" name="link" placeholder="لینک چنل"
-                                               className="form-control input-lg" id="link"/>
+                                        <label htmlFor="link">نام رول</label>
+                                        <Field component="input" type="text" name="name" placeholder="نام رول"
+                                               className="form-control input-lg" id="name"/>
                                     </div>
 
                                     <div className="form-group">
-                                        <label htmlFor="name">نام کانال</label>
-                                        <Field component="input" type="text" name="name" placeholder="نام کانال"
-                                               className="form-control input-lg" id="name"/>
+                                        <label htmlFor="description">توضیحات رول</label>
+                                        <Field component="textarea" name="description"
+                                               placeholder="توضیحات رول"
+                                               className="form-control input-lg" id="description"/>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <div className="mt-checkbox-inline">
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="self" value="self"
+                                                       name="self"
+                                                       type="checkbox"/> خودم
+                                                <span/>
+                                            </label>
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="parent" value="parent"
+                                                       onClick={
+                                                           () => {
+                                                               if ($('#parent').prop('checked')) {
+                                                                   $('#self').prop({
+                                                                       checked: true,
+                                                                       disabled: true
+                                                                   });
+                                                               } else {
+                                                                   $('#self').prop({
+                                                                       disabled: false
+                                                                   });
+                                                               }
+                                                           }
+                                                       }
+                                                       name="parent"
+                                                       type="checkbox"/> مشاور
+                                                <span/>
+                                            </label>
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="global" value="global"
+                                                       onClick={
+                                                           () => {
+                                                               if ($('#global').prop('checked')) {
+                                                                   $('#self, #parent').prop({
+                                                                       checked: true,
+                                                                       disabled: true
+                                                                   });
+                                                               } else {
+                                                                   $('#self, #parent').prop({
+                                                                       disabled: false
+                                                                   });
+                                                               }
+                                                           }
+                                                       }
+                                                       name="global"
+                                                       type="checkbox"/> مدیر کل
+                                                <span/>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div className="form-group">
+                                        <Select
+                                            multi={multi}
+                                            options={options}
+                                            //onChange={this.handleOnChange.bind(this)}
+                                            value={multi ? multiValue : value}
+                                            placeholder='انتخاب دسترسی...'
+                                        />
                                     </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg edit-role-form btn-block">ذخیره

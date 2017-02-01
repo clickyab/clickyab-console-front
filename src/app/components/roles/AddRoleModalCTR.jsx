@@ -26,21 +26,43 @@ export default class AddRoleModalCTR extends Component {
         return formValues;
     }
 
-    addRoleSubmit(formValues, perms) {
-        this.ScopeScan(formValues);
-        var permisson = [];
-        for (let i=0; i < perms.length; i++) {
-            permisson.push(perms[i].label);
+    normalizeFormValues(formValues, self, parent, global) {
+        delete formValues.self;
+        delete formValues.parent;
+        delete formValues.global;
+
+        var selfPermission = [];
+        for (let i=0; i < self.length; i++) {
+            selfPermission.push(self[i].label);
         }
+
+        var parentPermission = [];
+        for (let i=0; i < parent.length; i++) {
+            parentPermission.push(parent[i].label);
+        }
+
+        var globalPermission = [];
+        for (let i=0; i < global.length; i++) {
+            globalPermission.push(global[i].label);
+        }
+
+
         formValues.perm = {
-            [formValues.role]: permisson
+            self: selfPermission,
+            parent: parentPermission,
+            global: globalPermission
         };
 
+        return formValues;
+    }
+
+    addRoleSubmit(formValues, self, parent, global) {
         sync(function*() {
             loadingProgress = Ladda.create(document.querySelector('button.add-role-form'));
             loadingProgress.start();
             const {response} = yield (new swagger.UserApi())
-                .userRoleCreatePost(select("user.token", "no token"), {'payloadData': formValues});
+                .userRoleCreatePost(select("user.token", "no token"),
+                    {'payloadData': this.normalizeFormValues(formValues, self, parent, global)});
 
             response.error = 'اطلاعات شما صحیح نمی‌باشد.';
             response.text = 'اطلاعات شما با موفقیت ثبت شد.';
@@ -57,14 +79,14 @@ export default class AddRoleModalCTR extends Component {
                 FailedBoxAlert(response)
             }
             ifInvalidToken(response);
-        });
+        }.bind(this));
     }
 
-    SubmitAddRole = (formValues, form, perms) => {
+    SubmitAddRole = (formValues, form, self, parent, global) => {
         if (!form.valid())
             return;
 
-        this.addRoleSubmit(formValues, perms);
+        this.addRoleSubmit(formValues, self, parent, global);
     };
 
     render() {

@@ -7,8 +7,19 @@ import {roleItemsListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
 import {sync} from "../../functions/sync";
 import EditRoleButton from "./EditRoleButton";
+import {translatable} from 'react-multilingual/dist';
 
 @connect(({roleList, permissionList}) => ({roleList, permissionList}))
+@translatable(({
+    CreatedAt, UpdatedAt, Action,
+    Name, ID, Description
+
+}) => ({
+    translation: {
+        CreatedAt, UpdatedAt, Action,
+        Name, ID, Description
+    }
+}))
 export default class RolesListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
@@ -56,7 +67,7 @@ export default class RolesListCTR extends Component {
     }
 
     translator(title) {
-        return title;
+        return this.props.translation[title];
     }
 
     render() {
