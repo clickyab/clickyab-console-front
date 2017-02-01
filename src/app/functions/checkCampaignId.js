@@ -5,4 +5,3 @@ export default function checkCampaignId(props) {
     let campaignId = props.params.campaign_id;
     return new swagger.AdApi().campaignGetIdGet(campaignId,select('user.token', 'no token'));
 }
-

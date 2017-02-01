@@ -4,13 +4,17 @@ import {Field, reduxForm} from 'redux-form';
 import {select} from '../../functions/select';
 import {getEmail} from './../../redux/helpers';
 import SelectLocationCTR from './../location/SelectLocationCTR';
+import {dispatch} from "../../functions/dispatch";
+import {change} from "redux-form/lib/actions";
 
 class CorporationUserPTR extends Component {
     CorporationForm;
     handleInitialize() {
         const initData = select("user.corporation",{});
         initData.email = getEmail();
-        this.props.initialize(initData);
+        for(let key in initData) {
+            dispatch(change("CorporationUserForm", key, initData[key]));
+        }
     }
     componentDidMount() {
         this.handleInitialize();
