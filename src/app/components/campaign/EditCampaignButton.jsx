@@ -15,7 +15,7 @@ export default class EditCampaignButton extends Component {
         const {id} = this.props;
         sync(function*() {
             const {error, data, response} = yield (new swagger.AdApi())
-                .campaignIdGet(id, select('user.token', 'no token'));
+                .campaignGetIdGet(id, select('user.token', 'no token'));
             if (response.statusCode == '200') {
                 $(event.target).parent().removeClass("disabled");
                 dispatch(createCampaign(data));
