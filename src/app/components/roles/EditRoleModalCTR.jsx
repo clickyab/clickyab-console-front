@@ -19,7 +19,7 @@ export default class EditRoleModalCTR extends Component {
             loadingProgress = Ladda.create(document.querySelector('.edit-role-form'));
             loadingProgress.start();
             const {data, response} = yield (new swagger.UserApi())
-                .userRoleCreatePost(id, select('user.token', 'no token'), {'payloadData': formValues});
+                .userRoleUpdateIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
             if (response.statusCode == 200) {
                 $('#editRoleModal').modal('hide');
