@@ -84,84 +84,103 @@ class SelectTypePTR extends Component {
                 <div className="portlet light margin-top-20">
 
                     <div className="portlet-title">
-                        <div className="caption">
-                            <i className="fa fa-bullseye"/> انتخاب نوع محتوای کمپین {campaignTitle}
+                        <div className="caption font-blue">
+                            <i className="fa fa-bullseye font-blue"/> انتخاب نوع محتوای کمپین <span className="bold"> {campaignTitle}</span>
                         </div>
                     </div>
                     <div className="portlet-body form">
 
-                        <div className="mt-element-step margin-top-20  when-select-content" style={toggleStylePromote}>
-                            <div className="row step-background">
-                                <div className="col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۱</div>
+                        <div className="mt-element-step margin-top-20 when-select-content" style={toggleStylePromote} >
+                            <div className="row step-line">
+                                <div className="col-lg-15 col-md-3 mt-step-col first done">
+                                    <div className="mt-step-number bg-white">
+                                        ۱
+                                    </div>
                                     <div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-                                    <div className="mt-step-content font-grey-cascade">یک نام به کمپین خود اختصاص
-                                        دهید.
-                                    </div>
+
                                 </div>
-                                <div className="col-md-3 bg-grey-steel mt-step-col active">
-                                    <div className="mt-step-number">۲</div>
+                                <div className="col-lg-15 col-md-3 mt-step-col error">
+                                    <div className="mt-step-number bg-white">
+                                        ۲
+                                    </div>
                                     <div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-                                    <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان
-                                        بازدید مشخص کنید
-                                    </div>
                                 </div>
-                                <div className="col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۳</div>
-                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب محتوا</div>
-                                    <div className="mt-step-content font-grey-cascade">انتخاب محتوای کانال های دیگر
+                                <div className="col-lg-15 col-md-3 mt-step-col ">
+                                    <div className="mt-step-number bg-white">
+                                        ۳
                                     </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب محتوای چنل </div>
+
                                 </div>
-                                <div className="col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۴</div>
-                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-                                    <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان
-                                        بازدید مشخص کنید
+                                <div className="col-lg-15 col-md-3 mt-step-col ">
+                                    <div className="mt-step-number bg-white">
+                                        ۴
                                     </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن </div>
+
                                 </div>
 
+                                <div className="col-lg-15 col-md-3 mt-step-col last">
+                                    <div className="mt-step-number bg-white">
+                                        ۵
+                                    </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت </div>
+
+                                </div>
                             </div>
                             <br/>
+                            <br/>
+
                         </div>
 
-                        <div className="mt-element-step margin-top-20 when-generate-content" style={toggleStyleUpload}>
-                            <div className="row step-background">
-                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۱</div>
+                        <div className="mt-element-step margin-top-20 when-generate-content" style={toggleStyleUpload} >
+                            <div className="row step-line">
+                                <div className="col-md-2 mt-step-col first done">
+                                    <div className="mt-step-number bg-white">
+                                        ۱
+                                    </div>
                                     <div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-                                    <div className="mt-step-content font-grey-cascade">یک نام به کمپین خود اختصاص
-                                        دهید.
-                                    </div>
+
                                 </div>
-                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col active">
-                                    <div className="mt-step-number">۲</div>
+                                <div className="col-md-2 mt-step-col error">
+                                    <div className="mt-step-number bg-white">
+                                        ۲
+                                    </div>
                                     <div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-                                    <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان
-                                        بازدید مشخص کنید
-                                    </div>
                                 </div>
-                                <div className=" col-lg-15 col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۳</div>
-                                    <div className="mt-step-title uppercase font-grey-cascade">آپلود فایل و مدیا</div>
-                                    <div className="mt-step-content font-grey-cascade">عکس، ویدیو و یا پی دی اف خود را
-                                        آپلود کنید.
+                                <div className="col-md-2 mt-step-col ">
+                                    <div className="mt-step-number bg-white">
+                                        ۳
                                     </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">آپلود فایل</div>
+
                                 </div>
-                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۴</div>
-                                    <div className="mt-step-title uppercase font-grey-cascade">کپشن تبلیغ</div>
-                                    <div className="mt-step-content font-grey-cascade">متن تبلیغ خود را تایپ کنید</div>
-                                </div>
-                                <div className="col-lg-15 col-md-3 bg-grey-steel mt-step-col">
-                                    <div className="mt-step-number">۵</div>
-                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-                                    <div className="mt-step-content font-grey-cascade">انتخاب پلن را بر اساس میزان
-                                        بازدید مشخص کنید
+                                <div className="col-md-2 mt-step-col ">
+                                    <div className="mt-step-number bg-white">
+                                        ۴
                                     </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">محتوای متنی </div>
+
+                                </div>
+                                <div className="col-md-2 mt-step-col ">
+                                    <div className="mt-step-number bg-white">
+                                        ۵
+                                    </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن </div>
+
                                 </div>
 
+                                <div className="col-md-2 mt-step-col last">
+                                    <div className="mt-step-number bg-white">
+                                        ۶
+                                    </div>
+                                    <div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت </div>
+
+                                </div>
                             </div>
                             <br/>
+                            <br/>
+
                         </div>
 
                         <div className='row'>

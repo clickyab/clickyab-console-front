@@ -122,7 +122,7 @@ Pricing Table 1
 
 				>.price-sign{
 					font-size:24px;
-					margin-#{$dir-mode-align}: -15px;
+					margin-#{$dir-mode-align-inverse}: -15px;
 					vertical-align: top;
 					top:15px;
 				}

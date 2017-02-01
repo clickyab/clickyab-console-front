@@ -19,7 +19,7 @@ export default class CaptionCTR extends Component {
         let textarea_text = $(".emojieditor-plugin-content");
         $(document).on("click", ".caption-text-form-btn", function (e) {
             e.preventDefault();
-            if ($.trim(textarea_text.val()) != '') {
+            if ($.trim($(".emojionearea-editor").text()) != '') {
                 sync(function *() {
                     loadingProgress = Ladda.create(document.querySelector('button.caption-text-form-btn'));
                     loadingProgress.start();
