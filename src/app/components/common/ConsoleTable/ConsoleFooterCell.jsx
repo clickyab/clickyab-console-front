@@ -4,16 +4,21 @@ import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actio
 import {select} from "../../../functions/select";
 
 export class ConsoleFooterCell extends Component {
+    timeout;
+
     onSearchChange(event) {
         let {list, query_name, search, loader} = this.props;
+        clearTimeout(this.timeout);
 
         dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, query_name, event.target.value));
         dispatch(updateLocalStorageAction());
 
-        loader(true);
-        search(event, query_name);
-        loader(false);
+        this.timeout = setTimeout(() => {
+            loader(true);
+            search(event, query_name);
+            loader(false);
+        }, 250);
     }
 
     getFilters(filters) {
@@ -38,6 +43,7 @@ export class ConsoleFooterCell extends Component {
         filter(event, query_name);
         loader(false);
     }
+
     render() {
         let {filters, footer, query_name, list, searchable, translator} = this.props;
 
@@ -46,14 +52,18 @@ export class ConsoleFooterCell extends Component {
                 <div className="search-filter-datatable">
                     {searchable ?
                         <input className="form-control type-search-datatable"
-                               onChange={this.onSearchChange.bind(this)}
+                               onChange={(event) => {
+                                   this.onSearchChange(Object.assign({}, event));
+                               }}
                                defaultValue={select('queries.' + list + "." + query_name, '')}
                                placeholder={translator(footer.title)}/> : ''}
 
                     {filters !== null ? <select
                             defaultValue={select('queries.' + list + "." + query_name, '')}
                             className="form-control select-datatable"
-                            onChange={this.filterOnChange.bind(this)}>
+                            onChange={(event) => {
+                                this.filterOnChange(Object.assign({}, event));
+                            }}>
                             {this.getFilters(filters)}</select> : ''}
                 </div>
             </td>
