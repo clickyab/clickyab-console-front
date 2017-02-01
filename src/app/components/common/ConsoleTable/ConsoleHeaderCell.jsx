@@ -34,7 +34,9 @@ export class ConsoleHeaderCell extends Component {
         return (
             <th>
                 <span className="head-title-datatable">
-                    {sortable ? <a href="#" onClick={this.sortOnChange.bind(this)}>{children}</a> : children}
+                    {sortable ? <a href="#" onClick={(event) => {
+                            this.sortOnChange(Object.assign({}, event));
+                        }}>{children}</a> : children}
                 </span>
             </th>
         );

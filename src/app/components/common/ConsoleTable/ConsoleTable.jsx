@@ -104,7 +104,7 @@ export class ConsoleTable extends Component {
     }
 
     render() {
-        let {sort, filter, list, change, edit, mutators, translator} = this.props;
+        let {sort, filter, list, change, edit, search, mutators, translator} = this.props;
         if (!mutators) {
             mutators = {};
         }
@@ -161,6 +161,7 @@ export class ConsoleTable extends Component {
                                     list={list}
                                     sort={sort}
                                     filter={filter}
+                                    search={search}
                                     query_name={footer.data}
                                     filters={footer.filter_valid_map}
                                     sortable={footer.sortable}
