@@ -7,6 +7,11 @@ import SelectPermissionCTR from './SelectPermissionCTR';
 class AddRoleModalPTR extends Component {
     addRoleForm;
     selectPermission = {
+
+    };
+    state = {
+        validation: true,
+
         multi: true,
         selfValue: [],
         parentValue: [],
@@ -16,21 +21,17 @@ class AddRoleModalPTR extends Component {
         parent: true,
         global: true
     };
-    state = {
-        validation: true,
-    };
 
     setSelectPermission(key, value) {
-        this.selectPermission[key] = value;
+        this.setState({[key]: value});
     }
 
     componentDidMount() {
         this.addRoleForm = $("#addRoleForm");
         this.addRoleForm.validate({
             rules: {
-                link: {
+                description: {
                     required: true,
-                    url: true
                 },
                 name: {
                     required: true,
@@ -38,12 +39,11 @@ class AddRoleModalPTR extends Component {
 
             },
             messages: {
-                link: {
-                    required: 'لطفا لینک کانال را وارد نمایید',
-                    url: 'لطفا یک آدرس اینترنتی معتبر با http و یا https وارد نمایید'
+                description: {
+                    required: 'لطفا توضیحات رول را وارد نمایید',
                 },
                 name: {
-                    required: 'لطفا نام کانال را وارد نمایید',
+                    required: 'لطفا نام رول را وارد نمایید',
                 },
             }
         });
@@ -51,7 +51,7 @@ class AddRoleModalPTR extends Component {
 
     render() {
         const {handleSubmit, SubmitAddRole} = this.props;
-        
+        let {selfValue, parentValue, globalValue} = this.state;
         return (
             <div className="add-role-modal modal fade fullscreen" id="addRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -70,7 +70,7 @@ class AddRoleModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="addRoleForm" method="post"
                                       className="add-role-form white"
-                                      onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm, this.state.multiValue))}>
+                                      onSubmit={handleSubmit((values) => SubmitAddRole(values, this.addRoleForm, selfValue, parentValue, globalValue))}>
                                     <div className="form-group">
                                         <label htmlFor="link">نام رول</label>
                                         <Field component="input" type="text" name="name" placeholder="نام رول"
@@ -86,7 +86,7 @@ class AddRoleModalPTR extends Component {
 
                                     <div className="form-group">
                                         <div className="mt-checkbox-inline">
-                                            <SelectPermissionCTR selectPermission={this.selectPermission}
+                                            <SelectPermissionCTR selectPermission={this.state}
                                                                  setSelectPermission={this.setSelectPermission.bind(this)}
                                                                  permissions={this.props.permissions}/>
                                         </div>

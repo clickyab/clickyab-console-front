@@ -7,7 +7,6 @@ export default class SelectPermissionPTR extends Component {
     render() {
         let {multi, selfValue, parentValue, globalValue, options, self, parent, global, toggleDisabled,
             handleOnChangeSelf, handleOnChangeParent, handleOnChangeGlobal} = this.props;
-        console.log(this.props);
         let array = [];
         array.push.apply(array, selfValue);
         array.push.apply(array, parentValue);
