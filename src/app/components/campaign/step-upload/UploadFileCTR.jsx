@@ -1,18 +1,33 @@
 import React, {Component} from "react";
 import $ from "jquery";
-import {SuccessBoxAlert} from "../../../functions/notifications";
-import {FailedBoxAlert} from "../../../functions/notifications";
 import {select} from "../../../functions/select";
 import {dispatch} from "../../../functions/dispatch";
 import {updateLocalStorageAction} from "../../../redux/actions/index";
 import {createCampaign} from "../../../redux/actions/index";
 import {navigate} from "../../../functions/navigate";
 import {AlertBox} from "../../../functions/notifications";
+import {sync} from "../../../functions/sync";
 let Flow = require("@flowjs/flow.js/src/flow");
-
+import swagger from '../../../swagger/index';
+let loadingProgress;
 export default class UploadFileCTR extends Component {
 
+    constructor(props) {
+        super(props);
+        this.state = {
+            FileUploaded: false
+        }
+    }
+
+    setStateUploadFile() {
+        this.setState({
+            FileUploaded: false
+        });
+    }
+
+
     componentDidMount() {
+        let that = this;
         (function () {
             var r = new Flow({
                 target: 'http://rubik.clickyab.ae/api/file/upload',
@@ -34,30 +49,51 @@ export default class UploadFileCTR extends Component {
             r.assignBrowse($('.flow-browse-image')[0], false, false, {accept: 'image/*'});
 
             // Handle file add event
-            function sendFileSource({error, data, response}) {
-                response.error = 'اطلاعات کاربری شما صحیح نمی‌باشد.';
-                response.text = 'شما با موفقیت وارد شدید.';
-
-                if (response.statusCode == '200') {
-                    SuccessBoxAlert(response);
-                } else if (response.statusCode == '400') {
-                    this.stopLoading();
-                    FailedBoxAlert(response);
-                }
-            }
             r.on('fileSuccess', function(file,message){
                 let resolve = JSON.parse(message);
-                dispatch(createCampaign(Object.assign({},select("createCampaignData"), {src:resolve.src})));
-                dispatch(updateLocalStorageAction());
-                AlertBox("success","آپلود فایل با موفقیت انجام شد هم اکنون متن تبلیغ خود را وارد نمایید");
-                navigate('/v1/campaign/create/:campaign_id:/step/editor', {
-                    campaign_id: select('createCampaignData.id')
+                let fileReader = new FileReader();
+
+                sync(function*() {
+                    const {data, response} = yield (new swagger.AdApi())
+                        .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),
+                            {
+                                'payloadData': {
+                                    url: resolve.src
+                                }
+                            }
+                        );
+                    if (response.statusCode == '200') {
+                        dispatch(createCampaign(Object.assign({},select("createCampaignData"), {src:resolve.src})));
+                        dispatch(updateLocalStorageAction());
+                        console.log(data);
+                        that.setState({
+                            FileUploaded: true
+                        });
+                        $(".flow-file-size").remove();
+                        $(".progress-bar").css("width", "0");
+                        $(".flow-drop").addClass("col-md-8");
+                        $(".flow-drop").fadeIn();
+                        fileReader.onload = function (event) {
+                            let uri = event.target.result;
+                            // $(".preview-image img").attr("src","http://rubik.clickyab.ae/statics/" +   data.uri);
+                            $(".preview-image img").attr("src",uri);
+                            $(".preview-image").fadeIn();
+                        };
+                        fileReader.readAsDataURL(file.file);
+
+                        // AlertBox("success","آپلود فایل با موفقیت انجام شد هم اکنون متن تبلیغ خود را وارد نمایید");
+                        // navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                        //     campaign_id: select('createCampaignData.id')
+                        // });
+                    } else if (response.statusCode == '400') {
+                        AlertBox("error","اختلالی در سرور به وجود آمده لطفا دوباره تلاش کنید");
+                    }
                 });
-                // (new swagger.AdApi())
-                //     .campaignUploadIdPut(select("createCampaignData.id", "no id"),select("user.token", "no token"),{'payloadData': resolve.src})
-                //     .then(response => sendFileSource(response));
-            });
+            }.bind(this));
             r.on('fileAdded', function(file){
+                that.setState({
+                    FileUploaded: false
+                });
                 // let fileReader = new FileReader();
                 // fileReader.onload = function (event) {
                 //     let uri = event.target.result;
@@ -67,6 +103,8 @@ export default class UploadFileCTR extends Component {
                 // };
                 // fileReader.readAsDataURL(file.file);
                 $(".flow-drop").fadeOut();
+                $(".preview-image").fadeOut();
+                $(".flow-file").remove();
                 // Show progress bar
                 $('.flow-progress, .flow-list').show();
                 // Add the file to the list
@@ -111,6 +149,12 @@ export default class UploadFileCTR extends Component {
                     $(".flow-file-size").remove();
                     $(".progress-bar").css("width", "0");
                     $(".flow-drop").fadeIn();
+                    $(".flow-drop").removeClass("col-md-8");
+                    $(".upload-status").text("");
+                    that.setState({
+                        FileUploaded: false
+                    });
+
                 });
             });
             r.on('filesSubmitted', function(file) {
@@ -300,21 +344,19 @@ export default class UploadFileCTR extends Component {
                         </div>
                         <div className="upload-file margin-bottom-40">
                             <h2>۳- انتخاب عکس یا ویدیو</h2>
-                            <button onClick={
-                                () => {
-                                    navigate('/v1/campaign/create/:campaign_id:/step/type', {
-                                        campaign_id: select('createCampaignData.id')
-                                    });
-                                }
-                            } className="btn btn-default  button-next btn-arrow-text" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
 
                             <div className="row">
-                                <div>
+                                <div className="upload-holder">
                                     <div className="flow-drop" draggable='true'>
                                         <div className="upload-file-icon"><i className="fa fa-cloud-upload"/> </div>
                                         <h2 className="text-center"> برای آپلود فایل خود را بکشید</h2>
                                         <p className="text-center">یا می توانید با فشردن دمه پایین فایل خود را انتخاب کنید</p>
                                         <a type="button" className="btn dark btn-outline sbold uppercase flow-browse">انتخاب فایل</a>
+                                    </div>
+                                </div>
+                                <div className="preview-image col-md-4" style={{display : 'none'}}>
+                                    <div className="preview-image-holder">
+                                        <img src=""/>
                                     </div>
                                 </div>
                             </div>
@@ -337,6 +379,24 @@ export default class UploadFileCTR extends Component {
                                 </div>
                             </div>
                             <ul className="flow-list"/>
+
+                            <div className="col-md-12 margin-top-20 space-btn">
+                                <button onClick={
+                                    () => {
+                                        navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                                            campaign_id: select('createCampaignData.id')
+                                        });
+                                    }
+                                } className="btn btn-default  button-next btn-arrow-text" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
+                                <button onClick={
+                                    () => {
+                                        navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                                            campaign_id: select('createCampaignData.id')
+                                        });
+                                    }
+                                }
+                                        className="btn btn-info  button-next btn-arrow-text next-step-upload" type="submit" disabled={!this.state.FileUploaded}>مرحله بعد <i className="fa fa-angle-left"/></button>
+                            </div>
                         </div>
                     </div>
                 </div>

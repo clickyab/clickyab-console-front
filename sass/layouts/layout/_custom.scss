@@ -75,6 +75,22 @@ ul , li {
 .space-btn button {
   margin-#{$dir-mode-align-inverse}: 5px;
 }
+.preview-image-holder {
+  height: 288px;
+  background: #eee;
+  border-radius: 10px;
+  border: 2px dashed #aaa;
+  margin-top: 40px;
+}
+.preview-image img {
+  max-width: 100%;
+  height: auto;
+  max-height: 250px;
+  border-radius: 10px;
+  display: block;
+  margin: 0 auto;
+  margin-top: 15px;
+}
 video.full {
   position: fixed;
   top: 50%;
