@@ -4,7 +4,6 @@ import $ from 'jquery';
 import {shallowEqual} from './../../3rd/shallowEqual';
 import {dispatch} from "../../functions/dispatch";
 import Select from 'react-select';
-import 'react-select/dist/react-select.css';
 
 class EditRoleModalPTR extends Component {
     editRoleForm;
