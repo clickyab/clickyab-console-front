@@ -122,51 +122,37 @@ class StepPreviewPTR extends Component {
                                 <h2>۶- پیش نمایش و پرداخت</h2>
                                 <div className="row">
 
-                                    <div className="col-md-6">
+                                    <div className="col-md-4">
                                         <div className="form-group">
                                             <label className="control-label col-md-3">نام کمپین :</label>
                                             <div className="col-md-9">
                                                 <p className="form-control-static"> {data.name} </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="control-label col-md-3">نام پلان :</label>
                                             <div className="col-md-9">
                                                 <p className="form-control-static"> {data.plan_name} </p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="control-label col-md-3">وضعیت تایید :</label>
                                             <div className="col-md-9">
                                                 <p className="form-control-static"> {data.admin_status} </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="control-label col-md-3">وضعیت پرداخت :</label>
                                             <div className="col-md-9">
-                                                <p className="form-control-static"> {data.pay_status == 'no' ? 'پرداخت نشده' : 'پرداخت شده'} </p>
+                                                <p className="form-control-static"> {data.pay_status == 'no' ? <span className="label label-danger">پرداخت نشده</span> : <span className="label label-success">پرداخت شده</span>} </p>
                                             </div>
                                         </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="control-label col-md-3">تاریخ ایجاد :</label>
                                             <div className="col-md-9">
                                                 <p className="form-control-static"> {created_at(data.created_at)} </p>
                                             </div>
                                         </div>
-                                    </div>
-                                    <div className="col-md-6">
                                         <div className="form-group">
                                             <label className="control-label col-md-3">تاریخ آخرین به‌روز رسانی :</label>
                                             <div className="col-md-9">
@@ -174,29 +160,41 @@ class StepPreviewPTR extends Component {
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <h3 className="form-section">جزئيات کمپین</h3>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">نوع تبلیغ :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static">{select('campaignStepData.type') == 'upload' ? 'محتوای جدید' : 'انتخاب شده از کانال'}</p>
+                                    <div className="col-md-8">
+                                        <div id="portraitMode1">
+                                            <div className="device-container" style={{maxWidth: '300px'}} data-size-port="300px" data-size-land="600px">
+                                                <div className="device-mockup" data-device="iphone6_plus" data-orientation="portrait" data-color="black">
+                                                    <div className="device">
+                                                        <img className="bottom-iphone" src="/img/bottom-iphone.png"/>
+                                                        <img className="top-iphone" src="/img/top-iphone.png"/>
+                                                        <div className="screen">
+                                                            <div className="container-telegram-view">
+                                                                <div className="bubble bubble-alt yellow">
+                                                                    <p className="font-blue">توییتر فارسی</p>
+                                                                    <img src={data.src} />
+                                                                    <p className="content">{data.promotes != null ? data.promotesText : data.description}</p>
+                                                                    <div className="footage">
+                                                                        <span className="time">20:56</span>
+                                                                        <span className="view"><img src="/img/view.png" width="16" height="16"/> 3315</span>
+                                                                    </div>
+                                                                </div>
+
+                                                            </div>
+                                                        </div>
+                                                        <div className="button">
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div className="row">
-                                    <div className="col-md-6">
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">متن :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static">{data.promotes != null ? data.promotesText : data.description}</p>
-                                            </div>
+
+
+
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                             <div className="form-actions">
                                 <div className="row">
                                     <div className="col-md-6">
