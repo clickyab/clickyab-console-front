@@ -7,7 +7,7 @@
     "clean-production": "rm -rf ./public/index.html ./public/build* ./public/vendor.bundle.js",
     "build": "npm run clean-production && webpack --config ./webpack/webpack.production.config.js --progress --profile --colors",
     "start": "webpack-dev-server --config ./webpack/webpack.config.js --progress --profile --colors",
-    "serve-production": "npm run build && webpack-dev-server --config ./webpack/webpack.web-production.config.js --progress --profile --colors",
+    "serve-production": "npm run build && webpack-dev-server --config ./webpack/webpack.serve-production.config.js --progress --profile --colors",
     "lint": "eslint --ext jsx --ext js ./src || exit 0",
     "build-css-rtl": "node-sass --source-map true --include-path public sass/base_rtl.scss   public/css/style-rtl.css postcss --use autoprefixer --output-style compressed",
     "build-css-ltr": "node-sass --source-map  true --include-path sass sass/base_ltr.scss   public/css/style-ltr.css postcss --use autoprefixer --output-style compressed ",
