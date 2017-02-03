@@ -4,20 +4,20 @@ import {sync} from "../../../functions/sync";
 import {ifInvalidToken} from "../../../functions/helpers";
 import {getToken} from "../../../redux/helpers";
 
-export default class ChangeChannelActiveStatus extends Component {
+export default class ChangeCampaignArchiveStatus extends Component {
 	edit(event) {
 		const {id} = this.props;
 		sync(function*() {
-			const {response} = yield (new swagger.ChannelApi())
-				.channelActiveIdPut(id, getToken());
+			const {response} = yield (new swagger.AdApi())
+				.campaignChangeArchiveIdPut(id, getToken());
 
 			ifInvalidToken(response);
 		});
 	}
 
 	render() {
-		let {translator, active} = this.props;
-		return <select name="active" defaultValue={active} onChange={this.edit.bind(this)}>
+		let {translator, archive_status} = this.props;
+		return <select name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
 			<option value="yes">{translator('yes')}</option>
 			<option value="no">{translator('no')}</option>
 		</select>
