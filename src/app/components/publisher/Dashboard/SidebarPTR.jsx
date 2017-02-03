@@ -45,13 +45,6 @@ export class Sidebar extends Component {
 							<span className='arrow open'/>
 						</SidebarLink>
 
-						<SidebarLink to="/v1/publisher/category">
-							<i className='fa fa-folder-open'/>
-							<span className='title'>دسته‌بندی‌ها</span>
-							<span className="selected"/>
-							<span className='arrow open'/>
-						</SidebarLink>
-
 						<SidebarLink to="/v1/publisher/user">
 							<i className='fa fa-user'/>
 							<span className='title'>مدیریت کاربران</span>

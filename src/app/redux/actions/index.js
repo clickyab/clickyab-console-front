@@ -1,24 +1,28 @@
-import * as login from './login';
-import * as user from './user';
-import * as token from './token';
-import * as register from './register';
-
 export const UPDATE_LOCAL_STORAGE = 'UPDATE_LOCAL_STORAGE';
 export const REMOVE_LOCAL_STORAGE = 'REMOVE_LOCAL_STORAGE';
 export const CHANGE_QUERY = 'CHANGE_QUERY';
+
+export const planListAction = (data) => ({type: PLAN_LIST, data});
+export const PLAN_LIST = 'PLAN_LIST';
 
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
 export const CAMPAIGN_STEP_TYPE = 'CAMPAIGN_STEP_TYPE';
-export const DELETE_CAMPAIGN_PROMOTE = 'DELTE_CAMPAIGN_PROMOTE';
-export const PLAN_LIST = 'PLAN_LIST';
+export const DELETE_CAMPAIGN_PROMOTE = 'DELETE_CAMPAIGN_PROMOTE';
 export const campaignListAction = (data) => ({type: CAMPAIGN_LIST, data});
-export const planListAction = (data) => ({type: PLAN_LIST, data});
 export const campaignItemsListAction = ({data}) => ({type: CAMPAIGN_ITEMS_LIST, data});
 export const createCampaign = (data) => ({type: CREATE_CAMPAIGN, data});
 export const campaignStepType = (data) => ({type: CAMPAIGN_STEP_TYPE, data});
 export const deleteCampaignPromote = () => ({type: DELETE_CAMPAIGN_PROMOTE});
+
+export const CAMPAIGN_REPORT_LIST = 'CAMPAIGN_REPORT_LIST';
+export const CAMPAIGN_REPORT_ITEMS_LIST = 'CAMPAIGN_REPORT_ITEMS_LIST';
+export const CREATE_REPORT_CAMPAIGN = 'CREATE_REPORT_CAMPAIGN';
+export const CAMPAIGN_REPORT_STEP_TYPE = 'CAMPAIGN_REPORT_STEP_TYPE';
+export const DELETE_CAMPAIGN_REPORT_PROMOTE = 'DELETE_CAMPAIGN_REPORT_PROMOTE';
+export const campaignReportListAction = (data) => ({type: CAMPAIGN_REPORT_LIST, data});
+export const campaignReportItemsListAction = ({data}) => ({type: CAMPAIGN_REPORT_ITEMS_LIST, data});
 
 export const USER_LIST = 'USER_LIST';
 export const USER_DATA = 'USER_DATA';
@@ -42,6 +46,20 @@ export const channelQueryAction = (list, query_name, queries) => ({type: CHANNEL
 export const channelListAction = (data) => ({type: CHANNEL_LIST, data});
 export const channelItemsListAction = ({data}) => ({type: CHANNEL_ITEMS_LIST, items: data});
 export const updateAChannelFromListAction = (data) => ({type: UPDATE_CHANNEL_FROM_LIST, data});
+
+export const CHANNEL_REPORT_LIST = 'CHANNEL_REPORT_LIST';
+export const CHANNEL_REPORT_DATA = 'CHANNEL_REPORT_DATA';
+export const CHANNEL_REPORT_QUERY = 'CHANNEL_REPORT_QUERY';
+export const CHANNEL_ITEMS_REPORT_LIST = 'CHANNEL_ITEMS_REPORT_LIST';
+export const channelReportDataAction = (data) => ({type: CHANNEL_REPORT_DATA, data});
+export const channelReportQueryAction = (list, query_name, queries) => ({
+	type: CHANNEL_REPORT_QUERY,
+	list,
+	query_name,
+	queries
+});
+export const channelReportListAction = (data) => ({type: CHANNEL_REPORT_LIST, data});
+export const channelItemsReportListAction = ({data}) => ({type: CHANNEL_ITEMS_REPORT_LIST, items: data});
 
 export const UPDATE_ROLE_FROM_LIST = 'UPDATE_ROLE_FROM_LIST';
 export const ADD_ROLE = 'ADD_ROLE';
@@ -68,7 +86,7 @@ export const categoryDataAction = (data) => ({type: CATEGORY_DATA, data});
 export const updateACategoryFromListAction = (data) => ({type: UPDATE_CATEGORY_FROM_LIST, data});
 
 export const TELEGRAM_LIST = 'TELEGRAM_LIST';
-export const TELEGRAM_ITEMS_LIST ='TELEGRAM_ITEMS_LIST';
+export const TELEGRAM_ITEMS_LIST = 'TELEGRAM_ITEMS_LIST';
 export const telegramListAction = (data) => ({type: TELEGRAM_LIST, data});
 export const telegramItemsListAction = ({data}) => ({type: TELEGRAM_ITEMS_LIST, items: data});
 
