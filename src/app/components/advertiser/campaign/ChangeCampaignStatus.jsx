@@ -4,12 +4,12 @@ import {sync} from "../../../functions/sync";
 import {ifInvalidToken} from "../../../functions/helpers";
 import {getToken} from "../../../redux/helpers";
 
-export default class ChangeChannelStatus extends Component {
+export default class ChangeCampaignStatus extends Component {
 	edit(event) {
 		const {id} = this.props;
 		sync(function*() {
-			const {response} = yield (new swagger.ChannelApi())
-				.channelStatusIdPut(id, getToken(), {payloadData: {}});
+			const {response} = yield (new swagger.AdApi())
+				.campaignChangeAdminIdPut(id, getToken(), {payloadData: {}});
 			ifInvalidToken(response);
 		});
 	}

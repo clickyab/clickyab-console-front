@@ -17,7 +17,7 @@ export default class ChangeChannelArchiveStatus extends Component {
 
 	render() {
 		let {translator, archive_status} = this.props;
-		return <select name="archive" value={archive_status} onChange={this.edit.bind(this)}>
+		return <select name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
 			<option value="yes">{translator('yes')}</option>
 			<option value="no">{translator('no')}</option>
 		</select>
