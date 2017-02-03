@@ -87,7 +87,7 @@ export default class UploadFileCTR extends Component {
                         fileReader.readAsDataURL(file.file);
 
                         // AlertBox("success","آپلود فایل با موفقیت انجام شد هم اکنون متن تبلیغ خود را وارد نمایید");
-                        // navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                        // navigate('/v1/advertiser/campaign/create/:campaign_id:/step/editor', {
                         //     campaign_id: select('createCampaignData.id')
                         // });
                     } else if (response.statusCode == '400') {
@@ -388,14 +388,14 @@ export default class UploadFileCTR extends Component {
                             <div className="col-md-12 margin-top-20 space-btn">
                                 <button onClick={
                                     () => {
-                                        navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
                                             campaign_id: select('createCampaignData.id')
                                         });
                                     }
                                 } className="btn btn-default  button-next btn-arrow-text" type="submit"> <i className="fa fa-angle-right"/> مرحله قبل </button>
                                 <button onClick={
                                     () => {
-                                        navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/editor', {
                                             campaign_id: select('createCampaignData.id')
                                         });
                                     }

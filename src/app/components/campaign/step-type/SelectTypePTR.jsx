@@ -14,7 +14,7 @@ class SelectTypePTR extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            next: '/v1/campaign/create/:campaign_id:/step/upload',
+            next: '/v1/advertiser/campaign/create/:campaign_id:/step/upload',
             type: 'upload'
         }
     }
@@ -23,13 +23,13 @@ class SelectTypePTR extends Component {
         if(select('campaignStepData.type') == 'promote') {
             dispatch(change("SelectTypePTRForm", 'step-type-content', 'select_content'));
             this.setState({
-                next: "/v1/campaign/create/:campaign_id:/step/promote",
+                next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
                 type: 'promote'
             });
         } else  {
             dispatch(change("SelectTypePTRForm", 'step-type-content', 'generate_content'));
             this.setState({
-                next: "/v1/campaign/create/:campaign_id:/step/upload",
+                next: "/v1/advertiser/campaign/create/:campaign_id:/step/upload",
                 type: 'upload'
             });
         }
@@ -204,7 +204,7 @@ class SelectTypePTR extends Component {
                                                     <Radio label={'محتوای جدید'} name={'step-type-content'}
                                                            onClick={(event) => {
                                                                this.setState({
-                                                                   next: "/v1/campaign/create/:campaign_id:/step/upload",
+                                                                   next: "/v1/advertiser/campaign/create/:campaign_id:/step/upload",
                                                                    type: 'upload'
                                                                });
                                                            }}
@@ -212,7 +212,7 @@ class SelectTypePTR extends Component {
                                                     <Radio label={'پروموت محتوای کانال های دیگر'}
                                                            onClick={(event) => {
                                                                this.setState({
-                                                                   next: "/v1/campaign/create/:campaign_id:/step/promote",
+                                                                   next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
                                                                    type: 'promote'
                                                                });
                                                            }}
@@ -224,7 +224,7 @@ class SelectTypePTR extends Component {
                                                 <div className="col-md-12 margin-top-20 space-btn">
                                                     <button onClick={
                                                         () => {
-                                                            navigate('/v1/campaign/create/:campaign_id:/step/name', {
+                                                            navigate('/v1/advertiser/campaign/create/:campaign_id:/step/name', {
                                                                 campaign_id: select('createCampaignData.id')
                                                             });
                                                         }

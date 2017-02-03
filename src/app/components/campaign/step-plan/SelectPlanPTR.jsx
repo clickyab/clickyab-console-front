@@ -55,7 +55,7 @@ export default class SelectPlanPTR extends Component {
                     })));
                     dispatch(updateLocalStorageAction());
 
-                    navigate('/v1/campaign/create/:campaign_id:/step/preview', {
+                    navigate('/v1/advertiser/campaign/create/:campaign_id:/step/preview', {
                         campaign_id: select('createCampaignData.id')
                     });
                 } else if (response.statusCode == '400') {
@@ -227,11 +227,11 @@ export default class SelectPlanPTR extends Component {
                                 <button onClick={
                                     () => {
                                         if (select('createCampaignData.promotes') == null) {
-                                            navigate('/v1/campaign/create/:campaign_id:/step/editor', {
+                                            navigate('/v1/advertiser/campaign/create/:campaign_id:/step/editor', {
                                                 campaign_id: select('createCampaignData.id')
                                             });
                                         } else {
-                                            navigate('/v1/campaign/create/:campaign_id:/step/promote', {
+                                            navigate('/v1/advertiser/campaign/create/:campaign_id:/step/promote', {
                                                 campaign_id: select('createCampaignData.id')
                                             });
                                         }

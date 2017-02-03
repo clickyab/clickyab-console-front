@@ -1,25 +1,27 @@
-import React from 'react';
-import {Router, Route, browserHistory, IndexRoute} from 'react-router';
-import App from './app';
-import Login from './components/login/LoginCTR';
-import CategoryListCTR from './components/category/CategoryListCTR';
-import onLogin from './middlewares/routes/onLoginEnterMiddleware';
-import onUserEnterMiddleware from './middlewares/routes/onUserEnterMiddleware';
-import onProfileEnterMiddleware from './middlewares/routes/onProfileEnterMiddleware';
-import Register from './components/register/RegisterCTR';
-import Transition from './components/common/Transition';
-import ForgotPassword from './components/PaswordRecovery/PasswordRecoveryCTR';
-import AdvertiserDashboardPage from './components/advertiser/Dashboard/IndexCTR';
-import PublisherDashboardPage from './components/publisher/Dashboard/IndexCTR';
-import UserProfile from './components/UserProfile/UserProfileCTR';
-import UsersListCTR from './components/Users/UsersListCTR';
-import ChannelListCTR from './components/channel/ChannelListCTR';
-import ServerDown from './components/ServerDown/ServerDown';
-import onChannelEnterMiddleware from './middlewares/routes/onChannelEnterMiddleware';
-import onCampaignEnterMiddleware from './middlewares/routes/onCampaignEnterMiddleware';
-import onCategoryEnterMiddleware from './middlewares/routes/onCategoryEnterMiddleware';
-import onSlashEnterMiddleware from './middlewares/routes/onSlashEnterMiddleware';
-import onDashboardEnterMiddleware from './middlewares/routes/onDashboardEnterMiddleware';
+import React from "react";
+import {Router, Route, browserHistory, IndexRoute} from "react-router";
+import App from "./app";
+import Login from "./components/login/LoginCTR";
+import CategoryListCTR from "./components/category/CategoryListCTR";
+import onLogin from "./middlewares/routes/onLoginEnterMiddleware";
+import onUserEnterMiddleware from "./middlewares/routes/onUserEnterMiddleware";
+import onProfileEnterMiddleware from "./middlewares/routes/onProfileEnterMiddleware";
+import Register from "./components/register/RegisterCTR";
+import Transition from "./components/common/Transition";
+import ForgotPassword from "./components/PaswordRecovery/PasswordRecoveryCTR";
+import AdvertiserDashboardPage from "./components/advertiser/Dashboard/IndexCTR";
+import Advertiser from "./components/advertiser/Advertiser";
+import PublisherDashboardPage from "./components/publisher/Dashboard/IndexCTR";
+import Publisher from "./components/publisher/Publisher";
+import UserProfile from "./components/UserProfile/UserProfileCTR";
+import UsersListCTR from "./components/Users/UsersListCTR";
+import ChannelListCTR from "./components/channel/ChannelListCTR";
+import ServerDown from "./components/ServerDown/ServerDown";
+import onChannelEnterMiddleware from "./middlewares/routes/onChannelEnterMiddleware";
+import onCampaignEnterMiddleware from "./middlewares/routes/onCampaignEnterMiddleware";
+import onCategoryEnterMiddleware from "./middlewares/routes/onCategoryEnterMiddleware";
+import onSlashEnterMiddleware from "./middlewares/routes/onSlashEnterMiddleware";
+import onDashboardEnterMiddleware from "./middlewares/routes/onDashboardEnterMiddleware";
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
 import onUpdateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onUpdateCampaignStepOneOnEnterMiddleware";
 import onCreateCampaignStepTwoOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepTwoOnEnterMiddleware";
@@ -27,18 +29,18 @@ import onCreateCampaignStepThreeOnEnterMiddleware from "./middlewares/routes/onC
 import onPlanListEnterMiddleware from "./middlewares/routes/onPlanListEnterMiddleware";
 import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMiddleware";
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
-import onTelegramEnterMiddleware from './middlewares/routes/onTelegramEnterMiddleware';
-import onRoleEnterMiddleware from './middlewares/routes/onRoleEnterMiddleware';
-import CampaignListCTR from './components/campaign/CampiagnListCTR';
-import CampaignCreateCTR from './components/campaign/step-name/CreateCTR';
-import UploadFileCTR from './components/campaign/step-upload/UploadFileCTR';
-import CaptionCTR from './components/campaign/step-editor/CaptionCTR';
-import SelectPlanCTR from './components/campaign/step-plan/SelectPlanCTR';
-import SelectTypeCTR from './components/campaign/step-type/SelectTypeCTR';
-import SelectContentByChannelCTR from './components/campaign/step-promote/SelectContentByChannelCTR';
-import PageNotFound from './components/404/PageNotFound';
-import TelegramListCTR from './components/telegram/TelegramListCTR';
-import RolesListCTR from './components/roles/RolesListCTR';
+import onTelegramEnterMiddleware from "./middlewares/routes/onTelegramEnterMiddleware";
+import onRoleEnterMiddleware from "./middlewares/routes/onRoleEnterMiddleware";
+import CampaignListCTR from "./components/campaign/CampiagnListCTR";
+import CampaignCreateCTR from "./components/campaign/step-name/CreateCTR";
+import UploadFileCTR from "./components/campaign/step-upload/UploadFileCTR";
+import CaptionCTR from "./components/campaign/step-editor/CaptionCTR";
+import SelectPlanCTR from "./components/campaign/step-plan/SelectPlanCTR";
+import SelectTypeCTR from "./components/campaign/step-type/SelectTypeCTR";
+import SelectContentByChannelCTR from "./components/campaign/step-promote/SelectContentByChannelCTR";
+import PageNotFound from "./components/404/PageNotFound";
+import TelegramListCTR from "./components/telegram/TelegramListCTR";
+import RolesListCTR from "./components/roles/RolesListCTR";
 import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddleware";
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
 import {dispatch} from "./functions/dispatch";
@@ -50,64 +52,67 @@ import StepPreviewCTR from "./components/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
 
 
-export default () => (
-    <Router history={browserHistory}>
-        <Route path='/v1' component={App}>
-            <IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
-                        onEnter={onDashboardEnterMiddleware}
-                        getDisplayName={() => 'Dashboard'}/>
-            <Route path='publisher' component={PublisherDashboardPage} name='publisher'
-                   onEnter={onPublisherEnterMiddleware}/>
-            <Route path='advertiser' component={AdvertiserDashboardPage} name='advertiser'
-                   onEnter={onAdvertiserEnterMiddleware}/>
-            <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
-            <Route path='category' component={CategoryListCTR} name='category' onEnter={onCategoryEnterMiddleware}/>
-            <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
-            <Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
-            <Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
-            <Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware}/>
-            <Route path="role" component={RolesListCTR} name="roleList" onEnter={onRoleEnterMiddleware}/>
-
-            <Route path='campaign/create/step/name' component={CampaignCreateCTR}
-                   onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
-            <Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
-                   onEnter={onUpdateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
-
-            <Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}
-                   onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignType'/>
-
-            <Route path='campaign/create/:campaign_id/step/promote' component={SelectContentByChannelCTR}
-                   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignPromote'/>
-            <Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
-                   onEnter={onUploadEnterMiddleware} name='upload'/>
-            <Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
-                   onEnter={onEditorEnterMiddleware}/>
-            <Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
-                   onEnter={onPlanListEnterMiddleware}/>
-            <Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR} name='campaignPreview'
-                   onEnter={onPreviewCampaignMiddleware}/>
-        </Route>
-
-        <Route path='/v1' component={Transition}>
-            <Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
-            <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
-            <Route path='password-recovery' component={ForgotPassword} name=''/>
-        </Route>
-
-        <Route path="/" onEnter={onSlashEnterMiddleware}/>
-
-        <Route path="*" component={PageNotFound}/>
-        <Route path="/server-down" component={ServerDown}/>
-    </Router>
-);
-
 document.body.addEventListener("panic", function (event) {
-    dispatch(logout());
-    dispatch(updatePersonalInformation({}));
-    dispatch(updateLocalStorageAction());
-    navigate("/v1/login");
+	dispatch(logout());
+	dispatch(updatePersonalInformation({}));
+	dispatch(updateLocalStorageAction());
+	navigate("/v1/login");
 });
 
 document.body.addEventListener("server-down", function (event) {
-    navigate("/server-down");
+	navigate("/server-down");
 });
+
+export default () => (
+	<Router history={browserHistory}>
+		<Route path='/v1' component={App}>
+			<IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
+						onEnter={onDashboardEnterMiddleware}
+						getDisplayName={() => 'Dashboard'}/>
+
+			<Route path='publisher' component={Publisher}>
+				<IndexRoute component={PublisherDashboardPage} name='PublisherDashboard'
+							onEnter={onPublisherEnterMiddleware}/>
+				<Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
+				<Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
+				<Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware}/>
+				<Route path="role" component={RolesListCTR} name="roleList" onEnter={onRoleEnterMiddleware}/>
+			</Route>
+
+			<Route path='advertiser' component={Advertiser}>
+				<IndexRoute component={AdvertiserDashboardPage} name='advertiser'
+					   onEnter={onAdvertiserEnterMiddleware}/>
+				<Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
+				<Route path='campaign/create/step/name' component={CampaignCreateCTR}
+					   onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+				<Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
+					   onEnter={onUpdateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+
+				<Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}
+					   onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignType'/>
+
+				<Route path='campaign/create/:campaign_id/step/promote' component={SelectContentByChannelCTR}
+					   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignPromote'/>
+				<Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
+					   onEnter={onUploadEnterMiddleware} name='upload'/>
+				<Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
+					   onEnter={onEditorEnterMiddleware}/>
+				<Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
+					   onEnter={onPlanListEnterMiddleware}/>
+				<Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR} name='campaignPreview'
+					   onEnter={onPreviewCampaignMiddleware}/>
+			</Route>
+		</Route>
+
+		<Route path='/v1' component={Transition}>
+			<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
+			<Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
+			<Route path='login' component={Login} name='Login' onEnter={onLogin}/>
+			<Route path='password-recovery' component={ForgotPassword} name=''/>
+		</Route>
+
+		<Route path="/" onEnter={onSlashEnterMiddleware}/>
+		<Route path="/server-down" component={ServerDown}/>
+		<Route path="*" component={PageNotFound}/>
+	</Router>
+);

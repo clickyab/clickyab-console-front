@@ -51,13 +51,10 @@ export default class SelectContentByChannelCTR extends Component {
                             .channelLastNameCountGet(formValues.name , formValues.count || 5, select("user.token", "no token"))
                             .then(({data , response}) => this.jobIsCompleted(data , response));
                     },2000);
-                    // navigate('/v1/campaign/create/step/2');
                 } else if (response.statusCode == '400') {
                     loadingProgress.stop();
                     AlertBox("error","اختلالی در سرور پیش آمده است لطفا دوباره تلاش کنید");
                 }
-
-                // ifInvalidToken(response);
             }.bind(this));
 
         } catch (error) {

@@ -11,7 +11,7 @@ export function* isCampaignMiddleware(props) {
     if (error || props.params.campaign_id === undefined) {
         throwError('isCampaignMiddleware', function () {
             dispatch(createCampaign({}));
-            navigate('/v1/campaign/');
+            navigate('/v1/advertiser/campaign/');
             AlertBox("error","این کمپین در سیسستم وجود ندارد");
         });
     }

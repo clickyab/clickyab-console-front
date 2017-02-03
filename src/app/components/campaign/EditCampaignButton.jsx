@@ -19,7 +19,7 @@ export default class EditCampaignButton extends Component {
             if (response.statusCode == '200') {
                 $(event.target).parent().removeClass("disabled");
                 dispatch(createCampaign(data));
-                navigate('/v1/campaign/create/:campaign_id:/step/name', {
+                navigate('/v1/advertiser/campaign/create/:campaign_id:/step/name', {
                     campaign_id: select('createCampaignData.id')
                 });
             } else if (response.statusCode == '400') {

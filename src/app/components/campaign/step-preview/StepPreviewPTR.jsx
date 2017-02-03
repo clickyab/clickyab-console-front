@@ -202,7 +202,7 @@ class StepPreviewPTR extends Component {
                                             <div className="col-md-offset-3 col-md-9">
                                                 <button onClick={
                                                     () => {
-                                                        navigate('/v1/campaign/create/:campaign_id:/step/plan', {
+                                                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
                                                             campaign_id: select('createCampaignData.id')
                                                         });
                                                     }
@@ -211,7 +211,7 @@ class StepPreviewPTR extends Component {
                                                 </button>
                                                 <button onClick={
                                                     () => {
-                                                        navigate('/v1/');
+                                                        navigate('/v1/advertiser');
                                                     }
                                                 } className="btn btn-primary  button-next btn-arrow-text margin-top-40"
                                                         type="submit">تایید و پرداخت <i className="fa fa-angle-left"/>
