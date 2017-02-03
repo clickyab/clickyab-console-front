@@ -8,9 +8,9 @@
  * @requires react-router
  *
  */
-import React from 'react';
-import {Link} from 'react-router';
-import ExecutionEnvironment from 'exenv';
+import React from "react";
+import {Link} from "react-router";
+import ExecutionEnvironment from "exenv";
 
 export class Breadcrumbs extends React.Component {
 
@@ -95,24 +95,24 @@ export class Breadcrumbs extends React.Component {
 		// Replace route param with real param (if provided)
 		let currentKey = route.path.split('/')[route.path.split('/').length - 1];
 		let keyValue;
-		route.path.split('/').map((link)=> {
+		route.path.split('/').map((link) => {
 			if (link.substring(0, 1) == ':') {
 				if (this.props.params) {
 					keyValue = Object.keys(this.props.params).map((param) => {
 						return this.props.params[param];
 					});
-					let pathWithParam = route.path.split('/').map((link)=> {
+					let pathWithParam = route.path.split('/').map((link) => {
 						if (link.substring(0, 1) == ':') {
 							return keyValue.shift();
 						} else {
 							return link;
 						}
 					})
-					route.path = pathWithParam.reduce((start, link)=> {
+					route.path = pathWithParam.reduce((start, link) => {
 						return start + '/' + link;
 					})
 					if (!route.staticName && currentKey.substring(0, 1) == ':')
-						name = pathWithParam.reduce((start, link)=> {
+						name = pathWithParam.reduce((start, link) => {
 							return link;
 						});
 

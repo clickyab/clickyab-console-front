@@ -1,7 +1,7 @@
-import React, {Component} from 'react';
-import PersonalUserPTR from './PersonalUserPTR';
-import swagger from './../../swagger/index';
-import {connect} from 'react-redux';
+import React, {Component} from "react";
+import PersonalUserPTR from "./PersonalUserPTR";
+import swagger from "./../../swagger/index";
+import {connect} from "react-redux";
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
@@ -13,62 +13,62 @@ let Ladda = require('ladda/js/ladda');
 
 @connect()
 export default class PersonalUserCTR extends Component {
-    loadingProgress;
+	loadingProgress;
 
-    editProfileSuccessfullyDispatchers(user) {
-        let {dispatch} = this.props;
-        dispatch(updatePersonalInformation(user));
-        if (select('user.corporation') != null) {
-            dispatch(deleteCorporationInformation());
-        }
-        dispatch(updateLocalStorageAction());
-    }
+	editProfileSuccessfullyDispatchers(user) {
+		let {dispatch} = this.props;
+		dispatch(updatePersonalInformation(user));
+		if (select('user.corporation') != null) {
+			dispatch(deleteCorporationInformation());
+		}
+		dispatch(updateLocalStorageAction());
+	}
 
 
-    PersonalUserCallback({error, data, response}) {
-        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-        if (response.statusCode == '200') {
-            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-            this.loadingProgress.stop();
-            SuccessBoxAlert(response);
-        } else if (response.statusCode == '400') {
+	PersonalUserCallback({error, data, response}) {
+		response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+		response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+		if (response.statusCode == '200') {
+			this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
+			this.loadingProgress.stop();
+			SuccessBoxAlert(response);
+		} else if (response.statusCode == '400') {
 
-            this.stopLoading();
-            FailedBoxAlert(response);
-        }
-        ifInvalidToken(response);
-    }
+			this.stopLoading();
+			FailedBoxAlert(response);
+		}
+		ifInvalidToken(response);
+	}
 
-    PersonalCall(formValues) {
+	PersonalCall(formValues) {
 
-        (new swagger.UserApi())
-            .userProfilePost(getToken(),
-                {'payloadData': {"personal": formValues}})
-            .then(response => this.PersonalUserCallback(response));
-    }
+		(new swagger.UserApi())
+			.userProfilePost(getToken(),
+				{'payloadData': {"personal": formValues}})
+			.then(response => this.PersonalUserCallback(response));
+	}
 
-    loading() {
-        this.loadingProgress = Ladda.create(document.querySelector('.personal-form button[type=submit]'));
-        this.loadingProgress.start();
-    }
+	loading() {
+		this.loadingProgress = Ladda.create(document.querySelector('.personal-form button[type=submit]'));
+		this.loadingProgress.start();
+	}
 
-    stopLoading() {
-        if (this.loadingProgress)
-            this.loadingProgress.stop();
-    }
+	stopLoading() {
+		if (this.loadingProgress)
+			this.loadingProgress.stop();
+	}
 
-    SubmitPersonalUser = (formValues, form) => {
+	SubmitPersonalUser = (formValues, form) => {
 
-        moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D');
-        if (!form.valid())
-            return;
+		moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D');
+		if (!form.valid())
+			return;
 
-        this.loading();
-        this.PersonalCall(formValues)
-    };
+		this.loading();
+		this.PersonalCall(formValues)
+	};
 
-    render() {
-        return (<PersonalUserPTR SubmitPersonalUser={this.SubmitPersonalUser}/>);
-    }
+	render() {
+		return (<PersonalUserPTR SubmitPersonalUser={this.SubmitPersonalUser}/>);
+	}
 }

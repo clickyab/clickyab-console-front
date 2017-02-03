@@ -9,54 +9,53 @@
  * ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN
  * CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
  */
-
-import React, {Component} from 'react';
+import React, {Component} from "react";
 
 var TouchableArea = React.createClass({
-    getDefaultProps() {
-        return {
-            touchable: true
-        };
-    },
+	getDefaultProps() {
+		return {
+			touchable: true
+		};
+	},
 
-    handleTouchStart(e) {
-        if (!this.props.scroller || !this.props.touchable) {
-            return;
-        }
+	handleTouchStart(e) {
+		if (!this.props.scroller || !this.props.touchable) {
+			return;
+		}
 
-        this.props.scroller.doTouchStart(e.touches, e.timeStamp);
-        e.preventDefault();
-    },
+		this.props.scroller.doTouchStart(e.touches, e.timeStamp);
+		e.preventDefault();
+	},
 
-    handleTouchMove(e) {
-        if (!this.props.scroller || !this.props.touchable) {
-            return;
-        }
+	handleTouchMove(e) {
+		if (!this.props.scroller || !this.props.touchable) {
+			return;
+		}
 
-        this.props.scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
-        e.preventDefault();
-    },
+		this.props.scroller.doTouchMove(e.touches, e.timeStamp, e.scale);
+		e.preventDefault();
+	},
 
-    handleTouchEnd(e) {
-        if (!this.props.scroller || !this.props.touchable) {
-            return;
-        }
+	handleTouchEnd(e) {
+		if (!this.props.scroller || !this.props.touchable) {
+			return;
+		}
 
-        this.props.scroller.doTouchEnd(e.timeStamp);
-        e.preventDefault();
-    },
+		this.props.scroller.doTouchEnd(e.timeStamp);
+		e.preventDefault();
+	},
 
-    render() {
-        return (
-            <div
-                onTouchStart={this.handleTouchStart}
-                onTouchMove={this.handleTouchMove}
-                onTouchEnd={this.handleTouchEnd}
-                onTouchCancel={this.handleTouchEnd}>
-                {this.props.children}
-            </div>
-        );
-    }
+	render() {
+		return (
+			<div
+				onTouchStart={this.handleTouchStart}
+				onTouchMove={this.handleTouchMove}
+				onTouchEnd={this.handleTouchEnd}
+				onTouchCancel={this.handleTouchEnd}>
+				{this.props.children}
+			</div>
+		);
+	}
 });
 
 module.exports = TouchableArea;

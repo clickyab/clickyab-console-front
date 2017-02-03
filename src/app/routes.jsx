@@ -13,14 +13,13 @@ import Advertiser from "./components/advertiser/Advertiser";
 import PublisherDashboardPage from "./components/publisher/Dashboard/IndexCTR";
 import Publisher from "./components/publisher/Publisher";
 import UserProfile from "./components/UserProfile/UserProfileCTR";
-import UsersListCTR from "./components/Users/UsersListCTR";
-import ChannelListCTR from "./components/channel/ChannelListCTR";
-import ChannelReportListCTR from "./components/channel/report/ChannelReportListCTR";
+import UsersListCTR from "./components/publisher/Users/UsersListCTR";
+import ChannelListCTR from "./components/publisher/channel/ChannelListCTR";
+import ChannelReportListCTR from "./components/publisher/channel/report/ChannelReportListCTR";
 import ServerDown from "./components/ServerDown/ServerDown";
 import onChannelEnterMiddleware from "./middlewares/routes/onChannelEnterMiddleware";
 import onCampaignEnterMiddleware from "./middlewares/routes/onCampaignEnterMiddleware";
 import onSlashEnterMiddleware from "./middlewares/routes/onSlashEnterMiddleware";
-import onDashboardEnterMiddleware from "./middlewares/routes/onDashboardEnterMiddleware";
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
 import onUpdateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onUpdateCampaignStepOneOnEnterMiddleware";
 import onCreateCampaignStepTwoOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepTwoOnEnterMiddleware";
@@ -30,16 +29,16 @@ import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMid
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import onTelegramEnterMiddleware from "./middlewares/routes/onTelegramEnterMiddleware";
 import onRoleEnterMiddleware from "./middlewares/routes/onRoleEnterMiddleware";
-import CampaignListCTR from "./components/campaign/CampiagnListCTR";
-import CampaignCreateCTR from "./components/campaign/step-name/CreateCTR";
-import UploadFileCTR from "./components/campaign/step-upload/UploadFileCTR";
-import CaptionCTR from "./components/campaign/step-editor/CaptionCTR";
-import SelectPlanCTR from "./components/campaign/step-plan/SelectPlanCTR";
-import SelectTypeCTR from "./components/campaign/step-type/SelectTypeCTR";
-import SelectContentByChannelCTR from "./components/campaign/step-promote/SelectContentByChannelCTR";
+import CampaignListCTR from "./components/advertiser/campaign/CampiagnListCTR";
+import CampaignCreateCTR from "./components/advertiser/campaign/step-name/CreateCTR";
+import UploadFileCTR from "./components/advertiser/campaign/step-upload/UploadFileCTR";
+import CaptionCTR from "./components/advertiser/campaign/step-editor/CaptionCTR";
+import SelectPlanCTR from "./components/advertiser/campaign/step-plan/SelectPlanCTR";
+import SelectTypeCTR from "./components/advertiser/campaign/step-type/SelectTypeCTR";
+import SelectContentByChannelCTR from "./components/advertiser/campaign/step-promote/SelectContentByChannelCTR";
 import PageNotFound from "./components/404/PageNotFound";
-import TelegramListCTR from "./components/telegram/TelegramListCTR";
-import RolesListCTR from "./components/roles/RolesListCTR";
+import TelegramListCTR from "./components/publisher/telegram/TelegramListCTR";
+import RolesListCTR from "./components/publisher/roles/RolesListCTR";
 import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddleware";
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
 import {dispatch} from "./functions/dispatch";
@@ -47,11 +46,12 @@ import {logout} from "./redux/actions/login";
 import {updatePersonalInformation} from "./redux/actions/user";
 import {updateLocalStorageAction} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
-import StepPreviewCTR from "./components/campaign/step-preview/StepPreviewCTR";
+import StepPreviewCTR from "./components/advertiser/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
-import CampaignReportListCTR from "./components/campaign/report/CampaignReportListCTR";
+import CampaignReportListCTR from "./components/advertiser/campaign/report/CampaignReportListCTR";
 import onCampaignReportEnterMiddleware from "./middlewares/routes/onCampaignReportEnterMiddleware";
 import onChannelReportEnterMiddleware from "./middlewares/routes/onChannelReportEnterMiddleware";
+import {store} from "./redux/store";
 
 document.body.addEventListener("panic", function (event) {
 	dispatch(logout());
@@ -67,9 +67,15 @@ document.body.addEventListener("server-down", function (event) {
 export default () => (
 	<Router history={browserHistory}>
 		<Route path='/v1' component={App}>
-			<IndexRoute component={AdvertiserDashboardPage} name='Dashboard'
-						onEnter={onDashboardEnterMiddleware}
-						getDisplayName={() => 'Dashboard'}/>
+			<IndexRoute component={() => {
+				if (store.getState().userType == 'advertiser') {
+					navigate('/v1/advertiser');
+				} else {
+					navigate('/v1/publisher');
+				}
+
+				return <span/>;
+			}}/>
 
 			<Route path='publisher' component={Publisher}>
 				<IndexRoute component={PublisherDashboardPage} name='PublisherDashboard'

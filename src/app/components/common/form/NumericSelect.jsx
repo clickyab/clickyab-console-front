@@ -6,9 +6,10 @@ class NumericSelect extends Component {
 	render() {
 		const {name, children, onCustomChange, className, form} = this.props;
 		return (
-			<select {...this.props.input} onBlur={() => {}}
+			<select {...this.props.input} onBlur={() => {
+			}}
 					className={className} name={name} id={name} onChange={(event) => {
-				if(typeof onCustomChange != 'undefined') {
+				if (typeof onCustomChange != 'undefined') {
 					onCustomChange(event);
 				}
 
