@@ -58,7 +58,7 @@ class SelectContentByChannelPTR extends Component {
                     })));
                     dispatch(updateLocalStorageAction());
 
-                    navigate('/v1/campaign/create/:campaign_id:/step/plan', {
+                    navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
                         campaign_id: select('createCampaignData.id')
                     });
                 } else if (response.statusCode == '400') {
@@ -196,7 +196,7 @@ class SelectContentByChannelPTR extends Component {
                                 نمایید</p></div>
                             <button onClick={
                                 () => {
-                                    navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                                    navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
                                         campaign_id: select('createCampaignData.id')
                                     });
                                 }

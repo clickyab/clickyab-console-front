@@ -131,7 +131,7 @@ class CaptionPTR extends Component {
                             <div className="margin-top-20 space-btn">
                                 <button onClick={
                                     () => {
-                                        navigate('/v1/campaign/create/:campaign_id:/step/type', {
+                                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
                                             campaign_id: select('createCampaignData.id')
                                         });
                                     }

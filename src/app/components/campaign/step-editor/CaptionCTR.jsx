@@ -37,7 +37,7 @@ export default class CaptionCTR extends Component {
                         loadingProgress.stop();
                         AlertBox("success", "کپشن با موفقیت افزوده شد، هم اکنون پلن تبلیغاتی خود را انتخاب کنید");
 
-                        navigate('/v1/campaign/create/:campaign_id:/step/plan', {
+                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
                             campaign_id: select('createCampaignData.id')
                         });
                     } else if (response.statusCode == '400') {

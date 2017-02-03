@@ -10,7 +10,7 @@ export default class CampaignListPTR extends Component {
         document.title = "مدیریت کمپین ها";
 		$(document).on("click", "#showAddCampaign", function () {
             dispatch(createCampaign({}));
-			navigate('/v1/campaign/create/step/name');
+			navigate('/v1/advertiser/campaign/create/step/name');
 		})
 	}
 

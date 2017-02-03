@@ -43,7 +43,7 @@ export class Sidebar extends Component {
                             <span className='arrow open'/>
                         </SidebarLink>
 
-                        <SidebarLink to="/v1/campaign">
+                        <SidebarLink to="/v1/advertiser/campaign">
                             <i className='fa fa-bullseye'/>
                             <span className='title'>کمپین‌ها</span>
                             <span className="selected"/>

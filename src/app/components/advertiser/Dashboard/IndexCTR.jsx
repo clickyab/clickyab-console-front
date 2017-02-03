@@ -9,7 +9,6 @@ require('amcharts3/amcharts/pie');
 require('amcharts3/amcharts/themes/light');
 require('amcharts3/amcharts/themes/patterns');
 require('amcharts3/amcharts/themes/chalk');
-import {secure} from "react-redux-secure";
 import BudgetChartPTR from './../../../components/advertiser/Dashboard/BudgetChartPTR';
 import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR';
 
@@ -19,7 +18,6 @@ import RangePickerPTR from '../../../components/common/datepicker/RangePickerPTR
 })=>({
     DashboardTitle
 }))
-@secure(({user}, {comments, editComments}, run) => run(editComments(), comments()))
 export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
         loading(false);
@@ -276,7 +274,7 @@ export default class AdvertiserDashboardPage extends Component {
                         <h1 className='page-title'> کمپین ها</h1>
                     </div>
                     <div className='top-action-header'>
-                        <Link to="/v1/campaign/create/step/name" className="btn btn-lg blue pull-left">
+                        <Link to="/v1/advertiser/campaign/create/step/name" className="btn btn-lg blue pull-left">
                             <i className="fa fa-plus"/> ساخت کمپین جدید
                         </Link>
                     </div>
