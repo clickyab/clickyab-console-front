@@ -16,7 +16,7 @@ export class ConsoleCell extends Component {
 	render() {
 		let {mutator, data, actions, edit, id} = this.props;
 		return (
-			actions ? <td>{this.buildActions(id, data, edit)}</td> : mutator ? <td>{mutator(data)}</td> :
+			actions ? <td>{this.buildActions(id, data, edit)}</td> : mutator ? <td>{mutator(data, this.props)}</td> :
 					<td>{data}</td>
 		);
 	}

@@ -8,24 +8,20 @@ import {channelItemsListAction} from "../../../redux/actions/index";
 import moment from "moment-jalali";
 import {sync} from "../../../functions/sync";
 import {translatable} from "react-multilingual/dist";
+import ChangeChannelStatus from "./ChangeChannelStatus";
+import ChangeChannelArchiveStatus from "./ChangeChannelArchiveStatus";
+import ChangeChannelActiveStatus from "./ChangeChannelActiveStatus";
 
 @connect(({channelList}) => ({channelList}))
 @translatable(({
-	Email, Type, Status,
-	CreatedAt, UpdatedAt, Action,
-	UserID, Name, Link,
-	AdminStatus, ArchiveStatus, Active,
-	accepted, pending, rejected,
-	yes, no, ID
-
+	Email, Type, Status, CreatedAt, UpdatedAt, Action,
+	UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
+	accepted, pending, rejected, yes, no, ID
 }) => ({
 	translation: {
-		Email, Type, Status,
-		CreatedAt, UpdatedAt, Action,
-		UserID, Name, Link,
-		AdminStatus, ArchiveStatus, Active,
-		accepted, pending, rejected,
-		yes, no, ID
+		Email, Type, Status, CreatedAt, UpdatedAt, Action,
+		UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
+		accepted, pending, rejected, yes, no, ID
 	}
 }))
 export default class ChannelListCTR extends Component {
@@ -54,9 +50,8 @@ export default class ChannelListCTR extends Component {
 	}
 
 	edit(id) {
-		return <EditChannelButton key={Math.random()} id={id}/>
+		return <EditChannelButton key={Math.random()} id={id}/>;
 	}
-
 
 	updated_at(updated_at) {
 		return moment(updated_at).format('dddd، jD jMMMM jYYYY');
@@ -78,24 +73,39 @@ export default class ChannelListCTR extends Component {
 		return this.props.translation[title];
 	}
 
-	admin_status(admin_status) {
+	admin_status(admin_status, {id}) {
 		if (admin_status == 'pending') {
-			return <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
+			return <div>
+				<span className="label label-sm label-warning"> {this.translator(admin_status)} </span>
+				<ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
+			</div>
 		} else if (admin_status == 'accepted') {
-			return <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
+			return <div>
+				<span className="label label-sm label-success"> {this.translator(admin_status)} </span>
+				<ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
+			</div>
 		} else if (admin_status == 'rejected') {
-			return <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
+			return <div>
+				<span className="label label-sm label-danger"> {this.translator(admin_status)} </span>
+				<ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
+			</div>
 		}
 
 		return admin_status;
 	}
 
-	archive_status(archive_status) {
-		return this.translator(archive_status);
+	archive_status(archive_status, {id}) {
+		return <div>
+			{this.translator(archive_status)}
+			<ChangeChannelArchiveStatus id={id} archive_status={archive_status} translator={this.translator.bind(this)}/>
+		</div>
 	}
 
-	active(pay_status) {
-		return this.translator(pay_status);
+	active(active, {id}) {
+		return <div>
+			{this.translator(active)}
+			<ChangeChannelActiveStatus id={id} active={active} translator={this.translator.bind(this)}/>
+		</div>
 	}
 
 	render() {
