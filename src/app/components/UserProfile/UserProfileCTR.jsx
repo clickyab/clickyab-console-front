@@ -1,10 +1,9 @@
-import React, {Component} from 'react';
-import UserProfilePTR from './UserProfilePTR';
-import {connect} from 'react-redux';
+import React, {Component} from "react";
+import UserProfilePTR from "./UserProfilePTR";
 
 export default class UserProfileCTR extends Component {
 
-    render() {
-        return (<UserProfilePTR />);
-    }
+	render() {
+		return (<UserProfilePTR />);
+	}
 }

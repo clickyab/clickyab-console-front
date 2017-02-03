@@ -3,11 +3,11 @@ export const LOGIN_FAILED = 'LOGIN_FAILED';
 export const LOGOUT = 'LOGOUT';
 
 export function successfulLogin() {
-    return {type: LOGIN_SUCCESSFUL};
+	return {type: LOGIN_SUCCESSFUL};
 }
 export function failedLogin() {
-    return {type: LOGIN_FAILED};
+	return {type: LOGIN_FAILED};
 }
 export function logout() {
-    return {type: LOGOUT};
+	return {type: LOGOUT};
 }
