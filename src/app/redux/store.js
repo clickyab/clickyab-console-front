@@ -1,10 +1,10 @@
-import {combineReducers, createStore, applyMiddleware, compose} from 'redux';
-import {reducer as formReducer} from 'redux-form';
-import {localeReducer, cssLazyLoader} from 'react-multilingual';
-import {loginReducer, userReducer, impersonateReducer} from './reducers';
-import createLogger from 'redux-logger';
-import {asyncPullIntoLocalStorage} from '../middlewares/asyncPullIntoLocalStorage';
-import localStorage from 'store';
+import {combineReducers, createStore, applyMiddleware, compose} from "redux";
+import {reducer as formReducer} from "redux-form";
+import {localeReducer, cssLazyLoader} from "react-multilingual";
+import {loginReducer, userReducer, impersonateReducer} from "./reducers";
+import createLogger from "redux-logger";
+import {asyncPullIntoLocalStorage} from "../middlewares/asyncPullIntoLocalStorage";
+import localStorage from "store";
 import {asyncRemoveLocalStorage} from "../middlewares/asyncRemoveLocalStorage";
 import {userListReducer} from "./reducers/userList";
 import {channelListReducer} from "./reducers/channelList";
@@ -14,7 +14,7 @@ import {channelDataReducer} from "./reducers/channelDataReducer";
 import {userDataReducer} from "./reducers/userDataReducer";
 import {categoryDataReducer} from "./reducers/CategoryDataReducer";
 import {planListReducer} from "./reducers/planList";
-import {createCampaignReducer} from './reducers/createCampaignDataReducer';
+import {createCampaignReducer} from "./reducers/createCampaignDataReducer";
 import queryReducer from "./reducers/queryReducer";
 import userTypeReducer from "./reducers/userTypeReducer";
 import {telegramListReducer} from "./reducers/telegramListReducer";
@@ -23,60 +23,64 @@ import {roleListReducer} from "./reducers/roleList";
 import {roleDataReducer} from "./reducers/roleDataReducer";
 import {permissionListReducer} from "./reducers/permissionListReducer";
 import {secureReducer} from "react-redux-secure";
+import {campaignReportListReducer} from "./reducers/campaignReportList";
+import {channelReportListReducer} from "./reducers/channelReportList";
 
 const enhancer = compose;
 const logger = createLogger();
 
 export const store = createStore(
-    combineReducers({
-        login: loginReducer,
+	combineReducers({
+		login: loginReducer,
 
-        impersonate: impersonateReducer,
-        user: userReducer,
-        userList: userListReducer,
-        userData: userDataReducer,
-        userType: userTypeReducer,
+		impersonate: impersonateReducer,
+		user: userReducer,
+		userList: userListReducer,
+		userData: userDataReducer,
+		userType: userTypeReducer,
 
-        channelList: channelListReducer,
-        channelData: channelDataReducer,
+		channelList: channelListReducer,
+		channelReportList: channelReportListReducer,
+		channelData: channelDataReducer,
 
-        permissionList: permissionListReducer,
-        roleList: roleListReducer,
-        roleData: roleDataReducer,
+		permissionList: permissionListReducer,
+		roleList: roleListReducer,
+		roleData: roleDataReducer,
 
-        campaignList: campaignListReducer,
-        createCampaignData: createCampaignReducer,
-        campaignStepData: campaignStepReducer,
+		campaignList: campaignListReducer,
+		createCampaignData: createCampaignReducer,
+		campaignStepData: campaignStepReducer,
+		campaignReportList: campaignReportListReducer,
 
-        categoryList: categoryListReducer,
-        categoryData: categoryDataReducer,
+		categoryList: categoryListReducer,
+		categoryData: categoryDataReducer,
 
-        telegramList: telegramListReducer,
+		telegramList: telegramListReducer,
 
-        planList : planListReducer,
+		planList: planListReducer,
 
-        queries: queryReducer,
+		queries: queryReducer,
 
-        form: formReducer,
+		form: formReducer,
 
-        locale: localeReducer('fa', require('../../locales/index').default),
-        secure: secureReducer(require("../secure/rules").default)
-    }),
-    localStorage.get('initialState'),
-    enhancer(applyMiddleware(
-        cssLazyLoader(['LOCALE_CHANGED'], {
-            'en': {
-                address: 'css/style-ltr.css',
-                direction: 'ltr'
-            },
-            'fa': {
-                address: 'css/style-rtl.css',
-                direction: 'rtl'
-            }
-        }),
-        asyncPullIntoLocalStorage,
-        asyncRemoveLocalStorage,
-        // logger
-        )
-    )
+		locale: localeReducer('fa', require('../../locales/index').default),
+		secure: secureReducer(require("../secure/rules").default)
+	}),
+	localStorage.get('initialState'),
+	enhancer(applyMiddleware(
+		cssLazyLoader(['LOCALE_CHANGED'], {
+			'en': {
+				address: 'css/style-ltr.css',
+				direction: 'ltr'
+			},
+			'fa': {
+				address: 'css/style-rtl.css',
+				direction: 'rtl'
+			}
+		}),
+		asyncPullIntoLocalStorage,
+		asyncRemoveLocalStorage,
+		logger
+		)
+	)
 );

@@ -2,7 +2,6 @@ import React from "react";
 import {Router, Route, browserHistory, IndexRoute} from "react-router";
 import App from "./app";
 import Login from "./components/login/LoginCTR";
-import CategoryListCTR from "./components/category/CategoryListCTR";
 import onLogin from "./middlewares/routes/onLoginEnterMiddleware";
 import onUserEnterMiddleware from "./middlewares/routes/onUserEnterMiddleware";
 import onProfileEnterMiddleware from "./middlewares/routes/onProfileEnterMiddleware";
@@ -16,10 +15,10 @@ import Publisher from "./components/publisher/Publisher";
 import UserProfile from "./components/UserProfile/UserProfileCTR";
 import UsersListCTR from "./components/Users/UsersListCTR";
 import ChannelListCTR from "./components/channel/ChannelListCTR";
+import ChannelReportListCTR from "./components/channel/report/ChannelReportListCTR";
 import ServerDown from "./components/ServerDown/ServerDown";
 import onChannelEnterMiddleware from "./middlewares/routes/onChannelEnterMiddleware";
 import onCampaignEnterMiddleware from "./middlewares/routes/onCampaignEnterMiddleware";
-import onCategoryEnterMiddleware from "./middlewares/routes/onCategoryEnterMiddleware";
 import onSlashEnterMiddleware from "./middlewares/routes/onSlashEnterMiddleware";
 import onDashboardEnterMiddleware from "./middlewares/routes/onDashboardEnterMiddleware";
 import onCreateCampaignStepOneOnEnterMiddleware from "./middlewares/routes/onCreateCampaignStepOneOnEnterMiddleware";
@@ -50,7 +49,9 @@ import {updateLocalStorageAction} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
 import StepPreviewCTR from "./components/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
-
+import CampaignReportListCTR from "./components/campaign/report/CampaignReportListCTR";
+import onCampaignReportEnterMiddleware from "./middlewares/routes/onCampaignReportEnterMiddleware";
+import onChannelReportEnterMiddleware from "./middlewares/routes/onChannelReportEnterMiddleware";
 
 document.body.addEventListener("panic", function (event) {
 	dispatch(logout());
@@ -75,14 +76,23 @@ export default () => (
 							onEnter={onPublisherEnterMiddleware}/>
 				<Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
 				<Route path='channel' component={ChannelListCTR} name='channelList' onEnter={onChannelEnterMiddleware}/>
-				<Route path="telegram" component={TelegramListCTR} name="telegramList" onEnter={onTelegramEnterMiddleware}/>
+				<Route path='channel/:channel_id/report' component={ChannelReportListCTR} name='channelReportList'
+					   onEnter={onChannelReportEnterMiddleware}/>
+				<Route path="telegram" component={TelegramListCTR} name="telegramList"
+					   onEnter={onTelegramEnterMiddleware}/>
 				<Route path="role" component={RolesListCTR} name="roleList" onEnter={onRoleEnterMiddleware}/>
 			</Route>
 
 			<Route path='advertiser' component={Advertiser}>
 				<IndexRoute component={AdvertiserDashboardPage} name='advertiser'
-					   onEnter={onAdvertiserEnterMiddleware}/>
-				<Route path='campaign' component={CampaignListCTR} name='campaignList' onEnter={onCampaignEnterMiddleware}/>
+							onEnter={onAdvertiserEnterMiddleware}/>
+
+				<Route path='campaign' component={CampaignListCTR} name='campaignList'
+					   onEnter={onCampaignEnterMiddleware}/>
+
+				<Route path='campaign/:campaign_id/report' component={CampaignReportListCTR} name='campaignReportList'
+					   onEnter={onCampaignReportEnterMiddleware}/>
+
 				<Route path='campaign/create/step/name' component={CampaignCreateCTR}
 					   onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
 				<Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
@@ -99,7 +109,8 @@ export default () => (
 					   onEnter={onEditorEnterMiddleware}/>
 				<Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
 					   onEnter={onPlanListEnterMiddleware}/>
-				<Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR} name='campaignPreview'
+				<Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR}
+					   name='campaignPreview'
 					   onEnter={onPreviewCampaignMiddleware}/>
 			</Route>
 		</Route>
