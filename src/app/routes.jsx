@@ -6,7 +6,6 @@ import onLogin from "./middlewares/routes/onLoginEnterMiddleware";
 import onUserEnterMiddleware from "./middlewares/routes/onUserEnterMiddleware";
 import onProfileEnterMiddleware from "./middlewares/routes/onProfileEnterMiddleware";
 import Register from "./components/register/RegisterCTR";
-import Transition from "./components/common/Transition";
 import ForgotPassword from "./components/PaswordRecovery/PasswordRecoveryCTR";
 import AdvertiserDashboardPage from "./components/advertiser/Dashboard/IndexCTR";
 import Advertiser from "./components/advertiser/Advertiser";
@@ -77,6 +76,8 @@ export default () => (
 				return <span/>;
 			}}/>
 
+			<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
+
 			<Route path='publisher' component={Publisher}>
 				<IndexRoute component={PublisherDashboardPage} name='PublisherDashboard'
 							onEnter={onPublisherEnterMiddleware}/>
@@ -121,7 +122,7 @@ export default () => (
 			</Route>
 		</Route>
 
-		<Route path='/v1' component={Transition}>
+		<Route path='/v1'>
 			<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
 			<Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
 			<Route path='login' component={Login} name='Login' onEnter={onLogin}/>
