@@ -7,23 +7,11 @@ import {select} from "../../../functions/select";
 import {sync} from "../../../functions/sync";
 import {dispatch} from "../../../functions/dispatch";
 import {roleListAction} from "../../../redux/actions/index";
+import {reset} from "redux-form/lib/actions";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
 export default class AddRoleModalCTR extends Component {
-	ScopeScan(formValues) {
-		if (formValues.global) {
-			formValues.role = 'global';
-			delete formValues.parent;
-			delete formValues.self;
-		} else if (formValues.parent) {
-			formValues.role = 'parent';
-			delete formValues.self;
-		} else if (formValues.self) {
-			formValues.role = 'self';
-		}
-		return formValues;
-	}
 
 	normalizeFormValues(formValues, self, parent, global) {
 		delete formValues.self;
@@ -67,6 +55,7 @@ export default class AddRoleModalCTR extends Component {
 			response.text = 'اطلاعات شما با موفقیت ثبت شد.';
 			if (response.statusCode == 200) {
 				$('#addRoleModal').modal('hide');
+				dispatch(reset('AddRoleModalPTR'));
 				loadingProgress.stop();
 
 				const {data} = yield(new swagger.UserApi())
