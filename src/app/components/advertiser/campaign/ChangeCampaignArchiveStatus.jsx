@@ -17,7 +17,7 @@ export default class ChangeCampaignArchiveStatus extends Component {
 
 	render() {
 		let {translator, archive_status} = this.props;
-		return <select name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
+		return <select className="form-control" name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
 			<option value="yes">{translator('yes')}</option>
 			<option value="no">{translator('no')}</option>
 		</select>

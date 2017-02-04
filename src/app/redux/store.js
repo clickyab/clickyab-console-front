@@ -80,7 +80,7 @@ export const store = createStore(
 		}),
 		asyncPullIntoLocalStorage,
 		asyncRemoveLocalStorage,
-		logger
+		// logger
 		)
 	)
 );
