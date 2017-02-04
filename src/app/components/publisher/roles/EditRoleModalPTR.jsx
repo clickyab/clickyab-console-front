@@ -3,7 +3,7 @@ import {Field, reduxForm, change} from "redux-form";
 import $ from "jquery";
 import {shallowEqual} from "./../../../3rd/shallowEqual";
 import {dispatch} from "../../../functions/dispatch";
-import Select from "react-select";
+import SelectPermissionCTR from './SelectPermissionCTR';
 
 class EditRoleModalPTR extends Component {
 	editRoleForm;
@@ -11,10 +11,18 @@ class EditRoleModalPTR extends Component {
 		validation: true,
 
 		multi: true,
-		multiValue: [],
+		selfValue: [],
+		parentValue: [],
+		globalValue: [],
 		options: [],
-		value: undefined
+		self: true,
+		parent: true,
+		global: true
 	};
+
+	setSelectPermission(key, value) {
+		this.setState({[key]: value});
+	}
 
 	shouldComponentUpdate(nextProps) {
 		if (!shallowEqual(this.props, nextProps)) {
@@ -53,8 +61,9 @@ class EditRoleModalPTR extends Component {
 	}
 
 	render() {
+		console.log(this.state);
 		const {handleSubmit, SubmitEditRole} = this.props;
-		const {multi, multiValue, value, options} = this.state;
+		let {selfValue, parentValue, globalValue} = this.state;
 		return (
 			<div className="edit-role-modal modal fade fullscreen" id="editRoleModal" tabIndex="-1" role="dialog"
 				 aria-labelledby="myModalLabel" aria-hidden="true">
@@ -87,66 +96,10 @@ class EditRoleModalPTR extends Component {
 											   className="form-control input-lg" id="description"/>
 									</div>
 
-									<div className="form-group">
-										<div className="mt-checkbox-inline">
-											<label className="mt-checkbox">
-												<Field component="input" id="self" value="self"
-													   name="self"
-													   type="checkbox"/> خودم
-												<span/>
-											</label>
-											<label className="mt-checkbox">
-												<Field component="input" id="parent" value="parent"
-													   onClick={
-														   () => {
-															   if ($('#parent').prop('checked')) {
-																   $('#self').prop({
-																	   checked: true,
-																	   disabled: true
-																   });
-															   } else {
-																   $('#self').prop({
-																	   disabled: false
-																   });
-															   }
-														   }
-													   }
-													   name="parent"
-													   type="checkbox"/> مشاور
-												<span/>
-											</label>
-											<label className="mt-checkbox">
-												<Field component="input" id="global" value="global"
-													   onClick={
-														   () => {
-															   if ($('#global').prop('checked')) {
-																   $('#self, #parent').prop({
-																	   checked: true,
-																	   disabled: true
-																   });
-															   } else {
-																   $('#self, #parent').prop({
-																	   disabled: false
-																   });
-															   }
-														   }
-													   }
-													   name="global"
-													   type="checkbox"/> مدیر کل
-												<span/>
-											</label>
-										</div>
-									</div>
 
-									<div className="form-group">
-										<Select
-											multi={multi}
-											options={options}
-											//onChange={this.handleOnChange.bind(this)}
-											value={multi ? multiValue : value}
-											placeholder='انتخاب دسترسی...'
-										/>
-									</div>
+									<SelectPermissionCTR selectPermission={this.state}
+														 setSelectPermission={this.setSelectPermission.bind(this)}
+														 permissions={this.props.permissions}/>
 									<button type="submit"
 											className="btn btn-primary btn-lg edit-role-form btn-block">ذخیره
 									</button>
