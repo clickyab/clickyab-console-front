@@ -11,13 +11,12 @@ export default class ChangeCampaignActiveStatus extends Component {
 			const {response} = yield (new swagger.AdApi())
 				.campaignChangeActiveIdPut(id, getToken());
 
-			ifInvalidToken(response);
 		});
 	}
 
 	render() {
 		let {translator, active} = this.props;
-		return <select name="active" defaultValue={active} onChange={this.edit.bind(this)}>
+		return <select className="form-control" name="active" defaultValue={active} onChange={this.edit.bind(this)}>
 			<option value="yes">{translator('yes')}</option>
 			<option value="no">{translator('no')}</option>
 		</select>
