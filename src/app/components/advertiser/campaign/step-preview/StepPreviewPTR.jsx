@@ -5,9 +5,11 @@ import {navigate} from "../../../../functions/navigate";
 
 class StepPreviewPTR extends Component {
 	render() {
+		console.log(select('createCampaignData'));
 		let {data, created_at} = this.props;
-		let stepData;
+		let stepData, buttons;
 		if (select('campaignStepData.type') == 'upload') {
+            let payStatus = select('createCampaignData.pay_status') == 'yes'? 'col-md-2 mt-step-col last done' : 'col-md-2 mt-step-col last error';
 			stepData = (
 				<div className="mt-element-step  when-generate-content">
 					<div className="row step-line">
@@ -46,7 +48,7 @@ class StepPreviewPTR extends Component {
 
 						</div>
 
-						<div className="col-md-2 mt-step-col last error">
+						<div className={payStatus}>
 							<div className="mt-step-number bg-white">
 								۶
 							</div>
@@ -60,6 +62,8 @@ class StepPreviewPTR extends Component {
 				</div>
 			)
 		} else if (select('campaignStepData.type') == 'promote') {
+            let payStatus = select('createCampaignData.pay_status') == 'yes'? 'col-lg-15 col-md-3 mt-step-col last done' : 'col-lg-15 col-md-3 mt-step-col last error';
+
 			stepData = (
 				<div className="mt-element-step  when-select-content">
 					<div className="row step-line">
@@ -90,8 +94,7 @@ class StepPreviewPTR extends Component {
 							<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
 
 						</div>
-
-						<div className="col-lg-15 col-md-3 mt-step-col last error">
+						<div className={payStatus}>
 							<div className="mt-step-number bg-white">
 								۵
 							</div>
@@ -105,6 +108,49 @@ class StepPreviewPTR extends Component {
 				</div>
 			)
 		}
+
+		if(select('createCampaignData.pay_status') == 'yes') {
+            buttons = (
+                <div className="col-md-offset-3 col-md-9">
+                    <button onClick={
+                        ()=> {
+                            navigate('/v1/advertiser');
+                        }
+
+                    }
+                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40"
+                            type="submit">تایید <i className="fa fa-angle-left"/>
+                    </button>
+
+                </div>
+            )
+        } else {
+            buttons = (
+                <div className="col-md-offset-3 col-md-9">
+                    <button onClick={
+                        () => {
+                            navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
+                                campaign_id: select('createCampaignData.id')
+                            });
+                        }
+                    } className="btn btn-default  button-next btn-arrow-text margin-top-40"
+                            type="submit"><i className="fa fa-angle-right"/> مرحله قبل
+                    </button>
+                    <button onClick={
+                        (e)=> {
+                            e.preventDefault();
+                            this.props.requestToBank();
+                        }
+
+                    }
+                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40"
+                            type="submit">تایید و پرداخت <i className="fa fa-angle-left"/>
+                    </button>
+
+                </div>
+            )
+        }
+
 		return (
 			<div className="page-content">
 
@@ -204,25 +250,7 @@ class StepPreviewPTR extends Component {
 								<div className="row">
 									<div className="col-md-6">
 										<div className="row">
-											<div className="col-md-offset-3 col-md-9">
-												<button onClick={
-													() => {
-														navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
-															campaign_id: select('createCampaignData.id')
-														});
-													}
-												} className="btn btn-default  button-next btn-arrow-text margin-top-40"
-														type="submit"><i className="fa fa-angle-right"/> مرحله قبل
-												</button>
-												<button onClick={
-													() => {
-														navigate('/v1/advertiser');
-													}
-												} className="btn btn-primary  button-next btn-arrow-text margin-top-40"
-														type="submit">تایید و پرداخت <i className="fa fa-angle-left"/>
-												</button>
-
-											</div>
+                                            {buttons}
 										</div>
 									</div>
 									<div className="col-md-6"></div>

@@ -4,10 +4,10 @@ import {connect} from "react-redux";
 import {store} from "./../../../../redux/store";
 
 
-@connect()
+@connect(({planList}) => ({planList}))
 export default class SelectPlanCTR extends Component {
 	render() {
-		let planData = store.getState().planList;
+		let planData = this.props.planList;
 		return (
 			<SelectPlanPTR PlanList={planData}/>
 		);
