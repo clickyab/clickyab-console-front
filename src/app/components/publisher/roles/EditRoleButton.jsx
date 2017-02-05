@@ -40,20 +40,19 @@ export default class EditRoleButton extends Component {
             if (response.statusCode == '200') {
                 $('#editRoleModal').modal();
                 loadingProgress.stop();
-                console.log(response, data);
                 dispatch(roleDataAction(data));
                 if (_this.size(_this.grab(data, 'perm.global')) > 0) {
-                    console.log('yeeess', data);
+                    dispatch(roleDataAction(Object.assign({}, select('roleData'), {global: true})));
+                    // console.log('global is true', data);
                 }
-                // else if (self.size(self.grab(data, 'perm.parent')) > 0) {
-                // 	delete data.perm.self;
-                // 	console.log('fuck p')
-                // } else {
-                // 	delete data.perm.global;
-                // 	delete data.perm.parent;
-                // 	console.log(data);
-                // }
-                // console.log(self.size(self.grab(data, 'perm.self')));
+                if (_this.size(_this.grab(data, 'perm.parent')) > 0) {
+                    dispatch(roleDataAction(Object.assign({}, select('roleData'), {parent: true})));
+                	// console.log('parent is true', data)
+                }
+                if (_this.size(_this.grab(data, 'perm.self')) > 0) {
+                    dispatch(roleDataAction(Object.assign({}, select('roleData'), {self: true})));
+                	// console.log('self is true', data);
+                }
 
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response)

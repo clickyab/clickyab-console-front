@@ -44,6 +44,6 @@ export default class EditRoleModalCTR extends Component {
 
 	render() {
 		const {form, roleData} = this.props;
-		return (<EditRoleModalPTR form={form} roleData={roleData} SubmitEditRole={this.SubmitEditRole}/>);
+		return (<EditRoleModalPTR permissions={this.props.permissions} form={form} roleData={roleData} SubmitEditRole={this.SubmitEditRole}/>);
 	}
 }
