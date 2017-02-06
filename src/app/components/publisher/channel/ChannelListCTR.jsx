@@ -14,102 +14,100 @@ import ChangeChannelActiveStatus from "./ChangeChannelActiveStatus";
 
 @connect(({channelList}) => ({channelList}))
 @translatable(({
-	Email, Type, Status, CreatedAt, UpdatedAt, Action,
-	UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
-	accepted, pending, rejected, yes, no, ID
+    Email, Type, Status, CreatedAt, UpdatedAt, Action,
+    UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
+    accepted, pending, rejected, yes, no, ID
 }) => ({
-	translation: {
-		Email, Type, Status, CreatedAt, UpdatedAt, Action,
-		UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
-		accepted, pending, rejected, yes, no, ID
-	}
+    translation: {
+        Email, Type, Status, CreatedAt, UpdatedAt, Action,
+        UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
+        accepted, pending, rejected, yes, no, ID
+    }
 }))
 export default class ChannelListCTR extends Component {
-	callApi(query_name, value) {
-		let {dispatch} = this.props;
-		sync(function*() {
-			let {data} = yield (new swagger.ChannelApi).channelListGet(select('user.token', 'no token'), {
-				...select('queries.channel', {}),
-				[query_name]: value
-			});
+    callApi(query_name, value) {
+        let {dispatch} = this.props;
+        sync(function*() {
+            let {data} = yield (new swagger.ChannelApi).channelListGet(select('user.token', 'no token'), {
+                ...select('queries.channel', {}),
+                [query_name]: value
+            });
 
-			dispatch(channelItemsListAction(data));
-		})
-	}
+            dispatch(channelItemsListAction(data));
+        })
+    }
 
-	sort(flag, query_name) {
-		this.callApi('sort', query_name + ':' + flag)
-	}
+    sort(flag, query_name) {
+        this.callApi('sort', query_name + ':' + flag)
+    }
 
-	filter(event, query_name) {
-		this.callApi(query_name, event.target.value);
-	}
+    filter(event, query_name) {
+        this.callApi(query_name, event.target.value);
+    }
 
-	search(event, query_name) {
-		this.callApi(query_name, event.target.value);
-	}
+    search(event, query_name) {
+        this.callApi(query_name, event.target.value);
+    }
 
-	edit(id) {
-		return <EditChannelButton key={Math.random()} id={id}/>;
-	}
+    edit(id) {
+        return <EditChannelButton key={Math.random()} id={id}/>;
+    }
 
-	updated_at(updated_at) {
-		return moment(updated_at).format('dddd، jD jMMMM jYYYY');
-	}
+    updated_at(updated_at) {
+        return moment(updated_at).format('dddd، jD jMMMM jYYYY');
+    }
 
-	created_at(created_at) {
-		return moment(created_at).format('dddd، jD jMMMM jYYYY');
-	}
+    created_at(created_at) {
+        return moment(created_at).format('dddd، jD jMMMM jYYYY');
+    }
 
-	onPaginationChange(page) {
-		this.callApi('p', page);
-	}
+    onPaginationChange(page) {
+        this.callApi('p', page);
+    }
 
-	onPerPageChange(per_page) {
-		this.callApi('c', per_page);
-	}
+    onPerPageChange(per_page) {
+        this.callApi('c', per_page);
+    }
 
-	translator(title) {
-		return this.props.translation[title];
-	}
+    translator(title) {
+        return this.props.translation[title];
+    }
 
-	admin_status(admin_status, {id}) {
-		if (admin_status == 'pending') {
-			return <div>
-				<span className="label label-sm label-warning"> {this.translator(admin_status)} </span>
-				<ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
-			</div>
-		} else if (admin_status == 'accepted') {
-			return <div>
-				<span className="label label-sm label-success"> {this.translator(admin_status)} </span>
-				<ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
-			</div>
-		} else if (admin_status == 'rejected') {
-			return <div>
-				<span className="label label-sm label-danger"> {this.translator(admin_status)} </span>
-				<ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
-			</div>
+    admin_status(admin_status, {id , _actions}) {
+        if (_actions.split(',').includes("admin_status")) {
+            return <ChangeChannelStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>;
+        }
+            let span;
+            if (admin_status == 'pending') {
+                span = <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
+            } else if (admin_status == 'accepted') {
+                span = <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
+            } else if (admin_status == 'rejected') {
+                span = <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
+            }
+
+            return span;
+        }
+
+    archive_status(archive_status, {id , _actions}) {
+        if (_actions.split(',').includes("archive_status")) {
+        	return <ChangeChannelArchiveStatus id={id} archive_status={archive_status} translator={this.translator.bind(this)}/>
+        } else {
+        	 {this.translator(archive_status)}
 		}
+    }
 
-		return admin_status;
-	}
+    active(active, {id , _actions}) {
+        if (_actions.split(',').includes("active")) {
+            return <ChangeChannelActiveStatus id={id} active={active} translator={this.translator.bind(this)}/>
+        }
+        else {
+            {this.translator(active)}
+		}
+    }
 
-	archive_status(archive_status, {id}) {
-		return <div>
-			{this.translator(archive_status)}
-			<ChangeChannelArchiveStatus id={id} archive_status={archive_status} translator={this.translator.bind(this)}/>
-		</div>
-	}
-
-	active(active, {id}) {
-		return <div>
-			{this.translator(active)}
-			<ChangeChannelActiveStatus id={id} active={active} translator={this.translator.bind(this)}/>
-		</div>
-	}
-
-	render() {
-		return (<ChannelListPTR {...this.props.channelList}
+    render() {
+        return (<ChannelListPTR {...this.props.channelList}
 								sort={this.sort.bind(this)}
 								translator={this.translator.bind(this)}
 								filter={this.filter.bind(this)}
@@ -117,13 +115,13 @@ export default class ChannelListCTR extends Component {
 								onPerPageChange={this.onPerPageChange.bind(this)}
 								onPaginationChange={this.onPaginationChange.bind(this)}
 								mutators={{
-									updated_at: this.updated_at,
-									created_at: this.created_at,
-									admin_status: this.admin_status.bind(this),
-									archive_status: this.archive_status.bind(this),
-									active: this.active.bind(this)
-								}}
+                                    updated_at: this.updated_at,
+                                    created_at: this.created_at,
+                                    admin_status: this.admin_status.bind(this),
+                                    archive_status: this.archive_status.bind(this),
+                                    active: this.active.bind(this)
+                                }}
 								edit={this.edit.bind(this)}
 		/>);
-	}
+    }
 }

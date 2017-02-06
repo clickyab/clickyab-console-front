@@ -8,8 +8,17 @@ import {loading} from "./functions/loading";
 export default class App extends React.Component {
 	componentDidMount() {
 		loading(false);
+        $(".modal").on("shown.bs.modal", function()  {
+            var urlReplace = "#" + $(this).attr('id');
+            history.pushState(null, null, urlReplace);
+        });
+
+
+        $(window).on('popstate', function() {
+            $(".modal").modal('hide');
+        });
 		$(document).on('click', '.dropdown-menu', function (e) {
-			$(this).hasClass('keep_open') && e.stopPropagation(); // This replace if conditional.
+			$(this).hasClass('keep_open') && e.stopPropagation();
 		});
 
 		$(window).resize(function () {
