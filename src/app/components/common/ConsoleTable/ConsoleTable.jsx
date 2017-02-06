@@ -89,6 +89,9 @@ export class ConsoleTable extends Component {
 	}
 
 	addActionHeader(headers) {
+		if(this.props.action == false)
+			return headers;
+
 		return [...headers, {
 			width: 150,
 			data: '_actions',
