@@ -8,12 +8,13 @@ import {loading} from "./functions/loading";
 export default class App extends React.Component {
 	componentDidMount() {
 		loading(false);
-        $(".modal").on("shown.bs.modal", function()  {
-            var urlReplace = "#" + $(this).attr('id');
+        $(document).on("shown.bs.modal", ".modal" ,  function()  {
+            let urlReplace = "#" + $(this).attr('id');
             history.pushState(null, null, urlReplace);
         });
-
-
+        $(document).on('hidden.bs.modal', '.modal' ,  function () {
+            history.pushState(null, null, window.location.pathname);
+        });
         $(window).on('popstate', function() {
             $(".modal").modal('hide');
         });
