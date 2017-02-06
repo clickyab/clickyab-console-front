@@ -39,6 +39,7 @@ export default class App extends React.Component {
 				<div className="page-header-fixed page-sidebar-closed-hide-logo page-content-white">
 					<div className="page-wrapper">
 						<Header/>
+						<div className="clearfix"/>
 						{children}
 						<Footer/>
 					</div>
