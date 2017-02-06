@@ -91,6 +91,10 @@ var Link = React.createClass({
 		};
 	},
 	handleClick: function handleClick(event) {
+		if($(event.target).parents('li').hasClass("active")) {
+			event.preventDefault();
+			return false;
+		}
 		loading(true);
 		if (this.props.onCustomClick) this.props.onCustomClick(event);
 
