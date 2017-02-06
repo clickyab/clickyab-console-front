@@ -251,17 +251,17 @@ Dropdown Menu
 
 .nav.pull-right > li > .dropdown-menu,
 .nav > li > .dropdown-menu.pull-right {
-    #{$dir-mode-align}: 0;
-    #{$dir-mode-align-inverse}: auto;
+    #{$dir-mode-align-inverse}: 0;
+    #{$dir-mode-align}: auto;
 
     &:before {
-        #{$dir-mode-align}: 12px;
-        #{$dir-mode-align-inverse}: auto;
+        #{$dir-mode-align-inverse}: 12px;
+        #{$dir-mode-align}: auto;
     }
 
     &:after {
-        #{$dir-mode-align}: 13px;
-        #{$dir-mode-align-inverse}: auto;
+        #{$dir-mode-align-inverse}: 13px;
+        #{$dir-mode-align}: auto;
     }
 
     .dropdown-menu {
@@ -274,6 +274,30 @@ Dropdown Menu
 }
 
 @media (max-width: $screen-xs-max) { /* 767px */
+
+    .nav.pull-right > li > .dropdown-menu,
+    .nav > li > .dropdown-menu.pull-right {
+        #{$dir-mode-align}: 0;
+        #{$dir-mode-align-inverse}: auto;
+
+        &:before {
+            #{$dir-mode-align-inverse}: 12px;
+            #{$dir-mode-align}: auto;
+        }
+
+        &:after {
+            #{$dir-mode-align-inverse}: 13px;
+            #{$dir-mode-align}: auto;
+        }
+
+        .dropdown-menu {
+            #{$dir-mode-align-inverse}: 100%;
+            #{$dir-mode-align}: auto;
+            margin-#{$dir-mode-align-inverse}: -1px;
+            margin-#{$dir-mode-align}: 0;
+        }
+
+    }
 
     .navbar-nav {
         .open {
