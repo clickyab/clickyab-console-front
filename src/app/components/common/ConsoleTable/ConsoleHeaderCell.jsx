@@ -5,8 +5,6 @@ import {select} from "../../../functions/select";
 
 export class ConsoleHeaderCell extends Component {
 	sort(event, order, query_name) {
-		event.preventDefault();
-		event.stopPropagation();
 
 		this.props.sort(order, query_name);
 	}
@@ -35,7 +33,9 @@ export class ConsoleHeaderCell extends Component {
 			<th>
                 <span className="head-title-datatable">
                     {sortable ? <a href="#" onClick={(event) => {
-							this.sortOnChange(Object.assign({}, event));
+                            event.preventDefault();
+                            event.stopPropagation();
+                            this.sortOnChange(Object.assign({}, event));
 						}}>{children}</a> : children}
                 </span>
 			</th>
