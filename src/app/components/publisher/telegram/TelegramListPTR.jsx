@@ -48,8 +48,8 @@ export default class TelegramListPTR extends Component {
                         confirmButtonColor: "#337ab7",
                         confirmButtonText: "باز کردن تلگرام",
                         cancelButtonText: "انصراف!",
-                        closeOnConfirm: true,
-                        showLoaderOnConfirm: true,
+                        closeOnConfirm: false,
+                        showLoaderOnConfirm: false,
                         closeOnCancel: true,
                         html: true
                     },
