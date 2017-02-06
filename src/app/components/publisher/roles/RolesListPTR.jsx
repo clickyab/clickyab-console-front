@@ -36,7 +36,7 @@ export default class RolesListPTR extends Component {
 					</div>
 				</div>
 				<AddRoleModalCTR permissions={this.props.permissions}/>
-				<EditRoleModalCTR form="EditRoleModalPTR"/>
+				<EditRoleModalCTR permissions={this.props.permissions} form="EditRoleModalPTR"/>
 			</div>
 		)
 	}
