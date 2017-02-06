@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 
 export class ConsoleCell extends Component {
+
 	buildActions(id, item, edit) {
 		const actionKeys = item.split(',');
 		let buttons = [];

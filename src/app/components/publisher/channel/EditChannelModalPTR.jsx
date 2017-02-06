@@ -24,25 +24,23 @@ class EditChannelModalPTR extends Component {
 	componentDidMount() {
 		this.editChannelForm = $("#editChannelForm");
 		this.editChannelForm.validate({
-			rules: {
-				link: {
-					required: true,
-					url: true
-				},
-				name: {
-					required: true,
-				},
+            rules: {
+                link: {
+                    required: true,
+                },
+                name: {
+                    required: true,
+                },
+            },
+            messages: {
+                link: {
+                    required: 'لطفا یوزرنیم کانال را وارد نمایید',
+                },
+                name: {
+                    required: 'لطفا نام کانال را وارد نمایید',
+                },
 
-			},
-			messages: {
-				link: {
-					required: 'لطفا لینک کانال را وارد نمایید',
-					url: 'لطفا یک آدرس اینترنتی معتبر با http و یا https وارد نمایید'
-				},
-				name: {
-					required: 'لطفا نام کانال را وارد نمایید',
-				},
-			}
+            }
 		});
 	}
 
@@ -68,8 +66,8 @@ class EditChannelModalPTR extends Component {
 									  className="add-channel-form white"
 									  onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
 									<div className="form-group">
-										<label htmlFor="link">لینک کانال</label>
-										<Field component="input" type="text" name="link" placeholder="لینک چنل"
+										<label htmlFor="link">یوزرنیم کانال</label>
+										<Field component="input" type="text" name="link" placeholder="یوزرنیم کانال را بدون t.me وارد نمایید"
 											   className="form-control input-lg" id="link"/>
 									</div>
 
@@ -79,7 +77,7 @@ class EditChannelModalPTR extends Component {
 											   className="form-control input-lg" id="name"/>
 									</div>
 									<button type="submit"
-											className="btn btn-primary btn-lg edit-channel-form btn-block">ذخیره
+											className="btn btn-primary btn-lg edit-channel-form btn-block">ویرایش کانال
 									</button>
 								</form>
 							</div>

@@ -14,7 +14,6 @@ class AddChannelModalPTR extends Component {
 			rules: {
 				link: {
 					required: true,
-					url: true
 				},
 				name: {
 					required: true,
@@ -22,8 +21,7 @@ class AddChannelModalPTR extends Component {
 			},
 			messages: {
 				link: {
-					required: 'لطفا لینک کانال را وارد نمایید',
-					url: 'لطفا یک آدرس اینترنتی معتبر با http و یا https وارد نمایید'
+					required: 'لطفا یوزرنیم کانال را وارد نمایید',
 				},
 				name: {
 					required: 'لطفا نام کانال را وارد نمایید',
@@ -55,8 +53,8 @@ class AddChannelModalPTR extends Component {
 									  className="add-channel-form white"
 									  onSubmit={handleSubmit((values) => SubmitAddChannel(values, this.addChannelForm))}>
 									<div className="form-group">
-										<label htmlFor="link">لینک کانال</label>
-										<Field component="input" type="text" name="link" placeholder="لینک کانال"
+										<label htmlFor="link">یوزرنیم کانال</label>
+										<Field component="input" type="text" name="link" placeholder="یوزرنیم کانال را بدون t.me وارد نمایید"
 											   className="form-control input-lg" id="link"/>
 									</div>
 

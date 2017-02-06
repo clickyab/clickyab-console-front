@@ -8,16 +8,18 @@ export default class ChangeChannelArchiveStatus extends Component {
 	edit(event) {
 		const {id} = this.props;
 		sync(function*() {
+            $(".loader-table").fadeIn();
 			const {response} = yield (new swagger.ChannelApi())
-				.channelChangeArchiveIdPut(id, getToken());
-
-			ifInvalidToken(response);
+                .channelListArchiveStatusIdPut(id, getToken(), {payloadData: {
+                    "archive_status": event.target.value
+                }});
+            $(".loader-table").fadeOut();
 		});
 	}
 
 	render() {
 		let {translator, archive_status} = this.props;
-		return <select name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
+		return <select className="form-control" name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
 			<option value="yes">{translator('yes')}</option>
 			<option value="no">{translator('no')}</option>
 		</select>
