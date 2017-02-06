@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
-import AddTelegramCodeModalCTR from "./AddTelegramCodeModalCTR";
 import {AlertBox} from "../../../functions/notifications";
 import {select} from "../../../functions/select";
 import {sync} from "../../../functions/sync";
-import {dispatch} from "../../../functions/dispatch";
-import {telegramItemsListAction} from "../../../redux/actions/index";
 import swagger from "../../../swagger/index";
 let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
@@ -69,8 +66,6 @@ export default class TelegramListPTR extends Component {
                 AlertBox("error","اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید")
             }
         });
-
-        // $("#showGetTelegramCodeModal").modal();
     }
 
     render() {
@@ -99,7 +94,6 @@ export default class TelegramListPTR extends Component {
 						<ConsoleTable {...this.props} list="category" action={false}/>
 					</div>
 				</div>
-				{/*<AddTelegramCodeModalCTR/>*/}
 			</div>
         )
     }

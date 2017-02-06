@@ -3,7 +3,6 @@ import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
 import {PersianNumber} from "react-persian";
 import swagger from "../../../../swagger/index";
-import {getToken} from "../../../../redux/helpers";
 import {AlertBox} from "../../../../functions/notifications";
 import {dispatch} from "../../../../functions/dispatch";
 import {createCampaign, updateLocalStorageAction} from "../../../../redux/actions/index";
@@ -36,11 +35,12 @@ export default class SelectPlanPTR extends Component {
 
 	sendPlan() {
 		sync(function*() {
+			console.log(this.planID);
 			if (this.planID) {
 				this.loadingProgressSend = Ladda.create(document.querySelector('button.next-step'));
 				this.loadingProgressSend.start();
 				let {data, response} = yield (new swagger.AdApi()).campaignPlanIdPut(
-					select('createCampaignData.id'), getToken(), {
+					select('createCampaignData.id'), select('user.token', 'no token'), {
 						'payloadData': {
 							plan_id: this.planID
 						}

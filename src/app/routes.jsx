@@ -51,6 +51,8 @@ import CampaignReportListCTR from "./components/advertiser/campaign/report/Campa
 import onCampaignReportEnterMiddleware from "./middlewares/routes/onCampaignReportEnterMiddleware";
 import onChannelReportEnterMiddleware from "./middlewares/routes/onChannelReportEnterMiddleware";
 import {store} from "./redux/store";
+import verifyPage from "./components/advertiser/campaign/verifyPage";
+import onVerifyEnterMiddleware from "./middlewares/routes/onVerifyEnterMiddleware";
 
 document.body.addEventListener("panic", function (event) {
 	dispatch(logout());
@@ -127,6 +129,7 @@ export default () => (
 			<Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
 			<Route path='login' component={Login} name='Login' onEnter={onLogin}/>
 			<Route path='password-recovery' component={ForgotPassword} name=''/>
+			<Route path='verify' component={verifyPage} onEnter={onVerifyEnterMiddleware} name='verify' />
 		</Route>
 
 		<Route path="/" onEnter={onSlashEnterMiddleware}/>
