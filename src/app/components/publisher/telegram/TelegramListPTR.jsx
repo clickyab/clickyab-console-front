@@ -1,11 +1,8 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
-import AddTelegramCodeModalCTR from "./AddTelegramCodeModalCTR";
 import {AlertBox} from "../../../functions/notifications";
 import {select} from "../../../functions/select";
 import {sync} from "../../../functions/sync";
-import {dispatch} from "../../../functions/dispatch";
-import {telegramItemsListAction} from "../../../redux/actions/index";
 import swagger from "../../../swagger/index";
 let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
@@ -69,38 +66,35 @@ export default class TelegramListPTR extends Component {
                 AlertBox("error","اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید")
             }
         });
-
-        // $("#showGetTelegramCodeModal").modal();
     }
 
     render() {
         return (
-			<div className='page-content'>
-				<div className='row'>
-					<div className='col-lg-8 col-md-8 col-sm-8 col-xs-12'>
-						<h1 className='page-title'>لیست کاربران تلگرام ثبت شده در سیستم</h1>
-					</div>
-				</div>
-				<div className='portlet light bordered datatable-parent'>
-					<div className='portlet-title'>
-						<div className='caption'>
-							<span className='caption-subject bold uppercase font-dark'>لیست تلگرام </span>
-						</div>
-						<div className="actions">
-							<div className="btn-group btn-group-devided" data-toggle="buttons"
-								 onClick={this.GetTelegramCode}>
-								<button className="btn btn-transparent blue btn-outline btn-circle btn-sm "
-										id="showGetTelegramCodeButton">درخواست کد تلگرام
-								</button>
-							</div>
-						</div>
-					</div>
-					<div className='portlet-body'>
-						<ConsoleTable {...this.props} list="category" action={false}/>
-					</div>
-				</div>
-				{/*<AddTelegramCodeModalCTR/>*/}
-			</div>
+            <div className='page-content'>
+                <div className='row'>
+                    <div className='col-lg-8 col-md-8 col-sm-8 col-xs-12'>
+                        <h1 className='page-title'>لیست کاربران تلگرام ثبت شده در سیستم</h1>
+                    </div>
+                </div>
+                <div className='portlet light bordered datatable-parent'>
+                    <div className='portlet-title'>
+                        <div className='caption'>
+                            <span className='caption-subject bold uppercase font-dark'>لیست تلگرام </span>
+                        </div>
+                        <div className="actions">
+                            <div className="btn-group btn-group-devided" data-toggle="buttons"
+                                 onClick={this.GetTelegramCode}>
+                                <button className="btn btn-transparent blue btn-outline btn-circle btn-sm "
+                                        id="showGetTelegramCodeButton">درخواست کد تلگرام
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <div className='portlet-body'>
+                        <ConsoleTable {...this.props} list="category" action={false}/>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
