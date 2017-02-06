@@ -178,7 +178,7 @@ export class ConsoleTable extends Component {
 					</table>
 				</div>
 				<div className="row margin-top-20">
-					<div className="col-sm-6">
+					<div className="col-sm-6 col-xs-12">
 						<div className="dataTables_length pagination">
 							<label>نمایش صفحه
 								<select className="form-control input-sm input-xsmall input-inline text-center"
@@ -190,7 +190,7 @@ export class ConsoleTable extends Component {
 							</label>
 						</div>
 					</div>
-					<div className="col-sm-6">
+					<div className="col-sm-6 col-xs-12">
 						<div className="dataTables_length pull-left">
 							<label>نمایش
 								<input className="form-control input-sm input-xsmall input-inline text-center"

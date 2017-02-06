@@ -7,7 +7,7 @@ export default class SwitcherCTR extends Component {
 	render() {
 		let main, dropDown;
 		if (this.props.userType == 'publisher') {
-			main = (<Link to="/v1/publisher" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
+			main = (<Link to="/v1/publisher" className="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
 						  data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
 				<span className="langname">ناشر</span>
 				<i className="fa fa-angle-down"/>

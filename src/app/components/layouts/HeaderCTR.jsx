@@ -97,7 +97,7 @@ export class Header extends Component {
 										<a href="app_calendar.html">
 											<i className="icon-calendar"/> حسابداری </a>
 									</li>
-									<li className="divider"></li>
+									<li className="divider"/>
 									<li>
 										<a onClick={this.SubmitLogout.bind(this)}>
 											<i className="icon-key"/> خروج </a>
@@ -107,7 +107,9 @@ export class Header extends Component {
 						</ul>
 					</div>
 				</div>
+
 			</div>
+
 
 		);
 	}
