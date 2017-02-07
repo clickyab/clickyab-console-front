@@ -6,30 +6,11 @@ let selectpicker = require("bootstrap-select/dist/js/bootstrap-select");
 
 export default class ChangeCampaignStatus extends Component {
 
-    // componentDidMount() {
-    //    const {id} = this.props;
-    //    $('.status-change').selectpicker();
-    //
-    //    $(".status-change a").click(function (e) {
-    //    	e.preventDefault();
-    //        let data = $(this).attr('data-tokens');
-    //        console.log(data);
-    //        sync(function*() {
-    //        	const {response} = yield (new swagger.AdApi())
-    //        		.campaignChangeAdminIdPut(id, getToken(), {payloadData: {
-    //                   "admin_status": data
-    //               }});
-    //        });
-    //
-    //    });
-    //
-    //
-    // }
     edit(event) {
         const {id} = this.props;
         sync(function*() {
             const {response} = yield (new swagger.AdApi())
-                .campaignChangeAdminIdPut(id, getToken(), {
+                .campaignListAdminStatusIdPut(id, getToken(), {
                     payloadData: {
                         "admin_status": event.target.value
                     }

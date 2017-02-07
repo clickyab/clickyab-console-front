@@ -39,7 +39,7 @@ export default class EditCampaignButton extends Component {
                 <li>
                     <a href="javascript:;" key="edit" ref={(EditElement) => this.editElementBtn = EditElement}
                        className="edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-                       onClick={(event) => this.edit(event)}> ویرایش کمپین </a>
+                       onClick={(event) => this.edit(Object.assign({}, event))}> ویرایش کمپین </a>
                 </li>
                 <li>
                     <a href="javascript:;"> مشاهده ریز آمار </a>

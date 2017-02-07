@@ -11,6 +11,7 @@ import {translatable} from "react-multilingual/dist";
 import ChangeCampaignStatus from "./ChangeCampaignStatus";
 import ChangeCampaignArchiveStatus from "./ChangeCampaignArchiveStatus";
 import ChangeCampaignActiveStatus from "./ChangeCampaignActiveStatus";
+let BigPicture = require('./../../common/ThumbnailGallery');
 
 @connect(({campaignList}) => ({campaignList}))
 @translatable(({
@@ -26,6 +27,25 @@ import ChangeCampaignActiveStatus from "./ChangeCampaignActiveStatus";
     }
 }))
 export default class CampaignListCTR extends Component {
+    componentDidMount() {
+
+
+        function setClickHandler(objectClassName, fn) {
+            document.querySelector("."+objectClassName).onclick = fn;
+        }
+        setClickHandler('table-advance', function(e) {
+            e.target.tagName === 'IMG' && BigPicture({
+                el: e.target,
+                imgSrc: e.target.src
+            });
+        });
+        // BigPicture({
+        //     el: this,
+        //     ytSrc: src
+        // });
+    }
+
+
     callApi(query_name, value) {
         let {dispatch} = this.props;
         sync(function*() {
@@ -62,9 +82,12 @@ export default class CampaignListCTR extends Component {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
 
-    description(description) {
-        if (description != null) {
-            return description.replace(/(<\?[a-z]*(\s[^>]*)?\?(>|$)|<!\[[a-z]*\[|\]\]>|<!DOCTYPE[^>]*?(>|$)|<!--[\s\S]*?(-->|$)|<[a-z?!\/]([a-z0-9_:.])*(\s[^>]*)?(>|$))/gi, '');
+    description(description , {cli_message_id}) {
+        if (description != null && cli_message_id == null) {
+            return description.substring(0, 10) + "...";
+        }
+        if (cli_message_id != null) {
+            return "پروموت";
         }
 
     }
@@ -82,45 +105,60 @@ export default class CampaignListCTR extends Component {
         // return  title ;//this.props.translation[title];
     }
 
-    admin_status(admin_status, {id}) {
+    admin_status(admin_status, {id, _actions}) {
+        if (_actions.split(',').includes("admin_status")) {
+            return  <ChangeCampaignStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>;
+        }
+        let span;
         if (admin_status == 'pending') {
-            return <div>
-                <ChangeCampaignStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
-                <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>
-            </div>
+            span = <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
         } else if (admin_status == 'accepted') {
-            return <div>
-                <ChangeCampaignStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
-                <span className="label label-sm label-success"> {this.translator(admin_status)} </span>
-            </div>
+            span = <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
         } else if (admin_status == 'rejected') {
-            return <div>
-                <ChangeCampaignStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>
-                <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>
-            </div>
+            span = <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
         }
 
-        return admin_status;
+        return span;
     }
 
-    archive_status(archive_status, {id}) {
-        return <div>
-            {this.translator(archive_status)}
-            <ChangeCampaignArchiveStatus id={id} archive_status={archive_status}
-                                         translator={this.translator.bind(this)}/>
-        </div>
+    archive_status(archive_status, {id, _actions}) {
+        if (_actions.split(',').includes("archive_status")) {
+            return <ChangeCampaignArchiveStatus id={id} archive_status={archive_status}
+                                                translator={this.translator.bind(this)}/>
+        } else {
+            {
+                this.translator(archive_status)
+            }
+        }
     }
+
 
     pay_status(pay_status) {
         return this.translator(pay_status);
     }
 
-    active_status(active_status, {id}) {
-        return <div>
-            {this.translator(active_status)}
-            <ChangeCampaignActiveStatus id={id} active={active_status} translator={this.translator.bind(this)}/>
-        </div>
+
+    active_status(active_status, {id, _actions}) {
+        if (_actions.split(',').includes("active_status")) {
+            return <ChangeCampaignActiveStatus id={id} active={active_status} translator={this.translator.bind(this)}/>
+        }
+        else {
+            {
+                this.translator(active_status)
+            }
+        }
     }
+
+    src(src , {description}) {
+        if(src != null) {
+            return  <img className={ "thumbnail-image" + " " + "image-thumbnail-" + Math.random()} src={"http://rubik.clickyab.ae" +src} data-caption={description}/>
+        } else {
+            return  <img className={ "thumbnail-image" + " " + "image-thumbnail-" + Math.random()} src="/img/thumbnail.jpg" data-caption={description} />
+        }
+
+    }
+
+
 
     render() {
         return (<CampaignListPTR {...this.props.campaignList}
@@ -132,12 +170,13 @@ export default class CampaignListCTR extends Component {
                                  filter={this.filter.bind(this)}
                                  search={this.search.bind(this)}
                                  mutators={{
-                                     description: this.description,
+                                     description: this.description.bind(this),
                                      updated_at: this.updated_at,
                                      created_at: this.created_at,
                                      admin_status: this.admin_status.bind(this),
                                      archive_status: this.archive_status.bind(this),
                                      pay_status: this.pay_status.bind(this),
+                                     src: this.src.bind(this),
                                      active_status: this.active_status.bind(this)
                                  }}
         />);
