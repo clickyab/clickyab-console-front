@@ -4,7 +4,6 @@ import $ from "jquery";
 import {shallowEqual} from "./../../../3rd/shallowEqual";
 import {dispatch} from "../../../functions/dispatch";
 import SelectPermissionCTR from "./SelectPermissionCTR";
-import {select} from "../../../functions/select";
 
 class EditRoleModalPTR extends Component {
     editRoleForm;
@@ -15,39 +14,23 @@ class EditRoleModalPTR extends Component {
         selfValue: [],
         parentValue: [],
         globalValue: [],
-        options: [],
-        self: true,
-        parent: true,
-        global: true
+        selfCheckbox: false,
+        parentCheckbox: false,
+        globalCheckbox: false
     };
 
     setSelectPermission(key, value) {
         this.setState({[key]: value});
     }
 
-    initialOptions() {
-        let option = [];
+    getOptions() {
+        let options = [];
         for (let permission in this.props.permissions) {
-            option.push({value: this.props.permissions[permission], label: this.props.permissions[permission]});
+            options.push({value: this.props.permissions[permission], label: this.props.permissions[permission]});
         }
-        this.setSelectPermission('options', option)
+
+        return options;
     }
-
-    initialStateVal() {
-        let selfVal = select('roleData.perm.self') == null ? [] : Object.keys(select('roleData.perm.self'));
-        let parentVal = select('roleData.perm.parent') == null ? [] : Object.keys(select('roleData.perm.parent'));
-        let globalVal = select('roleData.perm.global') == null ? [] : Object.keys(select('roleData.perm.global'));
-        this.setSelectPermission('selfValue', selfVal);
-        this.setSelectPermission('parentValue', parentVal);
-        this.setSelectPermission('globalValue', globalVal);
-
-        // let array = [];
-        // array.push.apply(array, selfVal);
-        // array.push.apply(array, parentVal);
-        // array.push.apply(array, globalVal);
-        // this.state.options = this.state.options.filter(val => !array.includes(val));
-    }
-
 
     shouldComponentUpdate(nextProps) {
         if (!shallowEqual(this.props, nextProps)) {
@@ -61,9 +44,17 @@ class EditRoleModalPTR extends Component {
         return false;
     }
 
-    componentDidMount() {
-        this.initialOptions();
+    check() {
+        let {selfCheckbox, parentCheckbox, globalCheckbox} = this.fillSelectBoxes();
+        if (selfCheckbox)
+            dispatch(change('EditRoleModalPTR', 'self', 'self'));
+        if (parentCheckbox)
+            dispatch(change('EditRoleModalPTR', 'parent', 'parent'));
+        if (globalCheckbox)
+            dispatch(change('EditRoleModalPTR', 'global', 'global'));
+    }
 
+    componentDidMount() {
         this.editRoleForm = $("#editRoleForm");
         this.editRoleForm.validate({
             rules: {
@@ -87,17 +78,45 @@ class EditRoleModalPTR extends Component {
         });
     }
 
+    fillSelectBoxes() {
+        if (!this.props.roleData.perm)
+            return {
+                selfValue: [],
+                parentValue: [],
+                globalValue: [],
+                selfCheckbox: false,
+                parentCheckbox: false,
+                globalCheckbox: false
+            };
+
+        let selfPermission = [];
+        for (let key in this.props.roleData.perm.self) {
+            selfPermission.push({value: key, label: key});
+        }
+
+        let parentPermission = [];
+        for (let parentKey in this.props.roleData.perm.parent) {
+            parentPermission.push({value: parentKey, label: parentKey});
+        }
+
+        let globalPermission = [];
+        for (let globalKey in this.props.roleData.perm.global) {
+            globalPermission.push({value: globalKey, label: globalKey});
+        }
+
+        return {
+            selfValue: selfPermission,
+            parentValue: parentPermission,
+            globalValue: globalPermission,
+            selfCheckbox: selfPermission.length > 0,
+            parentCheckbox: parentPermission.length > 0,
+            globalCheckbox: globalPermission.length > 0
+        };
+    }
+
     render() {
-        this.initialStateVal();
-        // if (select('roleData.self')) {
-        // 	// this.setSelectPermission(self, select('roleData.perm'))
-        // 	console.log('fuuuuuuuuuuuuuuuuuuck')
-        // 	this.setState({self: false})
-        // 	// console.log(Object.keys(select('roleData.perm.self')));
-        // }
-        console.log(this.state);
         const {handleSubmit, SubmitEditRole} = this.props;
-        let {selfValue, parentValue, globalValue} = this.state;
+        this.check();
         return (
             <div className="edit-role-modal modal fade fullscreen" id="editRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -131,9 +150,12 @@ class EditRoleModalPTR extends Component {
                                     </div>
 
 
-                                    <SelectPermissionCTR selectPermission={this.state}
-                                                         setSelectPermission={this.setSelectPermission.bind(this)}
-                                                         permissions={this.props.permissions}/>
+                                    <SelectPermissionCTR
+                                        selectPermission={Object.assign({}, this.state, {options: this.getOptions()})}
+                                        setSelectPermission={this.setSelectPermission.bind(this)}
+                                        permissions={this.props.permissions}
+                                        {...this.fillSelectBoxes()}
+                                    />
                                     <button type="submit"
                                             className="btn btn-primary btn-lg edit-role-form btn-block">ذخیره
                                     </button>

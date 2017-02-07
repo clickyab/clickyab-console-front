@@ -2,10 +2,8 @@ import React, {Component} from "react";
 import SelectPermissionPTR from "./SelectPermissionPTR";
 
 export default class SelectPermissionCTR extends Component {
-
-
     toggleDisabled(e) {
-        this.props.setSelectPermission(e.target.id, !e.target.checked);
+        this.props.setSelectPermission(e.target.id, e.target.checked);
     }
 
     handleOnChangeSelf(value) {
@@ -28,17 +26,17 @@ export default class SelectPermissionCTR extends Component {
         this.props.setSelectPermission('options', option)
     }
 
-
     componentDidMount() {
-        this.initialOptions()
+        this.initialOptions();
     }
 
     render() {
+        let {selectPermission, ...rest} = this.props;
         return (<SelectPermissionPTR toggleDisabled={this.toggleDisabled.bind(this)}
                                      handleOnChangeSelf={this.handleOnChangeSelf.bind(this)}
                                      handleOnChangeParent={this.handleOnChangeParent.bind(this)}
                                      handleOnChangeGlobal={this.handleOnChangeGlobal.bind(this)}
-                                     {...this.props.selectPermission}
-        />)
+                                     {...selectPermission}
+                                     {...rest}/>)
     }
 }
