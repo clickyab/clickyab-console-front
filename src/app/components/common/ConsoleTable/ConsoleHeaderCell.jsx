@@ -33,10 +33,10 @@ export class ConsoleHeaderCell extends Component {
             <th>
                 <span className="head-title-datatable">
                     {sortable ? <a href="#" onClick={(event) => {
-                            event.preventDefault();
-                            event.stopPropagation();
-                            this.sortOnChange(Object.assign({}, event));
-                        }}>{children}</a> : children}
+                        event.preventDefault();
+                        event.stopPropagation();
+                        this.sortOnChange(Object.assign({}, event));
+                    }}>{children}</a> : children}
                 </span>
             </th>
         );

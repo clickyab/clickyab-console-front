@@ -1,8 +1,14 @@
 export default {
     comments: () => ({user}, ok, failed) => {
-        return ok("comments");
+        if (user.rules.comments === true)
+            return ok("comments");
+
+        return failed("comments");
     },
     editComments: () => ({user}, ok, failed) => {
-        return ok("editComments");
+        if (user.rules.editComments === true)
+            return ok("editComments");
+
+        return failed("editComments");
     }
 }

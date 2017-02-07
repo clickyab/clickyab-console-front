@@ -27,7 +27,7 @@ import {campaignReportListReducer} from "./reducers/campaignReportList";
 import {channelReportListReducer} from "./reducers/channelReportList";
 
 const enhancer = compose;
-const logger = createLogger();
+const logger = createLogger(); // eslint-disable-line
 
 export const store = createStore(
     combineReducers({
