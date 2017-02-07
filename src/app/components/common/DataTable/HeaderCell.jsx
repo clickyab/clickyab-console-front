@@ -73,10 +73,10 @@ export default class HeaderCell extends Component {
                                defaultValue={select('queries.' + list + "." + query_name, '')}
                                placeholder={"search by " + children}/> : ''}
                     {filters !== null ? <select
-                            defaultValue={select('queries.' + list + "." + query_name, '')}
-                            className="form-control select-datatable"
-                            onChange={this.filterOnChange.bind(this)}>
-                            {this.getFilters(filters)}</select> : ''}
+                        defaultValue={select('queries.' + list + "." + query_name, '')}
+                        className="form-control select-datatable"
+                        onChange={this.filterOnChange.bind(this)}>
+                        {this.getFilters(filters)}</select> : ''}
                 </div>
             </Cell>
         );

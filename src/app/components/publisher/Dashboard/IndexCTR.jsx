@@ -1,29 +1,18 @@
 import React, {Component} from "react";
-import $ from "jquery";
-import TotalConstAdsBoxPTR from "./../../../components/publisher/Dashboard/TotalConstAdsBoxPTR";
-import TotalAdsBoxPTR from "./../../../components/publisher/Dashboard/TotalAdsBoxPTR";
-import TotalClicksBoxPTR from "./../../../components/publisher/Dashboard/TotalClicksBoxPTR";
-import TotalIncomeBoxPTR from "./../../../components/publisher/Dashboard/TotalIncomeBoxPTR";
 import MainLinksPublisherPTR from "./../../../components/publisher/Dashboard/MainLinksPublisherPTR";
-import ClicksChartPTR from "./../../../components/publisher/Dashboard/ClicksChartPTR";
-import BudgetChartPTR from "./../../../components/publisher/Dashboard/BudgetChartPTR";
 import {loading} from "../../../functions/loading";
+import {Link} from "react-router";
 
 export default class PublisherDashboardPage extends Component {
 
     componentDidMount() {
         loading(false);
-        $(document).ready(function () {
-            $('.ranges li:last-child').hide();
-        });
     }
 
     render() {
         let {DashboardTitle} = this.props;
         return (
             <div className="page-content">
-
-
                 <div className="page-bar">
                     <ul className="page-breadcrumb pull-right">
                         <li>
@@ -38,27 +27,32 @@ export default class PublisherDashboardPage extends Component {
 
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-lg-8 col-md-8 col-sm-8 col-xs-12">
-                        <h1 className="page-title">نمایش دهنده ها</h1>
+                <div className='row'>
+                    <div className='portlet light bordered'>
+                        <div className='portlet-title'>
+                            <div className='caption'>
+                                <span className='caption-subject bold uppercase font-dark'>نمایش دهنده ها</span>
+                            </div>
+                            <div className="actions">
+                                <div className="btn-group">
+                                    <Link to="/website"
+                                          className="btn btn-transparent blue btn-outline btn-circle btn-sm">
+                                        <i className="fa fa-plus"/> ساخت وب سایت جدید
+                                    </Link>
+                                </div>
+                            </div>
+                        </div>
+                        <div className='portlet-body'>
+                            <MainLinksPublisherPTR/>
+                        </div>
                     </div>
-                    <div className="top-action-header">
-                        <button type="button" className="btn blue-madison pull-left">ساخت وب سایت جدید</button>
-                    </div>
-                </div>
-                <div className="row">
-                    <TotalConstAdsBoxPTR/>
-                    <TotalAdsBoxPTR/>
-                    <TotalClicksBoxPTR/>
-                    <TotalIncomeBoxPTR/>
-                </div>
-                <MainLinksPublisherPTR/>
-                <div className="row">
-                    <ClicksChartPTR/>
-                    <BudgetChartPTR/>
                 </div>
             </div>
         );
     }
 
 }
+
+PublisherDashboardPage.propTypes = {
+    DashboardTitle: React.PropTypes.string,
+};

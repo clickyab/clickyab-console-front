@@ -59,12 +59,12 @@ export class ConsoleFooterCell extends Component {
                                placeholder={translator(footer.title)}/> : ''}
 
                     {filters !== null ? <select
-                            defaultValue={select('queries.' + list + "." + query_name, '')}
-                            className="form-control select-datatable"
-                            onChange={(event) => {
-                                this.filterOnChange(Object.assign({}, event));
-                            }}>
-                            {this.getFilters(filters)}</select> : ''}
+                        defaultValue={select('queries.' + list + "." + query_name, '')}
+                        className="form-control select-datatable"
+                        onChange={(event) => {
+                            this.filterOnChange(Object.assign({}, event));
+                        }}>
+                        {this.getFilters(filters)}</select> : ''}
                 </div>
             </td>
         );
