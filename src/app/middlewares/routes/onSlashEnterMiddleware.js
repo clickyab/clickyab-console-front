@@ -5,12 +5,12 @@ import {redirectIfLogin} from "../redirectIfLogin";
 import {navigate} from "../../functions/navigate";
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		loading(true);
-		yield* redirectIfLogin('/v1/advertiser');
+    try {
+        loading(true);
+        yield* redirectIfLogin('/v1/advertiser');
 
-		navigate('/v1/login');
-	} catch (error) {
-		handleError(error);
-	}
+        navigate('/v1/login');
+    } catch (error) {
+        handleError(error);
+    }
 });

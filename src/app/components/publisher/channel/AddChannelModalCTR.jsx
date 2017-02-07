@@ -12,39 +12,39 @@ let loadingProgress;
 
 export default class AddChannelModalCTR extends Component {
 
-	addChannelSubmit(formValues) {
-		formValues.user_id = select('user.user_id');
-		sync(function*() {
-			loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
-			loadingProgress.start();
-			const {response} = yield (new swagger.ChannelApi())
-				.channelPost(select("user.token", "no token"), {'payloadData': formValues});
+    addChannelSubmit(formValues) {
+        formValues.user_id = select('user.user_id');
+        sync(function*() {
+            loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
+            loadingProgress.start();
+            const {response} = yield (new swagger.ChannelApi())
+                .channelPost(select("user.token", "no token"), {'payloadData': formValues});
 
-			response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-			response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-			if (response.statusCode == 200) {
-				$('#addChannelModal').modal('hide');
-				loadingProgress.stop();
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+            if (response.statusCode == 200) {
+                $('#addChannelModal').modal('hide');
+                loadingProgress.stop();
 
-				const {data} = yield(new swagger.ChannelApi()).channelListGet(select('user.token'), {def: true});
-				dispatch(channelListAction(data));
+                const {data} = yield(new swagger.ChannelApi()).channelListGet(select('user.token'), {def: true});
+                dispatch(channelListAction(data));
 
 
-			} else if (response.statusCode == '400') {
-				FailedBoxAlert(response)
-			}
-			ifInvalidToken(response);
-		});
-	}
+            } else if (response.statusCode == '400') {
+                FailedBoxAlert(response)
+            }
+            ifInvalidToken(response);
+        });
+    }
 
-	SubmitEditChannel = (formValues, form) => {
-		if (!form.valid())
-			return;
+    SubmitEditChannel = (formValues, form) => {
+        if (!form.valid())
+            return;
 
-		this.addChannelSubmit(formValues)
-	};
+        this.addChannelSubmit(formValues)
+    };
 
-	render() {
-		return (<AddChannelModalPTR SubmitAddChannel={this.SubmitEditChannel}/>);
-	}
+    render() {
+        return (<AddChannelModalPTR SubmitAddChannel={this.SubmitEditChannel}/>);
+    }
 }

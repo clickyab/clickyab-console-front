@@ -6,15 +6,15 @@ import {dispatch} from "../../functions/dispatch";
 import {createCampaign} from "../../redux/actions/index";
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		loading(true);
-		yield* isLoginMiddleware();
-		if (nextState.params.campaign_name === undefined) {
-			dispatch(createCampaign({}));
-			loading(false);
-			next();
-		}
-	} catch (error) {
-		handleError(error);
-	}
+    try {
+        loading(true);
+        yield* isLoginMiddleware();
+        if (nextState.params.campaign_name === undefined) {
+            dispatch(createCampaign({}));
+            loading(false);
+            next();
+        }
+    } catch (error) {
+        handleError(error);
+    }
 });

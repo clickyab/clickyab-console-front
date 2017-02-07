@@ -9,13 +9,12 @@ let swal = require('sweetalert');
 let loadingProgress;
 
 
-
 export default class TelegramListPTR extends Component {
 
     componentDidMount() {
         document.title = "مدیریت کاربران تلگرام";
 
-        window.select_all = function(el) {
+        window.select_all = function (el) {
             if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
                 var range = document.createRange();
                 range.selectNodeContents(el);
@@ -31,11 +30,11 @@ export default class TelegramListPTR extends Component {
         }
     }
 
-    GetTelegramCode(){
+    GetTelegramCode() {
         sync(function*() {
             loadingProgress = Ladda.create(document.querySelector('button#showGetTelegramCodeButton'));
             loadingProgress.start();
-            let {data , response} = yield (new swagger.TelegramApi())
+            let {data, response} = yield (new swagger.TelegramApi())
                 .telegramPost(select("user.token", "no token"));
 
             if (response.statusCode == 200) {
@@ -63,7 +62,7 @@ export default class TelegramListPTR extends Component {
 
                 loadingProgress.stop();
             } else if (response.statusCode == '400') {
-                AlertBox("error","اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید")
+                AlertBox("error", "اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید")
             }
         });
     }

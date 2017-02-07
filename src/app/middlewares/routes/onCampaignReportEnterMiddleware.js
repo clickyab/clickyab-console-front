@@ -11,36 +11,36 @@ import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
 
 function* campaignReportListController(done) {
-	loading(true);
-	yield* isLoginMiddleware();
-	const {error, data} = yield (new swagger.AdApi())
-		.campaignReportGet(select('user.token'), {
-			...select('queries.campaignReport', {}),
-			def: true
-		});
+    loading(true);
+    yield* isLoginMiddleware();
+    const {error, data} = yield (new swagger.AdApi())
+        .campaignReportGet(select('user.token'), {
+            ...select('queries.campaignReport', {}),
+            def: true
+        });
 
-	done();
-	if (!error) {
-		dispatch(campaignReportListAction(data));
-		loading(false);
-	} else {
-		throwError("campaignReportListController", function () {
-			navigate('/v1/login');
-		});
-	}
+    done();
+    if (!error) {
+        dispatch(campaignReportListAction(data));
+        loading(false);
+    } else {
+        throwError("campaignReportListController", function () {
+            navigate('/v1/login');
+        });
+    }
 }
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		yield* isLoginMiddleware();
-		let {error} = yield raceOnTime(campaignReportListController, 20000);
-		if (error)
-			navigate('/v1/login');
+    try {
+        yield* isLoginMiddleware();
+        let {error} = yield raceOnTime(campaignReportListController, 20000);
+        if (error)
+            navigate('/v1/login');
 
-		next();
-	} catch (error) {
-		handleError(error);
-	}
+        next();
+    } catch (error) {
+        handleError(error);
+    }
 });
 
 

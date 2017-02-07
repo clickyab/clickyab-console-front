@@ -9,47 +9,47 @@ let Ladda = require('ladda/js/ladda');
 
 @connect()
 export default class ChangePasswordCTR extends Component {
-	loadingProgress;
+    loadingProgress;
 
-	ChangePasswordCallback({error, data, response}, reset) {
-		response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-		response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-		if (response.statusCode == '200') {
-			this.loadingProgress.stop();
-			reset();
-			SuccessBoxAlert(response);
-		} else if (response.statusCode == '400') {
-			this.stopLoading();
-			FailedBoxAlert(response);
-		}
-		ifInvalidToken(response);
-	}
+    ChangePasswordCallback({error, data, response}, reset) {
+        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+        if (response.statusCode == '200') {
+            this.loadingProgress.stop();
+            reset();
+            SuccessBoxAlert(response);
+        } else if (response.statusCode == '400') {
+            this.stopLoading();
+            FailedBoxAlert(response);
+        }
+        ifInvalidToken(response);
+    }
 
-	ChangePasswordCall(formValues, reset) {
-		(new swagger.UserApi())
-			.userChangePasswordPost(getToken(), {'payloadData': formValues})
-			.then(response => this.ChangePasswordCallback(response, reset));
-	}
+    ChangePasswordCall(formValues, reset) {
+        (new swagger.UserApi())
+            .userChangePasswordPost(getToken(), {'payloadData': formValues})
+            .then(response => this.ChangePasswordCallback(response, reset));
+    }
 
-	loading() {
-		this.loadingProgress = Ladda.create(document.querySelector('button.change-password-form'));
-		this.loadingProgress.start();
-	}
+    loading() {
+        this.loadingProgress = Ladda.create(document.querySelector('button.change-password-form'));
+        this.loadingProgress.start();
+    }
 
-	stopLoading() {
-		if (this.loadingProgress)
-			this.loadingProgress.stop();
-	}
+    stopLoading() {
+        if (this.loadingProgress)
+            this.loadingProgress.stop();
+    }
 
-	SubmitChangePasswordUser = (formValues, form, reset) => {
-		if (!form.valid())
-			return;
+    SubmitChangePasswordUser = (formValues, form, reset) => {
+        if (!form.valid())
+            return;
 
-		this.loading();
-		this.ChangePasswordCall(formValues, reset)
-	};
+        this.loading();
+        this.ChangePasswordCall(formValues, reset)
+    };
 
-	render() {
-		return (<ChangePasswordPTR SubmitChangePasswordUser={this.SubmitChangePasswordUser}/>);
-	}
+    render() {
+        return (<ChangePasswordPTR SubmitChangePasswordUser={this.SubmitChangePasswordUser}/>);
+    }
 }

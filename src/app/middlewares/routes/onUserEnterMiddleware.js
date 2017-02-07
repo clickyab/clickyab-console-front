@@ -11,35 +11,35 @@ import {handleError} from "../../functions/catchError";
 import {userListAction} from "../../redux/actions/index";
 
 function* userListController(done) {
-	loading(true);
-	let {error, data} = yield (new swagger.UserApi())
-		.userUsersGet(select('user.token', 'no token'), {
-			...select('queries.user', {}),
-			def: true
-		});
+    loading(true);
+    let {error, data} = yield (new swagger.UserApi())
+        .userUsersGet(select('user.token', 'no token'), {
+            ...select('queries.user', {}),
+            def: true
+        });
 
 
-	done();
-	if (!error) {
-		dispatch(userListAction(data));
+    done();
+    if (!error) {
+        dispatch(userListAction(data));
 
-		loading(false);
-	} else {
-		throwError("onUserEnterMiddleWare", function () {
-			navigate('/v1/login');
-		});
-	}
+        loading(false);
+    } else {
+        throwError("onUserEnterMiddleWare", function () {
+            navigate('/v1/login');
+        });
+    }
 }
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		yield* isLoginMiddleware();
-		let {error} = yield raceOnTime(userListController, 20000);
-		if (error)
-			navigate('/v1/login');
+    try {
+        yield* isLoginMiddleware();
+        let {error} = yield raceOnTime(userListController, 20000);
+        if (error)
+            navigate('/v1/login');
 
-		next();
-	} catch (error) {
-		handleError(error);
-	}
+        next();
+    } catch (error) {
+        handleError(error);
+    }
 });

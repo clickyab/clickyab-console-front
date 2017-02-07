@@ -4,7 +4,7 @@ import {select} from "../../../functions/select";
 import {sync} from "../../../functions/sync";
 import {FailedBoxAlert} from "../../../functions/notifications";
 import {ifInvalidToken} from "../../../functions/helpers";
-import {dispatch} from './../../../functions/dispatch';
+import {dispatch} from "./../../../functions/dispatch";
 import {roleDataAction} from "../../../redux/actions/index";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
@@ -47,11 +47,11 @@ export default class EditRoleButton extends Component {
                 }
                 if (_this.size(_this.grab(data, 'perm.parent')) > 0) {
                     dispatch(roleDataAction(Object.assign({}, select('roleData'), {parent: true})));
-                	// console.log('parent is true', data)
+                    // console.log('parent is true', data)
                 }
                 if (_this.size(_this.grab(data, 'perm.self')) > 0) {
                     dispatch(roleDataAction(Object.assign({}, select('roleData'), {self: true})));
-                	// console.log('self is true', data);
+                    // console.log('self is true', data);
                 }
 
             } else if (response.statusCode == '400') {

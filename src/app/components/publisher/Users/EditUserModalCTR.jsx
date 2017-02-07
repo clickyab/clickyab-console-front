@@ -14,38 +14,38 @@ let loadingProgress;
 @connect(({userData}) => ({userData}))
 export default class EditUserModalCTR extends Component {
 
-	editSubmit(formValues) {
-		const {id} = this.props.channelData;
-		sync(function *() {
-			loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
-			loadingProgress.start();
-			const {data, response} = yield (new swagger.ChannelApi())
-				.channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
+    editSubmit(formValues) {
+        const {id} = this.props.channelData;
+        sync(function *() {
+            loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
+            loadingProgress.start();
+            const {data, response} = yield (new swagger.ChannelApi())
+                .channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
-			if (response.statusCode == 200) {
-				$('#editUserModal').modal('hide');
-				loadingProgress.stop();
-				dispatch(updateAChannelFromListAction(data));
-			} else if (response.statusCode == '400') {
-				FailedBoxAlert({
-					error: 'اطلاعات شما صحیح نمی‌باشد.',
-					text: 'اطلاعات شما با موفقیت ثبت شد.'
-				})
-			}
+            if (response.statusCode == 200) {
+                $('#editUserModal').modal('hide');
+                loadingProgress.stop();
+                dispatch(updateAChannelFromListAction(data));
+            } else if (response.statusCode == '400') {
+                FailedBoxAlert({
+                    error: 'اطلاعات شما صحیح نمی‌باشد.',
+                    text: 'اطلاعات شما با موفقیت ثبت شد.'
+                })
+            }
 
-			ifInvalidToken(response);
-		});
-	}
+            ifInvalidToken(response);
+        });
+    }
 
 
-	SubmitEditUser = (formValues, form) => {
-		if (!form.valid())
-			return;
-		this.editSubmit(formValues)
-	};
+    SubmitEditUser = (formValues, form) => {
+        if (!form.valid())
+            return;
+        this.editSubmit(formValues)
+    };
 
-	render() {
-		const {form, userData} = this.props;
-		return (<EditUserModalPTR form={form} userData={userData} SubmitEditUser={this.SubmitEditUser}/>);
-	}
+    render() {
+        const {form, userData} = this.props;
+        return (<EditUserModalPTR form={form} userData={userData} SubmitEditUser={this.SubmitEditUser}/>);
+    }
 }

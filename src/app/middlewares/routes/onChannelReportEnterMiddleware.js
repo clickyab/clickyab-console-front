@@ -11,35 +11,35 @@ import {navigate} from "../../functions/navigate";
 import {channelReportListAction} from "../../redux/actions/index";
 
 function* channelReportListController(done) {
-	loading(true);
-	yield* isLoginMiddleware();
-	const {error, data} = yield (new swagger.ChannelApi())
-		.channelReportGet(select('user.token'), {
-			...select('queries.channelReport', {}),
-			def: true
-		});
+    loading(true);
+    yield* isLoginMiddleware();
+    const {error, data} = yield (new swagger.ChannelApi())
+        .channelReportGet(select('user.token'), {
+            ...select('queries.channelReport', {}),
+            def: true
+        });
 
-	done();
-	if (!error) {
-		dispatch(channelReportListAction(data));
+    done();
+    if (!error) {
+        dispatch(channelReportListAction(data));
 
-		loading(false);
-	} else {
-		throwError("onChannelEnterMiddleWare", function () {
-			navigate('/v1/login');
-		});
-	}
+        loading(false);
+    } else {
+        throwError("onChannelEnterMiddleWare", function () {
+            navigate('/v1/login');
+        });
+    }
 }
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		yield* isLoginMiddleware();
-		let {error} = yield raceOnTime(channelReportListController, 20000);
-		if (error)
-			navigate('/v1/login');
+    try {
+        yield* isLoginMiddleware();
+        let {error} = yield raceOnTime(channelReportListController, 20000);
+        if (error)
+            navigate('/v1/login');
 
-		next();
-	} catch (error) {
-		handleError(error);
-	}
+        next();
+    } catch (error) {
+        handleError(error);
+    }
 });

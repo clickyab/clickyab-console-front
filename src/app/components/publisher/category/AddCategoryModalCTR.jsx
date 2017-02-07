@@ -12,38 +12,38 @@ let loadingProgress;
 
 class AddCategoryModalCTR extends Component {
 
-	addCategorySubmit(formValues) {
-		formValues.scope = 'channel';
-		sync(function*() {
-			loadingProgress = Ladda.create(document.querySelector('button.add-category-form'));
-			loadingProgress.start();
-			const {response} = yield (new swagger.CategoryApi())
-				.categoryPost(select("user.token", "no token"), {'payloadData': formValues});
+    addCategorySubmit(formValues) {
+        formValues.scope = 'channel';
+        sync(function*() {
+            loadingProgress = Ladda.create(document.querySelector('button.add-category-form'));
+            loadingProgress.start();
+            const {response} = yield (new swagger.CategoryApi())
+                .categoryPost(select("user.token", "no token"), {'payloadData': formValues});
 
-			response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-			response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-			if (response.statusCode == 200) {
-				$('#addCategoryModal').modal('hide');
-				loadingProgress.stop();
-				const {data} = yield(new swagger.CategoryApi()).categoryListGet(select('user.token'), {def: true});
-				dispatch(categoryListAction(data));
-				SuccessBoxAlert(response);
-			} else if (response.statusCode == '400') {
-				FailedBoxAlert(response)
-			}
-			ifInvalidToken(response);
-		});
-	}
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+            if (response.statusCode == 200) {
+                $('#addCategoryModal').modal('hide');
+                loadingProgress.stop();
+                const {data} = yield(new swagger.CategoryApi()).categoryListGet(select('user.token'), {def: true});
+                dispatch(categoryListAction(data));
+                SuccessBoxAlert(response);
+            } else if (response.statusCode == '400') {
+                FailedBoxAlert(response)
+            }
+            ifInvalidToken(response);
+        });
+    }
 
-	SubmitAddCategory = (formValues, form) => {
-		if (!form.valid())
-			return;
-		this.addCategorySubmit(formValues)
-	};
+    SubmitAddCategory = (formValues, form) => {
+        if (!form.valid())
+            return;
+        this.addCategorySubmit(formValues)
+    };
 
-	render() {
-		return (<AddCategoryModalPTR SubmitAddCategory={this.SubmitAddCategory}/>);
-	}
+    render() {
+        return (<AddCategoryModalPTR SubmitAddCategory={this.SubmitAddCategory}/>);
+    }
 }
 
 export default AddCategoryModalCTR;

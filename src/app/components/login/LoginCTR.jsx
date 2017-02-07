@@ -11,62 +11,62 @@ let Ladda = require('ladda/js/ladda');
 
 @connect()
 export default class LoginCTR extends Component {
-	loadingProgress;
+    loadingProgress;
 
-	loginSuccessfullyDispatchers(user) {
-		let {dispatch} = this.props;
+    loginSuccessfullyDispatchers(user) {
+        let {dispatch} = this.props;
 
-		dispatch(successfulLogin());
-		dispatch(updateUserInformation(user));
-		dispatch(updateLocalStorageAction());
-		navigate('/v1/profile');
-	}
+        dispatch(successfulLogin());
+        dispatch(updateUserInformation(user));
+        dispatch(updateLocalStorageAction());
+        navigate('/v1/profile');
+    }
 
-	failed400Dispatcher() {
-		this.props.dispatch(failedLogin());
-	}
+    failed400Dispatcher() {
+        this.props.dispatch(failedLogin());
+    }
 
-	loginCallback({error, data, response}) {
-		response.error = 'اطلاعات کاربری شما صحیح نمی‌باشد.';
-		response.text = 'شما با موفقیت وارد شدید.';
+    loginCallback({error, data, response}) {
+        response.error = 'اطلاعات کاربری شما صحیح نمی‌باشد.';
+        response.text = 'شما با موفقیت وارد شدید.';
 
-		if (response.statusCode == '200') {
-			this.loginSuccessfullyDispatchers(Object.assign({}, data));
+        if (response.statusCode == '200') {
+            this.loginSuccessfullyDispatchers(Object.assign({}, data));
 
-			SuccessBoxAlert(response);
-		} else if (response.statusCode == '400') {
-			this.failed400Dispatcher();
+            SuccessBoxAlert(response);
+        } else if (response.statusCode == '400') {
+            this.failed400Dispatcher();
 
-			this.stopLoading();
-			FailedBoxAlert(response);
-		}
-	}
+            this.stopLoading();
+            FailedBoxAlert(response);
+        }
+    }
 
-	login(formValues) {
-		(new swagger.UserApi())
-			.userLoginPost({'payloadData': formValues})
-			.then(response => this.loginCallback(response));
-	}
+    login(formValues) {
+        (new swagger.UserApi())
+            .userLoginPost({'payloadData': formValues})
+            .then(response => this.loginCallback(response));
+    }
 
-	loading() {
-		this.loadingProgress = Ladda.create(document.querySelector('.login-form button'));
-		this.loadingProgress.start();
-	}
+    loading() {
+        this.loadingProgress = Ladda.create(document.querySelector('.login-form button'));
+        this.loadingProgress.start();
+    }
 
-	stopLoading() {
-		if (this.loadingProgress)
-			this.loadingProgress.stop();
-	}
+    stopLoading() {
+        if (this.loadingProgress)
+            this.loadingProgress.stop();
+    }
 
-	SubmitCall = (formValues, form) => {
-		if (!form.valid())
-			return;
+    SubmitCall = (formValues, form) => {
+        if (!form.valid())
+            return;
 
-		this.loading();
-		this.login(formValues)
-	};
+        this.loading();
+        this.login(formValues)
+    };
 
-	render() {
-		return (<LoginPTR SubmitCall={this.SubmitCall}/>);
-	}
+    render() {
+        return (<LoginPTR SubmitCall={this.SubmitCall}/>);
+    }
 }

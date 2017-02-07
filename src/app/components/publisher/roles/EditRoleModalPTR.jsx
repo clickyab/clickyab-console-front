@@ -3,7 +3,7 @@ import {Field, reduxForm, change} from "redux-form";
 import $ from "jquery";
 import {shallowEqual} from "./../../../3rd/shallowEqual";
 import {dispatch} from "../../../functions/dispatch";
-import SelectPermissionCTR from './SelectPermissionCTR';
+import SelectPermissionCTR from "./SelectPermissionCTR";
 import {select} from "../../../functions/select";
 
 class EditRoleModalPTR extends Component {
