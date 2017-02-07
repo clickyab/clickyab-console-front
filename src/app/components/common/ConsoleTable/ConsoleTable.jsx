@@ -116,7 +116,7 @@ export class ConsoleTable extends Component {
                 <div className="loader-table" style={{display: 'none'}}>
                     <i className="fa fa-spinner fa-spin fa-3x fa-fw"/>
                 </div>
-                <div className="table-scrollable">
+                <div className="table-responsive">
                     <table className="table table-striped table-bordered table-advance table-hover">
                         <thead>
                         <tr>
