@@ -1,7 +1,9 @@
 import React, {Component} from "react";
-import {Field, reduxForm} from "redux-form";
+import {Field, reduxForm, reset} from "redux-form";
 import $ from "jquery";
 import SelectPermissionCTR from "./SelectPermissionCTR";
+import {dispatch} from "../../../functions/dispatch";
+let Ladda = require('ladda/js/ladda');
 
 class AddRoleModalPTR extends Component {
     addRoleForm;
@@ -14,35 +16,59 @@ class AddRoleModalPTR extends Component {
         parentValue: [],
         globalValue: [],
         options: [],
-        self: true,
-        parent: true,
-        global: true
+        selfCheckbox: false,
+        parentCheckbox: false,
+        globalCheckbox: false
     };
 
     setSelectPermission(key, value) {
         this.setState({[key]: value});
     }
 
+    setSelectToEmpty() {
+        this.setState({
+            selfValue: [],
+            parentValue: [],
+            globalValue: [],
+            selfCheckbox: false,
+            parentCheckbox: false,
+            globalCheckbox: false
+        });
+    }
+
     componentDidMount() {
+        this.props.setRemoveSelectBoxesCallback(this.setSelectToEmpty.bind(this));
+
         this.addRoleForm = $("#addRoleForm");
         this.addRoleForm.validate({
             rules: {
                 description: {
                     required: true,
+                    minlength: 4
                 },
                 name: {
                     required: true,
+                    minlength: 4
                 },
             },
             messages: {
                 description: {
                     required: 'لطفا توضیحات رول را وارد نمایید',
+                    minlength: 'توضیحات حداقل می‌بایست 4 کاراکتر باشد'
                 },
                 name: {
                     required: 'لطفا نام رول را وارد نمایید',
+                    minlength: 'نام  حداقل می‌بایست 4 کاراکتر باشد'
                 },
             }
         });
+    }
+
+    onCloseModal() {
+        $('#addRoleModal').modal('hide');
+        dispatch(reset('AddRoleModalPTR'));
+        this.setSelectToEmpty();
+        Ladda.create(document.querySelector('button.add-role-form')).stop();
     }
 
     render() {
@@ -55,7 +81,8 @@ class AddRoleModalPTR extends Component {
                     <div className="modal-content">
                         <div className="modal-header">
                             <div className="padding-tb-15">
-                                <img className="closebt" src="/img/closebtn.svg" data-dismiss="modal"
+                                <img className="closebt" onClick={this.onCloseModal.bind(this)} src="/img/closebtn.svg"
+                                     data-dismiss="modal"
                                      aria-hidden="true"/>
                             </div>
                         </div>

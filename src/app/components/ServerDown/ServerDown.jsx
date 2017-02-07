@@ -5,20 +5,18 @@ export default class ServerDown extends Component {
     componentDidMount() {
         let check = setInterval(() => {
             ping().then(
-                response => {
+                () => {
                     console.log('ok');
                     clearInterval(check);
                 },
-                reject => {
+                () => {
                     console.log('failed');
                 }
             )
-        });
+        }, 10000);
     }
 
     render() {
-        return (<div>
-            server is down bro :))
-        </div>);
+        return (<div>server is down bro :))</div>);
     }
 }

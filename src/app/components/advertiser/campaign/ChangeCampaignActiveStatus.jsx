@@ -4,7 +4,7 @@ import {sync} from "../../../functions/sync";
 import {getToken} from "../../../redux/helpers";
 
 export default class ChangeCampaignActiveStatus extends Component {
-    edit(event) {
+    edit() {
         const {id} = this.props;
         sync(function*() {
             const {response} = yield (new swagger.AdApi())
