@@ -1,5 +1,5 @@
 export function timeout(timeOut) {
-    return () => new Promise((resolve, reject) => {
+    return () => new Promise((resolve) => {
         setTimeout(function () {
             resolve("ok")
         }, timeOut)

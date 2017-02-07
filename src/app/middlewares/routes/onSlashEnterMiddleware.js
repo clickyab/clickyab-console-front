@@ -4,7 +4,7 @@ import {handleError} from "../../functions/catchError";
 import {redirectIfLogin} from "../redirectIfLogin";
 import {navigate} from "../../functions/navigate";
 
-export default (nextState, replace, next) => sync(function*() {
+export default () => sync(function*() {
     try {
         loading(true);
         yield* redirectIfLogin('/v1/advertiser');
