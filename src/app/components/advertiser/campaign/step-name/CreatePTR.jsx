@@ -97,7 +97,7 @@ class CreatePTR extends Component {
 										<span className="title-s-form"><label
                                             htmlFor="q1">۱- نام کمپین را وارد نمایید</label></span>
                                         <Field autoFocus onFocus={() => {
-                                        }} component="input" id="campaign_name" name="name" type="text"/>
+                                        }}  component="input" id="campaign_name" name="name" type="text"/>
 
                                     </li>
                                 </ol>

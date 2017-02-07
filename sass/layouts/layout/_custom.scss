@@ -122,12 +122,25 @@ video.full {
   transform: translate(-50%,-50%);
   color: $brand-primary;
 }
+#bp_caption span {
+  text-align: $dir-mode-align;
+  display: block;
+  font-size: 14px;
+  line-height: 2;
+}
 .custom-color {
   background: #eef1f5 !important;
 }
 .dropdown-toggle i {
   margin: 0 6px 0 0;
 }
+table .thumbnail-image {
+  max-width: 50px;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto;
+}
+
 @media screen and (max-width:1290px) and (min-width:1000px) {
   .dashboard-stat2 .display .number small {
     font-size: 10px;

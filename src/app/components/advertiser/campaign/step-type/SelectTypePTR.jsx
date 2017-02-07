@@ -37,6 +37,7 @@ class SelectTypePTR extends Component {
     componentDidMount() {
         this.handleInitialize();
 
+
         this.selectTypeContentForm = $('.campaign-name-form');
         this.selectTypeContentForm.validate({
             rules: {
@@ -243,6 +244,7 @@ class SelectTypePTR extends Component {
                                                             className="btn btn-info  button-next btn-arrow-text"
                                                             type="submit">مرحله بعد <i className="fa fa-angle-left"/>
                                                     </button>
+
                                                 </div>
                                             </div>
                                         </div>

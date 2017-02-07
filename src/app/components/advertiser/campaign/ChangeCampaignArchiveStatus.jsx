@@ -9,9 +9,11 @@ export default class ChangeCampaignArchiveStatus extends Component {
         const {id} = this.props;
         sync(function*() {
             const {response} = yield (new swagger.AdApi())
-                .campaignChangeArchiveIdPut(id, getToken());
-
-            ifInvalidToken(response);
+                .campaignListArchiveStatusIdPut(id, getToken(), {
+                    payloadData: {
+                        "archive_status": event.target.value
+                    }
+                });
         });
     }
 

@@ -3,9 +3,17 @@ import {reduxForm} from "redux-form";
 import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
 
+
+
 class StepPreviewPTR extends Component {
+    unescapeHTML = function(html) {
+        let escapeEl = document.createElement('span');
+        escapeEl.innerHTML = html;
+        return escapeEl.textContent;
+    }
+
     render() {
-        console.log(select('createCampaignData'));
+
         let {data, created_at} = this.props;
         let stepData, buttons;
         if (select('campaignStepData.type') == 'upload') {
@@ -220,9 +228,9 @@ class StepPreviewPTR extends Component {
                                                         <div className="screen">
                                                             <div className="container-telegram-view">
                                                                 <div className="bubble bubble-alt yellow">
-                                                                    <p className="font-blue">توییتر فارسی</p>
+                                                                    <p className="font-blue"> روبیک اد</p>
                                                                     <img src={data.src}/>
-                                                                    <p className="content">{data.promotes != null ? data.promotesText : data.description}</p>
+                                                                    <p className="content">{data.promotes != null ? data.promotesText : this.unescapeHTML(data.description)}</p>
                                                                     <div className="footage">
                                                                         <span className="time">20:56</span>
                                                                         <span className="view"><img src="/img/view.png"

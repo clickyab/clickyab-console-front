@@ -8,7 +8,11 @@ export default class ChangeCampaignActiveStatus extends Component {
         const {id} = this.props;
         sync(function*() {
             const {response} = yield (new swagger.AdApi())
-                .campaignChangeActiveIdPut(id, getToken());
+                .campaignListActiveStatusIdPut(id, getToken(), {
+                    payloadData: {
+                        "active_status": event.target.value
+                    }
+                });
 
         });
     }

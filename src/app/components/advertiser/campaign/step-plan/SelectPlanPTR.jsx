@@ -105,6 +105,7 @@ export default class SelectPlanPTR extends Component {
     render() {
         let campaignTitle = select("createCampaignData.name", "no title");
         let data;
+        console.log(select('createCampaignData'));
         const {handleSubmit, SubmitPlan} = this.props;
         if (select('campaignStepData.type') == 'upload') {
             data = (

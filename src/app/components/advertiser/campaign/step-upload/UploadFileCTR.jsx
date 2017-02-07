@@ -17,11 +17,6 @@ export default class UploadFileCTR extends Component {
         }
     }
 
-    setStateUploadFile() {
-        this.setState({
-            FileUploaded: false
-        });
-    }
 
     componentDidMount() {
         let that = this;
@@ -66,7 +61,7 @@ export default class UploadFileCTR extends Component {
                             }
                         );
                     if (response.statusCode == '200') {
-                        dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {src: "http://rubik.clickyab.ae/statics/" + data.src})));
+                        dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {src: "http://rubik.clickyab.ae" + data.src})));
                         dispatch(updateLocalStorageAction());
                         that.setState({
                             FileUploaded: true
@@ -370,8 +365,22 @@ export default class UploadFileCTR extends Component {
                                     }
                                 }
                                         className="btn btn-info  button-next btn-arrow-text next-step-upload"
-                                        type="submit" disabled={!this.state.FileUploaded}>مرحله بعد <i
+                                        type="submit"  disabled={!this.state.FileUploaded}>مرحله بعد <i
                                     className="fa fa-angle-left"/></button>
+                                {((select("createCampaignData.src", "no src")) != '' ?
+                                    <button onClick={
+                                        () => {
+                                            navigate('/v1/advertiser/campaign/create/:campaign_id:/step/editor', {
+                                                campaign_id: select('createCampaignData.id')
+                                            })
+                                        }
+                                    }
+                                            className="btn btn-info  button-next btn-arrow-text" autoFocus disabled={this.state.FileUploaded}
+                                            type="submit"> صرف نظر از تغییر فایل و مرحله بعد  <i className="fa fa-angle-left"/>
+                                    </button> : '')
+
+
+                                }
                             </div>
                         </div>
                     </div>

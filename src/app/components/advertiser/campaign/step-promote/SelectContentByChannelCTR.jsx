@@ -8,6 +8,8 @@ let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
 export default class SelectContentByChannelCTR extends Component {
+    clearTimeoutVariable;
+
     constructor(props) {
         super(props);
         this.state = {data: []}
@@ -15,8 +17,11 @@ export default class SelectContentByChannelCTR extends Component {
 
     jobIsCompleted(data, response) {
         if (response.statusCode == '200') {  // if second request is ok
+            if(data.Status != "failed") {
+            clearTimeout(this.clearTimeoutVariable);
             loadingProgress.stop();
             this.setState({data});
+            }
         } else if (response.statusCode == '400') {
             AlertBox("error", "کانالی با این یوزر نیم وجود ندارد");
             loadingProgress.stop();
@@ -33,11 +38,11 @@ export default class SelectContentByChannelCTR extends Component {
 
                 if (response.statusCode == '200') { // if first request is ok
 
-                    setTimeout(() => {
+                    this.clearTimeoutVariable = setInterval(() => {
                         new swagger.ChannelApi()  //second request too get list
                             .channelLastNameCountGet(formValues.name, formValues.count || 5, select("user.token", "no token"))
                             .then(({data, response}) => this.jobIsCompleted(data, response));
-                    }, 2000);
+                    }, 1000);
                 } else if (response.statusCode == '400') {
                     loadingProgress.stop();
                     AlertBox("error", "اختلالی در سرور پیش آمده است لطفا دوباره تلاش کنید");
