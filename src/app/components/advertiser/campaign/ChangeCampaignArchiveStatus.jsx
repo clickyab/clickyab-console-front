@@ -5,21 +5,22 @@ import {ifInvalidToken} from "../../../functions/helpers";
 import {getToken} from "../../../redux/helpers";
 
 export default class ChangeCampaignArchiveStatus extends Component {
-	edit(event) {
-		const {id} = this.props;
-		sync(function*() {
-			const {response} = yield (new swagger.AdApi())
-				.campaignChangeArchiveIdPut(id, getToken());
+    edit(event) {
+        const {id} = this.props;
+        sync(function*() {
+            const {response} = yield (new swagger.AdApi())
+                .campaignChangeArchiveIdPut(id, getToken());
 
-			ifInvalidToken(response);
-		});
-	}
+            ifInvalidToken(response);
+        });
+    }
 
-	render() {
-		let {translator, archive_status} = this.props;
-		return <select className="form-control" name="archive" defaultValue={archive_status} onChange={this.edit.bind(this)}>
-			<option value="yes">{translator('yes')}</option>
-			<option value="no">{translator('no')}</option>
-		</select>
-	}
+    render() {
+        let {translator, archive_status} = this.props;
+        return <select className="form-control" name="archive" defaultValue={archive_status}
+                       onChange={this.edit.bind(this)}>
+            <option value="yes">{translator('yes')}</option>
+            <option value="no">{translator('no')}</option>
+        </select>
+    }
 }

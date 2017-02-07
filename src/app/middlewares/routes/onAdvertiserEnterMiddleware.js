@@ -5,12 +5,12 @@ import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		yield* isLoginMiddleware();
-		dispatch(switchToAdvertiser());
-		dispatch(updateLocalStorageAction());
-		next();
-	} catch (error) {
-		handleError(error);
-	}
+    try {
+        yield* isLoginMiddleware();
+        dispatch(switchToAdvertiser());
+        dispatch(updateLocalStorageAction());
+        next();
+    } catch (error) {
+        handleError(error);
+    }
 });

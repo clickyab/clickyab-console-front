@@ -11,35 +11,35 @@ import {handleError} from "../../functions/catchError";
 import {navigate} from "../../functions/navigate";
 
 function* channelListController(done) {
-	loading(true);
-	yield* isLoginMiddleware();
-	const {error, data} = yield (new swagger.ChannelApi())
-		.channelListGet(select('user.token'), {
-			...select('queries.channel', {}),
-			def: true
-		});
+    loading(true);
+    yield* isLoginMiddleware();
+    const {error, data} = yield (new swagger.ChannelApi())
+        .channelListGet(select('user.token'), {
+            ...select('queries.channel', {}),
+            def: true
+        });
 
-	done();
-	if (!error) {
-		dispatch(channelListAction(data));
+    done();
+    if (!error) {
+        dispatch(channelListAction(data));
 
-		loading(false);
-	} else {
-		throwError("onChannelEnterMiddleWare", function () {
-			navigate('/v1/login');
-		});
-	}
+        loading(false);
+    } else {
+        throwError("onChannelEnterMiddleWare", function () {
+            navigate('/v1/login');
+        });
+    }
 }
 
 export default (nextState, replace, next) => sync(function*() {
-	try {
-		yield* isLoginMiddleware();
-		let {error} = yield raceOnTime(channelListController, 20000);
-		if (error)
-			navigate('/v1/login');
+    try {
+        yield* isLoginMiddleware();
+        let {error} = yield raceOnTime(channelListController, 20000);
+        if (error)
+            navigate('/v1/login');
 
-		next();
-	} catch (error) {
-		handleError(error);
-	}
+        next();
+    } catch (error) {
+        handleError(error);
+    }
 });
