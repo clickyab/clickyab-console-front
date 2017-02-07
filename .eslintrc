@@ -2,7 +2,8 @@
   "parser": "babel-eslint",
   "env": {
     "browser": true,
-    "node": true
+    "node": true,
+    "es6": true
   },
   "plugins": [
     "react"
@@ -12,10 +13,6 @@
     "plugin:react/all"
   ],
   "rules": {
-    "quotes": [
-      "error",
-      "single"
-    ],
     "react/jsx-indent": 0,
     "react/jsx-sort-props": 0,
     "react/sort-prop-types":0,
@@ -30,6 +27,8 @@
     "react/jsx-no-bind": 0,
     "react/no-set-state": 0,
     "react/forbid-component-props": 0,
-    "react/jsx-closing-bracket-location": 0
+    "react/jsx-closing-bracket-location": 0,
+    "react/jsx-tag-spacing": 0,
+    "quotes": 0
   }
 }

@@ -12,14 +12,14 @@ import {navigate} from "../../functions/navigate";
 
 function* roleListController(done) {
     loading(true);
-    var {error, data} = yield (new swagger.UserApi())
+    const result = yield (new swagger.UserApi())
         .userPermissionsGet(select('user.token'), {
             ...select('queries.role', {}),
             def: true
-        });
-    dispatch(permissionListAction(data));
+        }).data;
+    dispatch(permissionListAction(result));
 
-    var {error, data} = yield (new swagger.UserApi())
+    const {error, data} = yield (new swagger.UserApi())
         .userRolesGet(select('user.token'), {
             ...select('queries.role', {}),
             def: true
