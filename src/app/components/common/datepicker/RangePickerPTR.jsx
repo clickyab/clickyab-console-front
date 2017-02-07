@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import $ from "jquery";
-// import {translatable} from 'react-multilingual/dist';
 import moment from "moment-jalali";
+// import {translatable} from 'react-multilingual/dist';
 var daterangepicker = require('daterangepicker');
 
 moment.loadPersian();

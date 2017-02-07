@@ -19,10 +19,10 @@ export const TextCell = ({rowIndex, actions, mutator, change, edit, column, item
     }
 
     let cell = actions ? (<Cell {...props}>
-            {buildActions(row.id, mutator ? mutator(item) : item, {change, edit})}
-        </Cell>) : (<Cell {...props}>
-            {mutator ? mutator(item) : item}
-        </Cell>);
+        {buildActions(row.id, mutator ? mutator(item) : item, {change, edit})}
+    </Cell>) : (<Cell {...props}>
+        {mutator ? mutator(item) : item}
+    </Cell>);
 
     return (cell);
 };
