@@ -3,14 +3,15 @@ import {Field, reduxForm, change} from "redux-form";
 import $ from "jquery";
 import {shallowEqual} from "./../../../3rd/shallowEqual";
 import {dispatch} from "../../../functions/dispatch";
-import SelectPermissionCTR from "./SelectPermissionCTR";
+import Select from "react-select";
 
 class EditRoleModalPTR extends Component {
     editRoleForm;
+    editMode = false;
+
     state = {
         validation: true,
 
-        multi: true,
         selfValue: [],
         parentValue: [],
         globalValue: [],
@@ -19,10 +20,6 @@ class EditRoleModalPTR extends Component {
         globalCheckbox: false
     };
 
-    setSelectPermission(key, value) {
-        this.setState({[key]: value});
-    }
-
     getOptions() {
         let options = [];
         for (let permission in this.props.permissions) {
@@ -30,6 +27,12 @@ class EditRoleModalPTR extends Component {
         }
 
         return options;
+    }
+
+    toggleDisabled(e) {
+        this.setState({[e.target.id]: e.target.checked});
+        this.editMode = true;
+        this.forceUpdate();
     }
 
     shouldComponentUpdate(nextProps) {
@@ -44,8 +47,50 @@ class EditRoleModalPTR extends Component {
         return false;
     }
 
+    fillSelectBoxes() {
+        if (!this.props.roleData.perm)
+            return {
+                selfValue: [],
+                parentValue: [],
+                globalValue: [],
+                selfCheckbox: false,
+                parentCheckbox: false,
+                globalCheckbox: false
+            };
+
+        if (this.editMode)
+            return this.state;
+
+        let selfPermission = [];
+        for (let key in this.props.roleData.perm.self) {
+            selfPermission.push({value: key, label: key});
+        }
+
+        let parentPermission = [];
+        for (let parentKey in this.props.roleData.perm.parent) {
+            parentPermission.push({value: parentKey, label: parentKey});
+        }
+
+        let globalPermission = [];
+        for (let globalKey in this.props.roleData.perm.global) {
+            globalPermission.push({value: globalKey, label: globalKey});
+        }
+
+        this.firstEditModeData = {
+            selfValue: selfPermission,
+            parentValue: parentPermission,
+            globalValue: globalPermission,
+            selfCheckbox: selfPermission.length > 0,
+            parentCheckbox: parentPermission.length > 0,
+            globalCheckbox: globalPermission.length > 0
+        };
+
+        return this.firstEditModeData;
+    }
+
     check() {
         let {selfCheckbox, parentCheckbox, globalCheckbox} = this.fillSelectBoxes();
+
         if (selfCheckbox)
             dispatch(change('EditRoleModalPTR', 'self', 'self'));
         if (parentCheckbox)
@@ -55,6 +100,14 @@ class EditRoleModalPTR extends Component {
     }
 
     componentDidMount() {
+        $(document).on('shown.bs.modal', () => {
+            this.setState(this.fillSelectBoxes());
+            if (this.editMode == false) {
+                this.check()
+            }
+            this.forceUpdate();
+        });
+
         this.editRoleForm = $("#editRoleForm");
         this.editRoleForm.validate({
             rules: {
@@ -78,45 +131,48 @@ class EditRoleModalPTR extends Component {
         });
     }
 
-    fillSelectBoxes() {
-        if (!this.props.roleData.perm)
-            return {
-                selfValue: [],
-                parentValue: [],
-                globalValue: [],
-                selfCheckbox: false,
-                parentCheckbox: false,
-                globalCheckbox: false
-            };
+    handleOnChangeSelf(value) {
+        this.editMode = true;
+        this.setState({
+            selfValue: value,
+            selfCheckbox: true
+        });
+        this.forceUpdate();
+    }
 
-        let selfPermission = [];
-        for (let key in this.props.roleData.perm.self) {
-            selfPermission.push({value: key, label: key});
-        }
+    handleOnChangeParent(value) {
+        this.editMode = true;
+        this.setState({
+            parentValue: value,
+            parentCheckbox: true
+        });
+        this.forceUpdate();
+    }
 
-        let parentPermission = [];
-        for (let parentKey in this.props.roleData.perm.parent) {
-            parentPermission.push({value: parentKey, label: parentKey});
-        }
+    handleOnChangeGlobal(value) {
+        this.editMode = true;
+        this.setState({
+            globalValue: value,
+            globalCheckbox: true
+        });
+        this.forceUpdate();
+    }
 
-        let globalPermission = [];
-        for (let globalKey in this.props.roleData.perm.global) {
-            globalPermission.push({value: globalKey, label: globalKey});
-        }
+    onEachRender({options, selfValue, parentValue, globalValue}) {
+        let array = [];
+        array.push.apply(array, selfValue);
+        array.push.apply(array, parentValue);
+        array.push.apply(array, globalValue);
 
-        return {
-            selfValue: selfPermission,
-            parentValue: parentPermission,
-            globalValue: globalPermission,
-            selfCheckbox: selfPermission.length > 0,
-            parentCheckbox: parentPermission.length > 0,
-            globalCheckbox: globalPermission.length > 0
-        };
+        return options.filter(val => !array.includes(val));
     }
 
     render() {
         const {handleSubmit, SubmitEditRole} = this.props;
-        this.check();
+        let {
+            selfValue, parentValue, globalValue, selfCheckbox, parentCheckbox, globalCheckbox
+        } = this.state;
+        let options = this.onEachRender({options: this.getOptions(), selfValue, parentValue, globalValue});
         return (
             <div className="edit-role-modal modal fade fullscreen" id="editRoleModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -150,12 +206,60 @@ class EditRoleModalPTR extends Component {
                                     </div>
 
 
-                                    <SelectPermissionCTR
-                                        selectPermission={Object.assign({}, this.state, {options: this.getOptions()})}
-                                        setSelectPermission={this.setSelectPermission.bind(this)}
-                                        permissions={this.props.permissions}
-                                        {...this.fillSelectBoxes()}
-                                    />
+                                    <div>
+                                        <div className="form-group">
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="selfCheckbox" value="self"
+                                                       onClick={this.toggleDisabled.bind(this)}
+                                                       name="self"
+                                                       type="checkbox"/> خودم
+                                                <span/>
+                                            </label>
+                                            <Select
+                                                disabled={!selfCheckbox}
+                                                multi={true}
+                                                options={options}
+                                                onChange={this.handleOnChangeSelf.bind(this)}
+                                                value={selfValue}
+                                                placeholder='انتخاب دسترسی...'
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="parentCheckbox" value="parent"
+                                                       onClick={this.toggleDisabled.bind(this)}
+                                                       name="parent"
+                                                       type="checkbox"/> PARENT
+                                                <span/>
+                                            </label>
+                                            <Select
+                                                disabled={!parentCheckbox}
+                                                multi={true}
+                                                options={options}
+                                                onChange={this.handleOnChangeParent.bind(this)}
+                                                value={parentValue}
+                                                placeholder='انتخاب دسترسی...'
+                                            />
+                                        </div>
+                                        <div className="form-group">
+                                            <label className="mt-checkbox">
+                                                <Field component="input" id="globalCheckbox" value="global"
+                                                       onClick={this.toggleDisabled.bind(this)}
+                                                       name="global"
+                                                       type="checkbox"/> Global
+                                                <span/>
+                                            </label>
+                                            <Select
+                                                disabled={!globalCheckbox}
+                                                multi={true}
+                                                options={options}
+                                                onChange={this.handleOnChangeGlobal.bind(this)}
+                                                value={globalValue}
+                                                placeholder='انتخاب دسترسی...'
+                                            />
+                                        </div>
+                                    </div>
+
                                     <button type="submit"
                                             className="btn btn-primary btn-lg edit-role-form btn-block">ذخیره
                                     </button>
