@@ -191,7 +191,8 @@ class EditRoleModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="editRoleForm" method="post"
                                       className="add-role-form white"
-                                      onSubmit={handleSubmit((values) => SubmitEditRole(values, this.editRoleForm))}>
+                                      onSubmit={handleSubmit((values) =>
+                                          SubmitEditRole(values, this.editRoleForm, this.state.selfValue, this.state.parentValue, this.state.globalValue))}>
                                     <div className="form-group">
                                         <label htmlFor="link">نام رول</label>
                                         <Field component="input" type="text" name="name" placeholder="نام رول"
