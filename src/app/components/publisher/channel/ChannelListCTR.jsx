@@ -94,9 +94,7 @@ export default class ChannelListCTR extends Component {
             return <ChangeChannelArchiveStatus id={id} archive_status={archive_status}
                                                translator={this.translator.bind(this)}/>
         } else {
-            {
-                this.translator(archive_status)
-            }
+            return this.translator(archive_status)
         }
     }
 
@@ -105,9 +103,7 @@ export default class ChannelListCTR extends Component {
             return <ChangeChannelActiveStatus id={id} active={active} translator={this.translator.bind(this)}/>
         }
         else {
-            {
-                this.translator(active)
-            }
+                return this.translator(active)
         }
     }
 
@@ -119,6 +115,7 @@ export default class ChannelListCTR extends Component {
                                 search={this.search.bind(this)}
                                 onPerPageChange={this.onPerPageChange.bind(this)}
                                 onPaginationChange={this.onPaginationChange.bind(this)}
+                                edit={this.edit.bind(this)}
                                 mutators={{
                                     updated_at: this.updated_at,
                                     created_at: this.created_at,
@@ -126,7 +123,7 @@ export default class ChannelListCTR extends Component {
                                     archive_status: this.archive_status.bind(this),
                                     active: this.active.bind(this)
                                 }}
-                                edit={this.edit.bind(this)}
+
         />);
     }
 }

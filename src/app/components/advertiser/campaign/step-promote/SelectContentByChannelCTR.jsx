@@ -23,6 +23,7 @@ export default class SelectContentByChannelCTR extends Component {
             this.setState({data});
             }
         } else if (response.statusCode == '400') {
+            clearTimeout(this.clearTimeoutVariable);
             AlertBox("error", "کانالی با این یوزر نیم وجود ندارد");
             loadingProgress.stop();
         }
