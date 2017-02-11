@@ -20,7 +20,7 @@ export default class ChangeCampaignStatus extends Component {
 
     render() {
         let {translator, admin_status} = this.props;
-        return <select className="form-control" name="status" defaultValue={admin_status}
+        return <select className="form-control input-sm" name="status" defaultValue={admin_status}
                        onChange={this.edit.bind(this)}>
             <option data-tokens="accepted" value="accepted">{translator('accepted')}</option>
             <option data-tokens="pending" value="pending">{translator('pending')}</option>

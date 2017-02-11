@@ -35,6 +35,7 @@ class SelectTypePTR extends Component {
     }
 
     componentDidMount() {
+        document.title = "ساختن کمپین جدید | انتخاب نوع محتوای کمپین";
         this.handleInitialize();
 
 

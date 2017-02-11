@@ -126,15 +126,17 @@ export default class CampaignListCTR extends Component {
             return <ChangeCampaignArchiveStatus id={id} archive_status={archive_status}
                                                 translator={this.translator.bind(this)}/>
         } else {
-            {
-                this.translator(archive_status)
-            }
+            return this.translator(archive_status)
         }
     }
 
 
     pay_status(pay_status) {
-        return this.translator(pay_status);
+        if(pay_status == "no") {
+            return <span className="label label-sm label-warning"> {this.translator(pay_status)} </span>
+        } else if (pay_status == "yes") {
+            return <span className="label label-sm label-success"> {this.translator(pay_status)} </span>
+        }
     }
 
 
@@ -143,9 +145,7 @@ export default class CampaignListCTR extends Component {
             return <ChangeCampaignActiveStatus id={id} active={active_status} translator={this.translator.bind(this)}/>
         }
         else {
-            {
-                this.translator(active_status)
-            }
+                return this.translator(active_status)
         }
     }
 

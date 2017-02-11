@@ -104,6 +104,7 @@ class SelectContentByChannelPTR extends Component {
     };
 
     componentDidMount() {
+        document.title = "ساختن کمپین جدید | انتخاب محتوای دیگر چنل ها به عنوان تبلیغ";
         this.selectTypeContentForm = $('.get-posts-channel-form');
         this.selectTypeContentForm.validate({
             rules: {
