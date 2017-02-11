@@ -19,6 +19,7 @@ export default class UploadFileCTR extends Component {
 
 
     componentDidMount() {
+        document.title = "ساختن کمپین جدید | آپلود فایل";
         let that = this;
         if (select('createCampaignData.src') != null) {
             $(".flow-drop").addClass("col-md-8");

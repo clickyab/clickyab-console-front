@@ -9,6 +9,7 @@ class CaptionPTR extends Component {
     captionCampaignForm;
 
     componentDidMount() {
+        document.title = "ساختن کمپین جدید | متن تبلیغ";
         if (select('createCampaignData.description') != null) {
             $(".emojieditor-plugin-content").val(select('createCampaignData.description'))
         }

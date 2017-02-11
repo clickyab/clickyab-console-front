@@ -8,6 +8,7 @@ class CreatePTR extends Component {
     createCampaignForm;
 
     componentDidMount() {
+        document.title = "ساختن کمپین جدید | انتخاب نام";
         dispatch(change('CreatePTRForm', 'name', select('createCampaignData.name', '')));
 
         this.createCampaignForm = $('.campaign-name-form');

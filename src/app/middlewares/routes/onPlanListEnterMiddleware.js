@@ -30,7 +30,7 @@ function* planListController(done) {
 
 export default (nextState, replace, next) => sync(function*() {
     try {
-        yield* isLoginMiddleware();
+        // yield* isLoginMiddleware();
         yield* isCampaignMiddleware(nextState);
         let {error} = yield raceOnTime(planListController, 20000);
         if (error)

@@ -51,7 +51,7 @@ export class ConsoleFooterCell extends Component {
             <td>
                 <div className="search-filter-datatable">
                     {searchable ?
-                        <input className="form-control type-search-datatable"
+                        <input className="form-control input-sm type-search-datatable"
                                onChange={(event) => {
                                    this.onSearchChange(Object.assign({}, event));
                                }}
@@ -60,7 +60,7 @@ export class ConsoleFooterCell extends Component {
 
                     {filters !== null ? <select
                         defaultValue={select('queries.' + list + "." + query_name, '')}
-                        className="form-control select-datatable"
+                        className="form-control input-sm select-datatable"
                         onChange={(event) => {
                             this.filterOnChange(Object.assign({}, event));
                         }}>

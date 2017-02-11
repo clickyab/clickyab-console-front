@@ -20,6 +20,10 @@ export default class SelectPlanPTR extends Component {
         }
     }
 
+    componentDidMount() {
+        document.title = "ساختن کمپین جدید | انتخاب پلن تبلیغاتی";
+    }
+
     onSelectPlan(plan_id, plan_name) {
         return (event) => {
             this.planID = plan_id;

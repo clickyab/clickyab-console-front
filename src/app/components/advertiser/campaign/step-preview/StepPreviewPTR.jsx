@@ -12,6 +12,10 @@ class StepPreviewPTR extends Component {
         return escapeEl.textContent;
     }
 
+    componentDidMount() {
+        document.title = "ساختن کمپین جدید | پیش نمایش تبلیغ";
+    }
+
     render() {
 
         let {data, created_at} = this.props;

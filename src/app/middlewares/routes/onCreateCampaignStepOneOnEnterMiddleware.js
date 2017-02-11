@@ -8,7 +8,7 @@ import {createCampaign} from "../../redux/actions/index";
 export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
-        yield* isLoginMiddleware();
+        // yield* isLoginMiddleware();
         dispatch(createCampaign({}));
         loading(false);
         next();

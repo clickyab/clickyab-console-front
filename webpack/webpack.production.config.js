@@ -34,24 +34,17 @@ module.exports = {
             'jquery',
             'bootstrap',
 
-            './public/vendor/fetch.js',
             './public/vendor/jquery.validate.js',
             './public/vendor/additional-methods.js',
-            './public/vendor/bootstrap-switch.js',
             './public/vendor/datepicker/jalali.js',
             './public/vendor/datepicker/calendar.js',
             './public/vendor/datepicker/calendar-setup.js',
             './public/vendor/datepicker/calendar-en.js',
             './public/vendor/datepicker/calendar-fa.js',
             './public/vendor/app.js',
-            './public/vendor/dashboard.js',
             './public/vendor/layout.js',
-            './public/vendor/demo.js',
-            './public/vendor/quick-nav.js',
-            './public/vendor/jquery.backstretch.js',
             './public/vendor/jquery.textcomplete.js',
             './public/vendor/emojarea.js',
-            './public/vendor/animatedModal.js'
         ]
     },
     output: {

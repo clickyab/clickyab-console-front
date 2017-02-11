@@ -19,7 +19,7 @@ export default class ChangeCampaignActiveStatus extends Component {
 
     render() {
         let {translator, active} = this.props;
-        return <select className="form-control" name="active" defaultValue={active} onChange={this.edit.bind(this)}>
+        return <select className="form-control input-sm" name="active" defaultValue={active} onChange={this.edit.bind(this)}>
             <option value="yes">{translator('yes')}</option>
             <option value="no">{translator('no')}</option>
         </select>
