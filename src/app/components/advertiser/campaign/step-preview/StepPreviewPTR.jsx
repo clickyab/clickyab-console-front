@@ -122,7 +122,7 @@ class StepPreviewPTR extends Component {
                 <div className="col-md-offset-3 col-md-9">
                     <button onClick={
                         () => {
-                            navigate('/v1/advertiser');
+                            navigate('/v1/advertiser/campaign');
                         }
 
                     }
