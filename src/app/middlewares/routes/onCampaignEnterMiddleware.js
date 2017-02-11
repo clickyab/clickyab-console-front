@@ -9,6 +9,7 @@ import {throwError} from "../../functions/Error";
 import {navigate} from "../../functions/navigate";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
+import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* campaignListController(done) {
     loading(true);
@@ -16,7 +17,7 @@ function* campaignListController(done) {
     const {error, data} = yield (new swagger.AdApi())
         .campaignListGet(select('user.token'), {
             ...select('queries.campaign', {}),
-            def: true
+            def: shouldUpdateDefinition('campaignList')
         });
 
     done();

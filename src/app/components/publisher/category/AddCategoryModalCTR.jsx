@@ -25,7 +25,7 @@ class AddCategoryModalCTR extends Component {
             if (response.statusCode == 200) {
                 $('#addCategoryModal').modal('hide');
                 loadingProgress.stop();
-                const {data} = yield(new swagger.CategoryApi()).categoryListGet(select('user.token'), {def: true});
+                const {data} = yield(new swagger.CategoryApi()).categoryListGet(select('user.token'));
                 dispatch(categoryListAction(data));
                 SuccessBoxAlert(response);
             } else if (response.statusCode == '400') {

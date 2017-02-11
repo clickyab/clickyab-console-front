@@ -26,7 +26,7 @@ export default class AddChannelModalCTR extends Component {
                 $('#addChannelModal').modal('hide');
                 loadingProgress.stop();
 
-                const {data} = yield(new swagger.ChannelApi()).channelListGet(select('user.token'), {def: true});
+                const {data} = yield(new swagger.ChannelApi()).channelListGet(select('user.token'));
                 dispatch(channelListAction(data));
 
 

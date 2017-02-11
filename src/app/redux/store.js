@@ -25,6 +25,8 @@ import {permissionListReducer} from "./reducers/permissionListReducer";
 import {secureReducer} from "react-redux-secure";
 import {campaignReportListReducer} from "./reducers/campaignReportList";
 import {channelReportListReducer} from "./reducers/channelReportList";
+import {versionReducer} from "./reducers/versionReducer";
+import versionChanged from './../middlewares/versionChanged';
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
@@ -64,7 +66,9 @@ export const store = createStore(
         form: formReducer,
 
         locale: localeReducer('fa', require('../../locales/index').default),
-        secure: secureReducer(require("../secure/rules").default)
+        secure: secureReducer(require("../secure/rules").default),
+
+        version: versionReducer
     }),
     localStorage.get('initialState'),
     enhancer(applyMiddleware(
@@ -80,6 +84,7 @@ export const store = createStore(
         }),
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
+		versionChanged,
         // logger
         )
     )

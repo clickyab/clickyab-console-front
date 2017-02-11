@@ -8,13 +8,9 @@ import {dispatch} from "../../../functions/dispatch";
 import {telegramItemsListAction} from "../../../redux/actions/index";
 import {change} from "redux-form/lib/actions";
 let Ladda = require('ladda/js/ladda');
-
 let loadingProgress;
 
-
 export default class AddTelegramCodeModalCTR extends Component {
-
-
     GetTelegramCode(formValues) {
         sync(function*() {
             loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
@@ -28,7 +24,7 @@ export default class AddTelegramCodeModalCTR extends Component {
                 dispatch(change("AddTelegramCodeModalPTR", "generated_code", "/verify-" + keyCode));
                 $(".generate-input-code").css("opacity", "1");
                 loadingProgress.stop();
-                const {data} = yield(new swagger.TelegramApi()).telegramListGet(select('user.token'), {def: true});
+                const {data} = yield(new swagger.TelegramApi()).telegramListGet(select('user.token'));
                 dispatch(telegramItemsListAction(data));
             } else if (response.statusCode == '400') {
                 AlertBox("error", "اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید")

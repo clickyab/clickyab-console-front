@@ -9,13 +9,14 @@ import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
 import {navigate} from "../../functions/navigate";
+import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* roleListController(done) {
     loading(true);
     const result = (yield (new swagger.UserApi())
         .userPermissionsGet(select('user.token'), {
             ...select('queries.role', {}),
-            def: true
+            def: shouldUpdateDefinition('roleList')
         })).data;
     dispatch(permissionListAction(result));
 

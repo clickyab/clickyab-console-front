@@ -53,6 +53,7 @@ import onChannelReportEnterMiddleware from "./middlewares/routes/onChannelReport
 import {store} from "./redux/store";
 import verifyPage from "./components/advertiser/campaign/verifyPage";
 import onVerifyEnterMiddleware from "./middlewares/routes/onVerifyEnterMiddleware";
+import getVersion from "./functions/getVersion";
 
 document.body.addEventListener('panic', function () {
     dispatch(logout());
@@ -63,6 +64,10 @@ document.body.addEventListener('panic', function () {
 
 document.body.addEventListener('server-down', function () {
     navigate('/server-down');
+});
+
+browserHistory.listen(function() {
+    getVersion();
 });
 
 export default function Provider() {
