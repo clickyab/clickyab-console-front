@@ -92,3 +92,6 @@ export const telegramItemsListAction = ({data}) => ({type: TELEGRAM_ITEMS_LIST, 
 
 export const updateLocalStorageAction = () => ({type: UPDATE_LOCAL_STORAGE});
 export const asyncRemoveLocalStorageAction = () => ({type: REMOVE_LOCAL_STORAGE});
+
+export const VERSION = "VERSION";
+export const versionAction = (version) => ({type: VERSION, version});

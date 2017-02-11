@@ -64,7 +64,7 @@ export default class AddRoleModalCTR extends Component {
                 loadingProgress.stop();
 
                 const {data} = yield(new swagger.UserApi())
-                    .userRolesGet(select('user.token'), {def: true});
+                    .userRolesGet(select('user.token'));
                 dispatch(roleListAction(data));
             } else if (response.statusCode == '400') {
                 FailedBoxAlert(response);

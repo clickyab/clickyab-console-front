@@ -26,8 +26,4 @@ export function* isCampaignMiddleware(props) {
             AlertBox("error", "این کمپین در سیسستم وجود ندارد");
         });
     }
-
-
-
-
 }
