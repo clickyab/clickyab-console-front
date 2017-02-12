@@ -9,13 +9,14 @@ import {isLoginMiddleware} from "../isLoginMiddleware";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
 import {userListAction} from "../../redux/actions/index";
+import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* userListController(done) {
     loading(true);
     let {error, data} = yield (new swagger.UserApi())
         .userUsersGet(select('user.token', 'no token'), {
             ...select('queries.user', {}),
-            def: true
+            def: shouldUpdateDefinition('userList')
         });
 
 

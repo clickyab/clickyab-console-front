@@ -9,13 +9,14 @@ import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
 import {navigate} from "../../functions/navigate";
+import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* telegramListController(done) {
     loading(true);
     const {error, data} = yield (new swagger.TelegramApi())
         .telegramListGet(select('user.token'), {
             ...select('queries.telegram', {}),
-            def: true
+            def: shouldUpdateDefinition('telegramList')
         });
 
     done();

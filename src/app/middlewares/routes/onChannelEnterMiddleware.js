@@ -9,6 +9,7 @@ import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
 import {navigate} from "../../functions/navigate";
+import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* channelListController(done) {
     loading(true);
@@ -16,7 +17,7 @@ function* channelListController(done) {
     const {error, data} = yield (new swagger.ChannelApi())
         .channelListGet(select('user.token'), {
             ...select('queries.channel', {}),
-            def: true
+            def: shouldUpdateDefinition('channelList')
         });
 
     done();
