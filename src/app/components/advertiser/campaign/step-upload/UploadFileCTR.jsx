@@ -17,6 +17,21 @@ export default class UploadFileCTR extends Component {
         }
     }
 
+    loadSrcData(fileSrc){
+        if(select("createCampaignData.extension") == '.png' || select("createCampaignData.extension") == '.jpg') {
+            $(".preview-image-holder *").remove();
+            $(".preview-image-holder").append("<img src="+ fileSrc +"/>");
+        }
+        else if(select("createCampaignData.extension") == '.mp4' || select("createCampaignData.extension") == '.mov'){
+            $(".preview-image-holder *").remove();
+            $(".preview-image-holder").append("<video controls src="+  fileSrc +"></video>");
+        }
+        else if(select("createCampaignData.extension") == '.pdf') {
+            $(".preview-image-holder *").remove();
+            $(".preview-image-holder").append("<img src='/img/pdf-file.jpg'>");
+        }
+    }
+
 
     componentDidMount() {
         document.title = "ساختن کمپین جدید | آپلود فایل";
@@ -24,7 +39,7 @@ export default class UploadFileCTR extends Component {
         if (select('createCampaignData.src') != null) {
             $(".flow-drop").addClass("col-md-8");
             $(".flow-drop").fadeIn();
-            $(".preview-image img").attr("src", select('createCampaignData.src'));
+            this.loadSrcData(select('createCampaignData.src'));
             $(".preview-image").fadeIn();
         }
         (function () {
@@ -50,7 +65,7 @@ export default class UploadFileCTR extends Component {
             // Handle file add event
             r.on('fileSuccess', function (file, message) {
                 let resolve = JSON.parse(message);
-                let fileReader = new FileReader();
+                // let fileReader = new FileReader();
 
                 sync(function*() {
                     const {data, response} = yield (new swagger.AdApi())
@@ -62,7 +77,8 @@ export default class UploadFileCTR extends Component {
                             }
                         );
                     if (response.statusCode == '200') {
-                        dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {src: "http://rubik.clickyab.ae" + data.src})));
+
+                        dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {src: data.src , extension: data.extension})));
                         dispatch(updateLocalStorageAction());
                         that.setState({
                             FileUploaded: true
@@ -71,12 +87,18 @@ export default class UploadFileCTR extends Component {
                         $(".progress-bar").css("width", "0");
                         $(".flow-drop").addClass("col-md-8");
                         $(".flow-drop").fadeIn();
-                        fileReader.onload = function (event) {
-                            let uri = event.target.result;
-                            $(".preview-image img").attr("src", uri);
-                            $(".preview-image").fadeIn();
-                        };
-                        fileReader.readAsDataURL(file.file);
+                        // fileReader.onload = function (event) {
+                        //     let uri = event.target.result;
+                        //     var mimeType = uri.split(",")[0].split(":")[1].split(";")[0];
+                        //     console.log(mimeType);
+                        //     var myURL = window.URL || window.webkitURL;
+                        //
+                        //
+                        //
+                        // };
+                        that.loadSrcData(select("createCampaignData.src"));
+                        $(".preview-image").fadeIn();
+                        // fileReader.readAsDataURL(file.file);
                     } else if (response.statusCode == '400') {
                         AlertBox("error", "اختلالی در سرور به وجود آمده لطفا دوباره تلاش کنید");
                     }
@@ -86,6 +108,13 @@ export default class UploadFileCTR extends Component {
                 that.setState({
                     FileUploaded: false
                 });
+                if (file.getExtension() != 'png' &&
+                    file.getExtension() != 'jpg' &&
+                    file.getExtension() != 'mp4' &&
+                    file.getExtension() != 'mov' &&
+                    file.getExtension() != 'pdf'){
+                    return false;
+                }
                 $(".flow-drop").fadeOut();
                 $(".preview-image").fadeOut();
                 $(".flow-file").remove();
@@ -329,7 +358,6 @@ export default class UploadFileCTR extends Component {
                                 </div>
                                 <div className="preview-image col-md-4" style={{display: 'none'}}>
                                     <div className="preview-image-holder">
-                                        <img src=""/>
                                     </div>
                                 </div>
                             </div>
@@ -368,7 +396,7 @@ export default class UploadFileCTR extends Component {
                                         className="btn btn-info  button-next btn-arrow-text next-step-upload"
                                         type="submit"  disabled={!this.state.FileUploaded}>مرحله بعد <i
                                     className="fa fa-angle-left"/></button>
-                                {((select("createCampaignData.src", "no src")) != '' ?
+                                {((select("createCampaignData.src")) != null ?
                                     <button onClick={
                                         () => {
                                             navigate('/v1/advertiser/campaign/create/:campaign_id:/step/editor', {
