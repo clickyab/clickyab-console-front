@@ -37,25 +37,9 @@ class SelectTypePTR extends Component {
     componentDidMount() {
         document.title = "ساختن کمپین جدید | انتخاب نوع محتوای کمپین";
         this.handleInitialize();
-
-
-        this.selectTypeContentForm = $('.campaign-name-form');
-        this.selectTypeContentForm.validate({
-            rules: {
-                name: {
-                    required: true,
-                },
-            },
-            messages: {
-                name: {
-                    required: 'لطفا نام کمپین را وارد نمایید',
-                },
-            }
-        });
     }
 
     render() {
-        const {handleSubmit, SubmitCreateCampaignName} = this.props;
         let campaignTitle = select("createCampaignData.name", "no title");
         let toggleStyleUpload;
         let toggleStylePromote;
@@ -231,7 +215,7 @@ class SelectTypePTR extends Component {
                                                             });
                                                         }
                                                     } className="btn btn-default  button-next btn-arrow-text"
-                                                            type="submit"><i className="fa fa-angle-right"/> مرحله قبل
+                                                           ><i className="fa fa-angle-right"/> مرحله قبل
                                                     </button>
                                                     <button onClick={
                                                         () => {
@@ -243,7 +227,7 @@ class SelectTypePTR extends Component {
                                                         }
                                                     }
                                                             className="btn btn-info  button-next btn-arrow-text"
-                                                            type="submit">مرحله بعد <i className="fa fa-angle-left"/>
+                                                            >مرحله بعد <i className="fa fa-angle-left"/>
                                                     </button>
 
                                                 </div>
