@@ -3,9 +3,8 @@ import swagger from "../../../swagger/index";
 import {select} from "../../../functions/select";
 import {assignRoleUserData} from "../../../redux/actions/index";
 import {sync} from "../../../functions/sync";
-import {FailedBoxAlert} from "../../../functions/notifications";
+import {AlertBox} from "../../../functions/notifications";
 import {dispatch} from "../../../functions/dispatch";
-import {ifInvalidToken} from "../../../functions/helpers";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
@@ -29,12 +28,9 @@ export default class EditUserButton extends Component {
                     data.userId = id;
                     dispatch(assignRoleUserData(data));
                 } else if (response.statusCode == '400') {
-                    FailedBoxAlert(response)
+                    AlertBox('error', 'اطلاعات شما صحیح نمی‌باشد.');
                 }
-                ifInvalidToken({
-                    error: 'اطلاعات شما صحیح نمی‌باشد.',
-                    text: 'اطلاعات شما با موفقیت ثبت شد.'
-                });
+
             });
         } catch (e) {
             console.log(e);
@@ -44,6 +40,6 @@ export default class EditUserButton extends Component {
     render() {
         return <button key="edit" ref={(EditElement) => this.editElementBtn = EditElement}
                        className="btn btn-info btn-xs blue edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-                       onClick={(event) => this.edit(event)}><i className="fa fa-edit"/>ویرایش</button>;
+                       onClick={(event) => this.edit(event)}>ویرایش</button>;
     }
 }

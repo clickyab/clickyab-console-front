@@ -115,7 +115,7 @@ class EditUserModalPTR extends Component {
                                     </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg edit-role-form btn-block edit-user-role">
-                                        ذخیره
+                                        ویرایش رول
                                     </button>
                                 </form>
                             </div>
