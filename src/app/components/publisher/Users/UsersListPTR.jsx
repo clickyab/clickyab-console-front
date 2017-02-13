@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
+import EditUserModalCTR from './EditUserModalCTR';
 
 export default class UsersListPTR extends Component {
     componentDidMount() {
@@ -28,6 +29,7 @@ export default class UsersListPTR extends Component {
                     </div>
                     <div className='portlet-body'>
                         <ConsoleTable {...this.props} list="user"/>
+                        <EditUserModalCTR form="EditUserModalPTR"/>
                     </div>
                 </div>
             </div>

@@ -27,6 +27,8 @@ import {campaignReportListReducer} from "./reducers/campaignReportList";
 import {channelReportListReducer} from "./reducers/channelReportList";
 import {versionReducer} from "./reducers/versionReducer";
 import versionChanged from './../middlewares/versionChanged';
+import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
+import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
@@ -40,6 +42,8 @@ export const store = createStore(
         userList: userListReducer,
         userData: userDataReducer,
         userType: userTypeReducer,
+        userAssignRoleList: userAssignRoleListReducer,
+        userAssignRoleData: userAssignRoleDataReducer,
 
         channelList: channelListReducer,
         channelReportList: channelReportListReducer,
