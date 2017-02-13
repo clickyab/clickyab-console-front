@@ -2,10 +2,7 @@ import React, {Component} from "react";
 import {connect} from "react-redux";
 import EditUserModalPTR from "./EditUserModalPTR";
 import swagger from "../../../swagger/index";
-import {updateAChannelFromListAction} from "../../../redux/actions/index";
-import {dispatch} from "../../../functions/dispatch";
-import {FailedBoxAlert} from "../../../functions/notifications";
-import {ifInvalidToken} from "../../../functions/helpers";
+import {AlertBox} from "../../../functions/notifications";
 import {sync} from "../../../functions/sync";
 import {select} from "../../../functions/select";
 let Ladda = require('ladda/js/ladda');
@@ -35,15 +32,10 @@ export default class EditUserModalCTR extends Component {
                 if (response.statusCode == 200) {
                     $('#editUserModal').modal('hide');
                     loadingProgress.stop();
-                    // dispatch(updateAChannelFromListAction(data));
                 } else if (response.statusCode == '400') {
-                    FailedBoxAlert({
-                        error: 'اطلاعات شما صحیح نمی‌باشد.',
-                        text: 'اطلاعات شما با موفقیت ثبت شد.'
-                    })
+                    AlertBox('error', 'اطلاعات شما با موفقیت ثبت شد.');
                 }
 
-                ifInvalidToken(response);
             });
         } catch (e) {
             console.log(e);

@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Field, reduxForm, change} from "redux-form";
+import {Field, reduxForm} from "redux-form";
 import $ from "jquery";
 import Select from "react-select";
 
