@@ -9,20 +9,24 @@ export default class SwitcherCTR extends Component {
         if (this.props.userType == 'publisher') {
             main = (<Link to="/v1/publisher" className="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
                           data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
+                <i className="fa fa-television"/>
                 <span className="langname">ناشر</span>
                 <i className="fa fa-angle-down"/>
             </Link>);
             dropDown = (<Link to="/v1/advertiser">
-                تبلیغ کننده
+                <i className="fa fa-television"/>
+                <span className="title">تبلیغ کننده</span>
             </Link>);
         } else {
             main = (<Link to="/v1/advertiser" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
                           data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
+                <i className="fa fa-bullhorn"/>
                 <span className="langname">تبلیغ کننده</span>
                 <i className="fa fa-angle-down"/>
             </Link>);
 
             dropDown = (<Link to="/v1/publisher">
+                <i className="fa fa-television"/>
                 ناشر
             </Link>);
         }
