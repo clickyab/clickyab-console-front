@@ -6,10 +6,28 @@ import {navigate} from "../../../../functions/navigate";
 
 
 class StepPreviewPTR extends Component {
+
     unescapeHTML = function(html) {
         let escapeEl = document.createElement('span');
         escapeEl.innerHTML = html;
         return escapeEl.textContent;
+    }
+
+    previewSrcFile() {
+        let itemSrcFile = [];
+        if(select("createCampaignData.extension") == '.png' || select("createCampaignData.extension") == '.jpg') {
+            itemSrcFile.push(<img key="image" src={select("createCampaignData.src")}/>)
+        }
+        else if(select("createCampaignData.extension") == '.mp4' || select("createCampaignData.extension") == '.mov'){
+            itemSrcFile.push(<video key="video" controls src={select("createCampaignData.src")}/>)
+        }
+        else if(select("createCampaignData.extension") == '.pdf') {
+            itemSrcFile.push(<img key="pdf" src="/img/pdf-file.jpg/"/>)
+        } else {
+            itemSrcFile.push("");
+        }
+
+        return itemSrcFile;
     }
 
     componentDidMount() {
@@ -233,7 +251,7 @@ class StepPreviewPTR extends Component {
                                                             <div className="container-telegram-view">
                                                                 <div className="bubble bubble-alt yellow">
                                                                     <p className="font-blue"> روبیک اد</p>
-                                                                    <img src={data.src}/>
+                                                                    {this.previewSrcFile()}
                                                                     <p className="content">{data.promotes != null ? data.promotesText : this.unescapeHTML(data.description)}</p>
                                                                     <div className="footage">
                                                                         <span className="time">20:56</span>

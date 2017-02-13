@@ -8,6 +8,7 @@ Scrollable Tables
     overflow-y: hidden;
     border: 1px solid $general-panel-border-color;
     margin: 10px 0 !important;
+    -webkit-overflow-scrolling: touch;
 
     .DTS & {
         border: 0;

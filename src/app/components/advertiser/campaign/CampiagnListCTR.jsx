@@ -34,15 +34,19 @@ export default class CampaignListCTR extends Component {
             document.querySelector("."+objectClassName).onclick = fn;
         }
         setClickHandler('table-advance', function(e) {
-            e.target.tagName === 'IMG' && BigPicture({
-                el: e.target,
-                imgSrc: e.target.src
-            });
+            if(e.target.className == 'thumbnail-image') {
+            BigPicture({
+                    el: e.target,
+                    imgSrc: e.target.src
+                });
+            }
+            else if(e.target.className == 'thumbnail-video') {
+                BigPicture({
+                             el: e.target,
+                             vidSrc: e.target.getAttribute('data-video')
+                         });
+            }
         });
-        // BigPicture({
-        //     el: this,
-        //     ytSrc: src
-        // });
     }
 
 
@@ -111,11 +115,11 @@ export default class CampaignListCTR extends Component {
         }
         let span;
         if (admin_status == 'pending') {
-            span = <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
+            span = <span className="label  label-warning"> {this.translator(admin_status)} </span>;
         } else if (admin_status == 'accepted') {
-            span = <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
+            span = <span className="label  label-success"> {this.translator(admin_status)} </span>;
         } else if (admin_status == 'rejected') {
-            span = <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
+            span = <span className="label  label-danger"> {this.translator(admin_status)} </span>;
         }
 
         return span;
@@ -133,9 +137,9 @@ export default class CampaignListCTR extends Component {
 
     pay_status(pay_status) {
         if(pay_status == "no") {
-            return <span className="label label-sm label-warning"> {this.translator(pay_status)} </span>
+            return <span className="label  label-warning"> {this.translator(pay_status)} </span>
         } else if (pay_status == "yes") {
-            return <span className="label label-sm label-success"> {this.translator(pay_status)} </span>
+            return <span className="label  label-success"> {this.translator(pay_status)} </span>
         }
     }
 
@@ -150,10 +154,26 @@ export default class CampaignListCTR extends Component {
     }
 
     src(src , {description}) {
+        let splitByLastDot = function(text) {
+            if (text != null || text != undefined) {
+                let index = text.lastIndexOf('.');
+                return text.slice(index + 1)
+            }
+        }
         if(src != null) {
-            return  <img className={ "thumbnail-image" + " " + "image-thumbnail-" + Math.random()} src={"http://rubik.clickyab.ae" +src} data-caption={description}/>
+            if(splitByLastDot(src) == "png" || splitByLastDot(src) == "jpg") {
+                return  <img className={"thumbnail-image"} src={"http://rubik.clickyab.ae/statics" +src} data-caption={description}/>
+            }
+            else if (splitByLastDot(src) == "mov" || splitByLastDot(src) == "mp4"){
+                return  <div className={"thumbnail-video"} style={{backgroundImage : 'url(/img/video-file.jpg)'}} data-video={"http://rubik.clickyab.ae/statics" +src} data-caption={description}/>
+            }
+
+            else {
+                return  <img className={ "thumbnail-image"} src="/img/pdf-file.jpg" data-caption={description} />
+            }
+
         } else {
-            return  <img className={ "thumbnail-image" + " " + "image-thumbnail-" + Math.random()} src="/img/thumbnail.jpg" data-caption={description} />
+            return  <img className={ "thumbnail-image"} src="/img/thumbnail.jpg" data-caption={description} />
         }
 
     }

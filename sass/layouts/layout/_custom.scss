@@ -82,7 +82,7 @@ ul , li {
   border: 2px dashed #aaa;
   margin-top: 40px;
 }
-.preview-image img {
+.preview-image img , .preview-image video {
   max-width: 100%;
   height: auto;
   max-height: 250px;
@@ -101,12 +101,14 @@ video.full {
   height: auto;
   z-index: -100;
   transform: translateX(-50%) translateY(-50%);
-  background: url('//demosthenes.info/assets/images/polina.jpg') no-repeat;
   background-size: cover;
   transition: 1s opacity;
 }
 .table-holder {
   position: relative;
+}
+.preview-image-holder * {
+  padding: 0 15px;
 }
 .loader-table {
   position: absolute;
@@ -139,6 +141,15 @@ table .thumbnail-image {
   cursor: pointer;
   display: block;
   margin: 0 auto;
+}
+table .thumbnail-video {
+  background-size: cover;
+  background-position: center center;
+  width: 50px;
+  height: 40px;
+  display: block;
+  margin: 0 auto;
+  cursor: pointer;
 }
 
 @media screen and (max-width:1290px) and (min-width:1000px) {

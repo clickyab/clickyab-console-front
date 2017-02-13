@@ -5,7 +5,7 @@ var glob = require('glob');
 var loaders = require('./webpack.loaders.js');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-const HOST = process.env.HOST || "127.0.0.1";
+const HOST = process.env.HOST || "0.0.0.0";
 const PORT = process.env.PORT || "8888";
 
 // global css
