@@ -19,13 +19,6 @@ export default class UsersListPTR extends Component {
                         <div className='caption'>
                             <span className='caption-subject bold uppercase font-dark'> لیست کاربران </span>
                         </div>
-                        <div className="actions">
-                            <div className="btn-group btn-group-devided" data-toggle="buttons">
-                                <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
-                                        id="showAddChannelModalForm">افزودن کاربر جدید
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     <div className='portlet-body'>
                         <ConsoleTable {...this.props} list="user"/>
