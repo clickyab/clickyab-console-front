@@ -291,14 +291,12 @@
   margin-left: 5px;
 }
 .Select--multi .Select-value {
-  background-color: #ebf5ff;
+  background-color: #eee;
   /* Fallback color for IE 8 */
-  background-color: rgba(0, 126, 255, 0.08);
+  background-color: rgb(238, 238, 238);
   border-radius: 2px;
-  border: 1px solid #c2e0ff;
   /* Fallback color for IE 8 */
-  border: 1px solid rgba(0, 126, 255, 0.24);
-  color: #007eff;
+  color: #444;
   display: inline-block;
   font-size: 0.9em;
   line-height: 1.4;
@@ -329,9 +327,7 @@
   cursor: pointer;
   border-bottom-left-radius: 2px;
   border-top-left-radius: 2px;
-  border-right: 1px solid #c2e0ff;
-  /* Fallback color for IE 8 */
-  border-right: 1px solid rgba(0, 126, 255, 0.24);
+  padding: 1px 5px 3px;
   padding: 1px 5px 3px;
 }
 .Select--multi .Select-value-icon:hover,
