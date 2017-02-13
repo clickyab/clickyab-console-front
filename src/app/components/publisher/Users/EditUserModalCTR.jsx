@@ -11,41 +11,49 @@ import {select} from "../../../functions/select";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
-@connect(({userData}) => ({userData}))
+@connect(({userAssignRoleList, userAssignRoleData}) => ({userAssignRoleList, userAssignRoleData}))
 export default class EditUserModalCTR extends Component {
 
-    editSubmit(formValues) {
-        const {id} = this.props.channelData;
-        sync(function *() {
-            loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
-            loadingProgress.start();
-            const {data, response} = yield (new swagger.ChannelApi())
-                .channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
-            if (response.statusCode == 200) {
-                $('#editUserModal').modal('hide');
-                loadingProgress.stop();
-                dispatch(updateAChannelFromListAction(data));
-            } else if (response.statusCode == '400') {
-                FailedBoxAlert({
-                    error: 'اطلاعات شما صحیح نمی‌باشد.',
-                    text: 'اطلاعات شما با موفقیت ثبت شد.'
-                })
-            }
+    SubmitEditUser(formValues, roleValue) {
+        let roleValueId = [];
+        for (let i = 0; i < roleValue.length; i++) {
+            roleValueId.push(roleValue[i].id)
+        }
+        try {
+            sync(function *() {
+                loadingProgress = Ladda.create(document.querySelector('.edit-user-role'));
+                loadingProgress.start();
+                const {data, response} = yield (new swagger.UserApi())
+                    .userAssignRolesPost(select('user.token', 'no token'), {
+                        'payloadData': {
+                            'role_id': roleValueId,
+                            'user_id': select('userAssignRoleData.userId')
+                        }
+                    });
 
-            ifInvalidToken(response);
-        });
+                if (response.statusCode == 200) {
+                    $('#editUserModal').modal('hide');
+                    loadingProgress.stop();
+                    // dispatch(updateAChannelFromListAction(data));
+                } else if (response.statusCode == '400') {
+                    FailedBoxAlert({
+                        error: 'اطلاعات شما صحیح نمی‌باشد.',
+                        text: 'اطلاعات شما با موفقیت ثبت شد.'
+                    })
+                }
+
+                ifInvalidToken(response);
+            });
+        } catch (e) {
+            console.log(e);
+        }
+
     }
 
-
-    SubmitEditUser = (formValues, form) => {
-        if (!form.valid())
-            return;
-        this.editSubmit(formValues)
-    };
-
     render() {
-        const {form, userData} = this.props;
-        return (<EditUserModalPTR form={form} userData={userData} SubmitEditUser={this.SubmitEditUser}/>);
+        const {form, userAssignRoleList, userAssignRoleData} = this.props;
+        return (<EditUserModalPTR userAssignRoleData={userAssignRoleData} userAssignRoleList={userAssignRoleList}
+                                  form={form} SubmitEditUser={this.SubmitEditUser}/>);
     }
 }
