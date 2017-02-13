@@ -99,10 +99,10 @@
             displayElement.src = imgSrc;
         }
         // if direct video link
-        else if (options.vidSrc) {
+        else if (el.getAttribute('data-video')) {
             toggleLoadingIcon(true);
             displayElement = displayVideo;
-            displayElement.src = options.vidSrc;
+            displayElement.src = el.getAttribute('data-video');
             checkVid();
         }
         // local image / background image already loaded on page
