@@ -1,60 +1,86 @@
 import React, {Component} from "react";
 import {Field, reduxForm, change} from "redux-form";
 import $ from "jquery";
-import {shallowEqual} from "./../../../3rd/shallowEqual";
-import {dispatch} from "../../../functions/dispatch";
+import Select from "react-select";
 
 class EditUserModalPTR extends Component {
-    editUserForm;
+    editMode = false;
+
     state = {
-        validation: true
+        roleValue: [],
     };
 
-
-    shouldComponentUpdate(nextProps) {
-        if (!shallowEqual(this.props, nextProps)) {
-            for (let key in nextProps.userData) {
-                dispatch(change(nextProps.form, key, nextProps.userData[key]))
-            }
-
-            return true;
+    getOptions() {
+        let options = [];
+        for (let i = 0; i < this.props.userAssignRoleList.length; i++) {
+            options.push({
+                value: this.props.userAssignRoleList[i].name,
+                label: this.props.userAssignRoleList[i].name,
+                id: this.props.userAssignRoleList[i].id
+            })
         }
 
-        return false;
+        return options;
     }
 
+
     componentDidMount() {
-        this.editUserForm = $("#editUserForm");
-        this.editUserForm.validate({
-            rules: {
-                admin: {
-                    required: true,
-                },
-                link: {
-                    required: true,
-                },
-                name: {
-                    required: true,
-                },
-
-            },
-            messages: {
-                admin: {
-                    required: 'لطفا نام ادمین را وارد نمایید',
-                },
-                link: {
-                    required: 'لطفا لینک کانال را وارد نمایید',
-                },
-                name: {
-                    required: 'لطفا نام کانال را وارد نمایید',
-                },
-
-            }
+        $(document).on('shown.bs.modal', () => {
+            this.setState(this.fillSelectBoxes());
+            this.forceUpdate();
         });
+
+        $(document).on('hide.bs.modal', () => {
+            this.editMode = false;
+            this.setState({roleValue: []});
+        });
+
+    }
+
+    fillSelectBoxes() {
+        if (!this.props.userAssignRoleData)
+            return {
+                roleValue: []
+            };
+
+        if (this.editMode)
+            return this.state;
+
+        let roleValue = [];
+        for (let i = 0; i < this.props.userAssignRoleData.length; i++) {
+            roleValue.push({
+                value: this.props.userAssignRoleData[i].name,
+                label: this.props.userAssignRoleData[i].name,
+                id: this.props.userAssignRoleData[i].id
+            });
+        }
+
+        this.firstEditModeData = {
+            roleValue: roleValue
+        };
+
+        return this.firstEditModeData;
+    }
+
+    handleOnChangeRole(value) {
+        this.editMode = true;
+        this.setState({
+            roleValue: value,
+        });
+        this.forceUpdate();
+    }
+
+    onEachRender({options, roleValue}) {
+        let array = [];
+        array.push.apply(array, roleValue);
+
+        return options.filter(val => !array.includes(val));
     }
 
     render() {
         const {handleSubmit, SubmitEditUser} = this.props;
+        let {roleValue} = this.state;
+        let options = this.onEachRender({options: this.getOptions(), roleValue});
         return (
             <div className="edit-channel-modal modal fade fullscreen" id="editUserModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -71,27 +97,25 @@ class EditUserModalPTR extends Component {
                                 <div className="modal-title text-center">
                                     <h3/>
                                 </div>
-                                <form role="form" action="" id="editUserForm" method="post"
-                                      className="add-channel-form white"
-                                      onSubmit={handleSubmit((values) => SubmitEditUser(values, this.editUserForm))}>
-                                    <div className="form-group">
-                                        <label htmlFor="admin">نام ادمین</label>
-                                        <Field component="input" type="text" name="admin" placeholder='نام ادمین'
-                                               className="form-control input-lg" id="admin"/>
-                                    </div>
-                                    <div className="form-group">
-                                        <label htmlFor="link">لینک کانال</label>
-                                        <Field component="input" type="text" name="link" placeholder="لینک چنل"
-                                               className="form-control input-lg" id="link"/>
-                                    </div>
+                                <form role="form" action="" id="editRoleForm" method="post"
+                                      className="add-role-form white"
+                                      onSubmit={handleSubmit((values) =>
+                                          SubmitEditUser(values, this.state.roleValue))}>
 
-                                    <div className="form-group">
-                                        <label htmlFor="name">نام کانال</label>
-                                        <Field component="input" type="text" name="name" placeholder="نام کانال"
-                                               className="form-control input-lg" id="name"/>
+                                    <div>
+                                        <div className="form-group">
+                                            <Select
+                                                options={options}
+                                                multi={true}
+                                                placeholder='انتخاب دسترسی...'
+                                                value={roleValue}
+                                                onChange={this.handleOnChangeRole.bind(this)}
+                                            />
+                                        </div>
                                     </div>
                                     <button type="submit"
-                                            className="btn btn-primary btn-lg edit-channel-form btn-block">ذخیره
+                                            className="btn btn-primary btn-lg edit-role-form btn-block edit-user-role">
+                                        ذخیره
                                     </button>
                                 </form>
                             </div>

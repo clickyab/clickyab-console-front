@@ -67,11 +67,15 @@ export const ROLE_LIST = 'ROLE_LIST';
 export const ROLE_DATA = 'ROLE_DATA';
 export const ROLE_QUERY = 'ROLE_QUERY';
 export const ROLE_ITEMS_LIST = 'ROLE_ITEMS_LIST';
+export const ASSIGN_ROLE_USER_LIST = 'ASSIGN_ROLE_USER_LIST';
+export const ASSIGN_ROLE_USER_DATA = 'ASSIGN_ROLE_USER_DATA';
 export const roleDataAction = (data) => ({type: ROLE_DATA, data});
 export const roleQueryAction = (list, query_name, queries) => ({type: ROLE_QUERY, list, query_name, queries});
 export const roleListAction = (data) => ({type: ROLE_LIST, data});
 export const roleItemsListAction = ({data}) => ({type: ROLE_ITEMS_LIST, items: data});
 export const updateARoleFromListAction = (data) => ({type: UPDATE_ROLE_FROM_LIST, data});
+export const assignRoleToUserList = (data) => ({type: ASSIGN_ROLE_USER_LIST, data});
+export const assignRoleUserData = (data) => ({type: ASSIGN_ROLE_USER_DATA, data});
 
 export const PERMISSION_LIST = 'PERMISSION_LIST';
 export const permissionListAction = (data) => ({type: PERMISSION_LIST, data});
