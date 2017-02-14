@@ -3,6 +3,7 @@ import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
+import {Base64} from 'js-base64';
 
 
 class CaptionPTR extends Component {
@@ -11,7 +12,7 @@ class CaptionPTR extends Component {
     componentDidMount() {
         document.title = "ساختن کمپین جدید | متن تبلیغ";
         if (select('createCampaignData.description') != null) {
-            $(".emojieditor-plugin-content").val(select('createCampaignData.description'))
+            $(".emojieditor-plugin-content").val(Base64.decode(select('createCampaignData.description')))
         }
         $("#emojieditor-plugin-container").emojioneArea({
             parentID: "emojieditor-plugin-parent",
