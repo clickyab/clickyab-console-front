@@ -2,16 +2,15 @@ import React, {Component} from "react";
 import {reduxForm} from "redux-form";
 import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
-
+import {Base64} from 'js-base64';
 
 
 class StepPreviewPTR extends Component {
-
     unescapeHTML = function(html) {
         let escapeEl = document.createElement('span');
         escapeEl.innerHTML = html;
         return escapeEl.textContent;
-    }
+    };
 
     previewSrcFile() {
         let itemSrcFile = [];
@@ -252,7 +251,7 @@ class StepPreviewPTR extends Component {
                                                                 <div className="bubble bubble-alt yellow">
                                                                     <p className="font-blue"> روبیک اد</p>
                                                                     {this.previewSrcFile()}
-                                                                    <p className="content">{data.promotes != null ? data.promotesText : this.unescapeHTML(data.description)}</p>
+                                                                    <p className="content">{data.promotes != null ? data.promotesText : this.unescapeHTML(Base64.decode(data.description))}</p>
                                                                     <div className="footage">
                                                                         <span className="time">20:56</span>
                                                                         <span className="view"><img src="/img/view.png"
