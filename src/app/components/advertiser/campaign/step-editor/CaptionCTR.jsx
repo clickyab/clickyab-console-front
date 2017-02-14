@@ -7,6 +7,7 @@ import {dispatch} from "./../../../../functions/dispatch";
 import {navigate} from "../../../../functions/navigate";
 import {AlertBox} from "../../../../functions/notifications";
 import {select} from "../../../../functions/select";
+import {Base64} from 'js-base64';
 import $ from "jquery";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
@@ -22,7 +23,7 @@ export default class CaptionCTR extends Component {
                     loadingProgress.start();
 
                     const {response} = yield (new swagger.AdApi())
-                        .campaignDescIdPut(select("createCampaignData.id", "no id"), select("user.token", "no token"), {'payloadData': {"body": textarea_text.val()}});
+                        .campaignDescIdPut(select("createCampaignData.id", "no id"), select("user.token", "no token"), {'payloadData': {"body": Base64.encode(textarea_text.val())}});
 
                     response.error = 'اطلاعات شما صحیح نمی‌باشد.';
                     response.text = 'اطلاعات شما با موفقیت ثبت شد.';
