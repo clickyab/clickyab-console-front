@@ -25,6 +25,15 @@ export class Sidebar extends Component {
 
     render() {
         let {dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access} = this.props;
+        let dropdown = (
+            <ul className="sub-menu" style={{display: 'block'}}>
+                <li className="nav-item  ">
+                    <a href="components_date_time_pickers.html" className="nav-link ">
+                        <span className="title">Date &amp; Time Pickers</span>
+                    </a>
+                </li>
+            </ul>
+        );
         return (
             <div className='page-sidebar-wrapper'>
                 <div className='page-sidebar navbar-collapse collapse'>
@@ -36,7 +45,14 @@ export class Sidebar extends Component {
                                 <span/>
                             </div>
                         </li>
-                        <SidebarLink to='/v1/advertiser'>
+
+                        <SidebarLink to='#' dropdown={
+                            <ul className="sub-menu" style={{display: 'block'}}>
+                                    <SidebarLink to="/v1/advertiser">
+                                        <span className="title">Date &amp; Time Pickers</span>
+                                    </SidebarLink>
+                            </ul>
+                        }>
                             <i className='fa fa-home'/>
                             <span className='title'>داشبورد تبلیغ کننده</span>
                             <span className='selected'/>
@@ -44,11 +60,12 @@ export class Sidebar extends Component {
                             <span className='arrow open'/>
                         </SidebarLink>
 
-                        <SidebarLink to="/v1/advertiser/campaign">
+                        <SidebarLink  className="nav-item" to="/v1/advertiser/campaign">
                             <i className='fa fa-bullseye'/>
                             <span className='title'>کمپین‌ها</span>
                             <span className="selected"/>
                             <span className='arrow open'/>
+
                         </SidebarLink>
 
                         <SidebarLink to="/v1/publisher/user">

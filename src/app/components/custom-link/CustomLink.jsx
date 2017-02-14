@@ -137,7 +137,7 @@ var Link = React.createClass({
         // Ignore if rendered outside the context of router, simplifies unit testing.
         var router = this.context.router;
 
-        let LiClassName = '';
+        let LiClassName = 'nav-item';
         if (router) {
             // If user does not specify a `to` prop, return an empty anchor tag.
             if (to == null) {
@@ -149,15 +149,19 @@ var Link = React.createClass({
             props.href = router.createHref(location);
             if (location == window.location.pathname) {
 
-                LiClassName = 'active';
+                LiClassName += ' active';
                 if (activeStyle) props.style = _extends({}, props.style, activeStyle);
             }
         }
+        let {dropdown} = props;
         let customProps = Object.assign({}, props);
+        delete customProps.dropdown;
         delete customProps.onCustomClick;
+
         return (
             <li className={LiClassName}>
                 {React.createElement('a', _extends({}, customProps, {onClick: this.handleClick}))}
+                {dropdown ? dropdown: <span/>}
             </li>
         );
     }
