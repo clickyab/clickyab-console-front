@@ -17,13 +17,13 @@ let BigPicture = require('./../../common/ThumbnailGallery');
 @translatable(({
     ID, Title, CreatedAt, UpdatedAt, Description, Email,
     UserID, Name, ArchiveStatus, _actions, AdArchiveStatus, AdActive, AdPayStatus,
-    yes, no, accepted, pending, rejected, AdActiveStatus, AdAdminStatus, Src, PlanID
+    yes, no, accepted, pending, rejected, AdActiveStatus, AdAdminStatus, Src, PlanID , View
 
 }) => ({
     translation: {
         ID, Title, CreatedAt, UpdatedAt, Description, Email,
         UserID, Name, ArchiveStatus, Action: _actions, AdArchiveStatus, AdActive, AdPayStatus,
-        yes, no, accepted, pending, rejected, AdActiveStatus, AdAdminStatus, Src, PlanID
+        yes, no, accepted, pending, rejected, AdActiveStatus, AdAdminStatus, Src, PlanID , View
     }
 }))
 export default class CampaignListCTR extends Component {
