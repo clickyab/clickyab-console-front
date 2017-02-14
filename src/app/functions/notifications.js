@@ -22,3 +22,18 @@ export function FailedBoxAlert(response) {
     AlertBox('error', response.error);
 }
 
+export function NotifyBox(type, msg, delay) {
+    Lobibox.notify(
+        type, {
+            size: 'mini',
+            rounded: false,
+            sound: false,
+            icon: false,
+            delay: delay,
+            position: 'top right',
+            delayIndicator: true,
+            msg: msg
+        }
+    )
+}
+
