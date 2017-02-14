@@ -54,6 +54,7 @@ import {store} from "./redux/store";
 import verifyPage from "./components/advertiser/campaign/verifyPage";
 import onVerifyEnterMiddleware from "./middlewares/routes/onVerifyEnterMiddleware";
 import getVersion from "./functions/getVersion";
+import checkSubmitProfile from "./functions/checkSubmitProfile";
 
 document.body.addEventListener('panic', function () {
     dispatch(logout());
@@ -68,6 +69,7 @@ document.body.addEventListener('server-down', function () {
 
 browserHistory.listen(function() {
     getVersion();
+    checkSubmitProfile();
 });
 
 export default function Provider() {
