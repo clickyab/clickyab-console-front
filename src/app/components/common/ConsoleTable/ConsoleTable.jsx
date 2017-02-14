@@ -60,7 +60,9 @@ export class ConsoleTable extends Component {
         dispatch(channelQueryAction(list, 'p', page));
         dispatch(updateLocalStorageAction());
 
+        this.loader(true);
         onPaginationChange(page);
+        this.loader(false);
     }
 
     onPerPageChange(per_page) {
@@ -69,7 +71,9 @@ export class ConsoleTable extends Component {
         dispatch(channelQueryAction(list, 'c', per_page));
         dispatch(updateLocalStorageAction());
 
+        this.loader(true);
         onPerPageChange(per_page);
+        this.loader(false);
     }
 
 
@@ -193,11 +197,18 @@ export class ConsoleTable extends Component {
                     <div className="col-sm-6 col-xs-12">
                         <div className="dataTables_length pull-left">
                             <label>نمایش
-                                <input className="form-control input-sm input-xsmall input-inline text-center"
-                                       type="text" onChange={(event) => {
-                                    this.onPerPageChange(parseInt(event.target.value));
-                                    dispatch(channelQueryAction(list, 'p', 1));
-                                }} defaultValue={select('queries.' + list + '.c', 10)}/>
+                                <select className="form-control input-sm input-xsmall input-inline text-center"
+                                        onChange={(event) => {
+                                            this.onPerPageChange(parseInt(event.target.value));
+                                            dispatch(channelQueryAction(list, 'p', 1));
+                                        }}
+                                        defaultValue={select('queries.' + list + '.c', 10)}>
+                                    <option value="10">10</option>
+                                    <option value="20">20</option>
+                                    <option value="30">30</option>
+                                    <option value="40">40</option>
+                                    <option value="50">50</option>
+                                </select>
                                 در صفحه
                             </label>
                         </div>
