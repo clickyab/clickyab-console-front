@@ -50,6 +50,27 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                             <span className='arrow open'/>
                         </SidebarLink>
+
+                        <SidebarLink to="/v1/publisher/user">
+                            <i className='fa fa-user'/>
+                            <span className='title'>مدیریت کاربران</span>
+                            <span className="selected"/>
+                            <span className='arrow open'/>
+                        </SidebarLink>
+
+                        <SidebarLink to="/v1/publisher/role">
+                            <i className='fa fa-user'/>
+                            <span className='title'> رول ها</span>
+                            <span className="selected"/>
+                            <span className='arrow open'/>
+                        </SidebarLink>
+
+                        <SidebarLink to="/v1/publisher/telegram">
+                            <i className='fa fa-user'/>
+                            <span className='title'>مدیریت کاربران تلگرام</span>
+                            <span className="selected"/>
+                            <span className='arrow open'/>
+                        </SidebarLink>
                     </ul>
                 </div>
 
