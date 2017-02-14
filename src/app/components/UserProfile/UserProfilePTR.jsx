@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {reduxForm} from "redux-form";
+import {reduxForm, change} from "redux-form";
 import PersonalUserCTR from "./PersonalUserCTR";
 import CorporationUserCTR from "./CorporationUserCTR";
 import ProfileSidebarCTR from "./ProfileSidebarCTR";
@@ -8,6 +8,7 @@ import ChangePasswordCTR from "./ChangePasswordCTR";
 import SessionListCTR from "./SessionListCTR";
 import Sidebar from "./../layouts/Sidebar";
 import moment from "moment";
+import {dispatch} from "../../functions/dispatch";
 
 class UserProfilePTR extends Component {
 
@@ -16,13 +17,12 @@ class UserProfilePTR extends Component {
         document.title = "ویرایش پروفایل";
         Calendar.setup({
                 onUpdate: function (value) {
-                    $("#birthday").val(moment(value.date).utcOffset(0, true).format());
+                    dispatch(change('PersonalUserForm', 'birthday', moment(value.date).utcOffset(0, true).format()));
                 },
                 inputField: 'birthday_front',
                 button: 'date_btn',
                 ifFormat: '%A، %d %b %Y',
-                dateType: 'jalali',
-
+                dateType: 'jalali'
             },
         );
     }

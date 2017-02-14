@@ -195,7 +195,8 @@ export class ConsoleTable extends Component {
                             <label>نمایش
                                 <input className="form-control input-sm input-xsmall input-inline text-center"
                                        type="text" onChange={(event) => {
-                                    this.onPerPageChange(parseInt(event.target.value))
+                                    this.onPerPageChange(parseInt(event.target.value));
+                                    dispatch(channelQueryAction(list, 'p', 1));
                                 }} defaultValue={select('queries.' + list + '.c', 10)}/>
                                 در صفحه
                             </label>

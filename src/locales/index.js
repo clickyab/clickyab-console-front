@@ -89,7 +89,8 @@ export default {
         Remove: 'حذف',
         _actions: 'عملیات ها',
         All: 'همه',
-        PlanID: 'آیدی پلن'
+        PlanID: 'آیدی پلن',
+        View: 'تعداد نمایش',
     },
     en: {
         hello: 'hello',
@@ -178,7 +179,8 @@ export default {
         Src: 'File Source',
         _actions: 'Actions',
         All: 'All',
-        PlanID: 'PlanID'
+        PlanID: 'PlanID',
+        View: 'View',
     }
 }
 
