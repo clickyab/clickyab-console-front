@@ -46,11 +46,15 @@ export class Sidebar extends Component {
                             </div>
                         </li>
 
-                        <SidebarLink to='#' dropdown={
+                        <SidebarLink to='#' Dropdown={ (props) =>
                             <ul className="sub-menu" style={{display: 'block'}}>
-                                    <SidebarLink to="/v1/advertiser">
-                                        <span className="title">Date &amp; Time Pickers</span>
-                                    </SidebarLink>
+                                <SidebarLink to="/v1/advertiser" {...props}>
+                                    <span className="title">Date &amp; Time Pickers</span>
+                                </SidebarLink>
+
+                                <SidebarLink to="/v1/advertiser/campaign" {...props}>
+                                    <span className="title">campaign</span>
+                                </SidebarLink>
                             </ul>
                         }>
                             <i className='fa fa-home'/>
@@ -60,7 +64,7 @@ export class Sidebar extends Component {
                             <span className='arrow open'/>
                         </SidebarLink>
 
-                        <SidebarLink  className="nav-item" to="/v1/advertiser/campaign">
+                        <SidebarLink className="nav-item" to="/v1/advertiser/campaign">
                             <i className='fa fa-bullseye'/>
                             <span className='title'>کمپین‌ها</span>
                             <span className="selected"/>
