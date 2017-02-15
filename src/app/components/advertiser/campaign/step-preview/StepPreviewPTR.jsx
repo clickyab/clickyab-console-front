@@ -34,7 +34,6 @@ class StepPreviewPTR extends Component {
     }
 
     render() {
-
         let {data, created_at} = this.props;
         let stepData, buttons;
         if (select('campaignStepData.type') == 'upload') {
@@ -163,7 +162,7 @@ class StepPreviewPTR extends Component {
                             });
                         }
                     } className="btn btn-default  button-next btn-arrow-text margin-top-40"
-                            type="submit"><i className="fa fa-angle-right"/> مرحله قبل
+                            ><i className="fa fa-angle-right"/> مرحله قبل
                     </button>
                     <button onClick={
                         (e) => {
@@ -172,8 +171,7 @@ class StepPreviewPTR extends Component {
                         }
 
                     }
-                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40"
-                            type="submit">تایید و پرداخت <i className="fa fa-angle-left"/>
+                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40">تایید و پرداخت <i className="fa fa-angle-left"/>
                     </button>
 
                 </div>
@@ -192,7 +190,7 @@ class StepPreviewPTR extends Component {
                     </div>
                     <div className="portlet-body form">
                         {stepData}
-                        <form className="form-horizontal" role="form">
+                        <form method="post" className="form-horizontal" role="form">
                             <div className="form-body">
                                 <h2>۶- پیش نمایش و پرداخت</h2>
                                 <div className="row">

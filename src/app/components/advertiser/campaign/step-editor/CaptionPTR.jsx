@@ -94,7 +94,7 @@ class CaptionPTR extends Component {
 
                         </div>
 
-                        <form className="margin-top-40 text-editor-form">
+                        <form method="post" className="margin-top-40 text-editor-form">
                             <div className="form-group">
 
 

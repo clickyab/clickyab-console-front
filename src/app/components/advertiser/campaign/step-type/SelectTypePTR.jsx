@@ -170,7 +170,7 @@ class SelectTypePTR extends Component {
                         </div>
 
                         <div className='row'>
-                            <form>
+                            <form method="post">
                                 <div className='col-md-12 col-xs-12'>
                                     <div className='mt-element-ribbon bg-grey-steel'>
                                         <div className='ribbon ribbon-color-primary uppercase'>نوع محتوای تبلیغ خود را

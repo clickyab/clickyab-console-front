@@ -120,15 +120,15 @@ class LoginForm extends Component {
                                                 data-style="zoom-in"><span className="ladda-label">{login_submit}</span>
                                         </button>
                                     </form>
-                                    <div className="row">
-                                        <div className="col-sm-6 col-sm-offset-3 social-login">
-                                            <div className="social-login-buttons">
-                                                <a className="btn btn-link-1 btn-link-1-google-plus" href="#">
-                                                    <i className="fa fa-google-plus"/> {login_with_google}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {/*<div className="row">*/}
+                                        {/*<div className="col-sm-6 col-sm-offset-3 social-login">*/}
+                                            {/*<div className="social-login-buttons">*/}
+                                                {/*<a className="btn btn-link-1 btn-link-1-google-plus" href="#">*/}
+                                                    {/*<i className="fa fa-google-plus"/> {login_with_google}*/}
+                                                {/*</a>*/}
+                                            {/*</div>*/}
+                                        {/*</div>*/}
+                                    {/*</div>*/}
                                 </div>
                                 <div className="panel-footer">
 
