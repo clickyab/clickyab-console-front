@@ -1,7 +1,5 @@
 import {loading} from "../../functions/loading";
 import React from "react";
-import warning from "react-router/lib/routerWarning";
-import invariant from "invariant";
 import {routerShape} from "react-router";
 
 var _extends = Object.assign || function (target) {
@@ -62,35 +60,31 @@ function createLocationDescriptor(to, _ref) {
     return to;
 }
 
+class Link extends React.Component {
+    LiClassName;
 
-var Link = React.createClass({
-    displayName: 'Link',
+    state = {
+        open: ''
+    };
 
+    defaultProps = {
+        onlyActiveOnIndex: false,
+        style: {}
+    };
 
-    contextTypes: {
-        router: routerShape
-    },
+    setParent() {
+        this.setState({
+            open: 'open'
+        });
+    }
 
-    propTypes: {
-        to: oneOfType([string, object]),
-        query: object,
-        hash: string,
-        state: object,
-        activeStyle: object,
-        activeClassName: string,
-        onlyActiveOnIndex: bool.isRequired,
-        onClick: func,
-        onCustomClick: func,
-        target: string
-    },
+    componentDidMount() {
+        if (this.props.setParent) {
+            this.props.setParent();
+        }
+    }
 
-    getDefaultProps: function getDefaultProps() {
-        return {
-            onlyActiveOnIndex: false,
-            style: {}
-        };
-    },
-    handleClick: function handleClick(event) {
+    handleClick(event) {
         if ($(event.target).parents('li').hasClass("active")) {
             event.preventDefault();
             return false;
@@ -99,8 +93,6 @@ var Link = React.createClass({
         if (this.props.onCustomClick) this.props.onCustomClick(event);
 
         if (event.defaultPrevented) return;
-
-        !this.context.router ? process.env.NODE_ENV !== 'production' ? invariant(false, '<Link>s rendered outside of a router context cannot navigate.') : invariant(false) : void 0;
 
         if (isModifiedEvent(event) || !isLeftClickEvent(event)) return;
 
@@ -119,53 +111,72 @@ var Link = React.createClass({
         var location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
 
         this.context.router.push(location);
-    },
-    render: function render() {
-        var _props2 = this.props;
-        var to = _props2.to;
-        var query = _props2.query;
-        var hash = _props2.hash;
-        var state = _props2.state;
-        var activeClassName = _props2.activeClassName;
-        var activeStyle = _props2.activeStyle;
-        var onlyActiveOnIndex = _props2.onlyActiveOnIndex;
+    }
 
-        var props = _objectWithoutProperties(_props2, ['to', 'query', 'hash', 'state', 'activeClassName', 'activeStyle', 'onlyActiveOnIndex']);
 
-        process.env.NODE_ENV !== 'production' ? warning(!(query || hash || state), 'the `query`, `hash`, and `state` props on `<Link>` are deprecated, use `<Link to={{ pathname, query, hash, state }}/>. http://tiny.cc/router-isActivedeprecated') : void 0;
+    render() {
+        let _props2 = this.props;
+        let to = _props2.to;
+        let query = _props2.query;
+        let hash = _props2.hash;
+        let state = _props2.state;
+        let activeClassName = _props2.activeClassName;
+        let activeStyle = _props2.activeStyle;
+        let onlyActiveOnIndex = _props2.onlyActiveOnIndex;
 
-        // Ignore if rendered outside the context of router, simplifies unit testing.
-        var router = this.context.router;
+        let props = _objectWithoutProperties(_props2, ['to', 'query', 'hash', 'state',
+            'activeClassName', 'activeStyle', 'onlyActiveOnIndex']);
 
-        let LiClassName = '';
+        let router = this.context.router;
+
+        this.LiClassName = 'nav-item';
+
         if (router) {
-            // If user does not specify a `to` prop, return an empty anchor tag.
             if (to == null) {
                 return React.createElement('a', props);
             }
 
-            var location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
+            let location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
 
             props.href = router.createHref(location);
             if (location == window.location.pathname) {
 
-                LiClassName = 'active';
+                this.LiClassName += ' active';
+
                 if (activeStyle) props.style = _extends({}, props.style, activeStyle);
             }
         }
+        let {Dropdown} = props;
+
         let customProps = Object.assign({}, props);
+        delete customProps.Dropdown;
         delete customProps.onCustomClick;
+        delete customProps.setParent;
+        let self = this;
+
         return (
-            <li className={LiClassName}>
-                {React.createElement('a', _extends({}, customProps, {onClick: this.handleClick}))}
+            <li className={this.LiClassName + " " + this.state.open}>
+                {React.createElement('a', _extends({}, customProps, {
+                    onClick: self.handleClick
+                }))}
+                {Dropdown ? <Dropdown setParent={this.setParent.bind(this)}/> : <span/>}
             </li>
         );
     }
-});
+}
 
+Link.contextTypes = {
+    router: routerShape
+};
 
 export default (props) => <Link {...props} onCustomClick={(event) => {
     let li = $(event.target).parents('li');
     li.siblings().removeClass('active');
     li.addClass('active');
+
+    if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {
+        let li = $(event.target).parents('li').parents('ul').parent('li');
+        li.siblings().removeClass('active');
+        li.addClass('active');
+    }
 }}/>;
