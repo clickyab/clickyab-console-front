@@ -69,7 +69,7 @@ document.body.addEventListener('server-down', function () {
 
 browserHistory.listen(function() {
     getVersion();
-    checkSubmitProfile();
+    // checkSubmitProfile();
 });
 
 export default function Provider() {

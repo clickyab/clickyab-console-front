@@ -65,7 +65,7 @@ class Link extends React.Component {
 
     state = {
         open: 'none',
-
+        toggle: true
     };
 
     defaultProps = {
@@ -99,10 +99,10 @@ class Link extends React.Component {
             this.setState({open: 'block'});
             return;
         }
-        if ($(event.target).parents('li').hasClass("active")) {
-            event.preventDefault();
-            return false;
-        }
+        // if ($(event.target).parents('li.nav-item').hasClass("active")) {
+        //     console.log($(event.target).children());
+        //     // return;
+        // }
         loading(true);
         if (this.props.onCustomClick) this.props.onCustomClick(event);
 

@@ -46,17 +46,7 @@ export class Sidebar extends Component {
                             </div>
                         </li>
 
-                        <SidebarLink to='#' Dropdown={ (props) =>
-                            <ul className="sub-menu" style={{display: 'block'}}>
-                                <SidebarLink to="/v1/advertiser" {...props}>
-                                    <span className="title">Date &amp; Time Pickers</span>
-                                </SidebarLink>
-
-                                <SidebarLink to="/v1/advertiser/campaign" {...props}>
-                                    <span className="title">campaign</span>
-                                </SidebarLink>
-                            </ul>
-                        }>
+                        <SidebarLink to='/v1/advertiser'>
                             <i className='fa fa-home'/>
                             <span className='title'>داشبورد تبلیغ کننده</span>
                             <span className='selected'/>
@@ -64,11 +54,21 @@ export class Sidebar extends Component {
                             <span className='arrow open'/>
                         </SidebarLink>
 
-                        <SidebarLink className="nav-item" to="/v1/advertiser/campaign">
+                        <SidebarLink void={true} to="#" Dropdown={ (props) =>
+                            <ul className="sub-menu" style={{display: props.open}}>
+                                <SidebarLink to="/v1/advertiser/campaign/create/step/name" {...props}>
+                                    <span className="title">افزودن کمپین</span>
+                                </SidebarLink>
+
+                                <SidebarLink to="/v1/advertiser/campaign" {...props}>
+                                    <span className="title">لیست کمپین</span>
+                                </SidebarLink>
+                            </ul>
+                        }>
                             <i className='fa fa-bullseye'/>
                             <span className='title'>کمپین‌ها</span>
                             <span className="selected"/>
-                            <span className='arrow open'/>
+                            <span className='arrow'/>
 
                         </SidebarLink>
 
