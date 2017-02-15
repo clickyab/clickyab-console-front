@@ -64,7 +64,8 @@ class Link extends React.Component {
     LiClassName;
 
     state = {
-        open: ''
+        open: 'none',
+
     };
 
     defaultProps = {
@@ -72,19 +73,32 @@ class Link extends React.Component {
         style: {}
     };
 
-    setParent() {
-        this.setState({
-            open: 'open'
-        });
-    }
-
     componentDidMount() {
-        // if (this.props.setParent) {
-            // this.props.setParent();
-        // }
+        if (this.props.setParent) {
+            let _props2 = this.props;
+            let to = _props2.to;
+            let query = _props2.query;
+            let hash = _props2.hash;
+            let state = _props2.state;
+
+            let router = this.context.router;
+
+            this.LiClassName = 'nav-item';
+
+            // if (router) {
+            //     let location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
+            //     if (location == window.location.pathname) {
+            //         this.props.setParent();
+            //     }
+            // }
+        }
     }
 
     handleClick(event) {
+        if (this.props.void) {
+            this.setState({open: 'block'});
+            return;
+        }
         if ($(event.target).parents('li').hasClass("active")) {
             event.preventDefault();
             return false;
@@ -139,6 +153,7 @@ class Link extends React.Component {
             let location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
 
             props.href = router.createHref(location);
+
             if (location == window.location.pathname) {
 
                 this.LiClassName += ' active';
@@ -152,14 +167,15 @@ class Link extends React.Component {
         delete customProps.Dropdown;
         delete customProps.onCustomClick;
         delete customProps.setParent;
+        delete customProps.void;
         let self = this;
 
         return (
-            <li className={this.LiClassName + " " + this.state.open}>
+            <li className={this.LiClassName}>
                 {React.createElement('a', _extends({}, customProps, {
                     onClick: self.handleClick.bind(this)
                 }))}
-                {Dropdown ? <Dropdown setParent={this.setParent.bind(this)}/> : <span/>}
+                {Dropdown ? <Dropdown open={this.state.open} /> : <span/>}
             </li>
         );
     }
@@ -170,13 +186,18 @@ Link.contextTypes = {
 };
 
 export default (props) => <Link {...props} onCustomClick={(event) => {
-    let li = $(event.target).parents('li');
-    li.siblings().removeClass('active');
-    li.addClass('active');
-
-    {/*if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {*/}
-        {/*let li = $(event.target).parents('li').parents('ul').parent('li');*/}
-        {/*li.siblings().removeClass('active');*/}
-        {/*li.addClass('active');*/}
-    {/*}*/}
+    if ($(event.target).parents('li').parents('ul.sub-menu').length > 0) {
+        let li = $(event.target).parents('li.nav-item');
+        $("div.page-sidebar").find("li").removeClass('active');
+        {/*$("div.page-sidebar").find("li").removeClass('open');*/
+        }
+        li.addClass('active');
+    }
+    if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {
+        let li = $(event.target).parents('li.nav-item');
+        $("div.page-sidebar").find("li").removeClass('active');
+        {/*$("div.page-sidebar").find("li").removeClass('open');*/
+        }
+        li.addClass('active');
+    }
 }}/>;
