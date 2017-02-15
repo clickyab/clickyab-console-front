@@ -38,7 +38,7 @@ class StepPreviewPTR extends Component {
         let {data, created_at} = this.props;
         let stepData, buttons;
         if (select('campaignStepData.type') == 'upload') {
-            let payStatus = select('createCampaignData.pay_status') == 'yes' ? 'col-md-2 mt-step-col last done' : 'col-md-2 mt-step-col last error';
+            let payStatus = select('createCampaignData.payment_status') == 'yes' ? 'col-md-2 mt-step-col last done' : 'col-md-2 mt-step-col last error';
             stepData = (
                 <div className="mt-element-step  when-generate-content">
                     <div className="row step-line">
@@ -91,7 +91,7 @@ class StepPreviewPTR extends Component {
                 </div>
             )
         } else if (select('campaignStepData.type') == 'promote') {
-            let payStatus = select('createCampaignData.pay_status') == 'yes' ? 'col-lg-15 col-md-3 mt-step-col last done' : 'col-lg-15 col-md-3 mt-step-col last error';
+            let payStatus = select('createCampaignData.payment_status') == 'yes' ? 'col-lg-15 col-md-3 mt-step-col last done' : 'col-lg-15 col-md-3 mt-step-col last error';
 
             stepData = (
                 <div className="mt-element-step  when-select-content">
@@ -138,7 +138,7 @@ class StepPreviewPTR extends Component {
             )
         }
 
-        if (select('createCampaignData.pay_status') == 'yes') {
+        if (select('createCampaignData.payment_status') == 'yes') {
             buttons = (
                 <div className="col-md-offset-3 col-md-9">
                     <button onClick={
@@ -219,7 +219,7 @@ class StepPreviewPTR extends Component {
                                         <div className="form-group">
                                             <label className="control-label col-md-3">وضعیت پرداخت :</label>
                                             <div className="col-md-9">
-                                                <p className="form-control-static"> {data.pay_status == 'no' ?
+                                                <p className="form-control-static"> {data.payment_status == 'no' ?
                                                     <span className="label label-danger">پرداخت نشده</span> :
                                                     <span className="label label-success">پرداخت شده</span>} </p>
                                             </div>
