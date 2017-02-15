@@ -7,9 +7,10 @@ export default class verifyPage extends Component {
 
     render() {
         dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
-            pay_status: this.props.location.query.success,
-            pay_id: this.props.location.query.payment
+            pay_id: this.props.location.query.payment,
+            payment_status: this.props.location.query.success,
         })));
+
         dispatch(updateLocalStorageAction());
 
         //TODO: What the f**k??
