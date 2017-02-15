@@ -189,6 +189,7 @@ class SelectTypePTR extends Component {
                                                 <div className='md-radio-list'>
                                                     <Radio label={'محتوای جدید'} name={'step-type-content'}
                                                            onClick={(event) => {
+															   event.preventDefault();
                                                                this.setState({
                                                                    next: "/v1/advertiser/campaign/create/:campaign_id:/step/upload",
                                                                    type: 'upload'
@@ -197,6 +198,7 @@ class SelectTypePTR extends Component {
                                                            value={'generate_content'} id={'generate_content'}/>
                                                     <Radio label={'پروموت محتوای کانال های دیگر'}
                                                            onClick={(event) => {
+															   event.preventDefault();
                                                                this.setState({
                                                                    next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
                                                                    type: 'promote'
@@ -209,7 +211,8 @@ class SelectTypePTR extends Component {
                                             <div className="row">
                                                 <div className="col-md-12 margin-top-20 space-btn">
                                                     <button onClick={
-                                                        () => {
+                                                        (event) => {
+															event.preventDefault();
                                                             navigate('/v1/advertiser/campaign/create/:campaign_id:/step/name', {
                                                                 campaign_id: select('createCampaignData.id')
                                                             });
@@ -218,7 +221,8 @@ class SelectTypePTR extends Component {
                                                            ><i className="fa fa-angle-right"/> مرحله قبل
                                                     </button>
                                                     <button onClick={
-                                                        () => {
+                                                        (event) => {
+                                                            event.preventDefault();
                                                             navigate(this.state.next, {
                                                                 campaign_id: select('createCampaignData.id')
                                                             });
