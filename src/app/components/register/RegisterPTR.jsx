@@ -129,15 +129,15 @@ class RegisterForm extends Component {
                                                 data-style="zoom-in"><span
                                             className="ladda-label">{register_submit}</span></button>
                                     </form>
-                                    <div className="row">
-                                        <div className="col-sm-6 col-sm-offset-3 social-login">
-                                            <div className="social-login-buttons">
-                                                <a className="btn btn-link-1 btn-link-1-google-plus" href="#">
-                                                    <i className="fa fa-google-plus"/> {login_with_google}
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {/*<div className="row">*/}
+                                        {/*<div className="col-sm-6 col-sm-offset-3 social-login">*/}
+                                            {/*<div className="social-login-buttons">*/}
+                                                {/*<a className="btn btn-link-1 btn-link-1-google-plus" href="#">*/}
+                                                    {/*<i className="fa fa-google-plus"/> {login_with_google}*/}
+                                                {/*</a>*/}
+                                            {/*</div>*/}
+                                        {/*</div>*/}
+                                    {/*</div>*/}
                                 </div>
                                 <div className="panel-footer">
                                     {do_you_have_account} <Link to="/v1/login">{login_now}</Link>

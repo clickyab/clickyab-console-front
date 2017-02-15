@@ -32,7 +32,6 @@ export default class EditCampaignButton extends Component {
     render() {
         return <div className="btn-group ">
             <button className="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">عملیات
-                ها
                 <i className="fa fa-angle-down"/>
             </button>
             <ul className="dropdown-menu keep_open">

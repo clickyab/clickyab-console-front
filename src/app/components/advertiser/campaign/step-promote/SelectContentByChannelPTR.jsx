@@ -192,15 +192,31 @@ class SelectContentByChannelPTR extends Component {
                                 لیستی از سشن های فعال شما که در مرورگر های مختلف و یا رایانه های مختلف که سایت را باز
                                 کرده اید برای شما نمایش داده شده است می توانید همه سشن ها جز سشن فعلی خود را پاک
                                 نمایید</p></div>
-                            <button onClick={
-                                () => {
-                                    navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
-                                        campaign_id: select('createCampaignData.id')
-                                    });
+                            <div className="col-md-12 margin-top-20 margin-bottom-40 space-btn">
+                                <button onClick={
+                                    () => {
+                                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
+                                            campaign_id: select('createCampaignData.id')
+                                        });
+                                    }
+                                } className="btn btn-default  button-next btn-arrow-text" type="submit"><i
+                                    className="fa fa-angle-right"/> مرحله قبل
+                                </button>
+                                {((select("createCampaignData.promotesText")) != null ?
+                                    <button onClick={
+                                        () => {
+                                            navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
+                                                campaign_id: select('createCampaignData.id')
+                                            })
+                                        }
+                                    }
+                                            className="btn btn-info  button-next btn-arrow-text"
+                                            type="submit"> صرف نظر از تغییر متن کانال و مرحله بعد  <i className="fa fa-angle-left"/>
+                                    </button> : '')
+
+
                                 }
-                            } className="btn btn-default  button-next btn-arrow-text" type="submit"><i
-                                className="fa fa-angle-right"/> مرحله قبل
-                            </button>
+                            </div>
                             <form method="post" className="get-posts-channel-form"
                                   onSubmit={handleSubmit((values) => SubmitGetPostsByChannel(values, this.selectTypeContentForm))}>
                                 <div className="form-body">

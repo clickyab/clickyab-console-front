@@ -383,7 +383,7 @@ export default class UploadFileCTR extends Component {
                                             campaign_id: select('createCampaignData.id')
                                         });
                                     }
-                                } className="btn btn-default  button-next btn-arrow-text" type="submit"><i
+                                } className="btn btn-default  button-next btn-arrow-text"><i
                                     className="fa fa-angle-right"/> مرحله قبل
                                 </button>
                                 <button onClick={
@@ -394,7 +394,7 @@ export default class UploadFileCTR extends Component {
                                     }
                                 }
                                         className="btn btn-info  button-next btn-arrow-text next-step-upload"
-                                        type="submit"  disabled={!this.state.FileUploaded}>مرحله بعد <i
+                                         disabled={!this.state.FileUploaded}>مرحله بعد <i
                                     className="fa fa-angle-left"/></button>
                                 {((select("createCampaignData.src")) != null ?
                                     <button onClick={
@@ -404,8 +404,7 @@ export default class UploadFileCTR extends Component {
                                             })
                                         }
                                     }
-                                            className="btn btn-info  button-next btn-arrow-text" autoFocus disabled={this.state.FileUploaded}
-                                            type="submit"> صرف نظر از تغییر فایل و مرحله بعد  <i className="fa fa-angle-left"/>
+                                            className="btn btn-info  button-next btn-arrow-text" autoFocus disabled={this.state.FileUploaded}> صرف نظر از تغییر فایل و مرحله بعد  <i className="fa fa-angle-left"/>
                                     </button> : '')
 
 
