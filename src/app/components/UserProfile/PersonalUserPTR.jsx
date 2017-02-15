@@ -20,7 +20,6 @@ class PersonalUserPTR extends Component {
         for (let key in initData) {
             dispatch(change("PersonalUserForm", key, initData[key]));
         }
-        console.log(initData);
         dispatch(change("PersonalUserForm", 'birthday_front', moment(initData['birthday']).format('dddd، jD jMMMM jYYYY')));
     }
 

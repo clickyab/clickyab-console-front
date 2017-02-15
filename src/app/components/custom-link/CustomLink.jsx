@@ -79,9 +79,9 @@ class Link extends React.Component {
     }
 
     componentDidMount() {
-        if (this.props.setParent) {
-            this.props.setParent();
-        }
+        // if (this.props.setParent) {
+            // this.props.setParent();
+        // }
     }
 
     handleClick(event) {
@@ -157,7 +157,7 @@ class Link extends React.Component {
         return (
             <li className={this.LiClassName + " " + this.state.open}>
                 {React.createElement('a', _extends({}, customProps, {
-                    onClick: self.handleClick
+                    onClick: self.handleClick.bind(this)
                 }))}
                 {Dropdown ? <Dropdown setParent={this.setParent.bind(this)}/> : <span/>}
             </li>
@@ -174,9 +174,9 @@ export default (props) => <Link {...props} onCustomClick={(event) => {
     li.siblings().removeClass('active');
     li.addClass('active');
 
-    if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {
-        let li = $(event.target).parents('li').parents('ul').parent('li');
-        li.siblings().removeClass('active');
-        li.addClass('active');
-    }
+    {/*if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {*/}
+        {/*let li = $(event.target).parents('li').parents('ul').parent('li');*/}
+        {/*li.siblings().removeClass('active');*/}
+        {/*li.addClass('active');*/}
+    {/*}*/}
 }}/>;
