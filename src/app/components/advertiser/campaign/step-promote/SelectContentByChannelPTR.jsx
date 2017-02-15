@@ -122,6 +122,7 @@ class SelectContentByChannelPTR extends Component {
 
 
     render() {
+
         const {handleSubmit, SubmitGetPostsByChannel} = this.props;
         let telegramChannelTitle;
         if (select('createCampaignData.promotesText') != null) {
@@ -205,6 +206,11 @@ class SelectContentByChannelPTR extends Component {
                                 {((select("createCampaignData.promotesText")) != null ?
                                     <button onClick={
                                         () => {
+                                            dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
+                                                promotesText: select("createCampaignData.promotesText"),
+                                                src: null,
+                                                description: null
+                                            })));
                                             navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
                                                 campaign_id: select('createCampaignData.id')
                                             })
@@ -217,7 +223,7 @@ class SelectContentByChannelPTR extends Component {
 
                                 }
                             </div>
-                            <form method="post" className="get-posts-channel-form"
+                            <form  className="get-posts-channel-form"
                                   onSubmit={handleSubmit((values) => SubmitGetPostsByChannel(values, this.selectTypeContentForm))}>
                                 <div className="form-body">
                                     <div className='col-md-12 col-xs-12'>

@@ -190,7 +190,7 @@ class StepPreviewPTR extends Component {
                     </div>
                     <div className="portlet-body form">
                         {stepData}
-                        <form method="post" className="form-horizontal" role="form">
+                        <form  className="form-horizontal" role="form">
                             <div className="form-body">
                                 <h2>۶- پیش نمایش و پرداخت</h2>
                                 <div className="row">
