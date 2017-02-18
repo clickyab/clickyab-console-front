@@ -217,9 +217,10 @@ class StepPreviewPTR extends Component {
                                         <div className="form-group">
                                             <label className="control-label col-md-3">وضعیت پرداخت :</label>
                                             <div className="col-md-9">
-                                                <p className="form-control-static"> {data.payment_status == 'no' ?
-                                                    <span className="label label-danger">پرداخت نشده</span> :
-                                                    <span className="label label-success">پرداخت شده</span>} </p>
+                                                <p className="form-control-static"> {data.payment_status == 'yes' ?
+                                                    <span className="label label-success">پرداخت شده</span> :
+                                                    <span className="label label-danger">پرداخت نشده</span> }
+                                                </p>
                                             </div>
                                         </div>
                                         <div className="form-group">
