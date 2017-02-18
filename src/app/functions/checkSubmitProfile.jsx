@@ -11,7 +11,7 @@ function display() {
 		notification.remove()
 	}
 	setTimeout(() => {
-		if (select('user.user_id') && (!(select('user.personal') == null) || !(select('user.corporation') == null)))
+		if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true)
 			notification = NotifyBox('warning', msg, 0);
 	}, 3000);
 }
