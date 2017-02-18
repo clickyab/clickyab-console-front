@@ -6,6 +6,8 @@ import swagger from "../../../../swagger/index";
 import {sync} from "../../../../functions/sync";
 import {select} from "../../../../functions/select";
 import {AlertBox} from "../../../../functions/notifications";
+import {campaignPaymentData} from "../../../../redux/actions/index";
+import {dispatch} from "../../../../functions/dispatch";
 let Ladda = require('ladda/js/ladda');
 
 @connect(({createCampaignData}) => ({createCampaignData}))
@@ -16,15 +18,38 @@ export default class StepPreviewCTR extends Component {
         return moment(created_at).format('dddd، jD jMMMM jYYYY');
     }
 
+    activeStatus() {
+        sync(function *() {
+            yield (new swagger.AdApi())
+                .campaignListActiveStatusIdPut(select('createCampaignData.id'), select('user.token', 'no token'), {
+                    payloadData: {
+                        "active_status": 'yes'
+                    }
+                });
+        })
+    }
+
+    requestAfterPayment() {
+        sync(function *() {
+            let {data, response} = yield (new swagger.BillingApi())
+             .billingPaymentIdGet(select('createCampaignData.pay_id'), select('user.token', 'no token'))
+
+            if (response.statusCode == '200') {
+                dispatch(campaignPaymentData(data));
+            } else if (response.statusCode == '400') {
+                AlertBox("error", "در مرحله پرداخت اختلالی به وجود آمده است.");
+            }
+        })
+    }
+
     requestToBank() {
         sync(function*() {
-            console.log('hereee');
             this.loadingProgressSend = Ladda.create(document.querySelector('button.pay-button'));
             this.loadingProgressSend.start();
             let {data, response} = yield (new swagger.AdApi())
                 .campaignPayAdIdGet(select('createCampaignData.id'), select('user.token', 'no token'));
 
-            if (response.status == '200') {
+            if (response.statusCode == '200') {
                 window.location = data;
             } else if (response.statusCode == '400') {
                 AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید");
@@ -35,8 +60,14 @@ export default class StepPreviewCTR extends Component {
         }.bind(this));
     }
 
+    componentDidMount() {
+        if (select('createCampaignData.pay_id')) {
+            this.requestAfterPayment()
+        }
+    }
+
     render() {
-        return (<StepPreviewPTR requestToBank={this.requestToBank.bind(this)} created_at={this.created_at}
+        return (<StepPreviewPTR activeStatus={this.activeStatus} requestAfterPayment={this.requestAfterPayment} requestToBank={this.requestToBank.bind(this)} created_at={this.created_at}
                                 data={this.props.createCampaignData}/>)
     }
 }

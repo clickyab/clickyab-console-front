@@ -1,4 +1,4 @@
-import {CREATE_CAMPAIGN, DELETE_CAMPAIGN_PROMOTE} from "./../actions/index";
+import {CREATE_CAMPAIGN, DELETE_CAMPAIGN_PROMOTE, CAMPAIGN_PAYMENT_DATA} from "./../actions/index";
 
 export function createCampaignReducer(state = {}, action) {
     switch (action.type) {
@@ -13,6 +13,8 @@ export function createCampaignReducer(state = {}, action) {
                 delete state.promotes;
             }
             break;
+        case CAMPAIGN_PAYMENT_DATA:
+            return Object.assign({}, state, {paymentData: action.data});
     }
     return state;
 }

@@ -2,11 +2,11 @@ import React, {Component} from "react";
 import {reduxForm} from "redux-form";
 import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
-import {Base64} from 'js-base64';
+import {Base64} from "js-base64";
 
 
 class StepPreviewPTR extends Component {
-    unescapeHTML = function(html) {
+    unescapeHTML = function (html) {
         let escapeEl = document.createElement('span');
         escapeEl.innerHTML = html;
         return escapeEl.textContent;
@@ -14,13 +14,13 @@ class StepPreviewPTR extends Component {
 
     previewSrcFile() {
         let itemSrcFile = [];
-        if(select("createCampaignData.extension") == '.png' || select("createCampaignData.extension") == '.jpg') {
+        if (select("createCampaignData.extension") == '.png' || select("createCampaignData.extension") == '.jpg') {
             itemSrcFile.push(<img key="image" src={select("createCampaignData.src")}/>)
         }
-        else if(select("createCampaignData.extension") == '.mp4' || select("createCampaignData.extension") == '.mov'){
+        else if (select("createCampaignData.extension") == '.mp4' || select("createCampaignData.extension") == '.mov') {
             itemSrcFile.push(<video key="video" controls src={select("createCampaignData.src")}/>)
         }
-        else if(select("createCampaignData.extension") == '.pdf') {
+        else if (select("createCampaignData.extension") == '.pdf') {
             itemSrcFile.push(<img key="pdf" src="/img/pdf-file.jpg/"/>)
         } else {
             itemSrcFile.push("");
@@ -35,7 +35,7 @@ class StepPreviewPTR extends Component {
 
     render() {
         let {data, created_at} = this.props;
-        let stepData, buttons;
+        let stepData, buttons, paymentPrev;
         if (select('campaignStepData.type') == 'upload') {
             let payStatus = select('createCampaignData.payment_status') == 'yes' ? 'col-md-2 mt-step-col last done' : 'col-md-2 mt-step-col last error';
             stepData = (
@@ -142,6 +142,7 @@ class StepPreviewPTR extends Component {
                 <div className="col-md-offset-3 col-md-9">
                     <button onClick={
                         () => {
+                            this.props.activeStatus();
                             navigate('/v1/advertiser/campaign');
                         }
 
@@ -162,7 +163,7 @@ class StepPreviewPTR extends Component {
                             });
                         }
                     } className="btn btn-default  button-next btn-arrow-text margin-top-40"
-                            ><i className="fa fa-angle-right"/> مرحله قبل
+                    ><i className="fa fa-angle-right"/> مرحله قبل
                     </button>
                     <button onClick={
                         (e) => {
@@ -171,10 +172,45 @@ class StepPreviewPTR extends Component {
                         }
 
                     }
-                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40">تایید و پرداخت <i className="fa fa-angle-left"/>
+                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40">تایید و
+                        پرداخت <i className="fa fa-angle-left"/>
                     </button>
 
                 </div>
+            )
+        }
+
+        if (select('createCampaignData.paymentData')) {
+            let data = select('createCampaignData.paymentData');
+            paymentPrev = (
+                <div>
+                    <div className="form-group">
+                        <label className="control-label col-md-3">وضعیت پرداخت :</label>
+                        <div className="col-md-9">
+                            <p className="form-control-static"> {data.status == 'paid' ?
+                                <span className="label label-success">پرداخت شده</span> :
+                                <span className="label label-danger">پرداخت نشده</span> }
+                            </p>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="control-label col-md-3">مبلغ پرداخت :</label>
+                        <div className="col-md-9">
+                            <p className="form-control-static">
+                                {data.amount} تومان
+                            </p>
+                        </div>
+                    </div>
+                    <div className="form-group">
+                        <label className="control-label col-md-3">شماره پیگیری :</label>
+                        <div className="col-md-9">
+                            <p className="form-control-static">
+                                {data.ref_id}
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
             )
         }
 
@@ -190,50 +226,46 @@ class StepPreviewPTR extends Component {
                     </div>
                     <div className="portlet-body form">
                         {stepData}
-                        <form  className="form-horizontal" role="form">
+                        <form className="form-horizontal" role="form">
                             <div className="form-body">
                                 <h2>۶- پیش نمایش و پرداخت</h2>
                                 <div className="row">
 
                                     <div className="col-md-4">
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">نام کمپین :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> {data.name} </p>
+                                        <div className="col-md-6">
+                                            <div className="form-group">
+                                                <label className="control-label col-md-3">نام کمپین :</label>
+                                                <div className="col-md-9">
+                                                    <p className="form-control-static"> {data.name} </p>
+                                                </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="control-label col-md-3">نام پلان :</label>
+                                                <div className="col-md-9">
+                                                    <p className="form-control-static"> {data.plan_name} </p>
+                                                </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="control-label col-md-3">وضعیت تایید :</label>
+                                                <div className="col-md-9">
+                                                    <p className="form-control-static"> {data.admin_status} </p>
+                                                </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="control-label col-md-3">تاریخ ایجاد :</label>
+                                                <div className="col-md-9">
+                                                    <p className="form-control-static"> {created_at(data.created_at)} </p>
+                                                </div>
+                                            </div>
+                                            <div className="form-group">
+                                                <label className="control-label col-md-3">تاریخ آخرین به‌روز رسانی :</label>
+                                                <div className="col-md-9">
+                                                    <p className="form-control-static"> {created_at(data.updated_at)} </p>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">نام پلان :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> {data.plan_name} </p>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">وضعیت تایید :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> {data.admin_status} </p>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">وضعیت پرداخت :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> {data.payment_status == 'yes' ?
-                                                    <span className="label label-success">پرداخت شده</span> :
-                                                    <span className="label label-danger">پرداخت نشده</span> }
-                                                </p>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">تاریخ ایجاد :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> {created_at(data.created_at)} </p>
-                                            </div>
-                                        </div>
-                                        <div className="form-group">
-                                            <label className="control-label col-md-3">تاریخ آخرین به‌روز رسانی :</label>
-                                            <div className="col-md-9">
-                                                <p className="form-control-static"> {created_at(data.updated_at)} </p>
-                                            </div>
+                                        <div className="col-md-6">
+                                            {paymentPrev}
                                         </div>
                                     </div>
                                     <div className="col-md-8">
