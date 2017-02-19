@@ -188,7 +188,7 @@ class SelectTypePTR extends Component {
                                             <div className='form-group form-md-radios'>
                                                 <div className='md-radio-list'>
                                                     <Radio label={'محتوای جدید'} name={'step-type-content'}
-                                                           onClick={(event) => {
+                                                           onClick={() => {
                                                                this.setState({
                                                                    next: "/v1/advertiser/campaign/create/:campaign_id:/step/upload",
                                                                    type: 'upload'
@@ -196,10 +196,10 @@ class SelectTypePTR extends Component {
                                                            }}
                                                            value={'generate_content'} id={'generate_content'}/>
                                                     <Radio label={'پروموت محتوای کانال های دیگر'}
-                                                           onClick={(event) => {
+                                                           onClick={() => {
                                                                this.setState({
                                                                    next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
-                                                                   type: 'promote'
+                                                                   type: 'promotegit'
                                                                });
                                                            }}
                                                            name={'step-type-content'} value={'select_content'}
