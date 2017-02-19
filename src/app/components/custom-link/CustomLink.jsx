@@ -84,13 +84,6 @@ class Link extends React.Component {
             let router = this.context.router;
 
             this.LiClassName = 'nav-item';
-
-            // if (router) {
-            //     let location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
-            //     if (location == window.location.pathname) {
-            //         this.props.setParent();
-            //     }
-            // }
         }
     }
 
@@ -99,10 +92,7 @@ class Link extends React.Component {
             this.setState({open: 'block'});
             return;
         }
-        // if ($(event.target).parents('li.nav-item').hasClass("active")) {
-        //     console.log($(event.target).children());
-        //     // return;
-        // }
+
         loading(true);
         if (this.props.onCustomClick) this.props.onCustomClick(event);
 
@@ -196,8 +186,6 @@ export default (props) => <Link {...props} onCustomClick={(event) => {
     if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {
         let li = $(event.target).parents('li.nav-item');
         $("div.page-sidebar").find("li").removeClass('active');
-        {/*$("div.page-sidebar").find("li").removeClass('open');*/
-        }
         li.addClass('active');
     }
 }}/>;

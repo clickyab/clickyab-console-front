@@ -18,7 +18,6 @@ export default class StepPreviewCTR extends Component {
 
     requestToBank() {
         sync(function*() {
-            console.log('hereee');
             this.loadingProgressSend = Ladda.create(document.querySelector('button.pay-button'));
             this.loadingProgressSend.start();
             let {data, response} = yield (new swagger.AdApi())

@@ -69,7 +69,7 @@ export default class SelectLocationCTR extends Component {
     componentDidMount() {
         this.requestToGetCountry();
         if (getCity() != 0) {
-            this.getCities({target: {value: getProvince()}});
+            this.getCities({target: {value: getProvince() || 1}});
         }
     }
 

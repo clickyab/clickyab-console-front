@@ -45,9 +45,7 @@ export default class EditRoleModalCTR extends Component {
 
 
     editSubmit(formValues, selfValue, parentValue, globalValue) {
-        console.log(this.normalizeFormValues(formValues, selfValue, parentValue, globalValue));
         const {id} = this.props.roleData.role;
-        console.log(id);
         sync(function *() {
             try {
                 loadingProgress = Ladda.create(document.querySelector('.edit-role-form'));
