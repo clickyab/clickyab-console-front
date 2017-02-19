@@ -49,7 +49,6 @@ export default class TelegramListCTR extends Component {
     }
 
     edit(id) {
-        // console.log(id);
     }
 
 

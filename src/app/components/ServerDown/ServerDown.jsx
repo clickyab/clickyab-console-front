@@ -6,11 +6,9 @@ export default class ServerDown extends Component {
         let check = setInterval(() => {
             ping().then(
                 () => {
-                    console.log('ok');
                     clearInterval(check);
                 },
                 () => {
-                    console.log('failed');
                 }
             )
         }, 10000);
