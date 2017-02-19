@@ -199,7 +199,7 @@ class SelectTypePTR extends Component {
                                                            onClick={() => {
                                                                this.setState({
                                                                    next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
-                                                                   type: 'promotegit'
+                                                                   type: 'promote'
                                                                });
                                                            }}
                                                            name={'step-type-content'} value={'select_content'}
