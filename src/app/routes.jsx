@@ -131,6 +131,8 @@ export default function Provider() {
                     <Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR}
                            name='campaignPreview'
                            onEnter={onPreviewCampaignMiddleware}/>
+                    <Route path='telegram' component={TelegramListCTR} name='telegramList'
+                           onEnter={onTelegramEnterMiddleware}/>
                 </Route>
             </Route>
 
