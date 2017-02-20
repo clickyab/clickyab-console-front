@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {translatable} from "react-multilingual/dist";
-import SidebarLink from "./../../../components/custom-link/CustomLink";
-import {Link} from 'react-router';
+import {Link, SidebarLinks} from "./../../../components/custom-link/CustomLink";
 
 @translatable(
     ({dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access}) =>
@@ -29,48 +28,38 @@ export class Sidebar extends Component {
         return (
             <div className='page-sidebar-wrapper'>
                 <div className='page-sidebar navbar-collapse collapse'>
+                        <SidebarLinks>
+                            <Link to='/v1/advertiser' activeClassName='active'>
+                                <i className='fa fa-home'/>
+                                <span className='title'>داشبورد تبلیغ کننده</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>
 
-                    <ul className='page-sidebar-menu  page-header-fixed ' data-keep-expanded='false'
-                        data-auto-scroll='true' data-slide-speed='200' style={{paddingTop: 20 + 'px'}}>
-                        <li className='sidebar-toggler-wrapper hide'>
-                            <div className='sidebar-toggler'>
-                                <span/>
-                            </div>
-                        </li>
-                        <SidebarLink to='/v1/advertiser'>
-                            <i className='fa fa-home'/>
-                            <span className='title'>داشبورد تبلیغ کننده</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-                        <SidebarLink to="/v1/advertiser/telegram">
-                            <i className='fa fa-user'/>
-                            <span className='title'>مدیریت کاربران تلگرام</span>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-                        <li className="heading">
-                            <h3>کمپین‌ها</h3>
-                        </li>
-                        <SidebarLink to='/v1/advertiser/campaign/create/step/name'>
-                            <i className='fa fa-plus-circle'/>
-                            <span className='title'>افزودن کمپین</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
-                        <SidebarLink to='/v1/advertiser/campaign'>
-                            <i className='fa fa-list'/>
-                            <span className='title'>لیست کمپین</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                            <span className='arrow open'/>
-                        </SidebarLink>
+                            <Link to="/v1/advertiser/telegram" activeClassName='active'>
+                                <i className='fa fa-user'/>
+                                <span className='title'>مدیریت کاربران تلگرام</span>
+                                <span className="selected"/>
+                            </Link>
 
-                    </ul>
+                            <li className="heading">
+                                <h3>کمپین‌ها</h3>
+                            </li>
+                            <Link to='/v1/advertiser/campaign/create/step/name' activeClassName='active'>
+                                <i className='fa fa-plus-circle'/>
+                                <span className='title'>افزودن کمپین</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>
+
+                            <Link to='/v1/advertiser/campaign' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>لیست کمپین</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>
+                        </SidebarLinks>
                 </div>
-
             </div>
         );
     }
