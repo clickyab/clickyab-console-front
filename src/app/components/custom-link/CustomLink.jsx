@@ -1,5 +1,4 @@
-import {loading} from "../../functions/loading";
-import React from "react";
+import React, {Component} from "react";
 import {routerShape} from "react-router";
 
 var _extends = Object.assign || function (target) {
@@ -13,23 +12,6 @@ var _extends = Object.assign || function (target) {
         }
         return target;
     };
-
-function _objectWithoutProperties(obj, keys) {
-    var target = {};
-    for (var i in obj) {
-        if (keys.indexOf(i) >= 0) continue;
-        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
-        target[i] = obj[i];
-    }
-    return target;
-}
-
-var _React$PropTypes = React.PropTypes;
-var bool = _React$PropTypes.bool;
-var object = _React$PropTypes.object;
-var string = _React$PropTypes.string;
-var func = _React$PropTypes.func;
-var oneOfType = _React$PropTypes.oneOfType;
 
 
 function isLeftClickEvent(event) {
@@ -48,10 +30,22 @@ function isEmptyObject(object) {
     return true;
 }
 
+
+function _objectWithoutProperties(obj, keys) {
+    var target = {};
+    for (var i in obj) {
+        if (keys.indexOf(i) >= 0) continue;
+        if (!Object.prototype.hasOwnProperty.call(obj, i)) continue;
+        target[i] = obj[i];
+    }
+    return target;
+}
+
+
 function createLocationDescriptor(to, _ref) {
-    var query = _ref.query;
-    var hash = _ref.hash;
-    var state = _ref.state;
+    let query = _ref.query;
+    let hash = _ref.hash;
+    let state = _ref.state;
 
     if (query || hash || state) {
         return {pathname: to, query: query, hash: hash, state: state};
@@ -60,40 +54,62 @@ function createLocationDescriptor(to, _ref) {
     return to;
 }
 
-class Link extends React.Component {
-    LiClassName;
-
-    state = {
-        open: ''
-    };
-
-
-    setParent() {
-        this.setState({
-            open: 'open'
-        });
-    }
+export class SidebarLinks extends Component {
+    unListen;
 
     componentDidMount() {
-        if (this.props.setParent) {
-            this.props.setParent();
-        }
+        this.unListen = this.context.router.listen(() => {
+            this.forceUpdate();
+        })
     }
 
+    componentWillUnmount() {
+        this.unListen();
+    }
+
+    getChildContext() {
+        return {forceUpdateSidebarLinks: this.forceUpdateSidebarLinks.bind(this)};
+    }
+
+    forceUpdateSidebarLinks() {
+        this.forceUpdate();
+    }
+
+    render() {
+        let {children} = this.props;
+
+        return <ul className='page-sidebar-menu  page-header-fixed ' data-keep-expanded='false'
+                   data-auto-scroll='true' data-slide-speed='200' style={{paddingTop: 20 + 'px'}}>
+            <li className='sidebar-toggler-wrapper hide'>
+                <div className='sidebar-toggler'>
+                    <span/>
+                </div>
+            </li>
+            {children}
+        </ul>;
+    }
+}
+SidebarLinks.contextTypes = {
+    router: routerShape
+};
+SidebarLinks.childContextTypes = {
+    forceUpdateSidebarLinks: React.PropTypes.func
+};
+
+export class Link extends Component {
+    static defaultProps = {
+        onlyActiveOnIndex: false,
+        style: {},
+        activeClassName: 'active'
+    };
+
     handleClick(event) {
-        if ($(event.target).parents('li').hasClass("active")) {
-            event.preventDefault();
-            return false;
-        }
-        loading(true);
-        if (this.props.onCustomClick) this.props.onCustomClick(event);
+        if (this.props.onClick) this.props.onClick(event);
 
         if (event.defaultPrevented) return;
 
         if (isModifiedEvent(event) || !isLeftClickEvent(event)) return;
 
-        // If target prop is set (e.g. to "_blank"), let browser handle link.
-        /* istanbul ignore if: untestable with Karma */
         if (this.props.target) return;
 
         event.preventDefault();
@@ -107,8 +123,8 @@ class Link extends React.Component {
         var location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
 
         this.context.router.push(location);
+        this.context.forceUpdateSidebarLinks();
     }
-
 
     render() {
         let _props2 = this.props;
@@ -120,58 +136,42 @@ class Link extends React.Component {
         let activeStyle = _props2.activeStyle;
         let onlyActiveOnIndex = _props2.onlyActiveOnIndex;
 
-        let props = _objectWithoutProperties(_props2, ['to', 'query', 'hash', 'state',
-            'activeClassName', 'activeStyle', 'onlyActiveOnIndex']);
+        let props = _objectWithoutProperties(_props2, ['to', 'query', 'hash', 'state', 'activeClassName', 'activeStyle', 'onlyActiveOnIndex']);
 
         let router = this.context.router;
 
-        this.LiClassName = 'nav-item';
-
         if (router) {
+            // If user does not specify a `to` prop, return an empty anchor tag.
             if (to == null) {
                 return React.createElement('a', props);
             }
 
             let location = createLocationDescriptor(to, {query: query, hash: hash, state: state});
-
             props.href = router.createHref(location);
-            if (location == window.location.pathname) {
 
-                this.LiClassName += ' active';
+            props.className = '';
+            if (activeClassName || activeStyle != null && !isEmptyObject(activeStyle)) {
+                if (location == window.location.pathname) {
+                    if (activeClassName) {
+                        if (props.className) {
+                            props.className += ' ' + activeClassName;
+                        } else {
+                            props.className = activeClassName;
+                        }
+                    }
 
-                if (activeStyle) props.style = _extends({}, props.style, activeStyle);
+                    if (activeStyle) props.style = _extends({}, props.style, activeStyle);
+                }
             }
         }
-        let {Dropdown} = props;
 
-        let customProps = Object.assign({}, props);
-        delete customProps.Dropdown;
-        delete customProps.onCustomClick;
-        delete customProps.setParent;
-        let self = this;
-
-        return (
-            <li className={this.LiClassName + " " + this.state.open}>
-                {React.createElement('a', _extends({}, customProps, {
-                    onClick: self.handleClick.bind(this)
-                }))}
-            </li>
-        );
+        return <li className={"nav-item " + props.className}>
+            {React.createElement('a', _extends({}, props, {onClick: this.handleClick.bind(this)}))}
+        </li>;
     }
 }
 
 Link.contextTypes = {
-    router: routerShape
+    router: routerShape,
+    forceUpdateSidebarLinks: React.PropTypes.func
 };
-
-export default (props) => <Link {...props} onCustomClick={(event) => {
-    let li = $(event.target).parents('li');
-    li.siblings().removeClass('active');
-    li.addClass('active');
-
-    if ($(event.target).parents('li').parents('ul.sub-menu').length == 0) {
-        let li = $(event.target).parents('li').parents('ul').parent('li');
-        li.siblings().removeClass('active');
-        li.addClass('active');
-    }
-}}/>;

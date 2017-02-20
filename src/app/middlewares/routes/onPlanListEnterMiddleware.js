@@ -10,12 +10,13 @@ import {navigate} from "../../functions/navigate";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {handleError} from "../../functions/catchError";
 import {isCampaignMiddleware} from "../isCampaignMiddleware";
+import {getToken} from "../../redux/helpers";
 
 function* planListController(done) {
     loading(true);
     yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.PlanApi())
-        .planGet(select('user.token'));
+        .planAppropriateIdGet(select('createCampaignData.id'), getToken());
 
     done();
     if (!error) {
