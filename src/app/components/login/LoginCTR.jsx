@@ -13,6 +13,10 @@ let Ladda = require('ladda/js/ladda');
 export default class LoginCTR extends Component {
     loadingProgress;
 
+    componentDidMount() {
+        $('.preloader-page').hide();
+    }
+
     loginSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 

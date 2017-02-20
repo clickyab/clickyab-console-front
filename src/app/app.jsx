@@ -7,7 +7,8 @@ import {loading} from "./functions/loading";
 
 export default class App extends React.Component {
     componentDidMount() {
-        loading(false);
+        $('.preloader-page').hide();
+
         $(document).on("shown.bs.modal", ".modal", function () {
             let urlReplace = "#" + $(this).attr('id');
             history.pushState(null, null, urlReplace);

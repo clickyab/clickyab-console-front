@@ -14,6 +14,10 @@ let Ladda = require('ladda/js/ladda');
 export default class RegisterCTR extends Component {
     loadingProgress;
 
+    componentDidMount() {
+        $('.preloader-page').hide();
+    }
+
     registerSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
 

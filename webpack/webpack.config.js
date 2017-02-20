@@ -59,6 +59,7 @@ module.exports = {
 			'./public/vendor/layout.js',
 			'./public/vendor/jquery.textcomplete.js',
 			'./public/vendor/emojarea.js',
+			'./public/vendor/pace.min.js',
 		]
 	},
 	devtool: process.env.WEBPACK_DEVTOOL || 'cheap-module-source-map',

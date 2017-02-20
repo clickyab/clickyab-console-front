@@ -1,6 +1,12 @@
 const $ = require('jquery');
 
 export function loading(status) {
-    const loader = $('.preloader-page');
-    status ? loader.fadeIn() : loader.fadeOut();
+    // if (status) {
+    //     Pace.start({
+    //         elements: true
+    //     });
+    //     console.log(Pace);
+    // } else {
+    //     Pace.stop();
+    // }
 }
