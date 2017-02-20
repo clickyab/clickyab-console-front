@@ -7,13 +7,9 @@ let lastTimeWeShowed = null;
 
 function display() {
 	const msg = '<a href="/v1/profile" style="color:white">لطفا برای نکمیل اطلاعات حساب خود کلیک نمایید.</a>';
-	if(notification) {
-		notification.remove()
-	}
-	setTimeout(() => {
-		if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true)
+
+	if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true)
 			notification = NotifyBox('warning', msg, 0);
-	}, 3000);
 }
 
 export default function checkSubmitProfile() {
@@ -24,5 +20,6 @@ export default function checkSubmitProfile() {
 
 	if (moment(new Date()).isAfter(moment(lastTimeWeShowed).add(1, 'm'))) {
 		display();
+		lastTimeWeShowed = new Date();
 	}
 }
