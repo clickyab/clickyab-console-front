@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {translatable} from "react-multilingual/dist";
 import SidebarLink from "./../../../components/custom-link/CustomLink";
+import {Link} from 'react-router';
 
 @translatable(
     ({dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access}) =>
@@ -23,17 +24,8 @@ export class Sidebar extends Component {
         document.title = "داشبورد تبلیغ دهنده";
     }
 
+
     render() {
-        let {dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access} = this.props;
-        let dropdown = (
-            <ul className="sub-menu" style={{display: 'block'}}>
-                <li className="nav-item  ">
-                    <a href="components_date_time_pickers.html" className="nav-link ">
-                        <span className="title">Date &amp; Time Pickers</span>
-                    </a>
-                </li>
-            </ul>
-        );
         return (
             <div className='page-sidebar-wrapper'>
                 <div className='page-sidebar navbar-collapse collapse'>
@@ -45,7 +37,6 @@ export class Sidebar extends Component {
                                 <span/>
                             </div>
                         </li>
-
                         <SidebarLink to='/v1/advertiser'>
                             <i className='fa fa-home'/>
                             <span className='title'>داشبورد تبلیغ کننده</span>
@@ -53,23 +44,30 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                             <span className='arrow open'/>
                         </SidebarLink>
-
-                        <SidebarLink void={true} to="#" Dropdown={ (props) =>
-                            <ul className="sub-menu" style={{display: props.open}}>
-                                <SidebarLink to="/v1/advertiser/campaign/create/step/name" {...props}>
-                                    <span className="title">افزودن کمپین</span>
-                                </SidebarLink>
-
-                                <SidebarLink to="/v1/advertiser/campaign" {...props}>
-                                    <span className="title">لیست کمپین</span>
-                                </SidebarLink>
-                            </ul>
-                        }>
-                            <i className='fa fa-bullseye'/>
-                            <span className='title'>کمپین‌ها</span>
+                        <SidebarLink to="/v1/advertiser/telegram">
+                            <i className='fa fa-user'/>
+                            <span className='title'>مدیریت کاربران تلگرام</span>
                             <span className="selected"/>
-                            <span className='arrow'/>
+                            <span className='arrow open'/>
                         </SidebarLink>
+                        <li className="heading">
+                            <h3>کمپین‌ها</h3>
+                        </li>
+                        <SidebarLink to='/v1/advertiser/campaign/create/step/name'>
+                            <i className='fa fa-plus-circle'/>
+                            <span className='title'>افزودن کمپین</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                            <span className='arrow open'/>
+                        </SidebarLink>
+                        <SidebarLink to='/v1/advertiser/campaign'>
+                            <i className='fa fa-list'/>
+                            <span className='title'>لیست کمپین</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                            <span className='arrow open'/>
+                        </SidebarLink>
+
                     </ul>
                 </div>
 
