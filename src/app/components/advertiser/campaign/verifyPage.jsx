@@ -5,6 +5,10 @@ import {select} from "../../../functions/select";
 
 export default class verifyPage extends Component {
 
+    componentDidMount() {
+        $('.preloader-page').hide();
+    }
+
     render() {
         dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
             pay_id: this.props.location.query.payment,

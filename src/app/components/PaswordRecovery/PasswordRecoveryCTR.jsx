@@ -7,6 +7,10 @@ let Ladda = require('ladda/js/ladda');
 export default class PasswordRecoveryCTR extends Component {
     loadingProgress;
 
+    componentDidMount() {
+        $('.preloader-page').hide();
+    }
+
     forgotCallback({error, data, response}) {
         response.error = 'اطلاعات شما صحیح نمی‌باشد.';
         response.text = 'اطلاعات شما با موفقیت ثبت شد.';
