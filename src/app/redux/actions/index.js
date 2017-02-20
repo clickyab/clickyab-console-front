@@ -18,6 +18,9 @@ export const campaignStepType = (data) => ({type: CAMPAIGN_STEP_TYPE, data});
 export const deleteCampaignPromote = () => ({type: DELETE_CAMPAIGN_PROMOTE});
 export const campaignPaymentData = (data) => ({type: CAMPAIGN_PAYMENT_DATA, data});
 
+export const ADVERTISER_PIE_CHART = 'ADVERTISER_PIE_CHART';
+export const advertiserPieChart = (data) => ({type: ADVERTISER_PIE_CHART, data});
+
 export const CAMPAIGN_REPORT_LIST = 'CAMPAIGN_REPORT_LIST';
 export const CAMPAIGN_REPORT_ITEMS_LIST = 'CAMPAIGN_REPORT_ITEMS_LIST';
 export const CREATE_REPORT_CAMPAIGN = 'CREATE_REPORT_CAMPAIGN';

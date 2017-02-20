@@ -29,6 +29,7 @@ import {versionReducer} from "./reducers/versionReducer";
 import versionChanged from './../middlewares/versionChanged';
 import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
 import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
+import {advertiserPieChartReducer} from "./reducers/advertiserPieChartReducer";
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
@@ -57,6 +58,8 @@ export const store = createStore(
         createCampaignData: createCampaignReducer,
         campaignStepData: campaignStepReducer,
         campaignReportList: campaignReportListReducer,
+
+        advertiserPieChart: advertiserPieChartReducer,
 
         categoryList: categoryListReducer,
         categoryData: categoryDataReducer,
