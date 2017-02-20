@@ -2,7 +2,13 @@ import React, {Component} from "react";
 import {Link} from "react-router";
 import {translatable} from "react-multilingual/dist";
 import {loading} from "../../../functions/loading";
-
+require('jquery-sparkline/jquery.sparkline');
+require('amcharts3/amcharts/amcharts');
+require('amcharts3/amcharts/serial');
+require('amcharts3/amcharts/pie');
+require('amcharts3/amcharts/themes/light');
+require('amcharts3/amcharts/themes/patterns');
+require('amcharts3/amcharts/themes/chalk');
 
 @translatable(({
     DashboardTitle
@@ -12,10 +18,42 @@ import {loading} from "../../../functions/loading";
 export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
         loading(false);
+
+        AmCharts.makeChart("test3", {
+            "type": "pie",
+            'fontFamily': 'IRANSans',
+            "theme": "light",
+            //TODO: import data from select('advertiserPieChart');
+            "dataProvider": [{
+                "name": "کمپین های فعال",
+                "view": 1
+            },
+            {
+                "name": "کمپین های آرشیو",
+                "view": 2
+            },
+            {
+                "name": " کمپین های منقضی شده",
+                "view": 3
+            }],
+            "titleField": "name",
+            "valueField": "view",
+            "startEffect": "elastic",
+            "outlineAlpha": 0.4,
+            "labelRadius": 15,
+
+            "radius": "42%",
+            "depth3D": 10,
+            "innerRadius": "50%",
+            "labelText": "[[name]]",
+            "angle": 15,
+            "export": {
+                "enabled": true
+            }
+        });
     }
 
     render() {
-        let {DashboardTitle} = this.props;
         return (
             <div className='page-content'>
 
@@ -46,6 +84,7 @@ export default class AdvertiserDashboardPage extends Component {
                             </div>
                         </div>
                         <div className='portlet-body'>
+                            <div id='test3' className='CSSAnimationChart'/>
                         </div>
                     </div>
                 </div>
