@@ -35,6 +35,14 @@ export default {
             return ok("comments");
 
         return failed("comments");
-    }
+    },
+    canSeeSidebarManageUser: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('user_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+
 
 }

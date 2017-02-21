@@ -37,11 +37,14 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                         </Link>
 
-                        <Link to="/v1/publisher/user">
-                            <i className='fa fa-user'/>
-                            <span className='title'>مدیریت کاربران</span>
-                            <span className="selected"/>
-                        </Link>
+                        {securify(
+                            () => <Link to="/v1/publisher/user">
+                                <i className='fa fa-user'/>
+                                <span className='title'>مدیریت کاربران</span>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSidebarManageUser}, run) => run(canSeeSidebarManageUser())
+                        )}
 
                         {securify(
                             () => <Link to="/v1/publisher/role">
