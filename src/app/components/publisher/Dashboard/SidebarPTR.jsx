@@ -1,6 +1,8 @@
 import React, {Component} from "react";
 import {translatable} from "react-multilingual/dist";
 import {Link, SidebarLinks} from "./../../../components/custom-link/CustomLink";
+import {securify} from "../../../functions/securify";
+
 
 @translatable(
     ({
@@ -41,11 +43,14 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                         </Link>
 
-                        <Link to="/v1/publisher/role">
-                            <i className='fa fa-user'/>
-                            <span className='title'> رول ها</span>
-                            <span className="selected"/>
-                        </Link>
+                        {securify(
+                            () => <Link to="/v1/publisher/role">
+                                <i className='fa fa-user'/>
+                                <span className='title'> رول ها</span>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSidebarRoleList}, run) => run(canSeeSidebarRoleList())
+                        )}
 
                         <Link to="/v1/publisher/telegram">
                             <i className='fa fa-user'/>

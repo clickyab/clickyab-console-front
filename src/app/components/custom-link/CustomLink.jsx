@@ -59,7 +59,9 @@ export class SidebarLinks extends Component {
 
     componentDidMount() {
         this.unListen = this.context.router.listen(() => {
-            this.forceUpdate();
+            if(!this._calledComponentWillUnmount) {
+                this.forceUpdate();
+            }
         })
     }
 
