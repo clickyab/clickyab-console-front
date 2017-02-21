@@ -14,7 +14,7 @@ export default class SwitcherCTR extends Component {
                 <i className="fa fa-angle-down"/>
             </Link>);
             dropDown = (<Link to="/v1/advertiser">
-                <i className="fa fa-television"/>
+                <i className="fa fa-bullhorn"/>
                 <span className="title">تبلیغ کننده</span>
             </Link>);
         } else {
