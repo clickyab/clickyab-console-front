@@ -23,7 +23,7 @@ export default class LoginCTR extends Component {
         dispatch(successfulLogin());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
-        navigate('/v1/profile');
+        navigate('/v1/advertiser');
     }
 
     failed400Dispatcher() {
