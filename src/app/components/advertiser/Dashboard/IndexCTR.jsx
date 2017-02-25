@@ -19,37 +19,106 @@ export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
         loading(false);
 
-        AmCharts.makeChart("test3", {
-            "type": "pie",
-            'fontFamily': 'IRANSans',
-            "theme": "light",
-            //TODO: import data from select('advertiserPieChart');
-            "dataProvider": [{
-                "name": "کمپین های فعال",
-                "view": 1
-            },
-            {
-                "name": "کمپین های آرشیو",
-                "view": 2
-            },
-            {
-                "name": " کمپین های منقضی شده",
-                "view": 3
-            }],
-            "titleField": "name",
-            "valueField": "view",
-            "startEffect": "elastic",
-            "outlineAlpha": 0.4,
-            "labelRadius": 15,
+        AmCharts.addInitHandler(function(chart) {
 
-            "radius": "42%",
-            "depth3D": 10,
-            "innerRadius": "50%",
-            "labelText": "[[name]]",
-            "angle": 15,
-            "export": {
-                "enabled": true
+            // check if data is mepty
+            if (chart.dataProvider === undefined || chart.dataProvider.length === 0) {
+                // add some bogus data
+                var dp = {};
+                dp[chart.titleField] = "";
+                dp[chart.valueField] = "";
+                dp[chart.categoryField] = "";
+                chart.dataProvider.push(dp)
+
+                var dp = {};
+                dp[chart.titleField] = "";
+                dp[chart.valueField] = "";
+                dp[chart.categoryField] = "";
+                chart.dataProvider.push(dp)
+
+                var dp = {};
+                dp[chart.titleField] = "";
+                dp[chart.valueField] = "";
+                dp[chart.categoryField] = "";
+                chart.dataProvider.push(dp)
+
+                // disable slice labels
+                chart.labelsEnabled = false;
+
+                // add label to let users know the chart is empty
+                chart.addLabel(0, '50%', 'داده ای برای نمایش وجود ندارد', 'center','16');
+
+                // dim the whole chart
+                chart.alpha = 0.3;
             }
+
+        }, ["pie" , "serial"]);
+
+        let  barChart = AmCharts.makeChart("chartdiv", {
+            "type": "serial",
+            "theme": "light",
+            "categoryField": "campaignName",
+            "columnSpacing": 0,
+            "gridAboveGraphs": true,
+            "colors": ["#67b7dc", "#fdd400"],
+
+            "fontFamily": "IRANSans,sans-serif",
+            "rotate": false,
+            "unitPosition":"left",
+            "startDuration": 1,
+            "categoryAxis": {
+                "gridPosition": "start",
+                "position": "left"
+            },
+            "trendLines": [],
+            "graphs": [
+                {
+                    "balloonText": "نمایش داده شده:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-1",
+                    "lineAlpha": 0.2,
+                    "title": "showed",
+                    "type": "column",
+                    "valueField": "showed"
+                },
+                {
+                    "balloonText": "باقی مانده:[[value]]",
+                    "fillAlphas": 0.8,
+                    "id": "AmGraph-2",
+                    "lineAlpha": 0.2,
+                    "title": "Remaining",
+                    "type": "column",
+                    "valueField": "Remaining"
+                }
+            ],
+            "guides": [],
+            "valueAxes": [
+                {
+                    "id": "ValueAxis-1",
+                    "position": "left",
+                    "axisAlpha": 0,
+                    "offset" : 10
+                }
+            ],
+            "allLabels": [],
+            "balloon": {},
+            "titles": [],
+            "dataProvider": [],
+
+        });
+
+        let pieChart = AmCharts.makeChart("pieChart", {
+            "type": "pie",
+            "theme": "light",
+            "gridAboveGraphs": true,
+            "fontFamily": "IRANSans,sans-serif",
+            "dataProvider": [],
+            "valueField": "value",
+            "titleField": "campaignName",
+            "outlineAlpha": 0.4,
+            "depth3D": 15,
+            "balloonText": "  [[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
+            "angle": 30
         });
     }
 
@@ -57,34 +126,49 @@ export default class AdvertiserDashboardPage extends Component {
         return (
             <div className='page-content'>
 
-                <div className='page-bar'>
-                    <ul className='page-breadcrumb pull-right'>
-                        <li>
-                            <a href='index.html'>داشبورد</a>
-                            <i className='fa fa-circle'/>
-                        </li>
-                        <li>
-                            <span>کمپین های من</span>
-                        </li>
-                    </ul>
-                </div>
                 <div className='row'>
-                    <div className='portlet light bordered'>
+                    <div className='portlet light'>
                         <div className='portlet-title'>
                             <div className='caption'>
-                                <span className='caption-subject bold uppercase font-dark'>کمپین ها</span>
+                                <span className='caption-subject bold uppercase font-dark'>داشبورد تبلیغ دهنده</span>
                             </div>
                             <div className="actions">
                                 <div className="btn-group">
                                     <Link to="/v1/advertiser/campaign/create/step/name"
-                                          className="btn btn-transparent blue btn-outline btn-circle btn-sm">
-                                        <i className="fa fa-plus"/> ساخت کمپین جدید
+                                          className="btn btn-transparent blue btn-outline btn-circle btn-sm">ساخت کمپین جدید
                                     </Link>
                                 </div>
                             </div>
                         </div>
-                        <div className='portlet-body'>
-                            <div id='test3' className='CSSAnimationChart'/>
+                    </div>
+                </div>
+
+                <div className="row">
+                    <div className="col-lg-6 col-xs-12 col-sm-12">
+                        <div className="portlet light bordered">
+                            <div className="portlet-title">
+                                <div className="caption">
+                                    <i className="icon-share font-red-sunglo hide"/>
+                                    <span className="caption-subject font-dark  uppercase">آمار نمایش کمپین ها</span>
+                                </div>
+                            </div>
+                            <div className="portlet-body">
+                                <div id="chartdiv" className='CSSAnimationChart'></div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="col-lg-6 col-xs-12 col-sm-12">
+                        <div className="portlet light bordered">
+                            <div className="portlet-title">
+                                <div className="caption">
+                                    <i className="icon-share font-red-sunglo hide"/>
+                                    <span className="caption-subject font-dark  uppercase">آمار کانال های نمایش داده شده</span>
+                                </div>
+                            </div>
+                            <div className="portlet-body">
+                                <div id="pieChart" style={{width: '100%' , height: '500px'}} className='CSSAnimationChart'></div>
+                            </div>
                         </div>
                     </div>
                 </div>

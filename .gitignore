@@ -29,3 +29,5 @@ src/app/container/
 src/app/packages/
 src/app/presenters/
 src/img/
+
+.env.js
