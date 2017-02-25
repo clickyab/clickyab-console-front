@@ -55,6 +55,8 @@ import verifyPage from "./components/advertiser/campaign/verifyPage";
 import onVerifyEnterMiddleware from "./middlewares/routes/onVerifyEnterMiddleware";
 import getVersion from "./functions/getVersion";
 import checkSubmitProfile from "./functions/checkSubmitProfile";
+import BillingListCTR from "./components/advertiser/billing/BillingListCTR";
+import onBillingEnterMiddleware from "./middlewares/routes/onBillingEnterMiddleware";
 
 document.body.addEventListener('panic', function () {
     dispatch(logout());
@@ -133,6 +135,8 @@ export default function Provider() {
                            onEnter={onPreviewCampaignMiddleware}/>
                     <Route path='telegram' component={TelegramListCTR} name='telegramList'
                            onEnter={onTelegramEnterMiddleware}/>
+                    <Route path='billing' component={BillingListCTR} name='billingList'
+                           onEnter={onBillingEnterMiddleware}/>
                 </Route>
             </Route>
 
