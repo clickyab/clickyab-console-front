@@ -55,6 +55,9 @@ import verifyPage from "./components/advertiser/campaign/verifyPage";
 import onVerifyEnterMiddleware from "./middlewares/routes/onVerifyEnterMiddleware";
 import getVersion from "./functions/getVersion";
 import checkSubmitProfile from "./functions/checkSubmitProfile";
+import BillingListCTR from "./components/advertiser/billing/BillingListCTR";
+import onBillingEnterMiddleware from "./middlewares/routes/onBillingEnterMiddleware";
+import {AlertBox} from "./functions/notifications";
 
 document.body.addEventListener('panic', function () {
     dispatch(logout());
@@ -64,7 +67,7 @@ document.body.addEventListener('panic', function () {
 });
 
 document.body.addEventListener('server-down', function () {
-    navigate('/server-down');
+    AlertBox('error', 'در حال حاضر مشکلی برای سرور به وجود آمده است لطفا دقایقی دیگر مراجعه فرمایید');
 });
 
 browserHistory.listen(function() {
@@ -133,6 +136,8 @@ export default function Provider() {
                            onEnter={onPreviewCampaignMiddleware}/>
                     <Route path='telegram' component={TelegramListCTR} name='telegramList'
                            onEnter={onTelegramEnterMiddleware}/>
+                    <Route path='billing' component={BillingListCTR} name='billingList'
+                           onEnter={onBillingEnterMiddleware}/>
                 </Route>
             </Route>
 

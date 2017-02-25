@@ -42,6 +42,13 @@ export class Sidebar extends Component {
                                 <span className="selected"/>
                             </Link>
 
+                            <Link to='/v1/advertiser/billing' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>لیست پرداخت‌ها</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>
+
                             <li className="heading">
                                 <h3>کمپین‌ها</h3>
                             </li>
@@ -58,6 +65,8 @@ export class Sidebar extends Component {
                                 <span className='selected'/>
                                 <span className="selected"/>
                             </Link>
+
+
                         </SidebarLinks>
                 </div>
             </div>

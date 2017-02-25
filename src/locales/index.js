@@ -91,6 +91,9 @@ export default {
         All: 'همه',
         PlanID: 'آیدی پلن',
         View: 'تعداد نمایش',
+        PaymentID: 'شناسه پرداخت',
+        Amount: 'مبلغ',
+        Reason: 'بابت'
     },
     en: {
         hello: 'hello',
@@ -181,6 +184,9 @@ export default {
         All: 'All',
         PlanID: 'PlanID',
         View: 'View',
+        PaymentID: 'PaymentID',
+        Amount: 'Amount',
+        Reason: 'Reason'
     }
 }
 

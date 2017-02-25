@@ -30,6 +30,7 @@ import versionChanged from './../middlewares/versionChanged';
 import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
 import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
 import {advertiserPieChartReducer} from "./reducers/advertiserPieChartReducer";
+import {billingListReducer} from "./reducers/billingListReducer";
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
@@ -49,6 +50,8 @@ export const store = createStore(
         channelList: channelListReducer,
         channelReportList: channelReportListReducer,
         channelData: channelDataReducer,
+
+        billingList: billingListReducer,
 
         permissionList: permissionListReducer,
         roleList: roleListReducer,
