@@ -10,7 +10,9 @@ export default function ping() {
 	}
 
 	if (moment(new Date()).isAfter(moment(lastTimeWePinged).add(15, 'm'))) {
+		lastTimeWePinged = new Date();
 		return new swagger.UserApi().userPingGet(select('user.token', 'no token'));
+
 	}
 
 	return new Promise((resolve) => {
