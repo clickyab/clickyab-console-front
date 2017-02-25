@@ -5,6 +5,9 @@ export const CHANGE_QUERY = 'CHANGE_QUERY';
 export const planListAction = (data) => ({type: PLAN_LIST, data});
 export const PLAN_LIST = 'PLAN_LIST';
 
+export const BILLING_LIST = 'BILLING_LIST';
+export const billingListAction = (data) => ({type: BILLING_LIST, data});
+
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
