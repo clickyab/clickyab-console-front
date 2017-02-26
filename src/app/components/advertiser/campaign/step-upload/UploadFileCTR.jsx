@@ -11,6 +11,7 @@ import {baseUrl} from "../../../../functions/baseUrl";
 let Flow = require("@flowjs/flow.js/src/flow");
 let uploadPass = baseUrl() + "/api/file/upload";
 
+
 export default class UploadFileCTR extends Component {
     constructor(props) {
         super(props);

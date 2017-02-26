@@ -16,6 +16,7 @@ import {baseUrl} from "../../../functions/baseUrl";
 let BigPicture = require('./../../common/ThumbnailGallery');
 let statistic = baseUrl() + "/statics";
 
+
 @connect(({campaignList}) => ({campaignList}))
 @translatable(({
     ID, Title, CreatedAt, UpdatedAt, Description, Email,
