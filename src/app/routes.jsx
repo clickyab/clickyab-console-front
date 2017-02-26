@@ -67,7 +67,11 @@ document.body.addEventListener('panic', function () {
 });
 
 document.body.addEventListener('server-down', function () {
-    AlertBox('error', 'در حال حاضر مشکلی برای سرور به وجود آمده است لطفا دقایقی دیگر مراجعه فرمایید');
+    $('#server-condition').css('display', 'inline-block');
+});
+
+document.body.addEventListener('server-ok', function () {
+    $('#server-condition').css('display', 'none');
 });
 
 browserHistory.listen(function() {

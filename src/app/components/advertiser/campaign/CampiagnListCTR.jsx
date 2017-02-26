@@ -12,7 +12,10 @@ import ChangeCampaignStatus from "./ChangeCampaignStatus";
 import ChangeCampaignArchiveStatus from "./ChangeCampaignArchiveStatus";
 import ChangeCampaignActiveStatus from "./ChangeCampaignActiveStatus";
 import {Base64} from "js-base64";
+import {baseUrl} from "../../../functions/baseUrl";
 let BigPicture = require('./../../common/ThumbnailGallery');
+let statistic = baseUrl() + "/statics";
+
 
 @connect(({campaignList}) => ({campaignList}))
 @translatable(({
@@ -162,12 +165,12 @@ export default class CampaignListCTR extends Component {
 
         if (src != null) {
             if (splitByLastDot(src) == "png" || splitByLastDot(src) == "jpg") {
-                return <img className={"thumbnail-image"} src={"http://rubik.clickyab.ae/statics" + src}
+                return <img className={"thumbnail-image"} src={statistic + src}
                             data-caption={Base64.decode(description)}/>
             }
             else if (splitByLastDot(src) == "mov" || splitByLastDot(src) == "mp4") {
                 return <div className={"thumbnail-video"} style={{backgroundImage: 'url(/img/video-file.jpg)'}}
-                            data-video={"http://rubik.clickyab.ae/statics" + src} data-caption={Base64.decode(description)}/>
+                            data-video={statistic + src} data-caption={Base64.decode(description)}/>
             }
 
             else {

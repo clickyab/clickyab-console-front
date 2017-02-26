@@ -1,7 +1,7 @@
 {{>licenseInfo}}
     // CommonJS-like environments that support module.exports, like Node.
     const superagent = require('superagent');
-
+    const baseUrl = require('./../functions/baseUrl').baseUrl;
 {{#emitJSDoc}}  /**
    * @module {{#invokerPackage}}{{invokerPackage}}/{{/invokerPackage}}ApiClient
    * @version {{projectVersion}}
@@ -18,9 +18,9 @@
 {{#emitJSDoc}}    /**
      * The base URL against which to resolve every API call's (relative) path.
      * @type {String}
-     * @default {{require('./../../../.env').webpack.baseUrl}}/api
+     * @default {{baseUrl()}}/api
      */
-{{/emitJSDoc}}    this.basePath = require('./../../../.env').webpack.baseUrl+'/api/'.replace(/\/+$/, '');
+{{/emitJSDoc}}    this.basePath = baseUrl()+'/api/'.replace(/\/+$/, '');
 
 {{#emitJSDoc}}    /**
      * The authentication methods to be included for all API calls.
@@ -423,6 +423,12 @@
             document.body.dispatchEvent(event);
         } else {
             callback({error:error, data:data, response:response});
+            var event = new CustomEvent("server-ok", {
+            detail: {
+            message: 'server is ok'
+            }
+            });
+            document.body.dispatchEvent(event);
         }
       }
     });
@@ -450,7 +456,7 @@
    */
 {{/emitJSDoc}}  exports.convertToType = function(data, type) {
     if(data === null) return;
-    
+
     switch (type) {
       case 'Boolean':
         return Boolean(data);

@@ -7,7 +7,10 @@ import {navigate} from "../../../../functions/navigate";
 import {AlertBox} from "../../../../functions/notifications";
 import {sync} from "../../../../functions/sync";
 import swagger from "../../../../swagger/index";
+import {baseUrl} from "../../../../functions/baseUrl";
 let Flow = require("@flowjs/flow.js/src/flow");
+let uploadPass = baseUrl() + "/api/file/upload";
+
 
 export default class UploadFileCTR extends Component {
     constructor(props) {
@@ -44,7 +47,7 @@ export default class UploadFileCTR extends Component {
         }
         (function () {
             var r = new Flow({
-                target: 'http://rubik.clickyab.ae/api/file/upload',
+                target: uploadPass,
                 chunkSize: 1024 * 1024,
                 testChunks: false,
                 singleFile: true,
