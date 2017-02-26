@@ -6,5 +6,5 @@ import {Provider} from "react-redux";
 
 render(
     <Provider store={store}><Routes /></Provider>,
-    document.querySelector('#clickyab_app')
+    document.querySelector('#rubik_app')
 );
