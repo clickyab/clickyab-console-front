@@ -70,6 +70,7 @@ export class Header extends Component {
                             <span/>
                         </div>
                     </div>
+                    <div id="server-condition"></div>
                     <a href="javascript:;" className="menu-toggler responsive-toggler" data-toggle="collapse"
                        data-target=".navbar-collapse">
                         <span/>

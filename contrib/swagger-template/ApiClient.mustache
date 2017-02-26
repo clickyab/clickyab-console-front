@@ -423,6 +423,12 @@
             document.body.dispatchEvent(event);
         } else {
             callback({error:error, data:data, response:response});
+            var event = new CustomEvent("server-ok", {
+            detail: {
+            message: 'server is ok'
+            }
+            });
+            document.body.dispatchEvent(event);
         }
       }
     });
@@ -450,7 +456,7 @@
    */
 {{/emitJSDoc}}  exports.convertToType = function(data, type) {
     if(data === null) return;
-    
+
     switch (type) {
       case 'Boolean':
         return Boolean(data);
