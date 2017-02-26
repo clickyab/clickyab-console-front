@@ -12,8 +12,10 @@ import ChangeCampaignStatus from "./ChangeCampaignStatus";
 import ChangeCampaignArchiveStatus from "./ChangeCampaignArchiveStatus";
 import ChangeCampaignActiveStatus from "./ChangeCampaignActiveStatus";
 import {Base64} from "js-base64";
+import {baseUrl} from "../../../functions/baseUrl";
 let BigPicture = require('./../../common/ThumbnailGallery');
-let statistic = require("../../../../../.env").webpack.statistic;
+let statistic = baseUrl() + "/statics";
+
 
 @connect(({campaignList}) => ({campaignList}))
 @translatable(({
