@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router";
 import {translatable} from "react-multilingual/dist";
 import {loading} from "../../../functions/loading";
+import {select} from "../../../functions/select";
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
 require('amcharts3/amcharts/serial');
@@ -112,9 +113,9 @@ export default class AdvertiserDashboardPage extends Component {
             "theme": "light",
             "gridAboveGraphs": true,
             "fontFamily": "IRANSans,sans-serif",
-            "dataProvider": [],
-            "valueField": "value",
-            "titleField": "campaignName",
+            "dataProvider": select('advertiserSpentPerChannel'),
+            "valueField": "spent",
+            "titleField": "channel_name",
             "outlineAlpha": 0.4,
             "depth3D": 15,
             "balloonText": "  [[title]]<br><span style='font-size:14px'><b>[[value]]</b> ([[percents]]%)</span>",
