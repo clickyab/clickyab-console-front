@@ -8,6 +8,7 @@ import {AlertBox} from "../../../../functions/notifications";
 import {sync} from "../../../../functions/sync";
 import swagger from "../../../../swagger/index";
 let Flow = require("@flowjs/flow.js/src/flow");
+let uploadPass = require("../../../../../../.env").webpack.uploadPass;
 
 export default class UploadFileCTR extends Component {
     constructor(props) {
@@ -44,7 +45,7 @@ export default class UploadFileCTR extends Component {
         }
         (function () {
             var r = new Flow({
-                target: 'http://rubik.clickyab.ae/api/file/upload',
+                target: uploadPass,
                 chunkSize: 1024 * 1024,
                 testChunks: false,
                 singleFile: true,

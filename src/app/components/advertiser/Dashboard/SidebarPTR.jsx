@@ -38,7 +38,7 @@ export class Sidebar extends Component {
 
                             <Link to="/v1/advertiser/telegram" activeClassName='active'>
                                 <i className='fa fa-user'/>
-                                <span className='title'>مدیریت کاربران تلگرام</span>
+                                <span className='title'>مدیریت کانال ها</span>
                                 <span className="selected"/>
                             </Link>
 

@@ -85,7 +85,7 @@ class LoginForm extends Component {
                         <div className="row">
                             <div className="col-sm-8 col-sm-offset-2 text">
                                 <h1>
-                                    <a href="http://clickyab.com">
+                                    <a href="http://rubickad.com">
                                         <img src="/img/logo_fa_white.svg" width="300px"/>
                                     </a>
                                 </h1>
