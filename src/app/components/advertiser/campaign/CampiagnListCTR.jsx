@@ -12,6 +12,7 @@ import ChangeCampaignStatus from "./ChangeCampaignStatus";
 import ChangeCampaignArchiveStatus from "./ChangeCampaignArchiveStatus";
 import ChangeCampaignActiveStatus from "./ChangeCampaignActiveStatus";
 import {Base64} from "js-base64";
+import {PersianNumber} from "react-persian";
 let BigPicture = require('./../../common/ThumbnailGallery');
 let statistic = require("../../../../../.env").webpack.statistic;
 
@@ -80,11 +81,11 @@ export default class CampaignListCTR extends Component {
     }
 
     updated_at(updated_at) {
-        return moment(updated_at).format('dddd، jD jMMMM jYYYY');
+        return <PersianNumber>{moment(updated_at).format('dddd، jD jMMMM jYYYY')}</PersianNumber>
     }
 
     created_at(created_at) {
-        return moment(created_at).format('dddd، jD jMMMM jYYYY');
+        return <PersianNumber>{moment(created_at).format('dddd، jD jMMMM jYYYY')}</PersianNumber>
     }
 
     description(description, {cli_message_id}) {
@@ -132,6 +133,11 @@ export default class CampaignListCTR extends Component {
         } else {
             return this.translator(archive_status)
         }
+    }
+
+    changeFormatToPersian(number) {
+        if (number == null) return;
+        return <PersianNumber>{number.toString()}</PersianNumber>
     }
 
 
@@ -199,7 +205,11 @@ export default class CampaignListCTR extends Component {
                                      archive_status: this.archive_status.bind(this),
                                      pay_status: this.pay_status.bind(this),
                                      src: this.src.bind(this),
-                                     active_status: this.active_status.bind(this)
+                                     active_status: this.active_status.bind(this),
+                                     id: this.changeFormatToPersian,
+                                     user_id: this.changeFormatToPersian,
+                                     plan_id: this.changeFormatToPersian,
+                                     view: this.changeFormatToPersian
                                  }}
         />);
     }

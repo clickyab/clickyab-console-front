@@ -4,6 +4,7 @@ import {navigate} from "../../../functions/navigate";
 import {dispatch} from "../../../functions/dispatch";
 import {createCampaign} from "../../../redux/actions/index";
 
+
 export default class CampaignListPTR extends Component {
     componentDidMount() {
         document.title = "مدیریت کمپین ها";

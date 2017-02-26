@@ -11,6 +11,7 @@ import {translatable} from "react-multilingual/dist";
 import ChangeChannelStatus from "./ChangeChannelStatus";
 import ChangeChannelArchiveStatus from "./ChangeChannelArchiveStatus";
 import ChangeChannelActiveStatus from "./ChangeChannelActiveStatus";
+import {PersianNumber} from "react-persian";
 
 @connect(({channelList}) => ({channelList}))
 @translatable(({
@@ -54,11 +55,11 @@ export default class ChannelListCTR extends Component {
     }
 
     updated_at(updated_at) {
-        return moment(updated_at).format('dddd، jD jMMMM jYYYY');
+        return <PersianNumber> {moment(updated_at).format('dddd، jD jMMMM jYYYY')}</PersianNumber>
     }
 
     created_at(created_at) {
-        return moment(created_at).format('dddd، jD jMMMM jYYYY');
+        return <PersianNumber> {moment(created_at).format('dddd، jD jMMMM jYYYY')} </PersianNumber>
     }
 
     onPaginationChange(page) {
@@ -107,6 +108,11 @@ export default class ChannelListCTR extends Component {
         }
     }
 
+    changeFormatToPersian(number) {
+        if (number == null) return;
+        return <PersianNumber>{number.toString()}</PersianNumber>
+    }
+
     render() {
         return (<ChannelListPTR {...this.props.channelList}
                                 sort={this.sort.bind(this)}
@@ -121,7 +127,9 @@ export default class ChannelListCTR extends Component {
                                     created_at: this.created_at,
                                     admin_status: this.admin_status.bind(this),
                                     archive_status: this.archive_status.bind(this),
-                                    active: this.active.bind(this)
+                                    active: this.active.bind(this),
+                                    id: this.changeFormatToPersian,
+                                    user_id: this.changeFormatToPersian
                                 }}
 
         />);
