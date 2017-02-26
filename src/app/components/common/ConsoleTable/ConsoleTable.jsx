@@ -5,6 +5,7 @@ import {ConsoleFooterCell} from "./ConsoleFooterCell";
 import {select} from "../../../functions/select";
 import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
+import {PersianNumber} from "react-persian";
 
 export class ConsoleTable extends Component {
     constructor(props) {
