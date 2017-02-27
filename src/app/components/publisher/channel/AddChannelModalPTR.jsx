@@ -53,18 +53,20 @@ class AddChannelModalPTR extends Component {
                                       className="add-channel-form white"
                                       onSubmit={handleSubmit((values) => SubmitAddChannel(values, this.addChannelForm))}>
                                     <div className="form-group">
-                                        <label htmlFor="link">یوزرنیم کانال</label>
+                                        <label htmlFor="link">لینک کانال</label>
                                         <div className="input-group input-group-lg form-group">
-                                            <span className="input-group-addon" id="sizing-addon1">@</span>
+                                            <span className="input-group-addon" id="sizing-addon1">http://t.me/</span>
                                             <Field type="text" component="input" name="link" id="link" style={{direction:'ltr' , textAlign: 'left'}}
-                                                   className="form-control input-lg" placeholder="یوزرنیم کانال"
-                                                   aria-describedby="sizing-addon1"/></div>
+                                                   className="form-control input-lg" placeholder="لینک کانال"
+                                                   aria-describedby="sizing-addon1"/>
+                                        </div>
                                     </div>
 
                                     <div className="form-group">
                                         <label htmlFor="name">نام کانال</label>
                                         <Field component="input" type="text" name="name" placeholder="نام کانال"
                                                className="form-control input-lg" id="name"/>
+                                        <small className="text-muted">* نام کانال براساس لینک کانال به روز می‌شود.</small>
                                     </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg add-channel-form btn-block">ذخیره
