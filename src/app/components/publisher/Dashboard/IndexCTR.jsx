@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {Link} from "react-router";
 import {translatable} from "react-multilingual/dist";
 import {loading} from "../../../functions/loading";
+import {select} from "../../../functions/select";
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
 require('amcharts3/amcharts/serial');
@@ -73,26 +74,7 @@ export default class AdvertiserDashboardPage extends Component {
                 "color": "#ffffff"
             },
 
-            "dataProvider": [ {
-                "channelName": "کانال یک",
-                "income": 23.5
-            }, {
-                "channelName": "کانال دو",
-                "income": 26.2
-            }, {
-                "channelName": "کانال سه",
-                "income": 30.1
-            }, {
-                "channelName": "کانال چهار",
-                "income": 29.5
-            }, {
-                "channelName": "کانال پنج",
-                "income": 30.6
-
-            }, {
-                "channelName": "کانال شش",
-                "income": 34.1
-            } ],
+            "dataProvider": select('publisherTotalViewChart'),
             "valueAxes": [ {
                 "axisAlpha": 0,
                 "position": "left",
@@ -105,7 +87,7 @@ export default class AdvertiserDashboardPage extends Component {
                 "fillAlphas": 1,
                 "title": "آمار بازدید",
                 "type": "column",
-                "valueField": "income"
+                "valueField": "viewed"
             }, {
                 "id": "graph2",
                 "balloonText": "<span style='font-size:12px;'>[[title]] in [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
@@ -121,7 +103,7 @@ export default class AdvertiserDashboardPage extends Component {
                 "title": "Expenses",
                 "valueField": "expenses",
             } ],
-            "categoryField": "channelName",
+            "categoryField": "channel_name",
             "categoryAxis": {
                 "gridPosition": "start",
                 "axisAlpha": 0,

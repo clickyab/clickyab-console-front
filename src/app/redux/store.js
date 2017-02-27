@@ -26,12 +26,15 @@ import {secureReducer} from "react-redux-secure";
 import {campaignReportListReducer} from "./reducers/campaignReportList";
 import {channelReportListReducer} from "./reducers/channelReportList";
 import {versionReducer} from "./reducers/versionReducer";
-import versionChanged from './../middlewares/versionChanged';
+import versionChanged from "./../middlewares/versionChanged";
 import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
 import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
 import {advertiserPieChartReducer} from "./reducers/advertiserPieChartReducer";
 import {billingListReducer} from "./reducers/billingListReducer";
 import {notificationsReducer} from "./reducers/notificationsReducer";
+import {publisherTotalViewChartReducer} from "./reducers/publisherTotalViewChartReducer";
+import {advertiserSpentPerChannelReducer} from "./reducers/advertiserSpentPerChannelReducer";
+
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
@@ -64,6 +67,8 @@ export const store = createStore(
         campaignReportList: campaignReportListReducer,
 
         advertiserPieChart: advertiserPieChartReducer,
+        advertiserSpentPerChannel: advertiserSpentPerChannelReducer,
+        publisherTotalViewChart: publisherTotalViewChartReducer,
 
         categoryList: categoryListReducer,
         categoryData: categoryDataReducer,
@@ -97,8 +102,8 @@ export const store = createStore(
         }),
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
-		versionChanged,
-        logger
+        versionChanged,
+        // logger
         )
     )
 );
