@@ -107,3 +107,8 @@ export const asyncRemoveLocalStorageAction = () => ({type: REMOVE_LOCAL_STORAGE}
 
 export const VERSION = "VERSION";
 export const versionAction = (version) => ({type: VERSION, version});
+
+export const NOTIFICATIONS = "NOTIFICATIONS";
+export const EMPTY_NOTIFICATIONS = "EMPTY_NOTIFICATIONS";
+export const addNotificationAction = (notification) => ({type: NOTIFICATIONS, notification});
+export const emptyNotificationAction = () => ({type: EMPTY_NOTIFICATIONS});
