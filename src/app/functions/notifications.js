@@ -1,39 +1,44 @@
+import {dispatch} from "./dispatch";
+import {addNotificationAction} from "../redux/actions/index";
 let Lobibox = require('./../../../public/vendor/lobibox');
-export function AlertBox(type, msg) {
-    Lobibox.notify(
-        type,
-        {
-            size: 'mini',
-            rounded: false,
-            sound: false,
-            icon: false,
-            delay: 5000,
-            position: 'top right',
-            delayIndicator: true,
-            msg: msg
-        }
-    );
+
+export function AlertBox(type, message) {
+	console.log('AlertBox', type, message);
+	dispatch(addNotificationAction({
+		type, message
+	}));
 }
 
 export function SuccessBoxAlert(response) {
-    AlertBox('success', response.text);
+	console.log('SuccessBoxAlert', response.text);
+	dispatch(addNotificationAction({
+		type: 'success', message: response.text
+	}));
 }
 export function FailedBoxAlert(response) {
-    AlertBox('error', response.error);
+	dispatch(addNotificationAction({
+		type: 'error', message: response.error
+	}));
+	console.log('FailedBoxAlert', response.error);
 }
 
-export function NotifyBox(type, msg, delay) {
-    Lobibox.notify(
-        type, {
-            size: 'mini',
-            rounded: false,
-            sound: false,
-            icon: false,
-            delay: delay,
-            position: 'top right',
-            delayIndicator: true,
-            msg: msg
-        }
-    )
+export function NotifyBox(type, message, delay) {
+	dispatch(addNotificationAction({
+		type, message
+	}));
+
+	Lobibox.notify(
+		type, {
+			size: 'mini',
+			rounded: false,
+			sound: false,
+			icon: false,
+			delay: delay,
+			position: 'top right',
+			delayIndicator: true,
+			msg: message
+		}
+	);
+	console.log('NotifyBox', type, message, delay);
 }
 

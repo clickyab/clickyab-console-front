@@ -31,8 +31,10 @@ import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
 import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
 import {advertiserPieChartReducer} from "./reducers/advertiserPieChartReducer";
 import {billingListReducer} from "./reducers/billingListReducer";
+import {notificationsReducer} from "./reducers/notificationsReducer";
 import {publisherTotalViewChartReducer} from "./reducers/publisherTotalViewChartReducer";
 import {advertiserSpentPerChannelReducer} from "./reducers/advertiserSpentPerChannelReducer";
+
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
@@ -82,7 +84,9 @@ export const store = createStore(
         locale: localeReducer('fa', require('../../locales/index').default),
         secure: secureReducer(require("../secure/rules").default),
 
-        version: versionReducer
+        version: versionReducer,
+
+        notifications: notificationsReducer,
     }),
     localStorage.get('initialState'),
     enhancer(applyMiddleware(
