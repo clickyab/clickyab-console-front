@@ -1,22 +1,19 @@
 import React, {Component} from "react";
 import PersonalUserPTR from "./PersonalUserPTR";
 import swagger from "./../../swagger/index";
-import {connect} from "react-redux";
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
-import {ifInvalidToken} from "../../functions/helpers";
 import {updatePersonalInformation, deleteCorporationInformation} from "../../redux/actions/user";
 import moment from "moment";
 import {select} from "../../functions/select";
+import {dispatch} from "../../functions/dispatch";
 let Ladda = require('ladda/js/ladda');
 
-@connect()
 export default class PersonalUserCTR extends Component {
     loadingProgress;
 
     editProfileSuccessfullyDispatchers(user) {
-        let {dispatch} = this.props;
         dispatch(updatePersonalInformation(user));
         if (select('user.corporation') != null) {
             dispatch(deleteCorporationInformation());
@@ -24,20 +21,15 @@ export default class PersonalUserCTR extends Component {
         dispatch(updateLocalStorageAction());
     }
 
-
-    PersonalUserCallback({error, data, response}) {
-        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+    PersonalUserCallback({data, response}) {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({text: 'اطلاعات شما با موفقیت ثبت شد.'});
         } else if (response.statusCode == '400') {
-
             this.stopLoading();
-            FailedBoxAlert(response);
+            FailedBoxAlert({error: 'اطلاعات شما صحیح نمی‌باشد.'});
         }
-        ifInvalidToken(response);
     }
 
     PersonalCall(formValues) {

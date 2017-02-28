@@ -12,7 +12,6 @@ import {dispatch} from "../../functions/dispatch";
 
 class UserProfilePTR extends Component {
 
-
     componentDidMount() {
         document.title = "ویرایش پروفایل";
         Calendar.setup({
@@ -67,7 +66,6 @@ class UserProfilePTR extends Component {
                                                             <SelectUserTypePTR />
                                                             <PersonalUserCTR />
                                                             <CorporationUserCTR />
-
                                                         </div>
                                                         <div className="tab-pane" id="tab_1_2">
                                                             <SessionListCTR />
