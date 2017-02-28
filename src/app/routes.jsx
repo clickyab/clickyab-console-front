@@ -43,7 +43,7 @@ import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddlewar
 import {dispatch} from "./functions/dispatch";
 import {logout} from "./redux/actions/login";
 import {updatePersonalInformation} from "./redux/actions/user";
-import {updateLocalStorageAction} from "./redux/actions/index";
+import {updateLocalStorageAction, addNotificationAction} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
 import StepPreviewCTR from "./components/advertiser/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
@@ -66,24 +66,32 @@ document.body.addEventListener('panic', function () {
     navigate('/v1/login');
 });
 
+document.body.addEventListener('NotAccess', function () {
+    AlertBox("warning","شما دسترسی به این صفحه را ندارید");
+    window.history.back();
+});
+
 document.body.addEventListener('server-down', function () {
     $('#server-condition').css('display', 'inline-block');
+    dispatch(addNotificationAction({
+        type: 'server-down', message: 'server is down'
+    }));
 });
 
 document.body.addEventListener('server-ok', function () {
     $('#server-condition').css('display', 'none');
 });
 
-browserHistory.listen(function() {
+browserHistory.listen(function () {
     getVersion();
     checkSubmitProfile();
 });
 
 export default function Provider() {
     return (
-        <Router history={browserHistory}>
-            <Route path='/v1' component={App}>
-                <IndexRoute component={() => {
+		<Router history={browserHistory}>
+			<Route path='/v1' component={App}>
+				<IndexRoute component={() => {
                     if (store.getState().userType == 'advertiser') {
                         navigate('/v1/advertiser');
                     } else {
@@ -93,69 +101,69 @@ export default function Provider() {
                     return <span/>;
                 }}/>
 
-                <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
+				<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
 
-                <Route path='publisher' component={Publisher}>
-                    <IndexRoute component={PublisherDashboardPage} name='PublisherDashboard'
-                                onEnter={onPublisherEnterMiddleware}/>
-                    <Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
-                    <Route path='channel' component={ChannelListCTR} name='channelList'
-                           onEnter={onChannelEnterMiddleware}/>
-                    <Route path='channel/:channel_id/report' component={ChannelReportListCTR} name='channelReportList'
-                           onEnter={onChannelReportEnterMiddleware}/>
-                    <Route path='telegram' component={TelegramListCTR} name='telegramList'
-                           onEnter={onTelegramEnterMiddleware}/>
-                    <Route path='role' component={RolesListCTR} name='roleList' onEnter={onRoleEnterMiddleware}/>
-                </Route>
+				<Route path='publisher' component={Publisher}>
+					<IndexRoute component={PublisherDashboardPage} name='PublisherDashboard'
+								onEnter={onPublisherEnterMiddleware}/>
+					<Route path='user' component={UsersListCTR} name='user' onEnter={onUserEnterMiddleware}/>
+					<Route path='channel' component={ChannelListCTR} name='channelList'
+						   onEnter={onChannelEnterMiddleware}/>
+					<Route path='channel/:channel_id/report' component={ChannelReportListCTR} name='channelReportList'
+						   onEnter={onChannelReportEnterMiddleware}/>
+					<Route path='telegram' component={TelegramListCTR} name='telegramList'
+						   onEnter={onTelegramEnterMiddleware}/>
+					<Route path='role' component={RolesListCTR} name='roleList' onEnter={onRoleEnterMiddleware}/>
+				</Route>
 
-                <Route path='advertiser' component={Advertiser}>
-                    <IndexRoute component={AdvertiserDashboardPage} name='advertiser'
-                                onEnter={onAdvertiserEnterMiddleware}/>
+				<Route path='advertiser' component={Advertiser}>
+					<IndexRoute component={AdvertiserDashboardPage} name='advertiser'
+								onEnter={onAdvertiserEnterMiddleware}/>
 
-                    <Route path='campaign' component={CampaignListCTR} name='campaignList'
-                           onEnter={onCampaignEnterMiddleware}/>
+					<Route path='campaign' component={CampaignListCTR} name='campaignList'
+						   onEnter={onCampaignEnterMiddleware}/>
 
-                    <Route path='campaign/:campaign_id/report' component={CampaignReportListCTR}
-                           name='campaignReportList'
-                           onEnter={onCampaignReportEnterMiddleware}/>
+					<Route path='campaign/:campaign_id/report' component={CampaignReportListCTR}
+						   name='campaignReportList'
+						   onEnter={onCampaignReportEnterMiddleware}/>
 
-                    <Route path='campaign/create/step/name' component={CampaignCreateCTR}
-                           onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
-                    <Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
-                           onEnter={onUpdateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+					<Route path='campaign/create/step/name' component={CampaignCreateCTR}
+						   onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
+					<Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
+						   onEnter={onUpdateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
 
-                    <Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}
-                           onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignType'/>
+					<Route path='campaign/create/:campaign_id/step/type' component={SelectTypeCTR}
+						   onEnter={onCreateCampaignStepTwoOnEnterMiddleware} name='campaignType'/>
 
-                    <Route path='campaign/create/:campaign_id/step/promote' component={SelectContentByChannelCTR}
-                           onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignPromote'/>
-                    <Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
-                           onEnter={onUploadEnterMiddleware} name='upload'/>
-                    <Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
-                           onEnter={onEditorEnterMiddleware}/>
-                    <Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
-                           onEnter={onPlanListEnterMiddleware}/>
-                    <Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR}
-                           name='campaignPreview'
-                           onEnter={onPreviewCampaignMiddleware}/>
-                    <Route path='telegram' component={TelegramListCTR} name='telegramList'
-                           onEnter={onTelegramEnterMiddleware}/>
-                    <Route path='billing' component={BillingListCTR} name='billingList'
-                           onEnter={onBillingEnterMiddleware}/>
-                </Route>
-            </Route>
+					<Route path='campaign/create/:campaign_id/step/promote' component={SelectContentByChannelCTR}
+						   onEnter={onCreateCampaignStepThreeOnEnterMiddleware} name='campaignPromote'/>
+					<Route path='campaign/create/:campaign_id/step/upload' component={UploadFileCTR}
+						   onEnter={onUploadEnterMiddleware} name='upload'/>
+					<Route path='campaign/create/:campaign_id/step/editor' component={CaptionCTR} name='campaignEditor'
+						   onEnter={onEditorEnterMiddleware}/>
+					<Route path='campaign/create/:campaign_id/step/plan' component={SelectPlanCTR} name='campaignPlan'
+						   onEnter={onPlanListEnterMiddleware}/>
+					<Route path='campaign/create/:campaign_id/step/preview' component={StepPreviewCTR}
+						   name='campaignPreview'
+						   onEnter={onPreviewCampaignMiddleware}/>
+					<Route path='telegram' component={TelegramListCTR} name='telegramList'
+						   onEnter={onTelegramEnterMiddleware}/>
+					<Route path='billing' component={BillingListCTR} name='billingList'
+						   onEnter={onBillingEnterMiddleware}/>
+				</Route>
+			</Route>
 
-            <Route path='/v1'>
-                <Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
-                <Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
-                <Route path='login' component={Login} name='Login' onEnter={onLogin}/>
-                <Route path='password-recovery' component={ForgotPassword} name=''/>
-                <Route path='verify' component={verifyPage} onEnter={onVerifyEnterMiddleware} name='verify'/>
-            </Route>
+			<Route path='/v1'>
+				<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
+				<Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
+				<Route path='login' component={Login} name='Login' onEnter={onLogin}/>
+				<Route path='password-recovery' component={ForgotPassword} name=''/>
+				<Route path='verify' component={verifyPage} onEnter={onVerifyEnterMiddleware} name='verify'/>
+			</Route>
 
-            <Route path='/' onEnter={onSlashEnterMiddleware}/>
-            <Route path='/server-down' component={ServerDown}/>
-            <Route path='*' component={PageNotFound}/>
-        </Router>
+			<Route path='/' onEnter={onSlashEnterMiddleware}/>
+			<Route path='/server-down' component={ServerDown}/>
+			<Route path='*' component={PageNotFound}/>
+		</Router>
     );
 }

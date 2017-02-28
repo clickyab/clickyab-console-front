@@ -399,6 +399,18 @@ export default class UploadFileCTR extends Component {
                                         className="btn btn-info  button-next btn-arrow-text next-step-upload"
                                          disabled={!this.state.FileUploaded}>مرحله بعد <i
                                     className="fa fa-angle-left"/></button>
+                                {((select("createCampaignData.src")) == null ?
+                                <button onClick={
+                                    () => {
+                                        navigate('/v1/advertiser/campaign/create/:campaign_id:/step/editor', {
+                                            campaign_id: select('createCampaignData.id')
+                                        });
+                                    }
+                                }
+                                        className="btn btn-info  button-next btn-arrow-text next-step-upload"
+                                        disabled={this.state.FileUploaded}>قصد آپلود فایل ندارم!
+                                   </button> : '')
+                                }
                                 {((select("createCampaignData.src")) != null ?
                                     <button onClick={
                                         () => {
@@ -409,7 +421,6 @@ export default class UploadFileCTR extends Component {
                                     }
                                             className="btn btn-info  button-next btn-arrow-text" autoFocus disabled={this.state.FileUploaded}> صرف نظر از تغییر فایل و مرحله بعد  <i className="fa fa-angle-left"/>
                                     </button> : '')
-
 
                                 }
                             </div>
