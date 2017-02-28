@@ -30,7 +30,7 @@ export default class ChangeChannelArchiveStatus extends Component {
             className='settingCell'
             disabled={permission}
             onChange={this.handleChange.bind(this)}
-            value="b"
+            value={archive_status}
         />
     }
 }
