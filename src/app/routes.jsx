@@ -57,6 +57,7 @@ import getVersion from "./functions/getVersion";
 import checkSubmitProfile from "./functions/checkSubmitProfile";
 import BillingListCTR from "./components/advertiser/billing/BillingListCTR";
 import onBillingEnterMiddleware from "./middlewares/routes/onBillingEnterMiddleware";
+import {AlertBox} from "./functions/notifications";
 
 document.body.addEventListener('panic', function () {
 	dispatch(logout());
@@ -65,7 +66,7 @@ document.body.addEventListener('panic', function () {
 	navigate('/v1/login');
 });
 
-document.body.addEventListener('panic', function () {
+document.body.addEventListener('NotAccess', function () {
     AlertBox("warning","شما دسترسی به این صفحه را ندارید");
     window.history.back();
 });
