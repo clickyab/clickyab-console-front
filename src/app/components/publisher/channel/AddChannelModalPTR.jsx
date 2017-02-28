@@ -1,5 +1,6 @@
 import React, {Component} from "react";
 import {Field, reduxForm} from "redux-form";
+import {Link} from "react-router";
 import $ from "jquery";
 
 class AddChannelModalPTR extends Component {
@@ -31,6 +32,10 @@ class AddChannelModalPTR extends Component {
         });
     }
 
+    closeModal(e) {
+        $(e.target).parents('.modal').prop('id').modal('hide');
+    }
+
     render() {
         const {handleSubmit, SubmitAddChannel} = this.props;
         return (
@@ -56,7 +61,8 @@ class AddChannelModalPTR extends Component {
                                         <label htmlFor="link">لینک کانال</label>
                                         <div className="input-group input-group-lg form-group">
                                             <span className="input-group-addon" id="sizing-addon1">http://t.me/</span>
-                                            <Field type="text" component="input" name="link" id="link" style={{direction:'ltr' , textAlign: 'left'}}
+                                            <Field type="text" component="input" name="link" id="link"
+                                                   style={{direction: 'ltr', textAlign: 'left'}}
                                                    className="form-control input-lg" placeholder="لینک کانال"
                                                    aria-describedby="sizing-addon1"/>
                                         </div>
@@ -66,12 +72,23 @@ class AddChannelModalPTR extends Component {
                                         <label htmlFor="name">نام کانال</label>
                                         <Field component="input" type="text" name="name" placeholder="نام کانال"
                                                className="form-control input-lg" id="name"/>
-                                        <small className="text-muted">* نام کانال براساس لینک کانال به روز می‌شود.</small>
+                                        <small className="text-muted">* نام کانال براساس لینک کانال به روز می‌شود.
+                                        </small>
                                     </div>
                                     <button type="submit"
                                             className="btn btn-primary btn-lg add-channel-form btn-block">ذخیره
                                     </button>
                                 </form>
+                                <br />
+                                <blockquote>
+                                    <p>برای انکه بتوانید تبلیغ در کانال خود نمایش دهید باید حداقل یک کاربر تلگرام تایید
+                                        شده داشته باشید.</p>
+                                    <Link to="/v1/publisher/telegram" onClick={this.closeModal} style={{fontSize: '20px'}}>
+                                        <footer> برای اضافه کردن کاربر تلگرام به این
+                                            صفحه مراجعه کنید.
+                                        </footer>
+                                    </Link>
+                                </blockquote>
                             </div>
                         </div>
                     </div>

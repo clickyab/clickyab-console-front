@@ -2,28 +2,35 @@ import React, {Component} from "react";
 import swagger from "../../../swagger/index";
 import {sync} from "../../../functions/sync";
 import {getToken} from "../../../redux/helpers";
+import Switch from "./../../common/form/Switch";
 
 export default class ChangeChannelArchiveStatus extends Component {
-    edit(event) {
+    handleChange(checked) {
         const {id} = this.props;
+
+        $(".loader-table").fadeIn();
+
         sync(function*() {
-            $(".loader-table").fadeIn();
-            const {response} = yield (new swagger.ChannelApi())
+           yield (new swagger.ChannelApi())
                 .channelListArchiveStatusIdPut(id, getToken(), {
                     payloadData: {
-                        "archive_status": event.target.value
+                        "archive_status": checked ? 'yes' : 'no'
                     }
                 });
-            $(".loader-table").fadeOut();
         });
+
+        $(".loader-table").fadeOut();
     }
 
     render() {
-        let {translator, archive_status} = this.props;
-        return <select className="form-control" name="archive" defaultValue={archive_status}
-                       onChange={this.edit.bind(this)}>
-            <option value="yes">{translator('yes')}</option>
-            <option value="no">{translator('no')}</option>
-        </select>
+        let {archive_status, permission} = this.props;
+
+        return <Switch
+            checked={archive_status === 'yes'}
+            className='settingCell'
+            disabled={permission}
+            onChange={this.handleChange.bind(this)}
+            value={archive_status}
+        />
     }
 }

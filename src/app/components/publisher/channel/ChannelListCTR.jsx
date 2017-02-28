@@ -90,21 +90,15 @@ export default class ChannelListCTR extends Component {
     }
 
     archive_status(archive_status, {id, _actions}) {
-        if (_actions.split(',').includes("archive_status")) {
-            return <ChangeChannelArchiveStatus id={id} archive_status={archive_status}
-                                               translator={this.translator.bind(this)}/>
-        } else {
-            return this.translator(archive_status)
-        }
+        return <ChangeChannelArchiveStatus id={id} archive_status={archive_status}
+                                           permission={_actions.split(',').includes("archive_status")}
+                                           translator={this.translator.bind(this)}/>
     }
 
     active(active, {id, _actions}) {
-        if (_actions.split(',').includes("active")) {
-            return <ChangeChannelActiveStatus id={id} active={active} translator={this.translator.bind(this)}/>
-        }
-        else {
-                return this.translator(active)
-        }
+        return <ChangeChannelActiveStatus id={id} active={active}
+                                          permission={_actions.split(',').includes("active")}
+                                          translator={this.translator.bind(this)}/>
     }
 
     render() {
