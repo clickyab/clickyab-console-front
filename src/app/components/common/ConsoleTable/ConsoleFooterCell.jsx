@@ -47,10 +47,6 @@ export class ConsoleFooterCell extends Component {
 
     render() {
         let {filters, footer, query_name, list, searchable, translator} = this.props;
-        for (let key in filters) {
-            if (filters[key] == 'AdArchiveStatusNo' || filters[key] == 'AdArchiveStatusYes')
-                console.log(filters[key]);
-        }
 
         return (
             <td>
