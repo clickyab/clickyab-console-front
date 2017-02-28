@@ -141,24 +141,6 @@ export class ConsoleTable extends Component {
                                 </ConsoleHeaderCell>
                             )}
                         </tr>
-                        </thead>
-
-                        <tbody>
-                        {this.rows().map((row, rowIndex) => {
-                            return (<tr key={rowIndex}>
-                                {row.map(
-                                    ({cell, header}, index) => <ConsoleCell key={index}
-                                                                            mutator={mutators[header.data]}
-                                                                            actions={header.data == "_actions"}
-                                                                            change={change} edit={edit}
-                                                                            className="value-datatable"
-                                                                            rowIndex={rowIndex} {...cell}/>
-                                )}
-                            </tr>)
-                        })}
-                        </tbody>
-
-                        <tfoot>
                         <tr>
                             {this.footers().map(
                                 (footer, index) => <ConsoleFooterCell
@@ -178,7 +160,22 @@ export class ConsoleTable extends Component {
                                 />
                             )}
                         </tr>
-                        </tfoot>
+                        </thead>
+
+                        <tbody>
+                        {this.rows().map((row, rowIndex) => {
+                            return (<tr key={rowIndex}>
+                                {row.map(
+                                    ({cell, header}, index) => <ConsoleCell key={index}
+                                                                            mutator={mutators[header.data]}
+                                                                            actions={header.data == "_actions"}
+                                                                            change={change} edit={edit}
+                                                                            className="value-datatable"
+                                                                            rowIndex={rowIndex} {...cell}/>
+                                )}
+                            </tr>)
+                        })}
+                        </tbody>
                     </table>
                 </div>
                 <div className="row margin-top-20">

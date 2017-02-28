@@ -18,10 +18,11 @@ export class ConsoleFooterCell extends Component {
             loader(true);
             search(event, query_name);
             loader(false);
-        }, 250);
+        }, 500);
     }
 
     getFilters(filters) {
+
         let _filters = [];
         let {translator} = this.props;
         _filters.push(<option key="all" value="">همه</option>);
@@ -46,6 +47,10 @@ export class ConsoleFooterCell extends Component {
 
     render() {
         let {filters, footer, query_name, list, searchable, translator} = this.props;
+        for (let key in filters) {
+            if (filters[key] == 'AdArchiveStatusNo' || filters[key] == 'AdArchiveStatusYes')
+                console.log(filters[key]);
+        }
 
         return (
             <td>

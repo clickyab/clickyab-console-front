@@ -29,11 +29,12 @@ import {versionReducer} from "./reducers/versionReducer";
 import versionChanged from "./../middlewares/versionChanged";
 import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
 import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
-import {advertiserPieChartReducer} from "./reducers/advertiserPieChartReducer";
+import {advertiserCampaignChartReducer} from "./reducers/advertiserCampaignChartReducer";
 import {billingListReducer} from "./reducers/billingListReducer";
 import {notificationsReducer} from "./reducers/notificationsReducer";
 import {publisherTotalViewChartReducer} from "./reducers/publisherTotalViewChartReducer";
 import {advertiserSpentPerChannelReducer} from "./reducers/advertiserSpentPerChannelReducer";
+import {publisherCountChannelReducer} from "./reducers/publisherCountChannelReducer";
 
 
 const enhancer = compose;
@@ -66,9 +67,10 @@ export const store = createStore(
         campaignStepData: campaignStepReducer,
         campaignReportList: campaignReportListReducer,
 
-        advertiserPieChart: advertiserPieChartReducer,
+        advertiserCampaignChart: advertiserCampaignChartReducer,
         advertiserSpentPerChannel: advertiserSpentPerChannelReducer,
         publisherTotalViewChart: publisherTotalViewChartReducer,
+        publisherCountChannel: publisherCountChannelReducer,
 
         categoryList: categoryListReducer,
         categoryData: categoryDataReducer,

@@ -1,5 +1,10 @@
 import {sync} from "../../functions/sync";
-import {switchToAdvertiser, updateLocalStorageAction, advertiserSpentPerChannel} from "../../redux/actions/index";
+import {
+    switchToAdvertiser,
+    updateLocalStorageAction,
+    advertiserSpentPerChannel,
+    advertiserCampaignChartAction
+} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
@@ -10,7 +15,7 @@ export function* campaignSpentPerChannel() {
     const {error, data} = yield (new swagger.AdApi())
         .campaignChartPerchannelGet(select('user.token', 'no token'))
 
-    if(!error) {
+    if (!error) {
         dispatch(advertiserSpentPerChannel(data));
     }
 }
@@ -19,8 +24,8 @@ export function* campaignChartView() {
     const {error, data} = yield (new swagger.AdApi())
         .campaignChartGet(select('user.token', 'no token'))
 
-    if(!error) {
-        console.log(data);
+    if (!error) {
+        dispatch(advertiserCampaignChartAction(data))
     }
 }
 

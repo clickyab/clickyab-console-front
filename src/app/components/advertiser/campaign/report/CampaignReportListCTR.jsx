@@ -53,11 +53,11 @@ export default class CampaignReportListCTR extends Component {
     }
 
     updated_at(updated_at) {
-        return moment(updated_at).format('dddd، jD jMMMM jYYYY');
+        return moment(updated_at).format('jYYYY/jM/jD');
     }
 
     created_at(created_at) {
-        return moment(created_at).format('dddd، jD jMMMM jYYYY');
+        return moment(created_at).format('jYYYY/jM/jD');
     }
 
     description(description) {
