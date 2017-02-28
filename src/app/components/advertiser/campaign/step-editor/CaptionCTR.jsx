@@ -17,7 +17,6 @@ export default class CaptionCTR extends Component {
         let textarea_text = $(".emojieditor-plugin-content");
         $(document).on("click", ".caption-text-form-btn", function (e) {
             e.preventDefault();
-            if ($.trim($(".emojionearea-editor").text()) != '') {
                 sync(function *() {
                     loadingProgress = Ladda.create(document.querySelector('button.caption-text-form-btn'));
                     loadingProgress.start();
@@ -43,9 +42,6 @@ export default class CaptionCTR extends Component {
                         AlertBox("error", "لطفا یک متن وارد نمایید");
                     }
                 });
-            } else {
-                AlertBox("error", "لطفا یک متن وارد نمایید");
-            }
         });
     }
 
