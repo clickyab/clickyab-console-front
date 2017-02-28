@@ -60,10 +60,10 @@ import onBillingEnterMiddleware from "./middlewares/routes/onBillingEnterMiddlew
 import {AlertBox} from "./functions/notifications";
 
 document.body.addEventListener('panic', function () {
-	dispatch(logout());
-	dispatch(updatePersonalInformation({}));
-	dispatch(updateLocalStorageAction());
-	navigate('/v1/login');
+    dispatch(logout());
+    dispatch(updatePersonalInformation({}));
+    dispatch(updateLocalStorageAction());
+    navigate('/v1/login');
 });
 
 document.body.addEventListener('NotAccess', function () {
@@ -72,34 +72,34 @@ document.body.addEventListener('NotAccess', function () {
 });
 
 document.body.addEventListener('server-down', function () {
-	$('#server-condition').css('display', 'inline-block');
-	dispatch(addNotificationAction({
-		type: 'server-down', message: 'server is down'
-	}));
+    $('#server-condition').css('display', 'inline-block');
+    dispatch(addNotificationAction({
+        type: 'server-down', message: 'server is down'
+    }));
 });
 
 document.body.addEventListener('server-ok', function () {
-	$('#server-condition').css('display', 'none');
+    $('#server-condition').css('display', 'none');
 });
 
 browserHistory.listen(function () {
-	getVersion();
-	checkSubmitProfile();
+    getVersion();
+    checkSubmitProfile();
 });
 
 export default function Provider() {
-	return (
+    return (
 		<Router history={browserHistory}>
 			<Route path='/v1' component={App}>
 				<IndexRoute component={() => {
-					if (store.getState().userType == 'advertiser') {
-						navigate('/v1/advertiser');
-					} else {
-						navigate('/v1/publisher');
-					}
+                    if (store.getState().userType == 'advertiser') {
+                        navigate('/v1/advertiser');
+                    } else {
+                        navigate('/v1/publisher');
+                    }
 
-					return <span/>;
-				}}/>
+                    return <span/>;
+                }}/>
 
 				<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
 
@@ -165,5 +165,5 @@ export default function Provider() {
 			<Route path='/server-down' component={ServerDown}/>
 			<Route path='*' component={PageNotFound}/>
 		</Router>
-	);
+    );
 }
