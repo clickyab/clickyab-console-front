@@ -11,6 +11,7 @@ import {updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../../red
 import {navigate} from "../../functions/navigate";
 import swagger from "./../../swagger/index";
 import {AlertBox} from "../../functions/notifications";
+import NotificationsDropDown from "../notifications/NotificationsDropDown";
 
 @connect(({user}) => ({user}))
 export class Header extends Component {
@@ -77,6 +78,8 @@ export class Header extends Component {
                     </a>
                     <div className="top-menu">
                         <ul className="nav navbar-nav pull-right">
+
+                            <NotificationsDropDown />
 
                             <SwitcherCTR />
 
