@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {translatable} from "react-multilingual/dist";
 import {loading} from "../../../functions/loading";
 import {select} from "../../../functions/select";
+import {PersianNumber} from "react-persian";
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
 require('amcharts3/amcharts/serial');
@@ -10,8 +11,6 @@ require('amcharts3/amcharts/pie');
 require('amcharts3/amcharts/themes/light');
 require('amcharts3/amcharts/themes/patterns');
 require('amcharts3/amcharts/themes/chalk');
-
-import {PersianNumber} from "react-persian";
 
 @translatable(({
     DashboardTitle
@@ -22,7 +21,7 @@ export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
         loading(false);
 
-        AmCharts.addInitHandler(function(chart) {
+        AmCharts.addInitHandler(function (chart) {
 
             // check if data is mepty
             if (chart.dataProvider === undefined || chart.dataProvider.length === 0) {
@@ -49,15 +48,15 @@ export default class AdvertiserDashboardPage extends Component {
                 chart.labelsEnabled = false;
 
                 // add label to let users know the chart is empty
-                chart.addLabel(0, '50%', 'داده ای برای نمایش وجود ندارد', 'center','16');
+                chart.addLabel(0, '50%', 'داده ای برای نمایش وجود ندارد', 'center', '16');
 
                 // dim the whole chart
                 chart.alpha = 0.3;
             }
 
-        }, ["pie" , "serial"]);
+        }, ["pie", "serial"]);
 
-        AmCharts.makeChart( "barChart", {
+        AmCharts.makeChart("barChart", {
             "type": "serial",
             "addClassNames": true,
             "theme": "light",
@@ -75,13 +74,13 @@ export default class AdvertiserDashboardPage extends Component {
             },
 
             "dataProvider": select('publisherTotalViewChart'),
-            "valueAxes": [ {
+            "valueAxes": [{
                 "axisAlpha": 0,
                 "position": "left",
-                "offset" : 10
-            } ],
+                "offset": 10
+            }],
             "startDuration": 1,
-            "graphs": [ {
+            "graphs": [{
                 "alphaField": "alpha",
                 "balloonText": "<span style='font-size:12px;'>[[title]] در [[category]]:<br><span style='font-size:20px;'>[[value]]</span> [[additional]]</span>",
                 "fillAlphas": 1,
@@ -102,17 +101,38 @@ export default class AdvertiserDashboardPage extends Component {
                 "lineAlpha": 1,
                 "title": "Expenses",
                 "valueField": "expenses",
-            } ],
+            }],
             "categoryField": "channel_name",
             "categoryAxis": {
                 "gridPosition": "start",
                 "axisAlpha": 0,
                 "tickLength": 0
             }
-        } );
+        });
+    }
+
+    channelStatusCheck() {
+        let pending, rejected, accepted,
+            data = select('publisherCountChannel.channelStatus');
+
+        for (let i = 0; i < data.length; ++i) {
+            if (data[i].status == 'accepted') {
+                accepted = data[i].count;
+            } else if (data[i].status == 'pending') {
+                pending = data[i].count;
+            } else if (data[i].status == 'rejected') {
+                rejected = data[i].count;
+            }
+        }
+        return {
+            pending: pending,
+            rejected: rejected,
+            accepted: accepted
+        }
     }
 
     render() {
+        const {pending, rejected, accepted} = this.channelStatusCheck();
         return (
             <div className='page-content'>
 
@@ -125,7 +145,8 @@ export default class AdvertiserDashboardPage extends Component {
                             <div className="actions">
                                 <div className="btn-group">
                                     <Link to="/v1/publisher/channel"
-                                          className="btn btn-transparent blue btn-outline btn-circle btn-sm">لیست کانال های شما
+                                          className="btn btn-transparent blue btn-outline btn-circle btn-sm">لیست کانال
+                                        های شما
                                     </Link>
                                 </div>
                             </div>
@@ -139,7 +160,7 @@ export default class AdvertiserDashboardPage extends Component {
                             <div className="display">
                                 <div className="number">
                                     <h3 className="font-blue-sharp">
-                                        <span><PersianNumber>15</PersianNumber> کانال</span>
+                                        <span>{select('publisherCountChannel.activeWait').active} کانال</span>
                                     </h3>
                                     <small>تبلیغات در حال نمایش</small>
                                 </div>
@@ -155,7 +176,7 @@ export default class AdvertiserDashboardPage extends Component {
                             <div className="display">
                                 <div className="number">
                                     <h3 className="font-blue-sharp">
-                                        <span><PersianNumber>15</PersianNumber> کانال</span>
+                                        <span>{select('publisherCountChannel.activeWait').wait} کانال</span>
                                     </h3>
                                     <small>تبلیغات در صف نمایش</small>
                                 </div>
@@ -173,11 +194,12 @@ export default class AdvertiserDashboardPage extends Component {
                             <div className="portlet-title">
                                 <div className="caption">
                                     <i className="icon-share font-red-sunglo hide"/>
-                                    <span className="caption-subject font-dark  uppercase">آمار کانال های نمایش داده شده</span>
+                                    <span
+                                        className="caption-subject font-dark  uppercase">آمار کانال های نمایش داده شده</span>
                                 </div>
                             </div>
                             <div className="portlet-body">
-                                <div id="barChart"  className='CSSAnimationChart'></div>
+                                <div id="barChart" className='CSSAnimationChart'></div>
                             </div>
                         </div>
                     </div>
@@ -199,9 +221,9 @@ export default class AdvertiserDashboardPage extends Component {
                                             </div>
                                             <div className="details">
                                                 <div className="number">
-                                                    <span><PersianNumber>15</PersianNumber> کانال</span>
+                                                    <span>{accepted} کانال</span>
                                                 </div>
-                                                <div className="desc"> کانال تایید شده </div>
+                                                <div className="desc"> کانال تایید شده</div>
                                             </div>
                                         </div>
                                     </div>
@@ -215,9 +237,9 @@ export default class AdvertiserDashboardPage extends Component {
                                             </div>
                                             <div className="details">
                                                 <div className="number">
-                                                    <span><PersianNumber>15</PersianNumber> کانال</span>
+                                                    <span>{pending} کانال</span>
                                                 </div>
-                                                <div className="desc"> کانال در انتظار تایید </div>
+                                                <div className="desc"> کانال در انتظار تایید</div>
                                             </div>
                                         </div>
                                     </div>
@@ -229,9 +251,9 @@ export default class AdvertiserDashboardPage extends Component {
                                             </div>
                                             <div className="details">
                                                 <div className="number">
-                                                    <span><PersianNumber>15</PersianNumber> کانال</span>
+                                                    <span>{rejected} کانال</span>
                                                 </div>
-                                                <div className="desc"> کانال رد شده </div>
+                                                <div className="desc"> کانال رد شده</div>
                                             </div>
                                         </div>
                                     </div>

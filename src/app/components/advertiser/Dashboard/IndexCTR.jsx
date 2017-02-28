@@ -55,10 +55,10 @@ export default class AdvertiserDashboardPage extends Component {
 
         }, ["pie" , "serial"]);
 
-        let  barChart = AmCharts.makeChart("chartdiv", {
+        let  chartdiv = AmCharts.makeChart("chartdiv", {
             "type": "serial",
             "theme": "light",
-            "categoryField": "campaignName",
+            "categoryField": "ad_name",
             "columnSpacing": 0,
             "gridAboveGraphs": true,
             "colors": ["#67b7dc", "#fdd400"],
@@ -74,22 +74,22 @@ export default class AdvertiserDashboardPage extends Component {
             "trendLines": [],
             "graphs": [
                 {
-                    "balloonText": "نمایش داده شده:[[value]]",
+                    "balloonText": "نمایش داده شده:[[viewed]]",
                     "fillAlphas": 0.8,
                     "id": "AmGraph-1",
                     "lineAlpha": 0.2,
-                    "title": "showed",
+                    "title": "viewed",
                     "type": "column",
-                    "valueField": "showed"
+                    "valueField": "viewed"
                 },
                 {
-                    "balloonText": "باقی مانده:[[value]]",
+                    "balloonText": "باقی مانده:[[remaining]]",
                     "fillAlphas": 0.8,
                     "id": "AmGraph-2",
                     "lineAlpha": 0.2,
-                    "title": "Remaining",
+                    "title": "remaining",
                     "type": "column",
-                    "valueField": "Remaining"
+                    "valueField": "remaining"
                 }
             ],
             "guides": [],
@@ -104,7 +104,7 @@ export default class AdvertiserDashboardPage extends Component {
             "allLabels": [],
             "balloon": {},
             "titles": [],
-            "dataProvider": [],
+            "dataProvider": select('advertiserCampaignChart'),
 
         });
 
