@@ -65,6 +65,11 @@ document.body.addEventListener('panic', function () {
 	navigate('/v1/login');
 });
 
+document.body.addEventListener('panic', function () {
+    AlertBox("warning","شما دسترسی به این صفحه را ندارید");
+    window.history.back();
+});
+
 document.body.addEventListener('server-down', function () {
 	$('#server-condition').css('display', 'inline-block');
 	dispatch(addNotificationAction({
