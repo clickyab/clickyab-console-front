@@ -13,11 +13,11 @@ export const asyncPullIntoLocalStorage = store => next => action => {
     if (action.type === UPDATE_LOCAL_STORAGE) {
         new Promise((resolve) => {
             localStorage.set('initialState', blacklist(store.getState(), [
-                {form: {}}
             ]));
 
             resolve();
         }).then()
     }
+
     next(action);
 };
