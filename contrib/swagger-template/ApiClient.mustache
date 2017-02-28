@@ -415,15 +415,22 @@
             });
             document.body.dispatchEvent(event);
         } else if(response.statusCode == 401) {
-            var event = new CustomEvent("panic", {
+            var event = new CustomEvent("unauthorized401", {
              detail: {
                 statusCode: 401
               }
             });
             document.body.dispatchEvent(event);
-        } else {
+        } else if(response.statusCode == 403) {
+            var event = new CustomEvent("accessDenied403", {
+                detail: {
+                    statusCode: 403
+                }
+            });
+            document.body.dispatchEvent(event);
+        }  else {
             callback({error:error, data:data, response:response});
-            var event = new CustomEvent("server-ok", {
+            var event = new CustomEvent("server-ok200", {
             detail: {
             message: 'server is ok'
             }
