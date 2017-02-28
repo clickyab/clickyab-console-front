@@ -3,8 +3,7 @@ import ProfileSidebarPTR from "./ProfileSidebarPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
 import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
-import {updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../../redux/actions/index";
-import {updateUserInformation} from "../../redux/actions/user";
+import {asyncRemoveLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
 import {logout} from "../../redux/actions/login";
 import {navigate} from "../../functions/navigate";
@@ -18,8 +17,6 @@ export default class ProfileSidebarCTR extends Component {
         let {dispatch} = this.props;
 
         dispatch(logout(user));
-        dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorageAction());
         dispatch(asyncRemoveLocalStorageAction());
         navigate('/v1/login');
     }
