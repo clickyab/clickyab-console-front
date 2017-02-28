@@ -26,7 +26,7 @@ export default class RegisterCTR extends Component {
         dispatch(successfulRegister());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
-        navigate('/v1/publisher');
+        navigate('/v1/advertiser');
     }
 
     failed400Dispatcher() {
