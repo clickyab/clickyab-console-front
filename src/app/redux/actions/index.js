@@ -21,13 +21,17 @@ export const campaignStepType = (data) => ({type: CAMPAIGN_STEP_TYPE, data});
 export const deleteCampaignPromote = () => ({type: DELETE_CAMPAIGN_PROMOTE});
 export const campaignPaymentData = (data) => ({type: CAMPAIGN_PAYMENT_DATA, data});
 
-export const ADVERTISER_PIE_CHART = 'ADVERTISER_PIE_CHART';
+export const ADVERTISER_CAMPAIGN_CHART = 'ADVERTISER_CAMPAIGN_CHART';
 export const ADVERTISER_SPENT_PER_CHANNEL = 'ADVERTISER_SPENT_PER_CHANNEL';
-export const advertiserPieChart = (data) => ({type: ADVERTISER_PIE_CHART, data});
+export const advertiserCampaignChartAction = (data) => ({type: ADVERTISER_CAMPAIGN_CHART, data});
 export const advertiserSpentPerChannel = (data) => ({type: ADVERTISER_SPENT_PER_CHANNEL, data});
 
 export const PUBLISHER_TOTAL_VIEW_CHART = 'PUBLISHER_TOTAL_VIEW_CHART';
+export const PUBLISHER_COUNT_ACTIVE_WAIT_CHANNEL = 'PUBLISHER_COUNT_ACTIVE_WAIT_CHANNEL';
+export const PUBLISHER_CHANNEL_STATUS = 'PUBLISHER_CHANNEL_STATUS';
 export const publisherTotalViewChart = (data) => ({type: PUBLISHER_TOTAL_VIEW_CHART, data});
+export const publisherCountActiveWaitChannel = (data) => ({type: PUBLISHER_COUNT_ACTIVE_WAIT_CHANNEL, data});
+export const publisherChannelStatus = (data) => ({type: PUBLISHER_CHANNEL_STATUS, data});
 
 export const CAMPAIGN_REPORT_LIST = 'CAMPAIGN_REPORT_LIST';
 export const CAMPAIGN_REPORT_ITEMS_LIST = 'CAMPAIGN_REPORT_ITEMS_LIST';
