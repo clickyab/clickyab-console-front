@@ -3,7 +3,7 @@ import LoginPTR from "./LoginPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
 import {successfulLogin, failedLogin} from "../../redux/actions/login";
-import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {navigate} from "../../functions/navigate";
@@ -39,10 +39,8 @@ export default class LoginCTR extends Component {
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
-            this.failed400Dispatcher();
-
             this.stopLoading();
-            FailedBoxAlert(response);
+            NotifyBox('error', 'اطلاعات کاربری شما صحیح نمی‌باشد.', 8000);
         }
     }
 

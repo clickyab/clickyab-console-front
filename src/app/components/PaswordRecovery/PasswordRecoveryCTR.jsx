@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PasswordRecoveryPTR from "./PasswordRecoveryPTR";
 import swagger from "./../../swagger/index";
-import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
 
 export default class PasswordRecoveryCTR extends Component {
@@ -12,8 +12,6 @@ export default class PasswordRecoveryCTR extends Component {
     }
 
     forgotCallback({error, data, response}) {
-        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             SuccessBoxAlert(response);
             $(".recovery-password-form , .form-top-left").fadeOut(function () {
@@ -23,7 +21,7 @@ export default class PasswordRecoveryCTR extends Component {
             });
         } else if (response.statusCode == '400') {
             this.stopLoading();
-            FailedBoxAlert(response)
+            NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
         }
     }
 

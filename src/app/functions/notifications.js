@@ -39,6 +39,5 @@ export function NotifyBox(type, message, delay) {
 			msg: message
 		}
 	);
-	console.log('NotifyBox', type, message, delay);
 }
 
