@@ -114,20 +114,21 @@ export default class AdvertiserDashboardPage extends Component {
     channelStatusCheck() {
         let pending, rejected, accepted,
             data = select('publisherCountChannel.channelStatus');
-
-        for (let i = 0; i < data.length; ++i) {
-            if (data[i].status == 'accepted') {
-                accepted = data[i].count;
-            } else if (data[i].status == 'pending') {
-                pending = data[i].count;
-            } else if (data[i].status == 'rejected') {
-                rejected = data[i].count;
+        if (data) {
+            for (let i = 0; i < data.length; ++i) {
+                if (data[i].status == 'accepted') {
+                    accepted = data[i].count;
+                } else if (data[i].status == 'pending') {
+                    pending = data[i].count;
+                } else if (data[i].status == 'rejected') {
+                    rejected = data[i].count;
+                }
             }
         }
         return {
-            pending: pending,
-            rejected: rejected,
-            accepted: accepted
+            pending: pending || 0,
+            rejected: rejected || 0,
+            accepted: accepted || 0
         }
     }
 

@@ -2,12 +2,44 @@ import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
 import EditChannelModalCTR from "./EditChannelModalCTR";
 import AddChannelModalCTR from "./AddChannelModalCTR";
+import {select} from "../../../functions/select";
+import {navigate} from "../../../functions/navigate";
 
 export default class ChannelListPTR extends Component {
+
+    checkProfile() {
+        if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true) {
+            swal({
+                    title: "لطفا قبل از افزودن کمپین، اطلاعات حساب کاربری خود را تکمیل نمایید",
+                    text: "",
+                    type: "warning",
+                    showCancelButton: true,
+                    confirmButtonColor: "#337ab7",
+                    confirmButtonText: "باز کردن صفحه حساب کاربری",
+                    cancelButtonText: "انصراف!",
+                    closeOnConfirm: true,
+                    showLoaderOnConfirm: false,
+                    closeOnCancel: true,
+                    html: true
+                },
+                function (isConfirm) {
+                    if (isConfirm) {
+                        navigate('/v1/profile');
+                    } else {
+                        navigate('/v1/publisher/channel');
+                    }
+                });
+
+        } else {
+            $("#addChannelModal").modal();
+        }
+    }
+
     componentDidMount() {
+        let _this = this;
         document.title = "مدیریت کانال ها";
         $(document).on("click", "#showAddChannelModalForm", function () {
-            $("#addChannelModal").modal();
+            _this.checkProfile();
         })
     }
 
