@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {successfulRegister, failedRegister} from "../../redux/actions/register";
-import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from "./RegisterPTR";
@@ -34,17 +34,14 @@ export default class RegisterCTR extends Component {
     }
 
     registerCallback({error, data, response}) {
-        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
-            this.failed400Dispatcher();
 
             this.stopLoading();
-            FailedBoxAlert(response);
+            NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
         }
     }
 
