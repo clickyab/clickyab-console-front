@@ -49,7 +49,3 @@ class AddTranslationCodeModalPTR extends Component {
         )
     }
 }
-
-export default reduxForm({
-    form: 'AddTelegramCodeModalPTR'
-})(AddTelegramCodeModalPTR);

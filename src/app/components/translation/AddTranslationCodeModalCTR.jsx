@@ -1,11 +1,11 @@
 import React, {Component} from "react";
 import AddTranslationCodeModalPTR from "./AddTranslationCodeModalPTR";
-import swagger from "../../swagger/index";
-import {AlertBox} from "../../functions/notifications";
-import {select} from "../../functions/select";
-import {sync} from "../../functions/sync";
-import {dispatch} from "../../functions/dispatch";
-import {telegramItemsListAction} from "../../redux/actions/index";
+import swagger from "./../../swagger/index";
+import {AlertBox} from "./../../functions/notifications";
+import {select} from "./../../functions/select";
+import {sync} from "./../../functions/sync";
+import {dispatch} from "./../../functions/dispatch";
+import {telegramItemsListAction} from "./../../redux/actions/index";
 import {change} from "redux-form/lib/actions";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
