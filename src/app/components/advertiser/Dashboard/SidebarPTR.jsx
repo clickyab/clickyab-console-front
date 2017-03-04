@@ -67,6 +67,12 @@ export class Sidebar extends Component {
                             </Link>
 
 
+                            <Link to='/v1/advertiser/translation' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>ترجمه ها</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>
                         </SidebarLinks>
                 </div>
             </div>

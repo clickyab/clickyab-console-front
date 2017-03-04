@@ -9,12 +9,12 @@ import {
 import {dispatch} from "../../functions/dispatch";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
-import {select} from "../../functions/select";
 import * as swagger from "../../swagger/index";
+import {getToken} from "../../redux/helpers";
 
 function* campaignChartTotalView() {
     const {error, data} = yield (new swagger.AdApi())
-        .campaignChartPubtotalviewGet(select('user.token', 'no token'))
+        .campaignChartPubtotalviewGet(getToken());
 
     if (!error) {
         dispatch(publisherTotalViewChart(data));
@@ -23,7 +23,7 @@ function* campaignChartTotalView() {
 
 function* countChannelActiveWait() {
     const {error, data} = yield (new swagger.ChannelApi())
-        .channelDashboardCountActiveGet(select('user.token', 'no token'))
+        .channelDashboardCountActiveGet(getToken());
 
     if (!error) {
         dispatch(publisherCountActiveWaitChannel(data));
@@ -32,7 +32,7 @@ function* countChannelActiveWait() {
 
 function* channelStatus() {
     const {error, data} = yield (new swagger.ChannelApi())
-        .channelChanstatGet(select('user.token', 'no token'))
+        .channelChanstatGet(getToken());
 
     if (!error) {
         dispatch(publisherChannelStatus(data));
