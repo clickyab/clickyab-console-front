@@ -67,6 +67,12 @@ document.body.addEventListener('unauthorized401', function () {
     navigate('/v1/login');
 });
 
+document.body.addEventListener('bad-request400', function () {
+    dispatch(logout());
+    dispatch(asyncRemoveLocalStorageAction());
+    navigate('/v1/login');
+});
+
 document.body.addEventListener('accessDenied403', function () {
     AlertBox("warning", "شما دسترسی به این صفحه را ندارید");
     navigate('v1/' + select('userType'));

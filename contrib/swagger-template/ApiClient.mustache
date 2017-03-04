@@ -407,8 +407,18 @@
           data = _this.deserialize(response, returnType);
         }
 
+        if(error && error.status == 400) {
+            var event = new CustomEvent("bad-request400", {
+                detail: {
+                    message: 'server is down'
+                }
+            });
+            document.body.dispatchEvent(event);
+            return;
+        }
+
         if(!response) {
-            var event = new CustomEvent("server-down", {
+            var event = new CustomEvent("server-down500", {
                 detail: {
                     message: 'server is down'
                 }
