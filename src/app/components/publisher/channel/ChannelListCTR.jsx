@@ -16,12 +16,12 @@ import ChangeChannelActiveStatus from "./ChangeChannelActiveStatus";
 @translatable(({
     Email, Type, Status, CreatedAt, UpdatedAt, Action,
     UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
-    accepted, pending, rejected, yes, no, ID
+    accepted, pending, rejected, yes, no, ID , Title
 }) => ({
     translation: {
         Email, Type, Status, CreatedAt, UpdatedAt, Action,
         UserID, Name, Link, AdminStatus, ArchiveStatus, Active,
-        accepted, pending, rejected, yes, no, ID
+        accepted, pending, rejected, yes, no, ID , Title
     }
 }))
 export default class ChannelListCTR extends Component {

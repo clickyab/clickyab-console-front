@@ -11,6 +11,26 @@ export class ConsoleTable extends Component {
         super(props);
     }
 
+    componentDidMount() {
+        // let thlist = document.querySelectorAll("table th") , i ;
+        // for (i = 0; i < thlist.length; ++i) {
+        //     let text = thlist[i].textContent;
+        //     $("#show-hide-action-btns ul").append("<li><a> <label class='checkbox'><input type='checkbox' checked data-column='#row-" + i + "' value='#row-" + i + "'>" + text +"</label></a></li>");
+        //
+        //
+        // }
+        $(document).on("click", "[data-column]", function () {
+            var button = $(this),
+                header = $(button.data("column")),
+                table = header.closest("table"),
+                index = header.index() + 1, // convert to CSS's 1-based indexing
+                selector = "tbody tr td:nth-child(" + index + ")",
+                column = table.find(selector).add(header);
+
+            column.toggleClass("hidden");
+        });
+    }
+
     loader(status) {
         if (status == true) {
             $(".loader-table").fadeIn();
@@ -120,8 +140,22 @@ export class ConsoleTable extends Component {
                 <div className="loader-table" style={{display: 'none'}}>
                     <i className="fa fa-spinner fa-spin fa-3x fa-fw"/>
                 </div>
+                <div id="show-hide-action-btns">
+                    {/*<div className="btn-group customize-row">*/}
+                        {/*<button className="btn btn-info dropdown-toggle margin-top-20 margin-bottom-20" data-toggle="dropdown" aria-expanded="false">شخصی سازی ستون ها*/}
+                            {/*<i className="fa fa-angle-down"/>*/}
+                        {/*</button>*/}
+                        {/*<ul className="dropdown-menu keep_open">*/}
+
+                        {/*</ul>*/}
+                    {/*</div>*/}
+                    {/*<button type="button" data-column="#row-1">Hide/show 1st</button>*/}
+                    {/*<button type="button" data-column="#row-2">Hide/show 3rd</button>*/}
+                    {/*<button type="button" data-column="#row-3">Hide/show last</button>*/}
+                </div>
+
                 <div className="table-responsive">
-                    <table className="table table-striped table-advance table-bordered table-hover">
+                    <table className="table table-striped table-advance table-hover">
                         <thead>
                         <tr>
                             {this.headers().map(
@@ -141,6 +175,10 @@ export class ConsoleTable extends Component {
                                 </ConsoleHeaderCell>
                             )}
                         </tr>
+
+                        </thead>
+
+                        <tbody>
                         <tr>
                             {this.footers().map(
                                 (footer, index) => <ConsoleFooterCell
@@ -160,9 +198,6 @@ export class ConsoleTable extends Component {
                                 />
                             )}
                         </tr>
-                        </thead>
-
-                        <tbody>
                         {this.rows().map((row, rowIndex) => {
                             return (<tr key={rowIndex}>
                                 {row.map(
