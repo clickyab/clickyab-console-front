@@ -3,28 +3,25 @@ import {addNotificationAction} from "../redux/actions/index";
 let Lobibox = require('./../../../public/vendor/lobibox');
 
 export function AlertBox(type, message) {
-	console.log('AlertBox', type, message);
 	dispatch(addNotificationAction({
-		type, message
+		type, message, time: new Date()
 	}));
 }
 
 export function SuccessBoxAlert(response) {
-	console.log('SuccessBoxAlert', response.text);
 	dispatch(addNotificationAction({
-		type: 'success', message: response.text
+		type: 'success', message: response.text, time: new Date()
 	}));
 }
 export function FailedBoxAlert(response) {
 	dispatch(addNotificationAction({
-		type: 'error', message: response.error
+		type: 'error', message: response.error, time: new Date()
 	}));
-	console.log('FailedBoxAlert', response.error);
 }
 
 export function NotifyBox(type, message, delay) {
 	dispatch(addNotificationAction({
-		type, message
+		type, message, time: new Date()
 	}));
 
 	Lobibox.notify(

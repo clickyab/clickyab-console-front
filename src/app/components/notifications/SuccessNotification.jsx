@@ -6,7 +6,7 @@ export default class SuccessNotification extends Component {
 		return (
 			<Link to="/v1/advertiser">
 				<span className="fa fa-bullhorn"/>
-				<span className="title">{this.props.notification.message}</span>
+				<span className="title">{this.props.notification.message}  {this.props.count}</span>
 			</Link>
 		);
 	}
