@@ -274,3 +274,12 @@ $spacing-statusBarHeight: 20px;
 .switch {
   display: block;
 }
+table .label {
+  display: block;
+}
+.customize-row .checkbox {
+  padding: 0px 20px 0px 40px;
+}
+.customize-row .dropdown-menu>li>a {
+  padding: 1px 16px !important;
+}

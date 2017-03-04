@@ -56,7 +56,7 @@ $table-bg-hover:                darken($general-panel-bg-color, 1%);
 $table-bg-active:               $table-bg-hover;
 
 //** Border color for table and cell borders.
-$table-border-color:           	darken($general-panel-bg-color, 3%);
+$table-border-color:           	1px solid #d5d5d5;
 
 //== Form states and alerts
 //
