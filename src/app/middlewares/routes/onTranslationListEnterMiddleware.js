@@ -1,31 +1,31 @@
 import {sync} from "../../functions/sync";
 import * as swagger from "../../swagger/index";
+import {translationListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
-import {isLoginMiddleware} from "../isLoginMiddleware";
-import {billingListAction} from "../../redux/actions/index";
 import {throwError} from "../../functions/Error";
-import {navigate} from "../../functions/navigate";
 import {raceOnTime} from "../../functions/raceOnTime";
+import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
-import {shouldUpdateDefinition} from "../../redux/helpers";
+import {navigate} from "../../functions/navigate";
+import {shouldUpdateDefinition, getToken} from "../../redux/helpers";
 
-function* BillingListController(done) {
+function* translationListController(done) {
     loading(true);
-    yield* isLoginMiddleware();
-    const {error, data} = yield (new swagger.BillingApi())
-        .billingGet(select('user.token', 'no token'), {
-            ...select('queries.billing', {}),
-            def: shouldUpdateDefinition('billingList')
+    const {error, data} = yield (new swagger.MiscApi())
+        .miscTranslateLangGet(select("locale"), getToken(), {
+            ...select('queries.translation', {}),
+            def: shouldUpdateDefinition('translationList')
         });
 
     done();
     if (!error) {
-        dispatch(billingListAction(data));
+        dispatch(translationListAction(data));
+
         loading(false);
     } else {
-        throwError("onBillingEnterMiddleWare", function () {
+        throwError("translationListController", function () {
             navigate('/v1/login');
         });
     }
@@ -34,15 +34,12 @@ function* BillingListController(done) {
 export default (nextState, replace, next) => sync(function*() {
     try {
         yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(BillingListController, 20000);
+        let {error} = yield raceOnTime(translationListController, 20000);
         if (error)
-            navigate('/v1/login');
+            return navigate('/v1/profile');
 
         next();
     } catch (error) {
         handleError(error);
     }
 });
-
-
-

@@ -1,5 +1,5 @@
 export default {
-    fa: {
+    fa_IR: {
         hello: 'سلام',
         first_name: 'نام',
         last_name: 'نام خانوادگی',

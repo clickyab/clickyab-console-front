@@ -8,7 +8,6 @@ let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
 let loadingProgress;
 
-
 export default class TelegramListPTR extends Component {
 
     componentDidMount() {
@@ -90,7 +89,7 @@ export default class TelegramListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <ConsoleTable {...this.props} list="category" action={false}/>
+                        <ConsoleTable {...this.props} list="telegram" action={false}/>
                     </div>
                 </div>
             </div>

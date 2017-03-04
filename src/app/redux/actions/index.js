@@ -106,6 +106,9 @@ export const categoryItemsListAction = ({data}) => ({type: CATEGORY_ITEMS_LIST, 
 export const categoryDataAction = (data) => ({type: CATEGORY_DATA, data});
 export const updateACategoryFromListAction = (data) => ({type: UPDATE_CATEGORY_FROM_LIST, data});
 
+export const TRANSLATION_LIST = 'TRANSLATION_LIST';
+export const translationListAction = (data) => ({type: TRANSLATION_LIST, data});
+
 export const TELEGRAM_LIST = 'TELEGRAM_LIST';
 export const TELEGRAM_ITEMS_LIST = 'TELEGRAM_ITEMS_LIST';
 export const telegramListAction = (data) => ({type: TELEGRAM_LIST, data});

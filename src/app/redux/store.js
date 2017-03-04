@@ -35,6 +35,7 @@ import {notificationsReducer} from "./reducers/notificationsReducer";
 import {publisherTotalViewChartReducer} from "./reducers/publisherTotalViewChartReducer";
 import {advertiserSpentPerChannelReducer} from "./reducers/advertiserSpentPerChannelReducer";
 import {publisherCountChannelReducer} from "./reducers/publisherCountChannelReducer";
+import {translationListReducer} from "./reducers/translationListReducer";
 
 
 const enhancer = compose;
@@ -83,12 +84,14 @@ export const store = createStore(
 
         form: formReducer,
 
-        locale: localeReducer('fa', require('../../locales/index').default),
+        locale: localeReducer('fa_IR', require('../../locales/index').default),
         secure: secureReducer(require("../secure/rules").default),
 
         version: versionReducer,
 
         notifications: notificationsReducer,
+
+        translationList: translationListReducer
     }),
     localStorage.get('initialState'),
     enhancer(applyMiddleware(
@@ -105,7 +108,7 @@ export const store = createStore(
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
         versionChanged,
-        // logger
+        logger
         )
     )
 );

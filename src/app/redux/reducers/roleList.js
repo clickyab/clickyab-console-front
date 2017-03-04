@@ -11,7 +11,7 @@ function updateARow(state, action) {
 	return {items, definitions: state.definitions};
 }
 
-export function roleListReducer(state = [], action) {
+export function roleListReducer(state = {}, action) {
 	switch (action.type) {
 		case ROLE_LIST:
 			return {

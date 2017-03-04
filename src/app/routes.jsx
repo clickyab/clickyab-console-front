@@ -58,6 +58,8 @@ import BillingListCTR from "./components/advertiser/billing/BillingListCTR";
 import onBillingEnterMiddleware from "./middlewares/routes/onBillingEnterMiddleware";
 import {AlertBox} from "./functions/notifications";
 import {select} from "./functions/select";
+import onTranslationListEnterMiddleware from "./middlewares/routes/onTranslationListEnterMiddleware";
+import TranslationListCTR from "./components/translation/TranslationListCTR";
 
 document.body.addEventListener('unauthorized401', function () {
     dispatch(logout());
@@ -114,6 +116,8 @@ export default function Provider() {
                     <Route path='telegram' component={TelegramListCTR} name='telegramList'
                            onEnter={onTelegramEnterMiddleware}/>
                     <Route path='role' component={RolesListCTR} name='roleList' onEnter={onRoleEnterMiddleware}/>
+                    <Route path='translation' component={TranslationListCTR} name='translationList'
+                           onEnter={onTranslationListEnterMiddleware}/>
                 </Route>
 
                 <Route path='advertiser' component={Advertiser}>
@@ -150,6 +154,9 @@ export default function Provider() {
                            onEnter={onTelegramEnterMiddleware}/>
                     <Route path='billing' component={BillingListCTR} name='billingList'
                            onEnter={onBillingEnterMiddleware}/>
+
+                    <Route path='translation' component={TranslationListCTR} name='translationList'
+                           onEnter={onTranslationListEnterMiddleware}/>
                 </Route>
             </Route>
 

@@ -137,7 +137,7 @@ export class ConsoleTable extends Component {
                                     width={header.width}
                                     searchable={header.searchable}
                                 >
-                                    {translator(header.name)}
+                                    {typeof translator(header.name) == 'string' ? translator(header.name):header.name}
                                 </ConsoleHeaderCell>
                             )}
                         </tr>
