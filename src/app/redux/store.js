@@ -108,7 +108,7 @@ export const store = createStore(
         asyncPullIntoLocalStorage,
         asyncRemoveLocalStorage,
         versionChanged,
-        logger
+        // logger
         )
     )
 );
