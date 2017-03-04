@@ -124,6 +124,10 @@ export default function Provider() {
                     <Route path='role' component={RolesListCTR} name='roleList' onEnter={onRoleEnterMiddleware}/>
                     <Route path='translation' component={TranslationListCTR} name='translationList'
                            onEnter={onTranslationListEnterMiddleware}/>
+
+                    <Route path='translation' component={TranslationListCTR} name='translationList'
+                           onEnter={onTranslationListEnterMiddleware}/>
+
                 </Route>
 
                 <Route path='advertiser' component={Advertiser}>

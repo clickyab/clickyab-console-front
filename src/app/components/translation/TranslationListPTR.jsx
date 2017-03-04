@@ -19,13 +19,6 @@ export default class TranslationListPTR extends Component {
                         <div className='caption'>
                             <span className='caption-subject bold uppercase font-dark'>لیست عبارات </span>
                         </div>
-                        <div className="actions">
-                            <div className="btn-group btn-group-devided" data-toggle="buttons">
-                                <button className="btn btn-transparent blue btn-outline btn-circle btn-sm "
-                                        id="showGetTelegramCodeButton">عبارت جدید
-                                </button>
-                            </div>
-                        </div>
                     </div>
                     <div className='portlet-body'>
                         <ConsoleTable {...this.props} list="translation" action={false}/>
