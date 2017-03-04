@@ -78,10 +78,10 @@ document.body.addEventListener('accessDenied403', function () {
     navigate('v1/' + select('userType'));
 });
 
-document.body.addEventListener('server-down500', function () {
+document.body.addEventListener('server-down', function () {
     $('#server-condition').css('display', 'inline-block');
     dispatch(addNotificationAction({
-        type: 'server-down', message: 'server is down'
+        type: 'server-down', message: 'server is down', time: new Date()
     }));
     navigate('v1/' + select('userType'));
 });

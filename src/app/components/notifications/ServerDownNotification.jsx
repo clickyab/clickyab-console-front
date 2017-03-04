@@ -6,7 +6,7 @@ export default class ServerDownNotification extends Component {
 		return (
 			<Link to="/v1/advertiser">
 				<span className="fa fa-bullhorn"/>
-				<span className="title">server down</span>
+				<span className="title">server down {this.props.count}</span>
 			</Link>
 		);
 	}

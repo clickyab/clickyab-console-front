@@ -6,7 +6,7 @@ export default class WarningNotification extends Component {
 		return (
 			<Link to="/v1/advertiser">
 				<span className="fa fa-bullhorn"/>
-				<span className="title">warn</span>
+				<span className="title">warn  {this.props.count}</span>
 			</Link>
 		);
 	}
