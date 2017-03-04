@@ -3,6 +3,8 @@ import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
 import {select} from "../../../functions/select";
 
+let i = -1;
+
 export class ConsoleHeaderCell extends Component {
     sort(event, order, query_name) {
 
@@ -29,8 +31,9 @@ export class ConsoleHeaderCell extends Component {
 
     render() {
         let {sortable, children} = this.props;
+        i = i+1;
         return (
-            <th>
+            <th id={"row-"+ i}>
                 <span className="head-title-datatable">
                     {sortable ? <a href="#" onClick={(event) => {
                         event.preventDefault();

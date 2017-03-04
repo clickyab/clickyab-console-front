@@ -170,6 +170,7 @@ Custom tables
 
 .table-advance {
     margin-bottom: 10px !important;
+    border: 1px solid $table-border-color;
 }
 
 .table-advance thead { 
@@ -177,7 +178,7 @@ Custom tables
 }
 
 .table-advance thead tr th{
-    background-color: $general-panel-bg-color; 
+    background-color: #fff;
     font-size: 14px;
     font-weight: 400; 
     color: $general-panel-font-color;
@@ -197,7 +198,8 @@ Custom tables
 }
 
 .table-advance tr td {
-    border-left-width: 0px; 
+    border-left-width: 0px;
+    padding: 8px !important;
 }
 
 .table-advance tr td:first-child {
