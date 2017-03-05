@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import PersonalUserPTR from "./PersonalUserPTR";
 import swagger from "./../../swagger/index";
-import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert, NotifyBox} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
 import {updatePersonalInformation, deleteCorporationInformation} from "../../redux/actions/user";
@@ -26,9 +26,11 @@ export default class PersonalUserCTR extends Component {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
             SuccessBoxAlert({text: 'اطلاعات شما با موفقیت ثبت شد.'});
+            NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد.', 8000);
         } else if (response.statusCode == '400') {
             this.stopLoading();
             FailedBoxAlert({error: 'اطلاعات شما صحیح نمی‌باشد.'});
+            NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
         }
     }
 
