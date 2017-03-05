@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import LoginPTR from "./LoginPTR";
-import swagger from "./../../swagger/index";
+import swagger from "./../../swagger/index"
 import {connect} from "react-redux";
 import {successfulLogin, failedLogin} from "../../redux/actions/login";
 import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
@@ -26,17 +26,13 @@ export default class LoginCTR extends Component {
         navigate('/v1/advertiser');
     }
 
-    failed400Dispatcher() {
-        this.props.dispatch(failedLogin());
-    }
+    // failed400Dispatcher() {
+    //     this.props.dispatch(failedLogin());
+    // }
 
     loginCallback({error, data, response}) {
-        response.error = 'اطلاعات کاربری شما صحیح نمی‌باشد.';
-        response.text = 'شما با موفقیت وارد شدید.';
-
         if (response.statusCode == '200') {
             this.loginSuccessfullyDispatchers(Object.assign({}, data));
-
             SuccessBoxAlert(response);
         } else if (response.statusCode == '400') {
             this.stopLoading();
