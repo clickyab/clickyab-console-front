@@ -32,7 +32,7 @@ export default class StepPreviewCTR extends Component {
     requestAfterPayment() {
         sync(function *() {
             let {data, response} = yield (new swagger.BillingApi())
-             .billingPaymentIdGet(select('createCampaignData.pay_id'), select('user.token', 'no token'))
+                .billingPaymentIdGet(select('createCampaignData.pay_id'), select('user.token', 'no token'))
 
             if (response.statusCode == '200') {
                 dispatch(campaignPaymentData(data));
@@ -67,7 +67,8 @@ export default class StepPreviewCTR extends Component {
     }
 
     render() {
-        return (<StepPreviewPTR activeStatus={this.activeStatus} requestAfterPayment={this.requestAfterPayment} requestToBank={this.requestToBank.bind(this)} created_at={this.created_at}
+        return (<StepPreviewPTR activeStatus={this.activeStatus} requestAfterPayment={this.requestAfterPayment}
+                                requestToBank={this.requestToBank.bind(this)} created_at={this.created_at}
                                 data={this.props.createCampaignData}/>)
     }
 }
