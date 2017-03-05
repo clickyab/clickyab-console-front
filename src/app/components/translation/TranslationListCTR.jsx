@@ -95,7 +95,8 @@ export default class TranslationListCTR extends Component {
                 <InlineEdit
                     id={id}
                     validate={this.customValidateText}
-                    activeClassName="editing form-control input-small"
+                    editingElement="textarea"
+                    activeClassName="editing form-control"
                     text={ translated != null ? translated: "ویرایش"}
                     paramName="translated"
                     change={this.dataChanged(id)}
@@ -110,7 +111,7 @@ export default class TranslationListCTR extends Component {
     }
 
     text(text) {
-        return <p className="label label-warning" style={{direction: 'ltr',textAlign: 'left',float:'left' , display:'inline-block'}}>{text}</p>;
+        return <p className="label label-warning" style={{direction: 'ltr', display:'inline-block'}}>{text}</p>;
     }
 
     onPaginationChange(page) {
