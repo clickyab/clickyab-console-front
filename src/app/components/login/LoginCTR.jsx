@@ -26,14 +26,13 @@ export default class LoginCTR extends Component {
         navigate('/v1/advertiser');
     }
 
-    // failed400Dispatcher() {
-    //     this.props.dispatch(failedLogin());
-    // }
-
     loginCallback({error, data, response}) {
         if (response.statusCode == '200') {
             this.loginSuccessfullyDispatchers(Object.assign({}, data));
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({
+                error: 'اطلاعات کاربری شما صحیح نمی‌باشد.',
+                text: 'شما با موفقیت وارد شدید.'
+            });
         } else if (response.statusCode == '400') {
             this.stopLoading();
             NotifyBox('error', 'اطلاعات کاربری شما صحیح نمی‌باشد.', 8000);

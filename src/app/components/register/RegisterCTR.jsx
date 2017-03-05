@@ -37,7 +37,10 @@ export default class RegisterCTR extends Component {
         if (response.statusCode == '200') {
             this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({
+                error: 'اطلاعات شما صحیح نمی‌باشد.',
+                text: 'ثیت نام شما با موفیت انجام شد.'
+            });
         } else if (response.statusCode == '400') {
 
             this.stopLoading();

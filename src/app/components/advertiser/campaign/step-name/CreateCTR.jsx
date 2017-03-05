@@ -20,14 +20,15 @@ export default class CreateCTR extends Component {
             const {data, response} = yield (new swagger.AdApi())
                 .campaignPost(select("user.token", "no token"), {'payloadData': formValues});
 
-            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
             if (response.statusCode == '200') {
                 dispatch(createCampaign(data));
                 dispatch(updateLocalStorageAction());
 
                 loadingProgress.stop();
-                SuccessBoxAlert(response);
+                SuccessBoxAlert({
+                    error: 'اطلاعات شما صحیح نمی‌باشد.',
+                    text: 'اطلاعات شما با موفقیت ثبت شد.'
+                });
 
                 navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
                     campaign_id: select('createCampaignData.id')
@@ -49,14 +50,15 @@ export default class CreateCTR extends Component {
             const {data, response} = yield (new swagger.AdApi())
                 .campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
 
-            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
             if (response.statusCode == '200') {
                 dispatch(createCampaign(data));
                 dispatch(updateLocalStorageAction());
 
                 loadingProgress.stop();
-                SuccessBoxAlert(response);
+                SuccessBoxAlert({
+                    error: 'اطلاعات شما صحیح نمی‌باشد.',
+                    text: 'اطلاعات شما با موفقیت ثبت شد.'
+                });
 
                 navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
                     campaign_id: select('createCampaignData.id')
