@@ -26,7 +26,10 @@ export default class ProfileSidebarCTR extends Component {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({
+                text: "پروفایل شما با موفقیت به روز شد.",
+                error: "مشکلی در به روز رسانی پروفایل شما رخ داده است."
+            });
         } else if (response.statusCode == '400') {
 
             this.stopLoading();

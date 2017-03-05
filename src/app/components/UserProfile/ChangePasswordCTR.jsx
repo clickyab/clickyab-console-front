@@ -12,15 +12,19 @@ export default class ChangePasswordCTR extends Component {
     loadingProgress;
 
     ChangePasswordCallback({error, data, response}, reset) {
-        response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-        response.text = 'اطلاعات شما با موفقیت ثبت شد.';
         if (response.statusCode == '200') {
             this.loadingProgress.stop();
             reset();
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({
+                error: 'اطلاعات شما صحیح نمی‌باشد.',
+                text: 'اطلاعات شما با موفقیت ثبت شد.'
+            });
         } else if (response.statusCode == '400') {
             this.stopLoading();
-            FailedBoxAlert(response);
+            FailedBoxAlert({
+                error: 'اطلاعات شما صحیح نمی‌باشد.',
+                text: 'اطلاعات شما با موفقیت ثبت شد.'
+            });
         }
         ifInvalidToken(response);
     }

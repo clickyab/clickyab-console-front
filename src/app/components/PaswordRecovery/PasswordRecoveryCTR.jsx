@@ -13,7 +13,10 @@ export default class PasswordRecoveryCTR extends Component {
 
     forgotCallback({error, data, response}) {
         if (response.statusCode == '200') {
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({
+                error: 'اطلاعات کاربری شما صحیح نمی‌باشد.',
+                text: 'پسورد شما به موفقیت به روز رسانی شد.'
+            });
             $(".recovery-password-form , .form-top-left").fadeOut(function () {
                 $(".success-message-recovery").fadeIn();
                 $(".form-top-right i").attr("class", "fa fa-check");
