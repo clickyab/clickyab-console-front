@@ -35,7 +35,7 @@ class StepPreviewPTR extends Component {
 
     render() {
         let {data, created_at} = this.props;
-        let stepData, buttons, paymentPrev;
+        let stepData, buttons, paymentPrev, activeButton;
         if (select('campaignStepData.type') == 'upload') {
             let payStatus = select('createCampaignData.payment_status') == 'yes' ? 'col-md-2 mt-step-col last done' : 'col-md-2 mt-step-col last error';
             stepData = (
@@ -138,19 +138,27 @@ class StepPreviewPTR extends Component {
         }
 
         if (select('createCampaignData.payment_status') == 'yes') {
-            buttons = (
-                <div className="col-md-offset-3 col-md-9">
-                    <button onClick={
-                        () => {
-                            this.props.activeStatus();
-                            navigate('/v1/advertiser/campaign');
+            activeButton = (
+                <div>
+                    <div className="m-heading-1 border-green m-bordered">
+                        <i className="fa fa-circle-o-notch fa-spin fa-fw"/>
+                        <span className="sr-only">Loading...</span>
+                        برای فعال شدن کمپین خود بر روی گزینه تایید (در سمت چپ) کلیک نمایید
+                    </div>
+                    <div className="col-md-12 text-right">
+                        <button onClick={
+                            () => {
+                                this.props.activeStatus();
+                                navigate('/v1/advertiser/campaign');
+                            }
+
                         }
+                                className="btn btn-primary  btn-lg pay-button button-next btn-arrow-text"
+                                type="submit">تایید <i className="fa fa-angle-left"/>
 
-                    }
-                            className="btn btn-primary pay-button button-next btn-arrow-text margin-top-40"
-                            type="submit">تایید <i className="fa fa-angle-left"/>
-                    </button>
+                        </button>
 
+                    </div>
                 </div>
             )
         } else {
@@ -230,7 +238,7 @@ class StepPreviewPTR extends Component {
                             <div className="form-body">
                                 <h2>۶- پیش نمایش و پرداخت</h2>
                                 <div className="row">
-
+                                    {activeButton}
                                     <div className="col-md-4">
                                         <div className="col-md-6">
                                             <div className="form-group">
