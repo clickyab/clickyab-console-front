@@ -131,3 +131,8 @@ export const addNotificationAction = (notification) => ({
 export const emptyNotificationAction = () => ({type: EMPTY_NOTIFICATIONS});
 export const markAllNotificationAsShown = () => ({type: MARK_NOTIFICATIONS_AS_SHOWN});
 export const removeNotification = (id) => ({type: REMOVE_NOTIFICATION, id});
+
+export const TRANSLATION = "TRANSLATION";
+export const LOCALE = "LOCALE";
+export const translation = (translation) => ({type: TRANSLATION, translation});
+export const setLocale = (locale) => ({type: LOCALE, locale});
