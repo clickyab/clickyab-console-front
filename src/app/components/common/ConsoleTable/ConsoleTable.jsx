@@ -223,6 +223,7 @@ export class ConsoleTable extends Component {
                                 }}>
                                     {this.pagination()}
                                 </select>
+                                از <span className="bold"> {this.pagination().length}</span> صفحه
                             </label>
                         </div>
                     </div>
@@ -241,7 +242,7 @@ export class ConsoleTable extends Component {
                                     <option value="40">40</option>
                                     <option value="50">50</option>
                                 </select>
-                                در صفحه
+                                در صفحه از <span className="bold">{select(this.props.list + 'List.items').length}</span> مورد
                             </label>
                         </div>
                     </div>
