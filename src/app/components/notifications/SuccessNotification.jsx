@@ -1,13 +1,21 @@
 import React, {Component} from "react";
-import {Link} from "react-router";
 
 export default class SuccessNotification extends Component {
+    onClick(event) {
+        let {onAnEventSeenClick, notification: {id}} = this.props;
+
+        onAnEventSeenClick(id);
+    }
+
 	render() {
+        let {count, notification: {message}} = this.props;
+
 		return (
-			<Link to="/v1/advertiser">
+			<div>
 				<span className="fa fa-bullhorn"/>
-				<span className="title">{this.props.notification.message}  {this.props.count}</span>
-			</Link>
+				<span className="title">{message}  {count}</span>
+				<button className="btn btn-primary" onClick={this.onClick.bind(this)}>seen</button>
+			</div>
 		);
 	}
 }
