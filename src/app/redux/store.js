@@ -36,6 +36,8 @@ import {publisherTotalViewChartReducer} from "./reducers/publisherTotalViewChart
 import {advertiserSpentPerChannelReducer} from "./reducers/advertiserSpentPerChannelReducer";
 import {publisherCountChannelReducer} from "./reducers/publisherCountChannelReducer";
 import {translationListReducer} from "./reducers/translationListReducer";
+import {languageReducer} from "./reducers/languageReducer";
+import {translationReducer} from "./reducers/translationReducer";
 
 
 const enhancer = compose;
@@ -91,7 +93,11 @@ export const store = createStore(
 
         notifications: notificationsReducer,
 
-        translationList: translationListReducer
+        translationList: translationListReducer,
+
+        language: languageReducer,
+        translations: translationReducer,
+
     }),
     localStorage.get('initialState'),
     enhancer(applyMiddleware(

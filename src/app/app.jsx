@@ -4,9 +4,15 @@ import React from "react";
 import {Footer} from "./components/layouts/Footer";
 import {Header} from "./components/layouts/HeaderCTR";
 import {loading} from "./functions/loading";
+import {translate} from "./functions/translate";
 
 export default class App extends React.Component {
     componentDidMount() {
+        translate('hello sarah');
+        translate('sashimi');
+        translate('standup comedy');
+        translate('to ye loozeri');
+
         $('.preloader-page').hide();
 
         $(document).on("shown.bs.modal", ".modal", function () {
