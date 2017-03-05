@@ -7,7 +7,6 @@ import {dispatch} from "../../functions/dispatch";
 import {markAllNotificationAsShown, removeNotification} from "../../redux/actions/index";
 import * as _ from "lodash";
 
-
 export default class NotificationsDropDown extends Component {
     open = false;
 
