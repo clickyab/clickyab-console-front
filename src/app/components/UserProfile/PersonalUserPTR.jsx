@@ -30,9 +30,11 @@ class PersonalUserPTR extends Component {
             rules: {
                 first_name: {
                     required: true,
+                    minlength: 3
                 },
                 last_name: {
                     required: true,
+                    minlength: 3
                 },
                 gender: {
                     required: true
@@ -42,9 +44,11 @@ class PersonalUserPTR extends Component {
             messages: {
                 first_name: {
                     required: 'لطفا نام خود را وارد نمایید',
+                    minlength: "نام حداقل باید ۳ کاراکتر باشد"
                 },
                 last_name: {
                     required: 'لطفا نام خانوادگی را وارد نمایید',
+                    minlength: "نام خانوادگی حداقل باید ۳ کاراکتر باشد"
                 },
                 gender: {
                     required: 'لطفا جنسیت خود را وارد نمایید',
@@ -62,17 +66,20 @@ class PersonalUserPTR extends Component {
                   onSubmit={handleSubmit((values) => SubmitPersonalUser(values, this.PersonalForm))}>
                 <div className="form-body">
                     <h3 className="form-section">اطلاعات شخص حقیقی</h3>
+                    <div className="note note-success">
+                        <h6>فیلد‌های <span className="text-danger"> *</span>(ستاره‌دار) اجباری می‌باشند.</h6>
+                    </div>
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label className="control-label">نام</label>
+                                <label className="control-label">نام <span className="text-danger">*</span></label>
                                 <Field component="input" type="text" id="first_name" name="first_name"
                                        className="form-control" placeholder="نام"/>
                             </div>
                         </div>
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label className="control-label">نام خانوادگی</label>
+                                <label className="control-label">نام خانوادگی <span className="text-danger">*</span></label>
                                 <Field component="input" type="text" id="last_name" name="last_name"
                                        className="form-control" placeholder="نام خانوادگی"/>
                             </div>
@@ -93,7 +100,7 @@ class PersonalUserPTR extends Component {
 
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label className="control-label">جنسیت</label>
+                                <label className="control-label">جنسیت <span className="text-danger">*</span></label>
                                 <Field className="form-control" component="select" data-placeholder="جنسیت" tabIndex="1"
                                        name="gender"
                                        id="gender">

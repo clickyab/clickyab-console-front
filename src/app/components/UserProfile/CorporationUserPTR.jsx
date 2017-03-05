@@ -25,6 +25,7 @@ class CorporationUserPTR extends Component {
             rules: {
                 title: {
                     required: true,
+                    minlength: 4
                 },
                 register_code: {
                     required: true,
@@ -33,6 +34,7 @@ class CorporationUserPTR extends Component {
             messages: {
                 title: {
                     required: 'لطفا نام شرکت را وارد نمایید',
+                    minlength: "نام شرکت حداقل باید ۴ کاراکتر باشد"
                 },
                 register_code: {
                     required: 'لطفا شماره پروانه خود را وارد نمایید',
@@ -50,10 +52,13 @@ class CorporationUserPTR extends Component {
                   onSubmit={handleSubmit((values) => SubmitCorporationUser(values, this.CorporationForm))}>
                 <div className="form-body">
                     <h3 className="form-section">اطلاعات شخص حقوقی</h3>
+                    <div className="note note-success">
+                        <h6>فیلد‌های <span className="text-danger"> *</span>(ستاره‌دار) اجباری می‌باشند.</h6>
+                    </div>
                     <div className="row">
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label className="control-label">نام شرکت</label>
+                                <label className="control-label">نام شرکت <span className="text-danger">*</span></label>
                                 <Field component="input" type="text" id="title" name="title" className="form-control"
                                        placeholder="نام شرکت"/>
                             </div>
@@ -71,7 +76,7 @@ class CorporationUserPTR extends Component {
 
                         <div className="col-md-6">
                             <div className="form-group">
-                                <label className="control-label">شماره پروانه</label>
+                                <label className="control-label">شماره پروانه <span className="text-danger">*</span></label>
                                 <Field type="text" component="input" id="register_code" name="register_code"
                                        className="form-control" placeholder="شماره پروانه"/>
                             </div>

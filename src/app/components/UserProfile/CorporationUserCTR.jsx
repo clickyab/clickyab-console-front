@@ -2,7 +2,7 @@ import React, {Component} from "react";
 import CorporationUserPTR from "./CorporationUserPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
-import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
+import {SuccessBoxAlert, FailedBoxAlert, NotifyBox} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
@@ -32,10 +32,12 @@ export default class CorporationUserCTR extends Component {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
             this.loadingProgress.stop();
-            SuccessBoxAlert(response);
+            SuccessBoxAlert({text: 'اطلاعات شما با موفقیت ثبت شد.'});
+            NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد.', 8000);
         } else if (response.statusCode == '400') {
             this.stopLoading();
-            FailedBoxAlert(response);
+            FailedBoxAlert({error: 'اطلاعات شما صحیح نمی‌باشد.'});
+            NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
         }
         ifInvalidToken(response);
     }
