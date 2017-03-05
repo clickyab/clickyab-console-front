@@ -122,5 +122,12 @@ export const versionAction = (version) => ({type: VERSION, version});
 
 export const NOTIFICATIONS = "NOTIFICATIONS";
 export const EMPTY_NOTIFICATIONS = "EMPTY_NOTIFICATIONS";
-export const addNotificationAction = (notification) => ({type: NOTIFICATIONS, notification});
+export const MARK_NOTIFICATIONS_AS_SHOWN = "MARK_NOTIFICATIONS_AS_SHOWN";
+export const REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION";
+export const addNotificationAction = (notification) => ({
+    type: NOTIFICATIONS,
+    notification: Object.assign(notification, {shown: false, id: Math.random()})
+});
 export const emptyNotificationAction = () => ({type: EMPTY_NOTIFICATIONS});
+export const markAllNotificationAsShown = () => ({type: MARK_NOTIFICATIONS_AS_SHOWN});
+export const removeNotification = (id) => ({type: REMOVE_NOTIFICATION, id});
