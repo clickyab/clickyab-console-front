@@ -10,7 +10,7 @@ export function translate(text) {
     }
 
     sync(function*() {
-        yield (new swagger.MiscApi).miscPostTranslatePost(getToken(), {
+        yield (new swagger.MiscApi).miscTranslatePost(getToken(), {
             'payloadData': {
                 "translate": text
             }
