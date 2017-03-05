@@ -74,6 +74,9 @@ export default class TelegramListPTR extends Component {
                         <h1 className='page-title'>لیست کاربران تلگرام ثبت شده در سیستم</h1>
                     </div>
                 </div>
+                <div className="m-heading-1 border-green m-bordered">
+                    <h5>بعد از اضافه کردن کاربر خود ، کد تلگرام را در بات روبیک اد کپی و پیست کنید.</h5>
+                </div>
                 <div className='portlet light bordered datatable-parent'>
                     <div className='portlet-title'>
                         <div className='caption'>
