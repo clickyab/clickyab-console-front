@@ -4,7 +4,7 @@ import TranslationListPTR from "./TranslationListPTR";
 import {sync} from "../../functions/sync";
 import swagger from "./../../swagger/index";
 import {select} from "../../functions/select";
-import {telegramItemsListAction} from "../../redux/actions/index";
+import {translationListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
 import {translatable} from "react-multilingual/dist";
 import {getToken} from "../../redux/helpers";
@@ -65,7 +65,7 @@ export default class TranslationListCTR extends Component {
                 [query_name]: value
             });
 
-            dispatch(telegramItemsListAction(data));
+            dispatch(translationListAction(data));
         })
     }
 

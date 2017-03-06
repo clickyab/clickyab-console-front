@@ -99,7 +99,7 @@ browserHistory.listen(function () {
 });
 
 sync(function*() {
-    const {error, data, reponse} = yield (new swagger.MiscApi())
+    const {error, data, response} = yield (new swagger.MiscApi())
         .miscDumpLangGet(select('language'), getToken());
 
     dispatch(getTranslation(data));
