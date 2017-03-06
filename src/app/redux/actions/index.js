@@ -134,5 +134,6 @@ export const removeNotification = (id) => ({type: REMOVE_NOTIFICATION, id});
 
 export const TRANSLATION = "TRANSLATION";
 export const LOCALE = "LOCALE";
-export const translation = (translation) => ({type: TRANSLATION, translation});
+export const GET_TRANSLATION = "GET_TRANSLATION";
+export const getTranslation = (translations) => ({type: GET_TRANSLATION, translations});
 export const setLocale = (locale) => ({type: LOCALE, locale});

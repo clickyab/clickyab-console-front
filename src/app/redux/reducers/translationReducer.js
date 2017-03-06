@@ -1,9 +1,9 @@
-import {TRANSLATION} from "../actions/index";
+import {GET_TRANSLATION} from "../actions/index";
 
 export function translationReducer(state = {}, action) {
     switch (action.type) {
-        case TRANSLATION:
-            return action.translation;
+        case GET_TRANSLATION:
+            return action.translations;
     }
 
     return state;
