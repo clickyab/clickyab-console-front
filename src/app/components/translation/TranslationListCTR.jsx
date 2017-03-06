@@ -8,7 +8,7 @@ import {telegramItemsListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
 import {translatable} from "react-multilingual/dist";
 import {getToken} from "../../redux/helpers";
-import InlineEdit from 'react-edit-inline';
+import InlineEdit from "react-edit-inline";
 
 @connect(({translationList}) => ({translationList}))
 @translatable(({
@@ -27,7 +27,7 @@ import InlineEdit from 'react-edit-inline';
 }))
 export default class TranslationListCTR extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
         this.dataChanged = this.dataChanged.bind(this);
         this.state = {
@@ -39,14 +39,15 @@ export default class TranslationListCTR extends Component {
         return (data) => {
             let translateText = data.translated;
             sync(function*() {
-                let {data} = yield (new swagger.MiscApi).miscTranslatePut(getToken(), {'payloadData': {
-                    "id": id,
-                    "lang": select("locale"),
-                    "translated": translateText
-                }});
-            })
-            // data = { description: "New validated text comes here" }
-            // Update your model from here
+                let {data} = yield (new swagger.MiscApi).miscTranslatePut(getToken(), {
+                    'payloadData': {
+                        "id": id,
+                        "lang": select("locale"),
+                        "translated": translateText
+                    }
+                });
+            });
+
             console.log(data);
             this.setState({...data})
         }
@@ -55,6 +56,7 @@ export default class TranslationListCTR extends Component {
     customValidateText(text) {
         return (text.length > 0);
     }
+
     callApi(query_name, value) {
         let {dispatch} = this.props;
         sync(function*() {
@@ -90,28 +92,28 @@ export default class TranslationListCTR extends Component {
         return moment(created_at).format('jYYYY/jM/jD');
     }
 
-    translated(translated , {id}) {
-            return (<div>
-                <InlineEdit
-                    id={id}
-                    validate={this.customValidateText}
-                    editingElement="textarea"
-                    activeClassName="editing form-control"
-                    text={ translated != null ? translated: "ویرایش"}
-                    paramName="translated"
-                    change={this.dataChanged(id)}
-                    style={{
-                        cursor: 'pointer'
+    translated(translated, {id}) {
+        return (<div>
+            <InlineEdit
+                id={id}
+                validate={this.customValidateText}
+                editingElement="textarea"
+                activeClassName="editing form-control"
+                text={ translated != null ? translated : "ویرایش"}
+                paramName="translated"
+                change={this.dataChanged(id)}
+                style={{
+                    cursor: 'pointer'
                 }}
 
-                />
-            </div>)
+            />
+        </div>)
 
 
     }
 
     text(text) {
-        return <p className="label label-warning" style={{direction: 'ltr', display:'inline-block'}}>{text}</p>;
+        return <p className="label label-warning" style={{direction: 'ltr', display: 'inline-block'}}>{text}</p>;
     }
 
     onPaginationChange(page) {
@@ -128,14 +130,19 @@ export default class TranslationListCTR extends Component {
 
     render() {
         return (<TranslationListPTR {...this.props.translationList}
-                                 sort={this.sort.bind(this)}
-                                 filter={this.filter.bind(this)}
-                                 search={this.search.bind(this)}
-                                 onPaginationChange={this.onPaginationChange.bind(this)}
-                                 onPerPageChange={this.onPerPageChange.bind(this)}
-                                 mutators={{updated_at: this.updated_at, created_at: this.created_at , text:this.text ,  translated: this.translated.bind(this)}}
-                                 edit={this.edit.bind(this)}
-                                 translator={this.translator.bind(this)}
+                                    sort={this.sort.bind(this)}
+                                    filter={this.filter.bind(this)}
+                                    search={this.search.bind(this)}
+                                    onPaginationChange={this.onPaginationChange.bind(this)}
+                                    onPerPageChange={this.onPerPageChange.bind(this)}
+                                    mutators={{
+                                        updated_at: this.updated_at,
+                                        created_at: this.created_at,
+                                        text: this.text,
+                                        translated: this.translated.bind(this)
+                                    }}
+                                    edit={this.edit.bind(this)}
+                                    translator={this.translator.bind(this)}
         />)
     }
 }

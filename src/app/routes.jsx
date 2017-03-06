@@ -42,7 +42,7 @@ import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddlewar
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
 import {dispatch} from "./functions/dispatch";
 import {logout} from "./redux/actions/login";
-import {addNotificationAction, asyncRemoveLocalStorageAction} from "./redux/actions/index";
+import {addNotificationAction, asyncRemoveLocalStorageAction, getTranslation} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
 import StepPreviewCTR from "./components/advertiser/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
@@ -60,6 +60,9 @@ import {AlertBox} from "./functions/notifications";
 import {select} from "./functions/select";
 import onTranslationListEnterMiddleware from "./middlewares/routes/onTranslationListEnterMiddleware";
 import TranslationListCTR from "./components/translation/TranslationListCTR";
+import {sync} from "./functions/sync";
+import swagger from "./swagger/index";
+import {getToken} from "./redux/helpers";
 
 document.body.addEventListener('unauthorized401', function () {
     dispatch(logout());
@@ -93,6 +96,13 @@ document.body.addEventListener('server-ok200', function () {
 browserHistory.listen(function () {
     getVersion();
     checkSubmitProfile();
+});
+
+sync(function*() {
+    const {error, data, reponse} = yield (new swagger.MiscApi())
+        .miscDumpLangGet(select('language'), getToken());
+
+    dispatch(getTranslation(data));
 });
 
 export default function Provider() {

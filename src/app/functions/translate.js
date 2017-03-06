@@ -2,11 +2,12 @@ import {select} from "./select";
 import {sync} from "./sync";
 import {getToken} from "../redux/helpers";
 import swagger from "./../swagger/index";
+import {sprintf} from "sprintf-js";
 
-export function translate(text) {
+export function translate(text, ...parameters) {
     let translated = select('translations', {})[text];
     if (translated) {
-        return translated
+        return sprintf(translated, ...parameters);
     }
 
     sync(function*() {
@@ -17,5 +18,5 @@ export function translate(text) {
         });
     });
 
-    return text;
+    return sprintf(translated, ...parameters);
 }
