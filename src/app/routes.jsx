@@ -105,8 +105,6 @@ browserHistory.listen(function () {
 sync(function*() {
     const {error, data, response} = yield (new swagger.MiscApi())
         .miscDumpLangGet(select('language'), getToken());
-        console.log(response);
-        console.log(data);
     dispatch(getTranslation(data));
 });
 

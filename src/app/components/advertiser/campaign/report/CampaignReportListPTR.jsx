@@ -7,9 +7,8 @@ import {createCampaign} from "../../../../redux/actions/index";
 export default class CampaignReportListPTR extends Component {
     componentDidMount() {
         document.title = "مدیریت کمپین ها";
-        $(document).on("click", "#showAddCampaign", function () {
-            dispatch(createCampaign({}));
-            navigate('/v1/advertiser/campaign/create/step/name');
+        $(document).on("click", "#getBack", function () {
+            navigate('/v1/advertiser/campaign/');
         })
     }
 
@@ -29,7 +28,8 @@ export default class CampaignReportListPTR extends Component {
                         <div className="actions">
                             <div className="btn-group btn-group-devided" data-toggle="buttons">
                                 <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
-                                        id="showAddCampaign">ساخت کمپین جدید
+                                        id="getBack">بازگشت به لیست کمپین‌ها
+                                    <i className="fa fa-backward" aria-hidden="true" style={{paddingRight: '5px'}}/>
                                 </button>
                             </div>
                         </div>
