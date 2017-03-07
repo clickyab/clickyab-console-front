@@ -22,14 +22,13 @@ import {translatable} from "react-multilingual/dist";
     forget_submit,
     forgotPassTitle
 }))
-class LoginForm extends Component {
+class PasswordRecoveryPTR extends Component {
     form = {};
     state = {
         validation: true
     };
 
     componentDidMount() {
-        ;
         this.form = $("form");
         this.form.validate({
             rules: {
@@ -51,12 +50,6 @@ class LoginForm extends Component {
         } = this.props;
         const {handleSubmit, SubmitCall} = this.props;
         return (
-            <RouteTransition
-                pathname={this.props.path}
-                atEnter={{opacity: 0}}
-                atLeave={{opacity: 0}}
-                atActive={{opacity: 1}}
-            >
                 <div className="top-content auth-pages">
                     <video poster="/bg.jpg" id="bgvid" className="full" autoPlay muted loop>
                         <source src="/bg.mp4" type="video/mp4"/>
@@ -113,23 +106,14 @@ class LoginForm extends Component {
                     </div>
 
                 </div>
-            </RouteTransition>
-
         );
     }
 }
 
-LoginForm.propTypes = {
-    login: React.PropTypes.string,
+PasswordRecoveryPTR.propTypes = {
     email: React.PropTypes.string,
-    password: React.PropTypes.string,
-    createAccount: React.PropTypes.string,
-    forgotPass: React.PropTypes.string,
-    submit: React.PropTypes.string,
-    handleSubmit: React.PropTypes.func,
-    login: React.PropTypes.func
 };
 
 export default reduxForm({
-    form: 'login'
-})(LoginForm);
+    form: 'PasswordRecoveryPTR'
+})(PasswordRecoveryPTR);

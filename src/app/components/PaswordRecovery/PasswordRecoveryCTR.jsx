@@ -12,6 +12,7 @@ export default class PasswordRecoveryCTR extends Component {
     }
 
     forgotCallback({error, data, response}) {
+        console.log(response);
         if (response.statusCode == '200') {
             SuccessBoxAlert({
                 error: 'اطلاعات کاربری شما صحیح نمی‌باشد.',
@@ -24,7 +25,7 @@ export default class PasswordRecoveryCTR extends Component {
             });
         } else if (response.statusCode == '400') {
             this.stopLoading();
-            NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
+            NotifyBox('error', 'ایمیل شما یافت نشد. لطفا ایمیل معتبر وارد نمایید.', 8000);
         }
     }
 

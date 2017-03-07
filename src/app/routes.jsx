@@ -71,9 +71,13 @@ document.body.addEventListener('unauthorized401', function () {
 });
 
 document.body.addEventListener('bad-request400', function () {
-    dispatch(logout());
-    dispatch(asyncRemoveLocalStorageAction());
-    navigate('/v1/login');
+
+    setTimeout(() => {
+        dispatch(logout());
+        dispatch(asyncRemoveLocalStorageAction());
+        navigate('/v1/login')
+    },10000);
+
 });
 
 document.body.addEventListener('accessDenied403', function () {
