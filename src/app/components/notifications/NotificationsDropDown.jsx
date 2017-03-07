@@ -30,12 +30,11 @@ export default class NotificationsDropDown extends Component {
 
     render() {
         return (
-            <li className="dropdown dropdown-language notification-dropdown">
+            <li className="dropdown dropdown-extended dropdown-notification notification-dropdown" id="header_notification_bar">
                 <div className="dropdown-toggle notifications-division" data-toggle="dropdown" data-hover="dropdown"
                      data-close-others="true" aria-expanded="false" style={{paddingRight: '7px'}}>
-                    <Count/>
-                    <span className="langname">پیام ها</span>
-                    <span className="fa fa-angle-down"/>
+                    <span className="badge badge-default"><Count/></span>
+                    <i className="icon-bell"/>
                 </div>
                 <DropDown/>
             </li>
@@ -57,11 +56,9 @@ class Count extends Component {
 
     render() {
         return (
-            <span className="badge" style={{
-                color: "red",
-                backgroundColor: "white"
-            }}>{ this.count(this.props.notifications) }</span>
-        );
+            <span>{ this.count(this.props.notifications) }</span>
+        )
+
     }
 }
 
@@ -121,7 +118,13 @@ class DropDown extends Component {
 
         return (
             <ul className="dropdown-menu dropdown-menu-default keep_open">
-                {orderedNotifications.map((data, index) => <li key={index}>{this.type(data)}</li>)}
+                <li className="external">
+                    <h3>
+                        <span className="bold"><Count/> پیام </span> مشاهده نشده</h3>
+                </li>
+                <ul className="dropdown-menu-list scroller">
+                    {orderedNotifications.map((data, index) => <li key={index}><a href="javascript:;"><span className="details"> {this.type(data)}</span></a></li>)}
+                </ul>
             </ul>
         );
     }

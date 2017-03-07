@@ -325,7 +325,9 @@ Page Header
 
                                         .label-icon {
                                             margin-#{$dir-mode-align-inverse}: 10px;
-                                            @include border-radius(50%); 
+                                            @include border-radius(0);
+                                          padding: 2px 3px;
+                                          font-size:12px;
                                             
                                             i {
                                                 margin-#{$dir-mode-align-inverse}: 2px;

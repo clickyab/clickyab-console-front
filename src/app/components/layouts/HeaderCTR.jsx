@@ -79,9 +79,9 @@ export class Header extends Component {
                     <div className="top-menu">
                         <ul className="nav navbar-nav pull-right">
 
-                            <NotificationsDropDown />
-
                             <SwitcherCTR />
+
+                            <NotificationsDropDown />
 
                             <li className="dropdown dropdown-user">
                                 <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown"
