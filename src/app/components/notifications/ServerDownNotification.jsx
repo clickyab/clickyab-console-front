@@ -12,9 +12,9 @@ export default class ServerDownNotification extends Component {
 
         return (
             <div>
-                <span className="fa fa-bullhorn"/>
-                <span className="title">{message}  {count}</span>
-                <button className="btn btn-primary" onClick={this.onClick.bind(this)}>seen</button>
+                <span className="label label-sm label-icon label-danger"><i className="fa fa-bolt"/></span>
+                <span className="title">{count} - {message}  </span>
+                <span className="time" onClick={this.onClick.bind(this)}>حذف</span>
             </div>
         );
     }
