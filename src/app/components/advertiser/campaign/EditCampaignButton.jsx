@@ -1,11 +1,12 @@
 import React, {Component} from "react";
 import swagger from "../../../swagger/index";
 import {select} from "../../../functions/select";
-import {createCampaign} from "../../../redux/actions/index";
+import {createCampaign, campaignReportListAction} from "../../../redux/actions/index";
 import {sync} from "../../../functions/sync";
 import {AlertBox} from "../../../functions/notifications";
 import {dispatch} from "../../../functions/dispatch";
 import {navigate} from "../../../functions/navigate";
+import {shouldUpdateDefinition} from "../../../redux/helpers";
 
 export default class EditCampaignButton extends Component {
     editElementBtn;
@@ -29,6 +30,26 @@ export default class EditCampaignButton extends Component {
         });
     }
 
+    detailCampaign(event) {
+        const {id} = this.props;
+        sync(function*() {
+            const {error, data, response} = yield (new swagger.AdApi())
+                .campaignDetailIdGet(id, select('user.token', 'no token'), {
+                    ...select('queries.campaignReport', {}),
+                    def: shouldUpdateDefinition('campaignReportList')
+                });
+            if (response.statusCode == '200') {
+                dispatch(campaignReportListAction(data));
+
+                navigate('/v1/advertiser/campaign/:campaign_id:/report', {
+                    campaign_id: id
+                });
+            } else if (response.statusCode == '400') {
+                AlertBox("error", "اختلالی به وجود امده است لطفا دوباره تلاش کنید")
+            }
+        });
+    }
+
     render() {
         return <div className="btn-group ">
             <button className="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">عملیات
@@ -41,7 +62,9 @@ export default class EditCampaignButton extends Component {
                        onClick={(event) => this.edit(Object.assign({}, event))}> ویرایش کمپین </a>
                 </li>
                 <li>
-                    <a href="javascript:;"> مشاهده ریز آمار </a>
+                    <a href="javascript:;"
+                       className="mt-ladda-btn ladda-button" data-style="zoom-in"
+                       onClick={this.detailCampaign.bind(this)}> مشاهده ریز آمار </a>
                 </li>
             </ul>
         </div>
