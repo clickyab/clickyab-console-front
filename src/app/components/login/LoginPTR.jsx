@@ -45,6 +45,10 @@ class LoginForm extends Component {
     };
 
     componentDidMount() {
+        if ($(window).width() <= 768) {
+            $('#bgvid').children().attr('src', '');
+        }
+
         this.form = $("form");
         this.form.validate({
             rules: {
