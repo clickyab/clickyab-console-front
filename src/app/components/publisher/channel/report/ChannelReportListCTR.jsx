@@ -7,31 +7,22 @@ import moment from "moment-jalali";
 import {sync} from "../../../../functions/sync";
 import {translatable} from "react-multilingual/dist";
 import ChannelReportListPTR from "./ChannelReportListPTR";
+import EditChannelReportButton from './EditChannelReportButton';
 
 @connect(({channelReportList}) => ({channelReportList}))
 @translatable(({
-    Email, Type, Status,
-    CreatedAt, UpdatedAt, Action,
-    UserID, Name, Link,
-    AdminStatus, ArchiveStatus, Active,
-    accepted, pending, rejected,
-    yes, no, ID
+    AdName, Start, End, Price, Action
 
 }) => ({
     translation: {
-        Email, Type, Status,
-        CreatedAt, UpdatedAt, Action,
-        UserID, Name, Link,
-        AdminStatus, ArchiveStatus, Active,
-        accepted, pending, rejected,
-        yes, no, ID
+        AdName, Start, End, Price, Action
     }
 }))
 export default class ChannelReportListCTR extends Component {
     callApi(query_name, value) {
         let {dispatch} = this.props;
         sync(function*() {
-            let {data} = yield (new swagger.ChannelApi).channelReportGet(select('user.token', 'no token'), {
+            let {data} = yield (new swagger.ChannelApi()).channelReportGet(select('user.token', 'no token'), {
                 ...select('queries.channelReport', {}),
                 [query_name]: value
             });
@@ -92,9 +83,14 @@ export default class ChannelReportListCTR extends Component {
         return this.translator(pay_status);
     }
 
+    edit(id) {
+        return <EditChannelReportButton key={Math.random()} id={id}/>;
+    }
+
     render() {
         return (<ChannelReportListPTR {...this.props.channelReportList}
                                       sort={this.sort.bind(this)}
+                                      edit={this.edit.bind(this)}
                                       translator={this.translator.bind(this)}
                                       filter={this.filter.bind(this)}
                                       search={this.search.bind(this)}
