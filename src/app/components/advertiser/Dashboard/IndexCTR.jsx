@@ -72,6 +72,7 @@ export default class AdvertiserDashboardPage extends Component {
                 "position": "left"
             },
             "trendLines": [],
+            // "mouseWheelZoomEnabled": true,
             "graphs": [
                 {
                     "balloonText": "نمایش داده شده:[[viewed]]",
@@ -92,6 +93,11 @@ export default class AdvertiserDashboardPage extends Component {
                     "valueField": "remaining"
                 }
             ],
+            // "chartScrollbar": {
+            //     "autoGridCount": true,
+            //     "graph": "g1",
+            //     "scrollbarHeight": 40
+            // },
             "guides": [],
             "valueAxes": [
                 {

@@ -15,7 +15,7 @@ class CreatePTR extends Component {
         this.createCampaignForm.validate({
             rules: {
                 name: {
-                    required: true,
+                    required: false,
                 },
             },
             messages: {
