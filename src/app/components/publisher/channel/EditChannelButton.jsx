@@ -40,9 +40,6 @@ export default class EditChannelButton extends Component {
                        className="edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
                        onClick={(event) => this.edit(event)}> ویرایش کانال </a>
                 </li>
-                <li>
-                    <a href="javascript:;"> مشاهده ریز آمار </a>
-                </li>
             </ul>
         </div>
     }

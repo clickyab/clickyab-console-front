@@ -424,7 +424,16 @@
                 }
             });
             document.body.dispatchEvent(event);
-        } else if(response.statusCode == 401) {
+        }
+    else if(response.statusCode == 500) {
+    var event = new CustomEvent("error500", {
+    detail: {
+    statusCode: 500
+    }
+    });
+    document.body.dispatchEvent(event);
+    }
+    else if(response.statusCode == 401) {
             var event = new CustomEvent("unauthorized401", {
              detail: {
                 statusCode: 401

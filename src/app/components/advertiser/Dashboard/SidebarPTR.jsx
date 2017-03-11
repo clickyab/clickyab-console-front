@@ -28,52 +28,50 @@ export class Sidebar extends Component {
         return (
             <div className='page-sidebar-wrapper'>
                 <div className='page-sidebar navbar-collapse collapse'>
-                        <SidebarLinks>
-                            <Link to='/v1/advertiser' activeClassName='active'>
-                                <i className='fa fa-home'/>
-                                <span className='title'>داشبورد تبلیغ کننده</span>
-                                <span className='selected'/>
-                                <span className="selected"/>
-                            </Link>
+                    <SidebarLinks>
+                        <Link to='/v1/advertiser' activeClassName='active'>
+                            <i className='fa fa-home'/>
+                            <span className='title'>داشبورد تبلیغ کننده</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                        </Link>
 
-                            <Link to="/v1/advertiser/telegram" activeClassName='active'>
-                                <i className='fa fa-user'/>
-                                <span className='title'>مدیریت کانال ها</span>
-                                <span className="selected"/>
-                            </Link>
+                        <Link to="/v1/advertiser/telegram" activeClassName='active'>
+                            <i className='fa fa-user'/>
+                            <span className='title'>کاربران تلگرام</span>
+                            <span className="selected"/>
+                        </Link>
 
-                            <Link to='/v1/advertiser/billing' activeClassName='active'>
-                                <i className='fa fa-list'/>
-                                <span className='title'>لیست پرداخت‌ها</span>
-                                <span className='selected'/>
-                                <span className="selected"/>
-                            </Link>
+                        <Link to='/v1/advertiser/billing' activeClassName='active'>
+                            <i className='fa fa-list'/>
+                            <span className='title'>لیست پرداخت‌ها</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                        </Link>
+                        <Link to='/v1/advertiser/translation' activeClassName='active'>
+                            <i className='fa fa-list'/>
+                            <span className='title'>ترجمه ها</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                        </Link>
 
-                            <li className="heading">
-                                <h3>کمپین‌ها</h3>
-                            </li>
-                            <Link to='/v1/advertiser/campaign/create/step/name' activeClassName='active'>
-                                <i className='fa fa-plus-circle'/>
-                                <span className='title'>افزودن کمپین</span>
-                                <span className='selected'/>
-                                <span className="selected"/>
-                            </Link>
+                        <li className="heading">
+                            <h3>کمپین‌ها</h3>
+                        </li>
+                        <Link to='/v1/advertiser/campaign/create/step/name' activeClassName='active'>
+                            <i className='fa fa-plus-circle'/>
+                            <span className='title'>افزودن کمپین</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                        </Link>
 
-                            <Link to='/v1/advertiser/campaign' activeClassName='active'>
-                                <i className='fa fa-list'/>
-                                <span className='title'>لیست کمپین</span>
-                                <span className='selected'/>
-                                <span className="selected"/>
-                            </Link>
-
-
-                            <Link to='/v1/advertiser/translation' activeClassName='active'>
-                                <i className='fa fa-list'/>
-                                <span className='title'>ترجمه ها</span>
-                                <span className='selected'/>
-                                <span className="selected"/>
-                            </Link>
-                        </SidebarLinks>
+                        <Link to='/v1/advertiser/campaign' activeClassName='active'>
+                            <i className='fa fa-list'/>
+                            <span className='title'>لیست کمپین</span>
+                            <span className='selected'/>
+                            <span className="selected"/>
+                        </Link>
+                    </SidebarLinks>
                 </div>
             </div>
         );
