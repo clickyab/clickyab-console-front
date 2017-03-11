@@ -22,6 +22,7 @@ public/**/*.map
 public/build*
 public/index.html
 public/vendor.bundle.js
+public/backend.html
 
 public/img/apps/
 src/app/components/common/widget-box/
