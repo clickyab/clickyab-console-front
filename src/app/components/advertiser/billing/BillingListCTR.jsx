@@ -7,6 +7,7 @@ import {select} from "../../../functions/select";
 import {billingListAction} from "../../../redux/actions/index";
 import moment from "moment-jalali";
 import {translatable} from "react-multilingual/dist";
+import EditBillingButton from './EditBillingButton';
 
 @connect(({billingList}) => ({billingList}))
 @translatable(({
@@ -47,8 +48,9 @@ export default class BillingListCTR extends Component {
     }
 
     edit(id) {
+        console.log('hooooooooy')
+        return <EditBillingButton id={id} key={Math.random()} />
     }
-
 
     updated_at(updated_at) {
         return moment(updated_at).format('jYYYY/jM/jD');
@@ -70,6 +72,7 @@ export default class BillingListCTR extends Component {
         return this.props.translation[title];
     }
 
+
     render() {
         return (<BillingListPTR {...this.props.billingList}
                                  sort={this.sort.bind(this)}
@@ -77,7 +80,10 @@ export default class BillingListCTR extends Component {
                                  search={this.search.bind(this)}
                                  onPaginationChange={this.onPaginationChange.bind(this)}
                                  onPerPageChange={this.onPerPageChange.bind(this)}
-                                 mutators={{updated_at: this.updated_at, created_at: this.created_at}}
+                                 mutators={{
+                                     updated_at: this.updated_at,
+                                     created_at: this.created_at,
+                                 }}
                                  edit={this.edit.bind(this)}
                                  translator={this.translator.bind(this)}
         />)
