@@ -1,7 +1,14 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
+import WithdrawModalCTR from './WithdrawModalCTR';
 
 export default class BillingListPTR extends Component {
+
+    componentDidMount() {
+        $(document).on('click', '#withdrawModal', function() {
+            $('#withDrawModal').modal();
+        })
+    }
 
     render() {
         return (
@@ -16,11 +23,19 @@ export default class BillingListPTR extends Component {
                         <div className='caption'>
                             <span className='caption-subject bold uppercase font-dark'>لیست پرداخت‌ها</span>
                         </div>
+                        <div className="actions">
+                            <div className="btn-group btn-group-devided" data-toggle="buttons">
+                                <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
+                                        id="withdrawModal">درخواست برداشت
+                                </button>
+                            </div>
+                        </div>
                     </div>
                     <div className='portlet-body'>
                         <ConsoleTable {...this.props} list="billing"/>
                     </div>
                 </div>
+                <WithdrawModalCTR />
             </div>
         )
     }
