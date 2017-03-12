@@ -286,3 +286,19 @@ table .label {
 textarea.editing {
   width: 100%;
 }
+img.fullscreen-back {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+}
+.table tr:last-child {
+  margin-bottom: 90px;
+}
+
+@media (max-width: 768px) {
+  .mt-element-step {
+    display: none !important; ;
+  }
+}

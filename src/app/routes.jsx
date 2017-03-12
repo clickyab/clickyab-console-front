@@ -63,6 +63,10 @@ import TranslationListCTR from "./components/translation/TranslationListCTR";
 import {sync} from "./functions/sync";
 import swagger from "./swagger/index";
 import {getToken} from "./redux/helpers";
+import {loading} from "./functions/loading";
+import {handleError} from "./functions/catchError";
+import { BrowserHistory } from 'react-router';
+let Ladda = require('ladda/js/ladda');
 
 document.body.addEventListener('unauthorized401', function () {
     dispatch(logout());
@@ -73,16 +77,24 @@ document.body.addEventListener('unauthorized401', function () {
 document.body.addEventListener('bad-request400', function () {
 
     setTimeout(() => {
-        dispatch(logout());
-        dispatch(asyncRemoveLocalStorageAction());
-        navigate('/v1/login')
-    },10000);
+        AlertBox("error","مشکلی به وجود آمده است لطفا دوباره تلاش کنید" , true);
+    },1);
 
 });
 
 document.body.addEventListener('accessDenied403', function () {
-    AlertBox("warning", "شما دسترسی به این صفحه را ندارید");
-    navigate('v1/' + select('userType'));
+    AlertBox("warning","شما دسترسی به این صفحه را ندارید" , true);
+    navigate('/v1/' + select('userType'));
+});
+
+document.body.addEventListener('error500', function () {
+    let button =  document.querySelector('button');
+    if(button != null) {
+        let loadingProgress = Ladda.create(document.querySelector('button'));
+        loadingProgress.stop();
+    }
+    browserHistory.goBack();
+    AlertBox("error","اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید" , true);
 });
 
 document.body.addEventListener('server-down', function () {
@@ -90,7 +102,7 @@ document.body.addEventListener('server-down', function () {
     dispatch(addNotificationAction({
         type: 'server-down', message: 'server is down', time: new Date()
     }));
-    navigate('v1/' + select('userType'));
+    navigate('/v1/' + select('userType'));
 });
 
 document.body.addEventListener('server-ok200', function () {
@@ -104,7 +116,7 @@ browserHistory.listen(function () {
 
 sync(function*() {
     const {error, data, response} = yield (new swagger.MiscApi())
-        .miscDumpLangGet(select('language'), getToken());
+        .miscDumpLangGet(select('language'));
     dispatch(getTranslation(data));
 });
 

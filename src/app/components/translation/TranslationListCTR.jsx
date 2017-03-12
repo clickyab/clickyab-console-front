@@ -113,7 +113,7 @@ export default class TranslationListCTR extends Component {
     }
 
     text(text) {
-        return <p className="label label-warning" style={{direction: 'ltr', display: 'inline-block'}}>{text}</p>;
+        return <p style={{direction: 'ltr', display: 'inline-block'}}>{text}</p>;
     }
 
     onPaginationChange(page) {

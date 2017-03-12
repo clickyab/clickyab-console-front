@@ -8,6 +8,7 @@ export default class App extends React.Component {
     componentDidMount() {
         $('.preloader-page').hide();
 
+
         $(document).on("shown.bs.modal", ".modal", function () {
             let urlReplace = "#" + $(this).attr('id');
             history.pushState(null, null, urlReplace);

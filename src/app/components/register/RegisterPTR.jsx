@@ -81,9 +81,7 @@ class RegisterForm extends Component {
         return (
 
             <div className="top-content auth-pages">
-                <video poster="/bg.jpg" id="bgvid" className="full" autoPlay muted loop>
-                    <source src="/bg.mp4" type="video/mp4"/>
-                </video>
+                <img src="/bg.jpg" className="fullscreen-back"/>
                 <div className="inner-bg">
                     <div className="container">
                         <div className="row">

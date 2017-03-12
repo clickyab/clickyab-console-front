@@ -6,6 +6,8 @@ import {dispatch} from "../../functions/dispatch";
 import {createCampaign} from "../../redux/actions/index";
 import {select} from "../../functions/select";
 import {navigate} from "../../functions/navigate";
+import swagger from "../../swagger/index";
+
 let swal = require('sweetalert');
 
 function checkProfile() {
@@ -34,16 +36,20 @@ function checkProfile() {
     }
 }
 
+
 export default (nextState, replace, next) => sync(function*() {
     try {
         loading(true);
-        // yield* isLoginMiddleware();
         checkProfile();
         dispatch(createCampaign({}));
+
         loading(false);
         next();
 
+
+
     } catch (error) {
+        next();
         handleError(error);
     }
 });

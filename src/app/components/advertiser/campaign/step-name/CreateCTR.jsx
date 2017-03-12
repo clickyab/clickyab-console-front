@@ -47,8 +47,11 @@ export default class CreateCTR extends Component {
             loadingProgress = Ladda.create(document.querySelector('button.btn-campaign-name'));
             loadingProgress.start();
 
-            const {data, response} = yield (new swagger.AdApi())
-                .campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
+            // const {data, response} = yield (new swagger.AdApi())
+            //     .campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
+
+            const {data, response} = yield (new swagger.MiscApi())
+                .miscPanicGet();
 
             if (response.statusCode == '200') {
                 dispatch(createCampaign(data));
