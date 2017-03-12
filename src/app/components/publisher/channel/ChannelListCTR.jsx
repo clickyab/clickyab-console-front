@@ -4,7 +4,7 @@ import ChannelListPTR from "./ChannelListPTR";
 import EditChannelButton from "./EditChannelButton";
 import swagger from "../../../swagger/index";
 import {select} from "../../../functions/select";
-import {channelItemsListAction} from "../../../redux/actions/index";
+import {channelListAction} from "../../../redux/actions/index";
 import moment from "moment-jalali";
 import {sync} from "../../../functions/sync";
 import {translatable} from "react-multilingual/dist";
@@ -33,8 +33,8 @@ export default class ChannelListCTR extends Component {
                 [query_name]: value
             });
 
-            dispatch(channelItemsListAction(data));
-        })
+            dispatch(channelListAction(data));
+        });
     }
 
     sort(flag, query_name) {
@@ -117,7 +117,6 @@ export default class ChannelListCTR extends Component {
                                     archive_status: this.archive_status.bind(this),
                                     active: this.active.bind(this)
                                 }}
-
         />);
     }
 }
