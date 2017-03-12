@@ -12,6 +12,7 @@ import {navigate} from "../../functions/navigate";
 import swagger from "./../../swagger/index";
 import {AlertBox} from "../../functions/notifications";
 import NotificationsDropDown from "../notifications/NotificationsDropDown";
+import CreditMenu from './CreditMenu';
 
 @connect(({user}) => ({user}))
 export class Header extends Component {
@@ -93,6 +94,7 @@ export class Header extends Component {
                                     <i className="fa fa-angle-down"/>
                                 </a>
                                 <ul className="dropdown-menu dropdown-menu-default">
+                                    <CreditMenu />
                                     <li>
                                         <Link to="/v1/profile">
                                             <i className="icon-user"/> پروفایل من </Link>
