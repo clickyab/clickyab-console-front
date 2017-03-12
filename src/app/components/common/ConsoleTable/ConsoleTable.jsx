@@ -179,7 +179,7 @@ export class ConsoleTable extends Component {
                         </thead>
 
                         <tbody>
-                        <tr>
+                        <tr className="search-line">
                             {this.footers().map(
                                 (footer, index) => <ConsoleFooterCell
                                     key={index}

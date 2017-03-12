@@ -296,6 +296,9 @@ img.fullscreen-back {
 .table tr:last-child {
   margin-bottom: 90px;
 }
+tr.search-line , tr.search-line:hover , tr.search-line:hover td {
+  background: #fff !important;
+}
 
 @media (max-width: 768px) {
   .mt-element-step {

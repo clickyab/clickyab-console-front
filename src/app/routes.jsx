@@ -76,9 +76,9 @@ document.body.addEventListener('unauthorized401', function () {
 
 document.body.addEventListener('bad-request400', function () {
 
-    setTimeout(() => {
-        AlertBox("error","مشکلی به وجود آمده است لطفا دوباره تلاش کنید" , true);
-    },1);
+    // setTimeout(() => {
+    //     AlertBox("error","مشکلی به وجود آمده است لطفا دوباره تلاش کنید" , true);
+    // },1);
 
 });
 

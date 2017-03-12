@@ -3,6 +3,7 @@ import PasswordRecoveryPTR from "./PasswordRecoveryPTR";
 import swagger from "./../../swagger/index";
 import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
+let toastr = require('toastr');
 
 export default class PasswordRecoveryCTR extends Component {
     loadingProgress;
@@ -12,12 +13,7 @@ export default class PasswordRecoveryCTR extends Component {
     }
 
     forgotCallback({error, data, response}) {
-        console.log(response);
         if (response.statusCode == '200') {
-            SuccessBoxAlert({
-                error: 'اطلاعات کاربری شما صحیح نمی‌باشد.',
-                text: 'پسورد شما به موفقیت به روز رسانی شد.'
-            });
             $(".recovery-password-form , .form-top-left").fadeOut(function () {
                 $(".success-message-recovery").fadeIn();
                 $(".form-top-right i").attr("class", "fa fa-check");

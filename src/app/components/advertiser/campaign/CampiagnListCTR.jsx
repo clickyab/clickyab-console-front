@@ -127,6 +127,8 @@ export default class CampaignListCTR extends Component {
         return span;
     }
 
+
+
     archive_status(archive_status, {id, _actions}) {
         if (_actions.split(',').includes("archive_status")) {
             return <ChangeCampaignArchiveStatus id={id} archive_status={archive_status}

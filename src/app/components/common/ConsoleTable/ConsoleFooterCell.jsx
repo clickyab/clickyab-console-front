@@ -47,27 +47,26 @@ export class ConsoleFooterCell extends Component {
 
     render() {
         let {filters, footer, query_name, list, searchable, translator} = this.props;
-
         return (
-            <td>
-                <div className="search-filter-datatable">
-                    {searchable ?
-                        <input className="form-control input-sm type-search-datatable"
-                               onChange={(event) => {
-                                   this.onSearchChange(Object.assign({}, event));
-                               }}
-                               defaultValue={select('queries.' + list + "." + query_name, '')}
-                               placeholder={translator(footer.title)}/> : ''}
+                <td>
+                    <div className="search-filter-datatable">
+                        {searchable ?
+                            <input className="form-control input-sm type-search-datatable"
+                                   onChange={(event) => {
+                                       this.onSearchChange(Object.assign({}, event));
+                                   }}
+                                   defaultValue={select('queries.' + list + "." + query_name, '')}
+                                   placeholder={translator(footer.title)}/> : ''}
 
-                    {filters !== null ? <select
-                        defaultValue={select('queries.' + list + "." + query_name, '')}
-                        className="form-control input-sm select-datatable"
-                        onChange={(event) => {
-                            this.filterOnChange(Object.assign({}, event));
-                        }}>
-                        {this.getFilters(filters)}</select> : ''}
-                </div>
-            </td>
+                        {filters !== null ? <select
+                                defaultValue={select('queries.' + list + "." + query_name, '')}
+                                className="form-control input-sm select-datatable"
+                                onChange={(event) => {
+                                    this.filterOnChange(Object.assign({}, event));
+                                }}>
+                                {this.getFilters(filters)}</select> : ''}
+                    </div>
+                </td>
         );
     }
 }
