@@ -17,7 +17,7 @@ export default class CampaignReportListPTR extends Component {
             <div className='page-content'>
                 <div className='row'>
                     <div className='col-lg-8 col-md-8 col-sm-8 col-xs-12'>
-                        <h1 className='page-title'> مدیریت کمپین‌ها</h1>
+                        <h1 className='page-title'>ریز آمار کمپین</h1>
                     </div>
                 </div>
                 <div className='portlet light bordered datatable-parent'>

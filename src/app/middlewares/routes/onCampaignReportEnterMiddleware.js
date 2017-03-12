@@ -32,6 +32,15 @@ import {shouldUpdateDefinition} from "../../redux/helpers";
 //     }
 // }
 
+export function* requesttoGetCampaignDetail() {
+    const {error, data} = yield (new swagger.AdApi())
+        .campaignChartGet(select('user.token', 'no token'))
+
+    if (!error) {
+        dispatch(advertiserCampaignChartAction(data))
+    }
+}
+
 export default (nextState, replace, next) => sync(function*() {
     let id = nextState.params.campaign_id;
     try {
