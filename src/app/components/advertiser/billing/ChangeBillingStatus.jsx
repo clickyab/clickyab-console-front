@@ -20,7 +20,7 @@ export default class ChangeBillingStatus extends Component {
 
     render() {
         let {translator, status} = this.props;
-        return <select className="form-control input-sm" name="status" defaultValue={status}
+        return <select key={Math.random()} className="form-control input-sm" name="status" defaultValue={status}
                        onChange={this.edit.bind(this)}>
             <option data-tokens="accepted" value="accepted">{translator('accepted')}</option>
             <option data-tokens="pending" value="pending">{translator('pending')}</option>

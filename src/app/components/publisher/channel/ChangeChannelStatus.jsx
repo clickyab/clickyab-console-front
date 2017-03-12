@@ -20,7 +20,8 @@ export default class ChangeChannelStatus extends Component {
 
     render() {
         let {translator, admin_status} = this.props;
-        return <select className="form-control" name="status" defaultValue={admin_status}
+
+        return <select key={Math.random()} className="form-control" name="status" defaultValue={admin_status}
                        onChange={this.edit.bind(this)}>
             <option value="accepted">{translator('accepted')}</option>
             <option value="pending">{translator('pending')}</option>

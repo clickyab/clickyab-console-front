@@ -217,7 +217,7 @@ export class ConsoleTable extends Component {
                     <div className="col-sm-6 col-xs-12">
                         <div className="dataTables_length pagination">
                             <label>نمایش صفحه
-                                <select className="form-control input-sm input-xsmall input-inline text-center"
+                                <select key={Math.random()} className="form-control input-sm input-xsmall input-inline text-center"
                                         defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {
                                     this.onPaginationChange(parseInt(event.target.value));
                                 }}>
@@ -230,7 +230,7 @@ export class ConsoleTable extends Component {
                     <div className="col-sm-6 col-xs-12">
                         <div className="dataTables_length pull-left">
                             <label>نمایش
-                                <select className="form-control input-sm input-xsmall input-inline text-center"
+                                <select key={Math.random()} className="form-control input-sm input-xsmall input-inline text-center"
                                         onChange={(event) => {
                                             this.onPerPageChange(parseInt(event.target.value));
                                             dispatch(channelQueryAction(list, 'p', 1));

@@ -8,7 +8,7 @@ import {select} from "../functions/select";
 export default function version(store) {
 	return (next) => action => {
 		if (action.type === VERSION) {
-			if (store.getState().version !== "") {
+			if (store.getState().version !== "" && store.getState().version !== action.version) {
 				dispatch(logout(select('user')));
 				dispatch(updateUserInformation(select('user')));
 				dispatch(updateLocalStorageAction());
