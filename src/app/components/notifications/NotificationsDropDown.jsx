@@ -33,8 +33,8 @@ export default class NotificationsDropDown extends Component {
             <li className="dropdown dropdown-extended dropdown-notification notification-dropdown" id="header_notification_bar">
                 <div className="dropdown-toggle notifications-division" data-toggle="dropdown" data-hover="dropdown"
                      data-close-others="true" aria-expanded="false" style={{paddingRight: '7px'}}>
-                    <span className="badge badge-default"><Count/></span>
                     <i className="icon-bell"/>
+                    <span className="badge badge-default"><Count/></span>
                 </div>
                 <DropDown/>
             </li>
