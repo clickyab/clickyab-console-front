@@ -4,7 +4,7 @@ import SuccessNotification from "../notifications/SuccessNotification";
 import WarningNotification from "../notifications/WarningNotification";
 import {connect} from "react-redux";
 import {dispatch} from "../../functions/dispatch";
-import {markAllNotificationAsShown, removeNotification} from "../../redux/actions/index";
+import {markAllNotificationAsShown, removeNotification, emptyNotificationAction} from "../../redux/actions/index";
 import * as _ from "lodash";
 
 export default class NotificationsDropDown extends Component {
@@ -118,6 +118,21 @@ class DropDown extends Component {
         dispatch(removeNotification(id));
     }
 
+    showTrash(e) {
+        $(e.target).find('.time').append('<i id="trash" class="fa fa-trash-o" aria-hidden="true"></i>').css({
+            color: 'red',
+            fontSize: '15px'
+        })
+    }
+
+    hideTrash(e) {
+        $(e.target).find('#trash').detach();
+    }
+
+    clearAllNotification() {
+        dispatch(emptyNotificationAction());
+    }
+
     render() {
         let {notifications} = this.props;
         let orderedNotifications = this.order(notifications);
@@ -126,10 +141,12 @@ class DropDown extends Component {
             <ul className="dropdown-menu dropdown-menu-default keep_open">
                 <li className="external">
                     <h3>
-                        <span className="bold"><Count/> پیام </span> مشاهده نشده</h3>
+                        <span className="bold"><Count/> پیام </span> مشاهده نشده
+                    </h3>
+                        <a onClick={this.clearAllNotification} style={{fontSize: '12px'}}>حذف همه</a>
                 </li>
                 <ul className="dropdown-menu-list scroller">
-                    {orderedNotifications.map((data, index) => <li key={index}><a href="javascript:;"><span
+                    {orderedNotifications.map((data, index) => <li onMouseLeave={this.hideTrash} onMouseEnter={this.showTrash} key={index}><a href="javascript:;"><span
                         className="details"> {this.type(data)}</span></a></li>)}
                 </ul>
             </ul>
