@@ -22,13 +22,7 @@ export default class verifyPage extends Component {
             'پرداخت شما با موفقیت انجام شد.'
         );
 
-
-        setTimeout(
-            () => navigate('/v1/advertiser/campaign/create/:campaign_id:/step/preview', {
-                campaign_id: select('createCampaignData.id')
-            }),
-            3000
-        );
+        navigate('/v1/advertiser/campaign');
 
         return (<div/>)
     }
