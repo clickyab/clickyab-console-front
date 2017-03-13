@@ -37,6 +37,10 @@ export default class BillingListCTR extends Component {
         })
     }
 
+    depositAction() {
+        return <span key={Math.random()}>deposit</span>;
+    }
+
     sort(flag, query_name) {
         this.callApi('sort', query_name + ':' + flag)
     }
@@ -108,6 +112,7 @@ export default class BillingListCTR extends Component {
                                 onPaginationChange={this.onPaginationChange.bind(this)}
                                 onPerPageChange={this.onPerPageChange.bind(this)}
                                 edit={this.edit.bind(this)}
+                                depositAction={this.depositAction.bind(this)}
                                 translator={this.translator.bind(this)}
                                 mutators={{
                                     updated_at: this.updated_at,
