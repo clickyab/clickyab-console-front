@@ -38,13 +38,18 @@ import {publisherCountChannelReducer} from "./reducers/publisherCountChannelRedu
 import {translationListReducer} from "./reducers/translationListReducer";
 import {languageReducer} from "./reducers/languageReducer";
 import {translationReducer} from "./reducers/translationReducer";
+import {FLUSH} from "./actions/index";
 
 
 const enhancer = compose;
 const logger = createLogger(); // eslint-disable-line
 
-export const store = createStore(
-    combineReducers({
+const rootReducer = (state, action) => {
+    if (action.type === FLUSH) {
+        state = undefined
+    }
+
+    return combineReducers({
         login: loginReducer,
 
         impersonate: impersonateReducer,
@@ -98,7 +103,11 @@ export const store = createStore(
         language: languageReducer,
         translations: translationReducer,
 
-    }),
+    })(state, action)
+};
+
+export const store = createStore(
+    rootReducer,
     localStorage.get('initialState'),
     enhancer(applyMiddleware(
         cssLazyLoader(['LOCALE_CHANGED'], {
