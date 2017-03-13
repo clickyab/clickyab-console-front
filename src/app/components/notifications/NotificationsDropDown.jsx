@@ -133,6 +133,16 @@ class DropDown extends Component {
         dispatch(emptyNotificationAction());
     }
 
+    count(notifications) {
+        let count = 0;
+        notifications.map(notification => {
+            if (notification.shown)
+                count += 1;
+        });
+
+        return count;
+    }
+
     render() {
         let {notifications} = this.props;
         let orderedNotifications = this.order(notifications);
@@ -141,12 +151,14 @@ class DropDown extends Component {
             <ul className="dropdown-menu dropdown-menu-default keep_open">
                 <li className="external">
                     <h3>
-                        <span className="bold"><Count/> پیام </span> مشاهده نشده
+                        <span className="bold">{this.count(notifications)} پیام </span> آرشیو شده
                     </h3>
-                        <a onClick={this.clearAllNotification} style={{fontSize: '12px'}}>حذف همه</a>
+                    <a onClick={this.clearAllNotification} style={{fontSize: '12px'}}>حذف همه</a>
                 </li>
                 <ul className="dropdown-menu-list scroller">
-                    {orderedNotifications.map((data, index) => <li onMouseLeave={this.hideTrash} onMouseEnter={this.showTrash} key={index}><a href="javascript:;"><span
+                    {orderedNotifications.map((data, index) => <li onMouseLeave={this.hideTrash}
+                                                                   onMouseEnter={this.showTrash} key={index}><a
+                        href="javascript:;"><span
                         className="details"> {this.type(data)}</span></a></li>)}
                 </ul>
             </ul>
