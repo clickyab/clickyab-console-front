@@ -41,6 +41,7 @@ export default (nextState, replace, next) => sync(function*() {
         //     navigate('/v1/login');
         const {error, data} = yield (new swagger.ChannelApi())
             .channelSpecificIdGet(id, select('user.token'), {
+                sort: 'created_at:DESC',
                 ...select('queries.channelReport', {}),
                 def: shouldUpdateDefinition('channelReportList')
             });

@@ -22,6 +22,7 @@ function* roleListController(done) {
 
     const {error, data} = yield (new swagger.UserApi())
         .userRolesGet(select('user.token'), {
+            sort: 'created_at:DESC',
             ...select('queries.role', {}),
             def: true
         });

@@ -16,6 +16,7 @@ function* channelListController(done) {
     yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.ChannelApi())
         .channelListGet(select('user.token'), {
+            sort: 'created_at:DESC',
             ...select('queries.channel', {}),
             def: shouldUpdateDefinition('channelList')
         });

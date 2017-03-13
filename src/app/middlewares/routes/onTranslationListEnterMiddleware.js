@@ -15,6 +15,7 @@ function* translationListController(done) {
     loading(true);
     const {error, data} = yield (new swagger.MiscApi())
         .miscTranslateLangGet(select("locale"), getToken(), {
+            sort: 'created_at:DESC',
             ...select('queries.translation', {}),
             def: shouldUpdateDefinition('translationList')
         });

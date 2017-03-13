@@ -61,6 +61,7 @@ export default class TranslationListCTR extends Component {
         let {dispatch} = this.props;
         sync(function*() {
             let {data} = yield (new swagger.MiscApi).miscTranslateLangGet(select("locale"), getToken(), {
+                sort: 'created_at:DESC',
                 ...select('queries.translation', {}),
                 [query_name]: value
             });

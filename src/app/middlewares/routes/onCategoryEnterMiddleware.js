@@ -14,6 +14,7 @@ function* categoryListController(done) {
     loading(true);
     const {error, data} = yield (new swagger.CategoryApi())
         .categoryListGet(select('user.token'), {
+            sort: 'created_at:DESC',
             ...select('queries.category', {}),
             def: true
         });

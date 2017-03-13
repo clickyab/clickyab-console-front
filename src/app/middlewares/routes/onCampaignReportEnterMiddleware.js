@@ -48,6 +48,7 @@ export default (nextState, replace, next) => sync(function*() {
 
         const {error, data} = yield (new swagger.AdApi())
             .campaignDetailIdGet(id, select('user.token'), {
+                sort: 'created_at:DESC',
                 ...select('queries.campaignReport', {}),
                 def: shouldUpdateDefinition('campaignReportList')
             });

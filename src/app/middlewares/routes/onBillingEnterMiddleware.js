@@ -16,6 +16,7 @@ function* BillingListController(done) {
     yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.BillingApi())
         .billingListGet(select('user.token', 'no token'), {
+            sort: 'created_at:DESC',
             ...select('queries.billing', {}),
             def: shouldUpdateDefinition('billingList')
         });

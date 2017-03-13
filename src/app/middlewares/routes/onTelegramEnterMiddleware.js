@@ -15,6 +15,7 @@ function* telegramListController(done) {
     loading(true);
     const {error, data} = yield (new swagger.TelegramApi())
         .telegramListGet(select('user.token'), {
+            sort: 'created_at:DESC',
             ...select('queries.telegram', {}),
             def: shouldUpdateDefinition('telegramList')
         });
