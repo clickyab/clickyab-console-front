@@ -30,11 +30,12 @@ export default class NotificationsDropDown extends Component {
 
     render() {
         return (
-            <li className="dropdown dropdown-extended dropdown-notification notification-dropdown" id="header_notification_bar">
+            <li className="dropdown dropdown-extended dropdown-notification notification-dropdown"
+                id="header_notification_bar">
                 <div className="dropdown-toggle notifications-division" data-toggle="dropdown" data-hover="dropdown"
                      data-close-others="true" aria-expanded="false" style={{paddingRight: '7px'}}>
                     <i className="icon-bell"/>
-                    <span className="badge badge-default"><Count/></span>
+                    <Count/>
                 </div>
                 <DropDown/>
             </li>
@@ -55,8 +56,13 @@ class Count extends Component {
     }
 
     render() {
+        const count = this.count(this.props.notifications);
         return (
-            <span>{ this.count(this.props.notifications) }</span>
+            count != 0 ?
+                <span className="badge badge-default">
+                    <span>{ this.count(this.props.notifications) }</span>
+                </span> :
+                <span/>
         )
 
     }
@@ -123,7 +129,8 @@ class DropDown extends Component {
                         <span className="bold"><Count/> پیام </span> مشاهده نشده</h3>
                 </li>
                 <ul className="dropdown-menu-list scroller">
-                    {orderedNotifications.map((data, index) => <li key={index}><a href="javascript:;"><span className="details"> {this.type(data)}</span></a></li>)}
+                    {orderedNotifications.map((data, index) => <li key={index}><a href="javascript:;"><span
+                        className="details"> {this.type(data)}</span></a></li>)}
                 </ul>
             </ul>
         );
