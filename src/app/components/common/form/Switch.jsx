@@ -24,6 +24,7 @@ class SettingCell extends React.Component {
             <label className={classNames('settingCell', className)}>
                 <div className={'switchValue'}>
                     <Switch
+                        onColor="#ff7200"
                         checked={this.checked}
                         className={'switch'}
                         onChange={this.handleChange.bind(this)}
