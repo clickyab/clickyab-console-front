@@ -4,7 +4,7 @@ import SuccessNotification from "../notifications/SuccessNotification";
 import WarningNotification from "../notifications/WarningNotification";
 import {connect} from "react-redux";
 import {dispatch} from "../../functions/dispatch";
-import {markAllNotificationAsShown, removeNotification, emptyNotificationAction} from "../../redux/actions/index";
+import {markAllNotificationAsShown, removeNotification, emptyNotificationAction, updateLocalStorageAction} from "../../redux/actions/index";
 import * as _ from "lodash";
 
 export default class NotificationsDropDown extends Component {
@@ -16,7 +16,8 @@ export default class NotificationsDropDown extends Component {
 
     bindToNotifications() {
         $('.notification-dropdown').on('shown.bs.dropdown', function () {
-            dispatch(markAllNotificationAsShown())
+            dispatch(markAllNotificationAsShown());
+            dispatch(updateLocalStorageAction())
         });
     }
 
@@ -116,6 +117,7 @@ class DropDown extends Component {
 
     onAnEventSeenClick(id) {
         dispatch(removeNotification(id));
+        dispatch(updateLocalStorageAction());
     }
 
     showTrash(e) {
@@ -131,6 +133,7 @@ class DropDown extends Component {
 
     clearAllNotification() {
         dispatch(emptyNotificationAction());
+        dispatch(updateLocalStorageAction())
     }
 
     count(notifications) {
