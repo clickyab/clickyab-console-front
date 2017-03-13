@@ -266,7 +266,8 @@ class StepPreviewPTR extends Component {
                                                 </div>
                                             </div>
                                             <div className="form-group">
-                                                <label className="control-label col-md-3">تاریخ آخرین به‌روز رسانی :</label>
+                                                <label className="control-label col-md-3">تاریخ آخرین به‌روز رسانی
+                                                    :</label>
                                                 <div className="col-md-9">
                                                     <p className="form-control-static"> {created_at(data.updated_at)} </p>
                                                 </div>
