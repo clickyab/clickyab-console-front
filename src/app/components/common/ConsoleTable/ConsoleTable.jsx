@@ -142,7 +142,11 @@ export class ConsoleTable extends Component {
     }
 
     render() {
+<<<<<<< Updated upstream
         let {sort, filter, list, change, edit, search, mutators, translator} = this.props;
+=======
+        let {sort, filter, list, change, edit, depositAction, search, mutators, translator} = this.props;
+>>>>>>> Stashed changes
 
         return (
             <div className="table-holder">
@@ -214,6 +218,10 @@ export class ConsoleTable extends Component {
                                                                             mutator={mutators[header.data]}
                                                                             actions={header.data == "_actions"}
                                                                             change={change} edit={edit}
+<<<<<<< Updated upstream
+=======
+                                                                            depositAction={depositAction}
+>>>>>>> Stashed changes
                                                                             className="value-datatable"
                                                                             rowIndex={rowIndex} {...cell}/>
                                 )}
