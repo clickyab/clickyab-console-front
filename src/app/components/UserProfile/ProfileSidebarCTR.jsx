@@ -2,8 +2,8 @@ import React, {Component} from "react";
 import ProfileSidebarPTR from "./ProfileSidebarPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
-import {SuccessBoxAlert, FailedBoxAlert} from "../../functions/notifications";
-import {asyncRemoveLocalStorageAction} from "../../redux/actions/index";
+import {FailedBoxAlert} from "../../functions/notifications";
+import {asyncRemoveLocalStorageAction, flush} from "../../redux/actions/index";
 import {getToken} from "../../redux/helpers";
 import {logout} from "../../redux/actions/login";
 import {navigate} from "../../functions/navigate";
@@ -17,6 +17,7 @@ export default class ProfileSidebarCTR extends Component {
         let {dispatch} = this.props;
 
         dispatch(logout(user));
+        dispatch(flush());
         dispatch(asyncRemoveLocalStorageAction());
         navigate('/v1/login');
     }
@@ -25,11 +26,6 @@ export default class ProfileSidebarCTR extends Component {
     LogoutCallback({error, data, response}) {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-
-            SuccessBoxAlert({
-                text: "پروفایل شما با موفقیت به روز شد.",
-                error: "مشکلی در به روز رسانی پروفایل شما رخ داده است."
-            });
         } else if (response.statusCode == '400') {
 
             this.stopLoading();

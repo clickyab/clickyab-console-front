@@ -4,7 +4,7 @@ import swagger from "./../../swagger/index"
 import {connect} from "react-redux";
 import {successfulLogin, failedLogin} from "../../redux/actions/login";
 import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
-import {updateLocalStorageAction} from "../../redux/actions/index";
+import {updateLocalStorageAction, flush} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {navigate} from "../../functions/navigate";
 let Ladda = require('ladda/js/ladda');
@@ -14,6 +14,7 @@ export default class LoginCTR extends Component {
     loadingProgress;
 
     componentDidMount() {
+        this.props.dispatch(flush());
         $('.preloader-page').hide();
     }
 

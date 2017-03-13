@@ -2,6 +2,9 @@ export const UPDATE_LOCAL_STORAGE = 'UPDATE_LOCAL_STORAGE';
 export const REMOVE_LOCAL_STORAGE = 'REMOVE_LOCAL_STORAGE';
 export const CHANGE_QUERY = 'CHANGE_QUERY';
 
+export const FLUSH = "FLUSH";
+export const flush = () => ({type: FLUSH});
+
 export const planListAction = (data) => ({type: PLAN_LIST, data});
 export const PLAN_LIST = 'PLAN_LIST';
 

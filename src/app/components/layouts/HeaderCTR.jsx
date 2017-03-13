@@ -7,7 +7,7 @@ import {getGravatarFromEmail} from "../../functions/gravatar";
 import SwitcherCTR from "./SwitcherCTR";
 import {logout} from "../../redux/actions/login";
 import {updateUserInformation} from "../../redux/actions/user";
-import {updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../../redux/actions/index";
+import {updateLocalStorageAction, asyncRemoveLocalStorageAction, flush} from "../../redux/actions/index";
 import {navigate} from "../../functions/navigate";
 import swagger from "./../../swagger/index";
 import {AlertBox} from "../../functions/notifications";
@@ -28,6 +28,7 @@ export class Header extends Component {
         let {dispatch} = this.props;
 
         dispatch(logout(user));
+        dispatch(flush());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
         dispatch(asyncRemoveLocalStorageAction());
