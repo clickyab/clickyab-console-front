@@ -32,6 +32,7 @@ export default class CategoryListCTR extends Component {
         let {dispatch} = this.props;
         sync(function*() {
             let {data} = yield (new swagger.CategoryApi).categoryListGet(select('user.token', 'no token'), {
+                sort: 'created_at:DESC',
                 ...select('queries.category', {}),
                 [query_name]: value
             });

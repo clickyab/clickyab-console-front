@@ -16,6 +16,7 @@ function* campaignListController(done) {
     yield* isLoginMiddleware();
     const {error, data} = yield (new swagger.AdApi())
         .campaignListGet(select('user.token'), {
+            sort: 'created_at:DESC',
             ...select('queries.campaign', {}),
             def: shouldUpdateDefinition('campaignList')
         });

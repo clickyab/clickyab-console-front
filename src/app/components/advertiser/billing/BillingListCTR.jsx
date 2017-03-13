@@ -28,6 +28,7 @@ export default class BillingListCTR extends Component {
         let {dispatch} = this.props;
         sync(function*() {
             let {data} = yield (new swagger.BillingApi).billingListGet(select('user.token', 'no token'), {
+                sort: 'created_at:DESC',
                 ...select('queries.billing', {}),
                 [query_name]: value
             });

@@ -96,6 +96,7 @@ export class ConsoleTable extends Component {
     onPerPageChange(per_page) {
         let {onPerPageChange, list} = this.props;
 
+        dispatch(channelQueryAction(list, 'p', 1));
         dispatch(channelQueryAction(list, 'c', per_page));
         dispatch(updateLocalStorageAction());
 
@@ -110,6 +111,8 @@ export class ConsoleTable extends Component {
         let pages_count = Math.floor(this.props.total / per_page);
         if (pages_count == 0) {
             pages_count = 1;
+        } else {
+            pages_count += 1;
         }
 
         let pages = [];

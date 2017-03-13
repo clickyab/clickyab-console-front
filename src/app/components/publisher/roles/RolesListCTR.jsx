@@ -25,6 +25,7 @@ export default class RolesListCTR extends Component {
         sync(function*() {
             let {data} = yield (new swagger.UserApi())
                 .userRolesGet(select('user.token', 'no token'), {
+                    sort: 'created_at:DESC',
                     ...select('queries.role', {}),
                     [query_name]: value
                 });

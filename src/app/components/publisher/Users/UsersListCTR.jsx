@@ -39,6 +39,7 @@ export default class UsersListCTR extends Component {
         sync(function*() {
             let {data} = yield (new swagger.UserApi)
                 .userUsersGet(select('user.token', 'no token'), {
+                    sort: 'created_at:DESC',
                     ...select('queries.user', {}),
                     [query_name]: value
                 });

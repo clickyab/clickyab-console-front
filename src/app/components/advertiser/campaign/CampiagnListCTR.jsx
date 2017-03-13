@@ -57,6 +57,7 @@ export default class CampaignListCTR extends Component {
         let {dispatch} = this.props;
         sync(function*() {
             let {data} = yield (new swagger.AdApi()).campaignListGet(select('user.token', 'no token'), {
+                sort: 'created_at:DESC',
                 ...select('queries.campaign', {}),
                 [query_name]: value
             });

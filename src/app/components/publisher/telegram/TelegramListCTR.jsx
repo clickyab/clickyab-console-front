@@ -28,6 +28,7 @@ export default class TelegramListCTR extends Component {
         let {dispatch} = this.props;
         sync(function*() {
             let {data} = yield (new swagger.TelegramApi).telegramListGet(select('user.token', 'no token'), {
+                sort: 'created_at:DESC',
                 ...select('queries.telegram', {}),
                 [query_name]: value
             });
