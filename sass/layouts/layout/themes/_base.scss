@@ -91,12 +91,12 @@
                             > li {
                                 > a {
                                     .time {
-                                        background: $header-top-menu-notification-time-bg-color;
+                                        //background: $header-top-menu-notification-time-bg-color;
                                     }
 
                                     &:hover {
                                         .time {
-                                            background: darken($header-top-menu-notification-time-bg-color, 5%);
+                                            //background: darken($header-top-menu-notification-time-bg-color, 5%);
                                         }
                                     } 
                                 }

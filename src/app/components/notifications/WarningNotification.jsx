@@ -7,15 +7,15 @@ export default class WarningNotification extends Component {
         onAnEventSeenClick(id);
     }
 
-	render() {
+    render() {
         let {count, notification: {message}} = this.props;
 
-		return (
-			<div>
-				<span className="label label-sm label-icon label-warning"><i className="fa fa-bell-o"/></span>
-				<span className="title">{count} - {message}  </span>
-				<span className="time" onClick={this.onClick.bind(this)}>حذف</span>
-			</div>
-		);
-	}
+        return (
+            <div>
+                <span className="label label-sm label-icon label-warning"><i className="fa fa-bell-o"/></span>
+                <span className="title">{count} - {message}  </span>
+                <span className="time" onClick={this.onClick.bind(this)} />
+            </div>
+        );
+    }
 }

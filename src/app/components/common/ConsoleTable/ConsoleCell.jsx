@@ -3,6 +3,7 @@ import React, {Component} from "react";
 export class ConsoleCell extends Component {
     buildActions(id, item) {
         let {depositAction, edit} = this.props;
+
         const actionKeys = item.split(',');
         let buttons = [];
         for (let i = 0; i < actionKeys.length; i++) {
