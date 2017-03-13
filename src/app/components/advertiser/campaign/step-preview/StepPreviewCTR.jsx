@@ -8,6 +8,7 @@ import {select} from "../../../../functions/select";
 import {AlertBox} from "../../../../functions/notifications";
 import {campaignPaymentData} from "../../../../redux/actions/index";
 import {dispatch} from "../../../../functions/dispatch";
+import {getToken} from "../../../../redux/helpers";
 let Ladda = require('ladda/js/ladda');
 
 @connect(({createCampaignData}) => ({createCampaignData}))
@@ -21,7 +22,7 @@ export default class StepPreviewCTR extends Component {
     activeStatus() {
         sync(function *() {
             yield (new swagger.AdApi())
-                .campaignListActiveStatusIdPut(select('createCampaignData.id'), select('user.token', 'no token'), {
+                .campaignListActiveStatusIdPut(select('createCampaignData.id'), getToken(), {
                     payloadData: {
                         "active_status": 'yes'
                     }
@@ -32,7 +33,7 @@ export default class StepPreviewCTR extends Component {
     requestAfterPayment() {
         sync(function *() {
             let {data, response} = yield (new swagger.BillingApi())
-                .billingPaymentIdGet(select('createCampaignData.pay_id'), select('user.token', 'no token'))
+                .billingPaymentIdGet(select('createCampaignData.pay_id'), getToken());
 
             if (response.statusCode == '200') {
                 dispatch(campaignPaymentData(data));
@@ -47,7 +48,7 @@ export default class StepPreviewCTR extends Component {
             this.loadingProgressSend = Ladda.create(document.querySelector('button.pay-button'));
             this.loadingProgressSend.start();
             let {data, response} = yield (new swagger.AdApi())
-                .campaignPayAdIdGet(select('createCampaignData.id'), select('user.token', 'no token'));
+                .campaignPayAdIdGet(select('createCampaignData.id'), getToken());
 
             if (response.statusCode == '200') {
                 window.location = data;
@@ -55,8 +56,6 @@ export default class StepPreviewCTR extends Component {
                 AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید");
                 this.loadingProgressSend.stop();
             }
-
-
         }.bind(this));
     }
 

@@ -50,7 +50,6 @@ export default class SelectPlanPTR extends Component {
                     }
                 );
                 if (response.statusCode == '200') {
-                    AlertBox("success", "پلن با موفقیت انتخاب شد");
                     this.loadingProgressSend.stop();
                     dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
                         plan_id: this.planID,
