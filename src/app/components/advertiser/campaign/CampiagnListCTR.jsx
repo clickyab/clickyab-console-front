@@ -205,6 +205,9 @@ export default class CampaignListCTR extends Component {
                                      src: this.src.bind(this),
                                      active_status: this.active_status.bind(this)
                                  }}
+                                 defaults={{
+                                     view: 0
+                                 }}
         />);
     }
 }

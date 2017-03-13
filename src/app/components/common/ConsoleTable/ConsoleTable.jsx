@@ -11,6 +11,11 @@ export class ConsoleTable extends Component {
         super(props);
     }
 
+    static defaultProps = {
+        defaults: {},
+        mutators: {}
+    };
+
     componentDidMount() {
         // let thlist = document.querySelectorAll("table th") , i ;
         // for (i = 0; i < thlist.length; ++i) {
@@ -41,7 +46,7 @@ export class ConsoleTable extends Component {
     }
 
     rows() {
-        let {items} = this.props;
+        let {items, defaults} = this.props;
         let rows = [];
         const rowsCount = items.length;
 
@@ -50,7 +55,10 @@ export class ConsoleTable extends Component {
             let row = [];
             for (let header of this.headers()) {
                 row.push({
-                    cell: Object.assign({}, cells, {name: header.data, data: cells[header.data]}),
+                    cell: Object.assign({}, cells, {
+                        name: header.data,
+                        data: cells[header.data] || defaults[header.data]
+                    }),
                     header: header
                 });
             }
@@ -132,9 +140,7 @@ export class ConsoleTable extends Component {
 
     render() {
         let {sort, filter, list, change, edit, search, mutators, translator} = this.props;
-        if (!mutators) {
-            mutators = {};
-        }
+
         return (
             <div className="table-holder">
                 <div className="loader-table" style={{display: 'none'}}>
@@ -142,12 +148,12 @@ export class ConsoleTable extends Component {
                 </div>
                 <div id="show-hide-action-btns">
                     {/*<div className="btn-group customize-row">*/}
-                        {/*<button className="btn btn-info dropdown-toggle margin-top-20 margin-bottom-20" data-toggle="dropdown" aria-expanded="false">شخصی سازی ستون ها*/}
-                            {/*<i className="fa fa-angle-down"/>*/}
-                        {/*</button>*/}
-                        {/*<ul className="dropdown-menu keep_open">*/}
+                    {/*<button className="btn btn-info dropdown-toggle margin-top-20 margin-bottom-20" data-toggle="dropdown" aria-expanded="false">شخصی سازی ستون ها*/}
+                    {/*<i className="fa fa-angle-down"/>*/}
+                    {/*</button>*/}
+                    {/*<ul className="dropdown-menu keep_open">*/}
 
-                        {/*</ul>*/}
+                    {/*</ul>*/}
                     {/*</div>*/}
                     {/*<button type="button" data-column="#row-1">Hide/show 1st</button>*/}
                     {/*<button type="button" data-column="#row-2">Hide/show 3rd</button>*/}
@@ -171,7 +177,7 @@ export class ConsoleTable extends Component {
                                     width={header.width}
                                     searchable={header.searchable}
                                 >
-                                    {typeof translator(header.name) == 'string' ? translator(header.name):header.name}
+                                    {typeof translator(header.name) == 'string' ? translator(header.name) : header.name}
                                 </ConsoleHeaderCell>
                             )}
                         </tr>
@@ -217,7 +223,8 @@ export class ConsoleTable extends Component {
                     <div className="col-sm-6 col-xs-12">
                         <div className="dataTables_length pagination">
                             <label>نمایش صفحه
-                                <select key={Math.random()} className="form-control input-sm input-xsmall input-inline text-center"
+                                <select key={Math.random()}
+                                        className="form-control input-sm input-xsmall input-inline text-center"
                                         defaultValue={select('queries.' + list + '.p', 1)} onChange={(event) => {
                                     this.onPaginationChange(parseInt(event.target.value));
                                 }}>
@@ -230,7 +237,8 @@ export class ConsoleTable extends Component {
                     <div className="col-sm-6 col-xs-12">
                         <div className="dataTables_length pull-left">
                             <label>نمایش
-                                <select key={Math.random()} className="form-control input-sm input-xsmall input-inline text-center"
+                                <select key={Math.random()}
+                                        className="form-control input-sm input-xsmall input-inline text-center"
                                         onChange={(event) => {
                                             this.onPerPageChange(parseInt(event.target.value));
                                             dispatch(channelQueryAction(list, 'p', 1));
@@ -242,7 +250,8 @@ export class ConsoleTable extends Component {
                                     <option value="40">40</option>
                                     <option value="50">50</option>
                                 </select>
-                                در صفحه از <span className="bold">{select(this.props.list + 'List.items').length}</span> مورد
+                                در صفحه از <span className="bold">{select(this.props.list + 'List.items').length}</span>
+                                مورد
                             </label>
                         </div>
                     </div>
