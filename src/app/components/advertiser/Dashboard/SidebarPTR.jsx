@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {translatable} from "react-multilingual/dist";
 import {Link, SidebarLinks} from "./../../../components/custom-link/CustomLink";
+import {securify} from "../../../functions/securify";
 
 @translatable(
     ({dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access}) =>
@@ -36,24 +37,36 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                         </Link>
 
-                        <Link to="/v1/advertiser/telegram" activeClassName='active'>
-                            <i className='fa fa-user'/>
-                            <span className='title'>کاربران تلگرام</span>
-                            <span className="selected"/>
-                        </Link>
+                        {securify(
+                            () => <Link to="/v1/advertiser/telegram" activeClassName='active'>
+                                <i className='fa fa-user'/>
+                                <span className='title'>کاربران تلگرام</span>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSideBarTelegramUserList}, run) => run(canSeeSideBarTelegramUserList())
+                        )}
 
-                        <Link to='/v1/advertiser/billing' activeClassName='active'>
-                            <i className='fa fa-list'/>
-                            <span className='title'>لیست پرداخت‌ها</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                        </Link>
-                        <Link to='/v1/advertiser/translation' activeClassName='active'>
-                            <i className='fa fa-list'/>
-                            <span className='title'>ترجمه ها</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                        </Link>
+
+                        {securify(
+                            () => <Link to='/v1/advertiser/billing' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>لیست پرداخت‌ها</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSideBarBillingList}, run) => run(canSeeSideBarBillingList())
+                        )}
+
+                        {securify(
+                            () => <Link to='/v1/advertiser/translation' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>ترجمه ها</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSideBarTranslateList}, run) => run(canSeeSideBarTranslateList())
+                        )}
+
 
                         <li className="heading">
                             <h3>کمپین‌ها</h3>

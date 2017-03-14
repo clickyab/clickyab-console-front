@@ -31,11 +31,15 @@ export class Sidebar extends Component {
                             <span className="selected"/>
                         </Link>
 
-                        <Link to="/v1/publisher/channel">
-                            <i className='fa fa-television'/>
-                            <span className='title'>کانال‌ها</span>
-                            <span className="selected"/>
-                        </Link>
+                        {securify(
+                            () => <Link to="/v1/publisher/channel">
+                                <i className='fa fa-television'/>
+                                <span className='title'>کانال‌ها</span>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSideBarChannelList}, run) => run(canSeeSideBarChannelList())
+                        )}
+
 
                         {securify(
                             () => <Link to="/v1/publisher/user">
@@ -55,18 +59,26 @@ export class Sidebar extends Component {
                             ({user}, {canSeeSidebarRoleList}, run) => run(canSeeSidebarRoleList())
                         )}
 
-                        <Link to="/v1/publisher/telegram">
-                            <i className='fa fa-user'/>
-                            <span className='title'>مدیریت کانال ها</span>
-                            <span className="selected"/>
-                        </Link>
+                        {securify(
+                            () => <Link to="/v1/publisher/telegram">
+                                <i className='fa fa-user'/>
+                                <span className='title'>مدیریت کانال ها</span>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSideBarTelegramUserList}, run) => run(canSeeSideBarTelegramUserList())
+                        )}
 
-                        <Link to='/v1/publisher/translation' activeClassName='active'>
-                            <i className='fa fa-list'/>
-                            <span className='title'>ترجمه ها</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                        </Link>
+
+                        {securify(
+                            () => <Link to='/v1/publisher/translation' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>ترجمه ها</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeSideBarTranslateList}, run) => run(canSeeSideBarTranslateList())
+                        )}
+
                     </SidebarLinks>
                 </div>
             </div>

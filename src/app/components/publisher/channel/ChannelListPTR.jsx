@@ -4,6 +4,7 @@ import EditChannelModalCTR from "./EditChannelModalCTR";
 import AddChannelModalCTR from "./AddChannelModalCTR";
 import {select} from "../../../functions/select";
 import {navigate} from "../../../functions/navigate";
+import {securify} from "../../../functions/securify";
 
 export default class ChannelListPTR extends Component {
 
@@ -56,13 +57,17 @@ export default class ChannelListPTR extends Component {
                         <div className='caption'>
                             <span className='caption-subject bold uppercase font-dark'> لیست کانال ها </span>
                         </div>
-                        <div className="actions">
-                            <div className="btn-group btn-group-devided" data-toggle="buttons">
-                                <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
-                                        id="showAddChannelModalForm">افزودن کانال جدید
-                                </button>
-                            </div>
-                        </div>
+                        {securify(
+                            () => <div className="actions">
+                                <div className="btn-group btn-group-devided" data-toggle="buttons">
+                                    <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
+                                            id="showAddChannelModalForm">افزودن کانال جدید
+                                    </button>
+                                </div>
+                            </div>,
+                            ({user}, {canSeeCreateChannel}, run) => run(canSeeCreateChannel())
+                        )}
+
                     </div>
                     <div className='portlet-body'>
                         <ConsoleTable {...this.props} list="channel"/>
