@@ -4,7 +4,12 @@ import SuccessNotification from "../notifications/SuccessNotification";
 import WarningNotification from "../notifications/WarningNotification";
 import {connect} from "react-redux";
 import {dispatch} from "../../functions/dispatch";
-import {markAllNotificationAsShown, removeNotification, emptyNotificationAction, updateLocalStorageAction} from "../../redux/actions/index";
+import {
+    markAllNotificationAsShown,
+    removeNotification,
+    emptyNotificationAction,
+    updateLocalStorageAction
+} from "../../redux/actions/index";
 import * as _ from "lodash";
 
 export default class NotificationsDropDown extends Component {
@@ -121,10 +126,13 @@ class DropDown extends Component {
     }
 
     showTrash(e) {
+        $(e.target).css('cursor', 'default')
         $(e.target).find('.time').append('<i id="trash" class="fa fa-trash-o" aria-hidden="true"></i>').css({
             color: 'red',
-            fontSize: '15px'
+            fontSize: '15px',
+            cursor: 'pointer'
         })
+
     }
 
     hideTrash(e) {
@@ -160,9 +168,12 @@ class DropDown extends Component {
                 </li>
                 <ul className="dropdown-menu-list scroller">
                     {orderedNotifications.map((data, index) => <li onMouseLeave={this.hideTrash}
-                                                                   onMouseEnter={this.showTrash} key={index}><a
-                        href="javascript:;"><span
-                        className="details"> {this.type(data)}</span></a></li>)}
+                                                                   onMouseEnter={this.showTrash} key={index}
+                    >
+                        <a href="javascript:;">
+                            <span
+                            className="details"> {this.type(data)}</span></a>
+                    </li>)}
                 </ul>
             </ul>
         );

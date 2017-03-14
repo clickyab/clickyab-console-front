@@ -6,10 +6,10 @@ let notification;
 let lastTimeWeShowed = null;
 
 function display() {
-	const msg = '<a href="/v1/profile" style="color:white">لطفا برای نکمیل اطلاعات حساب خود کلیک نمایید.</a>';
+	const msg = 'لطفا برای نکمیل اطلاعات حساب خود کلیک نمایید.';
 
 	if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true)
-			notification = NotifyBox('warning', msg, 8000);
+			notification = NotifyBox('warning', msg);
 }
 
 export default function checkSubmitProfile() {

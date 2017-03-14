@@ -43,6 +43,41 @@ export default {
 
         return failed("comments");
     },
+    canSeeSideBarTranslateList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('translate_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeSideBarChannelList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('channel_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeSideBarBillingList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('billing_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeSideBarTelegramUserList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('teleuser_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeCreateChannel: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('create_channel'))
+            return ok("comments");
+
+        return failed("comments");
+    }
 
 
 }
