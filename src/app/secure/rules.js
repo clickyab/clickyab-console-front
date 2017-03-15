@@ -77,7 +77,35 @@ export default {
             return ok("comments");
 
         return failed("comments");
-    }
+    },
+    canSeeCreateAd: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('create_ad'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeAdList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('ad_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeAdvertiserPieChart: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('pie_chart_advertiser'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeePromoteAd: () => ({user: {perm}}, ok, failed) => { //In create campaign
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('promote_ad'))
+            return ok("comments");
+
+        return failed("comments");
+    },
 
 
 }

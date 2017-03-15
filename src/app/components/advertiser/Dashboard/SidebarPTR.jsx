@@ -71,19 +71,27 @@ export class Sidebar extends Component {
                         <li className="heading">
                             <h3>کمپین‌ها</h3>
                         </li>
-                        <Link to='/v1/advertiser/campaign/create/step/name' activeClassName='active'>
-                            <i className='fa fa-plus-circle'/>
-                            <span className='title'>افزودن کمپین</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                        </Link>
 
-                        <Link to='/v1/advertiser/campaign' activeClassName='active'>
-                            <i className='fa fa-list'/>
-                            <span className='title'>لیست کمپین</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                        </Link>
+                        {securify(
+                            () => <Link to='/v1/advertiser/campaign/create/step/name' activeClassName='active'>
+                                <i className='fa fa-plus-circle'/>
+                                <span className='title'>افزودن کمپین</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeCreateAd}, run) => run(canSeeCreateAd())
+                        )}
+
+                        {securify(
+                            () => <Link to='/v1/advertiser/campaign' activeClassName='active'>
+                                <i className='fa fa-list'/>
+                                <span className='title'>لیست کمپین</span>
+                                <span className='selected'/>
+                                <span className="selected"/>
+                            </Link>,
+                            ({user}, {canSeeAdList}, run) => run(canSeeAdList())
+                        )}
+
                     </SidebarLinks>
                 </div>
             </div>

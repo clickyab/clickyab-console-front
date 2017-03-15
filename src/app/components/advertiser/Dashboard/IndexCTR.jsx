@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {translatable} from "react-multilingual/dist";
 import {loading} from "../../../functions/loading";
 import {select} from "../../../functions/select";
+import {securify} from "../../../functions/securify";
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
 require('amcharts3/amcharts/serial');
@@ -165,19 +166,22 @@ export default class AdvertiserDashboardPage extends Component {
                         </div>
                     </div>
 
-                    <div className="col-lg-6 col-xs-12 col-sm-12">
-                        <div className="portlet light bordered">
-                            <div className="portlet-title">
-                                <div className="caption">
-                                    <i className="icon-share font-red-sunglo hide"/>
-                                    <span className="caption-subject font-dark  uppercase">آمار کانال های نمایش داده شده</span>
+                    {securify(
+                        () => <div className="col-lg-6 col-xs-12 col-sm-12">
+                            <div className="portlet light bordered">
+                                <div className="portlet-title">
+                                    <div className="caption">
+                                        <i className="icon-share font-red-sunglo hide"/>
+                                        <span className="caption-subject font-dark  uppercase">آمار کانال های نمایش داده شده</span>
+                                    </div>
+                                </div>
+                                <div className="portlet-body">
+                                    <div id="pieChart" style={{width: '100%' , height: '500px'}} className='CSSAnimationChart'></div>
                                 </div>
                             </div>
-                            <div className="portlet-body">
-                                <div id="pieChart" style={{width: '100%' , height: '500px'}} className='CSSAnimationChart'></div>
-                            </div>
-                        </div>
-                    </div>
+                        </div>,
+                        ({user}, {canSeeAdvertiserPieChart}, run) => run(canSeeAdvertiserPieChart())
+                    )}
                 </div>
             </div>
         );
