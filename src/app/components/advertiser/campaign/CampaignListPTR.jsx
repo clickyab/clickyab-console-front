@@ -3,6 +3,7 @@ import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
 import {navigate} from "../../../functions/navigate";
 import {dispatch} from "../../../functions/dispatch";
 import {createCampaign} from "../../../redux/actions/index";
+import {securify} from "../../../functions/securify";
 
 export default class CampaignListPTR extends Component {
     componentDidMount() {
@@ -26,13 +27,17 @@ export default class CampaignListPTR extends Component {
                         <div className='caption'>
                             <span className='caption-subject bold uppercase font-dark'>لیست کمپین ها</span>
                         </div>
-                        <div className="actions">
-                            <div className="btn-group btn-group-devided" data-toggle="buttons">
-                                <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
-                                        id="showAddCampaign">ساخت کمپین جدید
-                                </button>
-                            </div>
-                        </div>
+                        {securify(
+                            () => <div className="actions">
+                                <div className="btn-group btn-group-devided" data-toggle="buttons">
+                                    <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
+                                            id="showAddCampaign">ساخت کمپین جدید
+                                    </button>
+                                </div>
+                            </div>,
+                            ({user}, {canSeeCreateAd}, run) => run(canSeeCreateAd())
+                        )}
+
                     </div>
                     <div className='portlet-body'>
                         <ConsoleTable {...this.props} list="campaign"/>

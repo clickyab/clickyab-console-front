@@ -6,6 +6,7 @@ import {dispatch} from "../../../../functions/dispatch";
 import {navigate} from "../../../../functions/navigate";
 import {select} from "../../../../functions/select";
 import {campaignStepType, updateLocalStorageAction} from "../../../../redux/actions/index";
+import {securify} from "./../../../../functions/securify";
 
 class SelectTypePTR extends Component {
     selectTypeContentForm;
@@ -195,15 +196,19 @@ class SelectTypePTR extends Component {
                                                                });
                                                            }}
                                                            value={'generate_content'} id={'generate_content'}/>
-                                                    <Radio label={'پروموت محتوای کانال های دیگر'}
-                                                           onClick={() => {
-                                                               this.setState({
-                                                                   next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
-                                                                   type: 'promote'
-                                                               });
-                                                           }}
-                                                           name={'step-type-content'} value={'select_content'}
-                                                           id={'select_content'}/>
+                                                    {securify(
+                                                        () => <Radio label={'پروموت محتوای کانال های دیگر'}
+                                                                     onClick={() => {
+                                                                         this.setState({
+                                                                             next: "/v1/advertiser/campaign/create/:campaign_id:/step/promote",
+                                                                             type: 'promote'
+                                                                         });
+                                                                     }}
+                                                                     name={'step-type-content'} value={'select_content'}
+                                                                     id={'select_content'}/>,
+                                                            ({user}, {canSeePromoteAd}, run) => run(canSeePromoteAd())
+                                                    )}
+
                                                 </div>
                                             </div>
                                             <div className="row">
