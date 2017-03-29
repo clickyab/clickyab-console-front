@@ -8,6 +8,8 @@ import {sync} from "../../../functions/sync";
 import * as swagger from './../../../swagger/index';
 import {getToken} from "../../../redux/helpers";
 
+let swal = require('sweetalert');
+
 export default class verifyPage extends Component {
 
     activeStatus() {
@@ -31,12 +33,33 @@ export default class verifyPage extends Component {
 
         if (this.props.location.query.success == 'yes' && typeof this.props.location.query.payment != 'undefined') {
             this.activeStatus();
+            swal({
+                title: "پرداخت شما با موفقیت انجام شد",
+                text: "<span>با تشکر از پرداخت شما</span><br/>این صفحه بعد از 5 ثانیه به صورت خودکار بسته می‌شود",
+                type: "success",
+                timer: 5000,
+                showConfirmButton: true,
+                confirmButtonText: "تایید",
+                html: true,
+                animation: "slide-from-top",
+            });
             NotifyBox(
                 'success',
                 'پرداخت شما با موفقیت انجام شد.'
             );
             navigate('/v1/advertiser/campaign');
         } else {
+            swal({
+                title: "پرداخت شما با دچار مشکل شده است",
+                text: "<span>متاسفانه پرداخت شما با مشکل روبه‌رو شد. لطفا دوباره تلاش کنید</span><br/>این صفحه بعد از 5 ثانیه به صورت خودکار بسته می‌شود",
+                type: "warning",
+                timer: 5000,
+                showConfirmButton: true,
+                confirmButtonText: "تایید",
+                confirmButtonColor: "#d31313",
+                html: true,
+                animation: "slide-from-top",
+            });
             NotifyBox(
                 'error',
                 'متاسفانه پرداخت شما با مشکل روبه‌رو شد. لطفا دوباره تلاش کنید.'
