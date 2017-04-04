@@ -61,11 +61,6 @@ export default class EditCampaignButton extends Component {
                        className="edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
                        onClick={(event) => this.edit(Object.assign({}, event))}> ویرایش کمپین </a>
                 </li>
-                <li>
-                    <a href="javascript:;"
-                       className="mt-ladda-btn ladda-button" data-style="zoom-in"
-                       onClick={this.detailCampaign.bind(this)}> مشاهده ریز آمار </a>
-                </li>
             </ul>
         </div>
     }
