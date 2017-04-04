@@ -32,6 +32,7 @@ export default class verifyPage extends Component {
         })));
 
         if (this.props.location.query.success == 'yes' && typeof this.props.location.query.payment != 'undefined') {
+            console.log("call active yes");
             this.activeStatus();
             swal({
                 title: "پرداخت شما با موفقیت انجام شد",
@@ -47,6 +48,7 @@ export default class verifyPage extends Component {
                 'success',
                 'پرداخت شما با موفقیت انجام شد.'
             );
+            dispatch(createCampaign({}));
             navigate('/v1/advertiser/campaign');
         } else {
             swal({
