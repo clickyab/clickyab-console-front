@@ -8,24 +8,34 @@ import {
 import {dispatch} from "../../functions/dispatch";
 import {isLoginMiddleware} from "../isLoginMiddleware";
 import {handleError} from "../../functions/catchError";
-import {select} from "../../functions/select";
 import * as swagger from "../../swagger/index";
+import {throwError} from "../../functions/Error";
+import {navigate} from "../../functions/navigate";
+import {getToken} from "../../redux/helpers";
 
 export function* campaignSpentPerChannel() {
     const {error, data} = yield (new swagger.AdApi())
-        .campaignChartPerchannelGet(select('user.token', 'no token'))
+        .campaignChartPerchannelGet(getToken());
 
     if (!error) {
         dispatch(advertiserSpentPerChannel(data));
+    } else {
+        throwError('campaignSpentPerChannel', () => {
+            navigate('v1/panel');
+        });
     }
 }
 
 export function* campaignChartView() {
     const {error, data} = yield (new swagger.AdApi())
-        .campaignChartGet(select('user.token', 'no token'))
+        .campaignChartGet(getToken());
 
     if (!error) {
         dispatch(advertiserCampaignChartAction(data))
+    } else {
+        throwError('campaignChartView', () => {
+            navigate('v1/panel');
+        });
     }
 }
 

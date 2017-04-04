@@ -115,7 +115,7 @@ browserHistory.listen(function () {
 });
 
 sync(function*() {
-    const {error, data, response} = yield (new swagger.MiscApi())
+    const {data} = yield (new swagger.MiscApi())
         .miscDumpLangGet(select('language'));
     dispatch(getTranslation(data));
 });
