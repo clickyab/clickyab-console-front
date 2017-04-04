@@ -106,6 +106,47 @@ export default {
 
         return failed("comments");
     },
+    canSeeRoleList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('role_list'))
+            return ok("comments");
 
+        return failed("comments");
+    },
+    canSeeCreateRole: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('create_role'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeUserList: () => ({user: {perm}}, ok, failed) => { //duplicate with side bar
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('user_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeUserEdit: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('user_edit'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeBillingList: () => ({user: {perm}}, ok, failed) => {
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('billing_list'))
+            return ok("comments");
+
+        return failed("comments");
+    },
+    canSeeReportAd: () => ({user: {perm}}, ok, failed) => { //advertiser dashboard
+        let all_permissions = permissions(perm);
+        if (god(all_permissions) || all_permissions.includes('report_ad'))
+            return ok("comments");
+
+        return failed("comments");
+    },
 
 }

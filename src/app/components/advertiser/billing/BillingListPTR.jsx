@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
 import WithdrawModalCTR from './WithdrawModalCTR';
+import {securify} from "../../../functions/securify";
 
 export default class BillingListPTR extends Component {
 
@@ -31,9 +32,13 @@ export default class BillingListPTR extends Component {
                             </div>
                         </div>
                     </div>
-                    <div className='portlet-body'>
-                        <ConsoleTable {...this.props} list="billing"/>
-                    </div>
+                    {securify(
+                        () => <div className='portlet-body'>
+                            <ConsoleTable {...this.props} list="billing"/>
+                        </div>,
+                        ({user}, {canSeeBillingList}, run) => run(canSeeBillingList())
+                    )}
+
                 </div>
                 <WithdrawModalCTR />
             </div>

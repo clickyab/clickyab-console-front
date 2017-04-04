@@ -152,19 +152,22 @@ export default class AdvertiserDashboardPage extends Component {
                 </div>
 
                 <div className="row">
-                    <div className="col-lg-6 col-xs-12 col-sm-12">
-                        <div className="portlet light bordered">
-                            <div className="portlet-title">
-                                <div className="caption">
-                                    <i className="icon-share font-red-sunglo hide"/>
-                                    <span className="caption-subject font-dark  uppercase">آمار نمایش کمپین ها</span>
+                    {securify(
+                        () => <div className="col-lg-6 col-xs-12 col-sm-12">
+                            <div className="portlet light bordered">
+                                <div className="portlet-title">
+                                    <div className="caption">
+                                        <i className="icon-share font-red-sunglo hide"/>
+                                        <span className="caption-subject font-dark  uppercase">آمار نمایش کمپین ها</span>
+                                    </div>
+                                </div>
+                                <div className="portlet-body">
+                                    <div id="chartdiv" className='CSSAnimationChart'></div>
                                 </div>
                             </div>
-                            <div className="portlet-body">
-                                <div id="chartdiv" className='CSSAnimationChart'></div>
-                            </div>
-                        </div>
-                    </div>
+                        </div>,
+                        ({user}, {canSeeReportAd}, run) => run(canSeeReportAd())
+                    )}
 
                     {securify(
                         () => <div className="col-lg-6 col-xs-12 col-sm-12">

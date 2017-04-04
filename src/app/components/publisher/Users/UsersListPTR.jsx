@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
 import EditUserModalCTR from './EditUserModalCTR';
+import {securify} from "../../../functions/securify";
 
 export default class UsersListPTR extends Component {
     componentDidMount() {
@@ -21,8 +22,14 @@ export default class UsersListPTR extends Component {
                         </div>
                     </div>
                     <div className='portlet-body'>
-                        <ConsoleTable {...this.props} list="user"/>
-                        <EditUserModalCTR form="EditUserModalPTR"/>
+                        {securify(
+                            () => <ConsoleTable {...this.props} list="user"/>,
+                            ({user}, {canSeeUserList}, run) => run(canSeeUserList())
+                        )}
+                        {securify(
+                            () => <EditUserModalCTR form="EditUserModalPTR"/>,
+                            ({user}, {canSeeUserEdit}, run) => run(canSeeUserEdit())
+                        )}
                     </div>
                 </div>
             </div>
