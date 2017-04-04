@@ -162,10 +162,6 @@ export default function Provider() {
                     <Route path='campaign' component={CampaignListCTR} name='campaignList'
                            onEnter={onCampaignEnterMiddleware}/>
 
-                    <Route path='campaign/:campaign_id/report' component={CampaignReportListCTR}
-                           name='campaignReportList'
-                           onEnter={onCampaignReportEnterMiddleware}/>
-
                     <Route path='campaign/create/step/name' component={CampaignCreateCTR}
                            onEnter={onCreateCampaignStepOneOnEnterMiddleware} name='campaignList'/>
                     <Route path='campaign/create/:campaign_id/step/name' component={CampaignCreateCTR}
