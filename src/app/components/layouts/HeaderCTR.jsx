@@ -28,11 +28,11 @@ export class Header extends Component {
         let {dispatch} = this.props;
 
         dispatch(logout(user));
-        dispatch(flush());
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
         dispatch(asyncRemoveLocalStorageAction());
         navigate('/v1/login');
+        dispatch(flush());
     }
 
 

@@ -17,9 +17,9 @@ export default class ProfileSidebarCTR extends Component {
         let {dispatch} = this.props;
 
         dispatch(logout(user));
-        dispatch(flush());
         dispatch(asyncRemoveLocalStorageAction());
         navigate('/v1/login');
+        dispatch(flush());
     }
 
 
