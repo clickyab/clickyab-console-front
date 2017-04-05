@@ -38,7 +38,6 @@ export function FailedBoxAlert(response) {
 }
 
 export function NotifyBox(type, message, delay) {
-	console.log(type);
 	dispatch(addNotificationAction({
 		type, message, time: new Date()
 	}));

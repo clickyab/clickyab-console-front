@@ -16,80 +16,79 @@ import CreditMenu from "./CreditMenu";
 
 @connect(({user}) => ({user}))
 export class Header extends Component {
+    componentDidMount() {
+        let userAvatar = getGravatarFromEmail(getEmail(), 200);
+        document.querySelector(".profile-userpic").setAttribute("src", userAvatar);
+    }
 
-	componentDidMount() {
-		let userAvatar = getGravatarFromEmail(getEmail(), 200);
-		document.querySelector(".profile-userpic").setAttribute("src", userAvatar);
-	}
+    loadingProgress;
 
-	loadingProgress;
+    editProfileSuccessfullyDispatchers(user) {
+        let {dispatch} = this.props;
 
-	editProfileSuccessfullyDispatchers(user) {
-		let {dispatch} = this.props;
-
-		dispatch(logout(user));
-		dispatch(flush());
-		dispatch(updateUserInformation(user));
-		dispatch(updateLocalStorageAction());
-		dispatch(asyncRemoveLocalStorageAction());
-		navigate('/v1/login');
-	}
+        dispatch(logout(user));
+        dispatch(updateUserInformation(user));
+        dispatch(updateLocalStorageAction());
+        dispatch(asyncRemoveLocalStorageAction());
+        navigate('/v1/login');
+        dispatch(flush());
+    }
 
 
-	LogoutCallback({error, data, response}) {
-		if (response.statusCode == '200') {
-			this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-		} else if (response.statusCode == '400') {
-			AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید");
-		}
-	}
+    LogoutCallback({error, data, response}) {
+        if (response.statusCode == '200') {
+            this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
+        } else if (response.statusCode == '400') {
+            AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید");
+        }
+    }
 
-	LogoutCall() {
-		(new swagger.UserApi())
-			.userLogoutGet(getToken())
-			.then(response => this.LogoutCallback(response));
-	}
+    LogoutCall() {
+        (new swagger.UserApi())
+            .userLogoutGet(getToken())
+            .then(response => this.LogoutCallback(response));
+    }
 
-	SubmitLogout = () => {
-		this.LogoutCall()
-	};
+    SubmitLogout = () => {
+        this.LogoutCall()
+    };
 
-	render() {
-		let initData;
-		if ((select('user.personal.first_name')) != null) {
-			initData = getFullName();
-		} else {
-			initData = getCorporationTitle();
-		}
+    render() {
+        let initData;
+        if ((select('user.personal.first_name')) != null) {
+            initData = getFullName();
+        } else {
+            initData = getCorporationTitle();
+        }
 
-		return (
-			<div className="page-header navbar navbar-fixed-top">
-				<div className="page-header-inner ">
-					<div className="page-logo">
-						<a href="">
-							<img src="/img/logo_fa_white.svg" alt="logo" className="logo-default"/>
-						</a>
-						<div className="menu-toggler sidebar-toggler">
-							<span/>
-						</div>
-					</div>
-					<div id="server-condition"></div>
-					<a href="javascript:;" className="menu-toggler responsive-toggler" data-toggle="collapse"
-					   data-target=".navbar-collapse">
-						<span/>
-					</a>
-					<div className="top-menu">
-						<ul className="nav navbar-nav pull-right">
+        return (
+            <div className="page-header navbar navbar-fixed-top">
+                <div className="page-header-inner ">
+                    <div className="page-logo">
+                        <a href="">
+                            <img src="/img/logo_fa_white.svg" alt="logo" className="logo-default"/>
+                        </a>
+                        <div className="menu-toggler sidebar-toggler">
+                            <span/>
+                        </div>
+                    </div>
+                    <div id="server-condition"></div>
+                    <a href="javascript:;" className="menu-toggler responsive-toggler" data-toggle="collapse"
+                       data-target=".navbar-collapse">
+                        <span/>
+                    </a>
+                    <div className="top-menu">
+                        <ul className="nav navbar-nav pull-right">
 
-							<SwitcherCTR />
+                            <SwitcherCTR />
 
-							<NotificationsDropDown />
+                            <NotificationsDropDown />
 
-							<li className="dropdown dropdown-user">
-								<a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown"
-								   data-hover="dropdown" data-close-others="true">
-									<img alt="" className="img-circle profile-userpic" src=""/>
-									<span className="username username-hide-on-mobile">
+                            <li className="dropdown dropdown-user">
+                                <a href="javascript:;" className="dropdown-toggle" data-toggle="dropdown"
+                                   data-hover="dropdown" data-close-others="true">
+                                    <img alt="" className="img-circle profile-userpic" src=""/>
+                                    <span className="username username-hide-on-mobile">
                                         {initData}
                                     </span>
 									<i className="fa fa-angle-down"/>
@@ -114,10 +113,7 @@ export class Header extends Component {
 						</ul>
 					</div>
 				</div>
-
 			</div>
-
-
 		);
 	}
 }

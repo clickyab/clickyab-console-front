@@ -50,18 +50,12 @@ export default class EditCampaignButton extends Component {
 		});
 	}
 
-	render() {
-		return <div className="btn-group ">
-			<button className="btn btn-info btn-xs dropdown-toggle" data-toggle="dropdown" aria-expanded="false">عملیات
-				<i className="fa fa-angle-down"/>
-			</button>
-			<ul className="dropdown-menu keep_open">
-				<li>
-					<a href="javascript:;" key="edit" ref={(EditElement) => this.editElementBtn = EditElement}
-					   className="edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-					   onClick={(event) => this.edit(Object.assign({}, event))}> ویرایش کمپین </a>
-				</li>
-			</ul>
-		</div>
-	}
+  render() {
+      return <div className="btn-group ">
+          <button className="btn btn-info btn-xs edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
+                  key="edit"  onClick={(event) => this.edit(Object.assign({}, event))}
+                  ref={(EditElement) => this.editElementBtn = EditElement}>ویرایش
+          </button>
+      </div>
+  }
 }
