@@ -14,73 +14,73 @@ let loadingProgress;
 @connect(({roleData}) => ({roleData}))
 export default class EditRoleModalCTR extends Component {
 
-    normalizeFormValues(formValues, selfValue, parentValue, globalValue) {
-        delete formValues.self;
-        delete formValues.parent;
-        delete formValues.global;
+	normalizeFormValues(formValues, selfValue, parentValue, globalValue) {
+		delete formValues.self;
+		delete formValues.parent;
+		delete formValues.global;
 
-        let selfPermission = [];
-        for (let i = 0; i < selfValue.length; i++) {
-            selfPermission.push(selfValue[i].label);
-        }
+		let selfPermission = [];
+		for (let i = 0; i < selfValue.length; i++) {
+			selfPermission.push(selfValue[i].label);
+		}
 
-        let parentPermission = [];
-        for (let i = 0; i < parentValue.length; i++) {
-            parentPermission.push(parentValue[i].label);
-        }
+		let parentPermission = [];
+		for (let i = 0; i < parentValue.length; i++) {
+			parentPermission.push(parentValue[i].label);
+		}
 
-        let globalPermission = [];
-        for (let i = 0; i < globalValue.length; i++) {
-            globalPermission.push(globalValue[i].label);
-        }
+		let globalPermission = [];
+		for (let i = 0; i < globalValue.length; i++) {
+			globalPermission.push(globalValue[i].label);
+		}
 
-        formValues.perm = {
-            self: selfPermission,
-            parent: parentPermission,
-            global: globalPermission
-        };
+		formValues.perm = {
+			self: selfPermission,
+			parent: parentPermission,
+			global: globalPermission
+		};
 
-        return formValues;
-    }
+		return formValues;
+	}
 
 
-    editSubmit(formValues, selfValue, parentValue, globalValue) {
-        const {id} = this.props.roleData.role;
-        sync(function *() {
-            try {
-                loadingProgress = Ladda.create(document.querySelector('.edit-role-form'));
-                loadingProgress.start();
-                const {data, response} = yield (new swagger.UserApi())
-                    .userRoleUpdateIdPut(id, select('user.token', 'no token'), {'payloadData': this.normalizeFormValues(formValues, selfValue, parentValue, globalValue)});
+	editSubmit(formValues, selfValue, parentValue, globalValue) {
+		const {id} = this.props.roleData.role;
+		sync(function *() {
+			try {
+				loadingProgress = Ladda.create(document.querySelector('.edit-role-form'));
+				loadingProgress.start();
+				const {data, response} = yield (new swagger.UserApi())
+					.userRoleUpdateIdPut(id, select('user.token', 'no token'), {'payloadData': this.normalizeFormValues(formValues, selfValue, parentValue, globalValue)});
 
-                if (response.statusCode == 200) {
-                    $('#editRoleModal').modal('hide');
-                    loadingProgress.stop();
-                    dispatch(updateARoleFromListAction(data));
-                } else if (response.statusCode == '400') {
-                    FailedBoxAlert(response)
-                }
+				if (response.statusCode == 200) {
+					$('#editRoleModal').modal('hide');
+					loadingProgress.stop();
+					dispatch(updateARoleFromListAction(data));
+				} else if (response.statusCode == '400') {
+					FailedBoxAlert(response)
+				}
 
-                ifInvalidToken({
-                    error: 'اطلاعات شما صحیح نمی‌باشد.',
-                    text: 'اطلاعات شما با موفقیت ثبت شد.'
-                });
-            } catch (e) {
-                console.log(e);
-            }
+				ifInvalidToken({
+					error: 'اطلاعات شما صحیح نمی‌باشد.',
+					text: 'اطلاعات شما با موفقیت ثبت شد.'
+				});
+			} catch (e) {
+				console.log(e);
+			}
 
-        }.bind(this));
-    }
+		}.bind(this));
+	}
 
-    SubmitEditRole = (formValues, form, selfValue, parentValue, globalValue) => {
-        if (!form.valid())
-            return;
-        this.editSubmit(formValues, selfValue, parentValue, globalValue)
-    };
+	SubmitEditRole = (formValues, form, selfValue, parentValue, globalValue) => {
+		if (!form.valid())
+			return;
+		this.editSubmit(formValues, selfValue, parentValue, globalValue)
+	};
 
-    render() {
-        const {form, roleData} = this.props;
-        return (<EditRoleModalPTR permissions={this.props.permissions} form={form} roleData={roleData}
-                                  SubmitEditRole={this.SubmitEditRole}/>);
-    }
+	render() {
+		const {form, roleData} = this.props;
+		return (<EditRoleModalPTR permissions={this.props.permissions} form={form} roleData={roleData}
+								  SubmitEditRole={this.SubmitEditRole}/>);
+	}
 }

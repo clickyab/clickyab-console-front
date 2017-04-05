@@ -5,6 +5,6 @@ import {store} from "./app/redux/store";
 import {Provider} from "react-redux";
 
 render(
-    <Provider store={store}><Routes /></Provider>,
-    document.querySelector('#rubik_app')
+	<Provider store={store}><Routes /></Provider>,
+	document.querySelector('#rubik_app')
 );

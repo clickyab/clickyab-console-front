@@ -5,100 +5,100 @@ import {securify} from "../../../functions/securify";
 
 
 @translatable(
-    ({
-        dashboard, operations, campaigns, websites, applications,
-        withdrawal, slots, potential, users, financial, access
-    }) =>
-        ({
-            dashboard, operations, campaigns, websites, applications,
-            withdrawal, slots, potential, users, financial, access
-        })
+	({
+		 dashboard, operations, campaigns, websites, applications,
+		 withdrawal, slots, potential, users, financial, access
+	 }) =>
+		({
+			dashboard, operations, campaigns, websites, applications,
+			withdrawal, slots, potential, users, financial, access
+		})
 )
 export class Sidebar extends Component {
-    componentDidMount() {
-        document.title = "داشبورد نمایش دهنده";
-    }
+	componentDidMount() {
+		document.title = "داشبورد نمایش دهنده";
+	}
 
-    render() {
-        return (
-            <div className='page-sidebar-wrapper'>
-                <div className='page-sidebar navbar-collapse collapse'>
-                    <SidebarLinks>
-                        <Link to='/v1/publisher'>
-                            <i className='fa fa-home'/>
-                            <span className='title'>داشبورد ناشر</span>
-                            <span className='selected'/>
-                            <span className="selected"/>
-                        </Link>
+	render() {
+		return (
+			<div className='page-sidebar-wrapper'>
+				<div className='page-sidebar navbar-collapse collapse'>
+					<SidebarLinks>
+						<Link to='/v1/publisher'>
+							<i className='fa fa-home'/>
+							<span className='title'>داشبورد ناشر</span>
+							<span className='selected'/>
+							<span className="selected"/>
+						</Link>
 
-                        {securify(
-                            () => <Link to="/v1/publisher/channel">
-                                <i className='fa fa-television'/>
-                                <span className='title'>کانال‌ها</span>
-                                <span className="selected"/>
-                            </Link>,
-                            ({user}, {canSeeSideBarChannelList}, run) => run(canSeeSideBarChannelList())
-                        )}
-
-
-                        {securify(
-                            () => <Link to="/v1/publisher/user">
-                                <i className='fa fa-user'/>
-                                <span className='title'>مدیریت کاربران</span>
-                                <span className="selected"/>
-                            </Link>,
-                            ({user}, {canSeeSidebarManageUser}, run) => run(canSeeSidebarManageUser())
-                        )}
-
-                        {securify(
-                            () => <Link to="/v1/publisher/role">
-                                <i className='fa fa-user'/>
-                                <span className='title'> رول ها</span>
-                                <span className="selected"/>
-                            </Link>,
-                            ({user}, {canSeeSidebarRoleList}, run) => run(canSeeSidebarRoleList())
-                        )}
-
-                        {securify(
-                            () => <Link to="/v1/publisher/telegram">
-                                <i className='fa fa-user'/>
-                                <span className='title'>مدیریت کانال ها</span>
-                                <span className="selected"/>
-                            </Link>,
-                            ({user}, {canSeeSideBarTelegramUserList}, run) => run(canSeeSideBarTelegramUserList())
-                        )}
+						{securify(
+							() => <Link to="/v1/publisher/channel">
+								<i className='fa fa-television'/>
+								<span className='title'>کانال‌ها</span>
+								<span className="selected"/>
+							</Link>,
+							({user}, {canSeeSideBarChannelList}, run) => run(canSeeSideBarChannelList())
+						)}
 
 
-                        {securify(
-                            () => <Link to='/v1/publisher/translation' activeClassName='active'>
-                                <i className='fa fa-list'/>
-                                <span className='title'>ترجمه ها</span>
-                                <span className='selected'/>
-                                <span className="selected"/>
-                            </Link>,
-                            ({user}, {canSeeSideBarTranslateList}, run) => run(canSeeSideBarTranslateList())
-                        )}
+						{securify(
+							() => <Link to="/v1/publisher/user">
+								<i className='fa fa-user'/>
+								<span className='title'>مدیریت کاربران</span>
+								<span className="selected"/>
+							</Link>,
+							({user}, {canSeeSidebarManageUser}, run) => run(canSeeSidebarManageUser())
+						)}
 
-                    </SidebarLinks>
-                </div>
-            </div>
-        );
-    }
+						{securify(
+							() => <Link to="/v1/publisher/role">
+								<i className='fa fa-user'/>
+								<span className='title'> رول ها</span>
+								<span className="selected"/>
+							</Link>,
+							({user}, {canSeeSidebarRoleList}, run) => run(canSeeSidebarRoleList())
+						)}
+
+						{securify(
+							() => <Link to="/v1/publisher/telegram">
+								<i className='fa fa-user'/>
+								<span className='title'>مدیریت کانال ها</span>
+								<span className="selected"/>
+							</Link>,
+							({user}, {canSeeSideBarTelegramUserList}, run) => run(canSeeSideBarTelegramUserList())
+						)}
+
+
+						{securify(
+							() => <Link to='/v1/publisher/translation' activeClassName='active'>
+								<i className='fa fa-list'/>
+								<span className='title'>ترجمه ها</span>
+								<span className='selected'/>
+								<span className="selected"/>
+							</Link>,
+							({user}, {canSeeSideBarTranslateList}, run) => run(canSeeSideBarTranslateList())
+						)}
+
+					</SidebarLinks>
+				</div>
+			</div>
+		);
+	}
 }
 
 
 Sidebar.propTypes = {
-    dashboard: React.PropTypes.string,
-    operations: React.PropTypes.string,
-    campaigns: React.PropTypes.string,
-    websites: React.PropTypes.string,
-    applications: React.PropTypes.string,
-    withdrawal: React.PropTypes.string,
-    potential: React.PropTypes.string,
-    users: React.PropTypes.string,
-    financial: React.PropTypes.string,
-    access: React.PropTypes.string,
-    slots: React.PropTypes.string
+	dashboard: React.PropTypes.string,
+	operations: React.PropTypes.string,
+	campaigns: React.PropTypes.string,
+	websites: React.PropTypes.string,
+	applications: React.PropTypes.string,
+	withdrawal: React.PropTypes.string,
+	potential: React.PropTypes.string,
+	users: React.PropTypes.string,
+	financial: React.PropTypes.string,
+	access: React.PropTypes.string,
+	slots: React.PropTypes.string
 };
 
 export default Sidebar;

@@ -17,10 +17,9 @@ export default function getVersion() {
 			}
 
 			if (moment(new Date()).isAfter(moment(lastTimeWeVersioned).add(15, 'm'))) {
-
 				let {data} = yield new swagger.MiscApi().miscVersionGet();
 				dispatch(versionAction(data.hash));
-                lastTimeWeVersioned = new Date();
+				lastTimeWeVersioned = new Date();
 			}
 
 			return new Promise((resolve) => {

@@ -1,10 +1,10 @@
 import {sync} from "../../functions/sync";
 import {
-    switchToPublisher,
-    updateLocalStorageAction,
-    publisherTotalViewChart,
-    publisherCountActiveWaitChannel,
-    publisherChannelStatus
+	publisherChannelStatus,
+	publisherCountActiveWaitChannel,
+	publisherTotalViewChart,
+	switchToPublisher,
+	updateLocalStorageAction
 } from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {isLoginMiddleware} from "../isLoginMiddleware";
@@ -13,43 +13,43 @@ import * as swagger from "../../swagger/index";
 import {getToken} from "../../redux/helpers";
 
 function* campaignChartTotalView() {
-    const {error, data} = yield (new swagger.AdApi())
-        .campaignChartPubtotalviewGet(getToken());
+	const {error, data} = yield (new swagger.AdApi())
+		.campaignChartPubtotalviewGet(getToken());
 
-    if (!error) {
-        dispatch(publisherTotalViewChart(data));
-    }
+	if (!error) {
+		dispatch(publisherTotalViewChart(data));
+	}
 }
 
 function* countChannelActiveWait() {
-    const {error, data} = yield (new swagger.ChannelApi())
-        .channelDashboardCountActiveGet(getToken());
+	const {error, data} = yield (new swagger.ChannelApi())
+		.channelDashboardCountActiveGet(getToken());
 
-    if (!error) {
-        dispatch(publisherCountActiveWaitChannel(data));
-    }
+	if (!error) {
+		dispatch(publisherCountActiveWaitChannel(data));
+	}
 }
 
 function* channelStatus() {
-    const {error, data} = yield (new swagger.ChannelApi())
-        .channelChanstatGet(getToken());
+	const {error, data} = yield (new swagger.ChannelApi())
+		.channelChanstatGet(getToken());
 
-    if (!error) {
-        dispatch(publisherChannelStatus(data));
-    }
+	if (!error) {
+		dispatch(publisherChannelStatus(data));
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        dispatch(switchToPublisher());
-        dispatch(updateLocalStorageAction());
+	try {
+		yield* isLoginMiddleware();
+		dispatch(switchToPublisher());
+		dispatch(updateLocalStorageAction());
 
-        yield* campaignChartTotalView();
-        yield* countChannelActiveWait();
-        yield* channelStatus();
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+		yield* campaignChartTotalView();
+		yield* countChannelActiveWait();
+		yield* channelStatus();
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });

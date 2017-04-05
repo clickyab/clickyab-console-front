@@ -1,4 +1,4 @@
-import {ROLE_LIST, UPDATE_ROLE_FROM_LIST, ROLE_ITEMS_LIST} from "../actions/index";
+import {ROLE_ITEMS_LIST, ROLE_LIST, UPDATE_ROLE_FROM_LIST} from "../actions/index";
 
 function updateARow(state, action) {
 	let items = [...state.items];

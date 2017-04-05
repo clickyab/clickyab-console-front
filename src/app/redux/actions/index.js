@@ -73,10 +73,10 @@ export const CHANNEL_REPORT_QUERY = 'CHANNEL_REPORT_QUERY';
 export const CHANNEL_ITEMS_REPORT_LIST = 'CHANNEL_ITEMS_REPORT_LIST';
 export const channelReportDataAction = (data) => ({type: CHANNEL_REPORT_DATA, data});
 export const channelReportQueryAction = (list, query_name, queries) => ({
-    type: CHANNEL_REPORT_QUERY,
-    list,
-    query_name,
-    queries
+	type: CHANNEL_REPORT_QUERY,
+	list,
+	query_name,
+	queries
 });
 export const channelReportListAction = (data) => ({type: CHANNEL_REPORT_LIST, data});
 export const channelItemsReportListAction = ({data}) => ({type: CHANNEL_ITEMS_REPORT_LIST, items: data});
@@ -128,8 +128,8 @@ export const EMPTY_NOTIFICATIONS = "EMPTY_NOTIFICATIONS";
 export const MARK_NOTIFICATIONS_AS_SHOWN = "MARK_NOTIFICATIONS_AS_SHOWN";
 export const REMOVE_NOTIFICATION = "REMOVE_NOTIFICATION";
 export const addNotificationAction = (notification) => ({
-    type: NOTIFICATIONS,
-    notification: Object.assign(notification, {shown: false, id: Math.random()})
+	type: NOTIFICATIONS,
+	notification: Object.assign(notification, {shown: false, id: Math.random()})
 });
 export const emptyNotificationAction = () => ({type: EMPTY_NOTIFICATIONS});
 export const markAllNotificationAsShown = () => ({type: MARK_NOTIFICATIONS_AS_SHOWN});

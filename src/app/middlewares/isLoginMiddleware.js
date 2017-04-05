@@ -4,11 +4,11 @@ import {navigate} from "../functions/navigate";
 import ping from "../functions/ping";
 
 export function* isLoginMiddleware() {
-    let {error} = yield ping();
+	let {error} = yield ping();
 
-    if (error || !isLogin()) {
-        throwError('isLoginMiddleware', function () {
-            navigate('/v1/login')
-        });
-    }
+	if (error || !isLogin()) {
+		throwError('isLoginMiddleware', function () {
+			navigate('/v1/login')
+		});
+	}
 }

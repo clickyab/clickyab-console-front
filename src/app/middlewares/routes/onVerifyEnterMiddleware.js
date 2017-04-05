@@ -7,17 +7,17 @@ import {select} from "../../functions/select";
 
 export default (nextState, replace, next) => sync(function*() {
 
-    try {
-        loading(true);
-        yield* isLoginMiddleware();
-        yield* isCampaignMiddleware({params: {campaign_id: select('createCampaignData.id')}});
+	try {
+		loading(true);
+		yield* isLoginMiddleware();
+		yield* isCampaignMiddleware({params: {campaign_id: select('createCampaignData.id')}});
 
-        // navigate('campaign/create/:campaign_id:/step/preview', {
-        //     campaign_id: select('createCampaignData.id')
-        // });
-        next();
-        loading(false);
-    } catch (error) {
-        handleError(error);
-    }
+		// navigate('campaign/create/:campaign_id:/step/preview', {
+		//     campaign_id: select('createCampaignData.id')
+		// });
+		next();
+		loading(false);
+	} catch (error) {
+		handleError(error);
+	}
 });

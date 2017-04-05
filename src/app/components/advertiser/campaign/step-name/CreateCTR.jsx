@@ -13,80 +13,80 @@ let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
 export default class CreateCTR extends Component {
-    createCampaignNameSubmit(formValues) {
-        sync(function*() {
-            loadingProgress = Ladda.create(document.querySelector('button.btn-campaign-name'));
-            loadingProgress.start();
+	createCampaignNameSubmit(formValues) {
+		sync(function*() {
+			loadingProgress = Ladda.create(document.querySelector('button.btn-campaign-name'));
+			loadingProgress.start();
 
-            const {data, response} = yield (new swagger.AdApi())
-                .campaignPost(getToken(), {'payloadData': formValues});
+			const {data, response} = yield (new swagger.AdApi())
+				.campaignPost(getToken(), {'payloadData': formValues});
 
-            if (response.statusCode == '200') {
-                dispatch(createCampaign(data));
-                dispatch(updateLocalStorageAction());
+			if (response.statusCode == '200') {
+				dispatch(createCampaign(data));
+				dispatch(updateLocalStorageAction());
 
-                loadingProgress.stop();
-                NotifyBox(
-                    'success',
-                    'کمپین ' + formValues.name + ' ساخته شد'
-                );
+				loadingProgress.stop();
+				NotifyBox(
+					'success',
+					'کمپین ' + formValues.name + ' ساخته شد'
+				);
 
-                navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
-                    campaign_id: select('createCampaignData.id')
-                });
-            } else if (response.statusCode == '400') {
-                loadingProgress.stop();
-                FailedBoxAlert(response);
-            }
+				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
+					campaign_id: select('createCampaignData.id')
+				});
+			} else if (response.statusCode == '400') {
+				loadingProgress.stop();
+				FailedBoxAlert(response);
+			}
 
-            ifInvalidToken(response);
-        });
-    }
+			ifInvalidToken(response);
+		});
+	}
 
-    updateCampaignNameSubmit(formValues, id) {
-        sync(function*() {
-            loadingProgress = Ladda.create(document.querySelector('button.btn-campaign-name'));
-            loadingProgress.start();
+	updateCampaignNameSubmit(formValues, id) {
+		sync(function*() {
+			loadingProgress = Ladda.create(document.querySelector('button.btn-campaign-name'));
+			loadingProgress.start();
 
-            const {data, response} = yield (new swagger.AdApi())
-                .campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
+			const {data, response} = yield (new swagger.AdApi())
+				.campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
 
-            if (response.statusCode == '200') {
-                dispatch(createCampaign(data));
-                dispatch(updateLocalStorageAction());
+			if (response.statusCode == '200') {
+				dispatch(createCampaign(data));
+				dispatch(updateLocalStorageAction());
 
-                loadingProgress.stop();
-                NotifyBox(
-                    'success',
-                    'نام کمپین به '+ formValues.name +' به روز شد.'
-                );
+				loadingProgress.stop();
+				NotifyBox(
+					'success',
+					'نام کمپین به ' + formValues.name + ' به روز شد.'
+				);
 
-                navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
-                    campaign_id: select('createCampaignData.id')
-                });
-            } else if (response.statusCode == '400') {
-                loadingProgress.stop();
-                NotifyBox(
-                    'error',
-                    'مشکلی در نام کمپین شما وجود دارد. فیلد نام را چک کنید.'
-                );
-            }
-        });
-    }
+				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
+					campaign_id: select('createCampaignData.id')
+				});
+			} else if (response.statusCode == '400') {
+				loadingProgress.stop();
+				NotifyBox(
+					'error',
+					'مشکلی در نام کمپین شما وجود دارد. فیلد نام را چک کنید.'
+				);
+			}
+		});
+	}
 
-    SubmitCreateCampaignName = (formValues, form) => {
-        if (!form.valid())
-            return;
-        if (select('createCampaignData.id') != null) {
-            this.updateCampaignNameSubmit(formValues, select('createCampaignData.id'));
-        } else {
-            this.createCampaignNameSubmit(formValues)
-        }
-    };
+	SubmitCreateCampaignName = (formValues, form) => {
+		if (!form.valid())
+			return;
+		if (select('createCampaignData.id') != null) {
+			this.updateCampaignNameSubmit(formValues, select('createCampaignData.id'));
+		} else {
+			this.createCampaignNameSubmit(formValues)
+		}
+	};
 
 
-    render() {
-        return (<CreatePTR SubmitCreateCampaignName={this.SubmitCreateCampaignName}/>);
-    }
+	render() {
+		return (<CreatePTR SubmitCreateCampaignName={this.SubmitCreateCampaignName}/>);
+	}
 
 }

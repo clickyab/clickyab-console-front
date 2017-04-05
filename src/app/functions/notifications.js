@@ -2,27 +2,27 @@ import {dispatch} from "./dispatch";
 import {addNotificationAction} from "../redux/actions/index";
 let toastr = require('toastr');
 
-export function AlertBox(type, message , showBox) {
-	if(showBox == null || showBox == "undefined") {
+export function AlertBox(type, message, showBox) {
+	if (showBox == null || showBox == "undefined") {
 		showBox = false;
 	}
 	dispatch(addNotificationAction({
 		type, message, time: new Date()
 	}));
-    toastr.options = {
-        "preventDuplicates": true,
-        "preventOpenDuplicates": true,
-        "maxOpened" : 1,
-        "timeOut": 30
-    };
-	if(showBox == true) {
-        if(type == "warning") {
-            toastr.warning(message);
-        } else if ( type == "error") {
-            toastr.error(message);
-        } else if (type == "success") {
-            toastr.success(message);
-        }
+	toastr.options = {
+		"preventDuplicates": true,
+		"preventOpenDuplicates": true,
+		"maxOpened": 1,
+		"timeOut": 30
+	};
+	if (showBox == true) {
+		if (type == "warning") {
+			toastr.warning(message);
+		} else if (type == "error") {
+			toastr.error(message);
+		} else if (type == "success") {
+			toastr.success(message);
+		}
 	}
 }
 
@@ -43,16 +43,16 @@ export function NotifyBox(type, message, delay) {
 		type, message, time: new Date()
 	}));
 
-    toastr.options = {
-        "preventDuplicates": true,
-        "preventOpenDuplicates": true,
-        "maxOpened" : 1
-    };
+	toastr.options = {
+		"preventDuplicates": true,
+		"preventOpenDuplicates": true,
+		"maxOpened": 1
+	};
 
-	if(type == "warning") {
+	if (type == "warning") {
 		toastr.warning(message);
-	} else if ( type == "error") {
-        toastr.error(message);
+	} else if (type == "error") {
+		toastr.error(message);
 	} else if (type == "success") {
 		toastr.success(message);
 	}

@@ -12,40 +12,40 @@ let loadingProgress;
 export default class EditUserModalCTR extends Component {
 
 
-    SubmitEditUser(formValues, roleValue) {
-        let roleValueId = [];
-        for (let i = 0; i < roleValue.length; i++) {
-            roleValueId.push(roleValue[i].id)
-        }
-        try {
-            sync(function *() {
-                loadingProgress = Ladda.create(document.querySelector('.edit-user-role'));
-                loadingProgress.start();
-                const {data, response} = yield (new swagger.UserApi())
-                    .userAssignRolesPost(select('user.token', 'no token'), {
-                        'payloadData': {
-                            'role_id': roleValueId,
-                            'user_id': select('userAssignRoleData.userId')
-                        }
-                    });
+	SubmitEditUser(formValues, roleValue) {
+		let roleValueId = [];
+		for (let i = 0; i < roleValue.length; i++) {
+			roleValueId.push(roleValue[i].id)
+		}
+		try {
+			sync(function *() {
+				loadingProgress = Ladda.create(document.querySelector('.edit-user-role'));
+				loadingProgress.start();
+				const {data, response} = yield (new swagger.UserApi())
+					.userAssignRolesPost(select('user.token', 'no token'), {
+						'payloadData': {
+							'role_id': roleValueId,
+							'user_id': select('userAssignRoleData.userId')
+						}
+					});
 
-                if (response.statusCode == 200) {
-                    $('#editUserModal').modal('hide');
-                    loadingProgress.stop();
-                } else if (response.statusCode == '400') {
-                    AlertBox('error', 'اطلاعات شما با موفقیت ثبت شد.');
-                }
+				if (response.statusCode == 200) {
+					$('#editUserModal').modal('hide');
+					loadingProgress.stop();
+				} else if (response.statusCode == '400') {
+					AlertBox('error', 'اطلاعات شما با موفقیت ثبت شد.');
+				}
 
-            });
-        } catch (e) {
-            console.log(e);
-        }
+			});
+		} catch (e) {
+			console.log(e);
+		}
 
-    }
+	}
 
-    render() {
-        const {form, userAssignRoleList, userAssignRoleData} = this.props;
-        return (<EditUserModalPTR userAssignRoleData={userAssignRoleData} userAssignRoleList={userAssignRoleList}
-                                  form={form} SubmitEditUser={this.SubmitEditUser}/>);
-    }
+	render() {
+		const {form, userAssignRoleList, userAssignRoleData} = this.props;
+		return (<EditUserModalPTR userAssignRoleData={userAssignRoleData} userAssignRoleList={userAssignRoleList}
+								  form={form} SubmitEditUser={this.SubmitEditUser}/>);
+	}
 }

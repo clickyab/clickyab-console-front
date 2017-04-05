@@ -11,83 +11,83 @@ import {translatable} from "react-multilingual/dist";
 
 @connect(({categoryList}) => ({categoryList}))
 @translatable(({
-    ID,
-    Title,
-    CreatedAt,
-    UpdatedAt,
-    Description,
-    Scope
-}) => ({
-    translation: {
-        ID,
-        Title,
-        CreatedAt,
-        UpdatedAt,
-        Description,
-        Scope
-    }
+				   ID,
+				   Title,
+				   CreatedAt,
+				   UpdatedAt,
+				   Description,
+				   Scope
+			   }) => ({
+	translation: {
+		ID,
+		Title,
+		CreatedAt,
+		UpdatedAt,
+		Description,
+		Scope
+	}
 }))
 export default class CategoryListCTR extends Component {
-    callApi(query_name, value) {
-        let {dispatch} = this.props;
-        sync(function*() {
-            let {data} = yield (new swagger.CategoryApi).categoryListGet(select('user.token', 'no token'), {
-                sort: 'created_at:DESC',
-                ...select('queries.category', {}),
-                [query_name]: value
-            });
+	callApi(query_name, value) {
+		let {dispatch} = this.props;
+		sync(function*() {
+			let {data} = yield (new swagger.CategoryApi).categoryListGet(select('user.token', 'no token'), {
+				sort: 'created_at:DESC',
+				...select('queries.category', {}),
+				[query_name]: value
+			});
 
-            dispatch(categoryItemsListAction(data));
-        })
-    }
+			dispatch(categoryItemsListAction(data));
+		})
+	}
 
-    sort(flag, query_name) {
-        this.callApi('sort', query_name + ':' + flag)
-    }
+	sort(flag, query_name) {
+		this.callApi('sort', query_name + ':' + flag)
+	}
 
-    filter(event, query_name) {
-        this.callApi(query_name, event.target.value);
-    }
+	filter(event, query_name) {
+		this.callApi(query_name, event.target.value);
+	}
 
-    search(event, query_name) {
-        this.callApi(query_name, event.target.value);
-    }
+	search(event, query_name) {
+		this.callApi(query_name, event.target.value);
+	}
 
-    edit(id) {
-        return <EditCategoryButton key={Math.random()} id={id}/>
-    }
+	edit(id) {
+		return <EditCategoryButton key={Math.random()} id={id}/>
+	}
 
 
-    updated_at(updated_at) {
-        return moment(updated_at).format('jYYYY/jM/jD');
-    }
+	updated_at(updated_at) {
+		return moment(updated_at).format('jYYYY/jM/jD');
+	}
 
-    created_at(created_at) {
-        return moment(created_at).format('jYYYY/jM/jD');
-    }
+	created_at(created_at) {
+		return moment(created_at).format('jYYYY/jM/jD');
+	}
 
-    onPaginationChange(page) {
-        this.callApi('p', page);
-    }
+	onPaginationChange(page) {
+		this.callApi('p', page);
+	}
 
-    onPerPageChange(per_page) {
-        this.callApi('c', per_page);
-    }
+	onPerPageChange(per_page) {
+		this.callApi('c', per_page);
+	}
 
-    translator(title) {
-        return this.props.translation[title];
-    }
+	translator(title) {
+		return this.props.translation[title];
+	}
 
-    render() {
-        return (<CategoryListPTR {...this.props.categoryList}
-                                 sort={this.sort.bind(this)}
-                                 filter={this.filter.bind(this)}
-                                 translator={this.translator.bind(this)}
-                                 search={this.search.bind(this)}
-                                 onPaginationChange={this.onPaginationChange.bind(this)}
-                                 onPerPageChange={this.onPerPageChange.bind(this)}
-                                 mutators={{updated_at: this.updated_at, created_at: this.created_at}}
-                                 edit={this.edit.bind(this)}
-        />);
-    }
+	render() {
+		return (<CategoryListPTR {...this.props.categoryList}
+								 sort={this.sort.bind(this)}
+								 filter={this.filter.bind(this)}
+								 translator={this.translator.bind(this)}
+								 search={this.search.bind(this)}
+								 onPaginationChange={this.onPaginationChange.bind(this)}
+								 onPerPageChange={this.onPerPageChange.bind(this)}
+								 mutators={{updated_at: this.updated_at, created_at: this.created_at}}
+								 edit={this.edit.bind(this)}
+		/>);
+	}
 }
