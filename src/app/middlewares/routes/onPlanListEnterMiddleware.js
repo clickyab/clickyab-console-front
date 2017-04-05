@@ -13,33 +13,33 @@ import {isCampaignMiddleware} from "../isCampaignMiddleware";
 import {getToken} from "../../redux/helpers";
 
 function* planListController(done) {
-    loading(true);
-    yield* isLoginMiddleware();
-    const {error, data} = yield (new swagger.PlanApi())
-        .planAppropriateIdGet(select('createCampaignData.id'), getToken());
+	loading(true);
+	yield* isLoginMiddleware();
+	const {error, data} = yield (new swagger.PlanApi())
+		.planAppropriateIdGet(select('createCampaignData.id'), getToken());
 
-    done();
-    if (!error) {
-        dispatch(planListAction(data));
-        loading(false);
-    } else {
-        throwError("onChannelEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
+	done();
+	if (!error) {
+		dispatch(planListAction(data));
+		loading(false);
+	} else {
+		throwError("onChannelEnterMiddleWare", function () {
+			navigate('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        // yield* isLoginMiddleware();
-        yield* isCampaignMiddleware(nextState);
-        let {error} = yield raceOnTime(planListController, 20000);
-        if (error)
-            navigate('/v1/login');
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+	try {
+		// yield* isLoginMiddleware();
+		yield* isCampaignMiddleware(nextState);
+		let {error} = yield raceOnTime(planListController, 20000);
+		if (error)
+			navigate('/v1/login');
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });
 
 

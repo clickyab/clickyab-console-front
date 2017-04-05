@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
-import {successfulRegister, failedRegister} from "../../redux/actions/register";
-import {SuccessBoxAlert, NotifyBox} from "../../functions/notifications";
+import {failedRegister, successfulRegister} from "../../redux/actions/register";
+import {NotifyBox, SuccessBoxAlert} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from "./RegisterPTR";
@@ -12,67 +12,67 @@ let Ladda = require('ladda/js/ladda');
 
 @connect()
 export default class RegisterCTR extends Component {
-    loadingProgress;
+	loadingProgress;
 
-    componentDidMount() {
-        $('.preloader-page').hide();
-    }
+	componentDidMount() {
+		$('.preloader-page').hide();
+	}
 
-    registerSuccessfullyDispatchers(user) {
-        let {dispatch} = this.props;
+	registerSuccessfullyDispatchers(user) {
+		let {dispatch} = this.props;
 
-        dispatch(successfulRegister());
-        dispatch(successfulLogin());
-        dispatch(successfulRegister());
-        dispatch(updateUserInformation(user));
-        dispatch(updateLocalStorageAction());
-        navigate('/v1/advertiser');
-    }
+		dispatch(successfulRegister());
+		dispatch(successfulLogin());
+		dispatch(successfulRegister());
+		dispatch(updateUserInformation(user));
+		dispatch(updateLocalStorageAction());
+		navigate('/v1/advertiser');
+	}
 
-    failed400Dispatcher() {
-        this.props.dispatch(failedRegister());
-    }
+	failed400Dispatcher() {
+		this.props.dispatch(failedRegister());
+	}
 
-    registerCallback({error, data, response}) {
-        if (response.statusCode == '200') {
-            this.registerSuccessfullyDispatchers(Object.assign({}, data));
+	registerCallback({error, data, response}) {
+		if (response.statusCode == '200') {
+			this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
-            SuccessBoxAlert({
-                error: 'اطلاعات شما صحیح نمی‌باشد.',
-                text: 'ثیت نام شما با موفیت انجام شد.'
-            });
-        } else if (response.statusCode == '400') {
+			SuccessBoxAlert({
+				error: 'اطلاعات شما صحیح نمی‌باشد.',
+				text: 'ثیت نام شما با موفیت انجام شد.'
+			});
+		} else if (response.statusCode == '400') {
 
-            this.stopLoading();
-            NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
-        }
-    }
+			this.stopLoading();
+			NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
+		}
+	}
 
-    register(formValues) {
-        (new swagger.UserApi())
-            .userRegisterPost({'payloadData': formValues})
-            .then(response => this.registerCallback(response));
-    }
+	register(formValues) {
+		(new swagger.UserApi())
+			.userRegisterPost({'payloadData': formValues})
+			.then(response => this.registerCallback(response));
+	}
 
-    loading() {
-        this.loadingProgress = Ladda.create(document.querySelector('.register-form button'));
-        this.loadingProgress.start();
-    }
+	loading() {
+		this.loadingProgress = Ladda.create(document.querySelector('.register-form button'));
+		this.loadingProgress.start();
+	}
 
-    stopLoading() {
-        if (this.loadingProgress)
-            this.loadingProgress.stop();
-    }
+	stopLoading() {
+		if (this.loadingProgress)
+			this.loadingProgress.stop();
+	}
 
-    SubmitCall = (formValues, form) => {
-        if (!form.valid())
-            return;
+	SubmitCall = (formValues, form) => {
+		if (!form.valid())
+			return;
 
-        this.loading();
-        this.register(formValues)
-    };
+		this.loading();
+		this.register(formValues)
+	};
 
-    render() {
-        return (<RegisterPTR SubmitCall={this.SubmitCall}/>);
-    }
+	render() {
+		return (<RegisterPTR SubmitCall={this.SubmitCall}/>);
+	}
 }

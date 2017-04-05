@@ -9,7 +9,7 @@ function display() {
 	const msg = 'لطفا برای نکمیل اطلاعات حساب خود کلیک نمایید.';
 
 	if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true)
-			notification = NotifyBox('warning', msg);
+		notification = NotifyBox('warning', msg);
 }
 
 export default function checkSubmitProfile() {

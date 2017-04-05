@@ -1,4 +1,4 @@
-import {VERSION, updateLocalStorageAction, asyncRemoveLocalStorageAction} from "../redux/actions/index";
+import {asyncRemoveLocalStorageAction, updateLocalStorageAction, VERSION} from "../redux/actions/index";
 import {dispatch} from "../functions/dispatch";
 import {logout} from "../redux/actions/login";
 import {updateUserInformation} from "../redux/actions/user";

@@ -7,102 +7,102 @@ import moment from "moment-jalali";
 import {sync} from "../../../../functions/sync";
 import {translatable} from "react-multilingual/dist";
 import ChannelReportListPTR from "./ChannelReportListPTR";
-import EditChannelReportButton from './EditChannelReportButton';
+import EditChannelReportButton from "./EditChannelReportButton";
 
 @connect(({channelReportList}) => ({channelReportList}))
 @translatable(({
-    AdName, Start, End, Price, Action
+				   AdName, Start, End, Price, Action
 
-}) => ({
-    translation: {
-        AdName, Start, End, Price, Action
-    }
+			   }) => ({
+	translation: {
+		AdName, Start, End, Price, Action
+	}
 }))
 export default class ChannelReportListCTR extends Component {
-    callApi(query_name, value) {
-        let {dispatch} = this.props;
-        sync(function*() {
-            let {data} = yield (new swagger.ChannelApi()).channelReportGet(select('user.token', 'no token'), {
-                ...select('queries.channelReport', {}),
-                [query_name]: value
-            });
+	callApi(query_name, value) {
+		let {dispatch} = this.props;
+		sync(function*() {
+			let {data} = yield (new swagger.ChannelApi()).channelReportGet(select('user.token', 'no token'), {
+				...select('queries.channelReport', {}),
+				[query_name]: value
+			});
 
-            dispatch(channelItemsReportListAction(data));
-        })
-    }
+			dispatch(channelItemsReportListAction(data));
+		})
+	}
 
-    sort(flag, query_name) {
-        this.callApi('sort', query_name + ':' + flag)
-    }
+	sort(flag, query_name) {
+		this.callApi('sort', query_name + ':' + flag)
+	}
 
-    filter(event, query_name) {
-        this.callApi(query_name, event.target.value);
-    }
+	filter(event, query_name) {
+		this.callApi(query_name, event.target.value);
+	}
 
-    search(event, query_name) {
-        this.callApi(query_name, event.target.value);
-    }
+	search(event, query_name) {
+		this.callApi(query_name, event.target.value);
+	}
 
-    updated_at(updated_at) {
-        return moment(updated_at).format('jYYYY/jM/jD');
-    }
+	updated_at(updated_at) {
+		return moment(updated_at).format('jYYYY/jM/jD');
+	}
 
-    created_at(created_at) {
-        return moment(created_at).format('jYYYY/jM/jD');
-    }
+	created_at(created_at) {
+		return moment(created_at).format('jYYYY/jM/jD');
+	}
 
-    onPaginationChange(page) {
-        this.callApi('p', page);
-    }
+	onPaginationChange(page) {
+		this.callApi('p', page);
+	}
 
-    onPerPageChange(per_page) {
-        this.callApi('c', per_page);
-    }
+	onPerPageChange(per_page) {
+		this.callApi('c', per_page);
+	}
 
-    translator(title) {
-        return this.props.translation[title];
-    }
+	translator(title) {
+		return this.props.translation[title];
+	}
 
-    admin_status(admin_status) {
-        if (admin_status == 'pending') {
-            return <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
-        } else if (admin_status == 'accepted') {
-            return <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
-        } else if (admin_status == 'rejected') {
-            return <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
-        }
+	admin_status(admin_status) {
+		if (admin_status == 'pending') {
+			return <span className="label label-sm label-warning"> {this.translator(admin_status)} </span>;
+		} else if (admin_status == 'accepted') {
+			return <span className="label label-sm label-success"> {this.translator(admin_status)} </span>;
+		} else if (admin_status == 'rejected') {
+			return <span className="label label-sm label-danger"> {this.translator(admin_status)} </span>;
+		}
 
-        return admin_status;
-    }
+		return admin_status;
+	}
 
-    archive_status(archive_status) {
-        return this.translator(archive_status);
-    }
+	archive_status(archive_status) {
+		return this.translator(archive_status);
+	}
 
-    active(pay_status) {
-        return this.translator(pay_status);
-    }
+	active(pay_status) {
+		return this.translator(pay_status);
+	}
 
-    edit(id) {
-        return <EditChannelReportButton key={Math.random()} id={id}/>;
-    }
+	edit(id) {
+		return <EditChannelReportButton key={Math.random()} id={id}/>;
+	}
 
-    render() {
-        return (<ChannelReportListPTR {...this.props.channelReportList}
-                                      sort={this.sort.bind(this)}
-                                      edit={this.edit.bind(this)}
-                                      translator={this.translator.bind(this)}
-                                      filter={this.filter.bind(this)}
-                                      search={this.search.bind(this)}
-                                      onPerPageChange={this.onPerPageChange.bind(this)}
-                                      onPaginationChange={this.onPaginationChange.bind(this)}
-                                      mutators={{
-                                          updated_at: this.updated_at,
-                                          created_at: this.created_at,
-                                          admin_status: this.admin_status.bind(this),
-                                          archive_status: this.archive_status.bind(this),
-                                          active: this.active.bind(this)
-                                      }}
-        />);
-    }
+	render() {
+		return (<ChannelReportListPTR {...this.props.channelReportList}
+									  sort={this.sort.bind(this)}
+									  edit={this.edit.bind(this)}
+									  translator={this.translator.bind(this)}
+									  filter={this.filter.bind(this)}
+									  search={this.search.bind(this)}
+									  onPerPageChange={this.onPerPageChange.bind(this)}
+									  onPaginationChange={this.onPaginationChange.bind(this)}
+									  mutators={{
+										  updated_at: this.updated_at,
+										  created_at: this.created_at,
+										  admin_status: this.admin_status.bind(this),
+										  archive_status: this.archive_status.bind(this),
+										  active: this.active.bind(this)
+									  }}
+		/>);
+	}
 }

@@ -1,6 +1,6 @@
 import {sync} from "../../functions/sync";
 import * as swagger from "../../swagger/index";
-import {roleListAction, permissionListAction} from "../../redux/actions/index";
+import {permissionListAction, roleListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
 import {loading} from "../../functions/loading";
@@ -12,42 +12,42 @@ import {navigate} from "../../functions/navigate";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* roleListController(done) {
-    loading(true);
-    const result = (yield (new swagger.UserApi())
-        .userPermissionsGet(select('user.token'), {
-            ...select('queries.role', {}),
-            def: shouldUpdateDefinition('roleList')
-        })).data;
-    dispatch(permissionListAction(result));
+	loading(true);
+	const result = (yield (new swagger.UserApi())
+		.userPermissionsGet(select('user.token'), {
+			...select('queries.role', {}),
+			def: shouldUpdateDefinition('roleList')
+		})).data;
+	dispatch(permissionListAction(result));
 
-    const {error, data} = yield (new swagger.UserApi())
-        .userRolesGet(select('user.token'), {
-            sort: 'created_at:DESC',
-            ...select('queries.role', {}),
-            def: true
-        });
+	const {error, data} = yield (new swagger.UserApi())
+		.userRolesGet(select('user.token'), {
+			sort: 'created_at:DESC',
+			...select('queries.role', {}),
+			def: true
+		});
 
-    done();
-    if (!error) {
-        dispatch(roleListAction(data));
+	done();
+	if (!error) {
+		dispatch(roleListAction(data));
 
-        loading(false);
-    } else {
-        throwError("onRoleEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
+		loading(false);
+	} else {
+		throwError("onRoleEnterMiddleWare", function () {
+			navigate('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(roleListController, 20000);
-        if (error)
-            return navigate('/v1/profile');
+	try {
+		yield* isLoginMiddleware();
+		let {error} = yield raceOnTime(roleListController, 20000);
+		if (error)
+			return navigate('/v1/profile');
 
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });

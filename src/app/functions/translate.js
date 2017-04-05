@@ -5,18 +5,18 @@ import swagger from "./../swagger/index";
 import {sprintf} from "sprintf-js";
 
 export function translate(text, ...parameters) {
-    let translated = select('translations', {})[text];
-    if (translated) {
-        return sprintf(translated, ...parameters);
-    }
+	let translated = select('translations', {})[text];
+	if (translated) {
+		return sprintf(translated, ...parameters);
+	}
 
-    sync(function*() {
-        yield (new swagger.MiscApi).miscTranslatePost(getToken(), {
-            'payloadData': {
-                "translate": text
-            }
-        });
-    });
+	sync(function*() {
+		yield (new swagger.MiscApi).miscTranslatePost(getToken(), {
+			'payloadData': {
+				"translate": text
+			}
+		});
+	});
 
-    return sprintf(translated, ...parameters);
+	return sprintf(translated, ...parameters);
 }

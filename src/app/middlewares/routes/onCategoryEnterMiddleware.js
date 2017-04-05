@@ -11,36 +11,36 @@ import {isLoginMiddleware} from "../isLoginMiddleware";
 import {raceOnTime} from "../../functions/raceOnTime";
 
 function* categoryListController(done) {
-    loading(true);
-    const {error, data} = yield (new swagger.CategoryApi())
-        .categoryListGet(select('user.token'), {
-            sort: 'created_at:DESC',
-            ...select('queries.category', {}),
-            def: true
-        });
+	loading(true);
+	const {error, data} = yield (new swagger.CategoryApi())
+		.categoryListGet(select('user.token'), {
+			sort: 'created_at:DESC',
+			...select('queries.category', {}),
+			def: true
+		});
 
-    done();
-    if (!error) {
-        dispatch(categoryListAction(data));
+	done();
+	if (!error) {
+		dispatch(categoryListAction(data));
 
-        loading(false);
-    } else {
-        throwError("onCategoryEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
+		loading(false);
+	} else {
+		throwError("onCategoryEnterMiddleWare", function () {
+			navigate('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(categoryListController, 20000);
-        if (error)
-            navigate('/v1/login');
+	try {
+		yield* isLoginMiddleware();
+		let {error} = yield raceOnTime(categoryListController, 20000);
+		if (error)
+			navigate('/v1/login');
 
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });
 

@@ -12,35 +12,35 @@ import {navigate} from "../../functions/navigate";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* telegramListController(done) {
-    loading(true);
-    const {error, data} = yield (new swagger.TelegramApi())
-        .telegramListGet(select('user.token'), {
-            sort: 'created_at:DESC',
-            ...select('queries.telegram', {}),
-            def: shouldUpdateDefinition('telegramList')
-        });
+	loading(true);
+	const {error, data} = yield (new swagger.TelegramApi())
+		.telegramListGet(select('user.token'), {
+			sort: 'created_at:DESC',
+			...select('queries.telegram', {}),
+			def: shouldUpdateDefinition('telegramList')
+		});
 
-    done();
-    if (!error) {
-        dispatch(telegramListAction(data));
+	done();
+	if (!error) {
+		dispatch(telegramListAction(data));
 
-        loading(false);
-    } else {
-        throwError("onTelegramEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
+		loading(false);
+	} else {
+		throwError("onTelegramEnterMiddleWare", function () {
+			navigate('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(telegramListController, 20000);
-        if (error)
-            return navigate('/v1/profile');
+	try {
+		yield* isLoginMiddleware();
+		let {error} = yield raceOnTime(telegramListController, 20000);
+		if (error)
+			return navigate('/v1/profile');
 
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });

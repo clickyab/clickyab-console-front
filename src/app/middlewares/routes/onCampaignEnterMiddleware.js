@@ -12,37 +12,37 @@ import {handleError} from "../../functions/catchError";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* campaignListController(done) {
-    loading(true);
-    yield* isLoginMiddleware();
-    const {error, data} = yield (new swagger.AdApi())
-        .campaignListGet(select('user.token'), {
-            sort: 'created_at:DESC',
-            ...select('queries.campaign', {}),
-            def: shouldUpdateDefinition('campaignList')
-        });
+	loading(true);
+	yield* isLoginMiddleware();
+	const {error, data} = yield (new swagger.AdApi())
+		.campaignListGet(select('user.token'), {
+			sort: 'created_at:DESC',
+			...select('queries.campaign', {}),
+			def: shouldUpdateDefinition('campaignList')
+		});
 
-    done();
-    if (!error) {
-        dispatch(campaignListAction(data));
-        loading(false);
-    } else {
-        throwError("onChannelEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
+	done();
+	if (!error) {
+		dispatch(campaignListAction(data));
+		loading(false);
+	} else {
+		throwError("onChannelEnterMiddleWare", function () {
+			navigate('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(campaignListController, 20000);
-        if (error)
-            navigate('/v1/login');
+	try {
+		yield* isLoginMiddleware();
+		let {error} = yield raceOnTime(campaignListController, 20000);
+		if (error)
+			navigate('/v1/login');
 
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });
 
 

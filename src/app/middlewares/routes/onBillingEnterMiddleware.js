@@ -12,37 +12,37 @@ import {handleError} from "../../functions/catchError";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* BillingListController(done) {
-    loading(true);
-    yield* isLoginMiddleware();
-    const {error, data} = yield (new swagger.BillingApi())
-        .billingListGet(select('user.token', 'no token'), {
-            sort: 'created_at:DESC',
-            ...select('queries.billing', {}),
-            def: shouldUpdateDefinition('billingList')
-        });
+	loading(true);
+	yield* isLoginMiddleware();
+	const {error, data} = yield (new swagger.BillingApi())
+		.billingListGet(select('user.token', 'no token'), {
+			sort: 'created_at:DESC',
+			...select('queries.billing', {}),
+			def: shouldUpdateDefinition('billingList')
+		});
 
-    done();
-    if (!error) {
-        dispatch(billingListAction(data));
-        loading(false);
-    } else {
-        throwError("onBillingEnterMiddleWare", function () {
-            navigate('/v1/login');
-        });
-    }
+	done();
+	if (!error) {
+		dispatch(billingListAction(data));
+		loading(false);
+	} else {
+		throwError("onBillingEnterMiddleWare", function () {
+			navigate('/v1/login');
+		});
+	}
 }
 
 export default (nextState, replace, next) => sync(function*() {
-    try {
-        yield* isLoginMiddleware();
-        let {error} = yield raceOnTime(BillingListController, 20000);
-        if (error)
-            navigate('/v1/login');
+	try {
+		yield* isLoginMiddleware();
+		let {error} = yield raceOnTime(BillingListController, 20000);
+		if (error)
+			navigate('/v1/login');
 
-        next();
-    } catch (error) {
-        handleError(error);
-    }
+		next();
+	} catch (error) {
+		handleError(error);
+	}
 });
 
 

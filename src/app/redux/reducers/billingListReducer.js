@@ -1,8 +1,8 @@
-import {TRANSLATION_LIST} from "../actions/index";
+import {BILLING_LIST} from "./../actions/index";
 
-export function translationListReducer(state = {}, action) {
+export function billingListReducer(state = {}, action) {
 	switch (action.type) {
-		case TRANSLATION_LIST:
+		case BILLING_LIST :
 			return {
 				items: action.data.data,
 				definitions: action.data.definition || state.definitions,

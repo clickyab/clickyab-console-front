@@ -1,4 +1,4 @@
-import {CATEGORY_LIST, UPDATE_CATEGORY_FROM_LIST, CATEGORY_ITEMS_LIST} from "../actions/index";
+import {CATEGORY_ITEMS_LIST, CATEGORY_LIST, UPDATE_CATEGORY_FROM_LIST} from "../actions/index";
 
 function updateARow(state, action) {
 	let items = [...state.items];

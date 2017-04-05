@@ -1,4 +1,4 @@
-import {CHANNEL_REPORT_LIST, CHANNEL_ITEMS_REPORT_LIST} from "../actions/index";
+import {CHANNEL_ITEMS_REPORT_LIST, CHANNEL_REPORT_LIST} from "../actions/index";
 
 export function channelReportListReducer(state = [], action) {
 	switch (action.type) {

@@ -13,36 +13,36 @@ let loadingProgress;
 
 @connect(({channelData}) => ({channelData}))
 export default class EditChannelModalCTR extends Component {
-    editSubmit(formValues) {
-        const {id} = this.props.channelData;
-        sync(function *() {
-            loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
-            loadingProgress.start();
-            const {error, data, response} = yield (new swagger.ChannelApi())
-                .channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
+	editSubmit(formValues) {
+		const {id} = this.props.channelData;
+		sync(function *() {
+			loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
+			loadingProgress.start();
+			const {error, data, response} = yield (new swagger.ChannelApi())
+				.channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
-            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-            if (response.statusCode == 200) {
-                $('#editChannelModal').modal('hide');
-                loadingProgress.stop();
-                dispatch(updateAChannelFromListAction(data));
-            } else if (response.statusCode == '400') {
-                FailedBoxAlert(response)
-            }
-            ifInvalidToken(response);
-        });
-    }
+			response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+			response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+			if (response.statusCode == 200) {
+				$('#editChannelModal').modal('hide');
+				loadingProgress.stop();
+				dispatch(updateAChannelFromListAction(data));
+			} else if (response.statusCode == '400') {
+				FailedBoxAlert(response)
+			}
+			ifInvalidToken(response);
+		});
+	}
 
-    SubmitEditChannel = (formValues, form) => {
-        if (!form.valid())
-            return;
-        this.editSubmit(formValues)
-    };
+	SubmitEditChannel = (formValues, form) => {
+		if (!form.valid())
+			return;
+		this.editSubmit(formValues)
+	};
 
-    render() {
-        const {form, channelData} = this.props;
-        return (
-            <EditChannelModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
-    }
+	render() {
+		const {form, channelData} = this.props;
+		return (
+			<EditChannelModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
+	}
 }
