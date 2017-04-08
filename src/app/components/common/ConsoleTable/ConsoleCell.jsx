@@ -24,6 +24,5 @@ export class ConsoleCell extends Component {
 			actions ? <td>{this.buildActions(id, data)}</td> : mutator ? <td>{mutator(data, this.props)}</td> :
 				<td>{data}</td>
 		);
-
 	}
 }
