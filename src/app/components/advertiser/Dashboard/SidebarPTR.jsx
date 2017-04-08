@@ -10,7 +10,6 @@ export class Sidebar extends Component {
 
 
 	render() {
-		console.log(translate('Advertiser Dashboard'))
 		return (
 			<div className='page-sidebar-wrapper'>
 				<div className='page-sidebar navbar-collapse collapse'>
