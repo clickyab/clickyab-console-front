@@ -9,7 +9,6 @@ let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
 export default class WithdrawModalCTR extends Component {
-
     withDrawSubmit(formValues) {
         formValues.user_id = select('user.user_id');
         sync(function*() {
