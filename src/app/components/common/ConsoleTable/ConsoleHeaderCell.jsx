@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
 import {select} from "../../../functions/select";
+import {translate} from "../../../functions/translate";
 
 let i = -1;
 
@@ -31,6 +32,7 @@ export class ConsoleHeaderCell extends Component {
 
 	render() {
 		let {sortable, children} = this.props;
+		console.log(children);
 		i = i + 1;
 		return (
 			<th id={"row-" + i}>
@@ -39,7 +41,7 @@ export class ConsoleHeaderCell extends Component {
 						event.preventDefault();
 						event.stopPropagation();
 						this.sortOnChange(Object.assign({}, event));
-					}}>{children}</a> : children}
+					}}>{translate(children)}</a> : translate(children)}
                 </span>
 			</th>
 		);

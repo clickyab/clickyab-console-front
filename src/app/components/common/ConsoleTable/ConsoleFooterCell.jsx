@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
 import {select} from "../../../functions/select";
+import {translate} from "../../../functions/translate";
 
 export class ConsoleFooterCell extends Component {
 	timeout;
@@ -24,10 +25,9 @@ export class ConsoleFooterCell extends Component {
 	getFilters(filters) {
 
 		let _filters = [];
-		let {translator} = this.props;
 		_filters.push(<option key="all" value="">همه</option>);
 		for (let keyFilter in filters) {
-			_filters.push(<option key={keyFilter} value={keyFilter}>{translator(keyFilter)}</option>)
+			_filters.push(<option key={keyFilter} value={keyFilter}>{translate(keyFilter)}</option>)
 		}
 
 		return _filters;
@@ -46,7 +46,7 @@ export class ConsoleFooterCell extends Component {
 	}
 
 	render() {
-		let {filters, footer, query_name, list, searchable, translator} = this.props;
+		let {filters, footer, query_name, list, searchable} = this.props;
 		return (
 			<td>
 				<div className="search-filter-datatable">
@@ -56,7 +56,7 @@ export class ConsoleFooterCell extends Component {
 								   this.onSearchChange(Object.assign({}, event));
 							   }}
 							   defaultValue={select('queries.' + list + "." + query_name, '')}
-							   placeholder={translator(footer.title)}/> : ''}
+							   placeholder={translate(footer.title)}/> : ''}
 
 					{filters !== null ? <select
 						defaultValue={select('queries.' + list + "." + query_name, '')}
