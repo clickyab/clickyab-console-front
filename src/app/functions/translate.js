@@ -9,7 +9,6 @@ export function translate(text, ...parameters) {
 	if (translated) {
 		return sprintf(translated, ...parameters);
 	}
-
 	sync(function*() {
 		yield (new swagger.MiscApi).miscTranslatePost(getToken(), {
 			'payloadData': {
