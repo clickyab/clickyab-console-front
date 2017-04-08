@@ -10,20 +10,20 @@ let loadingProgress;
 
 export default class WithdrawModalCTR extends Component {
 
-	withDrawSubmit(formValues) {
-		formValues.user_id = select('user.user_id');
-		sync(function*() {
-			loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
-			loadingProgress.start();
-			const {response} = yield (new swagger.BillingApi())
-				.billingWithdrawalPost(select("user.token", "no token"), {'payloadData': formValues});
-			console.log(response);
-			response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-			response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-			if (response.statusCode == 200) {
-				$('#withDrawModal').modal('hide');
-				NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد', 8000)
-				loadingProgress.stop();
+    withDrawSubmit(formValues) {
+        formValues.user_id = select('user.user_id');
+        sync(function*() {
+            loadingProgress = Ladda.create(document.querySelector('button.add-channel-form'));
+            loadingProgress.start();
+            const {response} = yield (new swagger.BillingApi())
+                .billingWithdrawalPost(select("user.token", "no token"), {'payloadData': formValues});
+
+            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
+            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+            if (response.statusCode == 200) {
+                $('#withDrawModal').modal('hide');
+                NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد', 8000)
+                loadingProgress.stop();
 
 			} else if (response.statusCode == '400') {
 				NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد', 8000)
