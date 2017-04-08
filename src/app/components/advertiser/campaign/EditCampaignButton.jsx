@@ -12,19 +12,19 @@ export default class EditCampaignButton extends Component {
 	editElementBtn;
 
 	edit(event) {
-		$(event.target).parent().addClass("disabled");
+		$(event.target).addClass("disabled");
 		const {id} = this.props;
 		sync(function*() {
 			const {error, data, response} = yield (new swagger.AdApi())
 				.campaignGetIdGet(id, select('user.token', 'no token'));
 			if (response.statusCode == '200') {
-				$(event.target).parent().removeClass("disabled");
+				$(event.target).removeClass("disabled");
 				dispatch(createCampaign(data));
 				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/name', {
 					campaign_id: select('createCampaignData.id')
 				});
 			} else if (response.statusCode == '400') {
-				$(event.target).parent().removeClass("disabled");
+				$(event.target).removeClass("disabled");
 				AlertBox("error", "اختلالی به وجود امده است لطفا دوباره تلاش کنید")
 			}
 		});

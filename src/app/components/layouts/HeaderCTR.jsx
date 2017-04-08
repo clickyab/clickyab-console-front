@@ -99,10 +99,6 @@ export class Header extends Component {
 										<Link to="/v1/profile">
 											<i className="icon-user"/> پروفایل من </Link>
 									</li>
-									<li>
-										<a href="app_calendar.html">
-											<i className="icon-calendar"/> حسابداری </a>
-									</li>
 									<li className="divider"/>
 									<li>
 										<a onClick={this.SubmitLogout.bind(this)}>
