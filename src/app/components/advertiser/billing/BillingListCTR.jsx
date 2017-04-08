@@ -4,25 +4,13 @@ import BillingListPTR from "./BillingListPTR";
 import {sync} from "../../../functions/sync";
 import swagger from "./../../../swagger/index";
 import {select} from "../../../functions/select";
+import {translate} from "../../../functions/translate";
 import {billingListAction} from "../../../redux/actions/index";
 import moment from "moment-jalali";
-import {translatable} from "react-multilingual/dist";
 import EditBillingButton from "./EditBillingButton";
 import ChangeBillingStatus from "./ChangeBillingStatus";
 
 @connect(({billingList}) => ({billingList}))
-@translatable(({
-				   ID, CreatedAt, UpdatedAt,
-				   Action, Email, UserID,
-				   PaymentID, Amount, Reason, accepted,
-				   pending, rejected, Type, Status, Deposit, yes, no
-			   }) => ({
-	translation: {
-		ID, CreatedAt, UpdatedAt,
-		Action, Email, UserID,
-		PaymentID, Amount, Reason, accepted, pending, rejected, Type, Status, Deposit, yes, no
-	}
-}))
 export default class BillingListCTR extends Component {
 	callApi(query_name, value) {
 		let {dispatch} = this.props;
@@ -63,15 +51,15 @@ export default class BillingListCTR extends Component {
 
 	status(status, {id, _actions}) {
 		if (_actions.split(',').includes("status")) {
-			return <ChangeBillingStatus id={id} status={status} translator={this.translator.bind(this)}/>;
+			return <ChangeBillingStatus id={id} status={status} translator={translate}/>;
 		}
 		let span;
 		if (status == 'pending') {
-			span = <span className="label  label-warning"> {this.translator(status)} </span>;
+			span = <span className="label  label-warning"> {translate(status)} </span>;
 		} else if (status == 'accepted') {
-			span = <span className="label  label-success"> {this.translator(status)} </span>;
+			span = <span className="label  label-success"> {translate(status)} </span>;
 		} else if (status == 'rejected') {
-			span = <span className="label  label-danger"> {this.translator(status)} </span>;
+			span = <span className="label  label-danger"> {translate(status)} </span>;
 		}
 
 		return span;
@@ -80,9 +68,9 @@ export default class BillingListCTR extends Component {
 	deposit(deposit) {
 		let span;
 		if (deposit == 'yes') {
-			span = <span className="label  label-success"> {this.translator(deposit)} </span>;
+			span = <span className="label  label-success"> {translate(deposit)} </span>;
 		} else if (deposit == 'no') {
-			span = <span className="label  label-danger"> {this.translator(deposit)} </span>;
+			span = <span className="label  label-danger"> {translate(deposit)} </span>;
 		}
 
 		return span;
@@ -104,7 +92,6 @@ export default class BillingListCTR extends Component {
 		return this.props.translation[title];
 	}
 
-
 	render() {
 		return (<BillingListPTR {...this.props.billingList}
 								sort={this.sort.bind(this)}
@@ -114,7 +101,7 @@ export default class BillingListCTR extends Component {
 								onPerPageChange={this.onPerPageChange.bind(this)}
 								edit={this.edit.bind(this)}
 								depositAction={this.depositAction.bind(this)}
-								translator={this.translator.bind(this)}
+								translator={translate}
 								mutators={{
 									updated_at: this.updated_at,
 									created_at: this.created_at,

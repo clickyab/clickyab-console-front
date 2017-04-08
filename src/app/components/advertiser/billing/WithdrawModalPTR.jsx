@@ -12,7 +12,6 @@ class WithdrawModalPTR extends Component {
         }
     };
 
-
    componentDidMount() {
         this.withDrawForm = $("#WithDrawForm");
         this.withDrawForm.validate({

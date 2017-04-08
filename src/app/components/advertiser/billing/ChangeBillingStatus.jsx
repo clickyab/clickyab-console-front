@@ -5,7 +5,6 @@ import {getToken} from "../../../redux/helpers";
 
 
 export default class ChangeBillingStatus extends Component {
-
 	edit(event) {
 		const {id} = this.props;
 		sync(function*() {
