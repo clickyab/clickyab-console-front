@@ -12,7 +12,8 @@ class WithdrawModalPTR extends Component {
         }
     };
 
-    componentDidMount() {
+
+   componentDidMount() {
         this.withDrawForm = $("#WithDrawForm");
         this.withDrawForm.validate({
             rules: {
@@ -30,7 +31,7 @@ class WithdrawModalPTR extends Component {
                 }
             }
         });
-
+    }
 
 	closeModal(e) {
 		$(e.target).parents('.modal').prop('id').modal('hide');
