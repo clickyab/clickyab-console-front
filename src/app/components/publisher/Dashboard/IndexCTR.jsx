@@ -218,7 +218,7 @@ export default class AdvertiserDashboardPage extends Component {
                                             </div>
                                             <div className="details">
                                                 <div className="number">
-                                                    <span>{translate("% Channel", accepted)}</span>
+                                                    <span>{translate("%s Channel", accepted)}</span>
                                                 </div>
                                                 <div className="desc"> {translate("Confirmed Channel")}</div>
                                             </div>
@@ -234,7 +234,7 @@ export default class AdvertiserDashboardPage extends Component {
                                             </div>
                                             <div className="details">
                                                 <div className="number">
-                                                    <span>{translate("% Channel", pending)}</span>
+                                                    <span>{translate("%s Channel", pending)}</span>
                                                 </div>
                                                 <div className="desc"> {translate("Rejected Channel")} </div>
                                             </div>
@@ -248,7 +248,7 @@ export default class AdvertiserDashboardPage extends Component {
                                             </div>
                                             <div className="details">
                                                 <div className="number">
-                                                    <span>{translate("% Channel", rejected)}</span>
+                                                    <span>{translate("%s Channel", rejected)}</span>
                                                 </div>
                                                 <div className="desc"> {translate("Rejected Channel")}</div>
                                             </div>
