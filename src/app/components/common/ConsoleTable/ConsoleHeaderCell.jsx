@@ -32,7 +32,6 @@ export class ConsoleHeaderCell extends Component {
 
 	render() {
 		let {sortable, children} = this.props;
-		console.log(children);
 		i = i + 1;
 		return (
 			<th id={"row-" + i}>

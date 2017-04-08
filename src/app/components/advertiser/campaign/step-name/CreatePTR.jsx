@@ -3,6 +3,7 @@ import $ from "jquery";
 import {change, Field, reduxForm} from "redux-form";
 import {dispatch} from "./../../../../functions/dispatch";
 import {select} from "../../../../functions/select";
+import {translate} from './../../../../functions/translate';
 
 class CreatePTR extends Component {
 	createCampaignForm;
@@ -35,7 +36,7 @@ class CreatePTR extends Component {
 
 					<div className="portlet-title">
 						<div className="caption font-blue bold">
-							<i className="fa fa-bullseye font-blue"/> ثبت کمپین جدید
+							<i className="fa fa-bullseye font-blue"/> {translate('Create New Campaign')}
 						</div>
 					</div>
 					<div className="portlet-body form">
@@ -45,34 +46,34 @@ class CreatePTR extends Component {
 									<div className="mt-step-number bg-white">
 										۱
 									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
+									<div className="mt-step-title uppercase font-grey-cascade">{translate('Campaign Name')}</div>
 
 								</div>
 								<div className="col-md-2 mt-step-col">
 									<div className="mt-step-number bg-white">
 										۲
 									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
+									<div className="mt-step-title uppercase font-grey-cascade">{translate('Content Type')}</div>
 								</div>
 								<div className="col-md-2 mt-step-col ">
 									<div className="mt-step-number bg-white">
 										۳
 									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">آپلود فایل</div>
+									<div className="mt-step-title uppercase font-grey-cascade">{translate('File Upload')}</div>
 
 								</div>
 								<div className="col-md-2 mt-step-col ">
 									<div className="mt-step-number bg-white">
 										۴
 									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">محتوای متنی</div>
+									<div className="mt-step-title uppercase font-grey-cascade">{translate('Text Content')}</div>
 
 								</div>
 								<div className="col-md-2 mt-step-col ">
 									<div className="mt-step-number bg-white">
 										۵
 									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
+									<div className="mt-step-title uppercase font-grey-cascade">{translate('Campaign Type')}</div>
 
 								</div>
 
@@ -80,7 +81,7 @@ class CreatePTR extends Component {
 									<div className="mt-step-number bg-white">
 										۶
 									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت
+									<div className="mt-step-title uppercase font-grey-cascade">{translate('Finish and Payment')}
 									</div>
 
 								</div>
@@ -96,14 +97,14 @@ class CreatePTR extends Component {
 								<ol className="questions">
 									<li className="current form-group">
 										<span className="title-s-form"><label
-											htmlFor="q1">۱- نام کمپین را وارد نمایید</label></span>
+											htmlFor="q1">۱- {translate('Please enter the campaign name')}</label></span>
 										<Field autoFocus onFocus={() => {
 										}} component="input" id="campaign_name" name="name" type="text"/>
 
 									</li>
 								</ol>
 								<button className="btn-campaign-name submit btn btn-info  button-next btn-arrow-text"
-										type="submit">مرحله بعد <i className="fa fa-angle-left"/></button>
+										type="submit">{translate('Next Step')} <i className="fa fa-angle-left"/></button>
 
 							</div>
 							<span className="final-message"/>
