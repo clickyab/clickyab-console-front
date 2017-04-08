@@ -1,24 +1,8 @@
 import React, {Component} from "react";
-import {translatable} from "react-multilingual/dist";
 import {Link, SidebarLinks} from "./../../../components/custom-link/CustomLink";
 import {securify} from "../../../functions/securify";
+import {translate} from './../../../functions/translate';
 
-@translatable(
-	({dashboard, operations, campaigns, websites, applications, withdrawal, slots, potential, users, financial, access}) =>
-		({
-			dashboard,
-			operations,
-			campaigns,
-			websites,
-			applications,
-			withdrawal,
-			slots,
-			potential,
-			users,
-			financial,
-			access
-		})
-)
 export class Sidebar extends Component {
 	componentDidMount() {
 		document.title = "داشبورد تبلیغ دهنده";
@@ -26,13 +10,14 @@ export class Sidebar extends Component {
 
 
 	render() {
+		console.log(translate('Advertiser Dashboard'))
 		return (
 			<div className='page-sidebar-wrapper'>
 				<div className='page-sidebar navbar-collapse collapse'>
 					<SidebarLinks>
 						<Link to='/v1/advertiser' activeClassName='active'>
 							<i className='fa fa-home'/>
-							<span className='title'>داشبورد تبلیغ کننده</span>
+							<span className='title'>{translate('Advertiser Dashboard')}</span>
 							<span className='selected'/>
 							<span className="selected"/>
 						</Link>
@@ -40,7 +25,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to="/v1/advertiser/telegram" activeClassName='active'>
 								<i className='fa fa-user'/>
-								<span className='title'>کاربران تلگرام</span>
+								<span className='title'>{translate('Telegram User')}</span>
 								<span className="selected"/>
 							</Link>,
 							({user}, {canSeeSideBarTelegramUserList}, run) => run(canSeeSideBarTelegramUserList())
@@ -50,7 +35,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to='/v1/advertiser/billing' activeClassName='active'>
 								<i className='fa fa-list'/>
-								<span className='title'>لیست پرداخت‌ها</span>
+								<span className='title'>{translate('Billing List')}</span>
 								<span className='selected'/>
 								<span className="selected"/>
 							</Link>,
@@ -60,7 +45,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to='/v1/advertiser/translation' activeClassName='active'>
 								<i className='fa fa-list'/>
-								<span className='title'>ترجمه ها</span>
+								<span className='title'>{translate('Translation List')}</span>
 								<span className='selected'/>
 								<span className="selected"/>
 							</Link>,
@@ -69,13 +54,13 @@ export class Sidebar extends Component {
 
 
 						<li className="heading">
-							<h3>کمپین‌ها</h3>
+							<h3>{translate('Campaigns')}</h3>
 						</li>
 
 						{securify(
 							() => <Link to='/v1/advertiser/campaign/create/step/name' activeClassName='active'>
 								<i className='fa fa-plus-circle'/>
-								<span className='title'>افزودن کمپین</span>
+								<span className='title'>{translate('Add Campaign')}</span>
 								<span className='selected'/>
 								<span className="selected"/>
 							</Link>,
@@ -85,7 +70,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to='/v1/advertiser/campaign' activeClassName='active'>
 								<i className='fa fa-list'/>
-								<span className='title'>لیست کمپین</span>
+								<span className='title'>{translate('Campaign List')}</span>
 								<span className='selected'/>
 								<span className="selected"/>
 							</Link>,

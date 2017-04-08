@@ -2,18 +2,9 @@ import React, {Component} from "react";
 import {translatable} from "react-multilingual/dist";
 import {Link, SidebarLinks} from "./../../../components/custom-link/CustomLink";
 import {securify} from "../../../functions/securify";
+import {translate} from './../../../functions/translate';
 
 
-@translatable(
-	({
-		 dashboard, operations, campaigns, websites, applications,
-		 withdrawal, slots, potential, users, financial, access
-	 }) =>
-		({
-			dashboard, operations, campaigns, websites, applications,
-			withdrawal, slots, potential, users, financial, access
-		})
-)
 export class Sidebar extends Component {
 	componentDidMount() {
 		document.title = "داشبورد نمایش دهنده";
@@ -26,7 +17,7 @@ export class Sidebar extends Component {
 					<SidebarLinks>
 						<Link to='/v1/publisher'>
 							<i className='fa fa-home'/>
-							<span className='title'>داشبورد ناشر</span>
+							<span className='title'>{translate('Publisher Dashboard')}</span>
 							<span className='selected'/>
 							<span className="selected"/>
 						</Link>
@@ -34,7 +25,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to="/v1/publisher/channel">
 								<i className='fa fa-television'/>
-								<span className='title'>کانال‌ها</span>
+								<span className='title'>{translate('Channels List')}</span>
 								<span className="selected"/>
 							</Link>,
 							({user}, {canSeeSideBarChannelList}, run) => run(canSeeSideBarChannelList())
@@ -44,7 +35,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to="/v1/publisher/user">
 								<i className='fa fa-user'/>
-								<span className='title'>مدیریت کاربران</span>
+								<span className='title'>{translate('Manage User')}</span>
 								<span className="selected"/>
 							</Link>,
 							({user}, {canSeeSidebarManageUser}, run) => run(canSeeSidebarManageUser())
@@ -53,7 +44,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to="/v1/publisher/role">
 								<i className='fa fa-user'/>
-								<span className='title'> رول ها</span>
+								<span className='title'>{translate('Role List')}</span>
 								<span className="selected"/>
 							</Link>,
 							({user}, {canSeeSidebarRoleList}, run) => run(canSeeSidebarRoleList())
@@ -62,7 +53,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to="/v1/publisher/telegram">
 								<i className='fa fa-user'/>
-								<span className='title'>مدیریت کانال ها</span>
+								<span className='title'>{translate('Manage Channel')}</span>
 								<span className="selected"/>
 							</Link>,
 							({user}, {canSeeSideBarTelegramUserList}, run) => run(canSeeSideBarTelegramUserList())
@@ -72,7 +63,7 @@ export class Sidebar extends Component {
 						{securify(
 							() => <Link to='/v1/publisher/translation' activeClassName='active'>
 								<i className='fa fa-list'/>
-								<span className='title'>ترجمه ها</span>
+								<span className='title'>{translate('Translation List')}</span>
 								<span className='selected'/>
 								<span className="selected"/>
 							</Link>,
