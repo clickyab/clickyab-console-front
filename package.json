@@ -61,6 +61,7 @@
     "react-ios-switch": "^0.1.10",
     "react-motion": "^0.4.6",
     "react-multilingual": "^1.1.5",
+    "react-number-format": "^1.1.2",
     "react-persian": "^1.1.1",
     "react-redux": "4.4.5",
     "react-redux-secure": "^1.0.1",
