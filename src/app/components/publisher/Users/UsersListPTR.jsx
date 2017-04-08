@@ -26,10 +26,7 @@ export default class UsersListPTR extends Component {
 							() => <ConsoleTable {...this.props} list="user"/>,
 							({user}, {canSeeUserList}, run) => run(canSeeUserList())
 						)}
-						{securify(
-							() => <EditUserModalCTR form="EditUserModalPTR"/>,
-							({user}, {canSeeUserEdit}, run) => run(canSeeUserEdit())
-						)}
+						<EditUserModalCTR form="EditUserModalPTR"/>
 					</div>
 				</div>
 			</div>
