@@ -2,13 +2,11 @@ import React, {Component} from "react";
 import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
 import {select} from "../../../functions/select";
-import {translate} from "../../../functions/translate";
 
 let i = -1;
 
 export class ConsoleHeaderCell extends Component {
 	sort(event, order, query_name) {
-
 		this.props.sort(order, query_name);
 	}
 
@@ -32,7 +30,8 @@ export class ConsoleHeaderCell extends Component {
 
 	render() {
 		let {sortable, children} = this.props;
-		i = i + 1;
+		let i = i + 1;
+
 		return (
 			<th id={"row-" + i}>
                 <span className="head-title-datatable">
@@ -40,7 +39,7 @@ export class ConsoleHeaderCell extends Component {
 						event.preventDefault();
 						event.stopPropagation();
 						this.sortOnChange(Object.assign({}, event));
-					}}>{translate(children)}</a> : translate(children)}
+					}}>{children}</a> : children}
                 </span>
 			</th>
 		);

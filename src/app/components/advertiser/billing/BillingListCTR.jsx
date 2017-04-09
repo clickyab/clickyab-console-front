@@ -88,10 +88,6 @@ export default class BillingListCTR extends Component {
 		this.callApi('c', per_page);
 	}
 
-	translator(title) {
-		return this.props.translation[title];
-	}
-
 	render() {
 		return (<BillingListPTR {...this.props.billingList}
 								sort={this.sort.bind(this)}

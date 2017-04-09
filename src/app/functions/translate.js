@@ -6,6 +6,7 @@ import {sprintf} from "sprintf-js";
 
 export function translate(text, ...parameters) {
 	let translated = select('translations', {})[select('locale')][text];
+
 	if (translated) {
 		return sprintf(translated, ...parameters);
 	}
