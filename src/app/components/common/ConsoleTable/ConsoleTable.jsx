@@ -254,7 +254,7 @@ export class ConsoleTable extends Component {
                                     <option value="40">40</option>
                                     <option value="50">50</option>
                                 </select>
-                                {translate("In the queue of %s", <span
+                                {translateViaHtml("In the queue of %s", <span
                                     className="bold">{select(this.props.list + 'List.items').length}</span>)}
                             </label>
                         </div>
