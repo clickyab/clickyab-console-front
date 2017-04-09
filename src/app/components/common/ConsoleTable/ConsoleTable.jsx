@@ -3,7 +3,7 @@ import {ConsoleHeaderCell} from "./ConsoleHeaderCell";
 import {ConsoleCell} from "./ConsoleCell";
 import {ConsoleFooterCell} from "./ConsoleFooterCell";
 import {select} from "../../../functions/select";
-import {translate} from "../../../functions/translate";
+import {translate, translateViaHtml} from "../../../functions/translate";
 import {dispatch} from "../../../functions/dispatch";
 import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actions/index";
 
@@ -234,7 +234,7 @@ export class ConsoleTable extends Component {
                                 }}>
                                     {this.pagination()}
                                 </select>
-                                {translate("from %s page", <span className="bold"> {this.pagination().length}</span>)}
+                                {translateViaHtml("from %s page", '<span class="bold">' + this.pagination().length + '</span>')}
                             </label>
                         </div>
                     </div>
