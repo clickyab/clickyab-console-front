@@ -3,6 +3,7 @@ import {Link} from "react-router";
 import {sync} from "../../functions/sync";
 import * as swagger from "../../swagger/index";
 import {getToken} from "../../redux/helpers";
+import {translate} from '../../functions/translate';
 
 export default class CreditMenu extends Component {
 	clicked = true;
@@ -53,7 +54,7 @@ export default class CreditMenu extends Component {
 		return (
 			<li>
 				<Link style={{cursor: 'default'}}>
-					<i className="fa fa-money"/> اعتبار:
+					<i className="fa fa-money"/> {translate('Credit')}:
 					<span className="bold"> {this.state.amount} </span>
 					تومان
 					<i className="fa fa-refresh" onMouseEnter={this.keepOpen} onMouseLeave={this.keepClose}
