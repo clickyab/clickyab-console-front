@@ -21,7 +21,7 @@ export default class TranslationListPTR extends Component {
 						</div>
 					</div>
 					<div className='portlet-body'>
-						<ConsoleTable {...this.props} list="translation" action={false}/>
+						<ConsoleTable {...this.props} list="translation"/>
 					</div>
 				</div>
 			</div>
