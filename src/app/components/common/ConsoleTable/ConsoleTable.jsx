@@ -234,7 +234,7 @@ export class ConsoleTable extends Component {
                                 }}>
                                     {this.pagination()}
                                 </select>
-                                {translateViaHtml("from %s page", '<span class="bold">' + this.pagination().length + '</span>')}
+                                {translateViaHtml("from %s page", `<span class="bold">${this.pagination().length}</span>`)}
                             </label>
                         </div>
                     </div>
