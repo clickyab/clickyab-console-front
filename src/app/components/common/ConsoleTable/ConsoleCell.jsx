@@ -2,7 +2,7 @@ import React, {Component} from "react";
 
 export class ConsoleCell extends Component {
 	buildActions(id, item) {
-		let {depositAction, edit} = this.props;
+		let {depositAction, edit, deleteAction} = this.props;
 
 		const actionKeys = item.split(',');
 		let buttons = [];
@@ -11,6 +11,8 @@ export class ConsoleCell extends Component {
 				buttons.push(edit(id));
 			} else if (actionKeys[i] == "deposit") {
 				buttons.push(depositAction(id));
+			} else if (actionKeys[i] == "delete") {
+				buttons.push(deleteAction(id));
 			}
 		}
 

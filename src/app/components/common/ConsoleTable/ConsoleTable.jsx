@@ -143,7 +143,7 @@ export class ConsoleTable extends Component {
     }
 
     render() {
-        let {sort, filter, list, change, edit, depositAction, search, mutators} = this.props;
+        let {sort, filter, list, change, edit, deleteAction, depositAction, search, mutators} = this.props;
 
         return (
             <div className="table-holder">
@@ -213,7 +213,7 @@ export class ConsoleTable extends Component {
                                     ({cell, header}, index) => <ConsoleCell key={index}
                                                                             mutator={mutators[header.data]}
                                                                             actions={header.data == "_actions"}
-                                                                            change={change} edit={edit}
+                                                                            change={change} edit={edit} deleteAction={deleteAction}
                                                                             depositAction={depositAction}
                                                                             className="value-datatable"
                                                                             rowIndex={rowIndex} {...cell}/>

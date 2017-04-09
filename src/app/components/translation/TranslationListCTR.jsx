@@ -6,27 +6,12 @@ import swagger from "./../../swagger/index";
 import {select} from "../../functions/select";
 import {translationListAction} from "../../redux/actions/index";
 import moment from "moment-jalali";
-import {translatable} from "react-multilingual/dist";
 import {getToken} from "../../redux/helpers";
 import InlineEdit from "react-edit-inline";
+import DeleteTranslationButton from "./DeleteTranslationButton";
 
 @connect(({translationList}) => ({translationList}))
-@translatable(({
-				   ID, Name, Description,
-				   CreatedAt, UpdatedAt, Action,
-				   Email, UserID, BotChatID, Username,
-				   Resolve, Remove
-
-			   }) => ({
-	translation: {
-		ID, Name, Description,
-		CreatedAt, UpdatedAt, Action,
-		Email, UserID, BotChatID, Username,
-		Resolve, Remove
-	}
-}))
 export default class TranslationListCTR extends Component {
-
 	constructor(props) {
 		super(props);
 		this.dataChanged = this.dataChanged.bind(this);
@@ -85,6 +70,10 @@ export default class TranslationListCTR extends Component {
 	edit(id) {
 	}
 
+	deleteAction(id) {
+		return <DeleteTranslationButton key={Math.random()} id={id}/>;
+	}
+
 	updated_at(updated_at) {
 		return moment(updated_at).format('jYYYY/jM/jD');
 	}
@@ -106,11 +95,8 @@ export default class TranslationListCTR extends Component {
 				style={{
 					cursor: 'pointer'
 				}}
-
 			/>
 		</div>)
-
-
 	}
 
 	text(text) {
@@ -143,6 +129,7 @@ export default class TranslationListCTR extends Component {
 										translated: this.translated.bind(this)
 									}}
 									edit={this.edit.bind(this)}
+									deleteAction={this.deleteAction.bind(this)}
 									translator={this.translator.bind(this)}
 		/>)
 	}
