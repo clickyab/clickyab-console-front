@@ -24,7 +24,7 @@ export class Sidebar extends Component {
 
 						{securify(
 							() => <Link to="/v1/publisher/channel">
-								<i className='fa fa-television'/>
+								<i className='fa fa-th-list'/>
 								<span className='title'>{translate('Channels List')}</span>
 								<span className="selected"/>
 							</Link>,
@@ -34,7 +34,7 @@ export class Sidebar extends Component {
 
 						{securify(
 							() => <Link to="/v1/publisher/user">
-								<i className='fa fa-user'/>
+								<i className='fa fa-users'/>
 								<span className='title'>{translate('Manage User')}</span>
 								<span className="selected"/>
 							</Link>,
@@ -43,7 +43,7 @@ export class Sidebar extends Component {
 
 						{securify(
 							() => <Link to="/v1/publisher/role">
-								<i className='fa fa-user'/>
+								<i className='fa fa-ban'/>
 								<span className='title'>{translate('Role List')}</span>
 								<span className="selected"/>
 							</Link>,
@@ -52,7 +52,7 @@ export class Sidebar extends Component {
 
 						{securify(
 							() => <Link to="/v1/publisher/telegram">
-								<i className='fa fa-user'/>
+								<i className='fa fa fa-object-group'/>
 								<span className='title'>{translate('Manage Channel')}</span>
 								<span className="selected"/>
 							</Link>,
@@ -62,7 +62,7 @@ export class Sidebar extends Component {
 
 						{securify(
 							() => <Link to='/v1/publisher/translation' activeClassName='active'>
-								<i className='fa fa-list'/>
+								<i className='fa fa-language'/>
 								<span className='title'>{translate('Translation List')}</span>
 								<span className='selected'/>
 								<span className="selected"/>
