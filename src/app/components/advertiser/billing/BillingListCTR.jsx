@@ -25,8 +25,10 @@ export default class BillingListCTR extends Component {
 		})
 	}
 
-	depositAction(id) {
-		return <EditBillingButton key={Math.random()} id={id} />;
+	depositAction(id , {type}) {
+		if(type == "withdrawal") {
+            return <EditBillingButton key={Math.random()} id={id} />;
+		}
 	}
 
 	sort(flag, query_name) {

@@ -14,6 +14,9 @@ export const billingListAction = (data) => ({type: BILLING_LIST, data});
 export const DEPOSIT_ITEM = 'DEPOSIT_ITEM';
 export const DepositItemAction = (data) => ({type: DEPOSIT_ITEM, data});
 
+export const UPDATE_DEPOSIT_DATA = 'UPDATE_DEPOSIT_DATA';
+export const UpdateDepositData = (data) => ({type: UPDATE_DEPOSIT_DATA, data});
+
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';
@@ -59,6 +62,7 @@ export const userDataAction = (data) => ({type: USER_DATA, data});
 export const userItemsListAction = ({data}) => ({type: USER_ITEMS_LIST, data});
 
 export const UPDATE_CHANNEL_FROM_LIST = 'UPDATE_CHANNEL_FROM_LIST';
+
 export const ADD_CHANNEL = 'ADD_CHANNEL';
 export const CHANNEL_LIST = 'CHANNEL_LIST';
 export const CHANNEL_DATA = 'CHANNEL_DATA';

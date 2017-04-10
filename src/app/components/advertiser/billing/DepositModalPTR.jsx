@@ -51,7 +51,7 @@ class DepositModalPTR extends Component {
     }
 
     render() {
-        const {handleSubmit, SubmitDeposit} = this.props;
+        const {handleSubmit, SubmitDepositForm} = this.props;
         return (
             <div className="deposit-modal modal fade fullscreen" id="DepositModal" tabIndex="-1" role="dialog"
                  aria-labelledby="myModalLabel" aria-hidden="true">
@@ -70,7 +70,7 @@ class DepositModalPTR extends Component {
                                 </div>
                                 <form role="form" action="" id="DepositModalForm" method="post"
                                       className="with-draw-form white"
-                                      onSubmit={handleSubmit((values) => SubmitDeposit(this.state.profit, this.DepositForm))}>
+                                      onSubmit={handleSubmit((values) => SubmitDepositForm(values, this.DepositForm))}>
 
                                     <div className="form-group">
                                         <label className="col-md-3 control-label">وضعیت</label>
@@ -93,7 +93,7 @@ class DepositModalPTR extends Component {
                                                className="form-control input-lg" id="name"/>
                                     </div>
                                     <button type="submit"
-                                            className="btn btn-primary btn-lg add-channel-form btn-block">ذخیره
+                                            className="btn btn-primary btn-lg change-deposit-btn btn-block">ذخیره
                                     </button>
                                 </form>
 
