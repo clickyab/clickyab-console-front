@@ -18,7 +18,7 @@ export function translate(text, ...parameters) {
 		});
 	});
 
-	return sprintf(translated, ...parameters);
+	return sprintf(text, ...parameters);
 }
 
 export function translateViaHtml(text, ...parameters) {
