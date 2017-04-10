@@ -78,8 +78,10 @@ export default class CampaignListCTR extends Component {
 		this.callApi(query_name, event.target.value);
 	}
 
-	edit(id) {
-		return <EditCampaignButton key={Math.random()} id={id}/>
+	edit(id , {pay_status}) {
+		if(pay_status == 'no') {
+            return <EditCampaignButton key={Math.random()} id={id}/>
+		}
 	}
 
 	updated_at(updated_at) {
