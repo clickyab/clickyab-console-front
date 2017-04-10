@@ -8,7 +8,11 @@ export function translate(text, ...parameters) {
 	let translated = select('translations', {})[select('locale')][text];
 
 	if (translated) {
-		return sprintf(translated, ...parameters);
+		try {
+			return sprintf(translated, ...parameters);
+		} catch (error) {
+			return translated;
+		}
 	}
 	sync(function*() {
 		yield (new swagger.MiscApi).miscTranslatePost(getToken(), {
