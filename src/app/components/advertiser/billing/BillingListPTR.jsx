@@ -1,10 +1,13 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
 import WithdrawModalCTR from "./WithdrawModalCTR";
+import DepositModalCTR from "./DepositModalCTR";
 import {securify} from "../../../functions/securify";
 import {translate} from "../../../functions/translate";
 
 export default class BillingListPTR extends Component {
+
+
     componentDidMount() {
         $(document).on('click', '#withdrawModal', function () {
             $('#withDrawModal').modal();
@@ -41,6 +44,7 @@ export default class BillingListPTR extends Component {
                     )}
 
                 </div>
+                <DepositModalCTR/>
                 <WithdrawModalCTR />
             </div>
         )

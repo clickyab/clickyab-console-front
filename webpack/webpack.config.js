@@ -47,7 +47,6 @@ module.exports = {
 		vendor: [
 			'jquery',
 			'bootstrap',
-
             './public/vendor/jquery.validate.js',
 			'./public/vendor/additional-methods.js',
 			'./public/vendor/datepicker/jalali.js',

@@ -31,6 +31,7 @@ import {userAssignRoleListReducer} from "./reducers/userAssignRoleListReducer";
 import {userAssignRoleDataReducer} from "./reducers/userAssignRoleDataReducer";
 import {advertiserCampaignChartReducer} from "./reducers/advertiserCampaignChartReducer";
 import {billingListReducer} from "./reducers/billingListReducer";
+import {depositItemReducer} from "./reducers/depositItemReducer";
 import {notificationsReducer} from "./reducers/notificationsReducer";
 import {publisherTotalViewChartReducer} from "./reducers/publisherTotalViewChartReducer";
 import {advertiserSpentPerChannelReducer} from "./reducers/advertiserSpentPerChannelReducer";
@@ -65,6 +66,8 @@ const rootReducer = (state, action) => {
 		channelData: channelDataReducer,
 
 		billingList: billingListReducer,
+
+		depositData: depositItemReducer,
 
 		permissionList: permissionListReducer,
 		roleList: roleListReducer,
