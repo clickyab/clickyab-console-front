@@ -6,12 +6,14 @@ import {dispatch} from "../../../functions/dispatch";
 
 class EditChannelModalPTR extends Component {
 	editChannelForm;
+	initialized = false;
 	state = {
 		validation: true
 	};
 
 	shouldComponentUpdate(nextProps) {
-		if (!shallowEqual(this.props, nextProps)) {
+		if (!shallowEqual(this.props, nextProps) && !this.initialized) {
+			this.initialized = true;
 			for (let key in nextProps.channelData) {
 				dispatch(change(nextProps.form, key, nextProps.channelData[key]))
 			}
