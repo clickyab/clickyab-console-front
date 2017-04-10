@@ -34,7 +34,7 @@ export default class EditBillingButton extends Component {
         return <div className="btn-group ">
             <button className="btn btn-info btn-xs deposit-item mt-ladda-btn ladda-button" data-style="zoom-in"
                     key="edit"  onClick={(event) => this.deposit(Object.assign({}, event))}
-                    ref={(DepositElement) => this.depositElementButton = DepositElement}>عملیات
+                    ref={(DepositElement) => this.depositElementButton = DepositElement}>واریز
             </button>
         </div>
     }
