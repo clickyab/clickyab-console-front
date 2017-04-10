@@ -5,6 +5,8 @@ import {shallowEqual} from "./../../../3rd/shallowEqual";
 import {dispatch} from "../../../functions/dispatch";
 
 class DepositModalPTR extends Component {
+
+    initialize = false;
     DepositForm;
     state = {
         validation: true,
@@ -14,8 +16,8 @@ class DepositModalPTR extends Component {
     };
 
     shouldComponentUpdate(nextProps) {
-        if (!shallowEqual(this.props, nextProps)) {
-            console.log(nextProps.depositData);
+        if (!shallowEqual(this.props, nextProps) && !this.initialize) {
+            this.initialize = true;
             for (let key in nextProps.depositData) {
                 dispatch(change("DepositModalPTRForm", key, nextProps.depositData[key]))
             }
