@@ -53,10 +53,6 @@ export default class ChannelListCTR extends Component {
 	edit(id) {
 		return <EditChannelButton key={Math.random()} id={id}/>;
 	}
-	email(email) {
-		console.log(email);
-		return email;
-	}
 
 	updated_at(updated_at) {
 		return moment(updated_at).format('jYYYY/jM/jD');
@@ -120,8 +116,7 @@ export default class ChannelListCTR extends Component {
 									created_at: this.created_at,
 									admin_status: this.admin_status.bind(this),
 									archive_status: this.archive_status.bind(this),
-									active: this.active.bind(this),
-									email: this.email
+									active: this.active.bind(this)
 								}}
 		/>);
 	}
