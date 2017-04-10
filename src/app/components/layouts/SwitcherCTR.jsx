@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
 import {connect} from "react-redux";
+import {translate} from '../../functions/translate';
 
 @connect(({userType}) => ({userType}))
 export default class SwitcherCTR extends Component {
@@ -10,18 +11,18 @@ export default class SwitcherCTR extends Component {
 			main = (<Link to="/v1/publisher" className="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown"
 						  data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
 				<i className="fa fa-television"/>
-				<span className="langname">ناشر</span>
+				<span className="langname">{translate('Publisher')}</span>
 				<i className="fa fa-angle-down"/>
 			</Link>);
 			dropDown = (<Link to="/v1/advertiser">
 				<i className="fa fa-bullhorn"/>
-				<span className="title">تبلیغ کننده</span>
+				<span className="title">{translate('Advertiser')}</span>
 			</Link>);
 		} else {
 			main = (<Link to="/v1/advertiser" className="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown"
 						  data-close-others="true" aria-expanded="true" style={{paddingRight: '7px'}}>
 				<i className="fa fa-bullhorn"/>
-				<span className="langname">تبلیغ کننده</span>
+				<span className="langname">{translate('Advertiser')}</span>
 				<i className="fa fa-angle-down"/>
 			</Link>);
 

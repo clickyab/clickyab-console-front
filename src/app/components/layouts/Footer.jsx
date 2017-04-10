@@ -1,13 +1,13 @@
 import React, {Component} from "react";
-import {translatable} from "react-multilingual/dist";
+import {translate} from '../../functions/translate';
 
-@translatable(({copyright}) => ({copyright}))
+
 export class Footer extends Component {
 	render() {
 		let {copyright, changeLocale} = this.props;
 		return (
 			<div className="page-footer">
-				<div className="page-footer-inner"> {copyright} &nbsp;&nbsp; &nbsp;&nbsp;
+				<div className="page-footer-inner"> {translate('© CLICKYAB')} &nbsp;&nbsp; &nbsp;&nbsp;
 					{/*<a onClick={() => changeLocale('en')} className="white" type="button">زبان فارسی</a> &nbsp;|&nbsp;*/}
 					{/*<a onClick={() => changeLocale('fa')} className="white" type="button">زبان انگلیسی</a>*/}
 				</div>

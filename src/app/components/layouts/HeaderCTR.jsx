@@ -13,6 +13,7 @@ import swagger from "./../../swagger/index";
 import {AlertBox} from "../../functions/notifications";
 import NotificationsDropDown from "../notifications/NotificationsDropDown";
 import CreditMenu from "./CreditMenu";
+import {translate} from '../../functions/translate';
 
 @connect(({user}) => ({user}))
 export class Header extends Component {
@@ -97,12 +98,12 @@ export class Header extends Component {
 									<CreditMenu />
 									<li>
 										<Link to="/v1/profile">
-											<i className="icon-user"/> پروفایل من </Link>
+											<i className="icon-user"/> {translate('My Profile')} </Link>
 									</li>
 									<li className="divider"/>
 									<li>
 										<a onClick={this.SubmitLogout.bind(this)}>
-											<i className="icon-key"/> خروج </a>
+											<i className="icon-key"/> {translate('Log Out')} </a>
 									</li>
 								</ul>
 							</li>
