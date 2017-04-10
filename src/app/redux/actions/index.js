@@ -11,6 +11,9 @@ export const PLAN_LIST = 'PLAN_LIST';
 export const BILLING_LIST = 'BILLING_LIST';
 export const billingListAction = (data) => ({type: BILLING_LIST, data});
 
+export const DEPOSIT_ITEM = 'DEPOSIT_ITEM';
+export const DepositItemAction = (data) => ({type: DEPOSIT_ITEM, data});
+
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';

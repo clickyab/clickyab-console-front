@@ -25,8 +25,8 @@ export default class BillingListCTR extends Component {
 		})
 	}
 
-	depositAction() {
-		return <span key={Math.random()}>deposit</span>;
+	depositAction(id) {
+		return <EditBillingButton key={Math.random()} id={id} />;
 	}
 
 	sort(flag, query_name) {
@@ -42,7 +42,6 @@ export default class BillingListCTR extends Component {
 	}
 
 	edit(id) {
-		return <EditBillingButton key={Math.random()} id={id}/>
 	}
 
 	updated_at(updated_at) {
