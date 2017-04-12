@@ -8,7 +8,7 @@ import Select from "react-select";
 class EditRoleModalPTR extends Component {
 	editRoleForm;
 	editMode = false;
-
+	initialized = false;
 	state = {
 		validation: true,
 
@@ -36,7 +36,8 @@ class EditRoleModalPTR extends Component {
 	}
 
 	shouldComponentUpdate(nextProps) {
-		if (!shallowEqual(this.props, nextProps)) {
+		if (!shallowEqual(this.props, nextProps) && !this.initialized) {
+			this.initialized = true;
 			for (let key in nextProps.roleData.role) {
 				dispatch(change(nextProps.form, key, nextProps.roleData.role[key]))
 			}

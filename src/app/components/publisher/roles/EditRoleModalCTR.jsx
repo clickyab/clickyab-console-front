@@ -13,7 +13,6 @@ let loadingProgress;
 
 @connect(({roleData}) => ({roleData}))
 export default class EditRoleModalCTR extends Component {
-
 	normalizeFormValues(formValues, selfValue, parentValue, globalValue) {
 		delete formValues.self;
 		delete formValues.parent;
