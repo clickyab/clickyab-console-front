@@ -76,6 +76,9 @@ export default class BillingListCTR extends Component {
 
 		return span;
 	}
+	amount(amount) {
+		return <p style={{direction:'ltr',textAlign:'center',margin:'0'}}>{amount}</p>
+	}
 
 	created_at(created_at) {
 		return moment(created_at).format('jYYYY/jM/jD');
@@ -103,7 +106,8 @@ export default class BillingListCTR extends Component {
 									updated_at: this.updated_at,
 									created_at: this.created_at,
 									status: this.status.bind(this),
-									deposit: this.deposit.bind(this)
+									deposit: this.deposit.bind(this),
+									amount: this.amount.bind(this)
 								}}
 		/>)
 	}
