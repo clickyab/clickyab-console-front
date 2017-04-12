@@ -2,9 +2,9 @@ import React, {Component} from "react";
 import DepositModalPTR from "./DepositModalPTR";
 import {connect} from "react-redux";
 import swagger from "../../../swagger/index";
-import {DepositItemAction} from "../../../redux/actions/index";
+import {UpdateDepositData} from "../../../redux/actions/index";
 import {dispatch} from "../../../functions/dispatch";
-import {FailedBoxAlert, NotifyBox} from "../../../functions/notifications";
+import {NotifyBox} from "../../../functions/notifications";
 import {sync} from "../../../functions/sync";
 import {select} from "../../../functions/select";
 let Ladda = require('ladda/js/ladda');
@@ -22,7 +22,7 @@ export default class DepositModalCTR extends Component {
 			if (response.statusCode == 200) {
 				$('#DepositModal').modal('hide');
 				loadingProgress.stop();
-				dispatch(DepositItemAction(data));
+				dispatch(UpdateDepositData(data));
 			} else if (response.statusCode == '400') {
 				NotifyBox("error","اختلالی به وجود آمده است لطفا دوباره تلاش کنید")
 			}
