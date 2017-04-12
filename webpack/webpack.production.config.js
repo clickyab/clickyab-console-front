@@ -33,7 +33,6 @@ module.exports = {
         vendor: [
             'jquery',
             'bootstrap',
-
             './public/vendor/jquery.validate.js',
             './public/vendor/additional-methods.js',
             './public/vendor/datepicker/jalali.js',
@@ -45,6 +44,7 @@ module.exports = {
             './public/vendor/layout.js',
             './public/vendor/jquery.textcomplete.js',
             './public/vendor/emojarea.js',
+            './public/vendor/pace.min.js',
         ]
     },
     output: {
