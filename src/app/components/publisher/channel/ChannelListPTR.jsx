@@ -36,11 +36,26 @@ export default class ChannelListPTR extends Component {
 		}
 	}
 
+	checkHaveTelegramUser() {
+		console.log('chek telegram')
+		if (select('telegramList.items') == null || select('telegramList').length == 0) {
+			$('#addChannelForm').find('input, button').prop('disabled', true);
+			$('#addChannelModal').find('blockquote').css({
+				fontWeight: 'bold',
+				color: 'red'
+			})
+		}
+	}
+
 	componentDidMount() {
 		let _this = this;
 		document.title = "مدیریت کانال ها";
 		$(document).on("click", "#showAddChannelModalForm", function () {
 			_this.checkProfile();
+		});
+
+		$(document).on('show.bs.modal', '#addChannelModal', function () {
+			_this.checkHaveTelegramUser();
 		})
 	}
 
