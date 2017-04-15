@@ -112,7 +112,7 @@ export class ConsoleTable extends Component {
         let pages_count = Math.floor(this.props.total / per_page);
         if (pages_count == 0) {
             pages_count = 1;
-        } else {
+        } else if(this.props.total % per_page != 0) {
             pages_count += 1;
         }
 
