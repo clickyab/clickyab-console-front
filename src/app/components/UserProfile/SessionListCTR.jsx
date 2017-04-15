@@ -21,17 +21,11 @@ export default class SessionListCTR extends Component {
 			}
 			$.each(data, function (key, sessionItem) {
 				$.each(sessionItem.sessions, function () {
-					// let parser = new UAParser();
-					// let user_agent = this.user_agent;
-					// parser.setUA(user_agent);
-					// let result_user_agent = parser.getResult();
-					// let final_user_agent = result_user_agent.browser + '-' + result.os;
-
 					$resultDisplay.append(
 						'<div class="session-item left">' +
 						'<div class="session-item-body"> ' +
 						'<div class="session-item-info">' +
-						'<span class="session-user-agent">' + this.user_agent + '</span>' +
+						'<span class="session-user-agent">' + this.browser + " " + this.version +  "-" + this.os + '</span>' +
 						'<span class="created_at">' + moment(this.created_at).format('dddd، jD jMMMM jYYYY') + '</span>' +
 						'</div>' +
 						'<div class="session-ip">' + this.ip + '</div>' +
@@ -78,7 +72,6 @@ export default class SessionListCTR extends Component {
 			else if (response.statusCode == '401') {
 
 			}
-			ifInvalidToken(response);
 		}
 
 
