@@ -7,12 +7,15 @@ import {select} from "../../functions/select";
 import SelectLocationCTR from "./../../components/location/SelectLocationCTR";
 import moment from "moment-jalali";
 import {change} from "redux-form/lib/actions";
-
+import DatePicker from "react-datepicker2";
 moment.loadPersian();
 
 
 class PersonalUserPTR extends Component {
 	PersonalForm;
+	state = {
+		birthday: moment()
+	}
 
 	handleInitialize() {
 		const initData = select("user.personal", {}, true);
@@ -92,8 +95,15 @@ class PersonalUserPTR extends Component {
 						<div className="col-md-6">
 							<div className="form-group">
 								<label className="control-label">تاریخ تولد</label>
-								<Field type="text" component="input" id="birthday_front" name="birthday_front"
-									   className="form-control" placeholder="تاریخ تولد"/>
+								<DatePicker
+									className="form-control"
+									onChange={value => {
+										dispatch(change("PersonalUserForm", "birthday", value));
+										this.setState({value})
+									}}
+									isGregorian={false}
+									value={this.state.birthday}
+								/>
 								<Field type="hidden" component="input" id="birthday" name="birthday"
 									   className="form-control" placeholder="تاریخ تولد"/>
 							</div>

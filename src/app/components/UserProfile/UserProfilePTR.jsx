@@ -14,16 +14,6 @@ class UserProfilePTR extends Component {
 
 	componentDidMount() {
 		document.title = "ویرایش پروفایل";
-		Calendar.setup({
-				onUpdate: function (value) {
-					dispatch(change('PersonalUserForm', 'birthday', moment(value.date).utcOffset(0, true).format()));
-				},
-				inputField: 'birthday_front',
-				button: 'date_btn',
-				ifFormat: '%A، %d %b %Y',
-				dateType: 'jalali'
-			},
-		);
 	}
 
 	render() {
