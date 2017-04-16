@@ -2,10 +2,7 @@ import {dispatch} from "./dispatch";
 import {addNotificationAction} from "../redux/actions/index";
 let toastr = require('toastr');
 
-export function AlertBox(type, message, showBox) {
-	if (showBox == null || showBox == "undefined") {
-		showBox = false;
-	}
+export function AlertBox(type, message, showBox = false) {
 	dispatch(addNotificationAction({
 		type, message, time: new Date()
 	}));
@@ -13,12 +10,12 @@ export function AlertBox(type, message, showBox) {
 		"preventDuplicates": true,
 		"preventOpenDuplicates": true,
 		"maxOpened": 1,
-		"timeOut": 30
+		"timeOut": 6000
 	};
-	if (showBox == true) {
+	if (showBox) {
 		if (type == "warning") {
 			toastr.warning(message);
-		} else if (type == "error") {
+		} else if (type === "error") {
 			toastr.error(message);
 		} else if (type == "success") {
 			toastr.success(message);
