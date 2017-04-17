@@ -1,18 +1,22 @@
 import React, {Component} from "react";
 
 export class ConsoleCell extends Component {
-	buildActions(id, item , type) {
+	buildActions(id, item, type) {
 		let {depositAction, edit, deleteAction} = this.props;
+
+		if (typeof item == "undefind") {
+			return;
+		}
 
 		const actionKeys = item.split(',');
 		let buttons = [];
 		for (let i = 0; i < actionKeys.length; i++) {
 			if (actionKeys[i] == "edit") {
-				buttons.push(edit(id , this.props));
+				buttons.push(edit(id, this.props));
 			} else if (actionKeys[i] == "deposit") {
-				buttons.push(depositAction(id , this.props));
+				buttons.push(depositAction(id, this.props));
 			} else if (actionKeys[i] == "delete") {
-				buttons.push(deleteAction(id , this.props));
+				buttons.push(deleteAction(id, this.props));
 			}
 		}
 

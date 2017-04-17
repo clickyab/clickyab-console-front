@@ -1,8 +1,7 @@
 import React, {Component} from "react";
 import WithdrawModalPTR from "./WithdrawModalPTR";
 import swagger from "../../../swagger/index";
-import {NotifyBox} from "../../../functions/notifications";
-import {ifInvalidToken} from "../../../functions/helpers";
+import {AlertBox} from "../../../functions/notifications";
 import {select} from "../../../functions/select";
 import {sync} from "../../../functions/sync";
 let Ladda = require('ladda/js/ladda');
@@ -17,17 +16,16 @@ export default class WithdrawModalCTR extends Component {
             const {response} = yield (new swagger.BillingApi())
                 .billingWithdrawalPost(select("user.token", "no token"), {'payloadData': formValues});
 
-            response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-            response.text = 'اطلاعات شما با موفقیت ثبت شد.';
-            if (response.statusCode == 200) {
+
+            if (response.statusCode == '200') {
                 $('#withDrawModal').modal('hide');
-                NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد', 8000)
+				AlertBox('success', 'اطلاعات شما با موفقیت ثبت شد', true);
                 loadingProgress.stop();
 
 			} else if (response.statusCode == '400') {
-				NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد', 8000)
+				AlertBox('error', response.body.text || response.body.amount.text , true);
+				loadingProgress.stop();
 			}
-			ifInvalidToken(response);
 		});
 	}
 
