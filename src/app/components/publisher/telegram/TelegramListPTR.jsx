@@ -53,7 +53,7 @@ export default class TelegramListPTR extends Component {
                     },
                     function (isConfirm) {
                         if (isConfirm) {
-                            window.open('http://t.me/rubikadbot', '_blank');
+                            window.open('http://t.me/rubikaddemobot', '_blank');
                         } else {
 
                         }
