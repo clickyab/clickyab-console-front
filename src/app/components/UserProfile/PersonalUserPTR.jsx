@@ -14,9 +14,7 @@ moment.loadPersian();
 class PersonalUserPTR extends Component {
 	PersonalForm;
 	state = {
-
-		birthday: moment([select("user.personal", {}, true).birthday])
-
+        birthday: ((select("user.personal.birthday")) != null ? moment([select("user.personal", {}, true).birthday]) : moment())
 	}
 
 
@@ -31,7 +29,6 @@ class PersonalUserPTR extends Component {
 	}
 
 	componentDidMount() {
-        console.log(this.state.birthday);
 		this.handleInitialize();
 		this.PersonalForm = $('.personal-form');
 		this.PersonalForm.validate({
@@ -103,7 +100,6 @@ class PersonalUserPTR extends Component {
 								<DatePicker
 									className="form-control"
 									onChange={value => {
-										console.log(value);
 										dispatch(change("PersonalUserForm", "birthday", moment(value).format()));
 										this.setState({value})
 									}}
