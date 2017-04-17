@@ -145,7 +145,7 @@ span#campaign_name-error {
 }
 
 /* Next question button */
-.next {
+.next-btn {
   position: absolute;
   #{$dir-mode-align-inverse}: 0;
   bottom: 77px; /* padding-bottom of form plus progress bar height */
@@ -393,7 +393,7 @@ input[type=text]::-ms-clear {
   border: 2px dashed #aaa;
   border-radius: 10px;
   margin-top: 40px;
-  z-index: 9999;
+  z-index: 99;
   display: block;
   min-height: 200px;
 }

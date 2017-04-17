@@ -14,8 +14,12 @@ moment.loadPersian();
 class PersonalUserPTR extends Component {
 	PersonalForm;
 	state = {
-		birthday: moment()
+
+		birthday: moment([select("user.personal", {}, true).birthday])
+
 	}
+
+
 
 	handleInitialize() {
 		const initData = select("user.personal", {}, true);
@@ -23,10 +27,11 @@ class PersonalUserPTR extends Component {
 		for (let key in initData) {
 			dispatch(change("PersonalUserForm", key, initData[key]));
 		}
-		dispatch(change("PersonalUserForm", 'birthday_front', moment(initData['birthday']).format('jYYYY/jM/jD')));
+		// dispatch(change("PersonalUserForm", 'birthday', moment(initData['birthday']).format('jYYYY/jM/jD')));
 	}
 
 	componentDidMount() {
+        console.log(this.state.birthday);
 		this.handleInitialize();
 		this.PersonalForm = $('.personal-form');
 		this.PersonalForm.validate({
@@ -98,10 +103,12 @@ class PersonalUserPTR extends Component {
 								<DatePicker
 									className="form-control"
 									onChange={value => {
-										dispatch(change("PersonalUserForm", "birthday", value));
+										console.log(value);
+										dispatch(change("PersonalUserForm", "birthday", moment(value).format()));
 										this.setState({value})
 									}}
 									isGregorian={false}
+									timePicker={false}
 									value={this.state.birthday}
 								/>
 								<Field type="hidden" component="input" id="birthday" name="birthday"
