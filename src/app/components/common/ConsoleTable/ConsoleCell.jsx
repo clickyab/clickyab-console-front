@@ -4,7 +4,7 @@ export class ConsoleCell extends Component {
 	buildActions(id, item, type) {
 		let {depositAction, edit, deleteAction} = this.props;
 
-		if (item === '') {
+		if (typeof item == "undefind") {
 			return;
 		}
 
