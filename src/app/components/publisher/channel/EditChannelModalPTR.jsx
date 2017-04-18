@@ -68,13 +68,14 @@ class EditChannelModalPTR extends Component {
 									  className="add-channel-form white"
 									  onSubmit={handleSubmit((values) => SubmitEditChannel(values, this.editChannelForm))}>
 									<div className="form-group">
-										<label htmlFor="link">یوزرنیم کانال</label>
+										<label htmlFor="link">لینک کانال</label>
 										<div className="input-group input-group-lg form-group">
-											<span className="input-group-addon" id="sizing-addon1">@</span>
+											<span className="input-group-addon" id="sizing-addon1">http://t.me/</span>
 											<Field type="text" component="input" name="link" id="link"
 												   style={{direction: 'ltr', textAlign: 'left'}}
-												   className="form-control input-lg" placeholder="یوزرنیم کانال"
-												   aria-describedby="sizing-addon1"/></div>
+												   className="form-control input-lg" placeholder="لینک کانال"
+												   aria-describedby="sizing-addon1"/>
+										</div>
 									</div>
 
 									<div className="form-group">
