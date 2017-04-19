@@ -8,14 +8,15 @@ import {securify} from "../../../functions/securify";
 import {sync} from "../../../functions/sync";
 import swagger from "../../../swagger/index";
 import {AlertBox} from "../../../functions/notifications";
+let Ladda = require('ladda/js/ladda');
+let swal = require('sweetalert');
 
 export default class ChannelListPTR extends Component {
-
     checkPolicy() {
         if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true) {
             this.checkFillProfile()
         } else if (select('telegramList.items') == null || select('telegramList.items').length == 0 || select('telegramList').length == 0) {
-            this.checkHaveTelegramUser();
+            this.pingCheckResolve();
         } else {
             $("#addChannelModal").modal();
         }
@@ -42,6 +43,25 @@ export default class ChannelListPTR extends Component {
                     navigate('/v1/publisher/channel');
                 }
             });
+    }
+
+    //TODO: Crazy request, fix it later!
+    pingCheckResolve() {
+        let _this = this;
+        sync(function *() {
+            let {data, response} = yield (new swagger.UserApi())
+                .userPingGet(select('user.token', 'no token'))
+
+            if (response.statusCode == '200') {
+                if (data.resolve == 'yes') {
+                    $("#addChannelModal").modal();
+                } else {
+                    _this.checkHaveTelegramUser();
+                }
+            } else if (response.statusCode == '400') {
+                AlertBox("error", "اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید");
+            }
+        })
     }
 
     checkHaveTelegramUser() {
