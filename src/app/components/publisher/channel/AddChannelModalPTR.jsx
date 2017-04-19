@@ -32,10 +32,6 @@ class AddChannelModalPTR extends Component {
 		});
 	}
 
-	closeModal(e) {
-		$(e.target).parents('.modal').prop('id').modal('hide');
-	}
-
 	render() {
 		const {handleSubmit, SubmitAddChannel} = this.props;
 		return (
@@ -83,7 +79,9 @@ class AddChannelModalPTR extends Component {
 								<blockquote>
 									<p>برای انکه بتوانید تبلیغ در کانال خود نمایش دهید باید حداقل یک کاربر تلگرام تایید
 										شده داشته باشید.</p>
-									<Link to="/v1/publisher/telegram" onClick={this.closeModal}
+									<Link to="/v1/publisher/telegram" onClick={()=> {
+											$('.closebt').click();
+										}}
 										  style={{fontSize: '20px'}}>
 										<footer> برای اضافه کردن کاربر تلگرام به این
 											صفحه مراجعه کنید.

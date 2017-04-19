@@ -5,57 +5,116 @@ import AddChannelModalCTR from "./AddChannelModalCTR";
 import {select} from "../../../functions/select";
 import {navigate} from "../../../functions/navigate";
 import {securify} from "../../../functions/securify";
+import {sync} from "../../../functions/sync";
+import swagger from "../../../swagger/index";
+import {AlertBox} from "../../../functions/notifications";
 
 export default class ChannelListPTR extends Component {
 
-    checkProfile() {
+    checkPolicy() {
         if ((select('user.user_id') && (select('user.personal') || select('user.corporation')) == null) == true) {
-            swal({
-                    title: "لطفا قبل از افزودن کمپین، اطلاعات حساب کاربری خود را تکمیل نمایید",
-                    text: "",
-                    type: "warning",
-                    showCancelButton: true,
-                    confirmButtonColor: "#337ab7",
-                    confirmButtonText: "باز کردن صفحه حساب کاربری",
-                    cancelButtonText: "انصراف!",
-                    closeOnConfirm: true,
-                    showLoaderOnConfirm: false,
-                    closeOnCancel: true,
-                    html: true
-                },
-                function (isConfirm) {
-                    if (isConfirm) {
-                        navigate('/v1/profile');
-                    } else {
-                        navigate('/v1/publisher/channel');
-                    }
-                });
-
+            this.checkFillProfile()
+        } else if (select('telegramList.items') == null || select('telegramList.items').length == 0 || select('telegramList').length == 0) {
+            this.checkHaveTelegramUser();
         } else {
             $("#addChannelModal").modal();
         }
     }
 
+    checkFillProfile() {
+        swal({
+                title: "لطفا قبل از افزودن کمپین، اطلاعات حساب کاربری خود را تکمیل نمایید",
+                text: "",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#337ab7",
+                confirmButtonText: "باز کردن صفحه حساب کاربری",
+                cancelButtonText: "انصراف!",
+                closeOnConfirm: true,
+                showLoaderOnConfirm: false,
+                closeOnCancel: true,
+                html: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    navigate('/v1/profile');
+                } else {
+                    navigate('/v1/publisher/channel');
+                }
+            });
+    }
+
     checkHaveTelegramUser() {
-        if (select('telegramList.items') == null || select('telegramList.items').length == 0 || select('telegramList').length == 0) {
-            $('#addChannelForm').find('input, button').prop('disabled', true);
-            $('#addChannelModal').find('blockquote').css({
-                fontWeight: 'bold',
-                color: 'red'
-            })
-        }
+        swal({
+                title: "",
+                text: "قبل از افزودن کانال جدید، لطفا حساب تلگرامی خود را تایید نمایید.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#337ab7",
+                confirmButtonText: "فعال‌سازی",
+                cancelButtonText: "انصراف!",
+                closeOnConfirm: false,
+                showLoaderOnConfirm: false,
+                closeOnCancel: true,
+                html: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    sync(function *() {
+                        let {data, response} = yield (new swagger.TelegramApi())
+                            .telegramPost(select("user.token", "no token"));
+
+                        if (response.statusCode == '200') {
+                            let keyCode = data.key;
+                            swal({
+                                    title: "<span class='select-telegram-code' style='direction:ltr;display: block' onclick='select_all(this)'>/verify-" + keyCode + "</span>",
+                                    text: "هم اکنون کد بالا را  copy کرده و با زدن گزینه باز کردن تلگرام و فشردن دکمه start، کد را در بات ما paste نمایید و پس از فعال شدن حساب تلگرام خود، اقدام به ثبت کانال نمایید.",
+                                    type: "success",
+                                    showCancelButton: true,
+                                    confirmButtonColor: "#337ab7",
+                                    confirmButtonText: "باز کردن تلگرام",
+                                    cancelButtonText: "بستن",
+                                    closeOnConfirm: false,
+                                    showLoaderOnConfirm: false,
+                                    closeOnCancel: true,
+                                    html: true
+                                },
+                                function (isConfirm) {
+                                    if (isConfirm) {
+                                        window.open('http://t.me/rubikaddemobot', '_blank');
+                                    }
+                                });
+
+                        } else if (response.statusCode == '400') {
+                            AlertBox("error", "اختلالی در سیستم به وجود آمده است لطفا دوباره تلاش کنید");
+                        }
+                    });
+                }
+            }
+        )
     }
 
     componentDidMount() {
         let _this = this;
         document.title = "مدیریت کانال ها";
         $(document).on("click", "#showAddChannelModalForm", function () {
-            _this.checkProfile();
+            _this.checkPolicy();
         });
 
-        $(document).on('show.bs.modal', '#addChannelModal', function () {
-            _this.checkHaveTelegramUser();
-        })
+        window.select_all = function (el) {
+            if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
+                var range = document.createRange();
+                range.selectNodeContents(el);
+
+                var sel = window.getSelection();
+                sel.removeAllRanges();
+                sel.addRange(range);
+            } else if (typeof document.selection != "undefined" && typeof document.body.createTextRange != "undefined") {
+                var textRange = document.body.createTextRange();
+                textRange.moveToElementText(el);
+                textRange.select();
+            }
+        }
     }
 
     render() {
