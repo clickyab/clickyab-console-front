@@ -5,6 +5,7 @@ import {select} from "../../../functions/select";
 import {translate} from "../../../functions/translate";
 import {sync} from "../../../functions/sync";
 import swagger from "../../../swagger/index";
+import {telegramBot} from "../../../functions/telegramBot";
 let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
 let loadingProgress;
@@ -53,7 +54,7 @@ export default class TelegramListPTR extends Component {
                     },
                     function (isConfirm) {
                         if (isConfirm) {
-                            window.open('http://t.me/rubikaddemobot', '_blank');
+                            window.open(telegramBot(), '_blank');
                         } else {
 
                         }
