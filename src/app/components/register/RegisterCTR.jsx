@@ -1,13 +1,14 @@
 import React, {Component} from "react";
 import {connect} from "react-redux";
 import {failedRegister, successfulRegister} from "../../redux/actions/register";
-import {NotifyBox, SuccessBoxAlert} from "../../functions/notifications";
+import {NotifyBox} from "../../functions/notifications";
 import {updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import RegisterPTR from "./RegisterPTR";
 import swagger from "./../../swagger/index";
 import {navigate} from "../../functions/navigate";
 import {successfulLogin} from "../../redux/actions/login";
+import {translate} from './../../functions/translate';
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -34,17 +35,15 @@ export default class RegisterCTR extends Component {
 	}
 
 	registerCallback({error, data, response}) {
+		console.log(data, response)
 		if (response.statusCode == '200') {
 			this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
-			SuccessBoxAlert({
-				error: 'اطلاعات شما صحیح نمی‌باشد.',
-				text: 'ثیت نام شما با موفیت انجام شد.'
-			});
+			NotifyBox('success', 'ثبت نام شما با موفیت انجام شد.');
 		} else if (response.statusCode == '400') {
 
 			this.stopLoading();
-			NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
+			NotifyBox('error', translate(response.body.error.text));
 		}
 	}
 
