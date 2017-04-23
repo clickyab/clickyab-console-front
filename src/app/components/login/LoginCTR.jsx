@@ -7,6 +7,7 @@ import {NotifyBox, SuccessBoxAlert} from "../../functions/notifications";
 import {flush, updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {navigate} from "../../functions/navigate";
+import {translate} from "../../functions/translate";
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -30,13 +31,13 @@ export default class LoginCTR extends Component {
 	loginCallback({error, data, response}) {
 		if (response.statusCode == '200') {
 			this.loginSuccessfullyDispatchers(Object.assign({}, data));
-			SuccessBoxAlert({
-				error: 'اطلاعات کاربری شما صحیح نمی‌باشد.',
-				text: 'شما با موفقیت وارد شدید.'
-			});
+
+			NotifyBox('success', 'شما با موفقیت وارد شدید.')
 		} else if (response.statusCode == '400') {
+
+			let message = response.body.error != null ? response.body.error.text : response.body.email.text;
 			this.stopLoading();
-			NotifyBox('error', 'اطلاعات کاربری شما صحیح نمی‌باشد.', 8000);
+			NotifyBox('error', translate(message) ,8000);
 		}
 	}
 
