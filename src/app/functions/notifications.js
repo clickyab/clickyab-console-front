@@ -1,10 +1,11 @@
 import {dispatch} from "./dispatch";
 import {addNotificationAction} from "../redux/actions/index";
+import moment from "moment-jalali";
 let toastr = require('toastr');
 
 export function AlertBox(type, message, showBox = false) {
 	dispatch(addNotificationAction({
-		type, message, time: new Date()
+		type, message, time: moment(new Date()).format('jYYYY-jM-jD HH:mm:ss')
 	}));
 	toastr.options = {
 		"preventDuplicates": true,
@@ -25,18 +26,18 @@ export function AlertBox(type, message, showBox = false) {
 
 export function SuccessBoxAlert(response) {
 	dispatch(addNotificationAction({
-		type: 'success', message: response.text, time: new Date()
+		type: 'success', message: response.text, time: moment(new Date()).format('jYYYY-jM-jD HH:mm:ss')
 	}));
 }
 export function FailedBoxAlert(response) {
 	dispatch(addNotificationAction({
-		type: 'error', message: response.error, time: new Date()
+		type: 'error', message: response.error, time: moment(new Date()).format('jYYYY-jM-jD HH:mm:ss')
 	}));
 }
 
 export function NotifyBox(type, message, delay) {
 	dispatch(addNotificationAction({
-		type, message, time: new Date()
+		type, message, time: moment(new Date()).format('jYYYY-jM-jD HH:mm:ss')
 	}));
 
 	toastr.options = {
