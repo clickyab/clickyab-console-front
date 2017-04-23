@@ -1,7 +1,7 @@
 import React, {Component} from "react";
 import WithdrawModalPTR from "./WithdrawModalPTR";
 import swagger from "../../../swagger/index";
-import {AlertBox} from "../../../functions/notifications";
+import {NotifyBox} from "../../../functions/notifications";
 import {select} from "../../../functions/select";
 import {sync} from "../../../functions/sync";
 let Ladda = require('ladda/js/ladda');
@@ -19,11 +19,11 @@ export default class WithdrawModalCTR extends Component {
 
             if (response.statusCode == '200') {
                 $('#withDrawModal').modal('hide');
-				AlertBox('success', 'اطلاعات شما با موفقیت ثبت شد', true);
+				NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد', true);
                 loadingProgress.stop();
 
 			} else if (response.statusCode == '400') {
-				AlertBox('error', response.body.text || response.body.amount.text , true);
+				NotifyBox('error', response.body.text || response.body.amount.text , true);
 				loadingProgress.stop();
 			}
 		});

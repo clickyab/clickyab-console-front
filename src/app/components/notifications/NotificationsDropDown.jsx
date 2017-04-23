@@ -2,6 +2,7 @@ import React, {Component} from "react";
 import ServerDownNotification from "../notifications/ServerDownNotification";
 import SuccessNotification from "../notifications/SuccessNotification";
 import WarningNotification from "../notifications/WarningNotification";
+import ErrorNotification from './../notifications/ErrorNotification';
 import {connect} from "react-redux";
 import {dispatch} from "../../functions/dispatch";
 import {
@@ -86,6 +87,9 @@ class DropDown extends Component {
 		} else if (notification.type == 'warning') {
 			return <WarningNotification count={count} onAnEventSeenClick={this.onAnEventSeenClick}
 										notification={notification}/>
+		} else if (notification.type == 'error') {
+			return <ErrorNotification count={count} onAnEventSeenClick={this.onAnEventSeenClick}
+									  	notification={notification}/>
 		}
 	}
 
