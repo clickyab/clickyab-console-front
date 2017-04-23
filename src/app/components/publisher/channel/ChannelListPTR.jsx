@@ -8,6 +8,7 @@ import {securify} from "../../../functions/securify";
 import {sync} from "../../../functions/sync";
 import swagger from "../../../swagger/index";
 import {AlertBox} from "../../../functions/notifications";
+import {telegramBot} from "../../../functions/telegramBot";
 let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
 
@@ -101,7 +102,7 @@ export default class ChannelListPTR extends Component {
                                 },
                                 function (isConfirm) {
                                     if (isConfirm) {
-                                        window.open('http://t.me/rubikaddemobot', '_blank');
+                                        window.open(telegramBot(), '_blank');
                                     }
                                 });
 
