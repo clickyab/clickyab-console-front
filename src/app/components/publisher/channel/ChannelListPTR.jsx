@@ -46,7 +46,6 @@ export default class ChannelListPTR extends Component {
             });
     }
 
-    //TODO: Crazy request, fix it later!
     pingCheckResolve() {
         let _this = this;
         sync(function *() {
@@ -116,11 +115,7 @@ export default class ChannelListPTR extends Component {
     }
 
     componentDidMount() {
-        let _this = this;
         document.title = "مدیریت کانال ها";
-        $(document).on("click", "#showAddChannelModalForm", function () {
-            _this.checkPolicy();
-        });
 
         window.select_all = function (el) {
             if (typeof window.getSelection != "undefined" && typeof document.createRange != "undefined") {
@@ -154,8 +149,9 @@ export default class ChannelListPTR extends Component {
                         {securify(
                             () => <div className="actions">
                                 <div className="btn-group btn-group-devided" data-toggle="buttons">
-                                    <button className="btn btn-transparent blue btn-outline btn-circle btn-sm"
-                                            id="showAddChannelModalForm">افزودن کانال جدید
+                                    <button onClick={this.checkPolicy.bind(this)} className="btn btn-transparent blue btn-outline btn-circle btn-sm"
+                                            id="showAddChannelModalForm">
+                                        افزودن کانال جدید
                                     </button>
                                 </div>
                             </div>,
