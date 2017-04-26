@@ -1,4 +1,5 @@
 import {CAMPAIGN_PAYMENT_DATA, CREATE_CAMPAIGN, DELETE_CAMPAIGN_PROMOTE} from "./../actions/index";
+import {CAMPAIGN_PROMOTE_CHANNEL_USERNAME} from "../actions/index";
 
 export function createCampaignReducer(state = {}, action) {
 	switch (action.type) {
@@ -15,6 +16,9 @@ export function createCampaignReducer(state = {}, action) {
 			break;
 		case CAMPAIGN_PAYMENT_DATA:
 			return Object.assign({}, state, {paymentData: action.data});
-	}
+        case CAMPAIGN_PROMOTE_CHANNEL_USERNAME:
+            return Object.assign({}, state, {promotedChannelName: action.name});
+    }
+
 	return state;
 }

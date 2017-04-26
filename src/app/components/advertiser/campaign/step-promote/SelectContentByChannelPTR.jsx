@@ -1,6 +1,6 @@
 import React, {Component} from "react";
 import $ from "jquery";
-import {Field, reduxForm} from "redux-form";
+import {change, Field, reduxForm} from "redux-form";
 import NumericSelect from "./../../../common/form/NumericSelect";
 import {sync} from "../../../../functions/sync";
 import {getToken} from "../../../../redux/helpers";
@@ -103,7 +103,14 @@ class SelectContentByChannelPTR extends Component {
 
 	};
 
+	setChannelName() {
+		if(select("createCampaignData.promotedChannelName") != null) {
+			dispatch(change("SelectContentByChannelPTRForm", "name", select("createCampaignData.promotedChannelName")))
+		}
+	}
+
 	componentDidMount() {
+        this.setChannelName();
 		document.title = "ساختن کمپین جدید | انتخاب محتوای دیگر چنل ها به عنوان تبلیغ";
 		this.selectTypeContentForm = $('.get-posts-channel-form');
 		this.selectTypeContentForm.validate({
