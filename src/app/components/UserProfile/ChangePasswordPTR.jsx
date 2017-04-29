@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 
@@ -9,7 +9,6 @@ class ChangePasswordPTR extends Component {
 	};
 
 	componentDidMount() {
-
 		this.changePasswordForm = $(".change-password-form");
 		this.changePasswordForm.validate({
 			rules: {
@@ -42,11 +41,9 @@ class ChangePasswordPTR extends Component {
 					minlength: 'کلمه عبور حداقل باید ۵ کاراکتر باشد',
 					equalTo: 'کلمه عبور و تکرار آن باید یکسان باشد',
 				},
-
 			}
 		});
 	}
-
 
 	render() {
 		const {handleSubmit, SubmitChangePasswordUser, reset} = this.props;
@@ -76,6 +73,12 @@ class ChangePasswordPTR extends Component {
 		)
 	}
 }
+
+ChangePasswordPTR.propTypes = {
+	handleSubmit: PropTypes.func,
+	SubmitChangePasswordUser: PropTypes.func,
+	reset: PropTypes.func
+};
 
 export default reduxForm({
 	form: 'ChangePasswordForm'

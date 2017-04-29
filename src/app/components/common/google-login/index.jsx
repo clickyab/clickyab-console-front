@@ -2,9 +2,9 @@ import React, {Component, PropTypes} from "react";
 
 export default class GoogleLogin extends Component {
 	static propTypes = {
-		onSuccess: PropTypes.func.isRequired,
-		onFailure: PropTypes.func.isRequired,
-		clientId: PropTypes.string.isRequired,
+		onSuccess: PropTypes.func,
+		onFailure: PropTypes.func,
+		clientId: PropTypes.string,
 		onRequest: PropTypes.func,
 		buttonText: PropTypes.string,
 		offline: PropTypes.bool,

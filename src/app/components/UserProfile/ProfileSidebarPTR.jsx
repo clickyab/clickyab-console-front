@@ -36,5 +36,5 @@ export default class ProfileSidebarPTR extends Component {
 }
 
 ProfileSidebarPTR.propTypes = {
-	SubmitLogout: PropTypes.function.isRequired
+	SubmitLogout: PropTypes.func
 };

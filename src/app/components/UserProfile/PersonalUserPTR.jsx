@@ -193,8 +193,8 @@ class PersonalUserPTR extends Component {
 }
 
 PersonalUserPTR.propTypes = {
-	handleSubmit: PropTypes.function.isRequired,
-	SubmitPersonalUser: PropTypes.function.isRequired
+	handleSubmit: PropTypes.func,
+	SubmitPersonalUser: PropTypes.func
 };
 
 export default reduxForm({

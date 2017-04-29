@@ -263,7 +263,7 @@ Breadcrumbs.propTypes = {
 	activeItemClass: React.PropTypes.string,
 	excludes: React.PropTypes.arrayOf(React.PropTypes.string),
 	hideNoPath: React.PropTypes.bool,
-	routes: React.PropTypes.arrayOf(React.PropTypes.object).isRequired,
+	routes: React.PropTypes.arrayOf(React.PropTypes.object),
 	setDocumentTitle: React.PropTypes.bool,
 	resolver: React.PropTypes.func
 };

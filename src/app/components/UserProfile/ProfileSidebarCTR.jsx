@@ -61,6 +61,6 @@ export default class ProfileSidebarCTR extends Component {
 }
 
 ProfileSidebarCTR.propTypes = {
-	dispatch: PropTypes.function.isRequired,
-	UserName: PropTypes.string.isRequired,
+	dispatch: PropTypes.func,
+	UserName: PropTypes.string,
 };

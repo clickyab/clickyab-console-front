@@ -116,8 +116,8 @@ class CorporationUserPTR extends Component {
 }
 
 CorporationUserPTR.propTypes = {
-	handleSubmit: PropTypes.function.isRequired,
-	SubmitCorporationUser: PropTypes.function.isRequired
+	handleSubmit: PropTypes.func,
+	SubmitCorporationUser: PropTypes.func
 };
 
 export default reduxForm({

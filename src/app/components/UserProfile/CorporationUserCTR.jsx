@@ -24,10 +24,7 @@ export default class CorporationUserCTR extends Component {
 		dispatch(updateLocalStorageAction());
 	}
 
-
-	CorporationUserCallback({error, data, response}) {
-		response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-		response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+	CorporationUserCallback({data, response}) {
 		if (response.statusCode == '200') {
 			this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 			this.loadingProgress.stop();
@@ -72,5 +69,5 @@ export default class CorporationUserCTR extends Component {
 }
 
 CorporationUserCTR.propTypes = {
-
+	dispatch: PropTypes.func
 };

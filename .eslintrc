@@ -32,6 +32,7 @@
     "quotes": 0,
     "no-mixed-spaces-and-tabs": 0,
     "react/no-multi-comp": 0,
-    "react/sort-comp": 0
+    "react/sort-comp": 0,
+    "react/require-default-props": 0
   }
 }
