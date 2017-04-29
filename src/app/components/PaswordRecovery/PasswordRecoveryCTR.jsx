@@ -3,7 +3,7 @@ import PasswordRecoveryPTR from "./PasswordRecoveryPTR";
 import swagger from "./../../swagger/index";
 import {NotifyBox, SuccessBoxAlert} from "../../functions/notifications";
 let Ladda = require('ladda/js/ladda');
-let toastr = require('toastr');
+let $ = require('jquery');
 
 export default class PasswordRecoveryCTR extends Component {
 	loadingProgress;
@@ -12,7 +12,7 @@ export default class PasswordRecoveryCTR extends Component {
 		$('.preloader-page').hide();
 	}
 
-	forgotCallback({error, response}) {
+	forgotCallback({response}) {
 		if (response.statusCode == '200') {
 			SuccessBoxAlert({
 				error: 'اطلاعات کاربری شما صحیح نمی‌باشد.',
@@ -21,7 +21,6 @@ export default class PasswordRecoveryCTR extends Component {
 			$(".recovery-password-form , .form-top-left").fadeOut(function () {
 				$(".success-message-recovery").fadeIn();
 				$(".form-top-right i").attr("class", "fa fa-check");
-
 			});
 		} else if (response.statusCode == '400') {
 			this.stopLoading();

@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 
 export default class SuccessNotification extends Component {
-	onClick(event) {
+	onClick() {
 		let {onAnEventSeenClick, notification: {id}} = this.props;
 
 		onAnEventSeenClick(id);
@@ -20,3 +20,9 @@ export default class SuccessNotification extends Component {
 		);
 	}
 }
+
+SuccessNotification.propTypes = {
+    onAnEventSeenClick: PropTypes.func,
+    notification: PropTypes.object,
+    count: PropTypes.number,
+};

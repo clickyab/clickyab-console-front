@@ -8,6 +8,7 @@ import {sync} from "../../../functions/sync";
 import {dispatch} from "../../../functions/dispatch";
 import {channelListAction} from "../../../redux/actions/index";
 let Ladda = require('ladda/js/ladda');
+let $ = require('jquery');
 let loadingProgress;
 
 export default class AddChannelModalCTR extends Component {
