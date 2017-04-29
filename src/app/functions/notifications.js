@@ -35,7 +35,7 @@ export function FailedBoxAlert(response) {
 	}));
 }
 
-export function NotifyBox(type, message, delay) {
+export function NotifyBox(type, message) {
 	dispatch(addNotificationAction({
 		type, message, time: moment(new Date()).format('jYYYY-jM-jD HH:mm:ss')
 	}));

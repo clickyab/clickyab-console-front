@@ -1,5 +1,5 @@
 import React from "react";
-import {browserHistory, BrowserHistory, IndexRoute, Route, Router} from "react-router";
+import {browserHistory, IndexRoute, Route, Router} from "react-router";
 import App from "./app";
 import Login from "./components/login/LoginCTR";
 import onLogin from "./middlewares/routes/onLoginEnterMiddleware";
@@ -61,6 +61,7 @@ import TranslationListCTR from "./components/translation/TranslationListCTR";
 import {sync} from "./functions/sync";
 import swagger from "./swagger/index";
 let Ladda = require('ladda/js/ladda');
+let $ = require("jquery");
 
 document.body.addEventListener('unauthorized401', function () {
 	dispatch(logout());

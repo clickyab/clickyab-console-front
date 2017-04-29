@@ -3,7 +3,6 @@ import * as swagger from "../../swagger/index";
 import {translationListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
-import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
@@ -12,7 +11,6 @@ import {navigate} from "../../functions/navigate";
 import {getToken, shouldUpdateDefinition} from "../../redux/helpers";
 
 function* translationListController(done) {
-	loading(true);
 	const {error, data} = yield (new swagger.MiscApi())
 		.miscTranslateLangGet(select("locale"), getToken(), {
 			sort: 'created_at:DESC',
@@ -23,8 +21,6 @@ function* translationListController(done) {
 	done();
 	if (!error) {
 		dispatch(translationListAction(data));
-
-		loading(false);
 	} else {
 		throwError("translationListController", function () {
 			navigate('/v1/login');

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {dispatch} from "../../functions/dispatch";
@@ -15,9 +15,7 @@ class PersonalUserPTR extends Component {
 	PersonalForm;
 	state = {
         birthday: ((select("user.personal.birthday")) != null ? moment([select("user.personal", {}, true).birthday]) : moment())
-	}
-
-
+	};
 
 	handleInitialize() {
 		const initData = select("user.personal", {}, true);
@@ -25,7 +23,6 @@ class PersonalUserPTR extends Component {
 		for (let key in initData) {
 			dispatch(change("PersonalUserForm", key, initData[key]));
 		}
-		// dispatch(change("PersonalUserForm", 'birthday', moment(initData['birthday']).format('jYYYY/jM/jD')));
 	}
 
 	componentDidMount() {
@@ -193,8 +190,12 @@ class PersonalUserPTR extends Component {
 			</form>
 		)
 	}
-
 }
+
+PersonalUserPTR.propTypes = {
+	handleSubmit: PropTypes.function.isRequired,
+	SubmitPersonalUser: PropTypes.function.isRequired
+};
 
 export default reduxForm({
 	form: 'PersonalUserForm'

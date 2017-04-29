@@ -1,6 +1,5 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
-import {loading} from "../../../functions/loading";
 import {translate} from "../../../functions/translate";
 import {select} from "../../../functions/select";
 import {PersianNumber} from "react-persian";
@@ -14,8 +13,6 @@ require('amcharts3/amcharts/themes/chalk');
 
 export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
-        loading(false);
-
         AmCharts.addInitHandler(function (chart) {
 
             // check if data is mepty

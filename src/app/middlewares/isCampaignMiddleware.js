@@ -5,7 +5,6 @@ import {dispatch} from "../functions/dispatch";
 import {createCampaign} from "../redux/actions/index";
 import {AlertBox} from "../functions/notifications";
 import {select} from "../functions/select";
-import {loading} from "../functions/loading";
 
 export function* isCampaignMiddleware(props) {
 	let {error} = yield checkCampaignId(props);
@@ -14,7 +13,6 @@ export function* isCampaignMiddleware(props) {
 		throwError('isCampaignMiddleware', function () {
 			navigate('/v1/advertiser/campaign/');
 			AlertBox("error", "کمپین شما تایید شده است و امکان ویرایش آن وجود ندارد");
-			loading(false)
 		});
 
 	}

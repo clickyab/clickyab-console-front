@@ -1,10 +1,9 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {getGravatarFromEmail} from "../../functions/gravatar";
 import {getCorporationTitle, getEmail, getFullName} from "./../../redux/helpers";
 import {select} from "./../../functions/select";
 
 export default class ProfileSidebarPTR extends Component {
-
 	componentDidMount() {
 		let userAvatar = getGravatarFromEmail(getEmail(), 200);
 		document.querySelector(".profile-userpic img").setAttribute("src", userAvatar);
@@ -35,3 +34,7 @@ export default class ProfileSidebarPTR extends Component {
 		)
 	}
 }
+
+ProfileSidebarPTR.propTypes = {
+	SubmitLogout: PropTypes.function.isRequired
+};

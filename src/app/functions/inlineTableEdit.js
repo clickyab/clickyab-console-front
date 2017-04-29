@@ -1,6 +1,6 @@
-$.fn.tableEdit = function (settings, callback, activeMasks) {
+let $ = require("jquery");
 
-
+$.fn.tableEdit = function (settings) {
 	var defaults = {
 		classTd: "tdEdit", //class to cell editable
 		columnsTr: null, //index td editable, if null all td editables Ex.: "1,2,3,4,5"
@@ -40,9 +40,9 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 		}
 
 		//loop in all rows
-		for (k = 0; k < trsTable.length; k++) {
-			element = $(trsTable)[k];
-			tdsLine = $(element).find("td");
+		for (var k = 0; k < trsTable.length; k++) {
+			var element = $(trsTable)[k];
+			var tdsLine = $(element).find("td");
 
 			$.each(tdsLine, function (index, td) {
 				//if cell not have button edit
@@ -61,7 +61,6 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 				}
 			});
 		}
-		;
 
 		//return create new input text
 		function mountNewInput(cell) {
@@ -74,13 +73,13 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 				var attrsArray = attrsString.split(",");
 
 				var currentObj;
-				for (n = 0; n < attrsArray.length; n++) {
+				for (var n = 0; n < attrsArray.length; n++) {
 					//separate name of attribute and value attribute
 					currentObj = attrsArray[n].split(":");
 					$(element).attr($.trim(currentObj[0]), $.trim(currentObj[1]));
 				}
 			} else {
-				indexCell = $(cell).parent().children().index($(cell));
+				var indexCell = $(cell).parent().children().index($(cell));
 				element.setAttribute("name", "column_" + indexCell);
 				element.setAttribute("type", "text");
 			}
@@ -96,7 +95,7 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 			var cells = $(tr).find("." + settings.classTd);
 
 			$.each($(cells), function (index, cell) {
-				newInput = mountNewInput($(cell));
+				var newInput = mountNewInput($(cell));
 				$(cell).html("");
 				$(cell).append(newInput);
 			});
@@ -105,7 +104,7 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 
 		//insert input in cell
 		function editTd(cell) {
-			newInput = mountNewInput($(cell));
+			var newInput = mountNewInput($(cell));
 			$(cell).html("");
 			$(cell).append(newInput).find("input").focus();
 			settings.activeMasks.call(this);
@@ -116,9 +115,9 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 			var cells = $(tr).find("." + settings.classTd);
 			var callBackObject = {};
 			$.each($(cells), function (index, cell) {
-				input = $(cell).find('input');
+				var input = $(cell).find('input');
 				if (typeof($(input).attr("name")) != "undefined") {
-					newValue = $.trim($(input).val());
+					var newValue = $.trim($(input).val());
 					callBackObject[$(input).attr("name")] = newValue;
 					$(cell).html("");
 					$(cell).append(newValue);
@@ -145,7 +144,7 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 		function clickEvent() {
 
 			var element_clicked = $(this);
-			element_verify = element_clicked;
+			var element_verify = element_clicked;
 
 			//search tr, element by element
 			while ($(element_verify).is("tr") == false) {
@@ -168,7 +167,7 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 		function dblClickEvent() {
 			//if enableDblClick is true
 			if (settings.enableDblClick) {
-				elementBt = $(this).parent().find("." + settings.classBtEdit);
+				var elementBt = $(this).parent().find("." + settings.classBtEdit);
 				changeBt(elementBt);
 				editTd($(this));
 			}
@@ -177,6 +176,5 @@ $.fn.tableEdit = function (settings, callback, activeMasks) {
 		//bind to click's
 		$("." + settings.classBtEdit).bind("click", clickEvent);
 		$("." + settings.classTd).bind("dblclick", dblClickEvent);
-
 	});
-}
+};

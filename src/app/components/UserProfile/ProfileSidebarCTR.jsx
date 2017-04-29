@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import ProfileSidebarPTR from "./ProfileSidebarPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
@@ -23,7 +23,7 @@ export default class ProfileSidebarCTR extends Component {
     }
 
 
-    LogoutCallback({error, data, response}) {
+    LogoutCallback({data, response}) {
         if (response.statusCode == '200') {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
         } else if (response.statusCode == '400') {
@@ -59,3 +59,8 @@ export default class ProfileSidebarCTR extends Component {
         return (<ProfileSidebarPTR UserName={UserName} SubmitLogout={this.SubmitLogout}/>);
     }
 }
+
+ProfileSidebarCTR.propTypes = {
+	dispatch: PropTypes.function.isRequired,
+	UserName: PropTypes.string.isRequired,
+};

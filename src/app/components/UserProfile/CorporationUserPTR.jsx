@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {select} from "../../functions/select";
@@ -114,6 +114,11 @@ class CorporationUserPTR extends Component {
 		)
 	}
 }
+
+CorporationUserPTR.propTypes = {
+	handleSubmit: PropTypes.function.isRequired,
+	SubmitCorporationUser: PropTypes.function.isRequired
+};
 
 export default reduxForm({
 	form: 'CorporationUserForm'

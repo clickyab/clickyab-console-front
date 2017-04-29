@@ -26,5 +26,5 @@ export function translate(text, ...parameters) {
 }
 
 export function translateViaHtml(text, ...parameters) {
-	return <span dangerouslySetInnerHTML={{__html:translate(text, ...parameters)}} />
+	return <span dangerouslySetInnerHTML={{__html:translate(text, ...parameters)}} /> // eslint-disable-line
 }

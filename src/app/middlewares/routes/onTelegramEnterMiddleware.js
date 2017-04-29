@@ -3,7 +3,6 @@ import * as swagger from "../../swagger/index";
 import {telegramListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
-import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
@@ -12,7 +11,6 @@ import {navigate} from "../../functions/navigate";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* telegramListController(done) {
-	loading(true);
 	const {error, data} = yield (new swagger.TelegramApi())
 		.telegramListGet(select('user.token'), {
 			sort: 'created_at:DESC',
@@ -23,8 +21,6 @@ function* telegramListController(done) {
 	done();
 	if (!error) {
 		dispatch(telegramListAction(data));
-
-		loading(false);
 	} else {
 		throwError("onTelegramEnterMiddleWare", function () {
 			navigate('/v1/login');

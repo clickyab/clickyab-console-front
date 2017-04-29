@@ -29,6 +29,9 @@
     "react/forbid-component-props": 0,
     "react/jsx-closing-bracket-location": 0,
     "react/jsx-tag-spacing": 0,
-    "quotes": 0
+    "quotes": 0,
+    "no-mixed-spaces-and-tabs": 0,
+    "react/no-multi-comp": 0,
+    "react/sort-comp": 0
   }
 }

@@ -1,7 +1,6 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
 import {translate} from "../../../functions/translate";
-import {loading} from "../../../functions/loading";
 import {select} from "../../../functions/select";
 import {securify} from "../../../functions/securify";
 require('jquery-sparkline/jquery.sparkline');
@@ -14,8 +13,6 @@ require('amcharts3/amcharts/themes/chalk');
 
 export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
-        loading(false);
-
         AmCharts.addInitHandler(function(chart) {
 
             // check if data is mepty

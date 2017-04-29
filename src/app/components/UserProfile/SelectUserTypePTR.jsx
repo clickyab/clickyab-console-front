@@ -4,9 +4,8 @@ import Radio from "./../common/form/Radio";
 import {select} from "../../functions/select";
 
 export default class SelectUserType extends Component {
-
 	componentDidMount() {
-		$('input[name=user-type]').change(function (event) {
+		$('input[name=user-type]').change(function () {
 			if (($(this).not(':checked'))) {
 				$('.user-form').css('display', 'none');
 			}
@@ -30,7 +29,6 @@ export default class SelectUserType extends Component {
 			$('.corporation-form').fadeIn();
 		}
 	}
-
 
 	render() {
 		return (
