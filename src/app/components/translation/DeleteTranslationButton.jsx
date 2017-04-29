@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {sync} from "./../../functions/sync";
 import swagger from "./../../swagger/index";
 import {getToken} from "../../redux/helpers";
@@ -7,13 +7,13 @@ import {dispatch} from "../../functions/dispatch";
 import {translationListAction} from "../../redux/actions/index";
 
 export default class DeleteTranslationButton extends Component {
-	deleteAction(event) {
+	deleteAction() {
 		let {id} = this.props;
-		sync(function* () {
-			let {data, error} = yield (new swagger.MiscApi())
+		sync(function*() {
+			let {error} = yield (new swagger.MiscApi())
 				.miscDeleteIdDelete(id, getToken());
 
-			if(!error) {
+			if (!error) {
 				let {data} = yield (new swagger.MiscApi).miscTranslateLangGet(select("locale"), getToken(), {
 					...select('queries.translation', {})
 				});
@@ -24,10 +24,16 @@ export default class DeleteTranslationButton extends Component {
 	}
 
 	render() {
-		return <div className="btn-group ">
-			<button className="btn btn-info btn-xs edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-					key="delete" onClick={(event) => this.deleteAction(Object.assign({}, event))}>حذف
-			</button>
-		</div>
+		return (
+			<div className="btn-group">
+				<button className="btn btn-info btn-xs edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
+						key="delete" onClick={(event) => this.deleteAction(Object.assign({}, event))}>حذف
+				</button>
+			</div>
+		)
 	}
 }
+
+DeleteTranslationButton.propTypes = {
+	id: PropTypes.number
+};
