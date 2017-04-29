@@ -1,9 +1,8 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {reduxForm} from "redux-form";
 import CopyToClipboard from "react-copy-to-clipboard";
 
 class AddTelegramCodeModalPTR extends Component {
-
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -11,7 +10,6 @@ class AddTelegramCodeModalPTR extends Component {
 			value: ''
 		}
 	}
-
 
 	render() {
 		const {handleSubmit, SubmitTelegramGetCode} = this.props;
@@ -58,6 +56,11 @@ class AddTelegramCodeModalPTR extends Component {
 		)
 	}
 }
+
+AddTelegramCodeModalPTR.propTypes = {
+	handleSubmit: PropTypes.func,
+	SubmitTelegramGetCode: PropTypes.func
+};
 
 export default reduxForm({
 	form: 'AddTelegramCodeModalPTR'

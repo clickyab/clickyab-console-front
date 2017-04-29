@@ -1,11 +1,8 @@
-import {sync} from "../../functions/sync";
-import {loading} from "../../functions/loading";
 import {handleError} from "../../functions/catchError";
 import {dispatch} from "../../functions/dispatch";
 import {createCampaign} from "../../redux/actions/index";
 import {select} from "../../functions/select";
 import {navigate} from "../../functions/navigate";
-
 let swal = require('sweetalert');
 
 function checkProfile() {
@@ -30,23 +27,17 @@ function checkProfile() {
 					navigate('/v1/advertiser');
 				}
 			});
-
 	}
 }
 
-
-export default (nextState, replace, next) => sync(function*() {
+export default function (nextState, replace, next) {
 	try {
-		loading(true);
 		checkProfile();
 		dispatch(createCampaign({}));
 
-		loading(false);
 		next();
-
-
 	} catch (error) {
 		next();
 		handleError(error);
 	}
-});
+}

@@ -5,14 +5,11 @@ import {connect} from "react-redux";
 import {getToken} from "../../redux/helpers";
 import moment from "moment-jalali";
 import {AlertBox} from "../../functions/notifications";
-import {ifInvalidToken} from "../../functions/helpers";
 import $ from "jquery";
 let swal = require('sweetalert');
 
 @connect()
 export default class SessionListCTR extends Component {
-
-
 	componentDidMount() {
 		function DisplaySessionList(data) {
 			var $resultDisplay = $('.session-list');
@@ -25,7 +22,7 @@ export default class SessionListCTR extends Component {
 						'<div class="session-item left">' +
 						'<div class="session-item-body"> ' +
 						'<div class="session-item-info">' +
-						'<span class="session-user-agent">' + this.browser + " " + this.version +  "-" + this.os + '</span>' +
+						'<span class="session-user-agent">' + this.browser + " " + this.version + "-" + this.os + '</span>' +
 						'<span class="created_at">' + moment(this.created_at).format('dddd، jD jMMMM jYYYY') + '</span>' +
 						'</div>' +
 						'<div class="session-ip">' + this.ip + '</div>' +
@@ -43,12 +40,9 @@ export default class SessionListCTR extends Component {
 		}
 
 
-		function sessionGetCallback({error, data, response}) {
+		function sessionGetCallback({response}) {
 			if (response.statusCode == '200') {
 				DisplaySessionList(response);
-
-			} else if (response.statusCode == '400') {
-
 			}
 		}
 
@@ -61,16 +55,9 @@ export default class SessionListCTR extends Component {
 		getListSessions();
 
 
-		function sessionDeleteCallback({error, data, response}) {
+		function sessionDeleteCallback({response}) {
 			if (response.statusCode == '200') {
 				DisplaySessionList(response);
-
-			}
-			else if (response.statusCode == '400') {
-
-			}
-			else if (response.statusCode == '401') {
-
 			}
 		}
 
@@ -95,13 +82,10 @@ export default class SessionListCTR extends Component {
 							.userSessionTerminateIdGet(getDataKey, getToken())
 							.then(response => sessionDeleteCallback(response));
 						AlertBox("success", "سشن با موفقیت حذف گردید");
-					} else {
 					}
 				});
 		})
-
 	}
-
 
 	render() {
 		return (<SessionListPTR />);

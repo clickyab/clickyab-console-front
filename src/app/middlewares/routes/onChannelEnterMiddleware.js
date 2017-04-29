@@ -3,7 +3,6 @@ import * as swagger from "../../swagger/index";
 import {channelListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
-import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
@@ -12,7 +11,6 @@ import {navigate} from "../../functions/navigate";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* channelListController(done) {
-	loading(true);
 	yield* isLoginMiddleware();
 	const {error, data} = yield (new swagger.ChannelApi())
 		.channelListGet(select('user.token'), {
@@ -24,8 +22,6 @@ function* channelListController(done) {
 	done();
 	if (!error) {
 		dispatch(channelListAction(data));
-
-		loading(false);
 	} else {
 		throwError("onChannelEnterMiddleWare", function () {
 			navigate('/v1/login');

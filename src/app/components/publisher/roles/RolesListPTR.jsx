@@ -1,8 +1,9 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {ConsoleTable} from "../../common/ConsoleTable/ConsoleTable";
 import EditRoleModalCTR from "./EditRoleModalCTR";
 import AddRoleModalCTR from "./AddRoleModalCTR";
 import {securify} from "../../../functions/securify";
+let $ = require("jquery");
 
 export default class RolesListPTR extends Component {
 	componentDidMount() {
@@ -50,3 +51,7 @@ export default class RolesListPTR extends Component {
 		)
 	}
 }
+
+RolesListPTR.propTypes = {
+	permissions: PropTypes.array
+};

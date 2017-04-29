@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {Field} from "redux-form";
 import Select from "react-select";
 
@@ -76,3 +76,17 @@ export default class SelectPermissionPTR extends Component {
 		)
 	}
 }
+
+SelectPermissionPTR.propTypes = {
+	multi: PropTypes.bool,
+	selfValue: PropTypes.array,
+	parentValue: PropTypes.array,
+	globalValue: PropTypes.array,
+	selfCheckbox: PropTypes.bool,
+	parentCheckbox: PropTypes.bool,
+	globalCheckbox: PropTypes.bool,
+	toggleDisabled: PropTypes.func,
+	handleOnChangeSelf: PropTypes.func,
+	handleOnChangeParent: PropTypes.func,
+	handleOnChangeGlobal: PropTypes.func,
+};

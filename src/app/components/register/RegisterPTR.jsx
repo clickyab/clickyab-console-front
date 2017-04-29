@@ -2,30 +2,8 @@ import React, {Component} from "react";
 import $ from "jquery";
 import {Field, reduxForm} from "redux-form";
 import {Link} from "react-router";
-import {translatable} from "react-multilingual/dist";
+import {translate} from "../../functions/translate";
 
-@translatable(({
-				   email,
-				   password,
-				   repeat_password,
-				   register,
-				   create_account,
-				   register_submit,
-				   do_you_have_account,
-				   login_now,
-				   login_with_google
-			   }) => ({
-	email,
-	password,
-	repeat_password,
-	register,
-	create_account,
-	register_submit,
-	do_you_have_account,
-	login_now,
-	login_with_google
-
-}))
 class RegisterForm extends Component {
 	form;
 	state = {
@@ -71,12 +49,11 @@ class RegisterForm extends Component {
 
 	render() {
 		let {
-			email, password, repeat_password, register, create_account, do_you_have_account, login_now, register_submit, login_with_google
+			email, password, repeat_password
 		} = this.props;
 		const {handleSubmit, SubmitCall} = this.props;
 
 		return (
-
 			<div className="top-content auth-pages">
 				<img src="/bg.jpg" className="fullscreen-back"/>
 				<div className="inner-bg">
@@ -95,7 +72,7 @@ class RegisterForm extends Component {
 							<div className="col-sm-6 col-sm-offset-3 form-box">
 								<div className="form-top">
 									<div className="form-top-left">
-										<h3>{create_account}</h3>
+										<h3>{translate("Create Account")}</h3>
 									</div>
 									<div className="form-top-right">
 										<i className="fa fa-plus"/>
@@ -125,28 +102,16 @@ class RegisterForm extends Component {
 										</div>
 										<button type="submit" className="btn mt-ladda-btn ladda-button btn-primary"
 												data-style="zoom-in"><span
-											className="ladda-label">{register_submit}</span></button>
+											className="ladda-label">{translate("Register Submit")}</span></button>
 									</form>
-									{/*<div className="row">*/}
-									{/*<div className="col-sm-6 col-sm-offset-3 social-login">*/}
-									{/*<div className="social-login-buttons">*/}
-									{/*<a className="btn btn-link-1 btn-link-1-google-plus" href="#">*/}
-									{/*<i className="fa fa-google-plus"/> {login_with_google}*/}
-									{/*</a>*/}
-									{/*</div>*/}
-									{/*</div>*/}
-									{/*</div>*/}
 								</div>
 								<div className="panel-footer">
-									{do_you_have_account} <Link to="/v1/login">{login_now}</Link>
+									{translate("Do You Have Account")} <Link to="/v1/login">{translate("Login Now")}</Link>
 								</div>
-
 							</div>
 						</div>
-
 					</div>
 				</div>
-
 			</div>
 		);
 	}
@@ -155,9 +120,9 @@ class RegisterForm extends Component {
 RegisterForm.propTypes = {
 	email: React.PropTypes.string,
 	repeat_password: React.PropTypes.string,
-	register: React.PropTypes.string,
 	password: React.PropTypes.string,
-	handleSubmit: React.PropTypes.func
+	handleSubmit: React.PropTypes.func,
+	SubmitCall: React.PropTypes.func,
 };
 
 export default reduxForm({

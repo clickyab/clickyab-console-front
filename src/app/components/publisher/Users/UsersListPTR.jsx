@@ -33,7 +33,3 @@ export default class UsersListPTR extends Component {
 		)
 	}
 }
-
-UsersListPTR.propTypes = {
-	items: React.PropTypes.array
-};

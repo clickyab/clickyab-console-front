@@ -3,7 +3,6 @@ import * as swagger from "../../swagger/index";
 import {permissionListAction, roleListAction} from "../../redux/actions/index";
 import {dispatch} from "../../functions/dispatch";
 import {select} from "../../functions/select";
-import {loading} from "../../functions/loading";
 import {throwError} from "../../functions/Error";
 import {raceOnTime} from "../../functions/raceOnTime";
 import {isLoginMiddleware} from "../isLoginMiddleware";
@@ -12,7 +11,6 @@ import {navigate} from "../../functions/navigate";
 import {shouldUpdateDefinition} from "../../redux/helpers";
 
 function* roleListController(done) {
-	loading(true);
 	const result = (yield (new swagger.UserApi())
 		.userPermissionsGet(select('user.token'), {
 			...select('queries.role', {}),
@@ -30,8 +28,6 @@ function* roleListController(done) {
 	done();
 	if (!error) {
 		dispatch(roleListAction(data));
-
-		loading(false);
 	} else {
 		throwError("onRoleEnterMiddleWare", function () {
 			navigate('/v1/login');

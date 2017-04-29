@@ -1,11 +1,10 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import NumericSelect from "./../common/form/NumericSelect";
 import {getCity} from "../../redux/helpers";
 import {dispatch} from "../../functions/dispatch";
 import {change} from "redux-form/lib/index";
 
 export default class SelectLocationPTR extends Component {
-
 	componentDidMount() {
 		dispatch(change("PersonalUserForm", 'country_id', 1));
 	}
@@ -61,6 +60,13 @@ export default class SelectLocationPTR extends Component {
 			</div>
 		)
 	}
-
 }
 
+SelectLocationPTR.propTypes = {
+    onCountryChanged: PropTypes.func,
+    onProvinceChanged: PropTypes.func,
+    countries: PropTypes.array,
+    provinces: PropTypes.array,
+    cities: PropTypes.array,
+    form: PropTypes.object,
+};

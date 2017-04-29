@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import TelegramListPTR from "./TelegramListPTR";
 import {sync} from "../../../functions/sync";
@@ -35,8 +35,8 @@ export default class TelegramListCTR extends Component {
 	}
 
 	edit(id) {
+		return id;
 	}
-
 
 	updated_at(updated_at) {
 		return moment(updated_at).format('jYYYY/jM/jD');
@@ -66,3 +66,8 @@ export default class TelegramListCTR extends Component {
 		/>)
 	}
 }
+
+TelegramListCTR.propTypes = {
+	dispatch: PropTypes.func,
+	telegramList: PropTypes.array
+};

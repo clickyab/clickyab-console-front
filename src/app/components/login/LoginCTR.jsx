@@ -1,14 +1,15 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import LoginPTR from "./LoginPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
 import {successfulLogin} from "../../redux/actions/login";
-import {NotifyBox, SuccessBoxAlert} from "../../functions/notifications";
+import {NotifyBox} from "../../functions/notifications";
 import {flush, updateLocalStorageAction} from "../../redux/actions/index";
 import {updateUserInformation} from "../../redux/actions/user";
 import {navigate} from "../../functions/navigate";
 import {translate} from "../../functions/translate";
 let Ladda = require('ladda/js/ladda');
+let $ = require('jquery');
 
 @connect()
 export default class LoginCTR extends Component {
@@ -28,7 +29,7 @@ export default class LoginCTR extends Component {
 		navigate('/v1/advertiser');
 	}
 
-	loginCallback({error, data, response}) {
+	loginCallback({data, response}) {
 		if (response.statusCode == '200') {
 			this.loginSuccessfullyDispatchers(Object.assign({}, data));
 
@@ -69,3 +70,7 @@ export default class LoginCTR extends Component {
 		return (<LoginPTR SubmitCall={this.SubmitCall}/>);
 	}
 }
+
+LoginCTR.propTypes = {
+    dispatch: PropTypes.func
+};

@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import CorporationUserPTR from "./CorporationUserPTR";
 import swagger from "./../../swagger/index";
 import {connect} from "react-redux";
@@ -8,7 +8,6 @@ import {getToken} from "../../redux/helpers";
 import {ifInvalidToken} from "../../functions/helpers";
 import {deletePersonalInformation, updateCorporationInformation} from "../../redux/actions/user";
 import {select} from "../../functions/select";
-
 let Ladda = require('ladda/js/ladda');
 
 @connect()
@@ -25,10 +24,7 @@ export default class CorporationUserCTR extends Component {
 		dispatch(updateLocalStorageAction());
 	}
 
-
-	CorporationUserCallback({error, data, response}) {
-		response.error = 'اطلاعات شما صحیح نمی‌باشد.';
-		response.text = 'اطلاعات شما با موفقیت ثبت شد.';
+	CorporationUserCallback({data, response}) {
 		if (response.statusCode == '200') {
 			this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
 			this.loadingProgress.stop();
@@ -71,3 +67,7 @@ export default class CorporationUserCTR extends Component {
 		return (<CorporationUserPTR SubmitCorporationUser={this.SubmitCorporationUser}/>);
 	}
 }
+
+CorporationUserCTR.propTypes = {
+	dispatch: PropTypes.func
+};

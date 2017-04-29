@@ -1,8 +1,5 @@
 export function getGravatarFromEmail(email, size) {
 
-	// MD5 (Message-Digest Algorithm) by WebToolkit
-	//
-
 	var MD5 = function (s) {
 		function L(k, d) {
 			return (k << d) | (k >>> (32 - d))
@@ -209,7 +206,7 @@ export function getGravatarFromEmail(email, size) {
 		return i.toLowerCase()
 	};
 
-	var size = size || 80;
+	size = size || 80;
 
 	return 'http://www.gravatar.com/avatar/' + MD5(email) + '.jpg?s=' + size;
 }

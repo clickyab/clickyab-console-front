@@ -1,26 +1,9 @@
-import React, {Component} from "react";
-import $ from "jquery";
+import React, {Component, PropTypes} from "react";
+let $ = require("jquery");
 import {Field, reduxForm} from "redux-form";
 import {Link} from "react-router";
-import {translatable} from "react-multilingual/dist";
+import {translate} from "../../functions/translate";
 
-
-@translatable(({
-				   do_you_have_account,
-				   login_now,
-				   email,
-				   please_enter_your_mail_to_send_new_password,
-				   forget_submit,
-				   forgotPassTitle
-
-			   }) => ({
-	do_you_have_account,
-	login_now,
-	email,
-	please_enter_your_mail_to_send_new_password,
-	forget_submit,
-	forgotPassTitle
-}))
 class PasswordRecoveryPTR extends Component {
 	form = {};
 	state = {
@@ -43,9 +26,6 @@ class PasswordRecoveryPTR extends Component {
 	}
 
 	render() {
-		let {
-			email, forget_submit, do_you_have_account, login_now, please_enter_your_mail_to_send_new_password, forgotPassTitle
-		} = this.props;
 		const {handleSubmit, SubmitCall} = this.props;
 
 		return (
@@ -67,8 +47,8 @@ class PasswordRecoveryPTR extends Component {
 							<div className="col-sm-6 col-sm-offset-3 form-box">
 								<div className="form-top">
 									<div className="form-top-left">
-										<h3>{forgotPassTitle}</h3>
-										<p>{please_enter_your_mail_to_send_new_password}</p>
+										<h3>{translate('Forgot Password Title')}</h3>
+										<p>{translate('Please Enter Your Mail To Send New Password')}</p>
 									</div>
 									<div className="form-top-right">
 										<i className="fa fa-rocket"/>
@@ -78,14 +58,14 @@ class PasswordRecoveryPTR extends Component {
 									<form role="form" action="" method="post" className="recovery-password-form"
 										  onSubmit={handleSubmit((values) => SubmitCall(values, this.form))}>
 										<div className="form-group">
-											<label className="sr-only" htmlFor="form-username">{email}</label>
-											<Field component="input" type="text" name="email" placeholder={email}
+											<label className="sr-only" htmlFor="form-username">{translate("email")}</label>
+											<Field component="input" type="text" name="email" placeholder={translate("email")}
 												   className="form-username form-control" id="email"
 												   style={{direction: 'ltr', textAlign: 'left'}}/>
 										</div>
 										<button type="submit" className="btn mt-ladda-btn ladda-button btn-primary"
 												data-style="zoom-in"><span
-											className="ladda-label">{forget_submit}</span></button>
+											className="ladda-label">{translate("Forget Submit")}</span></button>
 									</form>
 									<div className="success-message-recovery text-center" style={{display: 'none'}}>
 										<h3>ایمیل بازیابی کلمه عبور با موفقیت ارسال شد</h3>
@@ -93,7 +73,7 @@ class PasswordRecoveryPTR extends Component {
 									</div>
 								</div>
 								<div className="panel-footer">
-									{do_you_have_account} <Link to="/v1/login">{login_now}</Link>
+									{translate("Do You Have Account")} <Link to="/v1/login">{translate("Login Now")}</Link>
 								</div>
 
 							</div>
@@ -108,7 +88,8 @@ class PasswordRecoveryPTR extends Component {
 }
 
 PasswordRecoveryPTR.propTypes = {
-	email: React.PropTypes.string,
+    handleSubmit: PropTypes.func,
+	SubmitCall: PropTypes.func
 };
 
 export default reduxForm({

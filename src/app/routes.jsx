@@ -1,5 +1,5 @@
 import React from "react";
-import {browserHistory, BrowserHistory, IndexRoute, Route, Router} from "react-router";
+import {browserHistory, IndexRoute, Route, Router} from "react-router";
 import App from "./app";
 import Login from "./components/login/LoginCTR";
 import onLogin from "./middlewares/routes/onLoginEnterMiddleware";
@@ -28,6 +28,7 @@ import onPublisherEnterMiddleware from "./middlewares/routes/onPublisherEnterMid
 import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterMiddleware";
 import onTelegramEnterMiddleware from "./middlewares/routes/onTelegramEnterMiddleware";
 import onRoleEnterMiddleware from "./middlewares/routes/onRoleEnterMiddleware";
+import LanguagesMiddleware from "./middlewares/LanguagesMiddleware";
 import CampaignListCTR from "./components/advertiser/campaign/CampiagnListCTR";
 import CampaignCreateCTR from "./components/advertiser/campaign/step-name/CreateCTR";
 import UploadFileCTR from "./components/advertiser/campaign/step-upload/UploadFileCTR";
@@ -42,7 +43,9 @@ import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddlewar
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
 import {dispatch} from "./functions/dispatch";
 import {logout} from "./redux/actions/login";
-import {addNotificationAction, asyncRemoveLocalStorageAction, getTranslation} from "./redux/actions/index";
+import {
+    addNotificationAction, asyncRemoveLocalStorageAction
+} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
 import StepPreviewCTR from "./components/advertiser/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
@@ -58,9 +61,8 @@ import {AlertBox} from "./functions/notifications";
 import {select} from "./functions/select";
 import onTranslationListEnterMiddleware from "./middlewares/routes/onTranslationListEnterMiddleware";
 import TranslationListCTR from "./components/translation/TranslationListCTR";
-import {sync} from "./functions/sync";
-import swagger from "./swagger/index";
 let Ladda = require('ladda/js/ladda');
+let $ = require("jquery");
 
 document.body.addEventListener('unauthorized401', function () {
 	dispatch(logout());
@@ -103,16 +105,10 @@ browserHistory.listen(function () {
 	checkSubmitProfile();
 });
 
-sync(function*() {
-	const {data} = yield (new swagger.MiscApi())
-		.miscDumpLangGet(select('language'));
-	dispatch(getTranslation(data));
-});
-
 export default function Provider() {
 	return (
 		<Router history={browserHistory}>
-			<Route path='/v1' component={App}>
+			<Route path='/v1' component={App} onEnter={LanguagesMiddleware}>
 				<IndexRoute component={() => {
 					if (store.getState().userType == 'advertiser') {
 						navigate('/v1/advertiser');
@@ -180,7 +176,7 @@ export default function Provider() {
 				</Route>
 			</Route>
 
-			<Route path='/v1'>
+			<Route path='/v1' onEnter={LanguagesMiddleware}>
 				<Route path='profile' component={UserProfile} name='UserProfile' onEnter={onProfileEnterMiddleware}/>
 				<Route path='register' component={Register} title='Register' name='Register' onEnter={onLogin}/>
 				<Route path='login' component={Login} name='Login' onEnter={onLogin}/>

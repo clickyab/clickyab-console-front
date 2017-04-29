@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import EditRoleModalPTR from "./EditRoleModalPTR";
 import {connect} from "react-redux";
 import swagger from "../../../swagger/index";
@@ -9,6 +9,7 @@ import {ifInvalidToken} from "../../../functions/helpers";
 import {sync} from "../../../functions/sync";
 import {select} from "../../../functions/select";
 let Ladda = require('ladda/js/ladda');
+let $ = require('jquery');
 let loadingProgress;
 
 @connect(({roleData}) => ({roleData}))
@@ -83,3 +84,9 @@ export default class EditRoleModalCTR extends Component {
 								  SubmitEditRole={this.SubmitEditRole}/>);
 	}
 }
+
+EditRoleModalCTR.propTypes = {
+	roleData: PropTypes.array,
+	permissions: PropTypes.array,
+	form: PropTypes.object,
+};

@@ -1,11 +1,10 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {reduxForm} from "redux-form";
 import $ from "jquery";
 import Select from "react-select";
 
 class EditUserModalPTR extends Component {
 	editMode = false;
-
 	state = {
 		roleValue: [],
 	};
@@ -23,7 +22,6 @@ class EditUserModalPTR extends Component {
 		return options;
 	}
 
-
 	componentDidMount() {
 		$(document).on('shown.bs.modal', () => {
 			this.setState(this.fillSelectBoxes());
@@ -34,7 +32,6 @@ class EditUserModalPTR extends Component {
 			this.editMode = false;
 			this.setState({roleValue: []});
 		});
-
 	}
 
 	fillSelectBoxes() {
@@ -126,6 +123,13 @@ class EditUserModalPTR extends Component {
 		)
 	}
 }
+
+EditUserModalPTR.propTypes = {
+	userAssignRoleList: PropTypes.array,
+	userAssignRoleData: PropTypes.array,
+	handleSubmit: PropTypes.func,
+	SubmitEditUser: PropTypes.func
+};
 
 export default reduxForm({
 	form: 'EditUserModalPTR'

@@ -1,9 +1,7 @@
 import React, {Component} from "react";
 import {Link} from "react-router";
-import {loading} from "../../../functions/loading";
 import {translate} from "../../../functions/translate";
 import {select} from "../../../functions/select";
-import {PersianNumber} from "react-persian";
 require('jquery-sparkline/jquery.sparkline');
 require('amcharts3/amcharts/amcharts');
 require('amcharts3/amcharts/serial');
@@ -14,9 +12,7 @@ require('amcharts3/amcharts/themes/chalk');
 
 export default class AdvertiserDashboardPage extends Component {
     componentDidMount() {
-        loading(false);
-
-        AmCharts.addInitHandler(function (chart) {
+        window.AmCharts.addInitHandler(function (chart) {
 
             // check if data is mepty
             if (chart.dataProvider === undefined || chart.dataProvider.length === 0) {
@@ -25,19 +21,19 @@ export default class AdvertiserDashboardPage extends Component {
                 dp[chart.titleField] = "";
                 dp[chart.valueField] = "";
                 dp[chart.categoryField] = "";
-                chart.dataProvider.push(dp)
+                chart.dataProvider.push(dp);
 
-                var dp = {};
+                var dp2 = {};
                 dp[chart.titleField] = "";
                 dp[chart.valueField] = "";
                 dp[chart.categoryField] = "";
-                chart.dataProvider.push(dp)
+                chart.dataProvider.push(dp2);
 
-                var dp = {};
+                var dp3 = {};
                 dp[chart.titleField] = "";
                 dp[chart.valueField] = "";
                 dp[chart.categoryField] = "";
-                chart.dataProvider.push(dp)
+                chart.dataProvider.push(dp3);
 
                 // disable slice labels
                 chart.labelsEnabled = false;
@@ -51,7 +47,7 @@ export default class AdvertiserDashboardPage extends Component {
 
         }, ["pie", "serial"]);
 
-        AmCharts.makeChart("barChart", {
+        window.AmCharts.makeChart("barChart", {
             "type": "serial",
             "addClassNames": true,
             "theme": "light",
@@ -196,7 +192,7 @@ export default class AdvertiserDashboardPage extends Component {
                                 </div>
                             </div>
                             <div className="portlet-body">
-                                <div id="barChart" className='CSSAnimationChart'></div>
+                                <div id="barChart" className='CSSAnimationChart'/>
                             </div>
                         </div>
                     </div>

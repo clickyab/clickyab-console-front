@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import PublisherSidebar from "./Dashboard/SidebarPTR";
 
 export default class Publisher extends Component {
@@ -13,5 +13,8 @@ export default class Publisher extends Component {
 			</div>
 		);
 	}
-
 }
+
+Publisher.propTypes = {
+	children: PropTypes.element
+};

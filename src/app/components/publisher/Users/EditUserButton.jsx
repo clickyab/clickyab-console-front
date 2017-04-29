@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import swagger from "../../../swagger/index";
 import {select} from "../../../functions/select";
 import {assignRoleUserData} from "../../../redux/actions/index";
@@ -6,6 +6,7 @@ import {sync} from "../../../functions/sync";
 import {AlertBox} from "../../../functions/notifications";
 import {dispatch} from "../../../functions/dispatch";
 let Ladda = require('ladda/js/ladda');
+let $ = require("jquery");
 let loadingProgress;
 
 export default class EditUserButton extends Component {
@@ -37,8 +38,14 @@ export default class EditUserButton extends Component {
 	}
 
 	render() {
-		return <button key="edit" ref={(EditElement) => this.editElementBtn = EditElement}
-					   className="btn btn-info btn-xs blue edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-					   onClick={(event) => this.edit(event)}>ویرایش</button>;
+		return (
+			<button key="edit" ref={(EditElement) => this.editElementBtn = EditElement}
+					className="btn btn-info btn-xs blue edit-item mt-ladda-btn ladda-button" data-style="zoom-in"
+					onClick={(event) => this.edit(event)}>ویرایش</button>
+		);
 	}
 }
+
+EditUserButton.propTypes = {
+	id: PropTypes.number
+};

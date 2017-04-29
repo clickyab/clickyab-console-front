@@ -40,6 +40,5 @@ export const getCountry = () => {
 };
 
 export const shouldUpdateDefinition = (selector) => {
-	return true;
-	// return typeof select(selector).definitions == "undefined";
+	return typeof select(selector).definitions === 'undefined';
 };

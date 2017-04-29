@@ -9,8 +9,8 @@ import {sync} from "../../../functions/sync";
 import swagger from "../../../swagger/index";
 import {AlertBox} from "../../../functions/notifications";
 import {telegramBot} from "../../../functions/telegramBot";
-let Ladda = require('ladda/js/ladda');
 let swal = require('sweetalert');
+let $ = require('jquery');
 
 export default class ChannelListPTR extends Component {
     checkPolicy() {

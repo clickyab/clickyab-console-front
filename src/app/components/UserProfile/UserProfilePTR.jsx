@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {change, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import PersonalUserCTR from "./PersonalUserCTR";
 import CorporationUserCTR from "./CorporationUserCTR";
 import ProfileSidebarCTR from "./ProfileSidebarCTR";
@@ -7,8 +7,6 @@ import SelectUserTypePTR from "./SelectUserTypePTR";
 import ChangePasswordCTR from "./ChangePasswordCTR";
 import SessionListCTR from "./SessionListCTR";
 import Sidebar from "./../layouts/Sidebar";
-import moment from "moment";
-import {dispatch} from "../../functions/dispatch";
 
 class UserProfilePTR extends Component {
 
@@ -77,13 +75,6 @@ class UserProfilePTR extends Component {
 		);
 	}
 }
-
-UserProfilePTR.propTypes = {
-	email: React.PropTypes.string,
-	repeat_password: React.PropTypes.string,
-	register: React.PropTypes.string,
-	password: React.PropTypes.string,
-};
 
 export default reduxForm({
 	form: 'register'

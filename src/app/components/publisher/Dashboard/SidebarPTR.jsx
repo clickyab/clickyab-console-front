@@ -1,5 +1,4 @@
 import React, {Component} from "react";
-import {translatable} from "react-multilingual/dist";
 import {Link, SidebarLinks} from "./../../../components/custom-link/CustomLink";
 import {securify} from "../../../functions/securify";
 import {translate} from './../../../functions/translate';

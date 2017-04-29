@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import {failedRegister, successfulRegister} from "../../redux/actions/register";
 import {NotifyBox} from "../../functions/notifications";
@@ -10,6 +10,7 @@ import {navigate} from "../../functions/navigate";
 import {successfulLogin} from "../../redux/actions/login";
 import {translate} from './../../functions/translate';
 let Ladda = require('ladda/js/ladda');
+let $ = require("jquery");
 
 @connect()
 export default class RegisterCTR extends Component {
@@ -34,8 +35,7 @@ export default class RegisterCTR extends Component {
 		this.props.dispatch(failedRegister());
 	}
 
-	registerCallback({error, data, response}) {
-		console.log(data, response)
+	registerCallback({data, response}) {
 		if (response.statusCode == '200') {
 			this.registerSuccessfullyDispatchers(Object.assign({}, data));
 
@@ -75,3 +75,7 @@ export default class RegisterCTR extends Component {
 		return (<RegisterPTR SubmitCall={this.SubmitCall}/>);
 	}
 }
+
+RegisterCTR.propTypes = {
+	dispatch: PropTypes.func
+};

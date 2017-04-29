@@ -1,38 +1,15 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import UsersListPTR from "./UsersListPTR";
 import swagger from "../../../swagger/index";
 import {select} from "../../../functions/select";
+import {translate} from "../../../functions/translate";
 import {userItemsListAction} from "../../../redux/actions/index";
 import EditUserButton from "./EditUserButton";
 import moment from "moment-jalali";
 import {sync} from "../../../functions/sync";
-import {translatable} from "react-multilingual/dist";
 
 @connect(({userList}) => ({userList}))
-@translatable(({
-				   ID,
-				   Email,
-				   Type,
-				   Status,
-				   CreatedAt,
-				   UpdatedAt,
-				   Action,
-				   corporation,
-				   personal,
-				   blocked,
-				   registered,
-				   verified
-
-			   }) => ({
-	translation: {
-		ID,
-		Email, Type,
-		Status, CreatedAt, UpdatedAt,
-		Action, corporation, personal,
-		blocked, registered, verified
-	}
-}))
 export default class UsersListCTR extends Component {
 	callApi(query_name, value) {
 		let {dispatch} = this.props;
@@ -80,10 +57,6 @@ export default class UsersListCTR extends Component {
 		this.callApi('c', per_page);
 	}
 
-	translator(title) {
-		return this.props.translation[title];
-	}
-
 	status(status) {
 		if (status == 'registered') {
 			return <span className="label label-sm label-warning"> {this.translator(status)} </span>;
@@ -97,15 +70,13 @@ export default class UsersListCTR extends Component {
 	}
 
 	user_type(user_type) {
-		return this.translator(user_type);
+		return translate(user_type);
 	}
-
 
 	render() {
 		return (<UsersListPTR {...this.props.userList}
 							  edit={this.edit.bind(this)}
 							  sort={this.sort.bind(this)}
-							  translator={this.translator.bind(this)}
 							  filter={this.filter.bind(this)}
 							  onPaginationChange={this.onPaginationChange.bind(this)}
 							  onPerPageChange={this.onPerPageChange.bind(this)}
@@ -117,3 +88,8 @@ export default class UsersListCTR extends Component {
 		/>);
 	}
 }
+
+UsersListCTR.propTypes = {
+	dispatch: PropTypes.func,
+	userList: PropTypes.array,
+};

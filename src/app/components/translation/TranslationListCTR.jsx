@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import TranslationListPTR from "./TranslationListPTR";
 import {sync} from "../../functions/sync";
@@ -24,7 +24,7 @@ export default class TranslationListCTR extends Component {
 		return (data) => {
 			let translateText = data.translated;
 			sync(function*() {
-				let {data} = yield (new swagger.MiscApi).miscTranslatePut(getToken(), {
+				yield (new swagger.MiscApi).miscTranslatePut(getToken(), {
 					'payloadData': {
 						"id": id,
 						"lang": select("locale"),
@@ -33,7 +33,6 @@ export default class TranslationListCTR extends Component {
 				});
 			});
 
-			console.log(data);
 			this.setState({...data})
 		}
 	}
@@ -68,6 +67,7 @@ export default class TranslationListCTR extends Component {
 	}
 
 	edit(id) {
+		return id;
 	}
 
 	deleteAction(id) {
@@ -89,7 +89,7 @@ export default class TranslationListCTR extends Component {
 				validate={this.customValidateText}
 				editingElement="textarea"
 				activeClassName="editing form-control"
-				text={ translated != null ? translated : "ویرایش"}
+				text={translated != null ? translated : "ویرایش"}
 				paramName="translated"
 				change={this.dataChanged(id)}
 				style={{
@@ -111,26 +111,27 @@ export default class TranslationListCTR extends Component {
 		this.callApi('c', per_page);
 	}
 
-	translator(title) {
-		return this.props.translation[title];
-	}
-
 	render() {
-		return (<TranslationListPTR {...this.props.translationList}
-									sort={this.sort.bind(this)}
-									filter={this.filter.bind(this)}
-									search={this.search.bind(this)}
-									onPaginationChange={this.onPaginationChange.bind(this)}
-									onPerPageChange={this.onPerPageChange.bind(this)}
-									mutators={{
-										updated_at: this.updated_at,
-										created_at: this.created_at,
-										text: this.text,
-										translated: this.translated.bind(this)
-									}}
-									edit={this.edit.bind(this)}
-									deleteAction={this.deleteAction.bind(this)}
-									translator={this.translator.bind(this)}
+		return (<TranslationListPTR
+			{...this.props.translationList}
+			sort={this.sort.bind(this)}
+			filter={this.filter.bind(this)}
+			search={this.search.bind(this)}
+			onPaginationChange={this.onPaginationChange.bind(this)}
+			onPerPageChange={this.onPerPageChange.bind(this)}
+			mutators={{
+				updated_at: this.updated_at,
+				created_at: this.created_at,
+				text: this.text,
+				translated: this.translated.bind(this)
+			}}
+			edit={this.edit.bind(this)}
+			deleteAction={this.deleteAction.bind(this)}
 		/>)
 	}
 }
+
+TranslationListCTR.propTypes = {
+	dispatch: PropTypes.func,
+	translationList: PropTypes.array,
+};

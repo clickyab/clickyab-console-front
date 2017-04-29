@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 
 export default class WarningNotification extends Component {
-	onClick(event) {
+	onClick() {
 		let {onAnEventSeenClick, notification: {id}} = this.props;
 
 		onAnEventSeenClick(id);
@@ -19,3 +19,9 @@ export default class WarningNotification extends Component {
 		);
 	}
 }
+
+WarningNotification.propTypes = {
+    onAnEventSeenClick: PropTypes.func,
+    notification: PropTypes.object,
+    count: PropTypes.number,
+};
