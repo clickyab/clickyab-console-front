@@ -10,6 +10,7 @@ import {dispatch} from "../../../../functions/dispatch";
 import {createCampaign, updateLocalStorageAction} from "../../../../redux/actions/index";
 import {navigate} from "../../../../functions/navigate";
 import {AlertBox} from "../../../../functions/notifications";
+import CampaignStepPTR from './../CampaignStepPTR';
 let Ladda = require('ladda/js/ladda');
 
 class SelectContentByChannelPTR extends Component {
@@ -17,6 +18,38 @@ class SelectContentByChannelPTR extends Component {
 	ids;
 	channelText;
 	loadingProgressSend;
+	stepPromote = select('createCampaignData.promote_data') ? 'done' : 'error';
+	stepRow = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: this.stepPromote,
+		stepNumber: '۳',
+		stepName: 'Channel Content'
+	}, {
+		stepCondition: '',
+		stepNumber: '۴',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last',
+		stepNumber: '۵',
+		stepName: 'Finish and Payment'
+	}];
+
+	stepRowCreator() {
+		let result = [];
+		for (let i = 0; i < this.stepRow.length; i++) {
+			result.push(<CampaignStepPTR key={'row-' + i} stepCondition={this.stepRow[i].stepCondition}
+										 stepNumber={this.stepRow[i].stepNumber}
+										 stepName={this.stepRow[i].stepName}/>)
+		}
+		return result;
+	}
 
 	onClick(id, text) {
 		return (event) => {
@@ -150,46 +183,8 @@ class SelectContentByChannelPTR extends Component {
 					<div className="portlet-body form">
 						<div className="mt-element-step margin-top-20 when-select-content">
 							<div className="row step-line">
-								<div className="col-lg-15 col-md-3 mt-step-col first done">
-									<div className="mt-step-number bg-white">
-										۱
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-								</div>
-								<div className="col-lg-15 col-md-3 mt-step-col done">
-									<div className="mt-step-number bg-white">
-										۲
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-								</div>
-								<div className="col-lg-15 col-md-3 mt-step-col error">
-									<div className="mt-step-number bg-white">
-										۳
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب محتوای چنل</div>
-
-								</div>
-								<div className="col-lg-15 col-md-3 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۴
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-								</div>
-
-								<div className="col-lg-15 col-md-3 mt-step-col last">
-									<div className="mt-step-number bg-white">
-										۵
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت
-									</div>
-
-								</div>
+								{this.stepRowCreator()}
 							</div>
-							<br/>
-							<br/>
-
 						</div>
 
 						<div className='row'>

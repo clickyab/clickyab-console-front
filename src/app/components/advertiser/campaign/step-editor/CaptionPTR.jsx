@@ -4,10 +4,47 @@ import {Field, reduxForm} from "redux-form";
 import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
 import {Base64} from "js-base64";
+import CampaignStepPTR from './../CampaignStepPTR';
 
 
 class CaptionPTR extends Component {
 	captionCampaignForm;
+	stepCaption = select('createCampaignData.description') ? 'done' : 'error';
+	stepRow = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۳',
+		stepName: 'File Upload'
+	}, {
+		stepCondition: this.stepCaption,
+		stepNumber: '۴',
+		stepName: 'Text Content'
+	}, {
+		stepCondition: '',
+		stepNumber: '۵',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last',
+		stepNumber: '۶',
+		stepName: 'Finish and Payment'
+	}];
+
+	stepRowCreator() {
+		let result = [];
+		for (let i = 0; i < this.stepRow.length; i++) {
+			result.push(<CampaignStepPTR key={'row-' + i} stepCondition={this.stepRow[i].stepCondition}
+										 stepNumber={this.stepRow[i].stepNumber}
+										 stepName={this.stepRow[i].stepName}/>)
+		}
+		return result;
+	}
 
 	componentDidMount() {
 		document.title = "ساختن کمپین جدید | متن تبلیغ";
@@ -30,7 +67,6 @@ class CaptionPTR extends Component {
 	}
 
 	render() {
-		const {handleSubmit, submitTextEditor} = this.props;
 		let campaignTitle = select("createCampaignData.name", "no title");
 		return (
 			<div className="page-content">
@@ -45,53 +81,8 @@ class CaptionPTR extends Component {
 					<div className="portlet-body form">
 						<div className="mt-element-step margin-top-20 when-generate-content">
 							<div className="row step-line">
-								<div className="col-md-2 mt-step-col first done">
-									<div className="mt-step-number bg-white">
-										۱
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col done">
-									<div className="mt-step-number bg-white">
-										۲
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-								</div>
-								<div className="col-md-2 mt-step-col done">
-									<div className="mt-step-number bg-white">
-										۳
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">آپلود فایل</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col error">
-									<div className="mt-step-number bg-white">
-										۴
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">محتوای متنی</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۵
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-								</div>
-
-								<div className="col-md-2 mt-step-col last">
-									<div className="mt-step-number bg-white">
-										۶
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت
-									</div>
-
-								</div>
+								{this.stepRowCreator()}
 							</div>
-							<br/>
-							<br/>
-
 						</div>
 
 						<form className="margin-top-40 text-editor-form">

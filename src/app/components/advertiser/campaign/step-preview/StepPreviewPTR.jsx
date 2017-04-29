@@ -3,9 +3,79 @@ import {reduxForm} from "redux-form";
 import {select} from "../../../../functions/select";
 import {navigate} from "../../../../functions/navigate";
 import {Base64} from "js-base64";
+import CampaignStepPTR from './../CampaignStepPTR';
 
 
 class StepPreviewPTR extends Component {
+	stepPrev = select('createCampaignData.payment_status') == 'yes' ? 'done' : 'error';
+	stepRowIndi = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۳',
+		stepName: 'File Upload'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۴',
+		stepName: 'Text Content'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۵',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last ' + this.stepPrev,
+		stepNumber: '۶',
+		stepName: 'Finish and Payment'
+	}];
+
+	stepRowPromote = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۳',
+		stepName: 'Channel Content'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۴',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last ' + this.stepPrev,
+		stepNumber: '۵',
+		stepName: 'Finish and Payment'
+	}];
+
+	stepRowIndiCreator() {
+		let result = [];
+		for (let i = 0; i < this.stepRowIndi.length; i++) {
+			result.push(<CampaignStepPTR key={'row-' + i} stepCondition={this.stepRowIndi[i].stepCondition}
+										 stepNumber={this.stepRowIndi[i].stepNumber}
+										 stepName={this.stepRowIndi[i].stepName}/>)
+		}
+		return result;
+	}
+
+	stepRowPromoteCreator() {
+		let result = [];
+		for (let i = 0; i < this.stepRowPromote.length; i++) {
+			result.push(<CampaignStepPTR key={'row-' + i} stepCondition={this.stepRowPromote[i].stepCondition}
+										 stepNumber={this.stepRowPromote[i].stepNumber}
+										 stepName={this.stepRowPromote[i].stepName}/>)
+		}
+		return result;
+	}
+
 	unescapeHTML = function (html) {
 		let escapeEl = document.createElement('span');
 		escapeEl.innerHTML = html;
@@ -37,104 +107,9 @@ class StepPreviewPTR extends Component {
 		let {data, created_at} = this.props;
 		let stepData, buttons, paymentPrev, activeButton;
 		if (select('campaignStepData.type') == 'upload') {
-			let payStatus = select('createCampaignData.payment_status') == 'yes' ? 'col-md-2 mt-step-col last done' : 'col-md-2 mt-step-col last error';
-			stepData = (
-				<div className="mt-element-step  when-generate-content">
-					<div className="row step-line">
-						<div className="col-md-2 mt-step-col first done">
-							<div className="mt-step-number bg-white">
-								۱
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-						</div>
-						<div className="col-md-2 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۲
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-						</div>
-						<div className="col-md-2 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۳
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">آپلود فایل</div>
-
-						</div>
-						<div className="col-md-2 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۴
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">محتوای متنی</div>
-
-						</div>
-						<div className="col-md-2 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۵
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-						</div>
-
-						<div className={payStatus}>
-							<div className="mt-step-number bg-white">
-								۶
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت</div>
-
-						</div>
-					</div>
-					<br/>
-					<br/>
-
-				</div>
-			)
+			stepData = this.stepRowIndiCreator();
 		} else if (select('campaignStepData.type') == 'promote') {
-			let payStatus = select('createCampaignData.payment_status') == 'yes' ? 'col-lg-15 col-md-3 mt-step-col last done' : 'col-lg-15 col-md-3 mt-step-col last error';
-
-			stepData = (
-				<div className="mt-element-step  when-select-content">
-					<div className="row step-line">
-						<div className="col-lg-15 col-md-3 mt-step-col first done">
-							<div className="mt-step-number bg-white">
-								۱
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-						</div>
-						<div className="col-lg-15 col-md-3 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۲
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-						</div>
-						<div className="col-lg-15 col-md-3 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۳
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">انتخاب محتوای چنل</div>
-
-						</div>
-						<div className="col-lg-15 col-md-3 mt-step-col done">
-							<div className="mt-step-number bg-white">
-								۴
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-						</div>
-						<div className={payStatus}>
-							<div className="mt-step-number bg-white">
-								۵
-							</div>
-							<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت</div>
-
-						</div>
-					</div>
-					<br/>
-					<br/>
-
-				</div>
-			)
+			stepData = this.stepRowPromoteCreator();
 		}
 
 		if (select('createCampaignData.payment_status') == 'yes') {
@@ -233,7 +208,11 @@ class StepPreviewPTR extends Component {
 							className="campaign-title bold">{data.name}</span></div>
 					</div>
 					<div className="portlet-body form">
-						{stepData}
+						<div className="mt-element-step margin-top-20 when-generate-content">
+							<div className="row step-line">
+								{stepData}
+							</div>
+						</div>
 						<form className="form-horizontal" role="form">
 							<div className="form-body">
 								<h2>۶- پیش نمایش و پرداخت</h2>

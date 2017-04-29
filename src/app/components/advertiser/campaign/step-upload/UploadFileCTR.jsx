@@ -10,9 +10,37 @@ import swagger from "../../../../swagger/index";
 import {baseUrl} from "../../../../functions/baseUrl";
 let Flow = require("@flowjs/flow.js/src/flow");
 let uploadPass = baseUrl() + "/api/file/upload";
+import CampaignStepPTR from './../CampaignStepPTR';
 
 
 export default class UploadFileCTR extends Component {
+	stepUpload = select('createCampaignData.src') ? 'done' : 'error';
+	stepRow = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: 'done',
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: this.stepUpload,
+		stepNumber: '۳',
+		stepName: 'File Upload'
+	}, {
+		stepCondition: '',
+		stepNumber: '۴',
+		stepName: 'Text Content'
+	}, {
+		stepCondition: '',
+		stepNumber: '۵',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last',
+		stepNumber: '۶',
+		stepName: 'Finish and Payment'
+	}];
+
 	constructor(props) {
 		super(props);
 		this.state = {
@@ -282,10 +310,18 @@ export default class UploadFileCTR extends Component {
 		}
 	}
 
+	stepRowCreator() {
+		let result = [];
+		for (let i = 0; i < this.stepRow.length; i++) {
+			result.push(<CampaignStepPTR key={'row-' + i} stepCondition={this.stepRow[i].stepCondition}
+										 stepNumber={this.stepRow[i].stepNumber}
+										 stepName={this.stepRow[i].stepName}/>)
+		}
+		return result;
+	}
+
 
 	render() {
-		const {handleSubmit, submitCampaignName} = this.props;
-
 		let campaignTitle = select("createCampaignData.name", "no title");
 		return (
 			<div className="page-content">
@@ -300,53 +336,8 @@ export default class UploadFileCTR extends Component {
 					<div className="portlet-body form">
 						<div className="mt-element-step margin-top-20 when-generate-content">
 							<div className="row step-line">
-								<div className="col-md-2 mt-step-col first done">
-									<div className="mt-step-number bg-white">
-										۱
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col done">
-									<div className="mt-step-number bg-white">
-										۲
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-								</div>
-								<div className="col-md-2 mt-step-col error">
-									<div className="mt-step-number bg-white">
-										۳
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">آپلود فایل</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۴
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">محتوای متنی</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۵
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-								</div>
-
-								<div className="col-md-2 mt-step-col last">
-									<div className="mt-step-number bg-white">
-										۶
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت
-									</div>
-
-								</div>
+								{this.stepRowCreator()}
 							</div>
-							<br/>
-							<br/>
-
 						</div>
 						<div className="upload-file margin-bottom-40">
 							<h2>۳- انتخاب عکس یا ویدیو</h2>

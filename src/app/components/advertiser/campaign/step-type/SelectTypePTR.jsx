@@ -6,9 +6,57 @@ import {navigate} from "../../../../functions/navigate";
 import {select} from "../../../../functions/select";
 import {campaignStepType, updateLocalStorageAction} from "../../../../redux/actions/index";
 import {securify} from "./../../../../functions/securify";
+import CampaignStepPTR from './../CampaignStepPTR';
 
 class SelectTypePTR extends Component {
-	selectTypeContentForm;
+	typeStep = select('campaignStepData.type') ? 'done' : 'error';
+	stepRowIndi = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: this.typeStep,
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: '',
+		stepNumber: '۳',
+		stepName: 'File Upload'
+	}, {
+		stepCondition: '',
+		stepNumber: '۴',
+		stepName: 'Text Content'
+	}, {
+		stepCondition: '',
+		stepNumber: '۵',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last',
+		stepNumber: '۶',
+		stepName: 'Finish and Payment'
+	}];
+
+	stepRowPromote = [{
+		stepCondition: 'first done',
+		stepNumber: '۱',
+		stepName: 'Campaign Name'
+	}, {
+		stepCondition: this.typeStep,
+		stepNumber: '۲',
+		stepName: 'Content Type'
+	}, {
+		stepCondition: '',
+		stepNumber: '۳',
+		stepName: 'Channel Content'
+	}, {
+		stepCondition: '',
+		stepNumber: '۴',
+		stepName: 'Campaign Type'
+	}, {
+		stepCondition: 'last',
+		stepNumber: '۵',
+		stepName: 'Finish and Payment'
+	}];
 
 	constructor(props) {
 		super(props);
@@ -39,27 +87,33 @@ class SelectTypePTR extends Component {
 		this.handleInitialize();
 	}
 
+	stepRowCreatorPromote() {
+		let result = [];
+		for (let i = 0; i < this.stepRowPromote.length; i++) {
+			result.push(<CampaignStepPTR key={'column-' + i} stepCondition={this.stepRowPromote[i].stepCondition}
+										 stepNumber={this.stepRowPromote[i].stepNumber}
+										 stepName={this.stepRowPromote[i].stepName}/>)
+		}
+		return result;
+	}
+
+	stepRowCreatorIndi() {
+		let result = [];
+		for (let i = 0; i < this.stepRowIndi.length; i++) {
+			result.push(<CampaignStepPTR key={'column-' + i} stepCondition={this.stepRowIndi[i].stepCondition}
+										 stepNumber={this.stepRowIndi[i].stepNumber}
+										 stepName={this.stepRowIndi[i].stepName}/>)
+		}
+		return result;
+	}
+
 	render() {
 		let campaignTitle = select("createCampaignData.name", "no title");
-		let toggleStyleUpload;
-		let toggleStylePromote;
+		let toggle;
 		if (this.state.type == 'upload' || this.state.type == '') {
-			toggleStyleUpload = {
-				display: 'block',
-			};
-		} else {
-			toggleStyleUpload = {
-				display: 'none',
-			};
-		}
-		if (this.state.type == 'promote' || this.state.type == '') {
-			toggleStylePromote = {
-				display: 'block',
-			};
-		} else {
-			toggleStylePromote = {
-				display: 'none',
-			};
+			toggle = this.stepRowCreatorIndi()
+		} else if (this.state.type == 'promote' || this.state.type == '') {
+			toggle = this.stepRowCreatorPromote()
 		}
 		return (
 			<div className="page-content">
@@ -73,102 +127,11 @@ class SelectTypePTR extends Component {
 						</div>
 					</div>
 					<div className="portlet-body form">
-
-						<div className="mt-element-step margin-top-20 when-select-content" style={toggleStylePromote}>
+						<div className="mt-element-step">
 							<div className="row step-line">
-								<div className="col-lg-15 col-md-3 mt-step-col first done">
-									<div className="mt-step-number bg-white">
-										۱
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-								</div>
-								<div className="col-lg-15 col-md-3 mt-step-col error">
-									<div className="mt-step-number bg-white">
-										۲
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-								</div>
-								<div className="col-lg-15 col-md-3 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۳
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب محتوای چنل</div>
-
-								</div>
-								<div className="col-lg-15 col-md-3 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۴
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-								</div>
-
-								<div className="col-lg-15 col-md-3 mt-step-col last">
-									<div className="mt-step-number bg-white">
-										۵
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت
-									</div>
-
-								</div>
+								{toggle}
 							</div>
-							<br/>
-							<br/>
-
 						</div>
-
-						<div className="mt-element-step margin-top-20 when-generate-content" style={toggleStyleUpload}>
-							<div className="row step-line">
-								<div className="col-md-2 mt-step-col first done">
-									<div className="mt-step-number bg-white">
-										۱
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">نام کمپین</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col error">
-									<div className="mt-step-number bg-white">
-										۲
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب نوع محتوا</div>
-								</div>
-								<div className="col-md-2 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۳
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">آپلود فایل</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۴
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">محتوای متنی</div>
-
-								</div>
-								<div className="col-md-2 mt-step-col ">
-									<div className="mt-step-number bg-white">
-										۵
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">انتخاب پلن</div>
-
-								</div>
-
-								<div className="col-md-2 mt-step-col last">
-									<div className="mt-step-number bg-white">
-										۶
-									</div>
-									<div className="mt-step-title uppercase font-grey-cascade">تایید نهایی و پرداخت
-									</div>
-
-								</div>
-							</div>
-							<br/>
-							<br/>
-
-						</div>
-
 						<div className='row'>
 							<form >
 								<div className='col-md-12 col-xs-12'>
