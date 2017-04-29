@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import SelectPermissionPTR from "./SelectPermissionPTR";
 
 export default class SelectPermissionCTR extends Component {
@@ -40,3 +40,9 @@ export default class SelectPermissionCTR extends Component {
 									 {...rest}/>)
 	}
 }
+
+SelectPermissionCTR.propTypes = {
+	setSelectPermission: PropTypes.func,
+	permissions: PropTypes.array,
+	selectPermission: PropTypes.func,
+};

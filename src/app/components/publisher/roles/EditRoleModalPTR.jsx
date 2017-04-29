@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {change, Field, reduxForm} from "redux-form";
 import $ from "jquery";
 import {shallowEqual} from "./../../../3rd/shallowEqual";
@@ -274,6 +274,13 @@ class EditRoleModalPTR extends Component {
 		)
 	}
 }
+
+EditRoleModalPTR.propTypes = {
+	permissions: PropTypes.array,
+	roleData: PropTypes.array,
+	handleSubmit: PropTypes.func,
+	SubmitEditRole: PropTypes.func,
+};
 
 export default reduxForm({
 	form: 'EditRoleModalPTR'

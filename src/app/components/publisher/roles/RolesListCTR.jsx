@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import RolesListPTR from "./RolesListPTR";
 import swagger from "../../../swagger/index";
@@ -7,18 +7,8 @@ import {roleItemsListAction} from "../../../redux/actions/index";
 import moment from "moment-jalali";
 import {sync} from "../../../functions/sync";
 import EditRoleButton from "./EditRoleButton";
-import {translatable} from "react-multilingual/dist";
 
 @connect(({roleList, permissionList}) => ({roleList, permissionList}))
-@translatable(({
-				   CreatedAt, UpdatedAt, Action,
-				   Name, ID, Description
-			   }) => ({
-	translation: {
-		CreatedAt, UpdatedAt, Action,
-		Name, ID, Description
-	}
-}))
 export default class RolesListCTR extends Component {
 	callApi(query_name, value) {
 		let {dispatch} = this.props;
@@ -66,15 +56,10 @@ export default class RolesListCTR extends Component {
 		this.callApi('c', per_page);
 	}
 
-	translator(title) {
-		return this.props.translation[title];
-	}
-
 	render() {
 		return (<RolesListPTR {...this.props.roleList}
 							  permissions={this.props.permissionList.permissions}
 							  sort={this.sort.bind(this)}
-							  translator={this.translator.bind(this)}
 							  filter={this.filter.bind(this)}
 							  search={this.search.bind(this)}
 							  onPerPageChange={this.onPerPageChange.bind(this)}
@@ -84,3 +69,9 @@ export default class RolesListCTR extends Component {
 		/>);
 	}
 }
+
+RolesListCTR.propTypes = {
+	dispatch: PropTypes.func,
+	roleList: PropTypes.array,
+	permissionList: PropTypes.array,
+};
