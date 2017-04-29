@@ -4,6 +4,7 @@ import {sync} from "../../functions/sync";
 import * as swagger from "../../swagger/index";
 import {getToken} from "../../redux/helpers";
 import {translate} from '../../functions/translate';
+let $ = require('jquery');
 
 export default class CreditMenu extends Component {
 	clicked = true;
@@ -13,7 +14,7 @@ export default class CreditMenu extends Component {
 
 	credit() {
 		sync(function*() {
-			let {error, data, response} = yield (new swagger.BillingApi())
+			let {data, response} = yield (new swagger.BillingApi())
 				.billingBillingShowGet(getToken());
 
 			if (response.statusCode == '200') {

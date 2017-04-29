@@ -1,7 +1,7 @@
 import {store} from "./redux/store";
 import {Provider} from "react-redux";
 import React from "react";
-import {Footer} from "./components/layouts/Footer";
+import Footer from "./components/layouts/Footer";
 import Header from "./components/layouts/HeaderCTR";
 
 export default class App extends React.Component {
