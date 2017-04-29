@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import EditChannelModalPTR from "./EditChannelModalPTR";
 import {connect} from "react-redux";
 import swagger from "../../../swagger/index";
@@ -9,6 +9,7 @@ import {ifInvalidToken} from "../../../functions/helpers";
 import {sync} from "../../../functions/sync";
 import {select} from "../../../functions/select";
 let Ladda = require('ladda/js/ladda');
+let $ = require('jquery');
 let loadingProgress;
 
 @connect(({channelData}) => ({channelData}))
@@ -18,7 +19,7 @@ export default class EditChannelModalCTR extends Component {
 		sync(function *() {
 			loadingProgress = Ladda.create(document.querySelector('.edit-channel-form'));
 			loadingProgress.start();
-			const {error, data, response} = yield (new swagger.ChannelApi())
+			const {data, response} = yield (new swagger.ChannelApi())
 				.channelIdPut(id, select('user.token', 'no token'), {'payloadData': formValues});
 
 			response.error = 'اطلاعات شما صحیح نمی‌باشد.';
@@ -46,3 +47,8 @@ export default class EditChannelModalCTR extends Component {
 			<EditChannelModalPTR form={form} channelData={channelData} SubmitEditChannel={this.SubmitEditChannel}/>);
 	}
 }
+
+EditChannelModalCTR.propTypes = {
+    channelData: PropTypes.object,
+    form: PropTypes.object,
+};

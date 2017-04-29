@@ -8,7 +8,6 @@ export class Sidebar extends Component {
 		document.title = "داشبورد تبلیغ دهنده";
 	}
 
-
 	render() {
 		return (
 			<div className='page-sidebar-wrapper'>

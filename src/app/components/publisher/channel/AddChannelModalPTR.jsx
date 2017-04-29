@@ -1,7 +1,7 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {Field, reduxForm} from "redux-form";
 import {Link} from "react-router";
-import $ from "jquery";
+let $ = require('jquery');
 
 class AddChannelModalPTR extends Component {
 	addChannelForm;
@@ -96,6 +96,11 @@ class AddChannelModalPTR extends Component {
 		)
 	}
 }
+
+AddChannelModalPTR.propTypes = {
+    handleSubmit: PropTypes.func,
+    SubmitAddChannel: PropTypes.func,
+};
 
 export default reduxForm({
 	form: 'AddChannelModalPTR'

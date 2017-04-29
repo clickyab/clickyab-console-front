@@ -1,6 +1,7 @@
 import React, {Component} from "react";
 import {ConsoleTable} from "../../../common/ConsoleTable/ConsoleTable";
 import {navigate} from "../../../../functions/navigate";
+let $ = require('jquery');
 
 export default class ChannelReportListPTR extends Component {
 	componentDidMount() {
