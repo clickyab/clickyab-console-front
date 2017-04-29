@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {connect} from "react-redux";
 import EditUserModalPTR from "./EditUserModalPTR";
 import swagger from "../../../swagger/index";
@@ -7,11 +7,10 @@ import {sync} from "../../../functions/sync";
 import {select} from "../../../functions/select";
 let Ladda = require('ladda/js/ladda');
 let loadingProgress;
+let $ = require("jquery");
 
 @connect(({userAssignRoleList, userAssignRoleData}) => ({userAssignRoleList, userAssignRoleData}))
 export default class EditUserModalCTR extends Component {
-
-
 	SubmitEditUser(formValues, roleValue) {
 		let roleValueId = [];
 		for (let i = 0; i < roleValue.length; i++) {
@@ -21,7 +20,7 @@ export default class EditUserModalCTR extends Component {
 			sync(function *() {
 				loadingProgress = Ladda.create(document.querySelector('.edit-user-role'));
 				loadingProgress.start();
-				const {data, response} = yield (new swagger.UserApi())
+				const {response} = yield (new swagger.UserApi())
 					.userAssignRolesPost(select('user.token', 'no token'), {
 						'payloadData': {
 							'role_id': roleValueId,
@@ -49,3 +48,9 @@ export default class EditUserModalCTR extends Component {
 								  form={form} SubmitEditUser={this.SubmitEditUser}/>);
 	}
 }
+
+EditUserModalCTR.propTypes = {
+	form: PropTypes.object,
+	userAssignRoleList: PropTypes.array,
+	userAssignRoleData: PropTypes.array
+};

@@ -55,8 +55,6 @@ export default class TelegramListPTR extends Component {
                     function (isConfirm) {
                         if (isConfirm) {
                             window.open(telegramBot(), '_blank');
-                        } else {
-
                         }
                     });
 
