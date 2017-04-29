@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {Link} from "react-router";
 import {connect} from "react-redux";
 import {translate} from '../../functions/translate';
@@ -43,3 +43,7 @@ export default class SwitcherCTR extends Component {
 		)
 	}
 }
+
+SwitcherCTR.propTypes = {
+	userType: PropTypes.string
+};

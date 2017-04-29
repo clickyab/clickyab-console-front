@@ -1,30 +1,26 @@
 import {select} from "./select";
 import {sync} from "./sync";
-import {getToken} from "../redux/helpers";
 import swagger from "./../swagger/index";
 import {sprintf} from "sprintf-js";
 import React from "react";
+
 export function translate(text, ...parameters) {
-	let translated = select('translations', {})[select('locale')][text];
+    try {
+        let translated = select('translations', {})[select('locale')][text];
+        return sprintf(translated.length > 0 ? translated : text, ...parameters);
+    } catch (error) {
+        sync(function*() {
+            yield (new swagger.MiscApi).miscTranslatePost({
+                payloadData: {
+                    translate: text
+                }
+            });
+        });
 
-	if (translated) {
-		try {
-			return sprintf(translated, ...parameters);
-		} catch (error) {
-			return translated;
-		}
-	}
-	sync(function*() {
-		yield (new swagger.MiscApi).miscTranslatePost(getToken(), {
-			'payloadData': {
-				"translate": text
-			}
-		});
-	});
-
-	return sprintf(text, ...parameters);
+        return sprintf(text, ...parameters);
+    }
 }
 
 export function translateViaHtml(text, ...parameters) {
-	return <span dangerouslySetInnerHTML={{__html:translate(text, ...parameters)}} /> // eslint-disable-line
+    return <span dangerouslySetInnerHTML={{__html: translate(text, ...parameters)}}/> // eslint-disable-line
 }
