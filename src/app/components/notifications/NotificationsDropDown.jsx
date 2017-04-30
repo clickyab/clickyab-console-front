@@ -75,6 +75,14 @@ class Count extends Component {
 	}
 }
 
+export class Trash extends Component {
+	render() {
+		return (
+			<i className="fa fa-trash-o" style={{color:"red",fontSize:"15px",cursor:"pointer"}}/>
+		);
+	}
+}
+
 @connect(({notifications}) => ({notifications}))
 class DropDown extends Component {
 	type({count, notification}) {
@@ -129,19 +137,6 @@ class DropDown extends Component {
 		dispatch(updateLocalStorageAction());
 	}
 
-	showTrash(e) {
-		$(e.target).css('cursor', 'default')
-		$(e.target).find('.time').append('<i id="trash" class="fa fa-trash-o" aria-hidden="true"></i>').css({
-			color: 'red',
-			fontSize: '15px',
-			cursor: 'pointer'
-		})
-
-	}
-
-	hideTrash(e) {
-		$(e.target).find('#trash').detach();
-	}
 
 	clearAllNotification() {
 		dispatch(emptyNotificationAction());
@@ -171,13 +166,13 @@ class DropDown extends Component {
 					<a onClick={this.clearAllNotification} style={{fontSize: '12px'}}>حذف همه</a>
 				</li>
 				<ul className="dropdown-menu-list scroller">
-					{orderedNotifications.map((data, index) => <li onMouseLeave={this.hideTrash}
-																   onMouseEnter={this.showTrash} key={index}
-					>
-						<a href="javascript:;">
-                            <span
-								className="details"> {this.type(data)}</span></a>
-					</li>)}
+					{orderedNotifications.map((data, index) => (
+						<li key={Math.random()}>
+							<a href="javascript:;">
+								<div className="details">{this.type(data)}</div>
+							</a>
+						</li>
+					))}
 				</ul>
 			</ul>
 		);
