@@ -1,27 +1,38 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
+import {Trash} from "./NotificationsDropDown";
 
 export default class WarningNotification extends Component {
-	onClick() {
-		let {onAnEventSeenClick, notification: {id}} = this.props;
+    state = {
+        trash: <span/>
+    };
 
-		onAnEventSeenClick(id);
-	}
+    onClick() {
+        let {onAnEventSeenClick, notification: {id}} = this.props;
 
-	render() {
-		let {count, notification: {message}} = this.props;
+        onAnEventSeenClick(id);
+    }
 
-		return (
-			<div>
-				<span className="label label-sm label-icon label-warning"><i className="fa fa-bell-o"/></span>
-				<span className="title">{count} - {message}  </span>
-				<span className="time" onClick={this.onClick.bind(this)}/>
-			</div>
-		);
-	}
+    showTrash() {
+        this.setState({trash: <Trash/>});
+    }
+
+    hideTrash() {
+        this.setState({trash: <span/>});
+    }
+
+    render() {
+        let {count, notification: {message}} = this.props;
+        let {trash} = this.state;
+
+        return (
+            <div className="menu-list-custom-block" onMouseLeave={this.hideTrash.bind(this)}
+                 onMouseEnter={this.showTrash.bind(this)}>
+                <span className="label label-sm label-icon label-warning"><i className="fa fa-bell-o"/></span>
+                <span className="title">{count} - {message}  </span>
+                <span className="time" onClick={this.onClick.bind(this)}>
+                    {trash}
+                </span>
+            </div>
+        );
+    }
 }
-
-WarningNotification.propTypes = {
-    onAnEventSeenClick: PropTypes.func,
-    notification: PropTypes.object,
-    count: PropTypes.number,
-};

@@ -297,7 +297,7 @@ Page Header
                                     line-height: 20px;
                                     white-space: normal;
                                     font-size: 13px;
-                                    padding: 16px 15px 18px;
+                                    //padding: 16px 15px 18px;
                                     text-shadow: none;
                                     
                                     &:hover {
@@ -308,6 +308,10 @@ Page Header
 
                                 &:first-child a {
                                     border-top: none;
+                                }
+                                .menu-list-custom-block {
+                                    padding: 16px 15px 18px;
+                                    cursor: default;
                                 }
                             }
                         }                        
