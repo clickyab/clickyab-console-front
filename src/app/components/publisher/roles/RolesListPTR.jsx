@@ -53,5 +53,5 @@ export default class RolesListPTR extends Component {
 }
 
 RolesListPTR.propTypes = {
-	permissions: PropTypes.array
+	permissions: PropTypes.object
 };

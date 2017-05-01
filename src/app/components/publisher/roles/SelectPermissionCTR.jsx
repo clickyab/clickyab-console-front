@@ -43,6 +43,6 @@ export default class SelectPermissionCTR extends Component {
 
 SelectPermissionCTR.propTypes = {
 	setSelectPermission: PropTypes.func,
-	permissions: PropTypes.array,
-	selectPermission: PropTypes.func,
+	permissions: PropTypes.object,
+	selectPermission: PropTypes.object,
 };

@@ -94,5 +94,5 @@ export default class AddRoleModalCTR extends Component {
 }
 
 AddRoleModalCTR.propTypes = {
-    permissions: PropTypes.array
+    permissions: PropTypes.object
 };

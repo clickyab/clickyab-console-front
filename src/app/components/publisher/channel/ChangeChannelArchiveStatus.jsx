@@ -41,5 +41,5 @@ export default class ChangeChannelArchiveStatus extends Component {
 ChangeChannelArchiveStatus.propTypes = {
     id: PropTypes.number,
     permission: PropTypes.bool,
-    archive_status: PropTypes.bool
+    archive_status: PropTypes.string
 };

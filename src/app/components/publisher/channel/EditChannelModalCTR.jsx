@@ -50,5 +50,5 @@ export default class EditChannelModalCTR extends Component {
 
 EditChannelModalCTR.propTypes = {
     channelData: PropTypes.object,
-    form: PropTypes.object,
+    form: PropTypes.string,
 };

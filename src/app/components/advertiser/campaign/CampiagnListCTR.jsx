@@ -96,7 +96,7 @@ export default class CampaignListCTR extends Component {
     }
 
     translator(title) {
-        return this.props.translation[title];
+        return translate[title];
     }
 
     admin_status(admin_status, {id, _actions}) {

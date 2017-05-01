@@ -50,7 +50,7 @@ export default class EditUserModalCTR extends Component {
 }
 
 EditUserModalCTR.propTypes = {
-	form: PropTypes.object,
+	form: PropTypes.string,
 	userAssignRoleList: PropTypes.array,
 	userAssignRoleData: PropTypes.array
 };
