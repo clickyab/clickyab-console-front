@@ -36,9 +36,3 @@ export default class SuccessNotification extends Component {
 		);
 	}
 }
-
-SuccessNotification.propTypes = {
-    onAnEventSeenClick: PropTypes.func,
-    notification: PropTypes.object,
-    count: PropTypes.number,
-};

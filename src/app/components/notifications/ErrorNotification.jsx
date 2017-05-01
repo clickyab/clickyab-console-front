@@ -36,9 +36,3 @@ export default class ErrorNotification extends Component {
         );
     }
 }
-
-ErrorNotification.propTypes = {
-    count: PropTypes.number,
-    notification: PropTypes.object,
-    onAnEventSeenClick: PropTypes.func
-};
