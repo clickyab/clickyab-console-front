@@ -132,7 +132,7 @@ AddRoleModalPTR.propTypes = {
     setRemoveSelectBoxesCallback: PropTypes.func,
     handleSubmit: PropTypes.func,
     SubmitAddRole: PropTypes.func,
-    permissions: PropTypes.array,
+    permissions: PropTypes.object,
 };
 
 export default reduxForm({

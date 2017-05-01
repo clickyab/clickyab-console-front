@@ -87,6 +87,6 @@ export default class EditRoleModalCTR extends Component {
 
 EditRoleModalCTR.propTypes = {
 	roleData: PropTypes.array,
-	permissions: PropTypes.array,
-	form: PropTypes.object,
+	permissions: PropTypes.object,
+	form: PropTypes.string,
 };

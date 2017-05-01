@@ -59,11 +59,11 @@ export default class UsersListCTR extends Component {
 
 	status(status) {
 		if (status == 'registered') {
-			return <span className="label label-sm label-warning"> {this.translator(status)} </span>;
+			return <span className="label label-sm label-warning"> {translate(status)} </span>;
 		} else if (status == 'verified') {
-			return <span className="label label-sm label-success"> {this.translator(status)} </span>;
+			return <span className="label label-sm label-success"> {translate(status)} </span>;
 		} else if (status == 'blocked') {
-			return <span className="label label-sm label-danger"> {this.translator(status)} </span>;
+			return <span className="label label-sm label-danger"> {translate(status)} </span>;
 		}
 
 		return status;

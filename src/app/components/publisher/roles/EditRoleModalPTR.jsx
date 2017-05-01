@@ -276,8 +276,8 @@ class EditRoleModalPTR extends Component {
 }
 
 EditRoleModalPTR.propTypes = {
-	permissions: PropTypes.array,
-	roleData: PropTypes.array,
+	permissions: PropTypes.object,
+	roleData: PropTypes.object,
 	handleSubmit: PropTypes.func,
 	SubmitEditRole: PropTypes.func,
 };

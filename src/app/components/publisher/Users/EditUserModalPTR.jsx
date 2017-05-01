@@ -126,7 +126,7 @@ class EditUserModalPTR extends Component {
 
 EditUserModalPTR.propTypes = {
 	userAssignRoleList: PropTypes.array,
-	userAssignRoleData: PropTypes.array,
+	userAssignRoleData: PropTypes.object,
 	handleSubmit: PropTypes.func,
 	SubmitEditUser: PropTypes.func
 };

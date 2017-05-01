@@ -38,5 +38,5 @@ export default class ChangeChannelActiveStatus extends Component {
 ChangeChannelActiveStatus.propTypes = {
     id: PropTypes.number,
     permission: PropTypes.bool,
-    active: PropTypes.bool
+    active: PropTypes.string
 };
