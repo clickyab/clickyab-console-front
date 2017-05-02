@@ -1,7 +1,7 @@
 import React from "react";
 import {Field} from "redux-form";
 
-export default ({name, id, label, value, ...props}) => {
+let Radio = ({name, id, label, value, ...props}) => {
 	return (
 		<div className="md-radio">
 			<Field name={name} value={value} type="radio" component="input"
@@ -14,4 +14,6 @@ export default ({name, id, label, value, ...props}) => {
 			</label>
 		</div>
 	);
-}
+};
+
+export default Radio;

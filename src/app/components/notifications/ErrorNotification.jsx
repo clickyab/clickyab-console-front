@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {Trash} from "./Trash";
 
 export default class ErrorNotification extends Component {
@@ -41,3 +41,9 @@ export default class ErrorNotification extends Component {
         );
     }
 }
+
+ErrorNotification.propTypes = {
+    count: PropTypes.number,
+    notification: PropTypes.object,
+    onAnEventSeenClick: PropTypes.func
+};

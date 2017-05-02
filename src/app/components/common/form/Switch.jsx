@@ -1,8 +1,8 @@
 import classNames from "classnames";
-import React from "react";
+import React, {Component, PropTypes} from "react";
 import Switch from "react-ios-switch";
 
-class SettingCell extends React.Component {
+export default class SettingCell extends Component {
 	checked = false;
 
 	constructor(props) {
@@ -19,7 +19,7 @@ class SettingCell extends React.Component {
 	}
 
 	render() {
-		const {className, value} = this.props;
+		const {className} = this.props;
 		return (
 			<label className={classNames('settingCell', className)}>
 				<div className={'switchValue'}>
@@ -35,4 +35,8 @@ class SettingCell extends React.Component {
 	}
 }
 
-export default SettingCell;
+SettingCell.propTypes = {
+    checked: PropTypes.bool,
+    onChange: PropTypes.func,
+    className: PropTypes.string
+};
