@@ -18,13 +18,6 @@ export class ConsoleTable extends Component {
     };
 
     componentDidMount() {
-        // let thlist = document.querySelectorAll("table th") , i ;
-        // for (i = 0; i < thlist.length; ++i) {
-        //     let text = thlist[i].textContent;
-        //     $("#show-hide-action-btns ul").append("<li><a> <label class='checkbox'><input type='checkbox' checked data-column='#row-" + i + "' value='#row-" + i + "'>" + text +"</label></a></li>");
-        //
-        //
-        // }
         $(document).on("click", "[data-column]", function () {
             var button = $(this),
                 header = $(button.data("column")),
@@ -150,19 +143,7 @@ export class ConsoleTable extends Component {
                 <div className="loader-table" style={{display: 'none'}}>
                     <i className="fa fa-spinner fa-spin fa-3x fa-fw"/>
                 </div>
-                <div id="show-hide-action-btns">
-                    {/*<div className="btn-group customize-row">*/}
-                    {/*<button className="btn btn-info dropdown-toggle margin-top-20 margin-bottom-20" data-toggle="dropdown" aria-expanded="false">شخصی سازی ستون ها*/}
-                    {/*<i className="fa fa-angle-down"/>*/}
-                    {/*</button>*/}
-                    {/*<ul className="dropdown-menu keep_open">*/}
-
-                    {/*</ul>*/}
-                    {/*</div>*/}
-                    {/*<button type="button" data-column="#row-1">Hide/show 1st</button>*/}
-                    {/*<button type="button" data-column="#row-2">Hide/show 3rd</button>*/}
-                    {/*<button type="button" data-column="#row-3">Hide/show last</button>*/}
-                </div>
+                <div id="show-hide-action-btns"/>
 
                 <div className="table-responsive">
                     <table className="table table-striped table-advance table-hover">
@@ -255,7 +236,7 @@ export class ConsoleTable extends Component {
                                     <option value="50">50</option>
                                 </select>
                                 {translateViaHtml("In the queue of %s", `<span
-                                    className="bold">${select(this.props.list + 'List.items').length}</span>`)}
+                                     class="bold">${select(this.props.list + 'List.items').length}</span>`)}
                             </label>
                         </div>
                     </div>
