@@ -1,10 +1,18 @@
 import React, {Component} from "react";
-import {Trash} from "./NotificationsDropDown";
+import {Trash} from "./Trash";
 
 export default class ErrorNotification extends Component {
     state = {
         trash: <span/>
     };
+
+    constructor(props) {
+        super(props);
+
+        this.hideTrash = this.hideTrash.bind(this);
+        this.onClick = this.onClick.bind(this);
+        this.showTrash = this.showTrash.bind(this);
+    }
 
     onClick() {
         let {onAnEventSeenClick, notification: {id}} = this.props;
@@ -25,13 +33,10 @@ export default class ErrorNotification extends Component {
         let {trash} = this.state;
 
         return (
-            <div className="menu-list-custom-block" onMouseLeave={this.hideTrash.bind(this)}
-                 onMouseEnter={this.showTrash.bind(this)}>
+            <div className="menu-list-custom-block" onMouseLeave={this.hideTrash} onMouseEnter={this.showTrash}>
                 <span className="label label-sm label-icon label-danger"><i className="fa fa-times"/></span>
-                <span className="title">{count} - {message}  </span>
-                <span className="time" onClick={this.onClick.bind(this)}>
-                    {trash}
-                </span>
+                <span className="title">{count} - {message}</span>
+                <span className="time" onClick={this.onClick}>{trash}</span>
             </div>
         );
     }

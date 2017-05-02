@@ -1,5 +1,5 @@
 import React, {Component, PropTypes} from "react";
-import {Trash} from "./NotificationsDropDown";
+import {Trash} from "./Trash";
 
 export default class ServerDownNotification extends Component {
     state = {
