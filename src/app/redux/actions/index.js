@@ -17,6 +17,9 @@ export const DepositItemAction = (data) => ({type: DEPOSIT_ITEM, data});
 export const UPDATE_DEPOSIT_DATA = 'UPDATE_DEPOSIT_DATA';
 export const UpdateDepositData = (data) => ({type: UPDATE_DEPOSIT_DATA, data});
 
+export const SESSION_LIST = 'SESSION_LIST';
+export const sessionListAction = (data) => ({type: SESSION_LIST, data});
+
 export const CAMPAIGN_LIST = 'CAMPAIGN_LIST';
 export const CAMPAIGN_ITEMS_LIST = 'CAMPAIGN_ITEMS_LIST';
 export const CREATE_CAMPAIGN = 'CREATE_CAMPAIGN';

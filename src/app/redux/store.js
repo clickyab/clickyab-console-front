@@ -40,6 +40,7 @@ import {translationListReducer} from "./reducers/translationListReducer";
 import {languageReducer} from "./reducers/languageReducer";
 import {translationReducer} from "./reducers/translationReducer";
 import {FLUSH} from "./actions/index";
+import {sessionDataReducer} from "./reducers/sessionDataReducer";
 
 
 const enhancer = compose;
@@ -102,6 +103,8 @@ const rootReducer = (state, action) => {
 		notifications: notificationsReducer,
 
 		translationList: translationListReducer,
+
+		sessionList: sessionDataReducer,
 
 		language: languageReducer,
 		translations: translationReducer,
