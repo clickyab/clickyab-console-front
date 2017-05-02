@@ -29,7 +29,7 @@ import onAdvertiserEnterMiddleware from "./middlewares/routes/onAdvertiserEnterM
 import onTelegramEnterMiddleware from "./middlewares/routes/onTelegramEnterMiddleware";
 import onRoleEnterMiddleware from "./middlewares/routes/onRoleEnterMiddleware";
 import LanguagesMiddleware from "./middlewares/LanguagesMiddleware";
-import CampaignListCTR from "./components/advertiser/campaign/CampiagnListCTR";
+import CampaignListCTR from "./components/advertiser/campaign/CampaignListCTR";
 import CampaignCreateCTR from "./components/advertiser/campaign/step-name/CreateCTR";
 import UploadFileCTR from "./components/advertiser/campaign/step-upload/UploadFileCTR";
 import CaptionCTR from "./components/advertiser/campaign/step-editor/CaptionCTR";
@@ -185,8 +185,8 @@ export default function Provider() {
 			</Route>
 
 			<Route path='/' onEnter={onSlashEnterMiddleware}/>
-			<Route path='/server-down' component={ServerDown}/>
-			<Route path='*' component={PageNotFound}/>
+			<Route path='/server-down' component={ServerDown}  onEnter={LanguagesMiddleware}/>
+			<Route path='*' component={PageNotFound}  onEnter={LanguagesMiddleware}/>
 		</Router>
 	);
 }
