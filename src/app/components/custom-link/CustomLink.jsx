@@ -57,6 +57,12 @@ function createLocationDescriptor(to, _ref) {
 export class SidebarLinks extends Component {
     unListen;
 
+    constructor(props) {
+        super(props);
+
+        this.forceUpdateSidebarLinks = this.forceUpdateSidebarLinks.bind(this);
+    }
+
     componentDidMount() {
         this.unListen = this.context.router.listen(() => {
             if (!this._calledComponentWillUnmount) {
@@ -70,7 +76,7 @@ export class SidebarLinks extends Component {
     }
 
     getChildContext() {
-        return {forceUpdateSidebarLinks: this.forceUpdateSidebarLinks.bind(this)};
+        return {forceUpdateSidebarLinks: this.forceUpdateSidebarLinks};
     }
 
     forceUpdateSidebarLinks() {
@@ -109,6 +115,12 @@ export class Link extends Component {
         style: {},
         activeClassName: 'active'
     };
+
+    constructor(props) {
+        super(props);
+
+        this.handleClick = this.handleClick.bind(this);
+    }
 
     handleClick(event) {
         if (this.props.onClick) this.props.onClick(event);
@@ -173,14 +185,17 @@ export class Link extends Component {
 
         return (
             <li className={"nav-item " + props.className}>
-                {React.createElement('a', _extends({}, props, {onClick: this.handleClick.bind(this)}))}
+                {React.createElement('a', _extends({}, props, {onClick: this.handleClick}))}
             </li>
         );
     }
 }
+
 Link.propTypes = {
-    onClick: PropTypes.func
+    onClick: PropTypes.func,
+    target: PropTypes.object
 };
+
 Link.contextTypes = {
     router: routerShape,
     forceUpdateSidebarLinks: React.PropTypes.func

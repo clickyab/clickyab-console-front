@@ -17,10 +17,6 @@ let $ = require('jquery');
 export default class NotificationsDropDown extends Component {
     open = false;
 
-    constructor(props) {
-        super(props);
-    }
-
     bindToNotifications() {
         $('.notification-dropdown').on('shown.bs.dropdown', function () {
             dispatch(markAllNotificationAsShown());
@@ -76,106 +72,117 @@ class Count extends Component {
     }
 }
 
+Count.propTypes = {
+    notifications: PropTypes.object,
+    count: PropTypes.number
+};
+
 export class Trash extends Component {
-	render() {
-		return (
-			<i className="fa fa-trash-o" style={{color:"red",fontSize:"15px",cursor:"pointer"}}/>
-		);
-	}
+    render() {
+        return (
+            <i className="fa fa-trash-o" style={{color: "red", fontSize: "15px", cursor: "pointer"}}/>
+        );
+    }
+}
+
+function Type({count, notification, onAnEventSeenClick}) {
+    if (notification.type === 'server-down') {
+        return (
+            <ServerDownNotification count={count} onAnEventSeenClick={onAnEventSeenClick} notification={notification}/>
+        );
+    } else if (notification.type === 'success') {
+        return (
+            <SuccessNotification count={count} onAnEventSeenClick={onAnEventSeenClick} notification={notification}/>
+        );
+    } else if (notification.type === 'warning') {
+        return (
+            <WarningNotification count={count} onAnEventSeenClick={onAnEventSeenClick} notification={notification}/>
+        );
+    } else if (notification.type === 'error') {
+        return (
+            <ErrorNotification count={count} onAnEventSeenClick={onAnEventSeenClick} notification={notification}/>
+        );
+    }
 }
 
 @connect(({notifications}) => ({notifications}))
 class DropDown extends Component {
-	type({count, notification}) {
-		if (notification.type == 'server-down') {
-			return <ServerDownNotification count={count} onAnEventSeenClick={this.onAnEventSeenClick}
-										   notification={notification}/>
-		} else if (notification.type == 'success') {
-			return <SuccessNotification count={count} onAnEventSeenClick={this.onAnEventSeenClick}
-										notification={notification}/>
-		} else if (notification.type == 'warning') {
-			return <WarningNotification count={count} onAnEventSeenClick={this.onAnEventSeenClick}
-										notification={notification}/>
-		} else if (notification.type == 'error') {
-			return <ErrorNotification count={count} onAnEventSeenClick={this.onAnEventSeenClick}
-									  	notification={notification}/>
-		}
-	}
+    neutralDuplicates(notifications) {
+        let duplicateEverNotifications = {};
+        notifications.map(notification => {
+            if (!duplicateEverNotifications[notification.message]) {
+                duplicateEverNotifications[notification.message] = {
+                    notification,
+                    count: 1
+                };
+            } else {
+                duplicateEverNotifications[notification.message] = {
+                    notification: notification.time > duplicateEverNotifications[notification.message].notification.time
+                        ? notification : duplicateEverNotifications[notification.message].notification,
+                    count: duplicateEverNotifications[notification.message].count + 1
+                };
+            }
+        });
 
-	neutralDuplicates(notifications) {
-		let duplicateEverNotifications = {};
-		notifications.map(notification => {
-			if (!duplicateEverNotifications[notification.message]) {
-				duplicateEverNotifications[notification.message] = {
-					notification,
-					count: 1
-				};
-			} else {
-				duplicateEverNotifications[notification.message] = {
-					notification: notification.time > duplicateEverNotifications[notification.message].notification.time
-						? notification : duplicateEverNotifications[notification.message].notification,
-					count: duplicateEverNotifications[notification.message].count + 1
-				};
-			}
-		});
+        return duplicateEverNotifications;
+    }
 
-		return duplicateEverNotifications;
-	}
+    orderByTime(notifications) {
+        return _.sortBy(notifications, [function (data) {
+            return data.notification.time;
+        }]).reverse();
+    }
 
-	orderByTime(notifications) {
-		return _.sortBy(notifications, [function (data) {
-			return data.notification.time;
-		}]).reverse();
-	}
+    order(notifications) {
+        let neutraled = this.neutralDuplicates(notifications);
+        return this.orderByTime(neutraled)
+    }
 
-	order(notifications) {
-		let neutraled = this.neutralDuplicates(notifications);
-		return this.orderByTime(neutraled)
-	}
-
-	onAnEventSeenClick(id) {
-		dispatch(removeNotification(id));
-		dispatch(updateLocalStorageAction());
-	}
+    onAnEventSeenClick(id) {
+        dispatch(removeNotification(id));
+        dispatch(updateLocalStorageAction());
+    }
 
 
-	clearAllNotification() {
-		dispatch(emptyNotificationAction());
-		dispatch(updateLocalStorageAction())
-	}
+    clearAllNotification() {
+        dispatch(emptyNotificationAction());
+        dispatch(updateLocalStorageAction())
+    }
 
-	count(notifications) {
-		let count = 0;
-		notifications.map(notification => {
-			if (notification.shown)
-				count += 1;
-		});
+    count(notifications) {
+        let count = 0;
+        notifications.map(notification => {
+            if (notification.shown)
+                count += 1;
+        });
 
-		return count;
-	}
+        return count;
+    }
 
-	render() {
-		let {notifications} = this.props;
-		let orderedNotifications = this.order(notifications);
+    render() {
+        let {notifications} = this.props;
+        let orderedNotifications = this.order(notifications);
 
-		return (
-			<ul className="dropdown-menu dropdown-menu-default keep_open">
-				<li className="external">
-					<h3>
-						<span className="bold">{this.count(notifications)} پیام </span> آرشیو شده
-					</h3>
-					<a onClick={this.clearAllNotification} style={{fontSize: '12px'}}>حذف همه</a>
-				</li>
-				<ul className="dropdown-menu-list scroller">
-					{orderedNotifications.map((data, index) => (
-						<li key={Math.random()}>
-							<a href="javascript:;">
-								<div className="details">{this.type(data)}</div>
-							</a>
-						</li>
-					))}
-				</ul>
-			</ul>
-		);
-	}
+        return (
+            <ul className="dropdown-menu dropdown-menu-default keep_open">
+                <li className="external">
+                    <h3>
+                        <span className="bold">{this.count(notifications)} پیام </span> آرشیو شده
+                    </h3>
+                    <a onClick={this.clearAllNotification} style={{fontSize: '12px'}}>حذف همه</a>
+                </li>
+                <ul className="dropdown-menu-list scroller">
+                    {orderedNotifications.map((data, index) => (
+                        <li key={Math.random()}>
+                            <a href="javascript:;">
+                                <div className="details">
+                                    <Type {...data} onAnEventSeenClick={this.onAnEventSeenClick}/>
+                                </div>
+                            </a>
+                        </li>
+                    ))}
+                </ul>
+            </ul>
+        );
+    }
 }
