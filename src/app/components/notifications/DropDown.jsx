@@ -8,6 +8,12 @@ import {RemoveAll} from "./RemoveAll";
 
 @connect(({notifications}) => ({notifications}))
 export default class DropDown extends Component {
+    constructor(props) {
+        super(props);
+
+        this.clearAllNotification = this.clearAllNotification.bind(this);
+    }
+
     // we did this to bundle all notifications of one type under
     // one key (notification.message)
     neutralDuplicates(notifications) {
@@ -44,14 +50,13 @@ export default class DropDown extends Component {
         let neutralized = this.neutralDuplicates(notifications);
         let orderedNotifications = this.orderByTime(neutralized);
 
-        return {orderedNotifications, count: orderedNotifications.count};
+        return {orderedNotifications, count: orderedNotifications.length};
     }
 
     onAnEventSeenClick(id) {
         dispatch(removeNotification(id));
         dispatch(updateLocalStorageAction());
     }
-
 
     clearAllNotification() {
         dispatch(emptyNotificationAction());
@@ -79,7 +84,7 @@ export default class DropDown extends Component {
                     <h3>
                         <span className="bold">{this.count(notifications)} پیام </span> آرشیو شده
                     </h3>
-                    <RemoveAll count={count}/>
+                    <RemoveAll count={count} clearAllNotification={this.clearAllNotification}/>
                 </li>
                 <ul className="dropdown-menu-list scroller">
                     {orderedNotifications.map((data) => (
