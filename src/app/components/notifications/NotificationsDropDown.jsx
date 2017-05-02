@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from "react";
+import React, {Component} from "react";
 import {dispatch} from "../../functions/dispatch";
 import Count from "./Count";
 import DropDown from "./DropDown";

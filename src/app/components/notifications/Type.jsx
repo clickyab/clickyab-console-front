@@ -1,4 +1,4 @@
-import React, {Component, PropTypes} from "react";
+import React, {PropTypes} from "react";
 import ServerDownNotification from "../notifications/ServerDownNotification";
 import SuccessNotification from "../notifications/SuccessNotification";
 import WarningNotification from "../notifications/WarningNotification";
