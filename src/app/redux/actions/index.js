@@ -66,6 +66,11 @@ export const userListAction = (data) => ({type: USER_LIST, data});
 export const userDataAction = (data) => ({type: USER_DATA, data});
 export const userItemsListAction = ({data}) => ({type: USER_ITEMS_LIST, data});
 
+export const SWITCH_TO_PERSONAL = 'SWITCH_TO_PERSONAL';
+export const SWITCH_TO_CORPORATION = 'SWITCH_TO_CORPORATION';
+export const switchToPersonal = () => ({type: SWITCH_TO_PERSONAL});
+export const switchToCorporation = () => ({type: SWITCH_TO_CORPORATION});
+
 export const UPDATE_CHANNEL_FROM_LIST = 'UPDATE_CHANNEL_FROM_LIST';
 
 export const ADD_CHANNEL = 'ADD_CHANNEL';
