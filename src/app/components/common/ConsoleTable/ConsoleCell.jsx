@@ -1,34 +1,31 @@
-import React, {Component} from "react";
+import React, {PropTypes} from "react";
 
-export class ConsoleCell extends Component {
-	buildActions(id, item, type) {
-		let {depositAction, edit, deleteAction} = this.props;
+function buildActions(id, item, props) {
+    let {depositAction, edit, deleteAction} = props;
 
-		if (typeof item == "undefind") {
-			return;
-		}
+    if (typeof item === "undefined") {
+        return;
+    }
 
-		const actionKeys = item.split(',');
-		let buttons = [];
-		for (let i = 0; i < actionKeys.length; i++) {
-			if (actionKeys[i] == "edit") {
-				buttons.push(edit(id, this.props));
-			} else if (actionKeys[i] == "deposit") {
-				buttons.push(depositAction(id, this.props));
-			} else if (actionKeys[i] == "delete") {
-				buttons.push(deleteAction(id, this.props));
-			}
-		}
+    const actionKeys = item.split(',');
+    let buttons = [];
+    for (let i = 0; i < actionKeys.length; i++) {
+        if (actionKeys[i] === "edit") {
+            buttons.push(edit(id, props));
+        } else if (actionKeys[i] === "deposit") {
+            buttons.push(depositAction(id, props));
+        } else if (actionKeys[i] === "delete") {
+            buttons.push(deleteAction(id, props));
+        }
+    }
 
-		return buttons;
-	}
+    return buttons;
+}
 
-	render() {
-		let {mutator, data, actions, id} = this.props;
+export function ConsoleCell(props) {
+    let {actions, data, mutator, id} = props;
 
-		return (
-			actions ? <td>{this.buildActions(id, data)}</td> : mutator ? <td>{mutator(data, this.props)}</td> :
-				<td>{data}</td>
-		);
-	}
+    return (
+        actions ? <td>{buildActions(id, data, props)}</td> : mutator ? <td>{mutator(data, props)}</td> : <td>{data}</td>
+    );
 }
