@@ -6,7 +6,7 @@ import {select} from "../../../functions/select";
 let i = -1;
 
 export class ConsoleHeaderCell extends Component {
-	sort(event, order, query_name) {
+	sort(order, query_name) {
 		this.props.sort(order, query_name);
 	}
 
@@ -33,7 +33,7 @@ export class ConsoleHeaderCell extends Component {
 		let i = i + 1;
 
 		return (
-			<th id={"row-" + i}>
+			<th>
                 <span className="head-title-datatable">
                     {sortable ? <a href="#" onClick={(event) => {
 						event.preventDefault();
