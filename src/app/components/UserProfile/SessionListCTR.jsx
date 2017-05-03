@@ -1,93 +1,48 @@
 import React, {Component} from "react";
 import SessionListPTR from "./SessionListPTR";
 import swagger from "./../../swagger/index";
-import {connect} from "react-redux";
 import {getToken} from "../../redux/helpers";
-import moment from "moment-jalali";
 import {AlertBox} from "../../functions/notifications";
-import $ from "jquery";
+import {connect} from "react-redux";
+import {dispatch} from "../../functions/dispatch";
+import {sessionListAction} from "../../redux/actions/index";
+import {sync} from "../../functions/sync";
 let swal = require('sweetalert');
 
-@connect()
+@connect(({sessionList}) => ({sessionList}))
 export default class SessionListCTR extends Component {
-	componentDidMount() {
-		function DisplaySessionList(data) {
-			var $resultDisplay = $('.session-list');
-			if ($resultDisplay.find('.session-item').length > 0) {
-				$('.session-item').remove();
-			}
-			$.each(data, function (key, sessionItem) {
-				$.each(sessionItem.sessions, function () {
-					$resultDisplay.append(
-						'<div class="session-item left">' +
-						'<div class="session-item-body"> ' +
-						'<div class="session-item-info">' +
-						'<span class="session-user-agent">' + this.browser + " " + this.version + "-" + this.os + '</span>' +
-						'<span class="created_at">' + moment(this.created_at).format('dddd، jD jMMMM jYYYY') + '</span>' +
-						'</div>' +
-						'<div class="session-ip">' + this.ip + '</div>' +
-						'<div class="session-details">' +
-						'<div class="session-item-actions">' +
-						'<div class="btn-group">' +
-						(this.current != true ? '<button type="button" class="btn btn-outline red btn-sm" id="delete-session" data-key=' + this.key + '>حذف سشن</button>' : '') +
-						'</div>' +
-						'</div>' +
-						'</div>' +
-						'</div>' +
-						'</div>');
-				})
-			});
-		}
+    deleteSession(e) {
+        let key = e.target.attributes['data-key'].value;
+        swal({
+                title: "از حذف این سشن اطمینان دارید؟",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#ed6b75",
+                confirmButtonText: "بله سشن را پاک کن",
+                cancelButtonText: "انصراف!",
+                closeOnConfirm: true,
+                showLoaderOnConfirm: true,
+                closeOnCancel: true
+            },
+            function (isConfirm) {
+                if (isConfirm) {
+                    sync(function *(){
+                        let {data, response} = yield (new swagger.UserApi())
+                            .userSessionTerminateIdGet(key, getToken());
 
-
-		function sessionGetCallback({response}) {
-			if (response.statusCode == '200') {
-				DisplaySessionList(response);
-			}
-		}
-
-		function getListSessions() {
-			(new swagger.UserApi())
-				.userSessionsGet(getToken())
-				.then(response => sessionGetCallback(response));
-		}
-
-		getListSessions();
-
-
-		function sessionDeleteCallback({response}) {
-			if (response.statusCode == '200') {
-				DisplaySessionList(response);
-			}
-		}
-
-
-		$(document).on('click', '#delete-session', function () {
-			let thisSession = $(this);
-			let getDataKey = thisSession.attr("data-key");
-			swal({
-					title: "واقعا میخواهید سشن را پاک کنید؟",
-					type: "warning",
-					showCancelButton: true,
-					confirmButtonColor: "#ed6b75",
-					confirmButtonText: "بله سشن را پاک کن",
-					cancelButtonText: "انصراف!",
-					closeOnConfirm: true,
-					showLoaderOnConfirm: true,
-					closeOnCancel: true
-				},
-				function (isConfirm) {
-					if (isConfirm) {
-						(new swagger.UserApi())
-							.userSessionTerminateIdGet(getDataKey, getToken())
-							.then(response => sessionDeleteCallback(response));
-						AlertBox("success", "سشن با موفقیت حذف گردید");
-					}
-				});
-		})
-	}
-
-	render() {
-		return (<SessionListPTR />);
-	}
+                        if (response.statusCode == '200') {
+                            console.log(data);
+                            dispatch(sessionListAction(data));
+                            AlertBox("success", "سشن با موفقیت حذف گردید");
+                        } else if (response.statusCode == '400') {
+                            AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید", true);
+                        }
+                    })
+                }
+            }
+        );
+    }
+    render() {
+        return (<SessionListPTR deleteSession={this.deleteSession} sessionList={this.props.sessionList}/>);
+    }
 }
