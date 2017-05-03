@@ -16,11 +16,6 @@ export function dataTableLoader(status) {
 }
 
 export class ConsoleTable extends Component {
-    static defaultProps = {
-        defaults: {},
-        mutators: {}
-    };
-
     constructor(props) {
         super(props);
 
