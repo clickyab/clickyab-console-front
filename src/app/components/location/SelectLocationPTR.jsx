@@ -68,5 +68,5 @@ SelectLocationPTR.propTypes = {
     countries: PropTypes.array,
     provinces: PropTypes.array,
     cities: PropTypes.array,
-    form: PropTypes.object,
+    form: PropTypes.string,
 };

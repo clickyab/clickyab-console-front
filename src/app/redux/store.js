@@ -41,6 +41,7 @@ import {languageReducer} from "./reducers/languageReducer";
 import {translationReducer} from "./reducers/translationReducer";
 import {FLUSH} from "./actions/index";
 import {sessionDataReducer} from "./reducers/sessionDataReducer";
+import profileTypeReducer from "./reducers/profileTypeReducer";
 
 
 const enhancer = compose;
@@ -61,6 +62,8 @@ const rootReducer = (state, action) => {
 		userType: userTypeReducer,
 		userAssignRoleList: userAssignRoleListReducer,
 		userAssignRoleData: userAssignRoleDataReducer,
+
+		profileType: profileTypeReducer,
 
 		channelList: channelListReducer,
 		channelReportList: channelReportListReducer,
