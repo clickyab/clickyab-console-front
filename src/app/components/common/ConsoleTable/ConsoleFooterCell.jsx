@@ -4,7 +4,7 @@ import {channelQueryAction, updateLocalStorageAction} from "../../../redux/actio
 import {select} from "../../../functions/select";
 import {translate} from "../../../functions/translate";
 
-export class ConsoleFooterCell extends Component {
+export class InputCell extends Component {
 	timeout;
 
 	onSearchChange(event) {

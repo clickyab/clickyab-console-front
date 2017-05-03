@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, PropTypes} from 'react';
 import {translate} from './../../../functions/translate';
 
 export default class CampaignStepPTR extends Component {
@@ -9,8 +9,12 @@ export default class CampaignStepPTR extends Component {
                     {this.props.stepNumber}
                 </div>
                 <div className="mt-step-title uppercase font-grey-cascade">{translate(this.props.stepName)}</div>
-
             </div>
         )
     }
 }
+
+CampaignStepPTR.propTypes = {
+    stepCondition: PropTypes.string,
+    stepNumber: PropTypes.string
+};

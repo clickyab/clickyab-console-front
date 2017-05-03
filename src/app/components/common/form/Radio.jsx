@@ -1,4 +1,4 @@
-import React from "react";
+import React, {PropTypes} from "react";
 import {Field} from "redux-form";
 
 let Radio = ({name, id, label, value, ...props}) => {
@@ -14,6 +14,13 @@ let Radio = ({name, id, label, value, ...props}) => {
 			</label>
 		</div>
 	);
+};
+
+Radio.propTypes = {
+    name: PropTypes.string,
+	id: PropTypes.number,
+	label: PropTypes.string,
+	value: PropTypes.string
 };
 
 export default Radio;
