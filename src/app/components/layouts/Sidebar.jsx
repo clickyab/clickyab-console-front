@@ -7,7 +7,7 @@ import PublisherSidebar from "./../publisher/Dashboard/SidebarPTR";
 export default class Sidebar extends Component {
     render() {
         const {userType} = this.props;
-        const sidebar = userType == "advertiser" ? <AdvertiserSidebar/> : <PublisherSidebar/>;
+        const sidebar = userType === "advertiser" ? <AdvertiserSidebar/> : <PublisherSidebar/>;
         return (sidebar)
     }
 }

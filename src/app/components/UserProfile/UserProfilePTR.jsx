@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {Component, PropTypes} from "react";
 import {reduxForm} from "redux-form";
 import PersonalUserCTR from "./PersonalUserCTR";
 import CorporationUserCTR from "./CorporationUserCTR";
@@ -18,9 +18,9 @@ class UserProfilePTR extends Component {
     switchUserType() {
         let {profileType} = this.props;
 
-        if (profileType == 'personal') return <PersonalUserCTR />
-        else if (profileType == 'corporation') return <CorporationUserCTR />
-        else return <div />
+        if (profileType === 'personal') return <PersonalUserCTR/>;
+        else if (profileType === 'corporation') return <CorporationUserCTR/>;
+        else return <div/>
     }
 
     render() {
@@ -83,6 +83,10 @@ class UserProfilePTR extends Component {
         );
     }
 }
+
+UserProfilePTR.propTypes = {
+    profileType: PropTypes.oneOf(['personal', 'corporation'])
+};
 
 export default reduxForm({
     form: 'register'
