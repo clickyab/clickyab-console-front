@@ -18,7 +18,7 @@ let Radio = ({name, id, label, value, ...props}) => {
 
 Radio.propTypes = {
     name: PropTypes.string,
-	id: PropTypes.number,
+	id: PropTypes.string,
 	label: PropTypes.string,
 	value: PropTypes.string
 };
