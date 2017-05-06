@@ -10,58 +10,55 @@ import {select} from "../../functions/select";
 import {dispatch} from "../../functions/dispatch";
 let Ladda = require('ladda/js/ladda');
 
-export default class PersonalUserCTR extends Component {
-	loadingProgress;
+let loadingProgress;
 
-	editProfileSuccessfullyDispatchers(user) {
-		dispatch(updatePersonalInformation(user));
-		if (select('user.corporation') != null) {
-			dispatch(deleteCorporationInformation());
-		}
-		dispatch(updateLocalStorageAction());
-	}
+function editProfileSuccessfullyDispatchers(user) {
+    dispatch(updatePersonalInformation(user));
+    if (select('user.corporation') !== null) {
+        dispatch(deleteCorporationInformation());
+    }
+    dispatch(updateLocalStorageAction());
+}
 
-	PersonalUserCallback({data, response}) {
-		if (response.statusCode == '200') {
-			this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-			this.loadingProgress.stop();
-			SuccessBoxAlert({text: 'اطلاعات شما با موفقیت ثبت شد.'});
-			NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد.', 8000);
-		} else if (response.statusCode == '400') {
-			this.stopLoading();
-			FailedBoxAlert({error: 'اطلاعات شما صحیح نمی‌باشد.'});
-			NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
-		}
-	}
+function PersonalUserCallback({data, response}) {
+    if (response.statusCode === 200) {
+        editProfileSuccessfullyDispatchers(Object.assign({}, data));
+        loadingProgress.stop();
+        SuccessBoxAlert({text: 'اطلاعات شما با موفقیت ثبت شد.'});
+        NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد.', 8000);
+    } else if (response.statusCode === 400) {
+        stopLoading();
+        FailedBoxAlert({error: 'اطلاعات شما صحیح نمی‌باشد.'});
+        NotifyBox('error', 'اطلاعات شما صحیح نمی‌باشد.', 8000);
+    }
+}
 
-	PersonalCall(formValues) {
-		(new swagger.UserApi())
-			.userProfilePost(getToken(),
-				{'payloadData': {"personal": formValues}})
-			.then(response => this.PersonalUserCallback(response));
-	}
+function PersonalCall(formValues) {
+    (new swagger.UserApi())
+        .userProfilePost(getToken(),
+            {'payloadData': {"personal": formValues}})
+        .then(response => PersonalUserCallback(response));
+}
 
-	loading() {
-		this.loadingProgress = Ladda.create(document.querySelector('.personal-form button[type=submit]'));
-		this.loadingProgress.start();
-	}
+function loading() {
+    loadingProgress = Ladda.create(document.querySelector('.personal-form button[type=submit]'));
+    loadingProgress.start();
+}
 
-	stopLoading() {
-		if (this.loadingProgress)
-			this.loadingProgress.stop();
-	}
+function stopLoading() {
+    if (loadingProgress)
+        loadingProgress.stop();
+}
 
-	SubmitPersonalUser = (formValues, form) => {
+function SubmitPersonalUser(formValues, form) {
+    moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D');
+    if (!form.valid())
+        return;
 
-		moment(formValues.birthday, 'MM-DD-YYYY').format('MMMM D');
-		if (!form.valid())
-			return;
+    loading();
+    PersonalCall(formValues)
+}
 
-		this.loading();
-		this.PersonalCall(formValues)
-	};
-
-	render() {
-		return (<PersonalUserPTR SubmitPersonalUser={this.SubmitPersonalUser}/>);
-	}
+export default function PersonalUserCTR() {
+    return (<PersonalUserPTR SubmitPersonalUser={SubmitPersonalUser}/>);
 }

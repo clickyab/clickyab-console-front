@@ -6,22 +6,18 @@ import {ifInvalidToken} from "../../functions/helpers";
 import {sync} from "../../functions/sync";
 
 export default class SelectLocationCTR extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            countries: [],
-            provinces: [],
-            cities: []
-        };
-    }
+    state = {
+        countries: [],
+        provinces: [],
+        cities: []
+    };
 
     requestToGetCountry() {
         sync(function*() {
             let {data, response} = yield (new swagger.LocationApi())
                 .locationCountryGet(getToken());
 
-            if (response.statusCode == 200) {
+            if (response.statusCode === 200) {
                 this.setState({countries: data})
             }
 
@@ -36,7 +32,7 @@ export default class SelectLocationCTR extends Component {
         sync(function*() {
             let {data, response} = yield (new swagger.LocationApi())
                 .locationCityIdGet(id, getToken());
-            if (response.statusCode == 200) {
+            if (response.statusCode === 200) {
                 this.setState({cities: data});
             }
 
@@ -49,7 +45,7 @@ export default class SelectLocationCTR extends Component {
             let {data, response} = yield (new swagger.LocationApi())
                 .locationProvinceGet(getToken());
 
-            if (response.statusCode == 200) {
+            if (response.statusCode === 200) {
                 this.setState({provinces: data});
             }
 
@@ -67,7 +63,7 @@ export default class SelectLocationCTR extends Component {
 
     componentDidMount() {
         this.requestToGetCountry();
-        if (getCity() != 0) {
+        if (getCity() !== 0) {
             this.getCities({target: {value: getProvince() || 1}});
         }
     }
