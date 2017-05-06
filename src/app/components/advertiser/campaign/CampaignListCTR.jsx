@@ -96,7 +96,7 @@ export default class CampaignListCTR extends Component {
     }
 
     translator(title) {
-        return translate[title];
+        return translate(title);
     }
 
     admin_status(admin_status, {id, _actions}) {
@@ -126,7 +126,7 @@ export default class CampaignListCTR extends Component {
 
     pay_status(pay_status) {
         if (pay_status == "no") {
-            return <span className="label  label-warning"> {this.translator(pay_status)} </span>
+            return <span className="label  label-warning"> {this.translator(pay_status)}</span>
         } else if (pay_status == "yes") {
             return <span className="label  label-success"> {this.translator(pay_status)} </span>
         }
