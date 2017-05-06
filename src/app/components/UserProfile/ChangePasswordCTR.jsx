@@ -1,4 +1,4 @@
-import React, {Component} from "react";
+import React, {PropTypes} from "react";
 import ChangePasswordPTR from "./ChangePasswordPTR";
 import swagger from "./../../swagger/index";
 import {FailedBoxAlert, SuccessBoxAlert} from "../../functions/notifications";

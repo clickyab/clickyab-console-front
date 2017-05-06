@@ -44,7 +44,6 @@ class CorporationUserPTR extends Component {
 		});
 	}
 
-
 	render() {
 		const {handleSubmit, SubmitCorporationUser} = this.props;
 		return (

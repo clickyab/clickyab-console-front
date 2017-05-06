@@ -17,10 +17,8 @@ export default class SelectLocationPTR extends Component {
 				<div className="col-md-4">
 					<div className="form-group">
 						<label>انتخاب کشور</label>
-						<NumericSelect onCustomChange={onCountryChanged}
-									   className="form-control select-country"
-									   data-placeholder="انتخاب کشور"
-									   name="country_id" form={form}>
+						<NumericSelect onCustomChange={onCountryChanged} className="form-control select-country"
+									   data-placeholder="انتخاب کشور" name="country_id" form={form}>
 							<option value={0}> کشور استان</option>
 							{countries.map(country =>
 								<option key={country.id} value={country.id}>{country.name}</option>
