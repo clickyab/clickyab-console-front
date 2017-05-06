@@ -41,11 +41,6 @@ import TelegramListCTR from "./components/publisher/telegram/TelegramListCTR";
 import RolesListCTR from "./components/publisher/roles/RolesListCTR";
 import onUploadEnterMiddleware from "./middlewares/routes/onUploadEnterMiddleware";
 import onEditorEnterMiddleware from "./middlewares/routes/onEditorEnterMiddleware";
-import {dispatch} from "./functions/dispatch";
-import {logout} from "./redux/actions/login";
-import {
-    addNotificationAction, asyncRemoveLocalStorageAction
-} from "./redux/actions/index";
 import {navigate} from "./functions/navigate";
 import StepPreviewCTR from "./components/advertiser/campaign/step-preview/StepPreviewCTR";
 import onPreviewCampaignMiddleware from "./middlewares/routes/onPreviewCampaignMiddleware";
@@ -53,64 +48,18 @@ import onChannelReportEnterMiddleware from "./middlewares/routes/onChannelReport
 import {store} from "./redux/store";
 import verifyPage from "./components/advertiser/campaign/verifyPage";
 import onVerifyEnterMiddleware from "./middlewares/routes/onVerifyEnterMiddleware";
-import getVersion from "./functions/getVersion";
-import checkSubmitProfile from "./functions/checkSubmitProfile";
 import BillingListCTR from "./components/advertiser/billing/BillingListCTR";
 import onBillingEnterMiddleware from "./middlewares/routes/onBillingEnterMiddleware";
-import {AlertBox} from "./functions/notifications";
-import {select} from "./functions/select";
 import onTranslationListEnterMiddleware from "./middlewares/routes/onTranslationListEnterMiddleware";
 import TranslationListCTR from "./components/translation/TranslationListCTR";
-let Ladda = require('ladda/js/ladda');
-let $ = require("jquery");
-
-document.body.addEventListener('unauthorized401', function () {
-	dispatch(logout());
-	dispatch(asyncRemoveLocalStorageAction());
-	navigate('/v1/login');
-});
-
-document.body.addEventListener('bad-request400', function () {
-});
-
-document.body.addEventListener('accessDenied403', function () {
-	AlertBox("warning", "شما دسترسی به این صفحه را ندارید", true);
-	navigate('/v1/' + select('userType'));
-});
-
-document.body.addEventListener('error500', function () {
-	let button = document.querySelector('button');
-	if (button != null) {
-		let loadingProgress = Ladda.create(document.querySelector('button'));
-		loadingProgress.stop();
-	}
-	browserHistory.goBack();
-	AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید", true);
-});
-
-document.body.addEventListener('server-down', function () {
-	$('#server-condition').css('display', 'inline-block');
-	dispatch(addNotificationAction({
-		type: 'server-down', message: 'server is down', time: new Date()
-	}));
-	navigate('/v1/' + select('userType'));
-});
-
-document.body.addEventListener('server-ok200', function () {
-	$('#server-condition').css('display', 'none');
-});
-
-browserHistory.listen(function () {
-	getVersion();
-	checkSubmitProfile();
-});
+require('./events');
 
 export default function Provider() {
 	return (
 		<Router history={browserHistory}>
 			<Route path='/v1' component={App} onEnter={LanguagesMiddleware}>
 				<IndexRoute component={() => {
-					if (store.getState().userType == 'advertiser') {
+					if (store.getState().userType === 'advertiser') {
 						navigate('/v1/advertiser');
 					} else {
 						navigate('/v1/publisher');
