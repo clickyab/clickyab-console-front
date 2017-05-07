@@ -19,7 +19,8 @@ export default class SettingCell extends Component {
 	}
 
 	render() {
-		const {className} = this.props;
+		const {className, id} = this.props;
+		this.id = id;
 		return (
 			<label className={classNames('settingCell', className)}>
 				<div className={'switchValue'}>

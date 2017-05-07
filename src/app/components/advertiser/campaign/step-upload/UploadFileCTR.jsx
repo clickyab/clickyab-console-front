@@ -49,25 +49,24 @@ export default class UploadFileCTR extends Component {
 	}
 
 	loadSrcData(fileSrc) {
-		if (select("createCampaignData.extension") == '.png' || select("createCampaignData.extension") == '.jpg') {
+		if (select("createCampaignData.extension") === '.png' || select("createCampaignData.extension") === '.jpg') {
 			$(".preview-image-holder *").remove();
 			$(".preview-image-holder").append("<img src=" + fileSrc + "/>");
 		}
-		else if (select("createCampaignData.extension") == '.mp4' || select("createCampaignData.extension") == '.mov') {
+		else if (select("createCampaignData.extension") === '.mp4' || select("createCampaignData.extension") === '.mov') {
 			$(".preview-image-holder *").remove();
 			$(".preview-image-holder").append("<video controls src=" + fileSrc + "></video>");
 		}
-		else if (select("createCampaignData.extension") == '.pdf') {
+		else if (select("createCampaignData.extension") === '.pdf') {
 			$(".preview-image-holder *").remove();
 			$(".preview-image-holder").append("<img src='/img/pdf-file.jpg'>");
 		}
 	}
 
-
 	componentDidMount() {
 		document.title = "ساختن کمپین جدید | آپلود فایل";
 		let that = this;
-		if (select('createCampaignData.src') != null) {
+		if (select('createCampaignData.src') !== null) {
 			$(".flow-drop").addClass("col-md-8");
 			$(".flow-drop").fadeIn();
 			this.loadSrcData(select('createCampaignData.src'));
@@ -81,23 +80,18 @@ export default class UploadFileCTR extends Component {
 				singleFile: true,
 				headers: {token: select("user.token", "no token")}
 			});
-			// Flow.js isn't supported, fall back on a different method
 			if (!r.support) {
 				$('.flow-error').show();
 				return;
 			}
-			// Show a place for dropping/selecting files
 			$('.flow-drop').show();
 			r.assignDrop($('.flow-drop')[0]);
 			r.assignBrowse($('.flow-browse')[0]);
 			r.assignBrowse($('.flow-browse-folder')[0], true);
 			r.assignBrowse($('.flow-browse-image')[0], false, false, {accept: 'image/*'});
 
-			// Handle file add event
 			r.on('fileSuccess', function (file, message) {
 				let resolve = JSON.parse(message);
-				// let fileReader = new FileReader();
-
 				sync(function*() {
 					const {data, response} = yield (new swagger.AdApi())
 						.campaignUploadIdPut(select("createCampaignData.id", "no id"), select("user.token", "no token"),
@@ -107,7 +101,7 @@ export default class UploadFileCTR extends Component {
 								}
 							}
 						);
-					if (response.statusCode == '200') {
+					if (response.statusCode === 200) {
 
 						dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
 							src: data.src,
@@ -121,19 +115,9 @@ export default class UploadFileCTR extends Component {
 						$(".progress-bar").css("width", "0");
 						$(".flow-drop").addClass("col-md-8");
 						$(".flow-drop").fadeIn();
-						// fileReader.onload = function (event) {
-						//     let uri = event.target.result;
-						//     var mimeType = uri.split(",")[0].split(":")[1].split(";")[0];
-						//     console.log(mimeType);
-						//     var myURL = window.URL || window.webkitURL;
-						//
-						//
-						//
-						// };
 						that.loadSrcData(select("createCampaignData.src"));
 						$(".preview-image").fadeIn();
-						// fileReader.readAsDataURL(file.file);
-					} else if (response.statusCode == '400') {
+					} else if (response.statusCode === 400) {
 						AlertBox("error", "اختلالی در سرور به وجود آمده لطفا دوباره تلاش کنید");
 					}
 				});
@@ -142,19 +126,17 @@ export default class UploadFileCTR extends Component {
 				that.setState({
 					FileUploaded: false
 				});
-				if (file.getExtension() != 'png' &&
-					file.getExtension() != 'jpg' &&
-					file.getExtension() != 'mp4' &&
-					file.getExtension() != 'mov' &&
-					file.getExtension() != 'pdf') {
+				if (file.getExtension() !== 'png' &&
+					file.getExtension() !== 'jpg' &&
+					file.getExtension() !== 'mp4' &&
+					file.getExtension() !== 'mov' &&
+					file.getExtension() !== 'pdf') {
 					return false;
 				}
 				$(".flow-drop").fadeOut();
 				$(".preview-image").fadeOut();
 				$(".flow-file").remove();
-				// Show progress bar
 				$('.flow-progress, .flow-list').show();
-				// Add the file to the list
 				$(".progress-pause").append('<span class="flow-file-size"></span>');
 				$('.flow-list').append(
 					'<li class="flow-file flow-file-' + file.uniqueIdentifier + '">' +
@@ -171,7 +153,7 @@ export default class UploadFileCTR extends Component {
 					'</span>' +
 					'</div>'
 				);
-				var $self = $('.flow-file-' + file.uniqueIdentifier);
+				let $self = $('.flow-file-' + file.uniqueIdentifier);
 				$self.find('.flow-file-pause').on('click', function () {
 					file.pause();
 					$self.find('.flow-file-pause').hide();
@@ -196,19 +178,19 @@ export default class UploadFileCTR extends Component {
 
 				});
 			});
-			r.on('filesSubmitted', function (file) {
+			r.on('filesSubmitted', function () {
 				r.upload();
 			});
 			r.on('complete', function () {
 				$('.flow-progress .progress-resume-link, .flow-progress .progress-pause-link').hide();
 			});
-			r.on('fileSuccess', function (file, message) {
-				var $self = $('.flow-file-' + file.uniqueIdentifier);
+			r.on('fileSuccess', function (file) {
+				let $self = $('.flow-file-' + file.uniqueIdentifier);
 				$(".upload-status").text("");
 				$self.find('.flow-file-progress').text('(آپلود با موفقیت انجام شد)');
 				$self.find('.flow-file-pause, .flow-file-resume , .flow-file-cancel , .note').remove();
 			});
-			r.on('fileError', function (file, message) {
+			r.on('fileError', function (file) {
 				$(".flow-drop").fadeIn();
 				$(".upload-status").text("");
 				$('.flow-file-' + file.uniqueIdentifier + ' .flow-file-progress').html('اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید ');
@@ -222,17 +204,12 @@ export default class UploadFileCTR extends Component {
 				$('.progress-bar').css({width: Math.floor(r.progress() * 100) + '%'});
 			});
 			r.on('uploadStart', function () {
-				// Show pause, hide resume
 				$('.flow-progress .progress-resume-link').hide();
 				$('.flow-progress .progress-pause-link').show();
-			});
-			r.on('catchAll', function () {
-				// silence is golden
 			});
 			window.r = {
 				pause: function () {
 					r.pause();
-					// Show resume, hide pause
 					$('.flow-file-resume').show();
 					$('.flow-file-pause').hide();
 					$('.flow-progress .progress-resume-link').show();
@@ -266,48 +243,6 @@ export default class UploadFileCTR extends Component {
 			window.r.cancel();
 			return (false);
 		});
-
-		let onDragEnter = function (event) {
-				$(".flow-drop").addClass('flow-dragover');
-			},
-			onDragEnd = function (event) {
-				$(".flow-drop").removeClass('flow-dragover');
-			},
-
-			onDrop = function (event) {
-				$(".flow-drop").removeClass('flow-dragover');
-			};
-
-		function readablizeBytes(bytes) {
-			var s = ['bytes', 'kB', 'MB', 'GB', 'TB', 'PB'];
-			var e = Math.floor(Math.log(bytes) / Math.log(1024));
-			return (bytes / Math.pow(1024, e)).toFixed(2) + " " + s[e];
-		}
-
-		function secondsToStr(temp) {
-			function numberEnding(number) {
-				return (number > 1) ? '' : '';
-			}
-
-			var years = Math.floor(temp / 31536000);
-			if (years) {
-				return years + ' سال' + numberEnding(years);
-			}
-			var days = Math.floor((temp %= 31536000) / 86400);
-			if (days) {
-				return days + ' روز' + numberEnding(days);
-			}
-			var hours = Math.floor((temp %= 86400) / 3600);
-			if (hours) {
-				return hours + ' ساعت' + numberEnding(hours);
-			}
-			var minutes = Math.floor((temp %= 3600) / 60);
-			if (minutes) {
-				return minutes + ' دقیقه' + numberEnding(minutes);
-			}
-			var seconds = temp % 60;
-			return seconds + ' ثانیه' + numberEnding(seconds);
-		}
 	}
 
 	stepRowCreator() {
@@ -319,7 +254,6 @@ export default class UploadFileCTR extends Component {
 		}
 		return result;
 	}
-
 
 	render() {
 		let campaignTitle = select("createCampaignData.name", "no title");

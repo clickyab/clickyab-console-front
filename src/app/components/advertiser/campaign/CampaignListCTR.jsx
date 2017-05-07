@@ -24,13 +24,13 @@ export default class CampaignListCTR extends Component {
         }
 
         setClickHandler('table-advance', function (e) {
-            if (e.target.className == 'thumbnail-image') {
+            if (e.target.className === 'thumbnail-image') {
                 BigPicture({
                     el: e.target,
                     imgSrc: e.target.src
                 });
             }
-            else if (e.target.className == 'thumbnail-video') {
+            else if (e.target.className === 'thumbnail-video') {
                 BigPicture({
                     el: e.target,
                     vidSrc: e.target.getAttribute('data-video')
@@ -65,7 +65,7 @@ export default class CampaignListCTR extends Component {
     }
 
     edit(id, {pay_status}) {
-        if (pay_status == 'no') {
+        if (pay_status === 'no') {
             return <EditCampaignButton key={Math.random()} id={id}/>
         }
     }
@@ -79,10 +79,10 @@ export default class CampaignListCTR extends Component {
     }
 
     description(description, {cli_message_id}) {
-        if (description != null && cli_message_id == null) {
+        if (description !== null && cli_message_id === null) {
             return Base64.decode(description).substring(0, 10) + "...";
         }
-        if (cli_message_id != null) {
+        if (cli_message_id !== null) {
             return "پروموت";
         }
     }
@@ -104,11 +104,11 @@ export default class CampaignListCTR extends Component {
             return <ChangeCampaignStatus id={id} admin_status={admin_status} translator={this.translator.bind(this)}/>;
         }
         let span;
-        if (admin_status == 'pending') {
+        if (admin_status === 'pending') {
             span = <span className="label  label-warning"> {this.translator(admin_status)} </span>;
-        } else if (admin_status == 'accepted') {
+        } else if (admin_status === 'accepted') {
             span = <span className="label  label-success"> {this.translator(admin_status)} </span>;
-        } else if (admin_status == 'rejected') {
+        } else if (admin_status === 'rejected') {
             span = <span className="label  label-danger"> {this.translator(admin_status)} </span>;
         }
 
@@ -125,9 +125,9 @@ export default class CampaignListCTR extends Component {
     }
 
     pay_status(pay_status) {
-        if (pay_status == "no") {
+        if (pay_status === "no") {
             return <span className="label  label-warning"> {this.translator(pay_status)}</span>
-        } else if (pay_status == "yes") {
+        } else if (pay_status === "yes") {
             return <span className="label  label-success"> {this.translator(pay_status)} </span>
         }
     }
