@@ -13,36 +13,36 @@ let Ladda = require('ladda/js/ladda');
 let loadingProgress;
 
 export default class CaptionCTR extends Component {
-	componentDidMount() {
-		let textarea_text = $(".emojieditor-plugin-content");
-		$(document).on("click", ".caption-text-form-btn", function (e) {
-			e.preventDefault();
-			sync(function *() {
-				loadingProgress = Ladda.create(document.querySelector('button.caption-text-form-btn'));
-				loadingProgress.start();
+    componentDidMount() {
+        let textarea_text = $(".emojieditor-plugin-content");
+        $(document).on("click", ".caption-text-form-btn", function (e) {
+            e.preventDefault();
+            sync(function *() {
+                loadingProgress = Ladda.create(document.querySelector('button.caption-text-form-btn'));
+                loadingProgress.start();
 
-				const {response} = yield (new swagger.AdApi())
-					.campaignDescIdPut(select("createCampaignData.id", "no id"), select("user.token", "no token"), {'payloadData': {"body": Base64.encode(textarea_text.val())}});
+                const {response} = yield (new swagger.AdApi())
+                    .campaignDescIdPut(select("createCampaignData.id", "no id"), select("user.token", "no token"), {'payloadData': {"body": Base64.encode(textarea_text.val())}});
 
-				if (response.statusCode === 200) {
-					dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {description: textarea_text.val()})));
-					dispatch(deleteCampaignPromote());
-					dispatch(updateLocalStorageAction());
+                if (response.statusCode === 200) {
+                    dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {description: textarea_text.val()})));
+                    dispatch(deleteCampaignPromote());
+                    dispatch(updateLocalStorageAction());
 
-					loadingProgress.stop();
+                    loadingProgress.stop();
 
-					navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
-						campaign_id: select('createCampaignData.id')
-					});
-				} else if (response.statusCode === 400) {
-					loadingProgress.stop();
-					AlertBox("error", "لطفا یک متن وارد نمایید");
-				}
-			});
-		});
-	}
+                    navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
+                        campaign_id: select('createCampaignData.id')
+                    });
+                } else if (response.statusCode === 400) {
+                    loadingProgress.stop();
+                    AlertBox("error", "لطفا یک متن وارد نمایید");
+                }
+            });
+        });
+    }
 
-	render() {
-		return (<CaptionPTR/>);
-	}
+    render() {
+        return (<CaptionPTR/>);
+    }
 }

@@ -17,12 +17,12 @@ import {translate} from "../../functions/translate";
 
 @connect(({user}) => ({user}))
 export default class Header extends Component {
+    loadingProgress;
+
     componentDidMount() {
         let userAvatar = getGravatarFromEmail(getEmail(), 200);
         document.querySelector(".profile-userpic").setAttribute("src", userAvatar);
     }
-
-    loadingProgress;
 
     editProfileSuccessfullyDispatchers(user) {
         let {dispatch} = this.props;
@@ -31,17 +31,17 @@ export default class Header extends Component {
         dispatch(updateUserInformation(user));
         dispatch(updateLocalStorageAction());
         dispatch(asyncRemoveLocalStorageAction());
-        navigate('/v1/login');
         dispatch(flush());
+        navigate('/v1/login');
     }
 
     LogoutCallback({data, response}) {
-        if (response.statusCode == '200') {
+        if (response.statusCode === 200) {
             this.editProfileSuccessfullyDispatchers(Object.assign({}, data));
-        } else if (response.statusCode == '400') {
+        } else if (response.statusCode === 400) {
             AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید");
         }
-    }1
+    }
 
     LogoutCall() {
         (new swagger.UserApi())
@@ -55,7 +55,7 @@ export default class Header extends Component {
 
     render() {
         let initData;
-        if ((select('user.personal.first_name')) != null) {
+        if ((select('user.personal.first_name')) !== null) {
             initData = getFullName();
         } else {
             initData = getCorporationTitle();
