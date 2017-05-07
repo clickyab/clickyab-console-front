@@ -6,6 +6,7 @@ export default function PageNotFound() {
         navigate("/v1/advertiser")
     }, 30000);
 
+
     return (
         <div className=" page-404-full-page">
             <div className="row">

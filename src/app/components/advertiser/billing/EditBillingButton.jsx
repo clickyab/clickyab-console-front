@@ -28,10 +28,10 @@ function deposit(event) {
     });
 }
 
-export default function EditBillingButton() {
+export default function EditBillingButton({id}) {
     return (<div className="btn-group ">
         <button className="btn btn-info btn-xs deposit-item mt-ladda-btn ladda-button" data-style="zoom-in"
-                key="edit" onClick={deposit}>واریز
+                data-id={id} key="edit" onClick={deposit}>واریز
         </button>
     </div>);
 }

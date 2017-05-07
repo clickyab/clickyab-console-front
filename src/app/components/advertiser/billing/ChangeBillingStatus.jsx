@@ -2,6 +2,7 @@ import React, {PropTypes} from "react";
 import swagger from "../../../swagger/index";
 import {sync} from "../../../functions/sync";
 import {getToken} from "../../../redux/helpers";
+import {mapPropsToHandler} from "../../../functions/mapPropsToHandler";
 
 function edit(event) {
     const id = event.target.attributes.getNamedItem('data-id').value;
