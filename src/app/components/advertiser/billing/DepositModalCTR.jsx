@@ -36,7 +36,7 @@ export default class DepositModalCTR extends Component {
 	};
 
 	render() {
-		const {form, depositData} = this.props;
+		const {depositData} = this.props;
 		return (
 			<DepositModalPTR  depositData={depositData} SubmitDepositForm={this.SubmitDepositForm}/>);
 	}
