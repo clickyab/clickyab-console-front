@@ -11,7 +11,7 @@ function showAddCampaign() {
     navigate('/v1/advertiser/campaign/create/step/name');
 }
 
-export default function CampaignListPTR() {
+export default function CampaignListPTR(props) {
     document.title = "مدیریت کمپین ها";
 
     return (
@@ -40,7 +40,7 @@ export default function CampaignListPTR() {
 
                 </div>
                 <div className='portlet-body'>
-                    <ConsoleTable {...this.props} list="campaign"/>
+                    <ConsoleTable {...props} list="campaign"/>
                 </div>
             </div>
         </div>

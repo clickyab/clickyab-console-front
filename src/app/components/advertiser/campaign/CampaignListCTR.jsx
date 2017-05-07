@@ -79,7 +79,7 @@ export default class CampaignListCTR extends Component {
     }
 
     description(description, {cli_message_id}) {
-        if (description !== null && cli_message_id === null) {
+        if (description && cli_message_id === null) {
             return Base64.decode(description).substring(0, 10) + "...";
         }
         if (cli_message_id !== null) {
