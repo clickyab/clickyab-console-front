@@ -16,7 +16,6 @@ export default class WithdrawModalCTR extends Component {
             const {response} = yield (new swagger.BillingApi())
                 .billingWithdrawalPost(select("user.token", "no token"), {'payloadData': formValues});
 
-
             if (response.statusCode == '200') {
                 $('#withDrawModal').modal('hide');
 				NotifyBox('success', 'اطلاعات شما با موفقیت ثبت شد', true);

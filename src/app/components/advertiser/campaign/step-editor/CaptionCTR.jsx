@@ -24,7 +24,7 @@ export default class CaptionCTR extends Component {
 				const {response} = yield (new swagger.AdApi())
 					.campaignDescIdPut(select("createCampaignData.id", "no id"), select("user.token", "no token"), {'payloadData': {"body": Base64.encode(textarea_text.val())}});
 
-				if (response.statusCode == '200') {
+				if (response.statusCode === 200) {
 					dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {description: textarea_text.val()})));
 					dispatch(deleteCampaignPromote());
 					dispatch(updateLocalStorageAction());
@@ -34,7 +34,7 @@ export default class CaptionCTR extends Component {
 					navigate('/v1/advertiser/campaign/create/:campaign_id:/step/plan', {
 						campaign_id: select('createCampaignData.id')
 					});
-				} else if (response.statusCode == '400') {
+				} else if (response.statusCode === 400) {
 					loadingProgress.stop();
 					AlertBox("error", "لطفا یک متن وارد نمایید");
 				}
@@ -43,6 +43,6 @@ export default class CaptionCTR extends Component {
 	}
 
 	render() {
-		return (<CaptionPTR />);
+		return (<CaptionPTR/>);
 	}
 }

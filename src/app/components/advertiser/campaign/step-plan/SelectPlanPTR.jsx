@@ -109,14 +109,14 @@ export default class SelectPlanPTR extends Component {
             if (this.planID) {
                 this.loadingProgressSend = Ladda.create(document.querySelector('button.next-step'));
                 this.loadingProgressSend.start();
-                let {data, response} = yield (new swagger.AdApi()).campaignPlanIdPut(
+                let {response} = yield (new swagger.AdApi()).campaignPlanIdPut(
                     select('createCampaignData.id'), select('user.token', 'no token'), {
                         'payloadData': {
                             plan_id: this.planID
                         }
                     }
                 );
-                if (response.statusCode == '200') {
+                if (response.statusCode === 200) {
                     this.loadingProgressSend.stop();
                     dispatch(createCampaign(Object.assign({}, select("createCampaignData"), {
                         plan_id: this.planID,
@@ -127,7 +127,7 @@ export default class SelectPlanPTR extends Component {
                     navigate('/v1/advertiser/campaign/create/:campaign_id:/step/preview', {
                         campaign_id: select('createCampaignData.id')
                     });
-                } else if (response.statusCode == '400') {
+                } else if (response.statusCode === 400) {
                     AlertBox("error", "اختلالی در سرور به وجود آمده است لطفا دوباره تلاش کنید");
                     this.loadingProgressSend.stop();
                 }
