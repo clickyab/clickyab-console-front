@@ -4,7 +4,7 @@ import {navigate} from "../../functions/navigate";
 export default function PageNotFound() {
     setTimeout(function() {
         navigate("/v1/advertiser")
-    }, 3000);
+    }, 30000);
 
     return (
         <div className=" page-404-full-page">
