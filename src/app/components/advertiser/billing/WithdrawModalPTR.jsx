@@ -1,5 +1,5 @@
 import React, {Component} from "react";
-import {Field, reduxForm} from "redux-form";
+import {reduxForm} from "redux-form";
 import $ from "jquery";
 import NumberFormat from "react-number-format";
 
@@ -18,23 +18,15 @@ class WithdrawModalPTR extends Component {
             rules: {
                 amount: {
                     required: true,
-                    // digits: true,
-                    // range: [50000, 999999999999999999], //TODO: less than 50t error
                 }
             },
             messages: {
                 amount: {
                     required: 'لطفا مبلغ را وارد نمایید',
-                    // digits: 'عدد باشد',
-                    // range: 'حداقل مبلغ برداشت 50 هزار تومان می‌باشد'
                 }
             }
         });
     }
-
-	closeModal(e) {
-		$(e.target).parents('.modal').prop('id').modal('hide');
-	}
 
     render() {
         const {handleSubmit, SubmitWithDraw} = this.props;
@@ -65,12 +57,10 @@ class WithdrawModalPTR extends Component {
                                                           className="form-control input-lg" placeholder="مبلغ مورد نظر"
                                                           value={this.state.profit.amount} thousandSeparator={true}
                                                           onChange={(e, value) => {
-                                                              const formattedValue = e.target.value;
                                                               this.setState({profit: {amount: parseInt(value)}})
                                                           }}/>
                                         </div>
                                     </div>
-
                                     <blockquote>
                                         <p style={{color: 'gray'}}>مبلغ مورد نظر برای برداشت از حساب‌کاربری‌تان را وارد
                                             نمایید.</p>
@@ -81,7 +71,6 @@ class WithdrawModalPTR extends Component {
                                             className="btn btn-primary btn-lg add-channel-form btn-block">ذخیره
                                     </button>
                                 </form>
-
 							</div>
 						</div>
 					</div>

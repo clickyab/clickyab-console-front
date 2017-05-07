@@ -6,11 +6,10 @@ import {DepositItemAction} from "../../../redux/actions/index";
 import swagger from "../../../swagger/index";
 let Ladda = require('ladda/js/ladda');
 import {NotifyBox} from "../../../functions/notifications";
-let loadingProgress;
 
 export default class EditBillingButton extends Component {
     depositElementButton;
-    deposit(event) {
+    deposit() {
         const {id} = this.props;
         let loadingProgress;
         sync(function *() {
@@ -20,11 +19,11 @@ export default class EditBillingButton extends Component {
             const {error, data, response} = yield (new swagger.BillingApi())
                 .billingBillingIdGet(id, select('user.token', 'no token'));
 
-            if (response.statusCode == 200) {
+            if (response.statusCode === 200) {
                 $('#DepositModal').modal();
                 loadingProgress.stop();
                 dispatch(DepositItemAction(data));
-            } else if (response.statusCode == '400') {
+            } else if (response.statusCode === 400) {
                 NotifyBox("error","مشکلی به وجود آمده است لطفا دوباره تلاش کنید");
             }
         }.bind(this));

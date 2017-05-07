@@ -5,9 +5,9 @@ import {shallowEqual} from "./../../../3rd/shallowEqual";
 import {dispatch} from "../../../functions/dispatch";
 
 class DepositModalPTR extends Component {
-
     initialize = false;
     DepositForm;
+
     state = {
         validation: true,
         profit: {
@@ -26,30 +26,20 @@ class DepositModalPTR extends Component {
         return false;
     }
 
-
-
     componentDidMount() {
         this.DepositForm = $("#DepositModalForm");
         this.DepositForm.validate({
             rules: {
                 amount: {
-                    required: true,
-                    // digits: true,
-                    // range: [50000, 999999999999999999], //TODO: less than 50t error
+                    required: true
                 }
             },
             messages: {
                 amount: {
-                    required: 'لطفا مبلغ را وارد نمایید',
-                    // digits: 'عدد باشد',
-                    // range: 'حداقل مبلغ برداشت 50 هزار تومان می‌باشد'
+                    required: 'لطفا مبلغ را وارد نمایید'
                 }
             }
         });
-    }
-
-    closeModal(e) {
-        $(e.target).parents('.modal').prop('id').modal('hide');
     }
 
     render() {

@@ -6,8 +6,6 @@ import {securify} from "../../../functions/securify";
 import {translate} from "../../../functions/translate";
 
 export default class BillingListPTR extends Component {
-
-
     componentDidMount() {
         $(document).on('click', '#withdrawModal', function () {
             $('#withDrawModal').modal();
@@ -42,7 +40,6 @@ export default class BillingListPTR extends Component {
                         </div>,
                         ({user}, {canSeeBillingList}, run) => run(canSeeBillingList())
                     )}
-
                 </div>
                 <DepositModalCTR/>
                 <WithdrawModalCTR />

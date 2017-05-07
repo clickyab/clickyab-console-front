@@ -21,7 +21,7 @@ export default class CreateCTR extends Component {
 			const {data, response} = yield (new swagger.AdApi())
 				.campaignPost(getToken(), {'payloadData': formValues});
 
-			if (response.statusCode == '200') {
+			if (response.statusCode === 200) {
 				dispatch(createCampaign(data));
 				dispatch(updateLocalStorageAction());
 
@@ -34,7 +34,7 @@ export default class CreateCTR extends Component {
 				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
 					campaign_id: select('createCampaignData.id')
 				});
-			} else if (response.statusCode == '400') {
+			} else if (response.statusCode === 400) {
 				loadingProgress.stop();
 				FailedBoxAlert(response);
 			}
@@ -51,7 +51,7 @@ export default class CreateCTR extends Component {
 			const {data, response} = yield (new swagger.AdApi())
 				.campaignIdPut(id, select("user.token", "no token"), {'payloadData': formValues});
 
-			if (response.statusCode == '200') {
+			if (response.statusCode === 200) {
 				dispatch(createCampaign(data));
 				dispatch(updateLocalStorageAction());
 
@@ -64,7 +64,7 @@ export default class CreateCTR extends Component {
 				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
 					campaign_id: select('createCampaignData.id')
 				});
-			} else if (response.statusCode == '400') {
+			} else if (response.statusCode === 400) {
 				loadingProgress.stop();
 				NotifyBox(
 					'error',
@@ -77,7 +77,7 @@ export default class CreateCTR extends Component {
 	SubmitCreateCampaignName = (formValues, form) => {
 		if (!form.valid())
 			return;
-		if (select('createCampaignData.id') != null) {
+		if (select('createCampaignData.id') !== null) {
 			this.updateCampaignNameSubmit(formValues, select('createCampaignData.id'));
 		} else {
 			this.createCampaignNameSubmit(formValues)
