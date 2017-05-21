@@ -19,25 +19,21 @@ export default class UploadFileCTR extends Component {
 		stepCondition: 'first done',
 		stepNumber: '۱',
 		stepName: 'Campaign Name'
-	}, {
-		stepCondition: 'done',
-		stepNumber: '۲',
-		stepName: 'Content Type'
-	}, {
+	},{
 		stepCondition: this.stepUpload,
-		stepNumber: '۳',
+		stepNumber: '۲',
 		stepName: 'File Upload'
 	}, {
 		stepCondition: '',
-		stepNumber: '۴',
+		stepNumber: '۳',
 		stepName: 'Text Content'
 	}, {
 		stepCondition: '',
-		stepNumber: '۵',
+		stepNumber: '۴',
 		stepName: 'Campaign Type'
 	}, {
 		stepCondition: 'last',
-		stepNumber: '۶',
+		stepNumber: '۵',
 		stepName: 'Finish and Payment'
 	}];
 
@@ -310,7 +306,7 @@ export default class UploadFileCTR extends Component {
 							<div className="col-md-12 margin-top-20 space-btn">
 								<button onClick={
 									() => {
-										navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
+										navigate('/v1/advertiser/campaign/create/:campaign_id:/step/name', {
 											campaign_id: select('createCampaignData.id')
 										});
 									}
