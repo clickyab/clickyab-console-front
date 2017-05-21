@@ -31,7 +31,7 @@ export default class CreateCTR extends Component {
 					'کمپین ' + formValues.name + ' ساخته شد'
 				);
 
-				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
+				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/upload', {
 					campaign_id: select('createCampaignData.id')
 				});
 			} else if (response.statusCode === 400) {
@@ -61,7 +61,7 @@ export default class CreateCTR extends Component {
 					'نام کمپین به ' + formValues.name + ' به روز شد.'
 				);
 
-				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/type', {
+				navigate('/v1/advertiser/campaign/create/:campaign_id:/step/upload', {
 					campaign_id: select('createCampaignData.id')
 				});
 			} else if (response.statusCode === 400) {

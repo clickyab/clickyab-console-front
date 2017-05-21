@@ -25,22 +25,18 @@ export default class SelectPlanPTR extends Component {
     }, {
         stepCondition: 'done',
         stepNumber: '۲',
-        stepName: 'Content Type'
-    }, {
-        stepCondition: 'done',
-        stepNumber: '۳',
         stepName: 'File Upload'
     }, {
         stepCondition: 'done',
-        stepNumber: '۴',
+        stepNumber: '۳',
         stepName: 'Text Content'
     }, {
         stepCondition: this.stepPlan,
-        stepNumber: '۵',
+        stepNumber: '۴',
         stepName: 'Campaign Type'
     }, {
         stepCondition: 'last',
-        stepNumber: '۶',
+        stepNumber: '۵',
         stepName: 'Finish and Payment'
     }];
 
